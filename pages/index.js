@@ -1,43 +1,35 @@
-import React, { useState, useEffect } from 'react'
+import React from "react";
 import Head from "next/head";
 import Prismic from '@prismicio/client'
 import { RichText } from "prismic-reactjs";
-import { useRouter } from 'next/router'
+import Document, { NextScript } from 'next/document';
 // Project components & functions
-import DefaultLayout from "layouts";
-import { Header, PostList, SetupRepo,MyComponent } from "components/home";
+import {  SliceZone } from "components/ihhome";
+import { SetupRepo } from "components/home";
+import HomeLayout from "layouts";
+import { HikeHeader } from "components/ihhome";
 import { Client } from "utils/prismicHelpers";
+import { ihbodyStyles } from 'styles'
 
 /**
  * Homepage component
  */
-const Home = ({ doc, posts }) => {
-  const router = useRouter()
-
-  useEffect(() => {
-    // Prefetch the hikehome page
-    router.prefetch('/hikehome')
-  }, [])
-
-
+const HikeHome = ({ doc }) => {
   if (doc && doc.data) {
     return (
-      <DefaultLayout>
-        <MyComponent/>
-        <button type="button" onClick={() => router.push('/hikehome')}>
-      Click me
-    </button>
+      <HomeLayout>
         <Head>
-          <title>{RichText.asText(doc.data.headline)}</title>
+         <meta charset="utf-8"/>
+         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+         <title>Homepage – 10000000</title>
         </Head>
-
-        <Header
-          image={doc.data.image}
-          headline={doc.data.headline}
-          description={doc.data.description}
-        />
-        <PostList posts={posts} />
-      </DefaultLayout>
+        <div id="Homepage__10">
+        <HikeHeader/>
+        <SliceZone sliceZone={doc.data.body} />
+        </div>
+        <style jsx >{ihbodyStyles}</style>
+      </HomeLayout>
     );
   }
 
@@ -51,22 +43,21 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const client = Client()
 
-  const doc = await client.getSingle("blog_home", ref ? { ref } : null) || {}
+  const doc = await client.getSingle("hike_home_ctype", ref ? { ref } : null) || {}
 
-  const posts = await client.query(
-    Prismic.Predicates.at("document.type", "post"), {
-      orderings: "[my.post.date desc]",
+  /*const doc = await client.query(
+    Prismic.Predicates.at("document.type", "hike_home_ctype"), {
       ...(ref ? { ref } : null)
     },
-  )
-
+  )*/
+  
+  //console.log( JSON.stringify(doc.results[0]));
   return {
     props: {
       doc,
-      posts: posts ? posts.results : [],
       preview
     }
   }
 }
 
-export default Home;
+export default HikeHome;

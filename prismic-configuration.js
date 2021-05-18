@@ -13,6 +13,9 @@ export const linkResolver = (doc) => {
   if (doc.type === 'post') {
     return `/blog/${doc.uid}`
   }
+  if (doc.type === 'hike_home_ctype') {
+    return `/hikehome`
+  }
   return '/'
 }
 

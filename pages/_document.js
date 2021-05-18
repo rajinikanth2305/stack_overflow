@@ -26,13 +26,13 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <PrismicScript />
         </body>
       </Html>
     )
   }
 
   /*render() {
+              <script async defer src={`https://static.cdn.prismic.io/prismic.js?repo=${prismicRepoName}&new=true`} />
     return (
       <Html>
         <Head>
