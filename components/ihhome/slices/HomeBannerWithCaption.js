@@ -46,7 +46,7 @@ const HomeBannerWithCaption = ({ slice }) => {
       <style jsx global>{ihhomeBannerStyles}</style>
 	</div> */}
 	<div>
-	  <img src="Intersection_7.png" width="100%" height="700" />
+	  <img src="Intersection_7.png" class="banner-image" />
 	  {/* <Image  src={imageUrl} width={imageWidth} height ={imageHeight}   /> */}
       <div class="container">
         <div class="banner-text-sec">
@@ -58,7 +58,7 @@ const HomeBannerWithCaption = ({ slice }) => {
           </p>
           <p class="banner-text-3">defining the future of trekking</p>
           <a class="banner-text-link">Read Our Story Here</a>
-          <div class="mt-3">
+          <div class="mt-3 m-text-center">
               <button class="btn btn-lg btn-primary btn-ih-primary">VIEW UPCOMMING TREKS</button>
           </div>
         </div>

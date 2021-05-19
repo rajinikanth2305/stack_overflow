@@ -1,6 +1,11 @@
 import css from "styled-jsx/css";
 
 export const ihhomeBannerStyles = css.global`
+  .banner-image {
+    width: 100%;
+    height: 700px;
+  }
+
   .banner-text-sec {
     top: 294px;
     position: absolute;
@@ -17,8 +22,8 @@ export const ihhomeBannerStyles = css.global`
     font-size: 48px;
     color: rgba(255, 255, 255, 1);
     letter-spacing: 0.1px;
-	text-transform: capitalize;
-	margin-bottom: 60px;
+    text-transform: capitalize;
+    margin-bottom: 60px;
   }
 
   .banner-text-2 {
@@ -32,7 +37,7 @@ export const ihhomeBannerStyles = css.global`
   }
 
   .banner-text-3 {
-	font-size: 24px;
+    font-size: 24px;
     font-style: normal;
     font-weight: bold;
     color: rgba(255, 193, 0, 1);
@@ -40,20 +45,68 @@ export const ihhomeBannerStyles = css.global`
   }
 
   .banner-text-link {
-	line-height: 20px;
-	text-align: center;
-	font-family: Poppins;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 16px;
-	color: rgba(255,255,255,1);
-	text-transform: capitalize;
+    line-height: 20px;
+    text-align: center;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
   }
 
   .btn-ih-primary {
-	background: rgb(255, 193, 0);
-	border-color: rgb(255, 193, 0);
-	color: black;
-	font-size: 16px;
+    background: rgb(255, 193, 0);
+    border-color: rgb(255, 193, 0);
+    color: black;
+    font-size: 16px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .banner-image {
+      width: 100%;
+      height: 584px;
+    }
+
+    .banner-text-sec {
+      top: 176px;
+      text-align: left;
+    }
+
+    .banner-text-1 {
+      font-size: 30px;
+      line-height: 36px;
+      margin-bottom: 35px;
+    }
+
+    .banner-text-2 {
+      line-height: 22px;
+      text-align: left;
+      font-size: 16px;
+    }
+
+    .banner-text-3 {
+      line-height: 22px;
+      text-align: left;
+      font-size: 16px;
+    }
+
+    .banner-text-link {
+      line-height: 17.5px;
+      text-align: left;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .m-text-center {
+      text-align: center;
+    }
+
+    .btn-ih-primary {
+      font-weight: bold;
+      font-size: 14px;
+    }
   }
 `;
