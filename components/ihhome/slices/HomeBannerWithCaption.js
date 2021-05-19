@@ -15,7 +15,7 @@ const HomeBannerWithCaption = ({ slice }) => {
 
   return (
     <>
-	<div  >
+	{/* <div  >
 		<div id="Image_52">
 	<Image  src={imageUrl} width={imageWidth} height ={imageHeight}   />
 	</div>
@@ -44,7 +44,29 @@ const HomeBannerWithCaption = ({ slice }) => {
 		<span>View Upcoming Treks</span>
 	</div>
       <style jsx global>{ihhomeBannerStyles}</style>
-	</div>
+	</div> */}
+	<div>
+	  <img src="Intersection_7.png" width="100%" height="700" />
+	  {/* <Image  src={imageUrl} width={imageWidth} height ={imageHeight}   /> */}
+      <div class="container">
+        <div class="banner-text-sec">
+          <p class="banner-text-1">
+		  	{RichText.asText(heading1)}
+		  </p>
+          <p class="banner-text-2 mb-0">
+            They trek because they want to be part of the team that is
+          </p>
+          <p class="banner-text-3">defining the future of trekking</p>
+          <a class="banner-text-link">Read Our Story Here</a>
+          <div class="mt-3">
+              <button class="btn btn-lg btn-primary btn-ih-primary">VIEW UPCOMMING TREKS</button>
+          </div>
+        </div>
+      </div>
+      <style jsx global>
+        {ihhomeBannerStyles}
+      </style>
+    </div>
    </>
   );
 }

@@ -24,11 +24,8 @@ const HikeHome = ({ doc }) => {
          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
          <title>Homepage – 10000000</title>
         </Head>
-        <div id="Homepage__10">
         <HikeHeader/>
         <SliceZone sliceZone={doc.data.body} />
-        </div>
-        <style jsx >{ihbodyStyles}</style>
       </HomeLayout>
     );
   }

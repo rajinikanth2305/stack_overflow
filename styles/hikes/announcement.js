@@ -11,7 +11,7 @@ export const annoumentStyles = css.global`
 	overflow: visible;
 }
 #Group_2608 {
-	position: absolute;
+	// position: absolute;
 	width: 34px;
 	height: 43.622px;
 	left: 0px;
@@ -132,6 +132,38 @@ export const annoumentStyles = css.global`
 	font-style: normal;
 	font-weight: normal;
 	font-size: 14px;
+	color: rgba(255,255,255,1);
+}
+
+.position-relative {
+	position: relative;
+}
+
+.announcement_sec {
+	background: rgba(91,133,70,1);
+	padding: 10px;
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	border-radius: 2px;
+}
+
+.Treks_Now_Open_For_Private_Tea {
+    line-height: 24px;
+    text-align: center;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(255,255,255,1);
+    text-transform: capitalize;
+}
+
+.While_group_trekking_may_take_ {
+	line-height: 24px;
+	text-align: center;
+	font-family: Lora;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
 	color: rgba(255,255,255,1);
 }
 `;

@@ -3,10 +3,18 @@
   "description": "Sample blog built with Next.js using Prismic headless CMS",
   "author": "Prismic",
   "dependencies": {
+    "@popperjs/core": "^2.9.2",
     "@prismicio/client": "^4.0.0",
+    "@zeit/next-css": "^1.0.1",
+    "@zeit/next-less": "^1.0.1",
+    "@zeit/next-sass": "^1.0.1",
+    "bootstrap": "^5.0.1",
     "next": "^10.2.0",
+    "next-images": "^1.7.0",
+    "popper.js": "^1.16.1",
     "prismic-reactjs": "^1.1.2",
     "react": "^16.12.0",
+    "react-bootstrap": "^1.6.0",
     "react-dom": "^16.12.0",
     "react-hook-form": "^7.5.2"
   },
