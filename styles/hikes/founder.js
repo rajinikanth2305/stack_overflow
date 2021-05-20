@@ -34,7 +34,8 @@ export const founderStyles = css.global`
     .founder_title {
       line-height: 40px;
       font-size: 36px;
-      text-align: center;
+	  text-align: center;
+	  padding-bottom: 25px;
 	}
 	
 	.founder_message {
