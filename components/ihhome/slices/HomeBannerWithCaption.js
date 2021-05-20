@@ -48,7 +48,7 @@ const HomeBannerWithCaption = ({ slice }) => {
 	<div>
 	  <img src="Intersection_7.png" class="banner-image" />
 	  {/* <Image  src={imageUrl} width={imageWidth} height ={imageHeight}   /> */}
-      <div class="container">
+      <div class="container-fluid">
         <div class="banner-text-sec">
           <p class="banner-text-1">
 		  	{RichText.asText(heading1)}

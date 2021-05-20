@@ -14,7 +14,9 @@ export const ihhomeBannerStyles = css.global`
     margin-top: -4px;
     text-align: center;
     font-family: Poppins;
-    width: 80%;
+    width: 95%;
+    padding: 0 135px;
+}
   }
 
   .banner-text-1 {
@@ -71,6 +73,7 @@ export const ihhomeBannerStyles = css.global`
     .banner-text-sec {
       top: 176px;
       text-align: left;
+      padding: 0px;
     }
 
     .banner-text-1 {
