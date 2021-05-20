@@ -10,8 +10,8 @@ const SliceZone = ({ sliceZone }) => (
           return <HomeBannerWithCaption slice={slice} key={`slice-${index}`} />
           case ('announcements'):
             return <Announcement slice={slice} key={`slice-${index}`} />
-          //   case ('founder_message'):
-          //     return <Founder slice={slice} key={`slice-${index}`} />
+            case ('founder_message'):
+              return <Founder slice={slice} key={`slice-${index}`} />
           //     case ('upcoming_treks'):
           //       return <UpcomingTrek slice={slice} key={`slice-${index}`} />
           //       case ('why_trek'):
