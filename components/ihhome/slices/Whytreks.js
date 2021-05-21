@@ -1,23 +1,21 @@
-import React from 'react'
-import { RichText } from 'prismic-reactjs'
-import { whyTrekWithStyles } from 'styles'
-import Image from 'next/image'
+import React from "react";
+import { RichText } from "prismic-reactjs";
+import { whyTrekWithStyles } from "styles";
+import Image from "next/image";
 /**
  * WhyTrek Slice Components
  */
 const WhyTrek = ({ slice }) => {
-	
-	const title1 = slice.primary.title1;
-	const title2 = slice.primary.title2;
-	const title3 = slice.primary.title3;
-	const title4 = slice.primary.title4;
-	
-	//console.log(JSON.stringify(slice.primary));
+  const title1 = slice.primary.title1;
+  const title2 = slice.primary.title2;
+  const title3 = slice.primary.title3;
+  const title4 = slice.primary.title4;
+
+  //console.log(JSON.stringify(slice.primary));
 
   return (
-	  
     <>
-	<div id="Group_3070">
+      {/* <div id="Group_3070">
 		<svg class="Rectangle_539">
 			<rect id="Rectangle_539" rx="0" ry="0" x="0" y="0" width="360" height="556">
 			</rect>
@@ -72,9 +70,85 @@ const WhyTrek = ({ slice }) => {
 			<rect id="Rectangle_190" rx="0" ry="0" x="0" y="0" width="360" height="4"></rect>
 		</svg>
 		<style jsx global>{whyTrekWithStyles}</style>
-	</div>
-   </>
+	</div> */}
+      <div class="mb-5">
+        <div class="container bg-dark">
+          <div class="why_trek_sec container-fluid">
+            <div class="row">
+              <div class="col-lg-7 col-md-12">
+                <p class="why_trek_title mb-4">Why trek with indiahikes</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-3 col-md-6 col-xs-6">
+                <div class="bg-white p-4 mb-2">
+                  <img
+                    src="Icons_Outline_Poles_e.png"
+                    srcset="Icons_Outline_Poles_e.png 1x, Icons_Outline_Poles_e@2x.png 2x"
+                  />
+                  <p class="why_trek_box_title mb-2">
+                    A team you can actually trust Your safety with
+                  </p>
+                  <p class="why_trek_box_desc m-0 m-d-none">
+                    Defining trek safety for over a decade, you are with India's
+                    safest trekking organization
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-xs-6">
+                <div class="bg-white p-4 mb-2">
+                  <img
+                    src="Icons_Outline_Poles_e.png"
+                    srcset="Icons_Outline_Poles_e.png 1x, Icons_Outline_Poles_e@2x.png 2x"
+                  />
+                  <p class="why_trek_box_title mb-2">
+                    A team you can actually trust Your safety with
+                  </p>
+                  <p class="why_trek_box_desc m-0 m-d-none">
+                    Defining trek safety for over a decade, you are with India's
+                    safest trekking organization
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-xs-6">
+                <div class="bg-white p-4 mb-2">
+                  <img
+                    src="Icons_Outline_Poles_e.png"
+                    srcset="Icons_Outline_Poles_e.png 1x, Icons_Outline_Poles_e@2x.png 2x"
+                  />
+                  <p class="why_trek_box_title mb-2">
+                    A team you can actually trust Your safety with
+                  </p>
+                  <p class="why_trek_box_desc m-0 m-d-none">
+                    Defining trek safety for over a decade, you are with India's
+                    safest trekking organization
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6 col-xs-6">
+                <div class="bg-white p-4 mb-2">
+                  <img
+                    src="Icons_Outline_Poles_e.png"
+                    srcset="Icons_Outline_Poles_e.png 1x, Icons_Outline_Poles_e@2x.png 2x"
+                  />
+                  <p class="why_trek_box_title mb-2">
+                    A team you can actually trust Your safety with
+                  </p>
+                  <p class="why_trek_box_desc m-0 m-d-none">
+                    Defining trek safety for over a decade, you are with India's
+                    safest trekking organization
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <style jsx global>
+          {whyTrekWithStyles}
+        </style>
+      </div>
+    </>
   );
-}
+};
 
-export default WhyTrek
+export default WhyTrek;

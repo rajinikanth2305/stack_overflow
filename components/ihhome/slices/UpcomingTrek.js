@@ -66,7 +66,7 @@ const UpcomingTrek = ({ slice }) => {
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-12 m-d-none">
+            <div class="col-lg-4 col-md-6 m-d-none">
               <div class="mb-3 imageLayout4" style={imageLayout4}>
                 <div class="image_overlay_text_area_layout4 p-4">
                   <div class="p-absolute">
@@ -91,7 +91,7 @@ const UpcomingTrek = ({ slice }) => {
             </div>
           </div>
           <div class="row mt-3 m-d-none">
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-4 col-md-6">
               <div class="imageLayout4" style={imageLayout4}>
                 <div class="image_overlay_text_area_layout4 p-4">
                   <div class="p-absolute">
@@ -105,7 +105,7 @@ const UpcomingTrek = ({ slice }) => {
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-4 col-md-6">
               <div class="imageLayout4" style={imageLayout4}>
                 <div class="image_overlay_text_area_layout4 p-4">
                   <div class="p-absolute">
@@ -119,7 +119,7 @@ const UpcomingTrek = ({ slice }) => {
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-4 col-md-6">
               <div class="imageLayout4" style={imageLayout4}>
                 <div class="image_overlay_text_area_layout4 p-4">
                   <div class="p-absolute">

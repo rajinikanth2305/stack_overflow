@@ -94,4 +94,15 @@ export const upcomingTrekStyles = css.global`
       display: none;
     }
   }
+  @media only screen and (max-width: 900px) and (min-width: 600px) {
+    .imageLayout4 {
+      background-size: cover;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) and (min-width: 900px) {
+    .imageLayout4 {
+      background-size: cover;
+    }
+  }
 `;

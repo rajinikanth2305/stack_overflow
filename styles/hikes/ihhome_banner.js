@@ -16,7 +16,6 @@ export const ihhomeBannerStyles = css.global`
     font-family: Poppins;
     width: 95%;
     padding: 0 135px;
-}
   }
 
   .banner-text-1 {
@@ -110,6 +109,20 @@ export const ihhomeBannerStyles = css.global`
     .btn-ih-primary {
       font-weight: bold;
       font-size: 14px;
+    }
+  }
+
+  @media only screen and (max-width: 900px) and (min-width: 600px) {
+    .banner-text-sec {
+      top: 230px;
+      padding: 0px;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) and (min-width: 900px) {
+    .banner-text-sec {
+      top: 230px;
+      padding: 0px;
     }
   }
 `;

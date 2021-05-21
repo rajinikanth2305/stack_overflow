@@ -14,8 +14,8 @@ const SliceZone = ({ sliceZone }) => (
               return <Founder slice={slice} key={`slice-${index}`} />
               case ('upcoming_treks'):
                 return <UpcomingTrek slice={slice} key={`slice-${index}`} />
-          //       case ('why_trek'):
-          //         return <WhyTrek slice={slice} key={`slice-${index}`} />
+                case ('why_trek'):
+                  return <WhyTrek slice={slice} key={`slice-${index}`} />
           //         case ('what_trekker_say'):
           //           return <WhatTrekkerSay slice={slice} key={`slice-${index}`} />
           //           case ('experiment_learning'):

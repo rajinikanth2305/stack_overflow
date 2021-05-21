@@ -2,7 +2,7 @@ export { default as HomeBannerWithCaption } from './HomeBannerWithCaption'
 export { default as Announcement } from './Announcement'
 export { default as Founder } from './Founder'
 export { default as UpcomingTrek } from './UpcomingTrek'
-// export { default as WhyTrek } from './Whytreks'
+export { default as WhyTrek } from './Whytreks'
 // export { default as WhatTrekkerSay } from './WhatTrekkerSay'
 // export { default as Experiment } from './Experiment'
 
