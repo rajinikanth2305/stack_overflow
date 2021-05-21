@@ -1,11 +1,16 @@
 import css from "styled-jsx/css";
 
 export const upcomingTrekStyles = css.global`
+  .container.container-custom {
+    max-width: 1600px;
+  }
+
   .imageLayout8 {
     width: 100%;
     height: 400px;
     background-repeat: no-repeat;
     filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
+    background-size: cover;
   }
 
   .imageLayout4 {
@@ -13,6 +18,7 @@ export const upcomingTrekStyles = css.global`
     height: 200px;
     background-repeat: no-repeat;
     filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
+    background-size: cover;
   }
 
   .upcoming_title {
@@ -73,7 +79,7 @@ export const upcomingTrekStyles = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
-    color: rgba(255,255,255,1);
+    color: rgba(255, 255, 255, 1);
   }
 
   @media only screen and (max-width: 600px) {

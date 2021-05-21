@@ -16,14 +16,14 @@ const UpcomingTrek = ({ slice }) => {
   const imageLayout8 = {
     backgroundImage: `url('${imageUrl}')`,
     width: "100%",
-    height: "400px",
+    height: "420px",
     backgroundRepeat: "no-repeat"
   };
 
   const imageLayout4 = {
     backgroundImage: `url('/Intersection_8.png')`,
     width: "100%",
-    height: "190px",
+    height: "201px",
     backgroundRepeat: "no-repeat"
   };
 
@@ -44,7 +44,7 @@ const UpcomingTrek = ({ slice }) => {
       <style jsx global>{upcomingTrekStyles}</style>
 	</div> */}
       <div class="mb-5">
-        <div class="container">
+        <div class="container container-custom">
           <div class="row">
             <div class="col-lg-6 col-md-12">
               <p class="upcoming_title m-0">{RichText.asText(heading)}</p>

@@ -1,6 +1,10 @@
 import css from "styled-jsx/css";
 
 export const founderStyles = css.global`
+  .container.container-custom {
+    max-width: 1600px;
+  }
+
   .founder_title {
     text-align: left;
     font-family: Lora;
@@ -34,17 +38,17 @@ export const founderStyles = css.global`
     .founder_title {
       line-height: 40px;
       font-size: 36px;
-	  text-align: center;
-	  padding-bottom: 25px;
-	}
-	
-	.founder_message {
-		line-height: 24px;
-		font-size: 16px;
-	}
+      text-align: center;
+      padding-bottom: 25px;
+    }
 
-	.founder-image {
-		margin-bottom: 25px;
-	}
+    .founder_message {
+      line-height: 24px;
+      font-size: 16px;
+    }
+
+    .founder-image {
+      margin-bottom: 25px;
+    }
   }
 `;

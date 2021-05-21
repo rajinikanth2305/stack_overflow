@@ -72,8 +72,8 @@ const WhyTrek = ({ slice }) => {
 		<style jsx global>{whyTrekWithStyles}</style>
 	</div> */}
       <div class="mb-5">
-        <div class="container bg-dark">
-          <div class="why_trek_sec container-fluid">
+        <div class="container-fluid bg-dark">
+          <div class="why_trek_sec container">
             <div class="row">
               <div class="col-lg-7 col-md-12">
                 <p class="why_trek_title mb-4">Why trek with indiahikes</p>
