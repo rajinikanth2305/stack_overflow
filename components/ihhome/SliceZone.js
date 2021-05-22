@@ -20,6 +20,8 @@ const SliceZone = ({ sliceZone }) => (
           //           return <WhatTrekkerSay slice={slice} key={`slice-${index}`} />
           //           case ('experiment_learning'):
           //             return <Experiment slice={slice} key={`slice-${index}`} />
+          //           case ('trek_with_swathi'):
+          //             return <TrekWithSwathi slice={slice} key={`slice-${index}`} />
       default:
         return null
     }
