@@ -79,7 +79,7 @@ const WhyTrek = ({ slice }) => {
                 <p class="why_trek_title mb-4">Why trek with indiahikes</p>
               </div>
             </div>
-            <div class="row">
+            <div class="row m-d-none">
               <div class="col-lg-3 col-md-6 col-xs-6">
                 <div class="bg-white p-4 mb-2">
                   <img
@@ -138,6 +138,74 @@ const WhyTrek = ({ slice }) => {
                     Defining trek safety for over a decade, you are with India's
                     safest trekking organization
                   </p>
+                </div>
+              </div>
+            </div>
+            <div class="m-view-d-block">
+              <div class="d-flex flex-row">
+                <div class="">
+                  <div class="bg-white p-2 mb-2">
+                    <img
+                      src="Icons_Outline_Poles_e.png"
+                      srcset="Icons_Outline_Poles_e.png 1x, Icons_Outline_Poles_e@2x.png 2x"
+                    />
+                    <p class="why_trek_box_title mb-2">
+                      A team you can actually trust Your safety with
+                    </p>
+                    <p class="why_trek_box_desc m-0 m-d-none">
+                      Defining trek safety for over a decade, you are with
+                      India's safest trekking organization
+                    </p>
+                  </div>
+                </div>
+                <div class="mx-1"></div>
+                <div class="">
+                  <div class="bg-white p-2 mb-2">
+                    <img
+                      src="Icons_Outline_Poles_e.png"
+                      srcset="Icons_Outline_Poles_e.png 1x, Icons_Outline_Poles_e@2x.png 2x"
+                    />
+                    <p class="why_trek_box_title mb-2">
+                      A team you can actually trust Your safety with
+                    </p>
+                    <p class="why_trek_box_desc m-0 m-d-none">
+                      Defining trek safety for over a decade, you are with
+                      India's safest trekking organization
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex flex-row">
+                <div class="">
+                  <div class="bg-white p-2 mb-2">
+                    <img
+                      src="Icons_Outline_Poles_e.png"
+                      srcset="Icons_Outline_Poles_e.png 1x, Icons_Outline_Poles_e@2x.png 2x"
+                    />
+                    <p class="why_trek_box_title mb-2">
+                      A team you can actually trust Your safety with
+                    </p>
+                    <p class="why_trek_box_desc m-0 m-d-none">
+                      Defining trek safety for over a decade, you are with
+                      India's safest trekking organization
+                    </p>
+                  </div>
+                </div>
+                <div class="mx-1"></div>
+                <div class="">
+                  <div class="bg-white p-2 mb-2">
+                    <img
+                      src="Icons_Outline_Poles_e.png"
+                      srcset="Icons_Outline_Poles_e.png 1x, Icons_Outline_Poles_e@2x.png 2x"
+                    />
+                    <p class="why_trek_box_title mb-2">
+                      A team you can actually trust Your safety with
+                    </p>
+                    <p class="why_trek_box_desc m-0 m-d-none">
+                      Defining trek safety for over a decade, you are with
+                      India's safest trekking organization
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

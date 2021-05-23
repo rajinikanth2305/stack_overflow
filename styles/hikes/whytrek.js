@@ -261,7 +261,7 @@ export const whyTrekWithStyles = css.global`
     top: 131px;
   }
   .why_trek_sec {
-    padding: 20px 30px;
+    padding: 20px 15px;
   }
   .why_trek_title {
     text-align: left;
@@ -294,6 +294,10 @@ export const whyTrekWithStyles = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .m-view-d-block {
+	  display: none;
+  }
+
   @media only screen and (max-width: 600px) {
     .why_trek_sec {
       padding: 0px;
@@ -315,6 +319,10 @@ export const whyTrekWithStyles = css.global`
       font-weight: normal;
       font-size: 16px;
       color: rgba(0, 0, 0, 1);
-    }
+	}
+	
+	.m-view-d-block {
+		display: block;
+	}
   }
 `;

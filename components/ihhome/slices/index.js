@@ -4,7 +4,7 @@ export { default as Founder } from './Founder'
 export { default as UpcomingTrek } from './UpcomingTrek'
 export { default as WhyTrek } from './Whytreks'
 
-// export { default as WhatTrekkerSay } from './WhatTrekkerSay'
+export { default as WhatTrekkerSay } from './WhatTrekkerSay'
 // export { default as Experiment } from './Experiment'
 // export { default as TrekWithSwathi } from './TrekWithSwathi'
 

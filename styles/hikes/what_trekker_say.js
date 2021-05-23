@@ -377,7 +377,7 @@ export const whatTrekkerSayStyles = css.global`
     color: rgba(0, 0, 0, 1);
   }
   #Group_2741 {
-    position: absolute;
+    // position: absolute;
     width: 105.013px;
     height: 18.72px;
     left: 63.385px;
@@ -980,5 +980,35 @@ export const whatTrekkerSayStyles = css.global`
     height: 33px;
     left: 0px;
     top: 0px;
+  }
+  .why_trek_any_title {
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+  .title_border {
+    border-bottom: 4px solid rgb(255, 193, 0);
+    padding: 10px 0;
+  }
+  .p-relative {
+    position: relative;
+  }
+  .review_text {
+    line-height: 24px;
+    text-align: left;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+  }
+  @media only screen and (max-width: 600px) {
+    .m-d-none {
+      display: none;
+    }
   }
 `;
