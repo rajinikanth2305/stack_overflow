@@ -275,12 +275,145 @@ const WhyTrek = ({ slice }) => {
                 <p class="px-2 review_text mb-3">4.8/5</p>
               </div>
               <div>
-                <p class="review_text mb-3">with <b>3700+ Reviews</b> on </p>
+                <p class="review_text mb-3">
+                  with <b>3700+ Reviews</b> on{" "}
+                </p>
               </div>
-			  <div class="px-1"></div>
-			  <div>
-				  <img src='/Image_9.png' />
-			  </div>
+              <div class="px-1"></div>
+              <div>
+                <img src="/Image_9.png" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <p class="review_title my-4">
+                Trekkers love Indiahikes with reason. Scroll below for over 3600
+                unedited reviews
+              </p>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 col-md-12">
+                <div>
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <img src="./p-icon.png" alt="p-icon" class="p-icon" />
+                    </div>
+                    <div class="mx-3">
+                      <p class="m-0 reviewer_name">Chandrashekar Gowdar</p>
+                      <p class="m-0">
+                        <img src="./rating_sm.png" alt="rating-star" />
+                        <span class="px-2 year_text">February 2020</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="my-2">
+                    <p class="reviewer_cmts m-0">
+                      IndiaHikes really took a great care of fellow trekkers. It
+                      was raining constantly in Manali for 2 days and IndiaHikes
+                      arranged the accommodation for us which helped us to
+                      mingle with other fellow trekkers.
+                    </p>
+                    <p class="mb-1">
+                      We couldn't go to Hampta Pass due to bad weather, but the
+                      3 days of trek gave us infinite memories which will stay
+                      with us forever
+                    </p>
+                    <p class="reviewer_read_more mb-4 pb-2">Read More</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div>
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <img src="./p-icon.png" alt="p-icon" class="p-icon" />
+                    </div>
+                    <div class="mx-3">
+                      <p class="m-0 reviewer_name">Chandrashekar Gowdar</p>
+                      <p class="m-0">
+                        <img src="./rating_sm.png" alt="rating-star" />
+                        <span class="px-2 year_text">February 2020</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="my-2">
+                    <p class="reviewer_cmts m-0">
+                      IndiaHikes really took a great care of fellow trekkers. It
+                      was raining constantly in Manali for 2 days and IndiaHikes
+                      arranged the accommodation for us which helped us to
+                      mingle with other fellow trekkers.
+                    </p>
+                    <p class="mb-1">
+                      We couldn't go to Hampta Pass due to bad weather, but the
+                      3 days of trek gave us infinite memories which will stay
+                      with us forever
+                    </p>
+                    <p class="reviewer_read_more mb-4 pb-2">Read More</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div>
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <img src="./p-icon.png" alt="p-icon" class="p-icon" />
+                    </div>
+                    <div class="mx-3">
+                      <p class="m-0 reviewer_name">Chandrashekar Gowdar</p>
+                      <p class="m-0">
+                        <img src="./rating_sm.png" alt="rating-star" />
+                        <span class="px-2 year_text">February 2020</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="my-2">
+                    <p class="reviewer_cmts m-0">
+                      IndiaHikes really took a great care of fellow trekkers. It
+                      was raining constantly in Manali for 2 days and IndiaHikes
+                      arranged the accommodation for us which helped us to
+                      mingle with other fellow trekkers.
+                    </p>
+                    <p class="mb-1">
+                      We couldn't go to Hampta Pass due to bad weather, but the
+                      3 days of trek gave us infinite memories which will stay
+                      with us forever
+                    </p>
+                    <p class="reviewer_read_more mb-4 pb-2">Read More</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div>
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <img src="./p-icon.png" alt="p-icon" class="p-icon" />
+                    </div>
+                    <div class="mx-3">
+                      <p class="m-0 reviewer_name">Chandrashekar Gowdar</p>
+                      <p class="m-0">
+                        <img src="./rating_sm.png" alt="rating-star" />
+                        <span class="px-2 year_text">February 2020</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="my-2">
+                    <p class="reviewer_cmts m-0">
+                      IndiaHikes really took a great care of fellow trekkers. It
+                      was raining constantly in Manali for 2 days and IndiaHikes
+                      arranged the accommodation for us which helped us to
+                      mingle with other fellow trekkers.
+                    </p>
+                    <p class="mb-1">
+                      We couldn't go to Hampta Pass due to bad weather, but the
+                      3 days of trek gave us infinite memories which will stay
+                      with us forever
+                    </p>
+                    <p class="reviewer_read_more mb-4 pb-2">Read More</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
