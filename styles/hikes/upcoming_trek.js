@@ -106,6 +106,10 @@ export const upcomingTrekStyles = css.global`
     .imageLayout8 {
       background-position: -225.998px;
     }
+
+    .p-absolute {
+      padding: 0 20px;
+    }
   }
 
   @media only screen and (max-width: 600px) {
