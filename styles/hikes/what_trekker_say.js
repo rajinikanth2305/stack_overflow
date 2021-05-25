@@ -1060,6 +1060,20 @@ export const whatTrekkerSayStyles = css.global`
     text-decoration: underline;
     cursor: pointer;
   }
+  .btn-primary.btn-ih-wy-primary {
+    background: rgb(255, 193, 0);
+    border-color: rgb(255, 193, 0);
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.353));
+    white-space: nowrap;
+    line-height: 20px;
+    text-align: center;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
+  }
   @media only screen and (max-width: 600px) {
     .m-d-none {
       display: none;

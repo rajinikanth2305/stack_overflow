@@ -16,7 +16,7 @@ const UpcomingTrek = ({ slice }) => {
   const imageLayout8 = {
     backgroundImage: `url('${imageUrl}')`,
     width: "100%",
-    height: "420px",
+    // height: "420px",
     backgroundRepeat: "no-repeat"
   };
 
@@ -56,7 +56,7 @@ const UpcomingTrek = ({ slice }) => {
           <div class="row">
             <div class="col-lg-8 col-md-12">
               <div class="imageLayout8" style={imageLayout8}>
-                <div class="image_overlay_text_area p-4">
+                <div class="image_overlay_text_area">
                   <div class="p-absolute">
                     <p class="image_overlay_text_title mb-1">UPCOMING TREKS</p>
                     <p class="image_overlay_text_desc">
@@ -68,7 +68,7 @@ const UpcomingTrek = ({ slice }) => {
             </div>
             <div class="col-lg-4 col-md-6 m-d-none">
               <div class="mb-3 imageLayout4" style={imageLayout4}>
-                <div class="image_overlay_text_area_layout4 p-4">
+                <div class="image_overlay_text_area_layout4">
                   <div class="p-absolute">
                     <p class="image_overlay_text_title mb-1">Autumn Treks</p>
                     <p class="image_overlay_text_desc">
@@ -79,7 +79,7 @@ const UpcomingTrek = ({ slice }) => {
                 </div>
               </div>
               <div class="imageLayout4" style={imageLayout4}>
-                <div class="image_overlay_text_area_layout4 p-4">
+                <div class="image_overlay_text_area_layout4">
                   <div class="p-absolute">
                     <p class="image_overlay_text_title mb-1">WINTER Treks</p>
                     <p class="image_overlay_text_desc">
@@ -93,7 +93,7 @@ const UpcomingTrek = ({ slice }) => {
           <div class="row mt-3 m-d-none">
             <div class="col-lg-4 col-md-6">
               <div class="imageLayout4" style={imageLayout4}>
-                <div class="image_overlay_text_area_layout4 p-4">
+                <div class="image_overlay_text_area_layout4">
                   <div class="p-absolute">
                     <p class="image_overlay_text_title mb-1">
                       New To Trekking?
@@ -107,7 +107,7 @@ const UpcomingTrek = ({ slice }) => {
             </div>
             <div class="col-lg-4 col-md-6">
               <div class="imageLayout4" style={imageLayout4}>
-                <div class="image_overlay_text_area_layout4 p-4">
+                <div class="image_overlay_text_area_layout4">
                   <div class="p-absolute">
                     <p class="image_overlay_text_title mb-1">
                       TREKS for beginners
@@ -121,7 +121,7 @@ const UpcomingTrek = ({ slice }) => {
             </div>
             <div class="col-lg-4 col-md-6">
               <div class="imageLayout4" style={imageLayout4}>
-                <div class="image_overlay_text_area_layout4 p-4">
+                <div class="image_overlay_text_area_layout4">
                   <div class="p-absolute">
                     <p class="image_overlay_text_title mb-1">TREKS IN 2021</p>
                     <p class="image_overlay_text_desc">

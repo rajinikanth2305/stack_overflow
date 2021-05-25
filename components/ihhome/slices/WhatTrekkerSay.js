@@ -414,6 +414,13 @@ const WhyTrek = ({ slice }) => {
                   </div>
                 </div>
               </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="mt-3">
+                  <button class="btn btn-lg btn-primary btn-ih-wy-primary">
+                    View more reviews
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
