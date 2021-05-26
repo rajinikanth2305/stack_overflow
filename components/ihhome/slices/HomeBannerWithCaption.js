@@ -56,38 +56,42 @@ const HomeBannerWithCaption = ({ slice }) => {
 		<span>View Upcoming Treks</span>
 	</div>
       <style jsx global>{ihhomeBannerStyles}</style>
-	</div> */}
+  </div> */}
       <div>
         <div class="banner-image-desktop" style={bannerImageDesktop}>
-          <div class="container-fluid">
-            <div class="banner-text-sec">
-              <p class="banner-text-1">{RichText.asText(heading1)}</p>
-              <p class="banner-text-2 mb-0">
-                They trek because they want to be part of the team that is
-              </p>
-              <p class="banner-text-3">defining the future of trekking</p>
-              <a class="banner-text-link">Read Our Story Here</a>
-              <div class="mt-3 m-text-center">
-                <button class="btn btn-lg btn-primary btn-ih-primary">
-                  VIEW UPCOMMING TREKS
-                </button>
+          <div class="bg_overlay">
+            <div class="container-fluid">
+              <div class="banner-text-sec">
+                <p class="banner-text-1">{RichText.asText(heading1)}</p>
+                <p class="banner-text-2 mb-0">
+                  They trek because they want to be part of the team that is
+                </p>
+                <p class="banner-text-3">defining the future of trekking</p>
+                <a class="banner-text-link">Read Our Story Here</a>
+                <div class="mt-3 m-text-center">
+                  <button class="btn btn-lg btn-primary btn-ih-primary">
+                    VIEW UPCOMMING TREKS
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div class="banner-image-mobile" style={bannerImageMobile}>
-          <div class="container-fluid">
-            <div class="banner-text-sec">
-              <p class="banner-text-1">{RichText.asText(heading1)}</p>
-              <p class="banner-text-2 mb-0">
-                They trek because they want to be part of the team that is
-              </p>
-              <p class="banner-text-3">defining the future of trekking</p>
-              <a class="banner-text-link">Read Our Story Here</a>
-              <div class="mt-3 m-text-center">
-                <button class="btn btn-lg btn-primary btn-ih-primary">
-                  VIEW UPCOMMING TREKS
-                </button>
+          <div class="bg_overlay">
+            <div class="container-fluid">
+              <div class="banner-text-sec">
+                <p class="banner-text-1">{RichText.asText(heading1)}</p>
+                <p class="banner-text-2 mb-0">
+                  They trek because they want to be part of the team that is
+                </p>
+                <p class="banner-text-3">defining the future of trekking</p>
+                <a class="banner-text-link">Read Our Story Here</a>
+                <div class="mt-3 m-text-center">
+                  <button class="btn btn-lg btn-primary btn-ih-primary">
+                    VIEW UPCOMMING TREKS
+                  </button>
+                </div>
               </div>
             </div>
           </div>

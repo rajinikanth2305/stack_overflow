@@ -1,7 +1,7 @@
 import css from "styled-jsx/css";
 
 export const ihheaderStyles = css.global`
-.navbar-expand-lg .navbar-nav .nav-link {
+  .navbar-expand-lg .navbar-nav .nav-link {
     white-space: nowrap;
     line-height: 17.5px;
     text-align: left;
@@ -29,6 +29,14 @@ export const ihheaderStyles = css.global`
 
   .navbar-collapse {
     z-index: 99999;
+  }
+
+  .position-sticky {
+    border-bottom: 1px solid #eceef0;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 999;
   }
 
   @media only screen and (max-width: 900px) {

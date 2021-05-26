@@ -5,6 +5,12 @@ export const ihhomeBannerStyles = css.global`
     width: 100%;
     height: 700px;
     background-size: cover;
+    position: relative;
+  }
+
+  .bg_overlay {
+    height: 700px;
+    background: rgba(0, 0, 0, 0.2);
   }
 
   .banner-image-mobile {
@@ -12,7 +18,7 @@ export const ihhomeBannerStyles = css.global`
   }
 
   .banner-text-sec {
-    top: 294px;
+    top: 245px;
     position: absolute;
     overflow: visible;
     line-height: 56px;
@@ -20,7 +26,7 @@ export const ihhomeBannerStyles = css.global`
     text-align: center;
     font-family: Poppins;
     width: 95%;
-    padding: 0 135px;
+    padding: 0 145px;
   }
 
   .banner-text-1 {
@@ -71,6 +77,7 @@ export const ihhomeBannerStyles = css.global`
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       display: none;
+      position: relative;
     }
 
     .banner-image-mobile {
@@ -78,12 +85,18 @@ export const ihhomeBannerStyles = css.global`
       width: 100%;
       height: 585px;
       background-position: -183px;
+      position: relative;
     }
 
     .banner-text-sec {
       top: 176px;
       text-align: left;
       padding: 0px;
+    }
+
+    .bg_overlay {
+      height: 585px;
+      background: transparent;
     }
 
     .banner-text-1 {
@@ -123,14 +136,14 @@ export const ihhomeBannerStyles = css.global`
     }
   }
 
-  @media only screen and (max-width: 900px) and (min-width: 600px) {
+  @media only screen and (max-width: 900px) and (min-width: 660px) {
     .banner-text-sec {
-      top: 230px;
+      top: 160px;
       padding: 0px;
     }
   }
 
-  @media only screen and (max-width: 1024px) and (min-width: 900px) {
+  @media only screen and (max-width: 1400px) and (min-width: 900px) {
     .banner-text-sec {
       top: 230px;
       padding: 0px;
