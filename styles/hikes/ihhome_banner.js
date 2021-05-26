@@ -89,7 +89,7 @@ export const ihhomeBannerStyles = css.global`
     }
 
     .banner-text-sec {
-      top: 176px;
+      top: 110px;
       text-align: left;
       padding: 0px;
     }
