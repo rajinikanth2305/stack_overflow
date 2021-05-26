@@ -55,7 +55,7 @@ const UpcomingTrek = ({ slice }) => {
           </div>
           <div class="row">
             <div class="col-lg-8 col-md-12">
-              <div class="imageLayout8" style={imageLayout8}>
+              <div class="mb-3 imageLayout8" style={imageLayout8}>
                 <div class="image_overlay_text_area">
                   <div class="p-absolute">
                     <p class="image_overlay_text_title mb-1">UPCOMING TREKS</p>
@@ -66,25 +66,35 @@ const UpcomingTrek = ({ slice }) => {
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-6 m-d-none">
-              <div class="mb-3 imageLayout4" style={imageLayout4}>
-                <div class="image_overlay_text_area_layout4">
-                  <div class="p-absolute">
-                    <p class="image_overlay_text_title mb-1">Autumn Treks</p>
-                    <p class="image_overlay_text_desc">
-                      Treks in September and October for their Clear and crisp
-                      views.
-                    </p>
+            <div class="col-lg-4 col-md-12 m-d-none">
+              <div class="row">
+                <div class="col-lg-12 col-md-6">
+                  <div class="mb-3 imageLayout4" style={imageLayout4}>
+                    <div class="image_overlay_text_area_layout4">
+                      <div class="p-absolute">
+                        <p class="image_overlay_text_title mb-1">
+                          Autumn Treks
+                        </p>
+                        <p class="image_overlay_text_desc">
+                          Treks in September and October for their Clear and
+                          crisp views.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="imageLayout4" style={imageLayout4}>
-                <div class="image_overlay_text_area_layout4">
-                  <div class="p-absolute">
-                    <p class="image_overlay_text_title mb-1">WINTER Treks</p>
-                    <p class="image_overlay_text_desc">
-                      These are the most favorite treks of the winter season
-                    </p>
+                <div class="col-lg-12 col-md-6">
+                  <div class="mb-3 imageLayout4" style={imageLayout4}>
+                    <div class="image_overlay_text_area_layout4">
+                      <div class="p-absolute">
+                        <p class="image_overlay_text_title mb-1">
+                          WINTER Treks
+                        </p>
+                        <p class="image_overlay_text_desc">
+                          These are the most favorite treks of the winter season
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -92,7 +102,7 @@ const UpcomingTrek = ({ slice }) => {
           </div>
           <div class="row mt-3 m-d-none">
             <div class="col-lg-4 col-md-6">
-              <div class="imageLayout4" style={imageLayout4}>
+              <div class="mb-3 imageLayout4" style={imageLayout4}>
                 <div class="image_overlay_text_area_layout4">
                   <div class="p-absolute">
                     <p class="image_overlay_text_title mb-1">
@@ -106,7 +116,7 @@ const UpcomingTrek = ({ slice }) => {
               </div>
             </div>
             <div class="col-lg-4 col-md-6">
-              <div class="imageLayout4" style={imageLayout4}>
+              <div class="mb-3 imageLayout4" style={imageLayout4}>
                 <div class="image_overlay_text_area_layout4">
                   <div class="p-absolute">
                     <p class="image_overlay_text_title mb-1">
@@ -120,7 +130,7 @@ const UpcomingTrek = ({ slice }) => {
               </div>
             </div>
             <div class="col-lg-4 col-md-6">
-              <div class="imageLayout4" style={imageLayout4}>
+              <div class="mb-3 imageLayout4" style={imageLayout4}>
                 <div class="image_overlay_text_area_layout4">
                   <div class="p-absolute">
                     <p class="image_overlay_text_title mb-1">TREKS IN 2021</p>

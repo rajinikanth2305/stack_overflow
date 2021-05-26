@@ -1090,6 +1090,25 @@ export const whatTrekkerSayStyles = css.global`
       background: rgba(255, 193, 0, 1);
     }
 
+    .review_rating_bg {
+      background: rgba(255, 193, 0, 0.102);
+    }
+
+    .mobile_rating_text {
+      line-height: 24px;
+      text-align: left;
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: lighter;
+      font-size: 18px;
+      color: rgba(0, 0, 0, 1);
+      text-align: center;
+    }
+
+    .mobile_rating_text > span {
+      padding: 0 5px;
+    }
+
     .why_trek_any_title {
       font-style: normal;
       font-weight: bold;

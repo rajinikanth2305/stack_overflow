@@ -302,7 +302,23 @@ const WhyTrek = ({ slice }) => {
         </div>
         <div class="m-d-block pt-2">
           <div class="review_bg p-4">
-            <p class="why_trek_any_title m-0">what trekkers say: 3450 reviews</p>
+            <p class="why_trek_any_title m-0">
+              what trekkers say: 3450 reviews
+            </p>
+          </div>
+        </div>
+        <div class="m-d-block">
+          <div class="review_rating_bg p-3">
+            <p class="mobile_rating_text mb-0">
+              <span>Rated</span>
+              <span>
+                <img src="/rating_5.png" alt="rating" />
+              </span>
+              <span>4.8/5</span>
+            </p>
+            <p class="mobile_rating_text mb-0">
+              <span>with <b>3700+ Reviews</b> on </span>
+            </p>
           </div>
         </div>
         <div class="container">

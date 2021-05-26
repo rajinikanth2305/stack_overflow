@@ -68,7 +68,7 @@ export const ihhomeBannerStyles = css.global`
     font-size: 16px;
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       display: none;
     }
