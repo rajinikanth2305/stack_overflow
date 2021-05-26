@@ -1074,9 +1074,33 @@ export const whatTrekkerSayStyles = css.global`
     color: rgba(0, 0, 0, 1);
     text-transform: uppercase;
   }
+  .m-d-block {
+    display: none;
+  }
   @media only screen and (max-width: 600px) {
     .m-d-none {
       display: none;
+    }
+
+    .m-d-block {
+      display: block;
+    }
+
+    .review_bg {
+      background: rgba(255, 193, 0, 1);
+    }
+
+    .why_trek_any_title {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 36px;
+      color: rgba(0, 0, 0, 1);
+      text-transform: capitalize;
+      line-height: 40px;
+    }
+
+    .m-d-center {
+      text-align: center;
     }
   }
 `;

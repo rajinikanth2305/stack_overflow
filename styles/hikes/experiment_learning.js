@@ -51,8 +51,8 @@ export const experimentStyles = css.global`
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
     border-bottom: 4px solid rgb(255, 193, 0);
-	padding-bottom: 8px;
-	margin-bottom: 25px;
+    padding-bottom: 8px;
+    margin-bottom: 25px;
   }
   .exp_desc {
     line-height: 24px;
@@ -62,5 +62,23 @@ export const experimentStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
+  }
+  @media only screen and (max-width: 600px) {
+    .exprriment-bg {
+      background: transparent;
+      margin: 40px 0 0;
+      padding: 0;
+    }
+  }
+
+  .exp_title {
+    line-height: 40px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
   }
 `;
