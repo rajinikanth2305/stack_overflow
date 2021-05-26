@@ -23,7 +23,7 @@ export const ihheaderStyles = css.global`
     border: 0;
   }
 
-  .navbar-expand-md .navbar-collapse {
+  .navbar-expand-lg .navbar-collapse {
     justify-content: end;
   }
 
