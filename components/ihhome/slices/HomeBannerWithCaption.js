@@ -1,21 +1,33 @@
-import React from 'react'
-import { RichText } from 'prismic-reactjs'
-import { ihhomeBannerStyles } from 'styles'
-import Image from 'next/image'
+import React from "react";
+import { RichText } from "prismic-reactjs";
+import { ihhomeBannerStyles } from "styles";
+import Image from "next/image";
 /**
  * Home Banner Slice Components
  */
 const HomeBannerWithCaption = ({ slice }) => {
-	
-	const imageUrl = slice.primary.banner_image.url;
-	const imageWidth = slice.primary.banner_image.dimensions.width;
-	const imageHeight = slice.primary.banner_image.dimensions.height;
-	const heading1 = slice.primary.heading1;
-	const heading2 = slice.primary.heading2;
+  const imageUrl = slice.primary.banner_image.url;
+  const imageUrlMobile = slice.primary.mobile_banner_image.url;
+  const imageWidth = slice.primary.banner_image.dimensions.width;
+  const imageHeight = slice.primary.banner_image.dimensions.height;
+  const heading1 = slice.primary.heading1;
+  const heading2 = slice.primary.heading2;
+
+  const bannerImageDesktop = {
+    backgroundImage: `url('${imageUrl}')`,
+    width: "100%",
+    backgroundRepeat: "no-repeat"
+  };
+
+  const bannerImageMobile = {
+    backgroundImage: `url('${imageUrlMobile}')`,
+    width: "100%",
+    backgroundRepeat: "no-repeat"
+  };
 
   return (
     <>
-	{/* <div  >
+      {/* <div  >
 		<div id="Image_52">
 	<Image  src={imageUrl} width={imageWidth} height ={imageHeight}   />
 	</div>
@@ -45,30 +57,47 @@ const HomeBannerWithCaption = ({ slice }) => {
 	</div>
       <style jsx global>{ihhomeBannerStyles}</style>
 	</div> */}
-	<div>
-	  <img src="Intersection_7.png" class="banner-image" />
-	  {/* <Image  src={imageUrl} width={imageWidth} height ={imageHeight}   /> */}
-      <div class="container-fluid">
-        <div class="banner-text-sec">
-          <p class="banner-text-1">
-		  	{RichText.asText(heading1)}
-		  </p>
-          <p class="banner-text-2 mb-0">
-            They trek because they want to be part of the team that is
-          </p>
-          <p class="banner-text-3">defining the future of trekking</p>
-          <a class="banner-text-link">Read Our Story Here</a>
-          <div class="mt-3 m-text-center">
-              <button class="btn btn-lg btn-primary btn-ih-primary">VIEW UPCOMMING TREKS</button>
+      <div>
+        <div class="banner-image-desktop" style={bannerImageDesktop}>
+          <div class="container-fluid">
+            <div class="banner-text-sec">
+              <p class="banner-text-1">{RichText.asText(heading1)}</p>
+              <p class="banner-text-2 mb-0">
+                They trek because they want to be part of the team that is
+              </p>
+              <p class="banner-text-3">defining the future of trekking</p>
+              <a class="banner-text-link">Read Our Story Here</a>
+              <div class="mt-3 m-text-center">
+                <button class="btn btn-lg btn-primary btn-ih-primary">
+                  VIEW UPCOMMING TREKS
+                </button>
+              </div>
+            </div>
           </div>
         </div>
+        <div class="banner-image-mobile" style={bannerImageMobile}>
+          <div class="container-fluid">
+            <div class="banner-text-sec">
+              <p class="banner-text-1">{RichText.asText(heading1)}</p>
+              <p class="banner-text-2 mb-0">
+                They trek because they want to be part of the team that is
+              </p>
+              <p class="banner-text-3">defining the future of trekking</p>
+              <a class="banner-text-link">Read Our Story Here</a>
+              <div class="mt-3 m-text-center">
+                <button class="btn btn-lg btn-primary btn-ih-primary">
+                  VIEW UPCOMMING TREKS
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <style jsx global>
+          {ihhomeBannerStyles}
+        </style>
       </div>
-      <style jsx global>
-        {ihhomeBannerStyles}
-      </style>
-    </div>
-   </>
+    </>
   );
-}
+};
 
-export default HomeBannerWithCaption
+export default HomeBannerWithCaption;

@@ -1,9 +1,14 @@
 import css from "styled-jsx/css";
 
 export const ihhomeBannerStyles = css.global`
-  .banner-image {
+  .banner-image-desktop {
     width: 100%;
     height: 700px;
+    background-size: cover;
+  }
+
+  .banner-image-mobile {
+    display: none;
   }
 
   .banner-text-sec {
@@ -64,9 +69,15 @@ export const ihhomeBannerStyles = css.global`
   }
 
   @media only screen and (max-width: 600px) {
-    .banner-image {
+    .banner-image-desktop {
+      display: none;
+    }
+
+    .banner-image-mobile {
+      display: block;
       width: 100%;
-      height: 584px;
+      height: 585px;
+      background-position: -183px;
     }
 
     .banner-text-sec {

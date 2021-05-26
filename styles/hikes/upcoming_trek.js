@@ -89,7 +89,6 @@ export const upcomingTrekStyles = css.global`
     .upcoming_title {
       line-height: 40px;
       font-size: 36px;
-      text-align: center;
       padding-bottom: 25px;
     }
 
