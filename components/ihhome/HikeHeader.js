@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  NavbarText
+} from "reactstrap";
 import { RichText } from "prismic-reactjs";
 import { ihheaderStyles } from "styles";
+
 /**
  * Homepage header component
  */
 const HikeHeader = ({ image, headline, description }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
   return (
     //   <div id="Group_2729">
     // 	<svg class="Rectangle_215">
@@ -34,7 +52,7 @@ const HikeHeader = ({ image, headline, description }) => {
     //   <style jsx global>{ihheaderStyles}</style>
     // </div>
     <div>
-      <nav class="navbar navbar-expand-lg navbar-light">
+      {/* <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand" href="#">
             <img
@@ -93,7 +111,39 @@ const HikeHeader = ({ image, headline, description }) => {
             </div>
           </div>
         </div>
-      </nav>
+      </nav> */}
+      <Navbar light expand="lg" className="container">
+        <NavbarBrand href="/">
+          <img
+            id="IH_Logo_in_PNG"
+            src="IH_Logo_in_PNG.png.png"
+            srcset="IH_Logo_in_PNG.png 1x, IH_Logo_in_PNG@2x.png 2x"
+          />
+        </NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
+            <NavItem>
+              <NavLink href="#">Home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="#">Upcoming Treks</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="#">Trek to Learn</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="#">DIY</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="#">Expert Blogs</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="#">About</NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
       <style jsx global>
         {ihheaderStyles}
       </style>

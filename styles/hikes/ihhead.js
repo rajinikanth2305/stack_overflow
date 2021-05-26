@@ -1,7 +1,7 @@
 import css from "styled-jsx/css";
 
 export const ihheaderStyles = css.global`
-  .navbar-expand-lg .navbar-nav .nav-link {
+.navbar-expand-lg .navbar-nav .nav-link {
     white-space: nowrap;
     line-height: 17.5px;
     text-align: left;
@@ -21,5 +21,20 @@ export const ihheaderStyles = css.global`
 
   .navbar-light .navbar-toggler {
     border: 0;
+  }
+
+  .navbar-expand-md .navbar-collapse {
+    justify-content: end;
+  }
+
+  .navbar-collapse {
+    z-index: 99999;
+  }
+
+  @media only screen and (max-width: 900px) {
+    .navbar-expand-lg .navbar-nav .nav-link {
+      padding-left: 0;
+      padding-rigth: 0;
+    }
   }
 `;
