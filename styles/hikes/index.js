@@ -13,5 +13,4 @@ export { homeFooterStyles } from "./home_footer";
 export { galleryStyles } from "./gallery";
 export { doItStyles } from "./do_it";
 export { featuredTrekStyles } from "./featured_trek";
-
-
+export { latestUpdatesTrekkingsStyles } from "./latestUpdates_trekkings";

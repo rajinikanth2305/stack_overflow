@@ -5,4 +5,4 @@ export { ihheaderStyles, ihbodyStyles,ihhomeBannerStyles,
     annoumentStyles,founderStyles,upcomingTrekStyles,whyTrekWithStyles,
     whatTrekkerSayStyles,
     experimentStyles,weeklyMailerStyles,
-    trekWithStyles,homeFooterStyles,galleryStyles,doItStyles,featuredTrekStyles } from "./hikes";
+    trekWithStyles,homeFooterStyles,galleryStyles,doItStyles,featuredTrekStyles, latestUpdatesTrekkingsStyles } from "./hikes";
