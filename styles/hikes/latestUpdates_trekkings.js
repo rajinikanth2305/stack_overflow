@@ -18,6 +18,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
     width: 100%;
     height: 400px;
     margin-top: 30px;
+    background-size: cover;
   }
 
   .latest_trek_details {
@@ -73,6 +74,23 @@ export const latestUpdatesTrekkingsStyles = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .latestTrekWorld_bg {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+  }
+
+  .latestTrekWorld_caption {
+    line-height: 24px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+    padding: 10px 0;
+  }
+
   @media only screen and (max-width: 660px) {
     .lut_section_title {
       line-height: 40px;
@@ -102,11 +120,26 @@ export const latestUpdatesTrekkingsStyles = css.global`
     .latest_trek_details {
       height: 370px;
     }
+
     .name_editor {
       font-style: italic;
       font-weight: normal;
       font-size: 12px;
       color: rgba(112, 112, 112, 1);
+    }
+
+    .m-d-none {
+      display: none;
+    }
+
+    .update_terk_title_text_mobile {
+      line-height: 16px;
+      text-align: left;
+      font-family: Lora;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 1);
     }
   }
 `;
