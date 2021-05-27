@@ -2,62 +2,61 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { trekWithStyles } from "styles";
 import Image from "next/image";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 /**
  * Founder Slice Components
  */
 const TrekWithSwathi = ({ slice }) => {
-  const title = slice.primary.title1;
-  const authors = slice.primary.authors;
-  const founder_Message = slice.primary.founder_message;
-  const imageUrl = slice.primary.image.url;
-  const imageWidth = slice.primary.image.dimensions.width;
-  const imageHeight = slice.primary.image.dimensions.height;
-  //console.log(JSON.stringify(slice.primary));
+  const trekWithSwathiLogoImg = slice.primary.trek_with_image.url;
+  const signUpText = slice.primary.sign_up_text;
+  const signUpTextDesc = slice.primary.sign_up_text_desc;
+
+  const logoImg = {
+    backgroundImage: `url('${trekWithSwathiLogoImg}')`,
+    width: "100%",
+    backgroundRepeat: "no-repeat"
+  };
 
   return (
     <>
-      {/* <div >
-	<div id="founder_title">
-		<span>{RichText.asText(title)}</span>
-	</div>
-	<div id="Mask_Group_2">
-	<Image  src={imageUrl} width={imageWidth} height ={imageHeight}   />  
-	</div>
-		<div id="founder_msg_paragraph">
-		<span>      
-		{RichText.asText(founder_Message)}
-		</span>
-	   </div>
-	   <div id="authors">
-	   <span>{RichText.asText(authors)}</span>
-	</div>
-      <style jsx global>{founderStyles}</style>
-	</div> */}
       <div class="mb-5">
-        <div class="container container-custom">
-          <div class="row">
-            <div class="col-lg-6 col-md-12"></div>
-            <div class="col-lg-6 col-md-12">
-              <p class="founder_title m-0">{RichText.asText(title)}</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-6 col-md-12">
-              {/* <Image src={imageUrl} width={imageWidth} height={imageHeight} /> */}
-              <img src={imageUrl} class="founder-image" />
-            </div>
-            <div class="col-lg-6 col-md-12">
-              <p class="founder_message">
-                <span>{RichText.asText(founder_Message)}</span>
-              </p>
-              <p class="founder_message">
-                <span>
-                  Lorem ipsum dolor sit ameet, consectetur adipiscing elit.
-                  Nulla vitae nisl convallis orci varius mollis nec eu mauris.
-                  Curabitur ultrices lobortis tristique. Class aptent taciti
-                  sociosqu ad litora torquent
-                </span>
-              </p>
+        <div class="container">
+          <div style={logoImg} class="trek_with_logo"></div>
+        </div>
+        <div class="trek_with_swathi_bg p-4">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6 col-md-12">
+                <p class="sign_up_text mb-0">{RichText.asText(signUpText)}</p>
+                <p class="sign_up_text_desc">
+                  {RichText.asText(signUpTextDesc)}
+                </p>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="pt-4 pb-2">
+                  <Form>
+                    <FormGroup>
+                      <Input
+                        type="text"
+                        name="name"
+                        id="name"
+                        placeholder="Name"
+                      />
+                    </FormGroup>
+                    <FormGroup>
+                      <Input
+                        type="email"
+                        name="email"
+                        id="email"
+                        placeholder="Enter your email"
+                      />
+                    </FormGroup>
+                    <div class="text-center">
+                      <Button>Subscribe</Button>
+                    </div>
+                  </Form>
+                </div>
+              </div>
             </div>
           </div>
         </div>

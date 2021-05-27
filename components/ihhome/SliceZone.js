@@ -7,7 +7,8 @@ import {
   WhyTrek,
   WhatTrekkerSay,
   Experiment,
-  LatestUpdatesTrekkings
+  LatestUpdatesTrekkings,
+  TrekWithSwathi
 } from "./slices";
 /**
  * Post slice zone component
@@ -31,8 +32,8 @@ const SliceZone = ({ sliceZone }) =>
         return <Experiment slice={slice} key={`slice-${index}`} />;
       case "latest_update_trekkings":
         return <LatestUpdatesTrekkings slice={slice} key={`slice-${index}`} />;
-      //           case ('trek_with_swathi'):
-      //             return <TrekWithSwathi slice={slice} key={`slice-${index}`} />
+      case "trek_with_swathi":
+        return <TrekWithSwathi slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }
