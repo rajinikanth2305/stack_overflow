@@ -83,6 +83,8 @@ export const latestUpdatesTrekkingsStyles = css.global`
     .latestLrekImage_bg {
       height: 200px;
       margin: 0;
+      background-size: cover;
+      background-position: bottom;
     }
 
     .day_trek_talk_title {
