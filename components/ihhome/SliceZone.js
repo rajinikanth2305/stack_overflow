@@ -9,7 +9,8 @@ import {
   Experiment,
   LatestUpdatesTrekkings,
   TrekWithSwathi,
-  DoItYourself
+  DoItYourself,
+  Gallery
 } from "./slices";
 /**
  * Post slice zone component
@@ -35,8 +36,10 @@ const SliceZone = ({ sliceZone }) =>
         return <LatestUpdatesTrekkings slice={slice} key={`slice-${index}`} />;
       case "trek_with_swathi":
         return <TrekWithSwathi slice={slice} key={`slice-${index}`} />;
-        case "doit_yourself_trek":
+      case "doit_yourself_trek":
         return <DoItYourself slice={slice} key={`slice-${index}`} />;
+      case "home_photo_gallery":
+        return <Gallery slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }

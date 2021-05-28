@@ -1,69 +1,108 @@
 import React from "react";
 import { RichText } from "prismic-reactjs";
 import { galleryStyles } from "styles";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 /**
  * Founder Slice Components
  */
 const Gallery = ({ slice }) => {
-  const title = slice.primary.title1;
-  const authors = slice.primary.authors;
-  const founder_Message = slice.primary.founder_message;
-  const imageUrl = slice.primary.image.url;
-  const imageWidth = slice.primary.image.dimensions.width;
-  const imageHeight = slice.primary.image.dimensions.height;
-  //console.log(JSON.stringify(slice.primary));
+  const homePhotoGalleryTitle = slice.primary.home_photo_gallery_title;
+  const galleryCommunityText = slice.primary.gallery_community_text;
+  const galleryCommunityUpdateText =
+    slice.primary.gallery_community_update_text;
+  const homeGalleryImage = slice.items;
+  // console.log(JSON.stringify(homeGalleryImage)); container-custom
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: "60px",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true,
+          centerMode: true,
+          centerPadding: "40px",
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 2,
+          centerMode: true,
+          centerPadding: "40px",
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: true,
+          centerPadding: "40px",
+          arrows: false,
+        }
+      }
+    ]
+  };
+
+  const homeGalleryImages = homeGalleryImage.map(function(data, i) {
+    const h_g_images = {
+      backgroundImage: `url('${data.home_gallery_image.url}')`,
+      width: "100%",
+      backgroundRepeat: "no-repeat"
+    };
+
+    return (
+      <>
+        <div className="mx-2 gallery_slik_custom" key={i}>
+          <div style={h_g_images} alt="imgs" className="h_g_images_style"></div>
+        </div>
+      </>
+    );
+  });
 
   return (
     <>
-      {/* <div >
-	<div id="founder_title">
-		<span>{RichText.asText(title)}</span>
-	</div>
-	<div id="Mask_Group_2">
-	<Image  src={imageUrl} width={imageWidth} height ={imageHeight}   />  
-	</div>
-		<div id="founder_msg_paragraph">
-		<span>      
-		{RichText.asText(founder_Message)}
-		</span>
-	   </div>
-	   <div id="authors">
-	   <span>{RichText.asText(authors)}</span>
-	</div>
-      <style jsx global>{founderStyles}</style>
-	</div> */}
       <div className="mb-5">
-        <div className="container container-custom">
-          <div className="row">
-            <div className="col-lg-6 col-md-12"></div>
-            <div className="col-lg-6 col-md-12">
-              <p className="founder_title m-0">{RichText.asText(title)}</p>
+        <div className="home_gallery_bg">
+          <div className="container">
+            <div className="d-flex align-items-center border-botton-style flex-wrap">
+              <div className="flex-grow-1">
+                <p className="home_photo_gallery_title m-0">
+                  {RichText.asText(homePhotoGalleryTitle)}
+                </p>
+              </div>
+              <div class="mx-3 m-d-none">
+                <img src="./insta.png" alt="insta" />
+              </div>
+              <div className="gallery_community_text m-d-none">
+                <p className="m-0">{RichText.asText(galleryCommunityText)}</p>
+                <p className="m-0">{RichText.asText(galleryCommunityUpdateText)}</p>
+              </div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-lg-6 col-md-12">
-              {/* <Image src={imageUrl} width={imageWidth} height={imageHeight} /> */}
-              <img src={imageUrl} className="founder-image" />
-            </div>
-            <div className="col-lg-6 col-md-12">
-              <p className="founder_message">
-                <span>{RichText.asText(founder_Message)}</span>
-              </p>
-              <p className="founder_message">
-                <span>
-                  Lorem ipsum dolor sit ameet, consectetur adipiscing elit.
-                  Nulla vitae nisl convallis orci varius mollis nec eu mauris.
-                  Curabitur ultrices lobortis tristique. Class aptent taciti
-                  sociosqu ad litora torquent
-                </span>
-              </p>
+          <div className="my-4 pt-1">
+            <div className="container container-custom">
+              <Slider {...settings}>{homeGalleryImages}</Slider>
             </div>
           </div>
+          <style jsx global>
+            {galleryStyles}
+          </style>
         </div>
-        <style jsx global>
-          {galleryStyles}
-        </style>
       </div>
     </>
   );
