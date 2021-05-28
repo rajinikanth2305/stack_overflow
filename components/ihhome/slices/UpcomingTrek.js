@@ -1,6 +1,9 @@
 import React from "react";
 import { RichText } from "prismic-reactjs";
 import { upcomingTrekStyles } from "styles";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 /**
  * UpcomingTrek Slice Components
@@ -16,7 +19,6 @@ const UpcomingTrek = ({ slice }) => {
   const imageLayout8 = {
     backgroundImage: `url('${imageUrl}')`,
     width: "100%",
-    // height: "420px",
     backgroundRepeat: "no-repeat"
   };
 
@@ -27,22 +29,44 @@ const UpcomingTrek = ({ slice }) => {
     backgroundRepeat: "no-repeat"
   };
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    infinite: true,
+    // centerMode: true,
+    // variableWidth: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ]
+  };
+
   return (
     <>
-      {/* <div>
-	<div id="Upcoming_Treks">
-		<span>{RichText.asText(heading)}</span>
-	</div>
-	<div id="Intersection_36">
-	<Image  src={imageUrl} width={imageWidth} height ={imageHeight}   />  
-	</div>
-		<div id="UPCOMING_TREKS_eh">
-		<span>      
-		{RichText.asText(title)}
-		</span>
-	   </div>
-      <style jsx global>{upcomingTrekStyles}</style>
-	</div> */}
       <div className="mb-5">
         <div className="container container-custom">
           <div className="row">
@@ -58,7 +82,9 @@ const UpcomingTrek = ({ slice }) => {
               <div className="mb-3 imageLayout8" style={imageLayout8}>
                 <div className="image_overlay_text_area">
                   <div className="p-absolute">
-                    <p className="image_overlay_text_title mb-1">UPCOMING TREKS</p>
+                    <p className="image_overlay_text_title mb-1">
+                      UPCOMING TREKS
+                    </p>
                     <p className="image_overlay_text_desc">
                       {RichText.asText(title)}
                     </p>
@@ -100,47 +126,51 @@ const UpcomingTrek = ({ slice }) => {
               </div>
             </div>
           </div>
-          <div className="row mt-3 m-d-none">
-            <div className="col-lg-4 col-md-6">
-              <div className="mb-3 imageLayout4" style={imageLayout4}>
-                <div className="image_overlay_text_area_layout4">
-                  <div className="p-absolute">
-                    <p className="image_overlay_text_title mb-1">
-                      New To Trekking?
-                    </p>
-                    <p className="image_overlay_text_desc">
-                      Learn more and find the perfect trek for you
-                    </p>
+          <div className="row mt-3">
+            <Slider {...settings}>
+              <div className="col-lg-4 col-md-6 px-3">
+                <div className="mb-3 imageLayout4" style={imageLayout4}>
+                  <div className="image_overlay_text_area_layout4">
+                    <div className="p-absolute">
+                      <p className="image_overlay_text_title mb-1">
+                        New To Trekking?
+                      </p>
+                      <p className="image_overlay_text_desc">
+                        Learn more and find the perfect trek for you
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-lg-4 col-md-6">
-              <div className="mb-3 imageLayout4" style={imageLayout4}>
-                <div className="image_overlay_text_area_layout4">
-                  <div className="p-absolute">
-                    <p className="image_overlay_text_title mb-1">
-                      TREKS for beginners
-                    </p>
-                    <p className="image_overlay_text_desc">
-                      These are the most favorite treks of the winter season
-                    </p>
+              <div className="col-lg-4 col-md-6 px-3">
+                <div className="mb-3 imageLayout4" style={imageLayout4}>
+                  <div className="image_overlay_text_area_layout4">
+                    <div className="p-absolute">
+                      <p className="image_overlay_text_title mb-1">
+                        TREKS for beginners
+                      </p>
+                      <p className="image_overlay_text_desc">
+                        These are the most favorite treks of the winter season
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-lg-4 col-md-6">
-              <div className="mb-3 imageLayout4" style={imageLayout4}>
-                <div className="image_overlay_text_area_layout4">
-                  <div className="p-absolute">
-                    <p className="image_overlay_text_title mb-1">TREKS IN 2021</p>
-                    <p className="image_overlay_text_desc">
-                      These are the most favorite treks of the winter season
-                    </p>
+              <div className="col-lg-4 col-md-6 px-3">
+                <div className="mb-3 imageLayout4" style={imageLayout4}>
+                  <div className="image_overlay_text_area_layout4">
+                    <div className="p-absolute">
+                      <p className="image_overlay_text_title mb-1">
+                        TREKS IN 2021
+                      </p>
+                      <p className="image_overlay_text_desc">
+                        These are the most favorite treks of the winter season
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Slider>
           </div>
         </div>
         <style jsx global>
