@@ -11,10 +11,10 @@ const WhyTrek = ({ slice }) => {
   return (
     <>
       {/* <div>
-            <svg class="Rectangle_549">
+            <svg className="Rectangle_549">
                 <rect id="Rectangle_549" rx="0" ry="0" x="0" y="0" width="360" height="120"></rect>
             </svg>
-            <svg class="Rectangle_577">
+            <svg className="Rectangle_577">
                 <rect id="Rectangle_577" rx="0" ry="0" x="0" y="0" width="360" height="80"></rect>
             </svg>
             <div id="what_trekkers_say_3450_reviews">
@@ -33,23 +33,23 @@ const WhyTrek = ({ slice }) => {
 		<div id="Group_2741">
 			<div id="Group_2540_gv">
 				<div id="Group_2725">
-					<svg class="Path_541_gx" viewBox="0 0.452 19.283 18.388">
+					<svg className="Path_541_gx" viewBox="0 0.452 19.283 18.388">
 						<path id="Path_541_gx" d="M 10.09697151184082 0.7548794150352478 L 12.54970169067383 6.560070037841797 L 18.82901000976563 7.09951114654541 C 19.26452445983887 7.137125015258789 19.44169616699219 7.680525779724121 19.1111011505127 7.966578960418701 L 14.34817123413086 12.09306526184082 L 15.775465965271 18.23182106018066 C 15.87444591522217 18.65842437744141 15.41221046447754 18.99396896362305 15.03806400299072 18.76730537414551 L 9.641661643981934 15.51283168792725 L 4.245259284973145 18.76730537414551 C 3.870123624801636 18.99298095703125 3.408876180648804 18.65743446350098 3.507856130599976 18.23182106018066 L 4.935150623321533 12.09306526184082 L 0.1712318360805511 7.965588092803955 C -0.1593621671199799 7.679536819458008 0.01682265475392342 7.136133193969727 0.453325480222702 7.098521709442139 L 6.732631206512451 6.559079647064209 L 9.185360908508301 0.7548789381980896 C 9.355607032775879 0.3510395586490631 9.926722526550293 0.3510395586490631 10.09696865081787 0.7548789381980896 Z">
 						</path>
 					</svg>
-					<svg class="Path_541_gy" viewBox="0 0.452 19.283 18.388">
+					<svg className="Path_541_gy" viewBox="0 0.452 19.283 18.388">
 						<path id="Path_541_gy" d="M 10.09697151184082 0.7548794150352478 L 12.54970169067383 6.560070037841797 L 18.82901000976563 7.09951114654541 C 19.26452445983887 7.137125015258789 19.44169616699219 7.680525779724121 19.1111011505127 7.966578960418701 L 14.34817123413086 12.09306526184082 L 15.775465965271 18.23182106018066 C 15.87444591522217 18.65842437744141 15.41221046447754 18.99396896362305 15.03806400299072 18.76730537414551 L 9.641661643981934 15.51283168792725 L 4.245259284973145 18.76730537414551 C 3.870123624801636 18.99298095703125 3.408876180648804 18.65743446350098 3.507856130599976 18.23182106018066 L 4.935150623321533 12.09306526184082 L 0.1712318360805511 7.965588092803955 C -0.1593621671199799 7.679536819458008 0.01682265475392342 7.136133193969727 0.453325480222702 7.098521709442139 L 6.732631206512451 6.559079647064209 L 9.185360908508301 0.7548789381980896 C 9.355607032775879 0.3510395586490631 9.926722526550293 0.3510395586490631 10.09696865081787 0.7548789381980896 Z">
 						</path>
 					</svg>
-					<svg class="Path_541_gz" viewBox="0 0.452 19.283 18.388">
+					<svg className="Path_541_gz" viewBox="0 0.452 19.283 18.388">
 						<path id="Path_541_gz" d="M 10.09697151184082 0.7548794150352478 L 12.54970169067383 6.560070037841797 L 18.82901000976563 7.09951114654541 C 19.26452445983887 7.137125015258789 19.44169616699219 7.680525779724121 19.1111011505127 7.966578960418701 L 14.34817123413086 12.09306526184082 L 15.775465965271 18.23182106018066 C 15.87444591522217 18.65842437744141 15.41221046447754 18.99396896362305 15.03806400299072 18.76730537414551 L 9.641661643981934 15.51283168792725 L 4.245259284973145 18.76730537414551 C 3.870123624801636 18.99298095703125 3.408876180648804 18.65743446350098 3.507856130599976 18.23182106018066 L 4.935150623321533 12.09306526184082 L 0.1712318360805511 7.965588092803955 C -0.1593621671199799 7.679536819458008 0.01682265475392342 7.136133193969727 0.453325480222702 7.098521709442139 L 6.732631206512451 6.559079647064209 L 9.185360908508301 0.7548789381980896 C 9.355607032775879 0.3510395586490631 9.926722526550293 0.3510395586490631 10.09696865081787 0.7548789381980896 Z">
 						</path>
 					</svg>
-					<svg class="Path_541_g" viewBox="0 0.452 19.283 18.388">
+					<svg className="Path_541_g" viewBox="0 0.452 19.283 18.388">
 						<path id="Path_541_g" d="M 10.09697151184082 0.7548794150352478 L 12.54970169067383 6.560070037841797 L 18.82901000976563 7.09951114654541 C 19.26452445983887 7.137125015258789 19.44169616699219 7.680525779724121 19.1111011505127 7.966578960418701 L 14.34817123413086 12.09306526184082 L 15.775465965271 18.23182106018066 C 15.87444591522217 18.65842437744141 15.41221046447754 18.99396896362305 15.03806400299072 18.76730537414551 L 9.641661643981934 15.51283168792725 L 4.245259284973145 18.76730537414551 C 3.870123624801636 18.99298095703125 3.408876180648804 18.65743446350098 3.507856130599976 18.23182106018066 L 4.935150623321533 12.09306526184082 L 0.1712318360805511 7.965588092803955 C -0.1593621671199799 7.679536819458008 0.01682265475392342 7.136133193969727 0.453325480222702 7.098521709442139 L 6.732631206512451 6.559079647064209 L 9.185360908508301 0.7548789381980896 C 9.355607032775879 0.3510395586490631 9.926722526550293 0.3510395586490631 10.09696865081787 0.7548789381980896 Z">
 						</path>
 					</svg>
-					<svg class="Path_541_ha" viewBox="0 0.452 19.283 18.388">
+					<svg className="Path_541_ha" viewBox="0 0.452 19.283 18.388">
 						<path id="Path_541_ha" d="M 10.09697151184082 0.7548794150352478 L 12.54970169067383 6.560070037841797 L 18.82901000976563 7.09951114654541 C 19.26452445983887 7.137125015258789 19.44169616699219 7.680525779724121 19.1111011505127 7.966578960418701 L 14.34817123413086 12.09306526184082 L 15.775465965271 18.23182106018066 C 15.87444591522217 18.65842437744141 15.41221046447754 18.99396896362305 15.03806400299072 18.76730537414551 L 9.641661643981934 15.51283168792725 L 4.245259284973145 18.76730537414551 C 3.870123624801636 18.99298095703125 3.408876180648804 18.65743446350098 3.507856130599976 18.23182106018066 L 4.935150623321533 12.09306526184082 L 0.1712318360805511 7.965588092803955 C -0.1593621671199799 7.679536819458008 0.01682265475392342 7.136133193969727 0.453325480222702 7.098521709442139 L 6.732631206512451 6.559079647064209 L 9.185360908508301 0.7548789381980896 C 9.355607032775879 0.3510395586490631 9.926722526550293 0.3510395586490631 10.09696865081787 0.7548789381980896 Z">
 						</path>
 					</svg>
@@ -63,7 +63,7 @@ const WhyTrek = ({ slice }) => {
 
     <div id="Group_2979">
 		<div id="Repeat_Grid_18">
-			<div id="Group_2726" class="Group_2726">
+			<div id="Group_2726" className="Group_2726">
 				<div id="IndiaHikes_really_took_a_great">
 					<span>IndiaHikes really took a great care of fellow trekkers. It was raining constantly in Manali for 2 days and IndiaHikes arranged the accommodation for us which helped us to mingle with other fellow trekkers
                         .We couldn't go to Hampta Pass due to bad weather, but the 3 days of trek gave us infinite 
@@ -79,36 +79,36 @@ const WhyTrek = ({ slice }) => {
 					<span>Chandrashekar Gowdar</span>
 				</div>
 				<div id="Repeat_Grid_5">
-					<div id="Group_2540" class="Group_2540">
+					<div id="Group_2540" className="Group_2540">
 						<div id="star">
-							<svg class="Path_541" viewBox="0 0.452 12.815 12.221">
+							<svg className="Path_541" viewBox="0 0.452 12.815 12.221">
 								<path id="Path_541" d="M 6.710452556610107 0.6532965898513794 L 8.340561866760254 4.511483669281006 L 12.51385116577148 4.870001792907715 C 12.80329704284668 4.894999980926514 12.92104911804199 5.256149768829346 12.70133113861084 5.446263313293457 L 9.535841941833496 8.188767433166504 L 10.48443698883057 12.26864337921143 C 10.55021953582764 12.55216789245605 10.24301242828369 12.77517414093018 9.994352340698242 12.62453174591064 L 6.407848834991455 10.46157741546631 L 2.821346521377563 12.62453174591064 C 2.572027683258057 12.77451610565186 2.265477895736694 12.55150985717773 2.331261157989502 12.26864337921143 L 3.279855489730835 8.188767433166504 L 0.11370749771595 5.445605278015137 C -0.1060085371136665 5.255492210388184 0.01108564157038927 4.894340991973877 0.3011897504329681 4.869343757629395 L 4.474479198455811 4.510825157165527 L 6.104587554931641 0.653296172618866 C 6.217734336853027 0.3849005401134491 6.597303867340088 0.3849005401134491 6.710452079772949 0.653296172618866 Z">
 								</path>
 							</svg>
 						</div>
 						<div id="star_fn">
-							<svg class="Path_541_fo" viewBox="0 0.452 12.815 12.221">
+							<svg className="Path_541_fo" viewBox="0 0.452 12.815 12.221">
 								<path id="Path_541_fo" d="M 6.710452556610107 0.6532965898513794 L 8.340561866760254 4.511483669281006 L 12.51385116577148 4.870001792907715 C 12.80329704284668 4.894999980926514 12.92104911804199 5.256149768829346 12.70133113861084 5.446263313293457 L 9.535841941833496 8.188767433166504 L 10.48443698883057 12.26864337921143 C 10.55021953582764 12.55216789245605 10.24301242828369 12.77517414093018 9.994352340698242 12.62453174591064 L 6.407848834991455 10.46157741546631 L 2.821346521377563 12.62453174591064 C 2.572027683258057 12.77451610565186 2.265477895736694 12.55150985717773 2.331261157989502 12.26864337921143 L 3.279855489730835 8.188767433166504 L 0.11370749771595 5.445605278015137 C -0.1060085371136665 5.255492210388184 0.01108564157038927 4.894340991973877 0.3011897504329681 4.869343757629395 L 4.474479198455811 4.510825157165527 L 6.104587554931641 0.653296172618866 C 6.217734336853027 0.3849005401134491 6.597303867340088 0.3849005401134491 6.710452079772949 0.653296172618866 Z">
 								</path>
 							</svg>
 						</div>
 						<div id="star_fp">
-							<svg class="Path_541_fq" viewBox="0 0.452 12.815 12.221">
+							<svg className="Path_541_fq" viewBox="0 0.452 12.815 12.221">
 								<path id="Path_541_fq" d="M 6.710452556610107 0.6532965898513794 L 8.340561866760254 4.511483669281006 L 12.51385116577148 4.870001792907715 C 12.80329704284668 4.894999980926514 12.92104911804199 5.256149768829346 12.70133113861084 5.446263313293457 L 9.535841941833496 8.188767433166504 L 10.48443698883057 12.26864337921143 C 10.55021953582764 12.55216789245605 10.24301242828369 12.77517414093018 9.994352340698242 12.62453174591064 L 6.407848834991455 10.46157741546631 L 2.821346521377563 12.62453174591064 C 2.572027683258057 12.77451610565186 2.265477895736694 12.55150985717773 2.331261157989502 12.26864337921143 L 3.279855489730835 8.188767433166504 L 0.11370749771595 5.445605278015137 C -0.1060085371136665 5.255492210388184 0.01108564157038927 4.894340991973877 0.3011897504329681 4.869343757629395 L 4.474479198455811 4.510825157165527 L 6.104587554931641 0.653296172618866 C 6.217734336853027 0.3849005401134491 6.597303867340088 0.3849005401134491 6.710452079772949 0.653296172618866 Z">
 								</path>
 							</svg>
 						</div>
 						<div id="star_fr">
-							<div id="star_fs" class="star">
-								<svg class="Path_541_ft" viewBox="0 0.452 12.815 12.221">
+							<div id="star_fs" className="star">
+								<svg className="Path_541_ft" viewBox="0 0.452 12.815 12.221">
 									<path id="Path_541_ft" d="M 6.710452556610107 0.6532965898513794 L 8.340561866760254 4.511483669281006 L 12.51385116577148 4.870001792907715 C 12.80329704284668 4.894999980926514 12.92104911804199 5.256149768829346 12.70133113861084 5.446263313293457 L 9.535841941833496 8.188767433166504 L 10.48443698883057 12.26864337921143 C 10.55021953582764 12.55216789245605 10.24301242828369 12.77517414093018 9.994352340698242 12.62453174591064 L 6.407848834991455 10.46157741546631 L 2.821346521377563 12.62453174591064 C 2.572027683258057 12.77451610565186 2.265477895736694 12.55150985717773 2.331261157989502 12.26864337921143 L 3.279855489730835 8.188767433166504 L 0.11370749771595 5.445605278015137 C -0.1060085371136665 5.255492210388184 0.01108564157038927 4.894340991973877 0.3011897504329681 4.869343757629395 L 4.474479198455811 4.510825157165527 L 6.104587554931641 0.653296172618866 C 6.217734336853027 0.3849005401134491 6.597303867340088 0.3849005401134491 6.710452079772949 0.653296172618866 Z">
 									</path>
 								</svg>
 							</div>
 						</div>
 						<div id="star_fu">
-							<div id="star_fv" class="star">
-								<svg class="Path_541_fw" viewBox="0 0.452 12.815 12.221">
+							<div id="star_fv" className="star">
+								<svg className="Path_541_fw" viewBox="0 0.452 12.815 12.221">
 									<path id="Path_541_fw" d="M 6.710452556610107 0.6532965898513794 L 8.340561866760254 4.511483669281006 L 12.51385116577148 4.870001792907715 C 12.80329704284668 4.894999980926514 12.92104911804199 5.256149768829346 12.70133113861084 5.446263313293457 L 9.535841941833496 8.188767433166504 L 10.48443698883057 12.26864337921143 C 10.55021953582764 12.55216789245605 10.24301242828369 12.77517414093018 9.994352340698242 12.62453174591064 L 6.407848834991455 10.46157741546631 L 2.821346521377563 12.62453174591064 C 2.572027683258057 12.77451610565186 2.265477895736694 12.55150985717773 2.331261157989502 12.26864337921143 L 3.279855489730835 8.188767433166504 L 0.11370749771595 5.445605278015137 C -0.1060085371136665 5.255492210388184 0.01108564157038927 4.894340991973877 0.3011897504329681 4.869343757629395 L 4.474479198455811 4.510825157165527 L 6.104587554931641 0.653296172618866 C 6.217734336853027 0.3849005401134491 6.597303867340088 0.3849005401134491 6.710452079772949 0.653296172618866 Z">
 									</path>
 								</svg>
@@ -119,11 +119,11 @@ const WhyTrek = ({ slice }) => {
 				<div id="Read__More">
 					<span>Read  More</span>
 				</div>
-				<svg class="Ellipse_46">
+				<svg className="Ellipse_46">
 					<ellipse id="Ellipse_46" rx="20" ry="20" cx="20" cy="20">
 					</ellipse>
 				</svg>
-				<svg class="Rectangle_495_f">
+				<svg className="Rectangle_495_f">
 					<linearGradient id="Rectangle_495_f" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
 						<stop offset="0" stop-color="#fff" stop-opacity="0"></stop>
 						<stop offset="1" stop-color="#fff" stop-opacity="1"></stop>
@@ -132,7 +132,7 @@ const WhyTrek = ({ slice }) => {
 					</rect>
 				</svg>
 			</div>
-			<div id="Group_2726_f" class="Group_2726">
+			<div id="Group_2726_f" className="Group_2726">
 				<div id="The_trek_went_really_well_Indi">
 					<span>The trek went really well, Indiahikes made sure that we had an amazing 6 days in the mountains.
                         Everything was spot on, our's was a running batch, and the way the trek leads and all the staff went about their job, they should be given a big round of applause.
@@ -157,36 +157,36 @@ const WhyTrek = ({ slice }) => {
 					<span>Quaid Doongerwala</span>
 				</div>
 				<div id="Repeat_Grid_5_f">
-					<div id="Group_2540_f" class="Group_2540">
+					<div id="Group_2540_f" className="Group_2540">
 						<div id="star_f">
-							<svg class="Path_541_f" viewBox="0 0.452 12.815 12.221">
+							<svg className="Path_541_f" viewBox="0 0.452 12.815 12.221">
 								<path id="Path_541_f" d="M 6.710452556610107 0.6532965898513794 L 8.340561866760254 4.511483669281006 L 12.51385116577148 4.870001792907715 C 12.80329704284668 4.894999980926514 12.92104911804199 5.256149768829346 12.70133113861084 5.446263313293457 L 9.535841941833496 8.188767433166504 L 10.48443698883057 12.26864337921143 C 10.55021953582764 12.55216789245605 10.24301242828369 12.77517414093018 9.994352340698242 12.62453174591064 L 6.407848834991455 10.46157741546631 L 2.821346521377563 12.62453174591064 C 2.572027683258057 12.77451610565186 2.265477895736694 12.55150985717773 2.331261157989502 12.26864337921143 L 3.279855489730835 8.188767433166504 L 0.11370749771595 5.445605278015137 C -0.1060085371136665 5.255492210388184 0.01108564157038927 4.894340991973877 0.3011897504329681 4.869343757629395 L 4.474479198455811 4.510825157165527 L 6.104587554931641 0.653296172618866 C 6.217734336853027 0.3849005401134491 6.597303867340088 0.3849005401134491 6.710452079772949 0.653296172618866 Z">
 								</path>
 							</svg>
 						</div>
 						<div id="star_ga">
-							<svg class="Path_541_ga" viewBox="0 0.452 12.815 12.221">
+							<svg className="Path_541_ga" viewBox="0 0.452 12.815 12.221">
 								<path id="Path_541_ga" d="M 6.710452556610107 0.6532965898513794 L 8.340561866760254 4.511483669281006 L 12.51385116577148 4.870001792907715 C 12.80329704284668 4.894999980926514 12.92104911804199 5.256149768829346 12.70133113861084 5.446263313293457 L 9.535841941833496 8.188767433166504 L 10.48443698883057 12.26864337921143 C 10.55021953582764 12.55216789245605 10.24301242828369 12.77517414093018 9.994352340698242 12.62453174591064 L 6.407848834991455 10.46157741546631 L 2.821346521377563 12.62453174591064 C 2.572027683258057 12.77451610565186 2.265477895736694 12.55150985717773 2.331261157989502 12.26864337921143 L 3.279855489730835 8.188767433166504 L 0.11370749771595 5.445605278015137 C -0.1060085371136665 5.255492210388184 0.01108564157038927 4.894340991973877 0.3011897504329681 4.869343757629395 L 4.474479198455811 4.510825157165527 L 6.104587554931641 0.653296172618866 C 6.217734336853027 0.3849005401134491 6.597303867340088 0.3849005401134491 6.710452079772949 0.653296172618866 Z">
 								</path>
 							</svg>
 						</div>
 						<div id="star_gb">
-							<svg class="Path_541_gc" viewBox="0 0.452 12.815 12.221">
+							<svg className="Path_541_gc" viewBox="0 0.452 12.815 12.221">
 								<path id="Path_541_gc" d="M 6.710452556610107 0.6532965898513794 L 8.340561866760254 4.511483669281006 L 12.51385116577148 4.870001792907715 C 12.80329704284668 4.894999980926514 12.92104911804199 5.256149768829346 12.70133113861084 5.446263313293457 L 9.535841941833496 8.188767433166504 L 10.48443698883057 12.26864337921143 C 10.55021953582764 12.55216789245605 10.24301242828369 12.77517414093018 9.994352340698242 12.62453174591064 L 6.407848834991455 10.46157741546631 L 2.821346521377563 12.62453174591064 C 2.572027683258057 12.77451610565186 2.265477895736694 12.55150985717773 2.331261157989502 12.26864337921143 L 3.279855489730835 8.188767433166504 L 0.11370749771595 5.445605278015137 C -0.1060085371136665 5.255492210388184 0.01108564157038927 4.894340991973877 0.3011897504329681 4.869343757629395 L 4.474479198455811 4.510825157165527 L 6.104587554931641 0.653296172618866 C 6.217734336853027 0.3849005401134491 6.597303867340088 0.3849005401134491 6.710452079772949 0.653296172618866 Z">
 								</path>
 							</svg>
 						</div>
 						<div id="star_gd">
-							<div id="star_ge" class="star">
-								<svg class="Path_541_gf" viewBox="0 0.452 12.815 12.221">
+							<div id="star_ge" className="star">
+								<svg className="Path_541_gf" viewBox="0 0.452 12.815 12.221">
 									<path id="Path_541_gf" d="M 6.710452556610107 0.6532965898513794 L 8.340561866760254 4.511483669281006 L 12.51385116577148 4.870001792907715 C 12.80329704284668 4.894999980926514 12.92104911804199 5.256149768829346 12.70133113861084 5.446263313293457 L 9.535841941833496 8.188767433166504 L 10.48443698883057 12.26864337921143 C 10.55021953582764 12.55216789245605 10.24301242828369 12.77517414093018 9.994352340698242 12.62453174591064 L 6.407848834991455 10.46157741546631 L 2.821346521377563 12.62453174591064 C 2.572027683258057 12.77451610565186 2.265477895736694 12.55150985717773 2.331261157989502 12.26864337921143 L 3.279855489730835 8.188767433166504 L 0.11370749771595 5.445605278015137 C -0.1060085371136665 5.255492210388184 0.01108564157038927 4.894340991973877 0.3011897504329681 4.869343757629395 L 4.474479198455811 4.510825157165527 L 6.104587554931641 0.653296172618866 C 6.217734336853027 0.3849005401134491 6.597303867340088 0.3849005401134491 6.710452079772949 0.653296172618866 Z">
 									</path>
 								</svg>
 							</div>
 						</div>
 						<div id="star_gg">
-							<div id="star_gh" class="star">
-								<svg class="Path_541_gi" viewBox="0 0.452 12.815 12.221">
+							<div id="star_gh" className="star">
+								<svg className="Path_541_gi" viewBox="0 0.452 12.815 12.221">
 									<path id="Path_541_gi" d="M 6.710452556610107 0.6532965898513794 L 8.340561866760254 4.511483669281006 L 12.51385116577148 4.870001792907715 C 12.80329704284668 4.894999980926514 12.92104911804199 5.256149768829346 12.70133113861084 5.446263313293457 L 9.535841941833496 8.188767433166504 L 10.48443698883057 12.26864337921143 C 10.55021953582764 12.55216789245605 10.24301242828369 12.77517414093018 9.994352340698242 12.62453174591064 L 6.407848834991455 10.46157741546631 L 2.821346521377563 12.62453174591064 C 2.572027683258057 12.77451610565186 2.265477895736694 12.55150985717773 2.331261157989502 12.26864337921143 L 3.279855489730835 8.188767433166504 L 0.11370749771595 5.445605278015137 C -0.1060085371136665 5.255492210388184 0.01108564157038927 4.894340991973877 0.3011897504329681 4.869343757629395 L 4.474479198455811 4.510825157165527 L 6.104587554931641 0.653296172618866 C 6.217734336853027 0.3849005401134491 6.597303867340088 0.3849005401134491 6.710452079772949 0.653296172618866 Z">
 									</path>
 								</svg>
@@ -197,11 +197,11 @@ const WhyTrek = ({ slice }) => {
 				<div id="Read__More_gj">
 					<span>Read  More</span>
 				</div>
-				<svg class="Ellipse_46_gk">
+				<svg className="Ellipse_46_gk">
 					<ellipse id="Ellipse_46_gk" rx="20" ry="20" cx="20" cy="20">
 					</ellipse>
 				</svg>
-				<svg class="Rectangle_495_gm">
+				<svg className="Rectangle_495_gm">
 					<linearGradient id="Rectangle_495_gm" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
 						<stop offset="0" stop-color="#fff" stop-opacity="0"></stop>
 						<stop offset="1" stop-color="#fff" stop-opacity="1"></stop>
@@ -212,7 +212,7 @@ const WhyTrek = ({ slice }) => {
 			</div>
 		</div>
 		<div id="Group_2819">
-			<svg class="Rectangle_192">
+			<svg className="Rectangle_192">
 				<rect id="Rectangle_192" rx="2" ry="2" x="0" y="0" width="206" height="30">
 				</rect>
 			</svg>
@@ -223,23 +223,23 @@ const WhyTrek = ({ slice }) => {
 	</div>
             <style jsx global>{whatTrekkerSayStyles}</style>
 			</div> */}
-      <div class="mb-4">
-        <div class="container">
-          <div class="m-d-none">
-            <div class="d-flex flex-wrap align-items-end title_border pt-5">
-              <div class="flex-grow-1">
-                <p class="why_trek_any_title mb-0">What trekkers say</p>
+      <div className="mb-4">
+        <div className="container">
+          <div className="m-d-none">
+            <div className="d-flex flex-wrap align-items-end title_border pt-5">
+              <div className="flex-grow-1">
+                <p className="why_trek_any_title mb-0">What trekkers say</p>
               </div>
-              <div class="d-flex alifn-items-center">
+              <div className="d-flex alifn-items-center">
                 <div>
-                  <p class="px-2 review_text mb-3">Rated</p>
+                  <p className="px-2 review_text mb-3">Rated</p>
                 </div>
-                <div class="p-relative">
+                <div className="p-relative">
                   <div id="Group_2741">
                     <div id="Group_2540_gv">
                       <div id="Group_2725">
                         <svg
-                          class="Path_541_gx"
+                          className="Path_541_gx"
                           viewBox="0 0.452 19.283 18.388"
                         >
                           <path
@@ -248,7 +248,7 @@ const WhyTrek = ({ slice }) => {
                           ></path>
                         </svg>
                         <svg
-                          class="Path_541_gy"
+                          className="Path_541_gy"
                           viewBox="0 0.452 19.283 18.388"
                         >
                           <path
@@ -257,7 +257,7 @@ const WhyTrek = ({ slice }) => {
                           ></path>
                         </svg>
                         <svg
-                          class="Path_541_gz"
+                          className="Path_541_gz"
                           viewBox="0 0.452 19.283 18.388"
                         >
                           <path
@@ -265,14 +265,14 @@ const WhyTrek = ({ slice }) => {
                             d="M 10.09697151184082 0.7548794150352478 L 12.54970169067383 6.560070037841797 L 18.82901000976563 7.09951114654541 C 19.26452445983887 7.137125015258789 19.44169616699219 7.680525779724121 19.1111011505127 7.966578960418701 L 14.34817123413086 12.09306526184082 L 15.775465965271 18.23182106018066 C 15.87444591522217 18.65842437744141 15.41221046447754 18.99396896362305 15.03806400299072 18.76730537414551 L 9.641661643981934 15.51283168792725 L 4.245259284973145 18.76730537414551 C 3.870123624801636 18.99298095703125 3.408876180648804 18.65743446350098 3.507856130599976 18.23182106018066 L 4.935150623321533 12.09306526184082 L 0.1712318360805511 7.965588092803955 C -0.1593621671199799 7.679536819458008 0.01682265475392342 7.136133193969727 0.453325480222702 7.098521709442139 L 6.732631206512451 6.559079647064209 L 9.185360908508301 0.7548789381980896 C 9.355607032775879 0.3510395586490631 9.926722526550293 0.3510395586490631 10.09696865081787 0.7548789381980896 Z"
                           ></path>
                         </svg>
-                        <svg class="Path_541_g" viewBox="0 0.452 19.283 18.388">
+                        <svg className="Path_541_g" viewBox="0 0.452 19.283 18.388">
                           <path
                             id="Path_541_g"
                             d="M 10.09697151184082 0.7548794150352478 L 12.54970169067383 6.560070037841797 L 18.82901000976563 7.09951114654541 C 19.26452445983887 7.137125015258789 19.44169616699219 7.680525779724121 19.1111011505127 7.966578960418701 L 14.34817123413086 12.09306526184082 L 15.775465965271 18.23182106018066 C 15.87444591522217 18.65842437744141 15.41221046447754 18.99396896362305 15.03806400299072 18.76730537414551 L 9.641661643981934 15.51283168792725 L 4.245259284973145 18.76730537414551 C 3.870123624801636 18.99298095703125 3.408876180648804 18.65743446350098 3.507856130599976 18.23182106018066 L 4.935150623321533 12.09306526184082 L 0.1712318360805511 7.965588092803955 C -0.1593621671199799 7.679536819458008 0.01682265475392342 7.136133193969727 0.453325480222702 7.098521709442139 L 6.732631206512451 6.559079647064209 L 9.185360908508301 0.7548789381980896 C 9.355607032775879 0.3510395586490631 9.926722526550293 0.3510395586490631 10.09696865081787 0.7548789381980896 Z"
                           ></path>
                         </svg>
                         <svg
-                          class="Path_541_ha"
+                          className="Path_541_ha"
                           viewBox="0 0.452 19.283 18.388"
                         >
                           <path
@@ -285,14 +285,14 @@ const WhyTrek = ({ slice }) => {
                   </div>
                 </div>
                 <div>
-                  <p class="px-2 review_text mb-3">4.8/5</p>
+                  <p className="px-2 review_text mb-3">4.8/5</p>
                 </div>
                 <div>
-                  <p class="review_text mb-3">
+                  <p className="review_text mb-3">
                     with <b>3700+ Reviews</b> on{" "}
                   </p>
                 </div>
-                <div class="px-1"></div>
+                <div className="px-1"></div>
                 <div>
                   <img src="/Image_9.png" />
                 </div>
@@ -300,159 +300,159 @@ const WhyTrek = ({ slice }) => {
             </div>
           </div>
         </div>
-        <div class="m-d-block pt-2">
-          <div class="review_bg p-4">
-            <p class="why_trek_any_title m-0">
+        <div className="m-d-block pt-2">
+          <div className="review_bg p-4">
+            <p className="why_trek_any_title m-0">
               what trekkers say: 3450 reviews
             </p>
           </div>
         </div>
-        <div class="m-d-block">
-          <div class="review_rating_bg p-3">
-            <p class="mobile_rating_text mb-0">
+        <div className="m-d-block">
+          <div className="review_rating_bg p-3">
+            <p className="mobile_rating_text mb-0">
               <span>Rated</span>
               <span>
                 <img src="/rating_5.png" alt="rating" />
               </span>
               <span>4.8/5</span>
             </p>
-            <p class="mobile_rating_text mb-0">
+            <p className="mobile_rating_text mb-0">
               <span>with <b>3700+ Reviews</b> on </span>
             </p>
           </div>
         </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 col-md-12">
-              <p class="review_title my-4">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-6 col-md-12">
+              <p className="review_title my-4">
                 Trekkers love Indiahikes with reason. Scroll below for over 3600
                 unedited reviews
               </p>
             </div>
-            <div class="row">
-              <div class="col-lg-6 col-md-12">
+            <div className="row">
+              <div className="col-lg-6 col-md-12">
                 <div>
-                  <div class="d-flex align-items-center">
+                  <div className="d-flex align-items-center">
                     <div>
-                      <img src="./p-icon.png" alt="p-icon" class="p-icon" />
+                      <img src="./p-icon.png" alt="p-icon" className="p-icon" />
                     </div>
-                    <div class="mx-3">
-                      <p class="m-0 reviewer_name">Chandrashekar Gowdar</p>
-                      <p class="m-0">
+                    <div className="mx-3">
+                      <p className="m-0 reviewer_name">Chandrashekar Gowdar</p>
+                      <p className="m-0">
                         <img src="./rating_sm.png" alt="rating-star" />
-                        <span class="px-2 year_text">February 2020</span>
+                        <span className="px-2 year_text">February 2020</span>
                       </p>
                     </div>
                   </div>
-                  <div class="my-2">
-                    <p class="reviewer_cmts m-0">
+                  <div className="my-2">
+                    <p className="reviewer_cmts m-0">
                       IndiaHikes really took a great care of fellow trekkers. It
                       was raining constantly in Manali for 2 days and IndiaHikes
                       arranged the accommodation for us which helped us to
                       mingle with other fellow trekkers.
                     </p>
-                    <p class="mb-1">
+                    <p className="mb-1">
                       We couldn't go to Hampta Pass due to bad weather, but the
                       3 days of trek gave us infinite memories which will stay
                       with us forever
                     </p>
-                    <p class="reviewer_read_more mb-4 pb-2">Read More</p>
+                    <p className="reviewer_read_more mb-4 pb-2">Read More</p>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6 col-md-12">
+              <div className="col-lg-6 col-md-12">
                 <div>
-                  <div class="d-flex align-items-center">
+                  <div className="d-flex align-items-center">
                     <div>
-                      <img src="./p-icon.png" alt="p-icon" class="p-icon" />
+                      <img src="./p-icon.png" alt="p-icon" className="p-icon" />
                     </div>
-                    <div class="mx-3">
-                      <p class="m-0 reviewer_name">Chandrashekar Gowdar</p>
-                      <p class="m-0">
+                    <div className="mx-3">
+                      <p className="m-0 reviewer_name">Chandrashekar Gowdar</p>
+                      <p className="m-0">
                         <img src="./rating_sm.png" alt="rating-star" />
-                        <span class="px-2 year_text">February 2020</span>
+                        <span className="px-2 year_text">February 2020</span>
                       </p>
                     </div>
                   </div>
-                  <div class="my-2">
-                    <p class="reviewer_cmts m-0">
+                  <div className="my-2">
+                    <p className="reviewer_cmts m-0">
                       IndiaHikes really took a great care of fellow trekkers. It
                       was raining constantly in Manali for 2 days and IndiaHikes
                       arranged the accommodation for us which helped us to
                       mingle with other fellow trekkers.
                     </p>
-                    <p class="mb-1">
+                    <p className="mb-1">
                       We couldn't go to Hampta Pass due to bad weather, but the
                       3 days of trek gave us infinite memories which will stay
                       with us forever
                     </p>
-                    <p class="reviewer_read_more mb-4 pb-2">Read More</p>
+                    <p className="reviewer_read_more mb-4 pb-2">Read More</p>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6 col-md-12">
+              <div className="col-lg-6 col-md-12">
                 <div>
-                  <div class="d-flex align-items-center">
+                  <div className="d-flex align-items-center">
                     <div>
-                      <img src="./p-icon.png" alt="p-icon" class="p-icon" />
+                      <img src="./p-icon.png" alt="p-icon" className="p-icon" />
                     </div>
-                    <div class="mx-3">
-                      <p class="m-0 reviewer_name">Chandrashekar Gowdar</p>
-                      <p class="m-0">
+                    <div className="mx-3">
+                      <p className="m-0 reviewer_name">Chandrashekar Gowdar</p>
+                      <p className="m-0">
                         <img src="./rating_sm.png" alt="rating-star" />
-                        <span class="px-2 year_text">February 2020</span>
+                        <span className="px-2 year_text">February 2020</span>
                       </p>
                     </div>
                   </div>
-                  <div class="my-2">
-                    <p class="reviewer_cmts m-0">
+                  <div className="my-2">
+                    <p className="reviewer_cmts m-0">
                       IndiaHikes really took a great care of fellow trekkers. It
                       was raining constantly in Manali for 2 days and IndiaHikes
                       arranged the accommodation for us which helped us to
                       mingle with other fellow trekkers.
                     </p>
-                    <p class="mb-1">
+                    <p className="mb-1">
                       We couldn't go to Hampta Pass due to bad weather, but the
                       3 days of trek gave us infinite memories which will stay
                       with us forever
                     </p>
-                    <p class="reviewer_read_more mb-4 pb-2">Read More</p>
+                    <p className="reviewer_read_more mb-4 pb-2">Read More</p>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6 col-md-12">
+              <div className="col-lg-6 col-md-12">
                 <div>
-                  <div class="d-flex align-items-center">
+                  <div className="d-flex align-items-center">
                     <div>
-                      <img src="./p-icon.png" alt="p-icon" class="p-icon" />
+                      <img src="./p-icon.png" alt="p-icon" className="p-icon" />
                     </div>
-                    <div class="mx-3">
-                      <p class="m-0 reviewer_name">Chandrashekar Gowdar</p>
-                      <p class="m-0">
+                    <div className="mx-3">
+                      <p className="m-0 reviewer_name">Chandrashekar Gowdar</p>
+                      <p className="m-0">
                         <img src="./rating_sm.png" alt="rating-star" />
-                        <span class="px-2 year_text">February 2020</span>
+                        <span className="px-2 year_text">February 2020</span>
                       </p>
                     </div>
                   </div>
-                  <div class="my-2">
-                    <p class="reviewer_cmts m-0">
+                  <div className="my-2">
+                    <p className="reviewer_cmts m-0">
                       IndiaHikes really took a great care of fellow trekkers. It
                       was raining constantly in Manali for 2 days and IndiaHikes
                       arranged the accommodation for us which helped us to
                       mingle with other fellow trekkers.
                     </p>
-                    <p class="mb-1">
+                    <p className="mb-1">
                       We couldn't go to Hampta Pass due to bad weather, but the
                       3 days of trek gave us infinite memories which will stay
                       with us forever
                     </p>
-                    <p class="reviewer_read_more mb-4 pb-2">Read More</p>
+                    <p className="reviewer_read_more mb-4 pb-2">Read More</p>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6 col-md-12">
-                <div class="mt-3 m-d-center">
-                  <button class="btn btn-lg btn-primary btn-ih-wy-primary">
+              <div className="col-lg-6 col-md-12">
+                <div className="mt-3 m-d-center">
+                  <button className="btn btn-lg btn-primary btn-ih-wy-primary">
                     View more reviews
                   </button>
                 </div>

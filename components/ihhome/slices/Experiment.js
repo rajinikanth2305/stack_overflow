@@ -57,7 +57,7 @@ const Experiment = ({ slice }) => {
 
 				<div style={mystyle}>
     					<Image  src={imageUrl} width={imageWidth} height ={imageHeight}   />
-    				    <div class="experience_image_caption" style={{width: 200}}>{caption}</div>
+    				    <div className="experience_image_caption" style={{width: 200}}>{caption}</div>
 				</div>
 			
 			top=top+207;
@@ -66,26 +66,26 @@ const Experiment = ({ slice }) => {
       <style jsx global>{experimentStyles}</style>
 	</div> */}
       <div>
-        <div class="exprriment-bg">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-6 col-md-12">
-                <p class="exp_title">Experiential Learning</p>
-                <p class="exp_desc">{RichText.asText(heading2)}</p>
+        <div className="exprriment-bg">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-6 col-md-12">
+                <p className="exp_title">Experiential Learning</p>
+                <p className="exp_desc">{RichText.asText(heading2)}</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="container container-custom mt-3 mb-5">
-          <div class="row">
-            <div class="col-lg-8 col-md-12">
-              <div class="imageLayout8" style={imageLayout8}>
-                <div class="image_overlay_text_area">
-                  <div class="p-absolute">
-                    <p class="image_overlay_text_title mb-1">
+        <div className="container container-custom mt-3 mb-5">
+          <div className="row">
+            <div className="col-lg-8 col-md-12">
+              <div className="imageLayout8" style={imageLayout8}>
+                <div className="image_overlay_text_area">
+                  <div className="p-absolute">
+                    <p className="image_overlay_text_title mb-1">
                       Himalayan Mountain Challenge
                     </p>
-                    <p class="image_overlay_text_desc">
+                    <p className="image_overlay_text_desc">
                       The Program That Turns Business School Students into
                       Collaborative Leaders
                     </p>
@@ -93,27 +93,27 @@ const Experiment = ({ slice }) => {
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-6 m-d-none">
-              <div class="mb-3 imageLayout4" style={imageLayout4}>
-                <div class="image_overlay_text_area_layout4">
-                  <div class="p-absolute">
-                    <p class="image_overlay_text_title mb-1">
+            <div className="col-lg-4 col-md-6 m-d-none">
+              <div className="mb-3 imageLayout4" style={imageLayout4}>
+                <div className="image_overlay_text_area_layout4">
+                  <div className="p-absolute">
+                    <p className="image_overlay_text_title mb-1">
                       TREKS FOR Schools
                     </p>
-                    <p class="image_overlay_text_desc">
+                    <p className="image_overlay_text_desc">
                       An Experiential Learning Trek Can Positively Impact Your
                       School Students
                     </p>
                   </div>
                 </div>
               </div>
-              <div class="imageLayout4" style={imageLayout4}>
-                <div class="image_overlay_text_area_layout4">
-                  <div class="p-absolute">
-                    <p class="image_overlay_text_title mb-1">
+              <div className="imageLayout4" style={imageLayout4}>
+                <div className="image_overlay_text_area_layout4">
+                  <div className="p-absolute">
+                    <p className="image_overlay_text_title mb-1">
                       TREKS FOR FAMILIES
                     </p>
-                    <p class="image_overlay_text_desc">
+                    <p className="image_overlay_text_desc">
                       Creating joyful memories through meaningful experiences
                     </p>
                   </div>

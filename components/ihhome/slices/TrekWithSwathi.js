@@ -19,21 +19,21 @@ const TrekWithSwathi = ({ slice }) => {
 
   return (
     <>
-      <div class="mb-5">
-        <div class="container">
-          <div style={logoImg} class="trek_with_logo"></div>
+      <div className="mb-5">
+        <div className="container">
+          <div style={logoImg} className="trek_with_logo"></div>
         </div>
-        <div class="trek_with_swathi_bg p-4">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-6 col-md-12">
-                <p class="sign_up_text mb-0">{RichText.asText(signUpText)}</p>
-                <p class="sign_up_text_desc">
+        <div className="trek_with_swathi_bg p-4">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-6 col-md-12">
+                <p className="sign_up_text mb-0">{RichText.asText(signUpText)}</p>
+                <p className="sign_up_text_desc">
                   {RichText.asText(signUpTextDesc)}
                 </p>
               </div>
-              <div class="col-lg-6 col-md-12">
-                <div class="pt-4 pb-2">
+              <div className="col-lg-6 col-md-12">
+                <div className="pt-4 pb-2">
                   <Form>
                     <FormGroup>
                       <Input
@@ -51,7 +51,7 @@ const TrekWithSwathi = ({ slice }) => {
                         placeholder="Enter your email"
                       />
                     </FormGroup>
-                    <div class="text-center">
+                    <div className="text-center">
                       <Button>Subscribe</Button>
                     </div>
                   </Form>

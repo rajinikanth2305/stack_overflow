@@ -32,7 +32,7 @@ const HomeBannerWithCaption = ({ slice }) => {
 	<Image  src={imageUrl} width={imageWidth} height ={imageHeight}   />
 	</div>
 	
-	<div    id="Component_8__1" class="Component_8___1"  >
+	<div    id="Component_8__1" className="Component_8___1"  >
 		<div id="ID20000_Trekkers_dont_trek_wit">
 			<span>
 			{RichText.asText(heading1)}
@@ -48,7 +48,7 @@ const HomeBannerWithCaption = ({ slice }) => {
 	<div id="Read_Our_Story_Here">
 		<span>Read Our Story Here</span>
 	</div>
-	<svg class="Rectangle_210">
+	<svg className="Rectangle_210">
 		<rect id="Rectangle_210" rx="2" ry="2" x="0" y="0" width="186" height="30">
 		</rect>
 	</svg>
@@ -58,18 +58,18 @@ const HomeBannerWithCaption = ({ slice }) => {
       <style jsx global>{ihhomeBannerStyles}</style>
   </div> */}
       <div>
-        <div class="banner-image-desktop" style={bannerImageDesktop}>
-          <div class="bg_overlay">
-            <div class="container-fluid">
-              <div class="banner-text-sec">
-                <p class="banner-text-1">{RichText.asText(heading1)}</p>
-                <p class="banner-text-2 mb-0">
+        <div className="banner-image-desktop" style={bannerImageDesktop}>
+          <div className="bg_overlay">
+            <div className="container-fluid">
+              <div className="banner-text-sec">
+                <p className="banner-text-1">{RichText.asText(heading1)}</p>
+                <p className="banner-text-2 mb-0">
                   They trek because they want to be part of the team that is
                 </p>
-                <p class="banner-text-3">defining the future of trekking</p>
-                <a class="banner-text-link">Read Our Story Here</a>
-                <div class="mt-3 m-text-center">
-                  <button class="btn btn-lg btn-primary btn-ih-primary">
+                <p className="banner-text-3">defining the future of trekking</p>
+                <a className="banner-text-link">Read Our Story Here</a>
+                <div className="mt-3 m-text-center">
+                  <button className="btn btn-lg btn-primary btn-ih-primary">
                     VIEW UPCOMMING TREKS
                   </button>
                 </div>
@@ -77,18 +77,18 @@ const HomeBannerWithCaption = ({ slice }) => {
             </div>
           </div>
         </div>
-        <div class="banner-image-mobile" style={bannerImageMobile}>
-          <div class="bg_overlay">
-            <div class="container-fluid">
-              <div class="banner-text-sec">
-                <p class="banner-text-1">{RichText.asText(heading1)}</p>
-                <p class="banner-text-2 mb-0">
+        <div className="banner-image-mobile" style={bannerImageMobile}>
+          <div className="bg_overlay">
+            <div className="container-fluid">
+              <div className="banner-text-sec">
+                <p className="banner-text-1">{RichText.asText(heading1)}</p>
+                <p className="banner-text-2 mb-0">
                   They trek because they want to be part of the team that is
                 </p>
-                <p class="banner-text-3">defining the future of trekking</p>
-                <a class="banner-text-link">Read Our Story Here</a>
-                <div class="mt-3 m-text-center">
-                  <button class="btn btn-lg btn-primary btn-ih-primary">
+                <p className="banner-text-3">defining the future of trekking</p>
+                <a className="banner-text-link">Read Our Story Here</a>
+                <div className="mt-3 m-text-center">
+                  <button className="btn btn-lg btn-primary btn-ih-primary">
                     VIEW UPCOMMING TREKS
                   </button>
                 </div>

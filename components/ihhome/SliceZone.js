@@ -8,7 +8,8 @@ import {
   WhatTrekkerSay,
   Experiment,
   LatestUpdatesTrekkings,
-  TrekWithSwathi
+  TrekWithSwathi,
+  DoItYourself
 } from "./slices";
 /**
  * Post slice zone component
@@ -34,6 +35,8 @@ const SliceZone = ({ sliceZone }) =>
         return <LatestUpdatesTrekkings slice={slice} key={`slice-${index}`} />;
       case "trek_with_swathi":
         return <TrekWithSwathi slice={slice} key={`slice-${index}`} />;
+        case "doit_yourself_trek":
+        return <DoItYourself slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }

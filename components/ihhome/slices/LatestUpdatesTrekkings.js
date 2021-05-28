@@ -22,9 +22,9 @@ const LatestUpdatesTrekkings = ({ slice }) => {
     };
     return (
       <>
-        <div class="col-lg-6 col-md-12" key={index}>
-          <div style={img} alt="img" class="latestTrekWorld_bg"></div>
-          <p class="latestTrekWorld_caption">
+        <div className="col-lg-6 col-md-12" key={index}>
+          <div style={img} alt="img" className="latestTrekWorld_bg"></div>
+          <p className="latestTrekWorld_caption">
             {data.latest_trekking_world_img_caption[0].text}
           </p>
         </div>
@@ -40,38 +40,38 @@ const LatestUpdatesTrekkings = ({ slice }) => {
 
   return (
     <>
-      <div class="my-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 col-md-12">
-              <p class="lut_section_title m-0">
+      <div className="my-5">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-6 col-md-12">
+              <p className="lut_section_title m-0">
                 {RichText.asText(Sectiontitle)}
               </p>
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-6 col-md-12">
-              <div class="latestLrekImage_bg" style={latestLrekImageBg}></div>
+          <div className="row">
+            <div className="col-lg-6 col-md-12">
+              <div className="latestLrekImage_bg" style={latestLrekImageBg}></div>
             </div>
-            <div class="col-lg-6 col-md-12">
-              <div class="d-flex align-items-center latest_trek_details">
+            <div className="col-lg-6 col-md-12">
+              <div className="d-flex align-items-center latest_trek_details">
                 <div>
-                  <p class="day_talk_title">
+                  <p className="day_talk_title">
                     <span>{RichText.asText(dayTalkTitle)}</span>
                   </p>
-                  <p class="day_trek_talk_title">
+                  <p className="day_trek_talk_title">
                     {RichText.asText(dayTrekTalkTitle)}
                   </p>
-                  <p class="day_trek_talk_desc">
+                  <p className="day_trek_talk_desc">
                     {RichText.asText(dayTrekTalkDesc)}
                   </p>
-                  <p class="name_editor m-0">
+                  <p className="name_editor m-0">
                     By{" "}
                     <span>
                       <b>{RichText.asText(nameEditor)}</b>
                     </span>
                   </p>
-                  <p class="name_editor">
+                  <p className="name_editor">
                     <span>{dateTrek} | </span>
                     <span>{RichText.asText(durationTrekRead)} min read</span>
                   </p>
@@ -79,12 +79,12 @@ const LatestUpdatesTrekkings = ({ slice }) => {
               </div>
             </div>
           </div>
-          <div class="m-d-none">
-            <div class="row">
-              <div class="col-lg-6 col-md-12">
-                <div class="row">{latestTrekWorld}</div>
+          <div className="m-d-none">
+            <div className="row">
+              <div className="col-lg-6 col-md-12">
+                <div className="row">{latestTrekWorld}</div>
               </div>
-              <div class="col-lg-6 col-md-12">
+              <div className="col-lg-6 col-md-12">
                 <iframe
                   width="100%"
                   height="300"
@@ -94,52 +94,52 @@ const LatestUpdatesTrekkings = ({ slice }) => {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen
                 ></iframe>
-                <p class="latestTrekWorld_caption">
+                <p className="latestTrekWorld_caption">
                   Indiahikes’ Experiential Learning Programs For Schools
                 </p>
               </div>
             </div>
           </div>
-          <div class="m-d-block">
-            <div class="d-flex align-items-center mb-4">
+          <div className="m-d-block">
+            <div className="d-flex align-items-center mb-4">
               <div>
                 <img src="/Mask_Group_10.png" alt="img" />
               </div>
-              <div class="mx-2"></div>
+              <div className="mx-2"></div>
               <div>
-                <p class="update_terk_title_text_mobile">
+                <p className="update_terk_title_text_mobile">
                   How To Choose Trek Pants — The Ultimate Trekking Pants Guide
                   2020
                 </p>
-                <p class="name_editor m-0">By Arjun Majumdar</p>
-                <p class="name_editor m-0">24 Jan 2020 | 6 min read</p>
+                <p className="name_editor m-0">By Arjun Majumdar</p>
+                <p className="name_editor m-0">24 Jan 2020 | 6 min read</p>
               </div>
             </div>
-            <div class="d-flex align-items-center mb-4">
+            <div className="d-flex align-items-center mb-4">
               <div>
                 <img src="/Mask_Group_10_bx.png" alt="img" />
               </div>
-              <div class="mx-2"></div>
+              <div className="mx-2"></div>
               <div>
-                <p class="update_terk_title_text_mobile">
+                <p className="update_terk_title_text_mobile">
                   How To Reach Rishikesh, Haridwar And Dehradun – A Guide To
                   Air, Train And Road Travel (With 13 PRO TIPS)
                 </p>
-                <p class="name_editor m-0">By Arjun Majumdar</p>
-                <p class="name_editor m-0">24 Jan 2020 | 6 min read</p>
+                <p className="name_editor m-0">By Arjun Majumdar</p>
+                <p className="name_editor m-0">24 Jan 2020 | 6 min read</p>
               </div>
             </div>
-            <div class="d-flex align-items-center mb-4">
+            <div className="d-flex align-items-center mb-4">
               <div>
                 <img src="/Mask_Group_10_cb.png" alt="img" />
               </div>
-              <div class="mx-2"></div>
+              <div className="mx-2"></div>
               <div>
-                <p class="update_terk_title_text_mobile">
+                <p className="update_terk_title_text_mobile">
                   Indiahikes’ Experiential Learning Programs For Schools
                 </p>
-                <p class="name_editor m-0">By Arjun Majumdar</p>
-                <p class="name_editor m-0">24 Jan 2020 | 6 min read</p>
+                <p className="name_editor m-0">By Arjun Majumdar</p>
+                <p className="name_editor m-0">24 Jan 2020 | 6 min read</p>
               </div>
             </div>
           </div>

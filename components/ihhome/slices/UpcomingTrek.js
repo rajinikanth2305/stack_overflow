@@ -43,39 +43,39 @@ const UpcomingTrek = ({ slice }) => {
 	   </div>
       <style jsx global>{upcomingTrekStyles}</style>
 	</div> */}
-      <div class="mb-5">
-        <div class="container container-custom">
-          <div class="row">
-            <div class="col-lg-6 col-md-12">
-              <p class="upcoming_title m-0">{RichText.asText(heading)}</p>
-              <p class="upcoming_message">
+      <div className="mb-5">
+        <div className="container container-custom">
+          <div className="row">
+            <div className="col-lg-6 col-md-12">
+              <p className="upcoming_title m-0">{RichText.asText(heading)}</p>
+              <p className="upcoming_message">
                 <span>{RichText.asText(title)}</span>
               </p>
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-8 col-md-12">
-              <div class="mb-3 imageLayout8" style={imageLayout8}>
-                <div class="image_overlay_text_area">
-                  <div class="p-absolute">
-                    <p class="image_overlay_text_title mb-1">UPCOMING TREKS</p>
-                    <p class="image_overlay_text_desc">
+          <div className="row">
+            <div className="col-lg-8 col-md-12">
+              <div className="mb-3 imageLayout8" style={imageLayout8}>
+                <div className="image_overlay_text_area">
+                  <div className="p-absolute">
+                    <p className="image_overlay_text_title mb-1">UPCOMING TREKS</p>
+                    <p className="image_overlay_text_desc">
                       {RichText.asText(title)}
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-12 m-d-none">
-              <div class="row">
-                <div class="col-lg-12 col-md-6">
-                  <div class="mb-3 imageLayout4" style={imageLayout4}>
-                    <div class="image_overlay_text_area_layout4">
-                      <div class="p-absolute">
-                        <p class="image_overlay_text_title mb-1">
+            <div className="col-lg-4 col-md-12 m-d-none">
+              <div className="row">
+                <div className="col-lg-12 col-md-6">
+                  <div className="mb-3 imageLayout4" style={imageLayout4}>
+                    <div className="image_overlay_text_area_layout4">
+                      <div className="p-absolute">
+                        <p className="image_overlay_text_title mb-1">
                           Autumn Treks
                         </p>
-                        <p class="image_overlay_text_desc">
+                        <p className="image_overlay_text_desc">
                           Treks in September and October for their Clear and
                           crisp views.
                         </p>
@@ -83,14 +83,14 @@ const UpcomingTrek = ({ slice }) => {
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-12 col-md-6">
-                  <div class="mb-3 imageLayout4" style={imageLayout4}>
-                    <div class="image_overlay_text_area_layout4">
-                      <div class="p-absolute">
-                        <p class="image_overlay_text_title mb-1">
+                <div className="col-lg-12 col-md-6">
+                  <div className="mb-3 imageLayout4" style={imageLayout4}>
+                    <div className="image_overlay_text_area_layout4">
+                      <div className="p-absolute">
+                        <p className="image_overlay_text_title mb-1">
                           WINTER Treks
                         </p>
-                        <p class="image_overlay_text_desc">
+                        <p className="image_overlay_text_desc">
                           These are the most favorite treks of the winter season
                         </p>
                       </div>
@@ -100,41 +100,41 @@ const UpcomingTrek = ({ slice }) => {
               </div>
             </div>
           </div>
-          <div class="row mt-3 m-d-none">
-            <div class="col-lg-4 col-md-6">
-              <div class="mb-3 imageLayout4" style={imageLayout4}>
-                <div class="image_overlay_text_area_layout4">
-                  <div class="p-absolute">
-                    <p class="image_overlay_text_title mb-1">
+          <div className="row mt-3 m-d-none">
+            <div className="col-lg-4 col-md-6">
+              <div className="mb-3 imageLayout4" style={imageLayout4}>
+                <div className="image_overlay_text_area_layout4">
+                  <div className="p-absolute">
+                    <p className="image_overlay_text_title mb-1">
                       New To Trekking?
                     </p>
-                    <p class="image_overlay_text_desc">
+                    <p className="image_overlay_text_desc">
                       Learn more and find the perfect trek for you
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-              <div class="mb-3 imageLayout4" style={imageLayout4}>
-                <div class="image_overlay_text_area_layout4">
-                  <div class="p-absolute">
-                    <p class="image_overlay_text_title mb-1">
+            <div className="col-lg-4 col-md-6">
+              <div className="mb-3 imageLayout4" style={imageLayout4}>
+                <div className="image_overlay_text_area_layout4">
+                  <div className="p-absolute">
+                    <p className="image_overlay_text_title mb-1">
                       TREKS for beginners
                     </p>
-                    <p class="image_overlay_text_desc">
+                    <p className="image_overlay_text_desc">
                       These are the most favorite treks of the winter season
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-              <div class="mb-3 imageLayout4" style={imageLayout4}>
-                <div class="image_overlay_text_area_layout4">
-                  <div class="p-absolute">
-                    <p class="image_overlay_text_title mb-1">TREKS IN 2021</p>
-                    <p class="image_overlay_text_desc">
+            <div className="col-lg-4 col-md-6">
+              <div className="mb-3 imageLayout4" style={imageLayout4}>
+                <div className="image_overlay_text_area_layout4">
+                  <div className="p-absolute">
+                    <p className="image_overlay_text_title mb-1">TREKS IN 2021</p>
+                    <p className="image_overlay_text_desc">
                       These are the most favorite treks of the winter season
                     </p>
                   </div>

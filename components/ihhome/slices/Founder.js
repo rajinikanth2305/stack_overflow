@@ -33,24 +33,24 @@ const Founder = ({ slice }) => {
 	</div>
       <style jsx global>{founderStyles}</style>
 	</div> */}
-      <div class="mb-5">
-        <div class="container container-custom">
-          <div class="row">
-            <div class="col-lg-6 col-md-12"></div>
-            <div class="col-lg-6 col-md-12">
-              <p class="founder_title m-0">{RichText.asText(title)}</p>
+      <div className="mb-5">
+        <div className="container container-custom">
+          <div className="row">
+            <div className="col-lg-6 col-md-12"></div>
+            <div className="col-lg-6 col-md-12">
+              <p className="founder_title m-0">{RichText.asText(title)}</p>
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-6 col-md-12">
+          <div className="row">
+            <div className="col-lg-6 col-md-12">
               {/* <Image src={imageUrl} width={imageWidth} height={imageHeight} /> */}
-              <img src={imageUrl} class="founder-image" />
+              <img src={imageUrl} className="founder-image" />
             </div>
-            <div class="col-lg-6 col-md-12">
-              <p class="founder_message">
+            <div className="col-lg-6 col-md-12">
+              <p className="founder_message">
                 <span>{RichText.asText(founder_Message)}</span>
               </p>
-              <p class="founder_message">
+              <p className="founder_message">
                 <span>
                   Lorem ipsum dolor sit ameet, consectetur adipiscing elit.
                   Nulla vitae nisl convallis orci varius mollis nec eu mauris.
