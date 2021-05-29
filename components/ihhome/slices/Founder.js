@@ -43,8 +43,8 @@ const Founder = ({ slice }) => {
           </div>
           <div className="row">
             <div className="col-lg-6 col-md-12">
-              {/* <Image src={imageUrl} width={imageWidth} height={imageHeight} /> */}
-              <img src={imageUrl} className="founder-image" />
+              <Image src={imageUrl} width={imageWidth} height={imageHeight} layout="responsive" />
+              {/* <img src={imageUrl} className="founder-image" /> */}
             </div>
             <div className="col-lg-6 col-md-12">
               <p className="founder_message">

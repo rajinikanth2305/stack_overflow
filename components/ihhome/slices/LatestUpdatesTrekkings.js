@@ -1,6 +1,7 @@
 import React from "react";
 import { RichText, Date } from "prismic-reactjs";
 import { latestUpdatesTrekkingsStyles } from "styles";
+import Image from "next/image";
 
 const LatestUpdatesTrekkings = ({ slice }) => {
   const Sectiontitle = slice.primary.section_header;
@@ -23,7 +24,14 @@ const LatestUpdatesTrekkings = ({ slice }) => {
     return (
       <>
         <div className="col-lg-6 col-md-12" key={index}>
-          <div style={img} alt="img" className="latestTrekWorld_bg"></div>
+          <div alt="img" className="latestTrekWorld_bg">
+            <Image
+              src={data.latest_trekking_world_img.url}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="50% 50%"
+            />
+          </div>
           <p className="latestTrekWorld_caption">
             {data.latest_trekking_world_img_caption[0].text}
           </p>
@@ -51,7 +59,14 @@ const LatestUpdatesTrekkings = ({ slice }) => {
           </div>
           <div className="row">
             <div className="col-lg-6 col-md-12">
-              <div className="latestLrekImage_bg" style={latestLrekImageBg}></div>
+              <div className="latestLrekImage_bg">
+                <Image
+                  src={latestLrekImage}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                />
+              </div>
             </div>
             <div className="col-lg-6 col-md-12">
               <div className="d-flex align-items-center latest_trek_details">

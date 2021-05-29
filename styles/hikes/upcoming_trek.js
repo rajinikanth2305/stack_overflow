@@ -7,7 +7,7 @@ export const upcomingTrekStyles = css.global`
 
   .imageLayout8 {
     width: 100%;
-    height: 420px;
+    height: 480px;
     background-repeat: no-repeat;
     filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
     background-size: cover;
@@ -15,7 +15,7 @@ export const upcomingTrekStyles = css.global`
 
   .imageLayout4 {
     width: 100%;
-    height: 200px;
+    height: 232px;
     background-repeat: no-repeat;
     filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
     background-size: cover;
@@ -47,7 +47,7 @@ export const upcomingTrekStyles = css.global`
   }
 
   .image_overlay_text_area {
-    height: 420px;
+    height: 480px;
     position: relative;
   }
 
@@ -60,7 +60,7 @@ export const upcomingTrekStyles = css.global`
     position: absolute;
     bottom: 0;
     padding: 0 40px;
-    background-image: linear-gradient(#7d94bc0f,#171717bf);
+    background-image: linear-gradient(#7d94bc0f, #171717bf);
     width: 99.8%;
   }
 
@@ -104,14 +104,17 @@ export const upcomingTrekStyles = css.global`
 
     .imageLayout8 {
       background-position: -225.998px;
+      height: 400px;
     }
 
     .p-absolute {
       padding: 0 20px;
     }
-  }
 
-  @media only screen and (max-width: 600px) {
+    .image_overlay_text_area {
+      height: 400px;
+    }
+
     .imageLayout4 {
       background-size: cover;
     }

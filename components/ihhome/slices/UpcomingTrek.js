@@ -81,7 +81,13 @@ const UpcomingTrek = ({ slice }) => {
           </div>
           <div className="row">
             <div className="col-lg-8 col-md-12">
-              <div className="mb-3 imageLayout8" style={imageLayout8}>
+              <div className="mb-3 imageLayout8">
+                <Image
+                  src={imageUrl}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                />
                 <div className="image_overlay_text_area">
                   <div className="p-absolute">
                     <p className="image_overlay_text_title mb-1">
@@ -97,7 +103,13 @@ const UpcomingTrek = ({ slice }) => {
             <div className="col-lg-4 col-md-12 m-d-none">
               <div className="row">
                 <div className="col-lg-12 col-md-6">
-                  <div className="mb-3 imageLayout4" style={imageLayout4}>
+                  <div className="mb-3 imageLayout4">
+                    <Image
+                      src={imageUrl}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="50% 50%"
+                    />
                     <div className="image_overlay_text_area_layout4">
                       <div className="p-absolute">
                         <p className="image_overlay_text_title mb-1">
@@ -112,7 +124,14 @@ const UpcomingTrek = ({ slice }) => {
                   </div>
                 </div>
                 <div className="col-lg-12 col-md-6">
-                  <div className="mb-3 imageLayout4" style={imageLayout4}>
+                  {/* <div className="mb-3 imageLayout4" style={imageLayout4}> */}
+                  <div className="mb-3 imageLayout4">
+                    <Image
+                      src={imageUrl}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="50% 50%"
+                    />
                     <div className="image_overlay_text_area_layout4">
                       <div className="p-absolute">
                         <p className="image_overlay_text_title mb-1">
@@ -131,7 +150,13 @@ const UpcomingTrek = ({ slice }) => {
           <div className="row mt-3">
             <Slider {...settings}>
               <div className="col-lg-4 col-md-6 px-3">
-                <div className="mb-3 imageLayout4" style={imageLayout4}>
+                <div className="mb-3 imageLayout4">
+                  <Image
+                    src={imageUrl}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                  />
                   <div className="image_overlay_text_area_layout4">
                     <div className="p-absolute">
                       <p className="image_overlay_text_title mb-1">
@@ -145,7 +170,13 @@ const UpcomingTrek = ({ slice }) => {
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 px-3">
-                <div className="mb-3 imageLayout4" style={imageLayout4}>
+                <div className="mb-3 imageLayout4">
+                  <Image
+                    src={imageUrl}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                  />
                   <div className="image_overlay_text_area_layout4">
                     <div className="p-absolute">
                       <p className="image_overlay_text_title mb-1">
@@ -159,7 +190,13 @@ const UpcomingTrek = ({ slice }) => {
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 px-3">
-                <div className="mb-3 imageLayout4" style={imageLayout4}>
+                <div className="mb-3 imageLayout4">
+                  <Image
+                    src={imageUrl}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                  />
                   <div className="image_overlay_text_area_layout4">
                     <div className="p-absolute">
                       <p className="image_overlay_text_title mb-1">

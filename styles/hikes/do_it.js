@@ -2,8 +2,11 @@ import css from "styled-jsx/css";
 
 export const doItStyles = css.global`
   .doit_images {
+    position: relative;
+    width: 100%;
     height: 470px;
     background-size: cover;
+    z-index: -9;
   }
   .doit_title {
     text-align: left;

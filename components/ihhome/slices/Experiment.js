@@ -9,6 +9,7 @@ const Experiment = ({ slice }) => {
   //console.log(JSON.stringify(slice));
   const heading1 = slice.primary.experiment_heading;
   const heading2 = slice.primary.experiment_paragraph;
+  const expirimentMainImage = slice.primary.expiriment_main_image.url;
   let top = 4174;
   // const imageUrl = slice.primary.banner_image.url;
   // const imageWidth = slice.primary.banner_image.dimensions.width;
@@ -17,14 +18,12 @@ const Experiment = ({ slice }) => {
   const imageLayout8 = {
     backgroundImage: `url('/Intersection_8.png')`,
     width: "100%",
-    height: "420px",
     backgroundRepeat: "no-repeat"
   };
 
   const imageLayout4 = {
     backgroundImage: `url('/Intersection_8.png')`,
     width: "100%",
-    height: "201px",
     backgroundRepeat: "no-repeat"
   };
 
@@ -79,7 +78,13 @@ const Experiment = ({ slice }) => {
         <div className="container container-custom mt-3 mb-5">
           <div className="row">
             <div className="col-lg-8 col-md-12">
-              <div className="imageLayout8" style={imageLayout8}>
+              <div className="imageLayout8">
+                <Image
+                  src={expirimentMainImage}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                />
                 <div className="image_overlay_text_area">
                   <div className="p-absolute">
                     <p className="image_overlay_text_title mb-1">
@@ -94,7 +99,13 @@ const Experiment = ({ slice }) => {
               </div>
             </div>
             <div className="col-lg-4 col-md-6 m-d-none">
-              <div className="mb-3 imageLayout4" style={imageLayout4}>
+              <div className="mb-3 imageLayout4">
+                <Image
+                  src={expirimentMainImage}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                />
                 <div className="image_overlay_text_area_layout4">
                   <div className="p-absolute">
                     <p className="image_overlay_text_title mb-1">
@@ -107,7 +118,13 @@ const Experiment = ({ slice }) => {
                   </div>
                 </div>
               </div>
-              <div className="imageLayout4" style={imageLayout4}>
+              <div className="imageLayout4">
+                <Image
+                  src={expirimentMainImage}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                />
                 <div className="image_overlay_text_area_layout4">
                   <div className="p-absolute">
                     <p className="image_overlay_text_title mb-1">

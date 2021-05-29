@@ -39,6 +39,8 @@ export const galleryStyles = css.global`
   }
 
   .h_g_images_style {
+    position: relative;
+    width: 100%;
     height: 200px;
     background-size: cover;
   }

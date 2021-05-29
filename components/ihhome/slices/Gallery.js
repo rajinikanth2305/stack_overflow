@@ -33,7 +33,7 @@ const Gallery = ({ slice }) => {
           infinite: true,
           dots: true,
           centerMode: true,
-          centerPadding: "40px",
+          centerPadding: "40px"
         }
       },
       {
@@ -42,7 +42,7 @@ const Gallery = ({ slice }) => {
           slidesToShow: 1,
           slidesToScroll: 2,
           centerMode: true,
-          centerPadding: "40px",
+          centerPadding: "40px"
         }
       },
       {
@@ -52,7 +52,7 @@ const Gallery = ({ slice }) => {
           slidesToScroll: 1,
           centerMode: true,
           centerPadding: "40px",
-          arrows: false,
+          arrows: false
         }
       }
     ]
@@ -68,7 +68,14 @@ const Gallery = ({ slice }) => {
     return (
       <>
         <div className="mx-2 gallery_slik_custom" key={i}>
-          <div style={h_g_images} alt="imgs" className="h_g_images_style"></div>
+          <div alt="imgs" className="h_g_images_style">
+            <Image
+              src={data.home_gallery_image.url}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="50% 50%"
+            />
+          </div>
         </div>
       </>
     );
@@ -90,7 +97,9 @@ const Gallery = ({ slice }) => {
               </div>
               <div className="gallery_community_text m-d-none">
                 <p className="m-0">{RichText.asText(galleryCommunityText)}</p>
-                <p className="m-0">{RichText.asText(galleryCommunityUpdateText)}</p>
+                <p className="m-0">
+                  {RichText.asText(galleryCommunityUpdateText)}
+                </p>
               </div>
             </div>
           </div>

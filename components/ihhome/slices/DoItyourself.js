@@ -33,7 +33,8 @@ const DoItYourself = ({ slice }) => {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2
+          slidesToScroll: 2,
+          arrows: false
         }
       },
       {
@@ -41,7 +42,7 @@ const DoItYourself = ({ slice }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false,
+          arrows: false
         }
       }
     ]
@@ -57,7 +58,14 @@ const DoItYourself = ({ slice }) => {
     return (
       <>
         <div className="mx-2" key={i}>
-          <div style={doitimgs} alt="imgs" className="doit_images"></div>
+          <div alt="imgs" className="doit_images">
+            <Image
+              src={data.doit_image.url}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="50% 50%"
+            />
+          </div>
           <p className="doit_img_caption">{data.doit_image_caption[0].text}</p>
         </div>
       </>

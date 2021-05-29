@@ -15,6 +15,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
   }
 
   .latestLrekImage_bg {
+    position: relative;
     width: 100%;
     height: 400px;
     margin-top: 30px;
@@ -75,6 +76,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
   }
 
   .latestTrekWorld_bg {
+    position: relative;
     width: 100%;
     height: 300px;
     background-size: cover;
