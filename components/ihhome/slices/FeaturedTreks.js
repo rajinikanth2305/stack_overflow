@@ -2,62 +2,86 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { featuredTrekStyles } from "styles";
 import Image from "next/image";
-/**
- * Founder Slice Components
- */
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 const FeaturedTreks = ({ slice }) => {
-  const title = slice.primary.title1;
-  const authors = slice.primary.authors;
-  const founder_Message = slice.primary.founder_message;
-  const imageUrl = slice.primary.image.url;
-  const imageWidth = slice.primary.image.dimensions.width;
-  const imageHeight = slice.primary.image.dimensions.height;
+  const featuredTreksTitle = slice.primary.featured_treks_title;
+  const featured_treks_image_array = slice.items;
   //console.log(JSON.stringify(slice.primary));
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 7,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+          arrows: false
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          arrows: false
+        }
+      }
+    ]
+  };
+
+  const featured_treks_images = featured_treks_image_array.map(function(
+    data,
+    i
+  ) {
+    return (
+      <>
+        <div className="mx-2" key={i}>
+          <div alt="imgs" className="featured_treks_image">
+            <Image
+              src={data.featured_treks_image.url}
+              layout="responsive"
+              height="70px"
+              width="170px"
+              // objectFit="cover"
+              // objectPosition="right top"
+            />
+          </div>
+        </div>
+      </>
+    );
+  });
 
   return (
     <>
-      {/* <div >
-	<div id="founder_title">
-		<span>{RichText.asText(title)}</span>
-	</div>
-	<div id="Mask_Group_2">
-	<Image  src={imageUrl} width={imageWidth} height ={imageHeight}   />  
-	</div>
-		<div id="founder_msg_paragraph">
-		<span>      
-		{RichText.asText(founder_Message)}
-		</span>
-	   </div>
-	   <div id="authors">
-	   <span>{RichText.asText(authors)}</span>
-	</div>
-      <style jsx global>{founderStyles}</style>
-	</div> */}
       <div className="mb-5">
-        <div className="container container-custom">
+        <div className="container">
           <div className="row">
-            <div className="col-lg-6 col-md-12"></div>
             <div className="col-lg-6 col-md-12">
-              <p className="founder_title m-0">{RichText.asText(title)}</p>
+              <p className="featured_treks_title">
+                {RichText.asText(featuredTreksTitle)}
+              </p>
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-6 col-md-12">
-              {/* <Image src={imageUrl} width={imageWidth} height={imageHeight} /> */}
-              <img src={imageUrl} className="founder-image" />
-            </div>
-            <div className="col-lg-6 col-md-12">
-              <p className="founder_message">
-                <span>{RichText.asText(founder_Message)}</span>
-              </p>
-              <p className="founder_message">
-                <span>
-                  Lorem ipsum dolor sit ameet, consectetur adipiscing elit.
-                  Nulla vitae nisl convallis orci varius mollis nec eu mauris.
-                  Curabitur ultrices lobortis tristique. Class aptent taciti
-                  sociosqu ad litora torquent
-                </span>
-              </p>
+            <div className="col-lg-12 col-md-12">
+              <Slider {...settings}>{featured_treks_images}</Slider>
             </div>
           </div>
         </div>

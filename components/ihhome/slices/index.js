@@ -10,3 +10,4 @@ export { default as LatestUpdatesTrekkings } from "./LatestUpdatesTrekkings";
 export { default as TrekWithSwathi } from "./TrekWithSwathi";
 export { default as DoItYourself } from "./DoItyourself";
 export { default as Gallery } from "./Gallery";
+export { default as FeaturedTreks } from "./FeaturedTreks";

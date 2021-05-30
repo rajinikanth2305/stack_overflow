@@ -10,7 +10,8 @@ import {
   LatestUpdatesTrekkings,
   TrekWithSwathi,
   DoItYourself,
-  Gallery
+  Gallery,
+  FeaturedTreks
 } from "./slices";
 /**
  * Post slice zone component
@@ -40,6 +41,8 @@ const SliceZone = ({ sliceZone }) =>
         return <DoItYourself slice={slice} key={`slice-${index}`} />;
       case "home_photo_gallery":
         return <Gallery slice={slice} key={`slice-${index}`} />;
+      case "featured_treks":
+        return <FeaturedTreks slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }
