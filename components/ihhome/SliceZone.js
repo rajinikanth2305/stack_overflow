@@ -11,7 +11,8 @@ import {
   TrekWithSwathi,
   DoItYourself,
   Gallery,
-  FeaturedTreks
+  FeaturedTreks,
+  HomeFooter
 } from "./slices";
 /**
  * Post slice zone component
@@ -43,6 +44,8 @@ const SliceZone = ({ sliceZone }) =>
         return <Gallery slice={slice} key={`slice-${index}`} />;
       case "featured_treks":
         return <FeaturedTreks slice={slice} key={`slice-${index}`} />;
+      case "home_footer":
+        return <HomeFooter slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }

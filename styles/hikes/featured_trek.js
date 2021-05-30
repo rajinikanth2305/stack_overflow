@@ -11,6 +11,7 @@ export const featuredTrekStyles = css.global`
     text-transform: capitalize;
     border-bottom: 4px solid rgb(255, 193, 0);
     padding-bottom: 7px;
+    margin-bottom: 30px;
   }
 
   .featured_treks_image {
