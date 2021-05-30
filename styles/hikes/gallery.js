@@ -59,6 +59,33 @@ export const galleryStyles = css.global`
     font-size: 26px;
   }
 
+  .photo_contest_bg {
+    background: rgba(255, 193, 0, 1);
+    padding: 10px;
+    border-radius: 2px;
+  }
+
+  .photo_contest_title {
+    line-height: 24px;
+    text-align: center;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .photo_more_details {
+    line-height: 24px;
+    text-align: center;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+  }
+
   @media only screen and (max-width: 600px) {
     .home_gallery_bg {
       background: transparent;
@@ -80,6 +107,38 @@ export const galleryStyles = css.global`
       line-height: 40px;
       margin-top: 25px !important;
       padding-bottom: 20px;
+    }
+
+    .photo_contest_title {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 18px;
+      text-align: left;
+    }
+
+    .photo_more_details {
+      font-style: italic;
+      font-weight: normal;
+      font-size: 12px;
+      white-space: nowrap;
+      line-height: 15px;
+      text-align: left;
+      color: rgba(112, 112, 112, 1);
+    }
+
+    .insta_icon {
+      width: 26px;
+      height: 26px;
+    }
+
+    .gallery_community_text > p {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 1);
+      white-space: nowrap;
+      line-height: 16px;
     }
   }
 `;

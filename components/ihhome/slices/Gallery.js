@@ -13,6 +13,7 @@ const Gallery = ({ slice }) => {
   const galleryCommunityText = slice.primary.gallery_community_text;
   const galleryCommunityUpdateText =
     slice.primary.gallery_community_update_text;
+  const photoContestTitle = slice.primary.photo_contest_title;
   const homeGalleryImage = slice.items;
   // console.log(JSON.stringify(homeGalleryImage)); container-custom
 
@@ -103,9 +104,44 @@ const Gallery = ({ slice }) => {
               </div>
             </div>
           </div>
-          <div className="my-4 pt-1">
+          <div className="mt-4 mb-2 pt-1">
             <div className="container container-custom">
               <Slider {...settings}>{homeGalleryImages}</Slider>
+            </div>
+            <div className="container">
+              <div className="m-d-block">
+                <div className="d-flex align-items-center mt-5">
+                  <div class="mx-3">
+                    <img className="insta_icon" src="./insta.png" alt="insta" />
+                  </div>
+                  <div className="gallery_community_text">
+                    <p className="m-0">
+                      {RichText.asText(galleryCommunityText)}
+                    </p>
+                    <p className="m-0">
+                      {RichText.asText(galleryCommunityUpdateText)}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="d-flex align-items-center mt-4">
+                <div>
+                  <img src="./announcement_icon.png" alt="img" />
+                </div>
+                <div className="mx-2"></div>
+                <div className="flex-grow-1">
+                  <div className="photo_contest_bg">
+                    <div className="text-center">
+                      <p className="photo_contest_title m-0">
+                        {RichText.asText(photoContestTitle)}
+                      </p>
+                      <p className="photo_more_details m-0">
+                        Click To See More Details
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <style jsx global>
