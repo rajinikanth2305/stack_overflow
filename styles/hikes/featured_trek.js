@@ -22,26 +22,10 @@ export const featuredTrekStyles = css.global`
   }
 
   @media only screen and (max-width: 600px) {
-    .why_trek_sec {
-      padding: 0px;
-    }
-
-    .m-d-none {
-      display: none;
-    }
-
-    .why_trek_title {
+    .featured_treks_title {
       font-size: 36px;
-    }
-
-    .why_trek_box_title {
-      line-height: 24px;
-      text-align: left;
-      font-family: Lora;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      color: rgba(0, 0, 0, 1);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
     }
   }
 `;
