@@ -300,7 +300,7 @@ export const whyTrekWithStyles = css.global`
 
   @media only screen and (max-width: 600px) {
     .why_trek_sec {
-      padding: 0px;
+      padding: 5px 0px 40px;
     }
 
     .m-d-none {

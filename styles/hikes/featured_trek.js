@@ -27,6 +27,7 @@ export const featuredTrekStyles = css.global`
       font-size: 36px;
       padding-bottom: 20px;
       margin-bottom: 30px;
+      margin-top: 20px;
     }
   }
 `;

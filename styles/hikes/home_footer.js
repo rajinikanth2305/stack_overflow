@@ -85,6 +85,7 @@ export const homeFooterStyles = css.global`
 
     .home_footer_image {
       height: 148px;
+      margin-top: 75px;
     }
 
     .footer_nav_links > li {
