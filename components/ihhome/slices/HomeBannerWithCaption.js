@@ -58,7 +58,7 @@ const HomeBannerWithCaption = ({ slice }) => {
       <style jsx global>{ihhomeBannerStyles}</style>
   </div> */}
       <div>
-        <div class="banner-image-desktop" style={bannerImageDesktop}>
+      <div class="banner-image-mobile" style={bannerImageMobile}>
           <div class="bg_overlay">
             <div class="container-fluid">
               <div class="banner-text-sec">
@@ -77,7 +77,7 @@ const HomeBannerWithCaption = ({ slice }) => {
             </div>
           </div>
         </div>
-        <div class="banner-image-mobile" style={bannerImageMobile}>
+        <div class="banner-image-desktop" style={bannerImageDesktop}>
           <div class="bg_overlay">
             <div class="container-fluid">
               <div class="banner-text-sec">
