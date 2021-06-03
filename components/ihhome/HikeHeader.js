@@ -15,6 +15,7 @@ import {
 } from "reactstrap";
 import { RichText } from "prismic-reactjs";
 import { ihheaderStyles } from "styles";
+import Link from 'next/link'
 
 /**
  * Homepage header component
@@ -52,66 +53,6 @@ const HikeHeader = ({ image, headline, description }) => {
     //   <style jsx global>{ihheaderStyles}</style>
     // </div>
     <div className="position-sticky">
-      {/* <nav className="navbar navbar-expand-lg navbar-light">
-        <div className="container">
-          <a className="navbar-brand" href="#">
-            <img
-              id="IH_Logo_in_PNG"
-              src="IH_Logo_in_PNG.png.png"
-              srcset="IH_Logo_in_PNG.png 1x, IH_Logo_in_PNG@2x.png 2x"
-            />
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="text-right">
-            <div>
-              <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#">
-                      Home
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">
-                      Upcoming Treks
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">
-                      Trek to learn
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">
-                      DIY
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">
-                      Export Blogs
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">
-                      About
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav> */}
       <Navbar light expand="lg" className="container">
         <NavbarBrand href="/">
           <img
@@ -127,10 +68,10 @@ const HikeHeader = ({ image, headline, description }) => {
               <NavLink href="#">Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">Upcoming Treks</NavLink>
+              <NavLink><Link href="../../../upcoming-terks">Upcoming Treks</Link></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">Trek to Learn</NavLink>
+              <NavLink><Link href="../post">Trek to Learn</Link></NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="#">DIY</NavLink>

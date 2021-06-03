@@ -39,6 +39,11 @@ export const ihheaderStyles = css.global`
     z-index: 999;
   }
 
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
   @media only screen and (max-width: 900px) {
     .navbar-expand-lg .navbar-nav .nav-link {
       padding-left: 0;

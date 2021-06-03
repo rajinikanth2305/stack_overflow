@@ -26,7 +26,7 @@ export const ihhomeBannerStyles = css.global`
     text-align: center;
     font-family: Poppins;
     width: 95%;
-    padding: 0 145px;
+    padding: 0 110px;
   }
 
   .banner-text-1 {
