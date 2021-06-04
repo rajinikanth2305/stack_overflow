@@ -15,7 +15,8 @@ import {
 } from "reactstrap";
 import { RichText } from "prismic-reactjs";
 import { ihheaderStyles } from "styles";
-import Link from 'next/link'
+import Link from 'next/link';
+import { useRouter } from "next/router";
 
 /**
  * Homepage header component
@@ -24,6 +25,7 @@ const HikeHeader = ({ image, headline, description }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
+  const router = useRouter();
   return (
     //   <div id="Group_2729">
     // 	<svg className="Rectangle_215">
@@ -65,10 +67,10 @@ const HikeHeader = ({ image, headline, description }) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="#">Home</NavLink>
+              <NavLink className={router.pathname == "/" ? "active" : ""}><Link href="/">Home</Link></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink><Link href="../../../upcoming-terks">Upcoming Treks</Link></NavLink>
+              <NavLink className={router.pathname == "/upcoming-terks" ? "active" : ""}><Link href="../../../upcoming-terks">Upcoming Treks</Link></NavLink>
             </NavItem>
             <NavItem>
               <NavLink><Link href="../post">Trek to Learn</Link></NavLink>

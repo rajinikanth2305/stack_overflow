@@ -1,0 +1,1 @@
+export { upcomingtrekpageStyle } from "./upcomingtrekstyle";
