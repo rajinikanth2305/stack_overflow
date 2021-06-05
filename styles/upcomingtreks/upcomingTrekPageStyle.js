@@ -1,6 +1,10 @@
 import css from "styled-jsx/css";
 
 export const upcomingTrekPageStyle = css.global`
+  .container.container-custom {
+    max-width: 1600px;
+  }
+
   h1,
   h2,
   h3,
@@ -28,6 +32,17 @@ export const upcomingTrekPageStyle = css.global`
     text-transform: uppercase;
     border-bottom: 4px solid rgb(255, 193, 0);
     padding-bottom: 17px;
+  }
+
+  .title-display-2 {
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    margin-bottom: 15px;
   }
 
   .title-diplay-3 {
@@ -115,6 +130,50 @@ export const upcomingTrekPageStyle = css.global`
     text-transform: uppercase;
   }
 
+  .float-right {
+    float: right;
+  }
+
+  .uc_featured_treks_images {
+    position: relative;
+    width: 100%;
+    height: 222px;
+  }
+
+  .yellow-bg-4 {
+    background: rgb(255, 193, 0);
+    height: 4px;
+  }
+
+  .p-absolute {
+    position: absolute;
+    bottom: 0;
+    padding: 0 40px;
+    background-image: linear-gradient(#7d94bc0f, #171717bf);
+    width: 99.8%;
+  }
+
+  .image_overlay_text_title {
+    line-height: 36px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: uppercase;
+  }
+
+  .image_overlay_text_desc {
+    line-height: 24px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 1);
+  }
+
   @media only screen and (max-width: 660px) {
     .section-padd {
       padding: 15px 0;
@@ -131,6 +190,34 @@ export const upcomingTrekPageStyle = css.global`
       font-weight: normal;
       font-size: 18px;
       padding-bottom: 30px;
+    }
+
+    .image_overlay_text_title {
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    .image_overlay_text_desc {
+      font-weight: normal;
+      font-size: 14px;
+    }
+
+    .m-d-none {
+      display: none;
+    }
+
+    .yellow-bg-4 {
+      height: 0px;
+      margin-top: 40px;
+    }
+
+    .uc_featured_treks_images {
+      height: 200px;
+      margin-bottom: 10px;
+    }
+
+    .p-absolute {
+      padding: 0 20px;
     }
   }
 `;
