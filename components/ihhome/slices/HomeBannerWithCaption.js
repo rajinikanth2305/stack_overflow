@@ -107,7 +107,7 @@ const HomeBannerWithCaption = ({ slice }) => {
                 <p class="banner-text-3">defining the future of trekking</p>
                 <a class="banner-text-link">Read Our Story Here</a>
                 <div class="mt-3 m-text-center">
-                <button class="btn btn-lg btn-primary btn-ih-primary">
+                <button class="btn btn-lg btn-ih-primary">
                 <Link href={url} >
                      <a> {linkButtonText}</a>
                    </Link>

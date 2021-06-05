@@ -161,8 +161,12 @@ export const upcomingTrekPageStyle = css.global`
     padding-top: 60px;
   }
 
-  .card.trek_card {
+  .trek_card {
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+  }
+
+  .card_sec {
+    margin: 20px 0;
   }
 
   .uc_featured_treks_images {
@@ -309,6 +313,10 @@ export const upcomingTrekPageStyle = css.global`
 
     .ucOpenForSmallGroup_sec {
       padding-top: 0;
+    }
+
+    .card_sec {
+      margin: 5px 0;
     }
   }
 `;

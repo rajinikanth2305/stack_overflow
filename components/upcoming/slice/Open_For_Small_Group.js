@@ -17,46 +17,59 @@ const UCOpenForSmallGroup = ({ slice }) => {
     return (
       <>
         <div className="col-lg-4 col-md-6 col-sm-12">
-          <div className="card trek_card my-2">
-            <div alt="imgs" className="uc_open_for_small_group_images">
-              { data.uc_open_familytrek === true ? <div className="trek_badge"><img src="./trek-badge.png" /><span>Family Trek</span></div> : '' }
-              <Image
-                src={data.uc_open_for_small_group_images.url}
-                layout="fill"
-                objectFit="cover"
-                objectPosition="50% 50%"
-              />
-            </div>
-            <div class="px-3 py-2">
-              <div className="d-flex align-items-center card-info-text">
-                <div>
-                  <p>{data.uc_open_days[0].text} Days</p>
-                </div>
-                <div>
-                  <p className="list-dot-style px-1">
-                    <span>.</span>
-                  </p>
-                </div>
-                <div>
-                  <p>{data.uc_open_seasons[0].text}</p>
-                </div>
-                <div>
-                  <p className="list-dot-style px-1">
-                    <span>.</span>
-                  </p>
-                </div>
-                <div>
-                  <p>{data.uc_open_guide[0].text}</p>
-                </div>
+          <div className="card_sec">
+            <div className="card trek_card">
+              <div alt="imgs" className="uc_open_for_small_group_images">
+                {data.uc_open_familytrek === true ? (
+                  <div className="trek_badge">
+                    <img src="./trek-badge.png" />
+                    <span>Family Trek</span>
+                  </div>
+                ) : (
+                  ""
+                )}
+                <Image
+                  src={data.uc_open_for_small_group_images.url}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                />
               </div>
+              <div class="px-3 py-2">
+                <div className="d-flex align-items-center card-info-text">
+                  <div>
+                    <p>{data.uc_open_days[0].text} Days</p>
+                  </div>
+                  <div>
+                    <p className="list-dot-style px-1">
+                      <span>.</span>
+                    </p>
+                  </div>
+                  <div>
+                    <p>{data.uc_open_seasons[0].text}</p>
+                  </div>
+                  <div>
+                    <p className="list-dot-style px-1">
+                      <span>.</span>
+                    </p>
+                  </div>
+                  <div>
+                    <p>{data.uc_open_guide[0].text}</p>
+                  </div>
+                </div>
 
-              <div>
-                <h3 class="title-diplay-3 text-uppercase">
-                  {data.uc_open_title[0].text}
-                </h3>
-                <p className="p-display-2">{data.uc_open_desc[0].text.length > 125 ? `${data.uc_open_desc[0].text.substring(0, 125)}...` : data.uc_open_desc[0].text}</p>
-                <div className="float-right pt-2 pb-4">
-                  <button className="btn btn-ih-green">View Details</button>
+                <div>
+                  <h3 class="title-diplay-3 text-uppercase">
+                    {data.uc_open_title[0].text}
+                  </h3>
+                  <p className="p-display-2">
+                    {data.uc_open_desc[0].text.length > 125
+                      ? `${data.uc_open_desc[0].text.substring(0, 125)}...`
+                      : data.uc_open_desc[0].text}
+                  </p>
+                  <div className="float-right pt-2 pb-4">
+                    <button className="btn btn-ih-green">View Details</button>
+                  </div>
                 </div>
               </div>
             </div>
