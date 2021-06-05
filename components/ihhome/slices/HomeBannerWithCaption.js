@@ -17,9 +17,11 @@ const HomeBannerWithCaption = ({ slice }) => {
  // const linkButtonText=slice.items?.[0].linkbutton_text.text;
   const linkUrl=slice.items?.[0].linkbutton1;
   const linkType=slice.items?.[0].linkbutton1.link_type;
-  console.log(slice);
+  
+  //console.log(slice);
+  
   let url=linkType=="Web"?slice.items?.[0].linkbutton1.url:"";
-  const slugUrl=linkType=="Document"?slice.items?.[0].linkbutton1.slug:"";
+  const slugUrl=linkType=="Document"?slice.items?.[0].linkbutton1.slug:undefined;
   const linkButtonText = RichText.asText(slice.items?.[0].linkbutton_text);
    
   if(slugUrl)
