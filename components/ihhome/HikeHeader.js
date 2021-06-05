@@ -70,7 +70,7 @@ const HikeHeader = ({ image, headline, description }) => {
               <NavLink className={router.pathname == "/" ? "active" : ""}><Link href="/">Home</Link></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className={router.pathname == "/upcoming-terks" ? "active" : ""}><Link href="../../../upcoming-terks">Upcoming Treks</Link></NavLink>
+              <NavLink className={router.pathname == "/upcoming" ? "active" : ""}><Link href="../../../upcoming">Upcoming Treks</Link></NavLink>
             </NavItem>
             <NavItem>
               <NavLink><Link href="../post">Trek to Learn</Link></NavLink>

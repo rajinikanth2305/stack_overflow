@@ -1,0 +1,1 @@
+export { default as UpComingTreks } from "./Upcoming_Treks";

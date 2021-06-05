@@ -1,8 +1,8 @@
 import React from "react";
 import { RichText } from "prismic-reactjs";
-import { upcomingtrekpageStyle } from "../../../styles/upcomingtrekspage";
+import { upcomingTrekPageStyle } from "styles";
 
-const UpcomingTreks = ({ slice }) => {
+const UpComingTreks = ({ slice }) => {
   const upcomingTreksTitle = slice.primary.upcoming_treks_title;
   const upcomingTreksDesc = slice.primary.upcoming_treks_desc;
 
@@ -84,10 +84,10 @@ const UpcomingTreks = ({ slice }) => {
         </div>
       </div>
       <style jsx global>
-        {upcomingtrekpageStyle}
+        {upcomingTrekPageStyle}
       </style>
     </>
   );
 };
 
-export default UpcomingTreks;
+export default UpComingTreks;

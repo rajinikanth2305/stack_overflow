@@ -1,6 +1,6 @@
 import css from "styled-jsx/css";
 
-export const upcomingtrekpageStyle = css.global`
+export const upcomingTrekPageStyle = css.global`
   h1,
   h2,
   h3,
