@@ -2,6 +2,8 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { ihhomeBannerStyles } from "styles";
 import Image from "next/image";
+import Link from 'next/link'
+import { hrefResolver, linkResolver } from 'prismic-configuration'
 /**
  * Home Banner Slice Components
  */
@@ -12,6 +14,18 @@ const HomeBannerWithCaption = ({ slice }) => {
   const imageHeight = slice.primary.banner_image.dimensions.height;
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
+ // const linkButtonText=slice.items?.[0].linkbutton_text.text;
+  const linkUrl=slice.items?.[0].linkbutton1;
+  const linkType=slice.items?.[0].linkbutton1.link_type;
+  console.log(slice);
+  let url=linkType=="Web"?slice.items?.[0].linkbutton1.url:"";
+  const slugUrl=linkType=="Document"?slice.items?.[0].linkbutton1.slug:"";
+  const linkButtonText = RichText.asText(slice.items?.[0].linkbutton_text);
+   
+  if(slugUrl)
+    url=linkResolver(slice.items?.[0].linkbutton1);
+  //as={linkResolver(post)}
+  //href={hrefResolver(post)}
 
   const bannerImageDesktop = {
     backgroundImage: `url('${imageUrl}')`,
@@ -69,9 +83,12 @@ const HomeBannerWithCaption = ({ slice }) => {
                 <p class="banner-text-3">defining the future of trekking</p>
                 <a class="banner-text-link">Read Our Story Here</a>
                 <div class="mt-3 m-text-center">
-                  <button class="btn btn-lg btn-primary btn-ih-primary">
-                    VIEW UPCOMMING TREKS
-                  </button>
+                <button class="btn btn-lg btn-primary btn-ih-primary">
+                    <Link href={url} >
+                   <a> {linkButtonText}</a>
+                   </Link>
+                   </button>
+                 
                 </div>
               </div>
             </div>
@@ -88,9 +105,11 @@ const HomeBannerWithCaption = ({ slice }) => {
                 <p class="banner-text-3">defining the future of trekking</p>
                 <a class="banner-text-link">Read Our Story Here</a>
                 <div class="mt-3 m-text-center">
-                  <button class="btn btn-lg btn-primary btn-ih-primary">
-                    VIEW UPCOMMING TREKS
-                  </button>
+                <button class="btn btn-lg btn-primary btn-ih-primary">
+                <Link href={url} >
+                     <a> {linkButtonText}</a>
+                   </Link>
+                   </button>
                 </div>
               </div>
             </div>
