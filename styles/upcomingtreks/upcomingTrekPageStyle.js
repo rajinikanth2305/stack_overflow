@@ -67,6 +67,29 @@ export const upcomingTrekPageStyle = css.global`
     padding-top: 7px;
   }
 
+  .p-display-1 {
+    line-height: 24px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    margin: 0;
+    padding: 30px 10px;
+  }
+
+  .p-display-2 {
+    line-height: 18px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(112, 112, 112, 1);
+  }
+
   .ih_card {
     border: 1px solid rgb(255, 247, 223);
     border-radius: 0;
@@ -134,6 +157,14 @@ export const upcomingTrekPageStyle = css.global`
     float: right;
   }
 
+  .ucOpenForSmallGroup_sec {
+    padding-top: 60px;
+  }
+
+  .card.trek_card {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+  }
+
   .uc_featured_treks_images {
     position: relative;
     width: 100%;
@@ -143,6 +174,10 @@ export const upcomingTrekPageStyle = css.global`
   .yellow-bg-4 {
     background: rgb(255, 193, 0);
     height: 4px;
+  }
+
+  .border-bottom-4 {
+    border-bottom: 4px solid rgb(255, 193, 0);
   }
 
   .p-absolute {
@@ -174,6 +209,53 @@ export const upcomingTrekPageStyle = css.global`
     color: rgba(255, 255, 255, 1);
   }
 
+  .uc_open_for_small_group_images {
+    width: 100%;
+    height: 275px;
+    position: relative;
+    border-bottom: 2px solid rgb(255, 193, 0);
+  }
+
+  .card-info-text > div > p {
+    line-height: 18px;
+    text-align: left;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 12px;
+    color: rgba(112, 112, 112, 1);
+    text-transform: capitalize;
+    margin-bottom: 7px;
+  }
+
+  .list-dot-style > span {
+    color: rgb(255, 193, 0) !important;
+    font-size: 50px;
+    position: relative;
+    top: -7px;
+  }
+
+  .trek_badge {
+    position: relative;
+    z-index: 99;
+    left: -3px;
+    top: -3px;
+  }
+
+  .trek_badge > span {
+    line-height: 18px;
+    text-align: left;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
+    position: absolute;
+    left: 10px;
+    top: 5px;
+  }
+
   @media only screen and (max-width: 660px) {
     .section-padd {
       padding: 15px 0;
@@ -184,6 +266,10 @@ export const upcomingTrekPageStyle = css.global`
       border: 0;
       text-transform: capitalize;
       padding-bottom: 5px;
+    }
+
+    .title-display-2 {
+      font-size: 36px;
     }
 
     .desc-dispaly-1 {
@@ -200,6 +286,7 @@ export const upcomingTrekPageStyle = css.global`
     .image_overlay_text_desc {
       font-weight: normal;
       font-size: 14px;
+      line-height: 16px;
     }
 
     .m-d-none {
@@ -218,6 +305,10 @@ export const upcomingTrekPageStyle = css.global`
 
     .p-absolute {
       padding: 0 20px;
+    }
+
+    .ucOpenForSmallGroup_sec {
+      padding-top: 0;
     }
   }
 `;

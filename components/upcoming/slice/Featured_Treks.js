@@ -39,7 +39,7 @@ const UCFeaturedTreks = ({ slice }) => {
 
   return (
     <>
-      <div className="mt-3">
+      <div className="mt-3 mb-5">
         <div className="container">
           <h2 className="title-display-2 m-d-none">
             {RichText.asText(featuredTreksTitle)}
