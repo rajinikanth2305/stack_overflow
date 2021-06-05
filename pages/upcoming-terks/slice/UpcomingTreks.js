@@ -1,14 +1,15 @@
 import React from "react";
 import { RichText } from "prismic-reactjs";
-import { upcomingtrekpageStyle } from "../../../styles/upcomingtrekspage";
+import { upcomingTrekPageStyle } from "../../../styles/upcomingtreks/upcomingTrekPageStyle";
 
-const UpcomingTreks = ({ slice }) => {
-  const upcomingTreksTitle = slice.primary.upcoming_treks_title;
-  const upcomingTreksDesc = slice.primary.upcoming_treks_desc;
+const UpcomingTreks = () => {
+  // const upcomingTreksTitle = slice.primary.upcoming_treks_title;
+  // const upcomingTreksDesc = slice.primary.upcoming_treks_desc;
 
   return (
     <>
-      <div className="section-padd">
+      <div>Test</div>
+      {/* <div className="section-padd">
         <div className="container">
           <div className="row">
             <div className="col-lg-6 col-md-6">
@@ -82,10 +83,10 @@ const UpcomingTreks = ({ slice }) => {
             </div>
           </div>
         </div>
-      </div>
-      <style jsx global>
+      </div> */}
+      {/* <style jsx global>
         {upcomingtrekpageStyle}
-      </style>
+      </style> */}
     </>
   );
 };

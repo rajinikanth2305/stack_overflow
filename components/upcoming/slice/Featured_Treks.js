@@ -6,26 +6,6 @@ import Image from "next/image";
 const UCFeaturedTreks = ({ slice }) => {
   const featuredTreksTitle = slice.primary.uc_featured_treks_title;
   const ucFeaturedTreksImagesArray = slice.items;
-  console.log(ucFeaturedTreksImagesArray);
-
-  // <div className="col-lg-4 col-md-6 px-3">
-  //   <div className="mb-3 imageLayout4">
-  //     <Image
-  //       src={imageUrl}
-  //       layout="fill"
-  //       objectFit="cover"
-  //       objectPosition="50% 50%"
-  //     />
-  //     <div className="image_overlay_text_area_layout4">
-  //       <div className="p-absolute">
-  //         <p className="image_overlay_text_title mb-1">New To Trekking?</p>
-  //         <p className="image_overlay_text_desc">
-  //           Learn more and find the perfect trek for you
-  //         </p>
-  //       </div>
-  //     </div>
-  //   </div>
-  // </div>;
 
   const ucFeaturedTreksImages = ucFeaturedTreksImagesArray.map(function(
     data,
