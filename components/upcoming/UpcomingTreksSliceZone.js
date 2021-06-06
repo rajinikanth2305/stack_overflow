@@ -3,7 +3,8 @@ import {
   UpComingTreks,
   UCFeaturedTreks,
   UCOpenForSmallGroup,
-  UCWhyTreks
+  UCWhyTreks,
+  UCAutnumTreks
 } from "./slice";
 
 /**
@@ -21,6 +22,8 @@ const UpComingTreksSliceZone = ({ sliceZone }) =>
         return <UCOpenForSmallGroup slice={slice} key={`slice-${index}`} />;
       case "uc_why_trek":
         return <UCWhyTreks slice={slice} key={`slice-${index}`} />;
+      case "uc_autumn_treks":
+        return <UCAutnumTreks slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }

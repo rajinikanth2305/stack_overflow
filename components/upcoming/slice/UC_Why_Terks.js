@@ -59,6 +59,9 @@ const UCWhyTreks = ({ slice }) => {
             <div class="row my-3">{ucWhyTrekImage}</div>
           </div>
         </div>
+        <style jsx global>
+          {upcomingTrekPageStyle}
+        </style>
       </div>
     </>
   );

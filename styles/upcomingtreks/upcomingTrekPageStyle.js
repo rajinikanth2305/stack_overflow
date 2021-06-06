@@ -77,7 +77,7 @@ export const upcomingTrekPageStyle = css.global`
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
     margin: 0;
-    padding: 30px 10px;
+    padding: 10px;
   }
 
   .p-display-2 {
@@ -293,6 +293,12 @@ export const upcomingTrekPageStyle = css.global`
 
   .m-view-d-block {
 	  display: none;
+  }
+
+  .slick-prev::before,
+  .slick-next::before {
+    color: #ffc100;
+    font-size: 26px;
   }
 
   @media only screen and (max-width: 660px) {
