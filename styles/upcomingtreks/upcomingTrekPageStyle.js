@@ -153,6 +153,21 @@ export const upcomingTrekPageStyle = css.global`
     text-transform: uppercase;
   }
 
+  .btn-bihtn-yellow {
+    background: rgba(255,193,0,1);
+    border: 0;
+    padding: 3px 30px;
+    border-radius: 0;
+    line-height: 24px;
+    text-align: center;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: #000000;
+    text-transform: uppercase;
+  }
+
   .float-right {
     float: right;
   }
@@ -301,6 +316,18 @@ export const upcomingTrekPageStyle = css.global`
     font-size: 26px;
   }
 
+  .uc_family_treks_image {
+    position: relative;
+    width: 100%;
+    height: 400px;
+  }
+
+  .ucFamilyTreks_box {
+    background: rgba(0,117,106,1);
+    padding: 30px 50px;
+    height: 400px;
+  }
+
   @media only screen and (max-width: 660px) {
     .section-padd {
       padding: 15px 0;
@@ -370,6 +397,23 @@ export const upcomingTrekPageStyle = css.global`
 
     .m-padd-2 {
       padding: 10px !important;
+    }
+
+    .uc_family_treks_image {
+      height: 250px;
+    }
+
+    .ucFamilyTreks_box {
+      padding: 30px 25px;
+    }
+
+    .ucFamilyTreks_box {
+      height: auto;
+    }
+
+    .m-text-center {
+      text-align: center;
+      margin-top: 10px !important;
     }
   }
 `;
