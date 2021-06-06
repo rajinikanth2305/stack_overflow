@@ -260,6 +260,41 @@ export const upcomingTrekPageStyle = css.global`
     top: 5px;
   }
 
+  .why_trek_sec {
+    padding: 20px 15px;
+  }
+
+  .uc_why_trek_images {
+    position: relative;
+    width: 100%;
+    height: 100px;
+  }
+
+  .why_trek_box_title {
+    line-height: 30px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .why_trek_box_desc {
+    line-height: 24px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .m-view-d-block {
+	  display: none;
+  }
+
   @media only screen and (max-width: 660px) {
     .section-padd {
       padding: 15px 0;
@@ -317,6 +352,18 @@ export const upcomingTrekPageStyle = css.global`
 
     .card_sec {
       margin: 5px 0;
+    }
+
+    .m-view-d-block {
+      display: block;
+    }
+
+    .uc_why_trek_images {
+      height: 74px;
+    }
+
+    .m-padd-2 {
+      padding: 10px !important;
     }
   }
 `;

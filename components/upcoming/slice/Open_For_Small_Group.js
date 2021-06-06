@@ -97,6 +97,9 @@ const UCOpenForSmallGroup = ({ slice }) => {
           </div>
           <div className="row">{ucOpenForSmallGroupImages}</div>
         </div>
+        <style jsx global>
+          {upcomingTrekPageStyle}
+        </style>
       </div>
     </>
   );

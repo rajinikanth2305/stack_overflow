@@ -1,5 +1,10 @@
 import React from "react";
-import { UpComingTreks, UCFeaturedTreks, UCOpenForSmallGroup } from "./slice";
+import {
+  UpComingTreks,
+  UCFeaturedTreks,
+  UCOpenForSmallGroup,
+  UCWhyTreks
+} from "./slice";
 
 /**
  *  slice zone component
@@ -14,6 +19,8 @@ const UpComingTreksSliceZone = ({ sliceZone }) =>
         return <UCFeaturedTreks slice={slice} key={`slice-${index}`} />;
       case "uc_open_for_small_group":
         return <UCOpenForSmallGroup slice={slice} key={`slice-${index}`} />;
+      case "uc_why_trek":
+        return <UCWhyTreks slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }
