@@ -44,6 +44,11 @@ export const ihheaderStyles = css.global`
     text-decoration: none;
   }
 
+  a:hover {
+    color: #000;
+    text-decoration: none;
+  }
+
   @media only screen and (max-width: 900px) {
     .navbar-expand-lg .navbar-nav .nav-link {
       padding-left: 0;

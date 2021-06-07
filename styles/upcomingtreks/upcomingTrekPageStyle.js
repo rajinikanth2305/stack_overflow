@@ -108,7 +108,7 @@ export const upcomingTrekPageStyle = css.global`
     cursor: pointer;
   }
 
-  .form-control {
+  select.form-control {
     background-color: rgb(255, 193, 0);
     border: 0;
     border-radius: 0;
@@ -120,7 +120,7 @@ export const upcomingTrekPageStyle = css.global`
     font-style: normal;
   }
 
-  .form-control:focus {
+  select.form-control:focus {
     background-color: rgb(255, 193, 0);
     border: 0;
     border-radius: 0;

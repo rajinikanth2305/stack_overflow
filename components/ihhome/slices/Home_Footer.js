@@ -16,7 +16,7 @@ const HomeFooter = ({ slice }) => {
 
   return (
     <>
-      <div className="mb-5">
+      <div>
         <div className="home_footer_image">
           <Image
             src={homeFooterImage}

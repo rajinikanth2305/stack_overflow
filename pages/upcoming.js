@@ -10,6 +10,8 @@ import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
 import { Client } from "utils/prismicHelpers";
+import IHFooter from "../components/Footer";
+import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 
 /**
  * UpComing component
@@ -26,6 +28,8 @@ const UpcomingTreks = ({ doc }) => {
         </Head>
         <HikeHeader/>
         <UpComingTreksSliceZone sliceZone={doc.data.body} />
+        <IHTrekWithSwathi />
+        <IHFooter />
       </HomeLayout>
     );
   }
