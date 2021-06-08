@@ -1,0 +1,1 @@
+export { bannerStyle } from "./bannerStyle";

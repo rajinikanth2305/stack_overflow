@@ -1,0 +1,63 @@
+import React from "react";
+import Head from "next/head";
+import { RichText } from "prismic-reactjs";
+
+import { queryRepeatableDocuments } from 'utils/queries'
+import {  TrekSliceZone } from "components/trek";
+// Project components
+
+// Project functions & styles
+import { Client } from "utils/prismicHelpers";
+import HomeLayout from "layouts";
+import { HikeHeader } from "components/ihhome";
+/**
+ * Trek page component
+ */
+const Trek = ({ trekData }) => {
+  if (trekData && trekData.data) {
+
+    const pageTitle =  RichText.asText(trekData.data?.trek_title) ;
+    const meta_title = RichText.asText(trekData.data?.meta_title);
+    const meta_desc = RichText.asText(trekData.data?.meta_description);
+
+    return (
+      <HomeLayout>
+        <Head>
+         <meta charset="utf-8"/>
+         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+         <meta 
+          name={meta_title}
+          content = {meta_desc}
+         />
+         <title>{pageTitle}</title>
+        </Head>
+        <HikeHeader/>
+        <TrekSliceZone sliceZone={trekData.data.body} />
+      </HomeLayout>
+    );
+  }
+
+  return null;
+};
+
+export async function getStaticProps({ params, preview = null, previewData = {} }) {
+  const { ref } = previewData
+  const trekData = await Client().getByUID("trek", params.uid, ref ? { ref } : null) || {}
+  return {
+    props: {
+      preview,
+      trekData
+    }
+  }
+}
+
+export async function getStaticPaths() {
+  const documents = await queryRepeatableDocuments((doc) => doc.type === 'trek')
+  return {
+    paths: documents.map(doc => `/trek/${doc.uid}`),
+    fallback: true,
+  }
+}
+
+export default Trek;
