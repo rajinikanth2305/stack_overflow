@@ -2,13 +2,20 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { upcomingTrekPageStyle } from "styles";
 import Image from "next/image";
+import { useRouter } from 'next/router'
 
 const UCOpenForSmallGroup = ({ slice }) => {
   const ucOpenForSmallGroupTitle = slice.primary.uc_open_for_small_group_title;
   const ucOpenForSmallGroupDesc = slice.primary.uc_open_for_small_group_desc;
   const ucOpenForSmallGroupImagesArray = slice.items;
+  const router = useRouter()
 
   console.log(ucOpenForSmallGroupImagesArray);
+
+  const goToTrekPage = (e) => {
+    e.preventDefault()
+    router.push('/trek/hampta_pass');
+  };
 
   const ucOpenForSmallGroupImages = ucOpenForSmallGroupImagesArray.map(function(
     data,
@@ -68,7 +75,7 @@ const UCOpenForSmallGroup = ({ slice }) => {
                       : data.uc_open_desc[0].text}
                   </p>
                   <div className="float-right pt-2 pb-4">
-                    <button className="btn btn-ih-green">View Details</button>
+                    <button className="btn btn-ih-green" onClick={goToTrekPage}>View Details</button>
                   </div>
                 </div>
               </div>
