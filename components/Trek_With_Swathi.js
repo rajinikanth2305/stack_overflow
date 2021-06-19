@@ -7,7 +7,7 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
  * Founder Slice Components
  */
 const IHTrekWithSwathi = () => {
-  const trekWithSwathiLogoImg = "./7eb9101e-699c-4309-b5fc-f9c8af1d8fa5_TWS_clearBG@2x.png";
+  const trekWithSwathiLogoImg = "/7eb9101e-699c-4309-b5fc-f9c8af1d8fa5_TWS_clearBG@2x.png";
 
   const logoImg = {
     backgroundImage: `url('${trekWithSwathiLogoImg}')`,

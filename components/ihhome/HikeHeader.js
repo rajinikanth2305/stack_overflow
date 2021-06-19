@@ -59,8 +59,7 @@ const HikeHeader = ({ image, headline, description }) => {
         <NavbarBrand href="/">
           <img
             id="IH_Logo_in_PNG"
-            src="IH_Logo_in_PNG.png.png"
-            srcset="IH_Logo_in_PNG.png 1x, IH_Logo_in_PNG@2x.png 2x"
+            src="/IH_Logo_in_PNG.png"
           />
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />

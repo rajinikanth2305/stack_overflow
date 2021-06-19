@@ -10,6 +10,8 @@ import {  TrekSliceZone } from "components/trek";
 import { Client } from "utils/prismicHelpers";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
+import IHFooter from "components/Footer";
+import IHTrekWithSwathi from "components/Trek_With_Swathi";
 /**
  * Trek page component
  */
@@ -34,6 +36,8 @@ const Trek = ({ trekData }) => {
         </Head>
         <HikeHeader/>
         <TrekSliceZone sliceZone={trekData.data.body} />
+        <IHTrekWithSwathi />
+        <IHFooter />
       </HomeLayout>
     );
   }
