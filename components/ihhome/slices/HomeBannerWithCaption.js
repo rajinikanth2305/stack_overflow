@@ -89,8 +89,7 @@ const HomeBannerWithCaption = ({ slice }) => {
                     <Link href={url} >
                    <a> {linkButtonText}</a>
                    </Link>
-                   </button>
-                 
+                   </button>                
                 </div>
               </div>
             </div>
