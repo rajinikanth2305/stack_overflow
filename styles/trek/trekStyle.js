@@ -126,6 +126,54 @@ export const trekStyle = css.global`
     margin-top: 15px;
   }
 
+  .trek_summary_icon {
+    position: relative;
+    width: 57px;
+    height: 57px;
+  }
+
+  .trek_summary_title {
+    line-height: 16px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    padding-top: 20px;
+  }
+
+  .trek_summary_desc {
+    font-size: 12px;
+    line-height: 16px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: capitalize;
+    color: rgba(112, 112, 112, 1);
+  }
+
   @media only screen and (max-width: 660px) {
+    .title-h1 {
+      font-size: 42px;
+    }
+
+    .p-text-1 {
+      font-size: 18px;
+    }
+
+    .p-text-2 {
+      font-size: 16px;
+    }
+
+    .mpt-0 {
+        padding-top: 0px !important;
+    }
+
+    .mpb-0 {
+        padding-bottom: 0px !important;
+    }
   }
 `;

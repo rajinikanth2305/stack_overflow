@@ -2,8 +2,9 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { trekStyle } from "styles";
 import Image from "next/image";
-import Link from "next/link";
-import { hrefResolver, linkResolver } from "prismic-configuration";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 /**
  * Trek Banner Slice Components
  */
@@ -11,6 +12,61 @@ const TrekOverView = ({ slice }) => {
   const heading1 = slice.primary.heading1;
   const heading1Subtitle = slice.primary.heading1_subtitle;
   const heading2 = slice.primary.heading2;
+  const trekSummaryIconArray = slice.items;
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 2,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          arrows: false
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          arrows: false
+        }
+      }
+    ]
+  };
+
+  const trekSummaryIcon = trekSummaryIconArray.map(function(data, i) {
+    return (
+      <>
+        <div className="mt-2 mb-4">
+          <div className="trek_summary_icon">
+            <Image
+              src={data.trek_summary_icon.url}
+              layout="fill"
+              objectFit="contain"
+              objectPosition="left left"
+            />
+          </div>
+          <p className="m-0 trek_summary_title">{data.trek_summary_title[0].text}</p>
+          <p className="m-0 trek_summary_desc">{data.trek_summary_desc[0].text}</p>
+        </div>
+      </>
+    );
+  });
 
   return (
     <>
@@ -20,11 +76,16 @@ const TrekOverView = ({ slice }) => {
             <div className="col-12 col-lg-10 col-md-12 border-line-right">
               <div className="row my-4">
                 <div className="col-12 col-lg-8 col-md-12">
-                  <h1 className="title-h1">{RichText.asText(heading1)}</h1>
-                  <p className="p-text-1">
-                    {RichText.asText(heading1Subtitle)}
-                  </p>
-                  <p className="p-text-2 py-4">{RichText.asText(heading2)}</p>
+                  <div>
+                    <h1 className="title-h1">{RichText.asText(heading1)}</h1>
+                    <p className="p-text-1">
+                      {RichText.asText(heading1Subtitle)}
+                    </p>
+                    <p className="p-text-2 py-4 mpt-0 mpb-0">{RichText.asText(heading2)}</p>
+                  </div>
+                  <div>
+                    <Slider {...settings}>{trekSummaryIcon}</Slider>
+                  </div>
                 </div>
                 <div className="col-12 col-lg-4 col-md-12">
                   <div className="card card-box-shadow border-0">
@@ -58,9 +119,9 @@ const TrekOverView = ({ slice }) => {
                         </div>
                       </div>
                       <div>
-                          <div className="g_review_box p-1">
-                              <p className="m-0">View Google Reviews</p>
-                          </div>
+                        <div className="g_review_box p-1">
+                          <p className="m-0">View Google Reviews</p>
+                        </div>
                       </div>
                     </div>
                   </div>
