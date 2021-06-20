@@ -74,7 +74,7 @@ export const trekStyle = css.global`
   }
 
   .right-nav-details > ul {
-    padding-left: 15px;
+    padding-left: 10px;
   }
 
   .right-nav-details > ul > li {
@@ -88,6 +88,42 @@ export const trekStyle = css.global`
     color: rgba(112, 112, 112, 1);
     text-transform: capitalize;
     padding: 6px 0;
+  }
+
+  .right-nav-details.sec-2 > ul > li {
+    text-transform: uppercase;
+  }
+
+  .btn-ih-green {
+    background: rgb(91, 133, 70);
+    border: 0;
+    padding: 3px 30px;
+    border-radius: 0;
+    line-height: 24px;
+    text-align: center;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: uppercase;
+    width: 100%;
+  }
+
+  .rating_text {
+    line-height: 24px;
+    text-align: left;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .g_review_box {
+    border: 2px solid rgba(109, 109, 109, 1);
+    text-align: center;
+    margin-top: 15px;
   }
 
   @media only screen and (max-width: 660px) {
