@@ -349,5 +349,9 @@ export const trekStyle = css.global`
       height: 360px;
       background-position: bottom;
     }
+
+    .container.container-custom {
+      padding: 0px;
+    }
   }
 `;
