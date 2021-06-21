@@ -1,5 +1,10 @@
 import React from "react";
-import { TrekBannerWithCaption, TrekOverView, TrekVideosComponent } from "./slices";
+import {
+  TrekBannerWithCaption,
+  TrekOverView,
+  TrekVideosComponent,
+  TrekExpertSpeak
+} from "./slices";
 
 /**
  *  slice zone component
@@ -14,6 +19,8 @@ const TrekSliceZone = ({ sliceZone }) =>
         return <TrekOverView slice={slice} key={`slice-${index}`} />;
       case "trek_videos":
         return <TrekVideosComponent slice={slice} key={`slice-${index}`} />;
+      case "expert_speak":
+        return <TrekExpertSpeak slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }

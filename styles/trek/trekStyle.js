@@ -198,11 +198,26 @@ export const trekStyle = css.global`
     font-style: normal;
     font-weight: bold;
     font-size: 36px;
-    color: rgba(0,0,0,1);
+    color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
     border-bottom: 4px solid rgb(255, 193, 0);
     margin: 0;
     padding-bottom: 25px;
+  }
+
+  .banner-image-expert-speak {
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    height: 400px;
+  }
+
+  .expert_speak_box {
+    background: rgba(255, 193, 0, 1);
+    padding: 15px;
+    position: relative;
+    top: -25px;
+    width: 225px;
   }
 
   @media only screen and (max-width: 660px) {
@@ -227,28 +242,43 @@ export const trekStyle = css.global`
     }
 
     .mp-0 {
-        padding: 0px !important;
+      padding: 0px !important;
     }
 
     .mpy-0 {
-        padding-left: 0px !important;
-        padding-right: 0px !important;
+      padding-left: 0px !important;
+      padding-right: 0px !important;
     }
 
     .mmt-0 {
-        margin-top: 0px !important;
+      margin-top: 0px !important;
     }
 
     .border-line-right {
-        border: 0;
+      border: 0;
     }
 
     .d-m-none {
-        display: none;
+      display: none;
     }
 
     .d-m-block {
-        display: block;
+      display: block;
+    }
+
+    .expert_speak_box > .title-h2 {
+      font-size: 36px;
+    }
+
+    .expert_speak_box {
+      top: -25px;
+      width: 275px;
+      left: -12px;
+    }
+
+    .banner-image-expert-speak {
+      background-position: bottom;
+      height: 260px;
     }
   }
 `;
