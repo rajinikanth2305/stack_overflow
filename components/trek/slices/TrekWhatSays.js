@@ -27,7 +27,7 @@ const TrekWhatSays = ({ slice }) => {
                   <div className="mx-3">
                     <p className="m-0 reviewer_name">Chandrashekar Gowdar</p>
                     <p className="m-0">
-                      <img src="./rating_sm.png" alt="rating-star" />
+                      <img src="/rating_sm.png" alt="rating-star" />
                       <span className="px-2 year_text">February 2020</span>
                     </p>
                   </div>
@@ -55,7 +55,7 @@ const TrekWhatSays = ({ slice }) => {
                   <div className="mx-3">
                     <p className="m-0 reviewer_name">Chandrashekar Gowdar</p>
                     <p className="m-0">
-                      <img src="./rating_sm.png" alt="rating-star" />
+                      <img src="/rating_sm.png" alt="rating-star" />
                       <span className="px-2 year_text">February 2020</span>
                     </p>
                   </div>
