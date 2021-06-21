@@ -48,7 +48,7 @@ const TrekExpertSpeak = ({ slice }) => {
                 objectPosition="50% 50%"
               />
             </div>
-            <p className="trek_summary_desc py-3">
+            <p className="trek_summary_desc py-3 mpb-0">
               {data.what_i_like_image_desc[0].text}
             </p>
           </div>

@@ -351,7 +351,7 @@ export const trekStyle = css.global`
     }
 
     .container.container-custom {
-      padding: 0px;
+      padding: 0 12px;
     }
   }
 `;
