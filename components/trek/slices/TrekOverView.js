@@ -61,8 +61,12 @@ const TrekOverView = ({ slice }) => {
               objectPosition="left left"
             />
           </div>
-          <p className="m-0 trek_summary_title">{data.trek_summary_title[0].text}</p>
-          <p className="m-0 trek_summary_desc">{data.trek_summary_desc[0].text}</p>
+          <p className="m-0 trek_summary_title">
+            {data.trek_summary_title[0].text}
+          </p>
+          <p className="m-0 trek_summary_desc">
+            {data.trek_summary_desc[0].text}
+          </p>
         </div>
       </>
     );
@@ -74,14 +78,16 @@ const TrekOverView = ({ slice }) => {
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-10 col-md-12 border-line-right">
-              <div className="row my-4">
+              <div className="row my-5">
                 <div className="col-12 col-lg-8 col-md-12">
                   <div>
                     <h1 className="title-h1">{RichText.asText(heading1)}</h1>
                     <p className="p-text-1">
                       {RichText.asText(heading1Subtitle)}
                     </p>
-                    <p className="p-text-2 py-4 mpt-0 mpb-0">{RichText.asText(heading2)}</p>
+                    <p className="p-text-2 py-4 mpt-0 mpb-0">
+                      {RichText.asText(heading2)}
+                    </p>
                   </div>
                   <div>
                     <Slider {...settings}>{trekSummaryIcon}</Slider>
@@ -128,8 +134,8 @@ const TrekOverView = ({ slice }) => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-lg-2 col-md-12">
-              <div className="right-nav-details my-4">
+            <div className="col-12 col-lg-2 col-md-12 d-m-none">
+              <div className="right-nav-details my-5">
                 <ul>
                   <li>highlights</li>
                   <li>Trek Videos</li>

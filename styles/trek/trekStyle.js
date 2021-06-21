@@ -10,6 +10,20 @@ export const trekStyle = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .title-h2 {
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    margin-bottom: 15px;
+    border-bottom: 4px solid rgb(255, 193, 0);
+    padding-bottom: 3px;
+    margin-bottom: 20px;
+  }
+
   .p-text-1 {
     line-height: 30px;
     text-align: left;
@@ -30,8 +44,22 @@ export const trekStyle = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .p-text-3 {
+    line-height: 16px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+  }
+
   .card-box-shadow {
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+  }
+
+  .b-shadow {
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.161);
   }
 
   .border-line-right {
@@ -155,6 +183,28 @@ export const trekStyle = css.global`
     color: rgba(112, 112, 112, 1);
   }
 
+  .container.container-custom {
+    max-width: 1600px;
+  }
+
+  .d-m-block {
+    display: none;
+  }
+
+  .trek_video_title_mob {
+    line-height: 40px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    color: rgba(0,0,0,1);
+    text-transform: capitalize;
+    border-bottom: 4px solid rgb(255, 193, 0);
+    margin: 0;
+    padding-bottom: 25px;
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 42px;
@@ -169,11 +219,36 @@ export const trekStyle = css.global`
     }
 
     .mpt-0 {
-        padding-top: 0px !important;
+      padding-top: 0px !important;
     }
 
     .mpb-0 {
-        padding-bottom: 0px !important;
+      padding-bottom: 0px !important;
+    }
+
+    .mp-0 {
+        padding: 0px !important;
+    }
+
+    .mpy-0 {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .mmt-0 {
+        margin-top: 0px !important;
+    }
+
+    .border-line-right {
+        border: 0;
+    }
+
+    .d-m-none {
+        display: none;
+    }
+
+    .d-m-block {
+        display: block;
     }
   }
 `;
