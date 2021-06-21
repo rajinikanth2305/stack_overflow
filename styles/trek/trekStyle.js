@@ -284,6 +284,33 @@ export const trekStyle = css.global`
     color: rgba(91, 133, 70, 1);
   }
 
+  .trek_family_trek_image {
+    position: relative;
+    width: 100%;
+    height: 400px;
+  }
+
+  .family_terk_box {
+    background: rgba(0,117,106,1);
+    padding: 30px 50px;
+    height: 400px;
+  }
+
+  .btn-bihtn-yellow {
+    background: rgba(255,193,0,1);
+    border: 0;
+    padding: 3px 30px;
+    border-radius: 0;
+    line-height: 24px;
+    text-align: center;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: #000000;
+    text-transform: uppercase;
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 42px;
@@ -356,6 +383,15 @@ export const trekStyle = css.global`
 
     .container.container-custom {
       padding: 0 12px;
+    }
+
+    .trek_family_trek_image {
+      height: 360px;
+    }
+
+    .family_terk_box {
+      padding: 20px 30px;
+      height: auto;
     }
   }
 `;
