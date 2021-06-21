@@ -54,6 +54,16 @@ export const trekStyle = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .p-text-4 {
+    line-height: 24px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+  }
+
   .card-box-shadow {
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
   }
@@ -229,6 +239,8 @@ export const trekStyle = css.global`
     color: rgba(255, 193, 0, 1);
     letter-spacing: -0.5px;
     text-transform: capitalize;
+    position: relative;
+    top: -35px;
   }
 
   .author-text {
@@ -241,9 +253,23 @@ export const trekStyle = css.global`
     color: rgba(157, 58, 11, 1);
   }
 
+  .author_img {
+    float: none;
+  }
+
+  .what_i_like_image {
+    position: relative;
+    height: 242px;
+    width: 100%;
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 42px;
+    }
+
+    .title-h2 {
+      font-size: 36px;
     }
 
     .p-text-1 {
