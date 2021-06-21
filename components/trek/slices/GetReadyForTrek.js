@@ -2,7 +2,7 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { trekStyle } from "styles";
 
-const KnowYourTrek = ({ slice }) => {
+const GetReadyForTrek = ({ slice }) => {
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
   const lnkLabelArray = slice.items;
@@ -111,4 +111,4 @@ const KnowYourTrek = ({ slice }) => {
   );
 };
 
-export default KnowYourTrek;
+export default GetReadyForTrek;

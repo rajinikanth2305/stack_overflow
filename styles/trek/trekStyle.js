@@ -291,13 +291,13 @@ export const trekStyle = css.global`
   }
 
   .family_terk_box {
-    background: rgba(0,117,106,1);
+    background: rgba(0, 117, 106, 1);
     padding: 30px 50px;
     height: 400px;
   }
 
   .btn-bihtn-yellow {
-    background: rgba(255,193,0,1);
+    background: rgba(255, 193, 0, 1);
     border: 0;
     padding: 3px 30px;
     border-radius: 0;
@@ -309,6 +309,74 @@ export const trekStyle = css.global`
     font-size: 16px;
     color: #000000;
     text-transform: uppercase;
+  }
+
+  .what_trek_says_bg {
+    background: rgba(255, 193, 0, 1);
+  }
+
+  .review_text {
+    line-height: 24px;
+    text-align: left;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+  }
+  .review_title {
+    ine-height: 24px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+  }
+  .p-icon {
+    width: 42px;
+    background: rgb(112, 112, 112);
+    border-radius: 50%;
+    border: 1px solid rgb(255, 193, 0);
+  }
+  .reviewer_name {
+    line-height: 24px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+  }
+  .year_text {
+    line-height: 18px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+  }
+  .reviewer_cmts {
+    line-height: 24px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+  }
+  .reviewer_read_more {
+    line-height: 18px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(157, 58, 11, 1);
+    text-transform: capitalize;
+    text-decoration: underline;
+    cursor: pointer;
   }
 
   @media only screen and (max-width: 660px) {

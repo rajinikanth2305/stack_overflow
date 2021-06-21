@@ -6,7 +6,9 @@ import {
   TrekExpertSpeak,
   TrekGallery,
   KnowYourTrek,
-  FamilyTrek
+  FamilyTrek,
+  GetReadyForTrek,
+  TrekWhatSays
 } from "./slices";
 
 /**
@@ -30,6 +32,10 @@ const TrekSliceZone = ({ sliceZone }) =>
         return <KnowYourTrek slice={slice} key={`slice-${index}`} />;
       case "trek_family_trek":
         return <FamilyTrek slice={slice} key={`slice-${index}`} />;
+      case "trek_family_trek":
+        return <GetReadyForTrek slice={slice} key={`slice-${index}`} />;
+      case "trek_what_trekkers_say":
+        return <TrekWhatSays slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }

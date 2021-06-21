@@ -5,3 +5,5 @@ export { default as TrekExpertSpeak } from "./TrekExpertSpeak";
 export { default as TrekGallery } from "./TrekGallery";
 export { default as KnowYourTrek } from "./KnowYourTrek";
 export { default as FamilyTrek } from "./FamilyTrek";
+export { default as GetReadyForTrek } from "./GetReadyForTrek";
+export { default as TrekWhatSays } from "./TrekWhatSays";
