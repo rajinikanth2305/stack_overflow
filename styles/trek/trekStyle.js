@@ -195,6 +195,7 @@ export const trekStyle = css.global`
 
   .container.container-custom {
     max-width: 1600px;
+    padding: 0 25px;
   }
 
   .d-m-block {
@@ -263,6 +264,22 @@ export const trekStyle = css.global`
     width: 100%;
   }
 
+  .border-bottom-custom {
+    border-bottom: 4px solid rgb(255, 193, 0);
+  }
+
+  .discovery_trek_gallery {
+    position: relative;
+    width: 100%;
+    height: 700px;
+  }
+
+//   .slick-prev::before,
+//   .slick-next::before {
+//     color: #ffc100;
+//     font-size: 26px;
+//   }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 42px;
@@ -326,6 +343,11 @@ export const trekStyle = css.global`
     .banner-image-expert-speak {
       background-position: bottom;
       height: 260px;
+    }
+
+    .discovery_trek_gallery {
+      height: 360px;
+      background-position: bottom;
     }
   }
 `;

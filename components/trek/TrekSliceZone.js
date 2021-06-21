@@ -3,7 +3,8 @@ import {
   TrekBannerWithCaption,
   TrekOverView,
   TrekVideosComponent,
-  TrekExpertSpeak
+  TrekExpertSpeak,
+  TrekGallery
 } from "./slices";
 
 /**
@@ -21,6 +22,8 @@ const TrekSliceZone = ({ sliceZone }) =>
         return <TrekVideosComponent slice={slice} key={`slice-${index}`} />;
       case "expert_speak":
         return <TrekExpertSpeak slice={slice} key={`slice-${index}`} />;
+      case "trek_discovered_pictures":
+        return <TrekGallery slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }
