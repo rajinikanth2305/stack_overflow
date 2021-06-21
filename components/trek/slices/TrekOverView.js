@@ -78,7 +78,7 @@ const TrekOverView = ({ slice }) => {
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-10 col-md-12 border-line-right">
-              <div className="row my-5">
+              <div className="row my-5 pt-4">
                 <div className="col-12 col-lg-8 col-md-12">
                   <div>
                     <h1 className="title-h1">{RichText.asText(heading1)}</h1>
@@ -135,7 +135,7 @@ const TrekOverView = ({ slice }) => {
               </div>
             </div>
             <div className="col-12 col-lg-2 col-md-12 d-m-none">
-              <div className="right-nav-details my-5">
+              <div className="right-nav-details my-5 pt-4">
                 <ul>
                   <li>highlights</li>
                   <li>Trek Videos</li>

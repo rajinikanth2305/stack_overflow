@@ -220,6 +220,27 @@ export const trekStyle = css.global`
     width: 225px;
   }
 
+  .quote_style {
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 150px;
+    color: rgba(255, 193, 0, 1);
+    letter-spacing: -0.5px;
+    text-transform: capitalize;
+  }
+
+  .author-text {
+    line-height: 16px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(157, 58, 11, 1);
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 42px;
