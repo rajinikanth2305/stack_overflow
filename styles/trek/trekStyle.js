@@ -296,6 +296,12 @@ export const trekStyle = css.global`
     height: 400px;
   }
 
+  .sustainable_box {
+    background: rgba(91,133,70,1);
+    padding: 30px 50px;
+    height: 400px;
+  }
+
   .btn-bihtn-yellow {
     background: rgba(255, 193, 0, 1);
     border: 0;
@@ -419,8 +425,17 @@ export const trekStyle = css.global`
       padding-right: 0px !important;
     }
 
+    .mmy-0 {
+      margin-top: 0px  !important;
+      margin-bottom: 0px  !important;
+    }
+
     .mmt-0 {
       margin-top: 0px !important;
+    }
+
+    .mmb-0 {
+      margin-bottom: 0px !important;
     }
 
     .border-line-right {
@@ -463,7 +478,7 @@ export const trekStyle = css.global`
       height: 360px;
     }
 
-    .family_terk_box {
+    .family_terk_box, .sustainable_box {
       padding: 20px 30px;
       height: auto;
     }

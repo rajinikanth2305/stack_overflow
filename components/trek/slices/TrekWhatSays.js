@@ -151,7 +151,7 @@ const TrekWhatSays = ({ slice }) => {
               </div>
               <div className="col-12 col-lg-6 col-md-12">
                 <div>
-                  <div className="my-5">
+                  <div className="my-5 mmb-0">
                   <p className="p-text-1"><b>Trekker Photos</b></p>
                     <Slider {...settings}>{trekkerPhotos}</Slider>
                   </div>
