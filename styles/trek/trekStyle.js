@@ -379,6 +379,12 @@ export const trekStyle = css.global`
     cursor: pointer;
   }
 
+  .trekker_photos {
+    position: relative;
+    width: 100%;
+    height: 200px;
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 42px;
