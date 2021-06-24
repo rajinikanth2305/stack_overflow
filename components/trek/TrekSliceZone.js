@@ -10,7 +10,8 @@ import {
   GetReadyForTrek,
   TrekWhatSays,
   SustainableTrekking,
-  BookYourTrek
+  BookYourTrek,
+  OtherTreksLike,
 } from "./slices";
 
 /**
@@ -42,6 +43,8 @@ const TrekSliceZone = ({ sliceZone }) =>
         return <SustainableTrekking slice={slice} key={`slice-${index}`} />;
       case "book_your_trek":
         return <BookYourTrek slice={slice} key={`slice-${index}`} />;
+      case "others_treks_like":
+        return <OtherTreksLike slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }

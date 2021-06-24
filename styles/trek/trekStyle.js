@@ -297,7 +297,7 @@ export const trekStyle = css.global`
   }
 
   .sustainable_box {
-    background: rgba(91,133,70,1);
+    background: rgba(91, 133, 70, 1);
     padding: 30px 50px;
     height: 400px;
   }
@@ -392,31 +392,53 @@ export const trekStyle = css.global`
   }
 
   .slots-bg {
-    background: rgba(255,193,0,0.102);
+    background: rgba(255, 193, 0, 0.102);
   }
 
   .badge-green {
     padding: 0px 10px;
     border-radius: 50%;
-    background: rgba(91,133,70,1);
+    background: rgba(91, 133, 70, 1);
   }
 
   .badge-red {
     padding: 0px 10px;
     border-radius: 50%;
-    background: rgba(230,109,29,1);
+    background: rgba(230, 109, 29, 1);
   }
 
   .badge-yellow {
     padding: 0px 10px;
     border-radius: 50%;
-    background: rgba(255,193,0,1);
+    background: rgba(255, 193, 0, 1);
   }
 
   .badge-blue {
     padding: 0px 10px;
     border-radius: 50%;
-    background: rgba(0,66,141,1);
+    background: rgba(0, 66, 141, 1);
+  }
+
+  .badge-white {
+    padding: 0px 10px;
+    border-radius: 50%;
+    background: rgb(255, 255, 255);
+    border: 1px solid #808080;
+  }
+
+  .image-view {
+    width: 100%;
+    height: 275px;
+    position: relative;
+    border-bottom: 2px solid rgb(255, 193, 0);
+  }
+
+  .trek_card {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+  }
+
+  .card_sec {
+    margin: 20px 0;
   }
 
   @media only screen and (max-width: 660px) {
@@ -454,8 +476,8 @@ export const trekStyle = css.global`
     }
 
     .mmy-0 {
-      margin-top: 0px  !important;
-      margin-bottom: 0px  !important;
+      margin-top: 0px !important;
+      margin-bottom: 0px !important;
     }
 
     .mmt-0 {
@@ -510,13 +532,18 @@ export const trekStyle = css.global`
       height: 360px;
     }
 
-    .family_terk_box, .sustainable_box {
+    .family_terk_box,
+    .sustainable_box {
       padding: 20px 30px;
       height: auto;
     }
 
     .m-btn-block {
       width: 100%;
+    }
+
+    .card_sec {
+      margin: 5px 0;
     }
   }
 `;
