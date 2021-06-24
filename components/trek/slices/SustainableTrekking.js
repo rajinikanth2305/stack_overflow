@@ -18,7 +18,7 @@ const SustainableTrekking = ({ slice }) => {
 
   return (
     <>
-      <div className="my-5 py-5 mpt-0 mpb-0 mmt-0">
+      <div className="mt-5 pt-5 mpt-0 mpb-0 mmt-0">
         <div className="container container-custom">
           <div className="row">
             <div className="col-12 col-lg-6 col-md-12 p-0">

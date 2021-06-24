@@ -134,14 +134,14 @@ const TrekWhatSays = ({ slice }) => {
                   </div>
                 </div>
                 <div>
-                  <div className="d-flex align-items-center">
-                    <div>
-                      <button className="btn btn-bihtn-yellow">
+                  <div className="d-flex align-items-center flex-wrap">
+                    <div className="m-btn-block mmb-1">
+                      <button className="btn btn-bihtn-yellow m-btn-block">
                         View more reviews
                       </button>
                     </div>
                     <div className="mx-3"></div>
-                    <div>
+                    <div className="m-btn-block">
                       <button className="btn btn-ih-green">
                         Write a review
                       </button>

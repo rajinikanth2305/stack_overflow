@@ -391,6 +391,34 @@ export const trekStyle = css.global`
     height: 200px;
   }
 
+  .slots-bg {
+    background: rgba(255,193,0,0.102);
+  }
+
+  .badge-green {
+    padding: 0px 10px;
+    border-radius: 50%;
+    background: rgba(91,133,70,1);
+  }
+
+  .badge-red {
+    padding: 0px 10px;
+    border-radius: 50%;
+    background: rgba(230,109,29,1);
+  }
+
+  .badge-yellow {
+    padding: 0px 10px;
+    border-radius: 50%;
+    background: rgba(255,193,0,1);
+  }
+
+  .badge-blue {
+    padding: 0px 10px;
+    border-radius: 50%;
+    background: rgba(0,66,141,1);
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 42px;
@@ -438,6 +466,10 @@ export const trekStyle = css.global`
       margin-bottom: 0px !important;
     }
 
+    .mmb-1 {
+      margin-bottom: 10px;
+    }
+
     .border-line-right {
       border: 0;
     }
@@ -481,6 +513,10 @@ export const trekStyle = css.global`
     .family_terk_box, .sustainable_box {
       padding: 20px 30px;
       height: auto;
+    }
+
+    .m-btn-block {
+      width: 100%;
     }
   }
 `;
