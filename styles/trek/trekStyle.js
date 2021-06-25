@@ -441,6 +441,26 @@ export const trekStyle = css.global`
     margin: 20px 0;
   }
 
+  .accordion {
+    border: 0;
+  }
+
+  .accordion__button {
+    background: transparent;
+    padding: 5px 1px;
+  }
+
+  .accordion__button::before {
+    float: right;
+    position: relative;
+    top: 22px;
+  }
+
+  .itinerary_map_image {
+    position: relative;
+    height: 340px;
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 42px;

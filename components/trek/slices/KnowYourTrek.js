@@ -1,6 +1,15 @@
 import React from "react";
 import { RichText } from "prismic-reactjs";
 import { trekStyle } from "styles";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemButton,
+  AccordionItemPanel
+} from "react-accessible-accordion";
+import "react-accessible-accordion/dist/fancy-example.css";
+import QuickItineraryComponent from "./QuickItineraryComponent";
 
 const KnowYourTrek = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -19,7 +28,7 @@ const KnowYourTrek = ({ slice }) => {
             <p className="mb-1 p-text-3">Plan your travel with this</p>
           </div>
           <div className="mx-2">
-              <img src="/arrow-down.png" />
+            <img src="/arrow-down.png" />
           </div>
         </div>
       </>
@@ -39,7 +48,7 @@ const KnowYourTrek = ({ slice }) => {
                       {RichText.asText(heading1)}
                     </h2>
                     <p className="p-text-4 pt-3">{RichText.asText(heading2)}</p>
-                    <div className="my-5">{lnkLabel}</div>
+                    {/* <div className="my-5">{lnkLabel}</div> */}
                   </div>
                 </div>
                 <div className="col-12 col-lg-4 col-md-12">
@@ -79,6 +88,79 @@ const KnowYourTrek = ({ slice }) => {
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div className="mt-5">
+                    <Accordion>
+                      <AccordionItem>
+                        <AccordionItemHeading>
+                          <AccordionItemButton>
+                            <div class="d-flex align-items-center">
+                              <div>
+                                <img src="/Icons_Outline_Calendar_g.png" />
+                              </div>
+                              <div className="px-3">
+                                <p className="p-text-1 m-0">Quick Itinerary</p>
+                                <p className="mb-1 p-text-3">
+                                  Plan your travel with this
+                                </p>
+                              </div>
+                            </div>
+                          </AccordionItemButton>
+                        </AccordionItemHeading>
+                        <AccordionItemPanel>
+                          <p>
+                            Inprogress..!!
+                            <QuickItineraryComponent slice={slice} />
+                          </p>
+                        </AccordionItemPanel>
+                      </AccordionItem>
+                      <AccordionItem>
+                        <AccordionItemHeading>
+                          <AccordionItemButton>
+                            <div class="d-flex align-items-center">
+                              <div>
+                                <img src="/Icons_Outline_Calendar_g.png" />
+                              </div>
+                              <div className="px-3">
+                                <p className="p-text-1 m-0">
+                                  How Does Each Day Look
+                                </p>
+                                <p className="mb-1 p-text-3">
+                                  Plan your travel with this
+                                </p>
+                              </div>
+                            </div>
+                          </AccordionItemButton>
+                        </AccordionItemHeading>
+                        <AccordionItemPanel>
+                          <p>Inprogress..!!</p>
+                        </AccordionItemPanel>
+                      </AccordionItem>
+                      <AccordionItem>
+                        <AccordionItemHeading>
+                          <AccordionItemButton>
+                            <div class="d-flex align-items-center">
+                              <div>
+                                <img src="/Icons_Outline_Calendar_g.png" />
+                              </div>
+                              <div className="px-3">
+                                <p className="p-text-1 m-0">
+                                  How Difficult Is Hampta Pass Trek
+                                </p>
+                                <p className="mb-1 p-text-3">
+                                  Plan your travel with this
+                                </p>
+                              </div>
+                            </div>
+                          </AccordionItemButton>
+                        </AccordionItemHeading>
+                        <AccordionItemPanel>
+                          <p>Inprogress..!!</p>
+                        </AccordionItemPanel>
+                      </AccordionItem>
+                    </Accordion>
                   </div>
                 </div>
               </div>

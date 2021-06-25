@@ -12,6 +12,7 @@ import {
   SustainableTrekking,
   BookYourTrek,
   OtherTreksLike,
+  QuickItineraryComponent
 } from "./slices";
 
 /**
@@ -45,6 +46,8 @@ const TrekSliceZone = ({ sliceZone }) =>
         return <BookYourTrek slice={slice} key={`slice-${index}`} />;
       case "others_treks_like":
         return <OtherTreksLike slice={slice} key={`slice-${index}`} />;
+      case "whyit_so_different":
+        return <QuickItineraryComponent slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }
