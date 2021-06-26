@@ -125,11 +125,22 @@ export const trekStyle = css.global`
     font-size: 14px;
     color: rgba(112, 112, 112, 1);
     text-transform: capitalize;
-    padding: 6px 0;
+    padding: 7px 0;
+    cursor: pointer;
   }
 
   .right-nav-details.sec-2 > ul > li {
     text-transform: uppercase;
+  }
+
+  .right-nav-details > ul > li.highlight {
+    color: #000000;
+    padding-bottom: 10px;
+  }
+
+  .right-nav-details > ul > li.highlight > span {
+    border-bottom: 2px solid rgba(255,193,0,1);
+    padding: 5px;
   }
 
   .btn-ih-green {

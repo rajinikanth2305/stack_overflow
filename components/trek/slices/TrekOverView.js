@@ -5,6 +5,7 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Sidebar from "../Sidebar";
 /**
  * Trek Banner Slice Components
  */
@@ -75,9 +76,9 @@ const TrekOverView = ({ slice }) => {
   return (
     <>
       <div>
-        <div className="container">
+        {/* <div className="container">
           <div className="row">
-            <div className="col-12 col-lg-10 col-md-12 border-line-right">
+            <div className="col-12 col-lg-10 col-md-12 border-line-right"> */}
               <div className="row my-5 pt-4 mmt-0">
                 <div className="col-12 col-lg-8 col-md-12">
                   <div>
@@ -135,7 +136,7 @@ const TrekOverView = ({ slice }) => {
               </div>
             </div>
             <div className="col-12 col-lg-2 col-md-12 d-m-none">
-              <div className="right-nav-details my-5 pt-4">
+              {/* <div className="right-nav-details my-5 pt-4">
                 <ul>
                   <li>highlights</li>
                   <li>Trek Videos</li>
@@ -150,10 +151,11 @@ const TrekOverView = ({ slice }) => {
                   <li>why trek with indiahikes</li>
                   <li>view dates / register</li>
                 </ul>
-              </div>
-            </div>
+              </div> */}
+              {/* <Sidebar /> */}
+            {/* </div>
           </div>
-        </div>
+        </div> */}
         <style jsx global>
           {trekStyle}
         </style>

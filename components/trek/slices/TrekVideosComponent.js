@@ -6,10 +6,10 @@ const TrekVideosComponent = ({ slice }) => {
   const heading1 = slice.primary.heading1;
   return (
     <div>
-      <div className="container container-custom">
-        <div className="container">
-          <div className="row">
-            <div className="col-12 col-lg-10 col-md-12 border-line-right">
+      {/* <div className="container container-custom"> */}
+        {/* <div className="container"> */}
+          {/* <div className="row"> */}
+            {/* <div className="col-12 col-lg-10 col-md-12 border-line-right"> */}
               <div className="row my-5 mmt-0">
                 <div className="col-12 col-lg-8 col-md-12 mpy-0">
                   <h2 className="trek_video_title_mob d-m-block">
@@ -106,11 +106,11 @@ const TrekVideosComponent = ({ slice }) => {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-12 col-lg-2 col-md-12"> </div>
-          </div>
-        </div>
-      </div>
+            {/* </div> */}
+            {/* <div className="col-12 col-lg-2 col-md-12"> </div> */}
+          {/* </div> */}
+        {/* </div> */}
+      {/* </div> */}
       <style jsx global>
         {trekStyle}
       </style>

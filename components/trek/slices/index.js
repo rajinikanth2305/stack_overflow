@@ -10,4 +10,4 @@ export { default as TrekWhatSays } from "./TrekWhatSays";
 export { default as SustainableTrekking } from "./SustainableTrekking";
 export { default as BookYourTrek } from "./BookYourTrek";
 export { default as OtherTreksLike } from "./OtherTreksLike";
-export { default as QuickItineraryComponent } from "./QuickItineraryComponent";
+// export { default as QuickItineraryComponent } from "./QuickItineraryComponent";
