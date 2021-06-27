@@ -162,9 +162,9 @@ const paginatedText=() => {
                         id="exampleFormControlSelect1"
                         ref={season}
                       >
+                         <option>Winter</option>
                         <option>Summer</option>
                         <option>Autumn</option>
-                        <option>Winter</option>
                         <option>Rainy</option>
                       </select>
                     </div>
