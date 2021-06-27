@@ -11,9 +11,16 @@ import "slick-carousel/slick/slick-theme.css";
 const WhyTrek = ({ slice }) => {
   const heading = slice.primary.heading;
   const pillarImagesArray = slice.items;
+  console.log(pillarImagesArray);
 
   const pillarImages = pillarImagesArray.map((data, i) => {
-    const pillarDesc = data.pillar_desc[0].text;
+    const pillarDesc = data.pillar_desc.map((pd, j) => {
+      return (
+        <>
+          <p key={`pd-${i}`}>{pd.text}</p>
+        </>
+      );
+    });
     return (
       <>
         <div className="card card-shadow" key={`pillar-${i}`}>
@@ -40,7 +47,8 @@ const WhyTrek = ({ slice }) => {
                 </div>
               </div>
               <div>
-                <p>{data.pillar_desc[0].text}</p>
+                {/* <p>{data.pillar_desc[0].text}</p> */}
+                <p>{pillarDesc}</p>
               </div>
             </div>
           </div>
