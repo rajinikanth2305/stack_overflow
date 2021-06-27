@@ -5,7 +5,7 @@ export const founderStyles = css.global`
     max-width: 1600px;
   }
 
-  .founder_title {
+  .title-h2 {
     text-align: left;
     font-family: Lora;
     font-style: normal;
@@ -17,12 +17,24 @@ export const founderStyles = css.global`
     padding: 10px 0;
   }
 
-  .founder_message {
+  .p-text-1 {
+    line-height: 30px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    margin-top: 10px;
+  }
+
+  .p-text-2 {
     text-align: left;
     font-family: Lora;
     font-style: normal;
     font-weight: normal;
-    font-size: 42px;
+    font-size: 16px;
     color: rgba(0, 0, 0, 1);
   }
 
@@ -34,11 +46,30 @@ export const founderStyles = css.global`
     width: 100%;
   }
 
+  .img-margin {
+    margin-top: -40px;
+  }
+
+  .author_name {
+    line-height: 20px;
+    text-align: left;
+    font-family: Brush Script Std;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: rgba(112, 99, 99, 1);
+    margin-top: 30px;
+  }
+
   @media only screen and (max-width: 600px) {
-    .founder_title {
+    .title-h2 {
       line-height: 40px;
       font-size: 36px;
       padding-bottom: 25px;
+    }
+
+    .p-text-1 {
+      font-size: 18px !important;
     }
 
     .founder_message {
@@ -48,6 +79,10 @@ export const founderStyles = css.global`
 
     .founder-image {
       margin-bottom: 25px;
+    }
+
+    .img-margin {
+      margin-top: 0;
     }
   }
 `;
