@@ -69,7 +69,7 @@ const UpcomingTrek = ({ slice }) => {
 
   return (
     <>
-      <div className="mb-5">
+      <div className="mb-5" style={{display: 'none'}}>
         <div className="container container-custom">
           <div className="row">
             <div className="col-lg-6 col-md-12">

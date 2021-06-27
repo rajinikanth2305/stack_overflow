@@ -7,7 +7,9 @@ import Image from "next/image";
  */
 const Founder = ({ slice }) => {
   const title = slice.primary.title1;
+  const sub_title = slice.primary.sub_title;
   const authors = slice.primary.authors;
+  const author_position = slice.primary.author_position;
   const founder_Message = slice.primary.founder_message;
   const imageUrl = slice.primary.image.url;
   const imageWidth = slice.primary.image.dimensions.width;
@@ -16,48 +18,37 @@ const Founder = ({ slice }) => {
 
   return (
     <>
-      {/* <div >
-	<div id="founder_title">
-		<span>{RichText.asText(title)}</span>
-	</div>
-	<div id="Mask_Group_2">
-	<Image  src={imageUrl} width={imageWidth} height ={imageHeight}   />  
-	</div>
-		<div id="founder_msg_paragraph">
-		<span>      
-		{RichText.asText(founder_Message)}
-		</span>
-	   </div>
-	   <div id="authors">
-	   <span>{RichText.asText(authors)}</span>
-	</div>
-      <style jsx global>{founderStyles}</style>
-	</div> */}
       <div className="mb-5">
-        <div className="container container-custom">
+        <div className="container">
           <div className="row">
             <div className="col-lg-6 col-md-12"></div>
             <div className="col-lg-6 col-md-12">
-              <p className="founder_title m-0">{RichText.asText(title)}</p>
+              <h2 className="title-h2 m-0">{RichText.asText(title)}</h2>
+              <p className="p-text-1">{RichText.asText(sub_title)}</p>
             </div>
           </div>
           <div className="row">
             <div className="col-lg-6 col-md-12">
-              <Image src={imageUrl} width={imageWidth} height={imageHeight} layout="responsive" />
-              {/* <img src={imageUrl} className="founder-image" /> */}
+              <div className="img-margin">
+                <Image
+                  src={imageUrl}
+                  width={imageWidth}
+                  height={imageHeight}
+                  layout="responsive"
+                />
+              </div>
             </div>
             <div className="col-lg-6 col-md-12">
-              <p className="founder_message">
+              <p className="p-text-2">
                 <span>{RichText.asText(founder_Message)}</span>
               </p>
-              <p className="founder_message">
-                <span>
-                  Lorem ipsum dolor sit ameet, consectetur adipiscing elit.
-                  Nulla vitae nisl convallis orci varius mollis nec eu mauris.
-                  Curabitur ultrices lobortis tristique. Class aptent taciti
-                  sociosqu ad litora torquent
-                </span>
-              </p>
+              <div>
+                <p className="author_name mb-2">{RichText.asText(authors)}</p>
+              </div>
+              <div>
+                <p className="m-0 p-text-2"><b>{RichText.asText(authors)}</b></p>
+                <p className="m-0 p-text-2"><b>{RichText.asText(author_position)}</b></p>
+              </div>
             </div>
           </div>
         </div>
