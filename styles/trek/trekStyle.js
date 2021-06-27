@@ -342,7 +342,7 @@ export const trekStyle = css.global`
     color: rgba(0, 0, 0, 1);
   }
   .review_title {
-    ine-height: 24px;
+    line-height: 24px;
     text-align: left;
     font-family: Lora;
     font-style: normal;

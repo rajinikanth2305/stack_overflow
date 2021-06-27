@@ -6,6 +6,7 @@ export const ihhomeBannerStyles = css.global`
     height: 700px;
     background-size: cover;
     position: relative;
+    background-position: bottom;
   }
 
   .bg_overlay {
@@ -18,103 +19,105 @@ export const ihhomeBannerStyles = css.global`
   }
 
   .banner-text-sec {
-    top: 245px;
-    position: absolute;
+    // top: 200px;
+    // position: absolute;
     overflow: visible;
     line-height: 56px;
-    margin-top: -4px;
+    // margin-top: -4px;
     text-align: center;
-    font-family: Poppins;
-    width: 95%;
-    padding: 0 110px;
+    // width: 95%;
+    padding: 200px 0;
   }
 
   .banner-text-1 {
+    line-height: 56px;
+    text-align: center;
+    font-family: Franklin Gothic;
     font-style: normal;
+    font-weight: normal;
     font-size: 48px;
     color: rgba(255, 255, 255, 1);
     letter-spacing: 0.1px;
-    text-transform: capitalize;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
   }
 
   .banner-text-2 {
-    line-height: 15px;
+    line-height: 30px;
     text-align: center;
-    font-family: Poppins;
+    font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
     font-size: 24px;
     color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
   }
 
   .banner-text-3 {
-    font-size: 24px;
-    font-style: normal;
-    font-weight: bold;
-    color: rgba(255, 193, 0, 1);
-    text-transform: uppercase;
-  }
-
-  .banner-text-link {
-    line-height: 20px;
+    line-height: 30px;
     text-align: center;
-    font-family: Poppins;
+    font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
-    color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    font-size: 24px;
+    color: rgba(255, 193, 0, 1);
+    text-transform: uppercase;
+    margin-bottom: 40px;
   }
 
   .btn-ih-primary {
     background: rgb(255, 193, 0);
     border-color: rgb(255, 193, 0);
+    border-radius: 3px;
     color: black;
-    font-size: 16px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-family: Franklin Gothic;
   }
 
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
-      display: none;
       position: relative;
+      height: 550px;
+      background-position: -425px 0;
     }
 
-    .banner-image-mobile {
-      display: block;
-      width: 100%;
-      height: 585px;
-      background-position: -183px;
-      position: relative;
-    }
+    // .banner-image-mobile {
+    //   display: block;
+    //   width: 100%;
+    //   height: 585px;
+    //   background-position: -183px;
+    //   position: relative;
+    // }
 
     .banner-text-sec {
-      top: 110px;
       text-align: left;
-      padding: 0px;
+      padding: 80px 15px;
     }
 
     .bg_overlay {
-      height: 585px;
-      background: transparent;
+      height: 550px;
     }
 
     .banner-text-1 {
       font-size: 30px;
       line-height: 36px;
       margin-bottom: 35px;
+      text-align: left;
     }
 
     .banner-text-2 {
       line-height: 22px;
       text-align: left;
       font-size: 16px;
+      font-family: Poppins;
     }
 
     .banner-text-3 {
       line-height: 22px;
       text-align: left;
       font-size: 16px;
+      font-family: Poppins;
+      font-weight: bold;
     }
 
     .banner-text-link {
@@ -131,22 +134,22 @@ export const ihhomeBannerStyles = css.global`
     }
 
     .btn-ih-primary {
-      font-weight: bold;
+      font-weight: normal;
       font-size: 14px;
+      text-transform: capitalize;
     }
   }
 
   @media only screen and (max-width: 900px) and (min-width: 660px) {
     .banner-text-sec {
-      top: 160px;
-      padding: 0px;
+      padding: 100px 0;
     }
   }
 
   @media only screen and (max-width: 1400px) and (min-width: 900px) {
-    .banner-text-sec {
-      top: 230px;
-      padding: 0px;
-    }
+    // .banner-text-sec {
+    //   top: 230px;
+    //   padding: 0px;
+    // }
   }
 `;
