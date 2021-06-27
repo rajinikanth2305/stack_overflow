@@ -68,6 +68,10 @@ export const founderStyles = css.global`
       padding-bottom: 25px;
     }
 
+    .p-text-1 {
+      font-size: 18px !important;
+    }
+
     .founder_message {
       line-height: 24px;
       font-size: 16px;
