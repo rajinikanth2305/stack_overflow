@@ -49,7 +49,8 @@ const Trek = ({ trekData }) => {
 
 export async function getStaticProps({ params, preview = null, previewData = {} }) {
   const { ref } = previewData
-  const trekData = await Client().getByUID("trek", params.uid, ref ? { ref } : null) || {}
+  const trekData  = await Client().getByUID("trek", params.uid, ref ? { ref } : null) || {}
+  console.log(JSON.stringify(trekData));
   return {
     props: {
       preview,
@@ -60,6 +61,7 @@ export async function getStaticProps({ params, preview = null, previewData = {} 
 
 export async function getStaticPaths() {
   const documents = await queryRepeatableDocuments((doc) => doc.type === 'trek')
+ 
   return {
     paths: documents.map(doc => `/trek/${doc.uid}`),
     fallback: true,
