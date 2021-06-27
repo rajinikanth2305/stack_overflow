@@ -10,11 +10,19 @@ const Founder = ({ slice }) => {
   const sub_title = slice.primary.sub_title;
   const authors = slice.primary.authors;
   const author_position = slice.primary.author_position;
-  const founder_Message = slice.primary.founder_message;
+  const founder_Message_List = slice.primary.founder_message;
   const imageUrl = slice.primary.image.url;
   const imageWidth = slice.primary.image.dimensions.width;
   const imageHeight = slice.primary.image.dimensions.height;
   //console.log(JSON.stringify(slice.primary));
+
+  const founder_Message = founder_Message_List.map((data, i) => {
+    return(
+      <>
+        <p key={`fm-${i}`}>{data.text}</p>
+      </>
+    );
+  });
 
   return (
     <>
@@ -40,7 +48,8 @@ const Founder = ({ slice }) => {
             </div>
             <div className="col-lg-6 col-md-12">
               <p className="p-text-2">
-                <span>{RichText.asText(founder_Message)}</span>
+                {/* <span>{RichText.asText(founder_Message)}</span> */}
+                {founder_Message}
               </p>
               <div>
                 <p className="author_name mb-2">{RichText.asText(authors)}</p>
