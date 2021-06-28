@@ -7,6 +7,7 @@ export const ChooseTreks = css.global`
 
   .trek_card {
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    min-height: 475px;
   }
 
   .choose_trek_image {
@@ -65,6 +66,15 @@ export const ChooseTreks = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .title-diplay-3.ts-lable {
+    font-family: Lora;
+    font-size: 18px;
+    line-height: 24px;
+    border-left: 4px solid rgb(255, 193, 0);
+    padding-left: 15px;
+    margin-bottom: 15px;
+  }
+
   .p-display-2 {
     line-height: 18px;
     text-align: left;
@@ -73,6 +83,16 @@ export const ChooseTreks = css.global`
     font-weight: normal;
     font-size: 14px;
     color: rgba(112, 112, 112, 1);
+  }
+
+  .p-text-4 {
+    line-height: 24px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
   }
 
   .btn-ih-green {
@@ -120,13 +140,13 @@ export const ChooseTreks = css.global`
   }
 
   .trekking_world_image_desktop {
-      position:relative;
-      width: 100%;
-      height: 345px;
+    position: relative;
+    width: 100%;
+    height: 345px;
   }
 
   .trekking_world_image_mobile {
-      display: none;
+    display: none;
   }
 
   @media only screen and (max-width: 600px) {
@@ -153,29 +173,29 @@ export const ChooseTreks = css.global`
     }
 
     .order-1 {
-        order: 1;
+      order: 1;
     }
 
     .mm-0 {
-        margin: 0 !important;
+      margin: 0 !important;
     }
 
     .mp-0 {
-        padding: 0 !important;
+      padding: 0 !important;
     }
 
     .mpt-3 {
-        padding: 40px 0 20px;
+      padding: 40px 0 20px;
     }
 
     .trekking_world_image_desktop {
-        display: none;
+      display: none;
     }
 
     .trekking_world_image_mobile {
-        position: relative;
-        display: block;
-        height: 200px;
+      position: relative;
+      display: block;
+      height: 200px;
     }
   }
 `;

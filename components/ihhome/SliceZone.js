@@ -14,7 +14,8 @@ import {
   Gallery,
   FeaturedTreks,
   HomeFooter,
-  LatestTrekkingWorld
+  LatestTrekkingWorld,
+  TrekkersStories
 } from "./slices";
 /**
  * Post slice zone component
@@ -36,6 +37,8 @@ const SliceZone = ({ sliceZone }) =>
         return <ChooseTheseTreks slice={slice} key={`slice-${index}`} />;
       case "latest_trekking_world":
         return <LatestTrekkingWorld slice={slice} key={`slice-${index}`} />;
+      case "trekker_stories":
+        return <TrekkersStories slice={slice} key={`slice-${index}`} />;
       // case "what_trekker_say":
       //   return <WhatTrekkerSay slice={slice} key={`slice-${index}`} />;
       case "experiment_learning":
