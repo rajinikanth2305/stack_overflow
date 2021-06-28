@@ -6,137 +6,70 @@ import Image from "next/image";
  * Home Banner Slice Components
  */
 const Experiment = ({ slice }) => {
-  //console.log(JSON.stringify(slice));
-  const heading1 = slice.primary.experiment_heading;
+  const experimentHeading = slice.primary.experiment_heading;
   const heading2 = slice.primary.experiment_paragraph;
   const expirimentMainImage = slice.primary.expiriment_main_image.url;
-  let top = 4174;
-  // const imageUrl = slice.primary.banner_image.url;
-  // const imageWidth = slice.primary.banner_image.dimensions.width;
-  // const imageHeight = slice.primary.banner_image.dimensions.height;
+  const cardTitle = slice.primary.card_title;
+  const cardDesc = slice.primary.card_desc;
+  const expImageArray = slice.items;
 
-  const imageLayout8 = {
-    backgroundImage: `url('/Intersection_8.png')`,
-    width: "100%",
-    backgroundRepeat: "no-repeat"
-  };
-
-  const imageLayout4 = {
-    backgroundImage: `url('/Intersection_8.png')`,
-    width: "100%",
-    backgroundRepeat: "no-repeat"
-  };
+  const expImage = expImageArray.map((data, i) => {
+    return (
+      <div className="card exp-card mb-4 pb-1 mmx-0">
+        <div className="expImage">
+          <Image
+            src={data.image.url}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="50% 50%"
+          />
+        </div>
+        <div className="p-3">
+          <div className="">
+            <p className="p-text-3 m-0">{data.image_caption[0].text}</p>
+            <p className="p-text-5 m-0">{data.image_subtitle[0].text}</p>
+          </div>
+        </div>
+      </div>
+    );
+  });
 
   return (
     <>
-      {/* <div>
-	<div id="Experiential_Learning_Program">
-		<span>Experiential Learning Program</span>
-	</div>
-	<div id="Lorem_ipsum_dolor_sit_amet_con">
-		<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae nisl convallis orci varius mollis nec eu mauris. Curabitur ultrices lobortis tristique. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed ac cursus velit.</span>
-	</div>
-        { 
-			slice.items.map(item=>{
-				const caption = item.image_caption;
-				const sub_title = item.sub_title;
-		   		const imageUrl = item.image.url;
-            	const imageWidth = item.image.dimensions.width;
-            	const imageHeight =item.image.dimensions.height;
-                const toppx=top+'px';
-
-				const mystyle = {
-				position:"absolute",
-				width:"360px",
-				height:"200px",
-				left:"0px",
-				top:{toppx},
-				overflow:"visible"
-			  };
-
-				<div style={mystyle}>
-    					<Image  src={imageUrl} width={imageWidth} height ={imageHeight}   />
-    				    <div className="experience_image_caption" style={{width: 200}}>{caption}</div>
-				</div>
-			
-			top=top+207;
-			})
-		}
-      <style jsx global>{experimentStyles}</style>
-	</div> */}
-      <div>
-        <div className="exprriment-bg">
+      <div className="mt-5">
+        <div>
           <div className="container">
             <div className="row">
-              <div className="col-lg-6 col-md-12">
-                <p className="exp_title">Experiential Learning</p>
-                <p className="exp_desc">{RichText.asText(heading2)}</p>
+              <div className="col-md-12">
+                <h2 className="exp_title">
+                  {RichText.asText(experimentHeading)}
+                </h2>
               </div>
             </div>
           </div>
         </div>
-        <div className="container container-custom mt-3 mb-5">
+        <div className="container mt-3 mb-5 mmt-0 mmb-0">
           <div className="row">
             <div className="col-lg-8 col-md-12">
-              <div className="imageLayout8">
-                <Image
-                  src={expirimentMainImage}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                />
-                <div className="image_overlay_text_area">
-                  <div className="p-absolute">
-                    <p className="image_overlay_text_title mb-1">
-                      Himalayan Mountain Challenge
-                    </p>
-                    <p className="image_overlay_text_desc">
-                      The Program That Turns Business School Students into
-                      Collaborative Leaders
-                    </p>
+              <p className="exp_desc pb-4 mpb-0">{RichText.asText(heading2)}</p>
+              <div className="card exp-card mt-5 mx-0 mmt-0 mb-4">
+                <div className="expirimentMainImage">
+                  <Image
+                    src={expirimentMainImage}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                  />
+                </div>
+                <div className="p-3">
+                  <div className="">
+                    <p className="p-text-3 m-0">{RichText.asText(cardTitle)}</p>
+                    <p className="p-text-5 m-0">{RichText.asText(cardDesc)}</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-lg-4 col-md-6 m-d-none">
-              <div className="mb-3 imageLayout4">
-                <Image
-                  src={expirimentMainImage}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                />
-                <div className="image_overlay_text_area_layout4">
-                  <div className="p-absolute">
-                    <p className="image_overlay_text_title mb-1">
-                      TREKS FOR Schools
-                    </p>
-                    <p className="image_overlay_text_desc">
-                      An Experiential Learning Trek Can Positively Impact Your
-                      School Students
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="imageLayout4">
-                <Image
-                  src={expirimentMainImage}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                />
-                <div className="image_overlay_text_area_layout4">
-                  <div className="p-absolute">
-                    <p className="image_overlay_text_title mb-1">
-                      TREKS FOR FAMILIES
-                    </p>
-                    <p className="image_overlay_text_desc">
-                      Creating joyful memories through meaningful experiences
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div className="col-lg-4 col-md-6">{expImage}</div>
           </div>
         </div>
         <style jsx global>

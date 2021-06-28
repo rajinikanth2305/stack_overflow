@@ -63,22 +63,67 @@ export const experimentStyles = css.global`
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
   }
+  .exp-card {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+  }
+  .expirimentMainImage {
+    position: relative;
+    height: 480px;
+  }
+  .p-text-3 {
+    line-height: 30px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    color: rgba(0, 0, 0, 1);
+  }
+  .p-text-5 {
+    line-height: 18px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+  }
+  .expImage {
+    position: relative;
+    height: 240px;
+  }
   @media only screen and (max-width: 600px) {
     .exprriment-bg {
       background: transparent;
       margin: 40px 0 0;
       padding: 0;
     }
-  }
-
-  .exp_title {
-    line-height: 40px;
-    text-align: left;
-    font-family: Lora;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 36px;
-    color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    .exp_title {
+      line-height: 40px;
+      text-align: left;
+      font-family: Lora;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 36px;
+      color: rgba(0, 0, 0, 1);
+      text-transform: capitalize;
+    }
+    .expirimentMainImage {
+      position: relative;
+      height: 200px;
+    }
+    .mmt-0 {
+      margin-top: 0px !important;
+    }
+    .mmb-0 {
+      margin-bottom: 0px !important;
+    }
+    .mpb-0 {
+      padding-bottom: 0px !important;
+    }
+    .mmx-0 {
+      margin-left: 0px !important;
+      margin-right: 0px !important;
+    }
   }
 `;
