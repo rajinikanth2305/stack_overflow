@@ -15,7 +15,8 @@ import {
   FeaturedTreks,
   HomeFooter,
   LatestTrekkingWorld,
-  TrekkersStories
+  TrekkersStories,
+  TrekkerVideos
 } from "./slices";
 /**
  * Post slice zone component
@@ -39,6 +40,8 @@ const SliceZone = ({ sliceZone }) =>
         return <LatestTrekkingWorld slice={slice} key={`slice-${index}`} />;
       case "trekker_stories":
         return <TrekkersStories slice={slice} key={`slice-${index}`} />;
+        case "ih_trekker_videos":
+        return <TrekkerVideos slice={slice} key={`slice-${index}`} />;
       // case "what_trekker_say":
       //   return <WhatTrekkerSay slice={slice} key={`slice-${index}`} />;
       case "experiment_learning":

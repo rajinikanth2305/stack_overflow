@@ -1,6 +1,10 @@
 import css from "styled-jsx/css";
 
 export const ChooseTreks = css.global`
+  .container.container-custom {
+    max-width: 1600px;
+  }
+
   .card_sec {
     margin: 20px 0;
   }
@@ -8,6 +12,10 @@ export const ChooseTreks = css.global`
   .trek_card {
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
     min-height: 475px;
+  }
+
+  .video_trek_card {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
   }
 
   .choose_trek_image {
@@ -30,6 +38,26 @@ export const ChooseTreks = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
+    position: absolute;
+    left: 10px;
+    top: 5px;
+  }
+
+  .trek_video_badge {
+    position: relative;
+    z-index: 99;
+    margin-top: -40px;
+  }
+
+  .trek_video_badge > span {
+    line-height: 18px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
     color: rgba(0, 0, 0, 1);
     text-transform: uppercase;
     position: absolute;
@@ -147,6 +175,32 @@ export const ChooseTreks = css.global`
 
   .trekking_world_image_mobile {
     display: none;
+  }
+
+  .ih_trekker_videos_image {
+    position: relative;
+    width: 100%;
+    height: 126px;
+  }
+
+  .p-text-5 {
+    line-height: 17.5px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .video_views {
+    line-height: 16px;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    color: rgba(112, 112, 112, 1);
   }
 
   @media only screen and (max-width: 600px) {
