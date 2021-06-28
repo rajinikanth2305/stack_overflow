@@ -7,7 +7,7 @@ export { ihheaderStyles, ihbodyStyles,ihhomeBannerStyles,
     whatTrekkerSayStyles,
     experimentStyles,weeklyMailerStyles,
     trekWithStyles,homeFooterStyles,galleryStyles,doItStyles,featuredTrekStyles, 
-    latestUpdatesTrekkingsStyles } from "./hikes";
+    latestUpdatesTrekkingsStyles, ChooseTreks } from "./hikes";
 
 
     export { upcomingTrekPageStyle } from "./upcomingtreks";
