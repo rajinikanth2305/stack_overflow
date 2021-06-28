@@ -98,7 +98,7 @@ export const experimentStyles = css.global`
   .cross-trek-details {
     padding: 100px 50px;
   }
-  .bg_overlay {
+  .cross_bg_overlay {
     height: 545px;
     background: rgba(0, 0, 0, 0.2);
   }

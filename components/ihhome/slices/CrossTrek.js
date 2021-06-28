@@ -21,7 +21,7 @@ const CrossTrek = ({ slice }) => {
         <div className="container container-custom mt-3 mb-5 mmt-0 mmb-0">
           <div class="cross-trek-image-bg" style={crossTrekImagebg}>
             <div className="cross-trek-section">
-              <div class="bg_overlay">
+              <div class="cross_bg_overlay">
                 <div className="row">
                   <div className="col-lg-6 col-md-12"></div>
                   <div className="col-lg-6 col-md-12">
