@@ -38,5 +38,9 @@ export const annoumentStyles = css.global`
       font-style: italic;
       font-size: 16px;
     }
+    .p-text-2.m-p-italic {
+      font-style: italic;
+      font-size: 16px;
+    }
   }
 `;

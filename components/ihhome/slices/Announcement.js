@@ -19,7 +19,7 @@ const Announcement = ({ slice }) => {
                   <p className="p-text-1 text-white m-0">{RichText.asText(heading1)}</p>
                 </div>
                 <div className="col-lg-6 col-md-12">
-                  <p className="p-text-2 text-white m-0">{RichText.asText(heading2)}</p>
+                  <p className="p-text-2 m-p-italic text-white m-0">{RichText.asText(heading2)}</p>
                 </div>
               </div>
             </div>
