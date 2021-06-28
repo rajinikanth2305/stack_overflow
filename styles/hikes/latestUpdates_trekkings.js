@@ -1,6 +1,9 @@
 import css from "styled-jsx/css";
 
 export const latestUpdatesTrekkingsStyles = css.global`
+  .expert-blog-bg {
+    background: rgba(242, 242, 242, 1);
+  }
   .lut_section_title {
     border-bottom: 4px solid rgb(255, 193, 0);
     text-align: left;
@@ -18,21 +21,22 @@ export const latestUpdatesTrekkingsStyles = css.global`
     position: relative;
     width: 100%;
     height: 400px;
-    margin-top: 30px;
+    // margin-top: 30px;
     background-size: cover;
   }
 
   .latest_trek_details {
-    height: 460px;
+    // height: 460px;
+    padding: 45px 35px 30px 35px;
   }
 
   .day_talk_title {
     line-height: 20px;
     text-align: left;
-    font-family: Poppins;
+    font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 18px;
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
   }
@@ -60,7 +64,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
     font-family: Lora;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 16px;
     color: rgba(0, 0, 0, 1);
     margin-bottom: 30px;
   }
@@ -87,10 +91,22 @@ export const latestUpdatesTrekkingsStyles = css.global`
     text-align: left;
     font-family: Lora;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
-    padding: 10px 0;
+  }
+
+  .tw_trek_card {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+  }
+
+  .m-d-block {
+    display: none;
+  }
+
+  .exp-card-blog {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    min-height: 450px;
   }
 
   @media only screen and (max-width: 660px) {
@@ -142,6 +158,9 @@ export const latestUpdatesTrekkingsStyles = css.global`
       font-weight: normal;
       font-size: 14px;
       color: rgba(0, 0, 0, 1);
+    }
+    .m-d-block {
+      display: block;
     }
   }
 `;

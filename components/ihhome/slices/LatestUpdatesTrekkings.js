@@ -15,26 +15,24 @@ const LatestUpdatesTrekkings = ({ slice }) => {
   const latestTrekking_world_array = slice.items;
 
   const latestTrekWorld = latestTrekking_world_array.map(function(data, index) {
-    const img = {
-      backgroundImage: `url('${data.latest_trekking_world_img.url}')`,
-      width: "100%",
-      height: "300px",
-      backgroundRepeat: "no-repeat"
-    };
     return (
       <>
         <div className="col-lg-6 col-md-12" key={index}>
-          <div alt="img" className="latestTrekWorld_bg">
-            <Image
-              src={data.latest_trekking_world_img.url}
-              layout="fill"
-              objectFit="cover"
-              objectPosition="50% 50%"
-            />
+          <div class="card exp-card-blog mx-0">
+            <div alt="img" className="latestTrekWorld_bg">
+              <Image
+                src={data.latest_trekking_world_img.url}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="50% 50%"
+              />
+            </div>
+            <div className="p-3">
+              <p className="latestTrekWorld_caption">
+                {data.latest_trekking_world_img_caption[0].text}
+              </p>
+            </div>
           </div>
-          <p className="latestTrekWorld_caption">
-            {data.latest_trekking_world_img_caption[0].text}
-          </p>
         </div>
       </>
     );
@@ -48,48 +46,50 @@ const LatestUpdatesTrekkings = ({ slice }) => {
 
   return (
     <>
-      <div className="my-5">
+      <div className="mt-5 mb-4 pb-5 expert-blog-bg">
         <div className="container">
           <div className="row">
-            <div className="col-lg-6 col-md-12">
-              <p className="lut_section_title m-0">
+            <div className="col-md-12">
+              <p className="lut_section_title m-0 pt-4">
                 {RichText.asText(Sectiontitle)}
               </p>
             </div>
           </div>
-          <div className="row">
-            <div className="col-lg-6 col-md-12">
-              <div className="latestLrekImage_bg">
-                <Image
-                  src={latestLrekImage}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                />
+          <div className="card tw_trek_card mx-0 my-4">
+            <div className="row">
+              <div className="col-lg-6 col-md-12">
+                <div className="latestLrekImage_bg">
+                  <Image
+                    src={latestLrekImage}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="col-lg-6 col-md-12">
-              <div className="d-flex align-items-center latest_trek_details">
-                <div>
-                  <p className="day_talk_title">
-                    <span>{RichText.asText(dayTalkTitle)}</span>
-                  </p>
-                  <p className="day_trek_talk_title">
-                    {RichText.asText(dayTrekTalkTitle)}
-                  </p>
-                  <p className="day_trek_talk_desc">
-                    {RichText.asText(dayTrekTalkDesc)}
-                  </p>
-                  <p className="name_editor m-0">
-                    By{" "}
-                    <span>
-                      <b>{RichText.asText(nameEditor)}</b>
-                    </span>
-                  </p>
-                  <p className="name_editor">
-                    <span>{dateTrek} | </span>
-                    <span>{RichText.asText(durationTrekRead)} min read</span>
-                  </p>
+              <div className="col-lg-6 col-md-12">
+                <div className="d-flex align-items-center latest_trek_details">
+                  <div>
+                    <p className="day_talk_title">
+                      <span>{RichText.asText(dayTalkTitle)}</span>
+                    </p>
+                    <p className="day_trek_talk_title">
+                      {RichText.asText(dayTrekTalkTitle)}
+                    </p>
+                    <p className="day_trek_talk_desc">
+                      {RichText.asText(dayTrekTalkDesc)}
+                    </p>
+                    <p className="name_editor m-0">
+                      By{" "}
+                      <span>
+                        <b>{RichText.asText(nameEditor)}</b>
+                      </span>
+                    </p>
+                    <p className="name_editor">
+                      <span>{dateTrek} | </span>
+                      <span>{RichText.asText(durationTrekRead)} min read</span>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -100,18 +100,22 @@ const LatestUpdatesTrekkings = ({ slice }) => {
                 <div className="row">{latestTrekWorld}</div>
               </div>
               <div className="col-lg-6 col-md-12">
-                <iframe
-                  width="100%"
-                  height="300"
-                  src="https://www.youtube.com/embed/uOzBmKrZUes"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
-                <p className="latestTrekWorld_caption">
-                  Indiahikes’ Experiential Learning Programs For Schools
-                </p>
+                <div class="card exp-card-blog mx-0">
+                  <iframe
+                    width="100%"
+                    height="300"
+                    src="https://www.youtube.com/embed/uOzBmKrZUes"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                  <div className="p-3">
+                    <p className="latestTrekWorld_caption">
+                      Indiahikes’ Experiential Learning Programs For Schools
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
