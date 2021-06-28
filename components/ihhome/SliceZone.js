@@ -13,7 +13,8 @@ import {
   DoItYourself,
   Gallery,
   FeaturedTreks,
-  HomeFooter
+  HomeFooter,
+  LatestTrekkingWorld
 } from "./slices";
 /**
  * Post slice zone component
@@ -33,8 +34,10 @@ const SliceZone = ({ sliceZone }) =>
         return <WhyTrek slice={slice} key={`slice-${index}`} />;
       case "choose_these_treks":
         return <ChooseTheseTreks slice={slice} key={`slice-${index}`} />;
-      case "what_trekker_say":
-        return <WhatTrekkerSay slice={slice} key={`slice-${index}`} />;
+      case "latest_trekking_world":
+        return <LatestTrekkingWorld slice={slice} key={`slice-${index}`} />;
+      // case "what_trekker_say":
+      //   return <WhatTrekkerSay slice={slice} key={`slice-${index}`} />;
       case "experiment_learning":
         return <Experiment slice={slice} key={`slice-${index}`} />;
       case "latest_update_trekkings":

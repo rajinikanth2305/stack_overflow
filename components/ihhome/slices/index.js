@@ -4,8 +4,8 @@ export { default as Founder } from "./Founder";
 export { default as UpcomingTrek } from "./UpcomingTrek";
 export { default as WhyTrek } from "./Whytreks";
 export { default as ChooseTheseTreks } from "./ChooseTheseTreks";
-
-export { default as WhatTrekkerSay } from "./WhatTrekkerSay";
+export { default as LatestTrekkingWorld } from "./LatestTrekkingWorld";
+// export { default as WhatTrekkerSay } from "./WhatTrekkerSay";
 export { default as Experiment } from "./Experiment";
 export { default as LatestUpdatesTrekkings } from "./LatestUpdatesTrekkings";
 export { default as TrekWithSwathi } from "./TrekWithSwathi";
