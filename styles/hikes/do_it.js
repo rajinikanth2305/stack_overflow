@@ -18,7 +18,7 @@ export const doItStyles = css.global`
     text-transform: capitalize;
     border-bottom: 4px solid rgb(255, 193, 0);
     padding-bottom: 7px;
-    margin: 40px 0;
+    margin: 25px 0;
   }
 
   .doit_desc {
@@ -42,6 +42,16 @@ export const doItStyles = css.global`
     text-transform: uppercase;
     margin-top: -70px;
     padding: 0px 30px;
+  }
+
+  .btn-ih-primary {
+    background: rgb(255, 193, 0);
+    border-color: rgb(255, 193, 0);
+    border-radius: 3px;
+    color: black;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-family: Franklin Gothic;
   }
 
   @media only screen and (max-width: 600px) {

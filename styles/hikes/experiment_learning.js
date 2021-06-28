@@ -1,6 +1,9 @@
 import css from "styled-jsx/css";
 
 export const experimentStyles = css.global`
+  .container.container-custom {
+    max-width: 1600px;
+  }
   #Experiential_Learning_Program {
     left: 20px;
     top: 3810px;
@@ -92,6 +95,55 @@ export const experimentStyles = css.global`
     position: relative;
     height: 240px;
   }
+  .cross-trek-details {
+    padding: 100px 50px;
+  }
+  .bg_overlay {
+    height: 545px;
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .cross-trek-image-bg {
+    position: relative;
+    height: 545px;
+    background-size: cover;
+  }
+  .c-title {
+    text-align: left;
+    font-family: Carbon;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 72px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: uppercase;
+  }
+  .c-description {
+    line-height: 45px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: uppercase;
+  }
+  .c-details {
+    ine-height: 24px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+  }
+  .btn-ih-primary {
+    background: rgb(255, 193, 0);
+    border-color: rgb(255, 193, 0);
+    border-radius: 3px;
+    color: black;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-family: Franklin Gothic;
+  }
   @media only screen and (max-width: 600px) {
     .exprriment-bg {
       background: transparent;
@@ -124,6 +176,16 @@ export const experimentStyles = css.global`
     .mmx-0 {
       margin-left: 0px !important;
       margin-right: 0px !important;
+    }
+    .cross-trek-details {
+      padding: 45px 20px;
+    }
+    .c-title {
+      font-size: 50px;
+    }
+    .c-description {
+      font-size: 30px;
+      line-height: 35px;
     }
   }
 `;

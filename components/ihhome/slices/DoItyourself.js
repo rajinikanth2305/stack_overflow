@@ -78,20 +78,29 @@ const DoItYourself = ({ slice }) => {
         <div>
           <div className="container">
             <div className="row">
-              <div className="col-lg-6 col-md-12">
+              <div className="col-md-12">
                 <div>
                   <p className="doit_title">{RichText.asText(doitTitle)}</p>
+                </div>
+              </div>
+              <div className="col-lg-6 col-md-12">
+                <div>
                   <p className="doit_desc">{RichText.asText(doitDec)}</p>
                 </div>
               </div>
             </div>
           </div>
           <div className="container container-custom">
-            {/* <div className="col-lg-12 col-md-12">
-                <div className="row my-3">{doitImage}</div>
-              </div> */}
             <div className="my-3">
               <Slider {...settings}>{doitImage}</Slider>
+              <div class="mt-4 text-center">
+                <button class="btn btn-lg btn-ih-primary text-capitalized">
+                  {/* <Link href={url}>
+                    <a> {linkButtonText}</a>
+                  </Link> */}
+                  View More DIY Treks
+                </button>
+              </div>
             </div>
           </div>
         </div>

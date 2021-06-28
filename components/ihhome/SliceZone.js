@@ -16,7 +16,8 @@ import {
   HomeFooter,
   LatestTrekkingWorld,
   TrekkersStories,
-  TrekkerVideos
+  TrekkerVideos,
+  CrossTrek
 } from "./slices";
 /**
  * Post slice zone component
@@ -52,10 +53,12 @@ const SliceZone = ({ sliceZone }) =>
         return <TrekWithSwathi slice={slice} key={`slice-${index}`} />;
       case "doit_yourself_trek":
         return <DoItYourself slice={slice} key={`slice-${index}`} />;
-      case "home_photo_gallery":
-        return <Gallery slice={slice} key={`slice-${index}`} />;
-      case "featured_treks":
-        return <FeaturedTreks slice={slice} key={`slice-${index}`} />;
+        case "cross_trek":
+        return <CrossTrek slice={slice} key={`slice-${index}`} />;
+      // case "home_photo_gallery":
+      //   return <Gallery slice={slice} key={`slice-${index}`} />;
+      // case "featured_treks":
+      //   return <FeaturedTreks slice={slice} key={`slice-${index}`} />;
       case "home_footer":
         return <HomeFooter slice={slice} key={`slice-${index}`} />;
       default:
