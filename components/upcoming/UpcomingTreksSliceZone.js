@@ -9,7 +9,8 @@ import {
   UCWinterTreks,
   UCTreksToDo,
   BestTrekToDo,
-  UCDYITreks
+  UCDYITreks,
+  UcCrossTrek,
 } from "./slice";
 
 /**
@@ -39,6 +40,8 @@ const UpComingTreksSliceZone = ({ sliceZone }) =>
         return <UCTreksToDo slice={slice} key={`slice-${index}`} />;
       case "uc_diy_treks":
         return <UCDYITreks slice={slice} key={`slice-${index}`} />;
+        case "uc_cross_trek":
+        return <UcCrossTrek slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }

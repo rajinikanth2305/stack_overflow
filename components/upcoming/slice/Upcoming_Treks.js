@@ -157,7 +157,7 @@ const UpComingTreks = ({ slice }) => {
 
   return (
     <>
-      <div className="section-padd">
+      <div className="pt-5 pb-0">
         <div className="container">
           <div className="row">
             <div className="col-lg-6 col-md-6">
@@ -244,13 +244,13 @@ const UpComingTreks = ({ slice }) => {
 
           {filterResult === true ? (
             <div className="mt-3 mb-5">
-              <div className="container">
+              {/* <div className="container">
                 <h2 className="title-display-2 m-d-none">
                   <span>Filter Results</span>
                 </h2>
-              </div>
-              <div className="yellow-bg-4 mx-3"></div>
-              <div className="container container-custom">
+              </div> */}
+              {/* <div className="yellow-bg-4 mx-3"></div> */}
+              <div className="container">
                 <div className="row">
                   {results.map(function(result, i) {
                     const slice = result.data.body.find(
@@ -261,7 +261,7 @@ const UpComingTreks = ({ slice }) => {
                     const trekCaptions = slice.primary.trek_caption;
                     console.log(trekCaptions);
                     return (
-                      <div className="col-lg-4 col-md-6 px-3" key={i}>
+                      <div className="col-lg-4 col-md-6" key={i}>
                         <div alt="imgs" className="uc_featured_treks_images">
                           <Image
                             src={bannerImage}

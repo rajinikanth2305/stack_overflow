@@ -11,7 +11,7 @@ const IHFooter = () => {
       <div>
         <div className="home_footer_image" style={{marginTop: '0px'}}>
           <Image
-          src="/Intersection_29@2x.png"
+          src="/Intersection_105.png"
           layout="fill"
           objectFit="cover"
           objectPosition="50% 50%"

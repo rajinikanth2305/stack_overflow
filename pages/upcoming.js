@@ -28,7 +28,7 @@ const UpcomingTreks = ({ doc }) => {
         </Head>
         <HikeHeader/>
         <UpComingTreksSliceZone sliceZone={doc.data.body} />
-        <IHTrekWithSwathi />
+        {/* <IHTrekWithSwathi /> */}
         <IHFooter />
       </HomeLayout>
     );
