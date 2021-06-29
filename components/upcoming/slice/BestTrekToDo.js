@@ -118,7 +118,7 @@ const BestTrekToDo = ({ slice }) => {
         <div className="col-6" key={j}>
           <div className="card_sec">
             <div className="card trek_card">
-              <div alt="imgs" className="uc_open_for_small_group_images">
+              <div alt="imgs" className="m-uc_open_for_small_group_images">
                 {data.trek_familytrek === true ? (
                   <div className="trek_badge">
                     <img src="./trek-badge.png" />
@@ -135,28 +135,6 @@ const BestTrekToDo = ({ slice }) => {
                 />
               </div>
               <div class="px-3 py-2">
-                {/* <div className="d-flex align-items-center card-info-text">
-                  <div>
-                    <p>{data.trek_days[0].text} Days</p>
-                  </div>
-                  <div>
-                    <p className="list-dot-style px-1">
-                      <span>.</span>
-                    </p>
-                  </div>
-                  <div>
-                    <p>{data.trek_seasons[0].text}</p>
-                  </div>
-                  <div>
-                    <p className="list-dot-style px-1">
-                      <span>.</span>
-                    </p>
-                  </div>
-                  <div>
-                    <p>{data.trek_guide[0].text}</p>
-                  </div>
-                </div> */}
-
                 <div>
                   <h3 class="m-title-3 text-uppercase">
                     {data.trek_title[0].text}
@@ -191,7 +169,7 @@ const BestTrekToDo = ({ slice }) => {
           </div>
           <div className="row">
             <div className="col-md-12">
-              <p className="p-display-1 mb-4">{RichText.asText(heading2)}</p>
+              <p className="p-display-1 m-d-1 mb-4">{RichText.asText(heading2)}</p>
             </div>
           </div>
           <div className="m-d-none">

@@ -420,8 +420,11 @@ export const upcomingTrekPageStyle = css.global`
       margin-top: 10px !important;
     }
 
-    .uc_open_for_small_group_images {
+    .m-uc_open_for_small_group_images {
       height: 100px;
+      width: 100%;
+      position: relative;
+      border-bottom: 2px solid rgb(255, 193, 0);
     }
 
     .m-title-3 {
@@ -478,6 +481,16 @@ export const upcomingTrekPageStyle = css.global`
 
     .mmt-4 {
       margin-top: 30px;
+    }
+
+    .p-display-1.m-d-1 {
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    .desc-dispaly-1.m-d-1 {
+      font-size: 16px;
+      line-height: 20px;
     }
   }
 `;

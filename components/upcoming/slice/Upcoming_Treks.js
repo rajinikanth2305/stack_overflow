@@ -164,7 +164,7 @@ const UpComingTreks = ({ slice }) => {
               <h1 className="title-display-2">
                 {RichText.asText(upcomingTreksTitle)}
               </h1>
-              <h3 className="desc-dispaly-1">
+              <h3 className="desc-dispaly-1 m-d-1">
                 {RichText.asText(upcomingTreksDesc)}
               </h3>
             </div>

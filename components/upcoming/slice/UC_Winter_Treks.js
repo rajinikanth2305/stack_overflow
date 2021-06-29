@@ -116,6 +116,53 @@ const UCWinterTreks = ({ slice }) => {
     );
   });
 
+  const ucWinterWreksImagesMobileView = ucWinterWreksImagesArray.map(function(data, j) {
+    return (
+      <>
+        <div className="col-6" key={j}>
+          <div className="card_sec">
+            <div className="card trek_card">
+              <div alt="imgs" className="m-uc_open_for_small_group_images">
+                {data.uc_winter_treks_family_trek === true ? (
+                  <div className="trek_badge">
+                    <img src="./trek-badge.png" />
+                    <span>Family Trek</span>
+                  </div>
+                ) : (
+                  ""
+                )}
+                <Image
+                  src={data.uc_winter_treks_images.url}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                />
+              </div>
+              <div class="px-3 py-2">
+                <div>
+                  <h3 class="m-title-3 text-uppercase">
+                    {data.uc_winter_treks_image_caption[0].text}
+                  </h3>
+                  <p className="m-display-2">
+                    {data.uc_winter_treks_image_caption_desc[0].text.length > 125
+                      ? `${data.uc_winter_treks_image_caption_desc[0].text.substring(0, 125)}...`
+                      : data.uc_winter_treks_image_caption_desc[0].text}
+                  </p>
+                  <p className="m-card-info-text m-0">{data.uc_winter_treks_days[0].text} Days</p>
+                  <p className="m-card-info-text m-0">{data.uc_winter_treks_seasons[0].text}</p>
+                  <p className="m-card-info-text">{data.uc_winter_treks_guide[0].text}</p>
+                  <div className="t-2 pb-4">
+                    <button className="btn m-btn-ih-green">View Dates / Register</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  });
+
   return (
     <>
       <div className="mb-5 ucOpenForSmallGroup_sec">
@@ -127,13 +174,16 @@ const UCWinterTreks = ({ slice }) => {
               </h2>
             </div>
             <div className="col-lg-6 col-md-12">
-              <p className="p-display-1">
+              <p className="p-display-1 m-d-1">
                 {RichText.asText(ucWinterTreksDesc)}
               </p>
             </div>
           </div>
-          <div>
+          <div className="m-d-none">
             <Slider {...settings}>{ucWinterWreksImages}</Slider>
+          </div>
+          <div className="m-view-d-block">
+            <div className="row">{ucWinterWreksImagesMobileView}</div>
           </div>
         </div>
         <style jsx global>

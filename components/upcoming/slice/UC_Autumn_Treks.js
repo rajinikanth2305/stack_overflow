@@ -127,7 +127,7 @@ const UCAutnumTreks = ({ slice }) => {
               </h2>
             </div>
             <div className="col-lg-6 col-md-12">
-              <p className="p-display-1">
+              <p className="p-display-1 m-d-1">
                 {RichText.asText(ucAutumnTreksDesc)}
               </p>
             </div>
