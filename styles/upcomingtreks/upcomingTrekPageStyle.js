@@ -154,7 +154,7 @@ export const upcomingTrekPageStyle = css.global`
   }
 
   .btn-bihtn-yellow {
-    background: rgba(255,193,0,1);
+    background: rgba(255, 193, 0, 1);
     border: 0;
     padding: 3px 30px;
     border-radius: 0;
@@ -307,7 +307,7 @@ export const upcomingTrekPageStyle = css.global`
   }
 
   .m-view-d-block {
-	  display: none;
+    display: none;
   }
 
   .slick-prev::before,
@@ -323,13 +323,13 @@ export const upcomingTrekPageStyle = css.global`
   }
 
   .ucFamilyTreks_box {
-    background: rgba(0,40,148,1);
+    background: rgba(0, 40, 148, 1);
     padding: 30px 50px;
     height: 400px;
   }
 
   .ucDyiTreks_box {
-    background: rgba(157,58,11,1);
+    background: rgba(157, 58, 11, 1);
     padding: 30px 50px;
     height: 400px;
   }
@@ -347,7 +347,7 @@ export const upcomingTrekPageStyle = css.global`
     }
 
     .title-display-2 {
-      font-size: 36px;
+      font-size: 24px;
     }
 
     .desc-dispaly-1 {
@@ -409,7 +409,8 @@ export const upcomingTrekPageStyle = css.global`
       height: 250px;
     }
 
-    .ucFamilyTreks_box, .ucDyiTreks_box {
+    .ucFamilyTreks_box,
+    .ucDyiTreks_box {
       padding: 30px 25px;
       height: auto;
     }
@@ -417,6 +418,66 @@ export const upcomingTrekPageStyle = css.global`
     .m-text-center {
       text-align: center;
       margin-top: 10px !important;
+    }
+
+    .uc_open_for_small_group_images {
+      height: 100px;
+    }
+
+    .m-title-3 {
+      text-align: left;
+      font-family: Franklin Gothic;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      color: rgba(0, 0, 0, 1);
+      text-transform: uppercase;
+      line-height: 20px;
+    }
+
+    .m-display-2 {
+      line-height: 16px;
+      text-align: left;
+      font-family: Lora;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 1);
+      text-transform: capitalize;
+    }
+
+    .m-btn-ih-green {
+      background: rgb(91, 133, 70);
+      border: 0;
+      padding: 3px 2px;
+      border-radius: 0;
+      line-height: 24px;
+      text-align: center;
+      font-family: Franklin Gothic;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 1);
+      width: 100%;
+    }
+
+    .m-card-info-text {
+      text-align: left;
+      font-family: Franklin Gothic Book;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 11px;
+      color: rgba(112, 112, 112, 1);
+      text-transform: capitalize;
+    }
+
+    .mmy-2 {
+      margin-top: 10px !important;
+      margin-bottom: 10px !important;
+    }
+
+    .mmt-4 {
+      margin-top: 30px;
     }
   }
 `;

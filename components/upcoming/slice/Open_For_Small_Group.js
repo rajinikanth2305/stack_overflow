@@ -124,7 +124,7 @@ const UCOpenForSmallGroup = ({ slice }) => {
 
   return (
     <>
-      <div className="mb-4 ucOpenForSmallGroup_sec">
+      <div className="mb-4 mmt-4 ucOpenForSmallGroup_sec">
         <div className="container">
           <div className="d-flex align-items-center flex-wrap border-bottom-4 mb-3">
             <div className="col-lg-6 col-md-12">
