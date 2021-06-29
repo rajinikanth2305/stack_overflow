@@ -2,16 +2,14 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { upcomingTrekPageStyle } from "styles";
 import Image from "next/image";
-import { useRouter } from 'next/router';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const UCOpenForSmallGroup = ({ slice }) => {
-  const ucOpenForSmallGroupTitle = slice.primary.uc_open_for_small_group_title;
-  const ucOpenForSmallGroupDesc = slice.primary.uc_open_for_small_group_desc;
-  const ucOpenForSmallGroupImagesArray = slice.items;
-  const router = useRouter()
+const BestTrekToDo = ({ slice }) => {
+  const heading1 = slice.primary.heading1;
+  const heading2 = slice.primary.heading2;
+  const trekToDoImageArray = slice.items;
 
   const settings = {
     dots: true,
@@ -48,22 +46,14 @@ const UCOpenForSmallGroup = ({ slice }) => {
     ]
   };
 
-  const goToTrekPage = (e) => {
-    e.preventDefault()
-    router.push('/trek/hampta_pass');
-  };
-
-  const ucOpenForSmallGroupImages = ucOpenForSmallGroupImagesArray.map(function(
-    data,
-    i
-  ) {
+  const trekToDoImage = trekToDoImageArray.map(function(data, i) {
     return (
       <>
         <div className="mx-2" key={i}>
           <div className="card_sec">
             <div className="card trek_card">
               <div alt="imgs" className="uc_open_for_small_group_images">
-                {data.uc_open_familytrek === true ? (
+                {data.trek_familytrek === true ? (
                   <div className="trek_badge">
                     <img src="./trek-badge.png" />
                     <span>Family Trek</span>
@@ -72,7 +62,7 @@ const UCOpenForSmallGroup = ({ slice }) => {
                   ""
                 )}
                 <Image
-                  src={data.uc_open_for_small_group_images.url}
+                  src={data.trek_to_do_image.url}
                   layout="fill"
                   objectFit="cover"
                   objectPosition="50% 50%"
@@ -81,7 +71,7 @@ const UCOpenForSmallGroup = ({ slice }) => {
               <div class="px-3 py-2">
                 <div className="d-flex align-items-center card-info-text">
                   <div>
-                    <p>{data.uc_open_days[0].text} Days</p>
+                    <p>{data.trek_days[0].text} Days</p>
                   </div>
                   <div>
                     <p className="list-dot-style px-1">
@@ -89,7 +79,7 @@ const UCOpenForSmallGroup = ({ slice }) => {
                     </p>
                   </div>
                   <div>
-                    <p>{data.uc_open_seasons[0].text}</p>
+                    <p>{data.trek_seasons[0].text}</p>
                   </div>
                   <div>
                     <p className="list-dot-style px-1">
@@ -97,21 +87,21 @@ const UCOpenForSmallGroup = ({ slice }) => {
                     </p>
                   </div>
                   <div>
-                    <p>{data.uc_open_guide[0].text}</p>
+                    <p>{data.trek_guide[0].text}</p>
                   </div>
                 </div>
 
                 <div>
                   <h3 class="title-diplay-3 text-uppercase">
-                    {data.uc_open_title[0].text}
+                    {data.trek_title[0].text}
                   </h3>
                   <p className="p-display-2">
-                    {data.uc_open_desc[0].text.length > 125
-                      ? `${data.uc_open_desc[0].text.substring(0, 125)}...`
-                      : data.uc_open_desc[0].text}
+                    {data.trek_desc[0].text.length > 125
+                      ? `${data.trek_desc[0].text.substring(0, 125)}...`
+                      : data.trek_desc[0].text}
                   </p>
                   <div className="float-right pt-2 pb-4">
-                    <button className="btn btn-ih-green" onClick={goToTrekPage}>View Details</button>
+                    <button className="btn btn-ih-green">View Details</button>
                   </div>
                 </div>
               </div>
@@ -124,21 +114,21 @@ const UCOpenForSmallGroup = ({ slice }) => {
 
   return (
     <>
-      <div className="mb-4 ucOpenForSmallGroup_sec">
+      <div className="my-5">
         <div className="container">
-          <div className="d-flex align-items-center flex-wrap border-bottom-4 mb-3">
-            <div className="col-lg-6 col-md-12">
-              <h2 className="title-display-2">
-                {RichText.asText(ucOpenForSmallGroupTitle)}
-              </h2>
-            </div>
-            <div className="col-lg-6 col-md-12">
-              <p className="p-display-1">
-                {RichText.asText(ucOpenForSmallGroupDesc)}
-              </p>
+          <div className="d-flex flex-wrap align-items-center border-bottom-4">
+            <div className="col-md-12">
+              <h2 className="title-display-2">{RichText.asText(heading1)}</h2>
             </div>
           </div>
-          <div><Slider {...settings}>{ucOpenForSmallGroupImages}</Slider></div>
+          <div className="row">
+            <div className="col-md-12">
+              <p className="p-display-1 mb-4">{RichText.asText(heading2)}</p>
+            </div>
+          </div>
+          <div>
+            <Slider {...settings}>{trekToDoImage}</Slider>
+          </div>
         </div>
         <style jsx global>
           {upcomingTrekPageStyle}
@@ -148,4 +138,4 @@ const UCOpenForSmallGroup = ({ slice }) => {
   );
 };
 
-export default UCOpenForSmallGroup;
+export default BestTrekToDo;

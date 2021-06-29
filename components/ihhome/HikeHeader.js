@@ -54,7 +54,7 @@ const HikeHeader = ({ image, headline, description }) => {
     // 	</div>
     //   <style jsx global>{ihheaderStyles}</style>
     // </div>
-    <div>
+    <div className="border-bottom">
       <Navbar light expand="lg" className="container">
         <NavbarBrand href="/">
           <img

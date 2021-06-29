@@ -323,7 +323,13 @@ export const upcomingTrekPageStyle = css.global`
   }
 
   .ucFamilyTreks_box {
-    background: rgba(0,117,106,1);
+    background: rgba(0,40,148,1);
+    padding: 30px 50px;
+    height: 400px;
+  }
+
+  .ucDyiTreks_box {
+    background: rgba(157,58,11,1);
     padding: 30px 50px;
     height: 400px;
   }
@@ -403,11 +409,8 @@ export const upcomingTrekPageStyle = css.global`
       height: 250px;
     }
 
-    .ucFamilyTreks_box {
+    .ucFamilyTreks_box, .ucDyiTreks_box {
       padding: 30px 25px;
-    }
-
-    .ucFamilyTreks_box {
       height: auto;
     }
 
