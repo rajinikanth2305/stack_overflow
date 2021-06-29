@@ -11,6 +11,7 @@ import {
   BestTrekToDo,
   UCDYITreks,
   UcCrossTrek,
+  AllIndiaHikes
 } from "./slice";
 
 /**
@@ -40,8 +41,10 @@ const UpComingTreksSliceZone = ({ sliceZone }) =>
         return <UCTreksToDo slice={slice} key={`slice-${index}`} />;
       case "uc_diy_treks":
         return <UCDYITreks slice={slice} key={`slice-${index}`} />;
-        case "uc_cross_trek":
+      case "uc_cross_trek":
         return <UcCrossTrek slice={slice} key={`slice-${index}`} />;
+      case "uc_allindia_hikes_treks":
+        return <AllIndiaHikes slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }

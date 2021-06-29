@@ -55,6 +55,18 @@ export const upcomingTrekPageStyle = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .title-dispaly-4 {
+    white-space: nowrap;
+    line-height: 48px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
   .desc-dispaly-1 {
     line-height: 30px;
     text-align: left;
@@ -88,6 +100,17 @@ export const upcomingTrekPageStyle = css.global`
     font-weight: normal;
     font-size: 14px;
     color: rgba(112, 112, 112, 1);
+  }
+
+  .p-display-3 {
+    line-height: 20px;
+    text-align: left;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
   }
 
   .ih_card {
@@ -332,6 +355,34 @@ export const upcomingTrekPageStyle = css.global`
     background: rgba(157, 58, 11, 1);
     padding: 30px 50px;
     height: 400px;
+  }
+
+  .badge-green {
+    border-radius: 50%;
+    background: rgba(91, 133, 70, 1);
+    height: 10px;
+    width: 10px;
+  }
+
+  .badge-red {
+    border-radius: 50%;
+    background: rgba(230, 109, 29, 1);
+    height: 10px;
+    width: 10px;
+  }
+
+  .badge-yellow {
+    border-radius: 50%;
+    background: rgba(255, 193, 0, 1);
+    height: 10px;
+    width: 10px;
+  }
+
+  .badge-blue {
+    border-radius: 50%;
+    background: rgba(0, 66, 141, 1);
+    height: 10px;
+    width: 10px;
   }
 
   @media only screen and (max-width: 660px) {

@@ -9,3 +9,4 @@ export { default as UCWinterTreks } from "./UC_Winter_Treks";
 export { default as UCTreksToDo } from "./UC_Treks_To_Do";
 export { default as UCDYITreks } from "./UC_Dyi_Treks";
 export { default as UcCrossTrek } from "./UcCrossTrek";
+export { default as AllIndiaHikes } from "./AllIndiaHikes";
