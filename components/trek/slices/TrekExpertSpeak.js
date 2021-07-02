@@ -23,7 +23,7 @@ const TrekExpertSpeak = ({ slice }) => {
     return (
       <>
         <div className="row mb-4">
-          <div className="col-12 col-lg-8 col-md-12">
+          <div className="col-12 col-lg-7 col-md-12">
             <h5 className="p-text-2 mb-3">
               <b>
                 {i + 1}.{data.what_i_like_content_title[0].text}
@@ -39,6 +39,7 @@ const TrekExpertSpeak = ({ slice }) => {
               })}
             </div>
           </div>
+          <div className="col-12 col-lg-1 col-md-12"></div>
           <div className="col-12 col-lg-4 col-md-12">
             <div className="what_i_like_image">
               <Image
@@ -83,76 +84,46 @@ const TrekExpertSpeak = ({ slice }) => {
         </div>
         <div className="container">
           <div className="row">
-            <div className="col-12 col-lg-10 col-md-12 border-line-right">
-              <div className="row my-5 pt-4 mpt-0">
-                <div className="col-12 col-lg-8 col-md-12">
-                  <div>
-                    <p className="p-text-2">
-                      <span className="quote_style" style={{ float: "none" }}>
-                        ,,
-                      </span>
-                      Hampta Pass is perhaps one of the best treks to do in
-                      Himachal. This trek is close to my heart because I know
-                      Indiahikes put it on the map for trekkers to do. It is a
-                      trek that I would do again. My list of great treks is
-                      incomplete without this one in it.
-                      <span className="quote_style" style={{ float: "right" }}>
-                        ,,
-                      </span>
-                    </p>
-                  </div>
-                </div>
-                <div className="col-12 col-lg-4 col-md-12">
-                  <div>
-                    <p className="author-text">
-                      <Image
-                        src={authorImage}
-                        width={60}
-                        height={60}
-                        className="author_img"
-                      />
-                      {RichText.asText(aboutAuthor)}
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div className="col-12 col-lg-12 col-md-12">
               <div>
                 <div className="mt-5 pt-4 mpt-0">
                   <div className="row">
-                    <div className="col-md-12 col-lg-8 col-md-12">
-                      <h2 className="title-h2">
+                    <div className="col-md-12 col-lg-7 col-md-12">
+                      <h2 className="title-h2 pb-3">
                         {RichText.asText(contentHeading)}
                       </h2>
                       <p className="p-text-1">
                         <b>{RichText.asText(contentHeadingDesc)}</b>
                       </p>
                     </div>
+                    <div className="col-12 col-lg-1 col-md-12"></div>
+                    <div className="col-12 col-lg-4 col-md-12">
+                      <div>
+                        <p className="author-text">
+                          <Image
+                            src={authorImage}
+                            width={60}
+                            height={60}
+                            className="author_img"
+                          />
+                          {RichText.asText(aboutAuthor)}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                   {whatILikeImage}
-                  <div className="d-flex">
-                    <div>
-                      <button className="btn btn-ih-green">Read More</button>
+                  <div className="row mt-custom-top">
+                    <div className="col-lg-7 col-md-12">
+                      <div className="d-flex justify-content-end">
+                        <div>
+                          <button className="btn btn-ih-green">
+                            Read More
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="col-12 col-lg-2 col-md-12 d-m-none">
-              <div className="right-nav-details my-5 pt-4">
-                <ul>
-                  <li>highlights</li>
-                  <li>Trek Videos</li>
-                  <li>Expert Speak</li>
-                  <li>Photo Gallery</li>
-                </ul>
-              </div>
-              <div className="right-nav-details sec-2 my-3">
-                <ul>
-                  <li>Know Your Trek</li>
-                  <li>get ready for your trek</li>
-                  <li>why trek with indiahikes</li>
-                  <li>view dates / register</li>
-                </ul>
               </div>
             </div>
           </div>

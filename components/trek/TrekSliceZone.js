@@ -3,6 +3,7 @@ import {
   TrekBannerWithCaption,
   TrekOverView,
   TrekVideosComponent,
+  WhatSoDifferent,
   TrekExpertSpeak,
   TrekGallery,
   KnowYourTrek,
@@ -11,7 +12,7 @@ import {
   TrekWhatSays,
   SustainableTrekking,
   BookYourTrek,
-  OtherTreksLike,
+  OtherTreksLike
   // QuickItineraryComponent
 } from "./slices";
 
@@ -28,10 +29,12 @@ const TrekSliceZone = ({ sliceZone }) =>
         return <TrekOverView slice={slice} key={`slice-${index}`} />;
       case "trek_videos":
         return <TrekVideosComponent slice={slice} key={`slice-${index}`} />;
-      // case "expert_speak":
-      //   return <TrekExpertSpeak slice={slice} key={`slice-${index}`} />;
-      // case "trek_discovered_pictures":
-      //   return <TrekGallery slice={slice} key={`slice-${index}`} />;
+      case "whyit_so_different":
+        return <WhatSoDifferent slice={slice} key={`slice-${index}`} />;
+      case "expert_speak":
+        return <TrekExpertSpeak slice={slice} key={`slice-${index}`} />;
+      case "trek_discovered_pictures":
+        return <TrekGallery slice={slice} key={`slice-${index}`} />;
       // case "know_your_trek":
       //   return <KnowYourTrek slice={slice} key={`slice-${index}`} />;
       // case "trek_family_trek":
@@ -44,8 +47,8 @@ const TrekSliceZone = ({ sliceZone }) =>
       //   return <SustainableTrekking slice={slice} key={`slice-${index}`} />;
       // case "book_your_trek":
       //   return <BookYourTrek slice={slice} key={`slice-${index}`} />;
-      // case "others_treks_like":
-      //   return <OtherTreksLike slice={slice} key={`slice-${index}`} />;
+      case "others_treks_like":
+        return <OtherTreksLike slice={slice} key={`slice-${index}`} />;
       // case "whyit_so_different":
       //   return <QuickItineraryComponent slice={slice} key={`slice-${index}`} />;
       default:

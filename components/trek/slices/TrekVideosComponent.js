@@ -51,7 +51,7 @@ const TrekVideosComponent = ({ slice }) => {
     return (
       <>
         <div className="mx-2" key={i}>
-          <div>
+          <div class="card card-box-shadow">
             <iframe
               width="100%"
               height="112"
@@ -98,7 +98,7 @@ const TrekVideosComponent = ({ slice }) => {
           <div className="col-12 col-lg-1 col-md-12"></div>
           <div className="col-12 col-lg-4 col-md-12">
             <div>
-              <div className="card">
+              <div className="card card-box-shadow">
                 <iframe
                   width="100%"
                   height="232"
@@ -113,32 +113,6 @@ const TrekVideosComponent = ({ slice }) => {
             <div className="my-5">
               <Slider {...settings}>{videosList}</Slider>
             </div>
-
-            {/* <div>
-              <div className="d-flex align-items-center b-shadow">
-                <div className="col-7">
-                  <div className="card">
-                    <iframe
-                      width="100%"
-                      height="125"
-                      src="https://www.youtube.com/embed/uOzBmKrZUes"
-                      title="YouTube video player"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowfullscreen
-                    ></iframe>
-                  </div>
-                </div>
-                <div>
-                  <p className="p-text-3 px-2">
-                    What is Acute Mountains Sickness (AMS)?
-                  </p>
-                  <p className="trek_summary_desc m-0 px-2">
-                    1,632 views Jun 29, 2020
-                  </p>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

@@ -528,6 +528,10 @@ export const trekStyle = css.global`
     margin-right: 5px;
   }
 
+  .mt-custom-top {
+    marin-top: -50px;
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 36px;
@@ -638,6 +642,10 @@ export const trekStyle = css.global`
       font-style: normal;
       font-weight: normal;
       font-size: 12px;
+    }
+
+    .mt-custom-top {
+      margin-top: -30px;
     }
   }
 `;
