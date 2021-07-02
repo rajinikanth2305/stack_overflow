@@ -37,7 +37,7 @@ const Trek = ({ trekData }) => {
         </Head>
         <HikeHeader/>
         <TrekSliceZone sliceZone={trekData.data.body} />
-        <WhyTrekWithIH />
+        {/* <WhyTrekWithIH /> */}
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
