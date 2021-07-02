@@ -76,39 +76,67 @@ export const trekStyle = css.global`
     border-right: 2px solid rgb(255, 193, 0);
   }
 
-  .trek_fee_bg {
+  .trek_fee_outer_bg {
     background: rgba(255, 193, 0, 1);
-    padding: 5px 10px;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .trek_fee_bg {
+    background: rgba(255, 245, 210, 1);
+    border-radius: 5px;
+    padding: 5px 30px;
   }
 
   .trek_fee_title {
+    line-height: 40px;
     text-align: left;
-    font-family: Poppins;
+    font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 24px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
   }
 
   .trek_fee {
+    line-height: 40px;
     text-align: left;
-    font-family: Lora;
+    font-family: Franklin Gothic;
     font-style: normal;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 36px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+  }
+
+  .trek-info-detail {
+    line-height: 18px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
   }
 
   .trek_gts {
+    line-height: 30px;
     text-align: left;
-    font-family: Poppins;
+    font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: uppercase;
+  }
+
+  .trek_optional_details {
+    line-height: 18px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
   }
 
   .right-nav-details > ul {
@@ -139,7 +167,7 @@ export const trekStyle = css.global`
   }
 
   .right-nav-details > ul > li.highlight > span {
-    border-bottom: 2px solid rgba(255,193,0,1);
+    border-bottom: 2px solid rgba(255, 193, 0, 1);
     padding: 5px;
   }
 
@@ -157,6 +185,20 @@ export const trekStyle = css.global`
     color: rgba(255, 255, 255, 1);
     text-transform: uppercase;
     width: 100%;
+  }
+
+  .btn-ih-green-trek-fee {
+    background: rgb(91, 133, 70);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
+    width: 100%;
+    padding: 0;
   }
 
   .rating_text {
@@ -472,9 +514,23 @@ export const trekStyle = css.global`
     height: 340px;
   }
 
+  .quick-info-bage-outline {
+    border: 2px solid rgba(59, 118, 42, 1);
+    border-radius: 5px;
+    padding: 2px 10px;
+    line-height: 24px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    margin-right: 5px;
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
-      font-size: 42px;
+      font-size: 36px;
     }
 
     .title-h2 {

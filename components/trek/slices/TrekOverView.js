@@ -76,86 +76,124 @@ const TrekOverView = ({ slice }) => {
   return (
     <>
       <div>
-        {/* <div className="container">
-          <div className="row">
-            <div className="col-12 col-lg-10 col-md-12 border-line-right"> */}
-              <div className="row my-5 pt-4 mmt-0">
-                <div className="col-12 col-lg-8 col-md-12">
+        <div className="container">
+          <div className="row my-5 pt-4 mmt-0">
+            <div className="col-12 col-lg-7 col-md-12">
+              <div>
+                <h1 className="title-h1 border-bottom-custom pb-3">
+                  {RichText.asText(heading1)}
+                </h1>
+                <p className="p-text-1 mt-3 mb-2">
+                  <b>{RichText.asText(heading1Subtitle)}</b>
+                </p>
+                <p className="p-text-2 pb-4 mpt-0 mpb-0">
+                  {RichText.asText(heading2)}
+                </p>
+              </div>
+              {/* <div>
+                <Slider {...settings}>{trekSummaryIcon}</Slider>
+              </div> */}
+              <div className="mt-5">
+                <div className="d-flex align-items-center flex-wrap">
                   <div>
-                    <h1 className="title-h1">{RichText.asText(heading1)}</h1>
-                    <p className="p-text-1">
-                      {RichText.asText(heading1Subtitle)}
-                    </p>
-                    <p className="p-text-2 py-4 mpt-0 mpb-0">
-                      {RichText.asText(heading2)}
+                    <p className="quick-info-bage-outline mb-1">
+                      Quick Itinerary
                     </p>
                   </div>
                   <div>
-                    <Slider {...settings}>{trekSummaryIcon}</Slider>
+                    <p className="quick-info-bage-outline mb-1">
+                      What I Like About Hampta Pass Trek
+                    </p>
                   </div>
-                </div>
-                <div className="col-12 col-lg-4 col-md-12">
-                  <div className="card card-box-shadow border-0">
-                    <div className="card-body">
-                      <div className="trek_fee_bg">
-                        <p className="trek_fee_title m-0">Trek Fee</p>
-                        <p className="m-0">
-                          <span className="trek_fee">₹ 9,950</span>{" "}
-                          <span className="trek_gts">+ 5% GST</span>
-                        </p>
-                      </div>
-                      <div className="my-3">
-                        <button className="btn btn-block btn-ih-green">
-                          View Dates / Register
-                        </button>
-                      </div>
-                      <div>
-                        <div className="review_rating_bg">
-                          <p className="rating_text mb-0">
-                            <span>Rated</span>
-                            <span className="mx-3">
-                              <img src="/rating_5.png" alt="rating" />
-                            </span>
-                            <span>4.8/5</span>
-                          </p>
-                          <p className="rating_text mb-0">
-                            <span>
-                              with <b>3700+ Reviews</b> on{" "}
-                            </span>
-                          </p>
-                        </div>
-                      </div>
-                      <div>
-                        <div className="g_review_box p-1">
-                          <p className="m-0">View Google Reviews</p>
-                        </div>
-                      </div>
-                    </div>
+                  <div>
+                    <p className="quick-info-bage-outline mb-1">
+                      Photo Gallery
+                    </p>
+                  </div>
+                  <div>
+                    <p className="quick-info-bage-outline mb-1">FAQs</p>
+                  </div>
+                  <div>
+                    <p className="quick-info-bage-outline mb-1">
+                      Detailed Itinerary
+                    </p>
+                  </div>
+                  <div>
+                    <p className="quick-info-bage-outline mb-1">Trek Safety</p>
+                  </div>
+                  <div>
+                    <p className="quick-info-bage-outline mb-1">Trek Gear</p>
+                  </div>
+                  <div>
+                    <p className="quick-info-bage-outline mb-1">
+                      Sustainabilty
+                    </p>
+                  </div>
+                  <div>
+                    <p className="quick-info-bage-outline mb-1">Best Time</p>
+                  </div>
+                  <div>
+                    <p className="quick-info-bage-outline mb-1">
+                      Travel Pro Tips
+                    </p>
+                  </div>
+                  <div>
+                    <p className="quick-info-bage-outline mb-1">Trek Trivia</p>
+                  </div>
+                  <div>
+                    <p className="quick-info-bage-outline mb-1">Campsites</p>
+                  </div>
+                  <div>
+                    <p className="quick-info-bage-outline mb-1"> Difficulty </p>
+                  </div>
+                  <div>
+                    <p className="quick-info-bage-outline mb-1">Weather</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-12 col-lg-2 col-md-12 d-m-none">
-              {/* <div className="right-nav-details my-5 pt-4">
-                <ul>
-                  <li>highlights</li>
-                  <li>Trek Videos</li>
-                  <li>Expert Speak</li>
-                  <li>Photo Gallery</li>
-                </ul>
+            <div className="col-12 col-lg-1 col-md-12"></div>
+            <div className="col-12 col-lg-4 col-md-12">
+              <div className="card border-0">
+                <div className="card-body trek_fee_outer_bg">
+                  <div className="trek_fee_bg">
+                    <p className="trek_fee_title m-0">Trek Fee</p>
+                    <p className="">
+                      <span className="trek_fee">₹ 9,950</span>{" "}
+                      <span className="trek_gts">+ 5% GST</span>
+                    </p>
+                    <p className="trek-info-detail m-0">
+                      This fee includes everything from basecamp to basecamp.
+                    </p>
+                    <p className="trek-info-detail">
+                      <a>See Inclusions and Exclusions</a>
+                    </p>
+                    <div className="my-3">
+                      <button className="btn btn-block btn-ih-green-trek-fee">
+                        View Dates / Register
+                      </button>
+                    </div>
+                  </div>
+                  <div className="p-3">
+                    <p className="trek_gts mb-2">optional additions</p>
+                    <p className="trek_optional_details">
+                      1.Pickup and Drop from Manali – This costs Rs 5,500 per
+                      vehicle, which is shared by 5-6 trekkers.
+                    </p>
+                    <p className="trek_optional_details">
+                      2.Backpack Offloading – Rs. 1000+ 5% GST for the entire
+                      trek. Cloakroom available free of charge.
+                    </p>
+                    <p className="trek_optional_details m-0">
+                      3.Rental Gear – We have a range of products available on
+                      our rental store. See here
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className="right-nav-details sec-2 my-3">
-                <ul>
-                  <li>Know Your Trek</li>
-                  <li>get ready for your trek</li>
-                  <li>why trek with indiahikes</li>
-                  <li>view dates / register</li>
-                </ul>
-              </div> */}
-              {/* <Sidebar /> */}
-            {/* </div>
+            </div>
           </div>
-        </div> */}
+        </div>
         <style jsx global>
           {trekStyle}
         </style>

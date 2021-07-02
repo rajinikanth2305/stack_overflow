@@ -40,16 +40,16 @@ const TrekBannerWithCaption = ({ slice }) => {
           <div className="container">
             <div className="row">
               <div className="col-6 col-lg-3 col-md-6">
-                <p className="short-info-text m-0">Difficulty: <span className="mx-2 mmx-0">{RichText.asText(difficulty)}</span></p>
+                <p className="short-info-text m-0">Difficulty: <span className="mx-2 mmx-0 md-b">{RichText.asText(difficulty)}</span></p>
               </div>
               <div className="col-6 col-lg-3 col-md-6">
-                <p className="short-info-text m-0">Duration: <span className="mx-2 mmx-0">{RichText.asText(duration)}</span></p>
+                <p className="short-info-text m-0">Duration: <span className="mx-2 mmx-0 md-b">{RichText.asText(duration)}</span></p>
               </div>
               <div className="col-6 col-lg-3 col-md-6">
-                <p className="short-info-text m-0">Highest Altitude: <span className="mx-2 mmx-0">{RichText.asText(altitude)}</span></p>
+                <p className="short-info-text m-0">Highest Altitude: <span className="mx-2 mmx-0 md-b">{RichText.asText(altitude)}</span></p>
               </div>
               <div className="col-6 col-lg-3 col-md-6">
-                <p className="short-info-text m-0">Age: <span className="mx-2 mmx-0">{RichText.asText(age)}</span></p>
+                <p className="short-info-text m-0">Age: <span className="mx-2 mmx-0 md-b">{RichText.asText(age)}</span></p>
               </div>
             </div>
           </div>

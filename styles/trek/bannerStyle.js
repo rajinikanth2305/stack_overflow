@@ -87,7 +87,7 @@ export const bannerStyle = css.global`
 
     .short-info-sec {
       background: linear-gradient(#fff0, black);
-      margin-top: -50px;
+      margin-top: -85px;
       position: relative;
       padding: 10px 0;
     }
@@ -101,6 +101,10 @@ export const bannerStyle = css.global`
     .mmx-0 {
       margin-left: 0px !important;
       margin-right: 0px !important;
+    }
+
+    .md-b {
+      display: block;
     }
   }
 `;
