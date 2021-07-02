@@ -327,11 +327,11 @@ export const trekStyle = css.global`
     height: 700px;
   }
 
-  //   .slick-prev::before,
-  //   .slick-next::before {
-  //     color: #ffc100;
-  //     font-size: 26px;
-  //   }
+  .slick-prev::before,
+  .slick-next::before {
+    color: #ffc100;
+    font-size: 26px;
+  }
 
   .text-green-shade {
     color: rgba(91, 133, 70, 1);
@@ -631,6 +631,13 @@ export const trekStyle = css.global`
 
     .card_sec {
       margin: 5px 0;
+    }
+
+    .quick-info-bage-outline {
+      font-family: Franklin Gothic Book;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
     }
   }
 `;

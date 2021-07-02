@@ -26,8 +26,8 @@ const TrekSliceZone = ({ sliceZone }) =>
         return <TrekBannerWithCaption slice={slice} key={`slice-${index}`} />;
       case "trek_overview":
         return <TrekOverView slice={slice} key={`slice-${index}`} />;
-      // case "trek_videos":
-      //   return <TrekVideosComponent slice={slice} key={`slice-${index}`} />;
+      case "trek_videos":
+        return <TrekVideosComponent slice={slice} key={`slice-${index}`} />;
       // case "expert_speak":
       //   return <TrekExpertSpeak slice={slice} key={`slice-${index}`} />;
       // case "trek_discovered_pictures":

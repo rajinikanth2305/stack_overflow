@@ -153,7 +153,7 @@ const TrekOverView = ({ slice }) => {
               </div>
             </div>
             <div className="col-12 col-lg-1 col-md-12"></div>
-            <div className="col-12 col-lg-4 col-md-12">
+            <div className="col-12 col-lg-4 col-md-12 d-m-none">
               <div className="card border-0">
                 <div className="card-body trek_fee_outer_bg">
                   <div className="trek_fee_bg">
