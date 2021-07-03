@@ -33,7 +33,7 @@ const BookYourTrek = ({ slice }) => {
       <div>
         <div className="container">
           <div className="row">
-            <div className="col-12 col-lg-10 col-md-12 border-line-right">
+            <div className="col-12 col-md-12">
               <div className="row my-5 pt-4 mpt-0">
                 <div className="col-12 col-lg-8 col-md-12">
                   <div>
@@ -93,17 +93,6 @@ const BookYourTrek = ({ slice }) => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="col-12 col-lg-2 col-md-12 d-m-none">
-              <div className="right-nav-details sec-2 my-5 pt-4">
-                <ul>
-                  <li>highlights</li>
-                  <li>Know Your Trek</li>
-                  <li>get ready for your trek</li>
-                  <li>why trek with indiahikes</li>
-                  <li>view dates / register</li>
-                </ul>
               </div>
             </div>
           </div>
