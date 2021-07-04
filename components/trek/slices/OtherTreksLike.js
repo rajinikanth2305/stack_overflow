@@ -60,6 +60,27 @@ const OtherTreksLike = ({ slice }) => {
                 />
               </div>
               <div class="px-3 py-2">
+                <div className="d-flex align-items-center card-info-text">
+                  <div>
+                    <p>{data.days[0].text} Days</p>
+                  </div>
+                  <div>
+                    <p className="list-dot-style px-1">
+                      <span>.</span>
+                    </p>
+                  </div>
+                  <div>
+                    <p>{data.season[0].text}</p>
+                  </div>
+                  <div>
+                    <p className="list-dot-style px-1">
+                      <span>.</span>
+                    </p>
+                  </div>
+                  <div>
+                    <p>{data.level[0].text}</p>
+                  </div>
+                </div>
                 <div>
                   <p class="p-text-1">
                     <b>{data.heading1[0].text}</b>
@@ -69,7 +90,7 @@ const OtherTreksLike = ({ slice }) => {
                       ? `${data.heading2[0].text.substring(0, 125)}...`
                       : data.heading2[0].text}
                   </p>
-                  <div>
+                  {/* <div>
                     <div className="row">
                       <div className="col-6 col-lg-6 col-md-6">
                         <p className="p-text-3 mb-2">
@@ -93,7 +114,7 @@ const OtherTreksLike = ({ slice }) => {
                         <p className="p-text-3 mb-1">Suitable fit beginners; Child friendly</p>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="float-right pt-2 pb-4">
                     <button className="btn btn-ih-green">View Dates</button>
                   </div>

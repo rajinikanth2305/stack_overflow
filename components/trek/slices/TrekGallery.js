@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import TrekkersStoriesCommon from "../../TrekStoriesCommon";
+import TrekkersVideoCommon from "../../TrekkersVidoeCommon";
 
 const TrekGallery = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -99,7 +100,8 @@ const TrekGallery = ({ slice }) => {
           </div>
         </div>
         <div>
-          < TrekkersStoriesCommon />
+          <TrekkersStoriesCommon />
+          <TrekkersVideoCommon />
         </div>
         <style jsx global>
           {trekStyle}

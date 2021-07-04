@@ -43,8 +43,8 @@ const TrekSliceZone = ({ sliceZone }) =>
       //   return <GetReadyForTrek slice={slice} key={`slice-${index}`} />;
       // case "trek_what_trekkers_say":
       //   return <TrekWhatSays slice={slice} key={`slice-${index}`} />;
-      // case "sustainable_trekking":
-      //   return <SustainableTrekking slice={slice} key={`slice-${index}`} />;
+      case "sustainable_trekking":
+        return <SustainableTrekking slice={slice} key={`slice-${index}`} />;
       case "book_your_trek":
         return <BookYourTrek slice={slice} key={`slice-${index}`} />;
       case "others_treks_like":

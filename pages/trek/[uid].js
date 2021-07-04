@@ -13,6 +13,7 @@ import { HikeHeader } from "components/ihhome";
 import IHFooter from "components/Footer";
 import IHTrekWithSwathi from "components/Trek_With_Swathi";
 import WhyTrekWithIH from "../../components/WhyTrekWithIH";
+import CrossTrekCommon from "../../components/CrossTrekCommon";
 /**
  * Trek page component
  */
@@ -39,6 +40,7 @@ const Trek = ({ trekData }) => {
         <TrekSliceZone sliceZone={trekData.data.body} />
         {/* <WhyTrekWithIH /> */}
         <IHTrekWithSwathi />
+        <CrossTrekCommon />
         <IHFooter />
       </HomeLayout>
     );
