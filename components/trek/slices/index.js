@@ -10,5 +10,6 @@ export { default as TrekGallery } from "./TrekGallery";
 // export { default as TrekWhatSays } from "./TrekWhatSays";
 export { default as SustainableTrekking } from "./SustainableTrekking";
 export { default as BookYourTrek } from "./BookYourTrek";
+export { default as SafetyStandards } from "./SafetyStandards";
 export { default as OtherTreksLike } from "./OtherTreksLike";
 // export { default as QuickItineraryComponent } from "./QuickItineraryComponent";

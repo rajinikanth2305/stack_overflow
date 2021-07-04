@@ -2,10 +2,8 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
 import { trekStyle } from "styles";
-import TrekkersStoriesCommon from "../../TrekStoriesCommon";
-import TrekkersVideoCommon from "../../TrekkersVidoeCommon";
 
-const SustainableTrekking = ({ slice }) => {
+const SafetyStandards = ({ slice }) => {
   const heading1 = slice.primary.heading1;
   const bannerImage = slice.primary.banner_image.url;
   const heading2List = slice.primary.heading2;
@@ -30,7 +28,7 @@ const SustainableTrekking = ({ slice }) => {
                     src={bannerImage}
                     layout="fill"
                     objectFit="cover"
-                    objectPosition="top"
+                    objectPosition="center bottom"
                   />
                 </div>
               </div>
@@ -55,10 +53,6 @@ const SustainableTrekking = ({ slice }) => {
             </div>
           </div>
         </div>
-        <div>
-          <TrekkersStoriesCommon />
-          <TrekkersVideoCommon />
-        </div>
         <style jsx global>
           {trekStyle}
         </style>
@@ -67,4 +61,4 @@ const SustainableTrekking = ({ slice }) => {
   );
 };
 
-export default SustainableTrekking;
+export default SafetyStandards;

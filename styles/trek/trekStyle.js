@@ -343,6 +343,13 @@ export const trekStyle = css.global`
     height: 400px;
   }
 
+  .sustainable_img {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    opacity: 0.7;
+  }
+
   .family_terk_box {
     background: rgba(0, 117, 106, 1);
     padding: 30px 50px;
@@ -350,9 +357,11 @@ export const trekStyle = css.global`
   }
 
   .sustainable_box {
-    background: rgba(91, 133, 70, 1);
+    // background: rgba(91, 133, 70, 1);
     padding: 30px 50px;
-    height: 400px;
+    // height: 400px;
+    position: relative;
+    margin-top: -290px;
   }
 
   .btn-bihtn-yellow {
@@ -532,6 +541,15 @@ export const trekStyle = css.global`
     marin-top: -50px;
   }
 
+  .bg_overlay_sustainable {
+    height: 300px;
+    background: rgb(0, 0, 0);
+  }
+
+  .text-center {
+    text-align: center !important;
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 36px;
@@ -623,10 +641,14 @@ export const trekStyle = css.global`
       height: 360px;
     }
 
-    .family_terk_box,
-    .sustainable_box {
+    .family_terk_box {
       padding: 20px 30px;
       height: auto;
+    }
+
+    .sustainable_box {
+      padding: 0px;
+      margin-top: -415px;
     }
 
     .m-btn-block {
@@ -646,6 +668,15 @@ export const trekStyle = css.global`
 
     .mt-custom-top {
       margin-top: -30px;
+    }
+
+    .sustainable_img {
+      height: 500px;
+    }
+
+    .bg_overlay_sustainable {
+      height: 500px;
+      background: rgb(0, 0, 0);
     }
   }
 `;
