@@ -34,6 +34,11 @@ export const trekStyle = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .b-left {
+    border-left: 4px solid rgb(255, 193, 0);
+    padding-left: 15px;
+  }
+
   .p-text-2 {
     line-height: 24px;
     text-align: left;
@@ -48,6 +53,16 @@ export const trekStyle = css.global`
     line-height: 16px;
     text-align: left;
     font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .p-text-3-1 {
+    line-height: 18px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -185,6 +200,21 @@ export const trekStyle = css.global`
     color: rgba(255, 255, 255, 1);
     text-transform: uppercase;
     width: 100%;
+  }
+
+  .btn-ptr {
+    background: rgba(59,118,42,1);
+    border: 0;
+    padding: 10px 30px;
+    border-radius: 0;
+    line-height: 24px;
+    text-align: center;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: uppercase;
   }
 
   .btn-ih-green-trek-fee {
@@ -455,34 +485,35 @@ export const trekStyle = css.global`
 
   .slots-bg {
     background: rgba(255, 193, 0, 0.102);
+    padding: 5px 0;
   }
 
   .badge-green {
-    padding: 0px 10px;
+    padding: 0px 8px;
     border-radius: 50%;
     background: rgba(91, 133, 70, 1);
   }
 
   .badge-red {
-    padding: 0px 10px;
+    padding: 0px 8px;
     border-radius: 50%;
     background: rgba(230, 109, 29, 1);
   }
 
   .badge-yellow {
-    padding: 0px 10px;
+    padding: 0px 8px;
     border-radius: 50%;
     background: rgba(255, 193, 0, 1);
   }
 
   .badge-blue {
-    padding: 0px 10px;
+    padding: 0px 8px;
     border-radius: 50%;
     background: rgba(0, 66, 141, 1);
   }
 
   .badge-white {
-    padding: 0px 10px;
+    padding: 0px 8px;
     border-radius: 50%;
     background: rgb(255, 255, 255);
     border: 1px solid #808080;

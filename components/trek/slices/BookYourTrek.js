@@ -35,7 +35,7 @@ const BookYourTrek = ({ slice }) => {
           <div className="row">
             <div className="col-12 col-md-12">
               <div className="row my-5 pt-4 mpt-0">
-                <div className="col-12 col-lg-8 col-md-12">
+                <div className="col-12 col-lg-6 col-md-12">
                   <div>
                     <h2
                       className="title-h2 pb-3"
@@ -46,25 +46,25 @@ const BookYourTrek = ({ slice }) => {
                     <div className="slots-bg mb-4">
                       <div className="row">
                         <div className="col-6 col-lg-3 col-md-6">
-                          <p className="p-text-4 mb-0">
+                          <p className="p-text-3-1 mb-0">
                             <span className="badge-green mx-2"></span> Slots
                             Available
                           </p>
                         </div>
                         <div className="col-6 col-lg-3 col-md-6">
-                          <p className="p-text-4 mb-0">
+                          <p className="p-text-3-1 mb-0">
                             <span className="badge-red mx-2"></span> Filling
                             Fast{" "}
                           </p>
                         </div>
                         <div className="col-6 col-lg-3 col-md-6">
-                          <p className="p-text-4 mb-0">
+                          <p className="p-text-3-1 mb-0">
                             <span className="badge-yellow mx-2"></span>{" "}
                             Waitlisted Batch
                           </p>
                         </div>
                         <div className="col-6 col-lg-3 col-md-6">
-                          <p className="p-text-4 mb-0">
+                          <p className="p-text-3-1 mb-0">
                             <span className="badge-blue mx-2"></span> Family
                             Trek{" "}
                           </p>
@@ -77,17 +77,21 @@ const BookYourTrek = ({ slice }) => {
                       events={events}
                       startAccessor="start"
                       endAccessor="end"
+                      style={{ height: 500 }}
                     />
                   </div>
                 </div>
-                <div className="col-12 col-lg-4 col-md-12">
+                <div className="col-lg-1 col-md-12"></div>
+                <div className="col-12 col-lg-5 col-md-12">
                   <div className="mt-5 pt-5 mmt-0">
-                    <p className="p-text-4">
+                    <p className="p-text-1 b-left">
                       <b>{RichText.asText(cancelInfoHeading)}</b>
                     </p>
                     <p className="p-text-4">{cancelInfodetails}</p>
-                    <div>
-                      <button className="btn btn-ih-green">
+                    <div className="mt-5 pt-3">
+                      <p className="m-0 p-text-3-1"><b>Selected Hampta Pass Trek Group:</b></p>
+                      <p className="p-text-2"><b>16th to 21st September</b></p>
+                      <button className="btn btn-ptr">
                         Proceed to registration
                       </button>
                     </div>
