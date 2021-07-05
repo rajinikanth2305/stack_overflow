@@ -419,6 +419,21 @@ export const trekStyle = css.global`
     text-transform: uppercase;
   }
 
+  .btn-btn-yellow-new {
+    background: rgba(255, 193, 0, 1);
+    border: 0;
+    padding: 10px 30px;
+    border-radius: 0;
+    line-height: 24px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: #000000;
+    text-transform: capitalized;
+  }
+
   .what_trek_says_bg {
     background: rgba(255, 193, 0, 1);
   }
@@ -614,6 +629,11 @@ export const trekStyle = css.global`
 
   .accordion__item + .accordion__item {
     border-top: 1px solid rgb(255, 193, 0);
+  }
+
+  .trek_qa_bg {
+    background: rgba(59,118,42,1);
+    padding: 20px;
   }
 
   @media only screen and (max-width: 660px) {

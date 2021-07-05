@@ -13,4 +13,5 @@ export { default as BookYourTrek } from "./BookYourTrek";
 export { default as SafetyStandards } from "./SafetyStandards";
 export { default as OtherTreksLike } from "./OtherTreksLike";
 export { default as CampSite } from "./CampSite";
+export { default as TrekQA } from "./TrekQA";
 // export { default as QuickItineraryComponent } from "./QuickItineraryComponent";

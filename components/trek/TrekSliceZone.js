@@ -15,6 +15,7 @@ import {
   OtherTreksLike,
   SafetyStandards,
   CampSite,
+  TrekQA
   // QuickItineraryComponent
 } from "./slices";
 
@@ -49,12 +50,14 @@ const TrekSliceZone = ({ sliceZone }) =>
         return <SustainableTrekking slice={slice} key={`slice-${index}`} />;
       case "book_your_trek":
         return <BookYourTrek slice={slice} key={`slice-${index}`} />;
-        case "safety_standards":
+      case "safety_standards":
         return <SafetyStandards slice={slice} key={`slice-${index}`} />;
       case "others_treks_like":
         return <OtherTreksLike slice={slice} key={`slice-${index}`} />;
       case "camp_sites":
         return <CampSite slice={slice} key={`slice-${index}`} />;
+      case "trek_qa":
+        return <TrekQA slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }
