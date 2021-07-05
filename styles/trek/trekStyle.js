@@ -79,6 +79,16 @@ export const trekStyle = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .p-text-small {
+    line-height: 16px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(112, 112, 112, 1);
+  }
+
   .card-box-shadow {
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
   }
@@ -203,7 +213,7 @@ export const trekStyle = css.global`
   }
 
   .btn-ptr {
-    background: rgba(59,118,42,1);
+    background: rgba(59, 118, 42, 1);
     border: 0;
     padding: 10px 30px;
     border-radius: 0;
@@ -568,6 +578,17 @@ export const trekStyle = css.global`
     margin-right: 5px;
   }
 
+  .quick-info-bage-outline.know_your {
+    white-space: nowrap;
+    line-height: 16px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 1);
+  }
+
   .mt-custom-top {
     marin-top: -50px;
   }
@@ -581,6 +602,20 @@ export const trekStyle = css.global`
     text-align: center !important;
   }
 
+  .campsites_images {
+    position: relative;
+    width: 100%;
+    height: 200px;
+  }
+
+  .pr-3 {
+    padding-right: 40px;
+  }
+
+  .accordion__item + .accordion__item {
+    border-top: 1px solid rgb(255, 193, 0);
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 36px;
@@ -588,6 +623,10 @@ export const trekStyle = css.global`
 
     .title-h2 {
       font-size: 36px;
+    }
+
+    .pr-3 {
+      padding-right: 0;
     }
 
     .p-text-1 {
