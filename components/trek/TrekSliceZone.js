@@ -15,8 +15,8 @@ import {
   OtherTreksLike,
   SafetyStandards,
   CampSite,
-  TrekQA
-  // QuickItineraryComponent
+  TrekQA,
+  QuickItineraryComponent
 } from "./slices";
 
 /**
@@ -58,6 +58,8 @@ const TrekSliceZone = ({ sliceZone }) =>
         return <CampSite slice={slice} key={`slice-${index}`} />;
       case "trek_qa":
         return <TrekQA slice={slice} key={`slice-${index}`} />;
+        case "quick_itinerary":
+        return <QuickItineraryComponent slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }

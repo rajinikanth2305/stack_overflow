@@ -9,7 +9,6 @@ import {
   AccordionItemPanel
 } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
-import QuickItineraryComponent from "./QuickItineraryComponent";
 
 const KnowYourTrek = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -113,7 +112,6 @@ const KnowYourTrek = ({ slice }) => {
                         <AccordionItemPanel>
                           <p>
                             Inprogress..!!
-                            <QuickItineraryComponent slice={slice} />
                           </p>
                         </AccordionItemPanel>
                       </AccordionItem>

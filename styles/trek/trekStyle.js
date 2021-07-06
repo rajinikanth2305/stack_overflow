@@ -49,6 +49,17 @@ export const trekStyle = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .p-text-2-franklin {
+    line-height: 24px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
+  }
+
   .p-text-3 {
     line-height: 16px;
     text-align: left;
@@ -632,8 +643,46 @@ export const trekStyle = css.global`
   }
 
   .trek_qa_bg {
-    background: rgba(59,118,42,1);
+    background: rgba(59, 118, 42, 1);
     padding: 20px;
+  }
+
+  .text-brown-shade {
+    color: rgba(157, 58, 11, 1);
+    font-family: Franklin Gothic;
+    text-transform: uppercase;
+  }
+
+  .itinerary_map_image {
+    position: relative;
+    width: 100%;
+    height: 337px;
+  }
+
+  .important_notice_box {
+    background: rgba(242, 242, 242, 1);
+    border-top: 4px solid rgb(255, 193, 0);
+    padding: 20px 30px;
+    margin-top: 50px;
+    margin-bottom: 25px;
+  }
+
+  .pro_tips_box {
+    padding: 20px 30px;
+    border: 2px solid rgb(255, 193, 0);
+    margin-top: 50px;
+    margin-bottom: 25px;
+  }
+
+  .pro_tips {
+    position: relative;
+    margin-top: -35px !important;
+    left: -40px;
+  }
+
+  .pro_tips > span {
+    background: #ffc100;
+    padding: 5px 10px;
   }
 
   @media only screen and (max-width: 660px) {
