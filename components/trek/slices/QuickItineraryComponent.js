@@ -2,6 +2,8 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
 import { trekStyle } from "styles";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
 
 const QuickItineraryComponent = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -70,6 +72,17 @@ const QuickItineraryComponent = ({ slice }) => {
                   <p className="p-text-2-franklin">IMPORTANT POINTS</p>
                   <p className="p-text-4">{importantNoteListdata}</p>
                 </div>
+                {/* <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+                    <Tab eventKey="home" title="Home">
+                      <h5>Hi</h5>
+                    </Tab>
+                    <Tab eventKey="profile" title="Profile">
+                    <h5>Hkk</h5>
+                    </Tab>
+                    <Tab eventKey="contact" title="Contact" disabled>
+                      <h5>lkkl</h5>
+                    </Tab>
+                  </Tabs> */}
                 <div className="d-flex justify-content-end mt-3">
                   <button class="btn btn-ptr">read Detailed Itinerary</button>
                 </div>

@@ -685,6 +685,29 @@ export const trekStyle = css.global`
     padding: 5px 10px;
   }
 
+  .accordion,
+  .accordion > .card {
+    border: 0;
+  }
+
+  .accordion > .card > .card-header {
+    background: transparent;
+    border: 0;
+    padding: 0;
+  }
+
+  .accordion > .card > .card-header > button {
+    width: 100%;
+    background: transparent;
+    border: 0;
+  }
+
+  .accordion_tab_img {
+    position: relative;
+    width: 100%;
+    height: 30px;
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 36px;

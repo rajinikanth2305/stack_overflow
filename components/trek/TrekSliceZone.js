@@ -39,7 +39,7 @@ const TrekSliceZone = ({ sliceZone }) =>
       case "trek_discovered_pictures":
         return <TrekGallery slice={slice} key={`slice-${index}`} />;
       case "know_your_trek":
-        return <KnowYourTrek slice={slice} key={`slice-${index}`} />;
+        return <KnowYourTrek slice={slice} data={sliceZone} key={`slice-${index}`} />;
       // case "trek_family_trek":
       //   return <FamilyTrek slice={slice} key={`slice-${index}`} />;
       // case "trek_family_trek":

@@ -1,39 +1,79 @@
 import React from "react";
 import { RichText } from "prismic-reactjs";
 import { trekStyle } from "styles";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemHeading,
-  AccordionItemButton,
-  AccordionItemPanel
-} from "react-accessible-accordion";
+import Image from "next/image";
+// import {
+//   Accordion,
+//   AccordionItem,
+//   AccordionItemHeading,
+//   AccordionItemButton,
+//   AccordionItemPanel
+// } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
 
-const KnowYourTrek = ({ slice }) => {
+const KnowYourTrek = ({ slice, data }) => {
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
-  const lnkLabelArray = slice.items;
+  const accordionTabImgArray = slice.items;
+
+  const slice_zone = data;
+  console.log(slice);
 
   const heading2data = heading2.map((data, i) => {
     return <p key={i}>{data.text}</p>;
   });
 
-  const lnkLabel = lnkLabelArray.map((data, i) => {
+  const accordionTabImg = accordionTabImgArray.map((data, i) => {
+    const inner_content_slice_id = data.inner_content_slice_id[0].text;
+    const sliceType = slice_zone.find(
+      x => x.slice_type === data.inner_content_slice_id[0].text
+    );
+    console.log(sliceType);
     return (
       <>
-        <div className="d-flex align-items-center mb-2 border-bottom">
-          <div className="px-3">
-            <img src="/Icons_Outline_Calendar_g.png" />
-          </div>
-          <div className="mx-2 flex-grow-1">
-            <p className="p-text-1 m-0">{data.lnk_label[0].text}</p>
-            <p className="mb-1 p-text-3">Plan your travel with this</p>
-          </div>
-          <div className="mx-2">
-            <img src="/arrow-down.png" />
-          </div>
-        </div>
+        <Accordion>
+          <Card>
+            <Card.Header>
+              <Accordion.Toggle variant="link" eventKey="0">
+                <div className="d-flex align-items-center mb-2 border-bottom">
+                  <div className="px-3">
+                    <img src={data.accordion_tab_img.url} className="accordion_tab_img" />
+                    {/* <div className="accordion_tab_img">
+                    <Image
+                      src={data.accordion_tab_img.url}
+                      layout="fill"
+                      objectFit="contain"
+                      objectPosition="left"
+                    />
+                    </div> */}
+                  </div>
+                  <div className="mx-2 flex-grow-1">
+                    <p className="p-text-1 m-0">
+                      <b>{data.accordion_tab_title[0].text}</b>
+                    </p>
+                    <p className="mb-1 p-text-3-1">
+                      {data.accordion_tab_desc[0].text}
+                    </p>
+                  </div>
+                  <div className="mx-2">
+                    <img src="/arrow-down.png" />
+                  </div>
+                </div>
+              </Accordion.Toggle>
+            </Card.Header>
+            <Accordion.Collapse eventKey="0">
+              <Card.Body>
+                {sliceType.slice_type === "how_does_each_day_looks" ? (
+                  <h5>Inprogress</h5>
+                ) : (
+                  <h5>Inprogress</h5>
+                )}
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+        </Accordion>
       </>
     );
   });
@@ -79,87 +119,13 @@ const KnowYourTrek = ({ slice }) => {
             </div>
             <div className="col-12 col-lg-9 col-md-12">
               <div className="row">
-                <div className="col-12 col-lg-8 col-md-12">
+                <div className="col-12 col-lg-12 col-md-12">
                   <div>
                     <h2 className="title-h2 pb-3">
                       {RichText.asText(heading1)}
                     </h2>
                     <p className="p-text-4 pt-3">{heading2data}</p>
-                    {/* <div className="my-5">{lnkLabel}</div> */}
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div className="mt-5">
-                    <Accordion>
-                      <AccordionItem>
-                        <AccordionItemHeading>
-                          <AccordionItemButton>
-                            <div class="d-flex align-items-center">
-                              <div>
-                                <img src="/Icons_Outline_Calendar_g.png" />
-                              </div>
-                              <div className="px-3">
-                                <p className="p-text-1 m-0">
-                                  <b>How Does Each Day Look</b>
-                                </p>
-                                <p className="mb-1 p-text-3-1">
-                                  Plan your travel with this
-                                </p>
-                              </div>
-                            </div>
-                          </AccordionItemButton>
-                        </AccordionItemHeading>
-                        <AccordionItemPanel>
-                          <p>
-                            Inprogress..!!
-                          </p>
-                        </AccordionItemPanel>
-                      </AccordionItem>
-                      <AccordionItem>
-                        <AccordionItemHeading>
-                          <AccordionItemButton>
-                            <div class="d-flex align-items-center">
-                              <div>
-                                <img src="/Icons_Outline_Calendar_g.png" />
-                              </div>
-                              <div className="px-3">
-                                <p className="p-text-1 m-0">
-                                  <b>How Difficult Is Hampta Pass Trek</b>
-                                </p>
-                                <p className="mb-1 p-text-3-1">
-                                  Plan your travel with this
-                                </p>
-                              </div>
-                            </div>
-                          </AccordionItemButton>
-                        </AccordionItemHeading>
-                        <AccordionItemPanel>
-                          <p>Inprogress..!!</p>
-                        </AccordionItemPanel>
-                      </AccordionItem>
-                      <AccordionItem>
-                        <AccordionItemHeading>
-                          <AccordionItemButton>
-                            <div class="d-flex align-items-center">
-                              <div>
-                                <img src="/Icons_Outline_Calendar_g.png" />
-                              </div>
-                              <div className="px-3">
-                                <p className="p-text-1 m-0">
-                                  <b>Best Time To Do Hampta Pass Trek</b>
-                                </p>
-                                <p className="mb-1 p-text-3-1">
-                                  Plan your travel with this
-                                </p>
-                              </div>
-                            </div>
-                          </AccordionItemButton>
-                        </AccordionItemHeading>
-                        <AccordionItemPanel>
-                          <p>Inprogress..!!</p>
-                        </AccordionItemPanel>
-                      </AccordionItem>
-                    </Accordion>
+                    <div className="my-5">{accordionTabImg}</div>
                   </div>
                 </div>
               </div>
