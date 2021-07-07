@@ -12,6 +12,7 @@ import Image from "next/image";
 import "react-accessible-accordion/dist/fancy-example.css";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
+import HowDoesEachDayLooks from "../accordiontabs/HowDoesEachDayLooks";
 
 const KnowYourTrek = ({ slice, data }) => {
   const heading1 = slice.primary.heading1;
@@ -19,7 +20,7 @@ const KnowYourTrek = ({ slice, data }) => {
   const accordionTabImgArray = slice.items;
 
   const slice_zone = data;
-  console.log(slice);
+  console.log(slice_zone);
 
   const heading2data = heading2.map((data, i) => {
     return <p key={i}>{data.text}</p>;
@@ -37,17 +38,9 @@ const KnowYourTrek = ({ slice, data }) => {
           <Card>
             <Card.Header>
               <Accordion.Toggle variant="link" eventKey="0">
-                <div className="d-flex align-items-center mb-2 border-bottom">
+                <div className="d-flex align-items-center border-bottom">
                   <div className="px-3">
                     <img src={data.accordion_tab_img.url} className="accordion_tab_img" />
-                    {/* <div className="accordion_tab_img">
-                    <Image
-                      src={data.accordion_tab_img.url}
-                      layout="fill"
-                      objectFit="contain"
-                      objectPosition="left"
-                    />
-                    </div> */}
                   </div>
                   <div className="mx-2 flex-grow-1">
                     <p className="p-text-1 m-0">
@@ -66,7 +59,7 @@ const KnowYourTrek = ({ slice, data }) => {
             <Accordion.Collapse eventKey="0">
               <Card.Body>
                 {sliceType.slice_type === "how_does_each_day_looks" ? (
-                  <h5>Inprogress</h5>
+                  <HowDoesEachDayLooks />
                 ) : (
                   <h5>Inprogress</h5>
                 )}

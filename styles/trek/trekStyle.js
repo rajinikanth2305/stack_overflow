@@ -696,16 +696,61 @@ export const trekStyle = css.global`
     padding: 0;
   }
 
+  .accordion > .card > div > .card-body {
+    padding: 0 16px 16px 16px;
+  }
+
   .accordion > .card > .card-header > button {
     width: 100%;
     background: transparent;
     border: 0;
   }
 
+  .nav.card-header-tabs.nav-tabs {
+    margin-bottom: 20px;
+  }
+
+  .nav-item.nav-link.active {
+    background-color: rgb(255, 193, 0) !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    color: #000000;
+  }
+
+  .nav-item.nav-link {
+    background: rgba(255, 193, 0, 0.251) !important;
+    border-radius: 0 !important;
+    color: #000000;
+    padding: 5px 30px !important;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
   .accordion_tab_img {
     position: relative;
     width: 100%;
     height: 30px;
+  }
+
+  .day1-image-1 {
+    position: relative;
+    height: 400px;
+    width: 100%;
+  }
+
+  .day1-image-2 {
+    position: relative;
+    height: 250px;
+    width: 100%;
+  }
+
+  .day1-image-3 {
+    position: relative;
+    height: 125px;
+    width: 100%;
   }
 
   @media only screen and (max-width: 660px) {
