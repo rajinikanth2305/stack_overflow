@@ -80,6 +80,16 @@ export const trekStyle = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .p-text-3-2 {
+    line-height: 16px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+  }
+
   .p-text-4 {
     line-height: 24px;
     text-align: left;
@@ -447,7 +457,7 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 16px;
     color: #000000;
-    text-transform: capitalized;
+    text-transform: capitalize;
   }
 
   .what_trek_says_bg {
@@ -732,6 +742,28 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 16px;
     text-transform: uppercase;
+  }
+
+  .hd-tabs > .nav > .nav-item.nav-link.active {
+    background-color: #ffffff !important;
+    border: 0 !important;
+    border-radius: 5px 5px 0 0 !important;
+    box-shadow: 1px 1px 3px rgba(91, 133, 70, 1);
+    color: #000000;
+  }
+
+  .hd-tabs > .nav > .nav-item.nav-link {
+    background: rgba(157,58,11,1) !important;
+    border-radius: 5px 5px 0 0 !important;
+    color: #ffffff;
+    padding: 10px 30px 10px 10px !important;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    text-transform: capitalize;
+    line-height: 20px;
+    margin: 0px 3px;
   }
 
   .accordion_tab_img {

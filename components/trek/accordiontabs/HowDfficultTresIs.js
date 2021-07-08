@@ -38,11 +38,16 @@ const HowDifficultTrekIs = () => {
     howDiff && howDiff.primary.trek_difficulty_content;
   const howSafeTitle = howDiff && howDiff.primary.content_editor;
   const howSafeContentList = howDiff && howDiff.primary.how_safe_content;
+  const tabsDataArray = howDiff && howDiff.items;
+
+  console.log(tabsDataArray);
 
   const hdText = hdTextList?.map(function(data, i) {
     return (
       <>
-        <p className="p-text-4" key={i}>{data.text}</p>
+        <p className="p-text-4" key={i}>
+          {data.text}
+        </p>
       </>
     );
   });
@@ -61,8 +66,78 @@ const HowDifficultTrekIs = () => {
   const howSafeContent = howSafeContentList?.map(function(data, i) {
     return (
       <>
-        <p className="p-text-4" key={i}>{data.text}</p>
+        <p key={i} className="p-text-4" key={i}>
+          {data.text}
+        </p>
       </>
+    );
+  });
+
+  const tabsData = tabsDataArray?.map(function(data, i) {
+    const title = data.title?.map(function(data, i) {
+      return (
+        <>
+          <p key={i}>{data.text}</p>
+        </>
+      );
+    });
+    const description = data.description?.map(function(data, i) {
+      return (
+        <>
+          <p key={i} className="p-text-3-2">
+            {data.text ? data.text : "-"}
+          </p>
+        </>
+      );
+    });
+    const content1_title = data.content1_title?.map(function(data, i) {
+      return (
+        <>
+          <p key={i} className="p-text-4">
+            <b>
+              {i + 1}. {data.text ? data.text : "-"}
+            </b>
+          </p>
+        </>
+      );
+    });
+    const content1_data = data.content1_data?.map(function(data, i) {
+      return (
+        <>
+          <p key={i} className="p-text-3-2">
+            {data.text ? data.text : "-"}
+          </p>
+        </>
+      );
+    });
+    const content2_title = data.content2_title?.map(function(data, i) {
+      return (
+        <>
+          <p key={i} className="p-text-4">
+            <b>
+              {i + 2}. {data.text ? data.text : "-"}
+            </b>
+          </p>
+        </>
+      );
+    });
+    const content2_data = data.content2_data?.map(function(data, i) {
+      return (
+        <>
+          <p key={i} className="p-text-3-2">
+            {data.text ? data.text : "-"}
+          </p>
+        </>
+      );
+    });
+    return (
+      <Tab eventKey={`tab` + data.title[0].text} title={data.title[0].text}>
+        {description}
+        <div>{content1_title}</div>
+        {content1_data}
+        <div>{content2_title}</div>
+        {content2_data}
+      </Tab>
     );
   });
 
@@ -109,6 +184,9 @@ const HowDifficultTrekIs = () => {
                 </p>
                 {howSafeContent}
               </div>
+            </div>
+            <div className="hd-tabs">
+              <Tabs id="uncontrolled-tab-example">{tabsData}</Tabs>
             </div>
           </div>
         </div>
