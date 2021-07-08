@@ -13,6 +13,7 @@ import "react-accessible-accordion/dist/fancy-example.css";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import HowDoesEachDayLooks from "../accordiontabs/HowDoesEachDayLooks";
+import HowDifficultTrekIs from "../accordiontabs/HowDfficultTresIs";
 
 const KnowYourTrek = ({ slice, data }) => {
   const heading1 = slice.primary.heading1;
@@ -61,7 +62,7 @@ const KnowYourTrek = ({ slice, data }) => {
                 {sliceType.slice_type === "how_does_each_day_looks" ? (
                   <HowDoesEachDayLooks />
                 ) : (
-                  <h5>Inprogress</h5>
+                  <HowDifficultTrekIs />
                 )}
               </Card.Body>
             </Accordion.Collapse>

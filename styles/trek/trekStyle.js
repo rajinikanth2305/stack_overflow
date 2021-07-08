@@ -372,6 +372,11 @@ export const trekStyle = css.global`
     border-bottom: 4px solid rgb(255, 193, 0);
   }
 
+  .border-bottom-green {
+    border-bottom: 2px solid rgb(172, 194, 162);
+    padding-bottom: 15px;
+  }
+
   .discovery_trek_gallery {
     position: relative;
     width: 100%;
@@ -750,6 +755,12 @@ export const trekStyle = css.global`
   .day1-image-3 {
     position: relative;
     height: 125px;
+    width: 100%;
+  }
+
+  .hd_heading_image {
+    position: relative;
+    height: 70px;
     width: 100%;
   }
 
