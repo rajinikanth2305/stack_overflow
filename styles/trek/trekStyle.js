@@ -744,6 +744,16 @@ export const trekStyle = css.global`
     text-transform: uppercase;
   }
 
+  .hd-tabs > div.tab-content {
+    padding: 15px;
+    box-shadow: 1px 1px 3px rgb(157, 58, 11);
+    margin-left: -5px;
+  }
+
+  .hd-tabs > .nav.card-header-tabs.nav-tabs {
+    margin-bottom: 0;
+  }
+
   .hd-tabs > .nav > .nav-item.nav-link.active {
     background-color: #ffffff !important;
     border: 0 !important;
@@ -753,7 +763,7 @@ export const trekStyle = css.global`
   }
 
   .hd-tabs > .nav > .nav-item.nav-link {
-    background: rgba(157,58,11,1) !important;
+    background: rgba(157, 58, 11, 1) !important;
     border-radius: 5px 5px 0 0 !important;
     color: #ffffff;
     padding: 10px 30px 10px 10px !important;
@@ -793,6 +803,18 @@ export const trekStyle = css.global`
   .hd_heading_image {
     position: relative;
     height: 70px;
+    width: 100%;
+  }
+
+  .hd-tab2-iamge {
+    position: relative;
+    height: 280px;
+    width: 100%;
+  }
+
+  .hd-tab4-iamge {
+    position: relative;
+    height: 495px;
     width: 100%;
   }
 

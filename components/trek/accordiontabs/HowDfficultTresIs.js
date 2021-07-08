@@ -132,7 +132,31 @@ const HowDifficultTrekIs = () => {
     });
     return (
       <Tab eventKey={`tab` + data.title[0].text} title={data.title[0].text}>
+        {data.title[0].text === "Safety – Altitude Wise" ? (
+          <div class="hd-tab2-iamge mb-4">
+            <Image
+              src={data.heading1_image.url}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="50% 50%"
+            />
+          </div>
+        ) : (
+          ""
+        )}
         {description}
+        {data.title[0].text === "Exit Points & Emergency Details" ? (
+          <div class="hd-tab4-iamge mb-4">
+            <Image
+              src={data.heading1_image.url}
+              layout="fill"
+              objectFit="contain"
+              objectPosition="bottom"
+            />
+          </div>
+        ) : (
+          ""
+        )}
         <div>{content1_title}</div>
         {content1_data}
         <div>{content2_title}</div>
