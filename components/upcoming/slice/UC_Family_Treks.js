@@ -2,6 +2,7 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { upcomingTrekPageStyle } from "styles";
 import Image from "next/image";
+import Link from "next/link";
 
 const UCFamilyTreks = ({ slice }) => {
   const ucFamilyTreksImage = slice.primary.uc_family_treks_image.url;
@@ -32,7 +33,9 @@ const UCFamilyTreks = ({ slice }) => {
                   {RichText.asText(ucFamilyTreksDesc)}
                 </p>
                 <div className="mt-5 pt-3 m-text-center">
-                  <button className="btn btn-bihtn-yellow">Read More</button>
+                  <Link href="../../../familytrek">
+                    <button className="btn btn-bihtn-yellow">Read More</button>
+                  </Link>
                 </div>
               </div>
             </div>

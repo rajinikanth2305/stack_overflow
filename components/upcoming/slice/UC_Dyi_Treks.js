@@ -2,6 +2,7 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { upcomingTrekPageStyle } from "styles";
 import Image from "next/image";
+import Link from "next/link";
 
 const UCDYITreks = ({ slice }) => {
   const ucDiyTrekImage = slice.primary.uc_diy_trek_image.url;
@@ -32,7 +33,9 @@ const UCDYITreks = ({ slice }) => {
                   {RichText.asText(ucDiyTrekDesc)}
                 </p>
                 <div className="mt-5 pt-3 m-text-center">
-                  <button className="btn btn-bihtn-yellow">Read More</button>
+                  <Link href="../../../diy">
+                    <button className="btn btn-bihtn-yellow">Read More</button>
+                  </Link>
                 </div>
               </div>
             </div>
