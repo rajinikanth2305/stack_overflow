@@ -5,6 +5,7 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Link from "next/link";
 
 const TrekQA = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -28,9 +29,11 @@ const TrekQA = ({ slice }) => {
               <div className="col-6">
                 <p className="p-text-4 text-white m-0">{heading2data}</p>
                 <div className="mt-4">
-                  <button className="btn btn-btn-yellow-new">
-                    Click here For Frequently Asked Questions
-                  </button>
+                  <Link href="../../../faq">
+                    <button className="btn btn-btn-yellow-new">
+                      Click here For Frequently Asked Questions
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>

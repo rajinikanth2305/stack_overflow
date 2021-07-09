@@ -4,6 +4,8 @@ import { trekStyle } from "styles";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import Link from "next/link";
+
 const localizer = momentLocalizer(moment);
 
 const BookYourTrek = ({ slice }) => {
@@ -89,11 +91,17 @@ const BookYourTrek = ({ slice }) => {
                     </p>
                     <p className="p-text-4">{cancelInfodetails}</p>
                     <div className="mt-5 pt-3">
-                      <p className="m-0 p-text-3-1"><b>Selected Hampta Pass Trek Group:</b></p>
-                      <p className="p-text-2"><b>16th to 21st September</b></p>
-                      <button className="btn btn-ptr">
-                        Proceed to registration
-                      </button>
+                      <p className="m-0 p-text-3-1">
+                        <b>Selected Hampta Pass Trek Group:</b>
+                      </p>
+                      <p className="p-text-2">
+                        <b>16th to 21st September</b>
+                      </p>
+                      <Link href="../../../registration">
+                        <button className="btn btn-ptr">
+                          Proceed to registration
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>

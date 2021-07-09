@@ -181,6 +181,7 @@ export const ChooseTreks = css.global`
     position: relative;
     width: 100%;
     height: 126px;
+    cursor: pointer;
   }
 
   .p-text-5 {
@@ -201,6 +202,25 @@ export const ChooseTreks = css.global`
     font-weight: normal;
     font-size: 11px;
     color: rgba(112, 112, 112, 1);
+  }
+
+  .modal-body {
+    padding: 0;
+  }
+
+  .modal-content {
+    background-color: transparent;
+    border: 0;
+  }
+
+  .modal-header > button {
+    background: transparent;
+    border: 0;
+    color: white;
+  }
+
+  .modal-header > button > span {
+    padding: 5px;
   }
 
   @media only screen and (max-width: 600px) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -6,15 +6,22 @@ import { ChooseTreks } from "styles";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 const TrekkerVideos = ({ slice }) => {
   const ihTrekkerVideosImageArray = slice.items;
+  const [show, setShow] = useState(false);
+  const [trekVideoUrl, setTrekVideoUrl] = useState();
   //   const router = useRouter();
 
   //   const goToTrekPage = (e) => {
   //     e.preventDefault()
   //     router.push('/trek/hampta_pass');
   //   };
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const settings = {
     dots: true,
@@ -64,17 +71,27 @@ const TrekkerVideos = ({ slice }) => {
                   layout="fill"
                   objectFit="cover"
                   objectPosition="50% 50%"
+                  onClick={() => {
+                    setTrekVideoUrl(data.ih_trekker_video_link.url);
+                    setShow(true);
+                  }}
                 />
               </div>
               <div class="px-3 py-2">
                 <div>
-                  <p className="p-text-5 mb-1">{data.ih_trekker_videos_title[0].text}</p>
+                  <p className="p-text-5 mb-1">
+                    {data.ih_trekker_videos_title[0].text}
+                  </p>
                   <div className="d-flex alifn-center justify-content-between video_views">
                     <div>
-                      <p className="m-0">{data.ih_trekker_videos_views[0].text} views</p>
+                      <p className="m-0">
+                        {data.ih_trekker_videos_views[0].text} views
+                      </p>
                     </div>
                     <div>
-                    <p className="m-0">{data.ih_trekker_videos_date[0].text} views</p>
+                      <p className="m-0">
+                        {data.ih_trekker_videos_date[0].text} views
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -102,6 +119,22 @@ const TrekkerVideos = ({ slice }) => {
           {ChooseTreks}
         </style>
       </div>
+      <Modal size="lg" show={show} onHide={handleClose} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <iframe
+            width="100%"
+            height="500"
+            src={trekVideoUrl && trekVideoUrl}
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
