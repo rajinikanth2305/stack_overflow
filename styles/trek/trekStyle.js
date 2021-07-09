@@ -831,10 +831,43 @@ export const trekStyle = css.global`
     text-transform: capitalize;
     margin: 0 1px;
   }
-  
+
   .bt-highlight-year-tabs {
     background: rgb(0, 59, 137);
     color: #ffffff;
+  }
+
+  .why_so_video_image {
+    position: relativel;
+    height: 250px;
+    width: 100%;
+  }
+
+  .modal-body {
+    padding: 0;
+  }
+
+  .modal-content {
+    background-color: transparent;
+    border: 0;
+  }
+
+  .modal-header > button {
+    background: transparent;
+    border: 0;
+    color: white;
+  }
+
+  .modal-header > button > span {
+    padding: 5px;
+  }
+
+  .paly-icon {
+    position: absolute;
+    top: 30%;
+    left: 35%;
+    z-index: 999;
+    cursor: pointer;
   }
 
   @media only screen and (max-width: 660px) {
