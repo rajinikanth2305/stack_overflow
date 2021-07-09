@@ -14,6 +14,7 @@ import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import HowDoesEachDayLooks from "../accordiontabs/HowDoesEachDayLooks";
 import HowDifficultTrekIs from "../accordiontabs/HowDfficultTresIs";
+import BestTimeToDo from "../accordiontabs/BestTimeToDo";
 
 const KnowYourTrek = ({ slice, data }) => {
   const heading1 = slice.primary.heading1;
@@ -61,7 +62,7 @@ const KnowYourTrek = ({ slice, data }) => {
               <Card.Body>
                 {sliceType.slice_type === "how_does_each_day_looks" ? (
                   <HowDoesEachDayLooks />
-                ) : (
+                ) : sliceType.slice_type === "best_time_to_do_trek" ? <BestTimeToDo /> : (
                   <HowDifficultTrekIs />
                 )}
               </Card.Body>

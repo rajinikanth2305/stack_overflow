@@ -818,6 +818,25 @@ export const trekStyle = css.global`
     width: 100%;
   }
 
+  .bt-year-tabs {
+    background: rgb(191, 220, 217);
+    padding: 5px 15px;
+    line-height: 18px;
+    text-align: center;
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    margin: 0 1px;
+  }
+  
+  .bt-highlight-year-tabs {
+    background: rgb(0, 59, 137);
+    color: #ffffff;
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 36px;
