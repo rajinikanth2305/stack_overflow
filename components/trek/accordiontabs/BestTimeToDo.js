@@ -59,6 +59,11 @@ const BestTimeToDo = () => {
   const btImage3 = bestTimeToDo && bestTimeToDo.primary.btimage3.url;
   const btImage4 = bestTimeToDo && bestTimeToDo.primary.btimage4.url;
 
+  const importantNoteTitle =
+    bestTimeToDo && bestTimeToDo.primary.important_note_title;
+  const importantNoteContent =
+    bestTimeToDo && bestTimeToDo.primary.important_note_content;
+
   const content1 = content1List?.map(function(data, i) {
     return (
       <>
@@ -269,6 +274,11 @@ const BestTimeToDo = () => {
               </span>
             </p>
             {content3}
+          </div>
+
+          <div className="important_notice_box">
+            <p className="p-text-2-franklin">{RichText.asText(importantNoteTitle)}</p>
+            <p className="p-text-4">{RichText.asText(importantNoteContent)}</p>
           </div>
         </div>
         <style jsx global>
