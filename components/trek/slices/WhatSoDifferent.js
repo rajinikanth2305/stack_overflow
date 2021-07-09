@@ -34,18 +34,16 @@ const WhatSoDifferent = ({ slice }) => {
             <div className="col-12 col-lg-1 col-md-12"></div>
             <div className="col-12 col-lg-4 col-md-12 mb-5">
               <div className="card card-box-shadow">
-                {/* <iframe
-                  width="100%"
-                  height="250"
-                  src={videoUrl}
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe> */}
                 <div className="why_so_video_image">
-                  <div>
-                    <img src="/v-icon.png" alt="playicon'" className="paly-icon"  onClick={handleShow} />
+                  <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                    <div className="text-center">
+                      <img
+                        src="/v-icon.png"
+                        alt="playicon'"
+                        className="paly-icon icon-size-50"
+                        onClick={handleShow}
+                      />
+                    </div>
                   </div>
                   <Image
                     src={videoImage}

@@ -863,11 +863,32 @@ export const trekStyle = css.global`
   }
 
   .paly-icon {
-    position: absolute;
-    top: 30%;
-    left: 35%;
+    position: relative;
     z-index: 999;
     cursor: pointer;
+  }
+
+  .icon-size-50 {
+    width: 50px;
+  }
+
+  .icon-size-70 {
+    width: 70px;
+  }
+
+  .trek_video_image_array {
+    position: relative;
+    height: 112px;
+  }
+
+  .terk-videos-promary-image {
+    position: relative;
+    height: 375px;
+  }
+
+  .terk-videos-secondary-image {
+    position: relative;
+    height: 230px;
   }
 
   @media only screen and (max-width: 660px) {
