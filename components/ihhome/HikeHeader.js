@@ -72,16 +72,19 @@ const HikeHeader = ({ image, headline, description }) => {
               <NavLink className={router.pathname == "/upcoming" ? "active" : ""}><Link href="../../../upcoming">Upcoming Treks</Link></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink><Link href="../post">Trek to Learn</Link></NavLink>
+              <NavLink><Link href="../post">Experiential Learning</Link></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className={router.pathname == "/diy" ? "active" : ""}><Link href="../../../diy">DIY</Link></NavLink>
+              <NavLink className={router.pathname == "/diy" ? "active" : ""}><Link href="../../../diy">DIY treks</Link></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">Expert Blogs</NavLink>
+              <NavLink href="#">Contact Us</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className={router.pathname == "/aboutus" ? "active" : ""}><Link href="../../../aboutus">About</Link></NavLink>
+              <NavLink className={router.pathname == "/aboutus" ? "active" : ""}><Link href="../../../aboutus">Our Story</Link></NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="#">Careers</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
