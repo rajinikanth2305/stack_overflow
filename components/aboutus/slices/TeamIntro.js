@@ -2,6 +2,7 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { aboutUsStyles } from "styles";
 import Image from "next/image";
+import OurTeam from "./OurTeam";
 
 const TeamIntro = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -60,6 +61,7 @@ const TeamIntro = ({ slice }) => {
               </div>
             </div>
           </div>
+          <OurTeam />
         </div>
         <style jsx global>
           {aboutUsStyles}
