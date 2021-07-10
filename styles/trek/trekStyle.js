@@ -8,6 +8,7 @@ export const trekStyle = css.global`
     font-weight: bold;
     font-size: 72px;
     color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
   }
 
   .title-h2 {

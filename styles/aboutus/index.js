@@ -1,0 +1,1 @@
+export { aboutUsStyles }  from "./aboutUsStyles";

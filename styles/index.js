@@ -13,3 +13,4 @@ export { ihheaderStyles, ihbodyStyles,ihhomeBannerStyles,
     export { upcomingTrekPageStyle } from "./upcomingtreks";
     export { bannerStyle } from "./trek";
     export { trekStyle } from "./trek";
+    export {aboutUsStyles} from "./aboutus"
