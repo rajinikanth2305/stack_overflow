@@ -9,6 +9,7 @@ import { Client } from "utils/prismicHelpers";
 import Prismic from "@prismicio/client";
 import Login from "./Login";
 import SelectBatch from "./SelectBatch";
+import AddTrekMates from "./AddTrekMates";
 
 const RegHome = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -57,7 +58,7 @@ const RegHome = ({ slice }) => {
                     <SelectBatch />
                   </Tab>
                   <Tab eventKey="addtrekmates" title="Add Trekmates">
-                    <h1>Inproress.!!</h1>
+                    <AddTrekMates />
                   </Tab>
                   <Tab eventKey="makepayment" title="makepayment">
                     <h1>Inproress.!!</h1>

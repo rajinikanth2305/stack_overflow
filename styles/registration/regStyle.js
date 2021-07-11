@@ -54,6 +54,7 @@ export const regStyle = css.global`
     font-size: 24px;
     color: rgba(0,0,0,1);
     text-transform: capitalize;
+    line-height: 26px;
   }
 
   .p-text-2 {
@@ -410,6 +411,20 @@ export const regStyle = css.global`
     border-radius: 50%;
     background: rgb(255, 255, 255);
     border: 1px solid #808080;
+  }
+
+  .quick-info-bage-outline {
+    border: 2px solid rgba(59, 118, 42, 1);
+    border-radius: 5px;
+    padding: 2px 10px;
+    line-height: 24px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    margin-right: 5px;
   }
 
   @media only screen and (max-width: 660px) {
