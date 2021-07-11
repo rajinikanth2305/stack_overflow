@@ -6,7 +6,7 @@ import {Dropdown} from 'primereact/dropdown';
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 //const localizer = momentLocalizer(moment);
-import events from './event'
+// import events from './event'
 import Head from "next/head";
 
 
