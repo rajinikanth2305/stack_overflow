@@ -26,14 +26,12 @@ const OurTeam = () => {
         const tt = response.results[0].data.body;
         const slice = tt && tt.filter(x => x.slice_type === "our_team");
         setOurTeamMmbers(slice);
-        console.log(slice[0]);
       });
   }
 
   const membersList =
     ourTeamMmbers &&
     ourTeamMmbers.map(function(dd, i) {
-      console.log(dd.primary.heading1[0].text);
       const membersArray = dd.items;
       const member = membersArray.map(function(mem, i) {
         return (

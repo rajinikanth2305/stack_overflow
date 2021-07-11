@@ -1,0 +1,1 @@
+export { regStyle }  from "./regStyle";
