@@ -10,6 +10,7 @@ import Prismic from "@prismicio/client";
 import Login from "./Login";
 import SelectBatch from "./SelectBatch";
 import AddTrekMates from "./AddTrekMates";
+import MakePayment from "./MakePayment";
 
 const RegHome = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -60,8 +61,8 @@ const RegHome = ({ slice }) => {
                   <Tab eventKey="addtrekmates" title="Add Trekmates">
                     <AddTrekMates />
                   </Tab>
-                  <Tab eventKey="makepayment" title="makepayment">
-                    <h1>Inproress.!!</h1>
+                  <Tab eventKey="makepayment" title="Make payment">
+                    <MakePayment />
                   </Tab>
                 </Tabs>
               </div>

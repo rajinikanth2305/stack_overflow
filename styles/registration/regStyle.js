@@ -77,6 +77,17 @@ export const regStyle = css.global`
     text-transform: capitalize;
   }
 
+  .p-text-2-franklin-g {
+    line-height: 24px;
+    text-align: right;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0,0,0,1);
+    text-transform: uppercase;
+  }
+
   .p-text-3 {
     line-height: 16px;
     text-align: left;
@@ -97,6 +108,16 @@ export const regStyle = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .p-text-3-1-2 {
+    line-height: 18px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+  }
+
   .p-text-3-1-fg {
     line-height: 18px;
     text-align: left;
@@ -104,6 +125,16 @@ export const regStyle = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .p-text-3-2-fg {
+    line-height: 18px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
     color: rgba(0, 0, 0, 1);
   }
 
@@ -377,6 +408,21 @@ export const regStyle = css.global`
     text-transform: capitalize;
   }
 
+  .btn-bihtn-yellow-sm {
+    background: rgba(255, 193, 0, 1);
+    border: 0;
+    padding: 3px 15px;
+    border-radius: 0;
+    line-height: 24px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: #000000;
+    text-transform: capitalize;
+  }
+
   .slots-bg {
     background: rgba(255, 193, 0, 0.102);
     padding: 5px 0;
@@ -425,6 +471,66 @@ export const regStyle = css.global`
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
     margin-right: 5px;
+  }
+
+  .table.table-main > thead > tr {
+    background: rgba(91,133,70,1)
+  }
+
+  .table.table-secondar-main > thead > tr {
+    background: rgba(242,242,242,1);
+  }
+
+  .table.table-main > thead > tr > th {
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal !important;
+    font-size: 14px;
+    color: rgba(255,255,255,1);
+    text-transform: capitalize;
+  }
+
+  .table.table-secondar-main > thead > tr > th {
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal !important;
+    font-size: 14px;
+    color: #000000;
+    text-transform: capitalize;
+  }
+
+  .table.table-main > tbody > tr > td {
+    padding: 20px 8px;
+    border-bottom: 2px solid rgb(173, 194, 163) !important;
+    line-height: 28px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0,0,0,1);
+  }
+
+  .table.table-secondar-main > tbody > tr > td {
+    padding: 20px 8px;
+    line-height: 28px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0,0,0,1);
+  }
+
+  .box-shadow {
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
+    border-radius: 0;
+  }
+
+  .text-align-right {
+    text-align: right !important;
   }
 
   @media only screen and (max-width: 660px) {
