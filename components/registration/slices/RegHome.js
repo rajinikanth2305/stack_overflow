@@ -7,6 +7,7 @@ import Tab from "react-bootstrap/Tab";
 import { regStyle } from "styles";
 import { Client } from "utils/prismicHelpers";
 import Prismic from "@prismicio/client";
+import Login from "./Login";
 
 const RegHome = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -49,7 +50,7 @@ const RegHome = ({ slice }) => {
                     <AcceptTC data={eligibilityCriteria} />
                   </Tab>
                   <Tab eventKey="login" title="Login / Register">
-                    <h1>Inproress.!!</h1>
+                    <Login />
                   </Tab>
                   <Tab eventKey="selectbatch" title="Select Batch">
                     <h1>Inproress.!!</h1>
