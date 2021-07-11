@@ -5,9 +5,9 @@ export const ihheaderStyles = css.global`
     white-space: nowrap;
     line-height: 17.5px;
     text-align: left;
-    font-family: Poppins;
+    font-family: Franklin Gothic;
     font-style: normal;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 14px;
     color: rgba(0, 0, 0, 1);
     padding-right: 2rem;
@@ -24,7 +24,9 @@ export const ihheaderStyles = css.global`
   }
 
   .navbar-expand-lg .navbar-collapse {
-    justify-content: end;
+    // justify-content: end;
+    justify-content: flex-end;
+    width: 100%;
   }
 
   .navbar-collapse {

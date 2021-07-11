@@ -10,8 +10,10 @@ const AboutUsSliceZone = ({ sliceZone }) =>
     switch (slice.slice_type) {
       case "team_banner":
         return <TeamBanner slice={slice} key={`slice-${index}`} />;
-        case "team_intro":
+      case "team_intro":
         return <TeamIntro slice={slice} key={`slice-${index}`} />;
+      // case "our_team":
+      //   return <OurTeam slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }

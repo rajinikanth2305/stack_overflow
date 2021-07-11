@@ -17,13 +17,13 @@ const TeamBanner = ({ slice }) => {
   return (
     <>
       <div>
-        <div class="banner-image-desktop">
-          <div class="bg_overlay h-100">
+        <div className="banner-image-desktop">
+          <div className="bg_overlay h-100">
             <div className="h-100">
               <div className="d-flex align-items-center justify-content-center w-100 h-100">
-                <div class="banner-text-sec">
-                  <p class="banner-text-1">{RichText.asText(heading1)}</p>
-                  <p class="banner-text-2 mb-0">{RichText.asText(heading2)}</p>
+                <div className="banner-text-sec">
+                  <p className="banner-text-1">{RichText.asText(heading1)}</p>
+                  <p className="banner-text-2 mb-0">{RichText.asText(heading2)}</p>
                 </div>
               </div>
             </div>

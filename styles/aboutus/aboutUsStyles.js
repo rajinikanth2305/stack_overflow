@@ -69,6 +69,17 @@ export const aboutUsStyles = css.global`
     margin-bottom: 20px;
   }
 
+  .title-h3 {
+    line-height: 40px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
   .p-text-1 {
     line-height: 30px;
     text-align: left;
@@ -97,7 +108,7 @@ export const aboutUsStyles = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;;
+    text-transform: capitalize;
   }
 
   .p-text-3 {
@@ -150,6 +161,17 @@ export const aboutUsStyles = css.global`
     color: rgba(112, 112, 112, 1);
   }
 
+  .p-text-small-franklin {
+    line-height: 18px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
+  }
+
   .border-bottom-custom {
     border-bottom: 4px solid rgb(255, 193, 0);
   }
@@ -158,6 +180,48 @@ export const aboutUsStyles = css.global`
     position: relative;
     height: 233px;
     width: 175px;
+  }
+
+  .member_image {
+    position: relative;
+    height: 233px;
+    width: 100%;
+  }
+
+  .nav-tabs {
+    border-bottom: 0;
+    background: #ffc100;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.161);
+    padding: 0 50px;
+  }
+
+  .nav.card-header-tabs.nav-tabs {
+    margin-bottom: 20px;
+  }
+
+  .nav-item.nav-link.active {
+    background-color: #ffffff !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    color: #000000;
+    border-top: 2px solid black !important;
+    position: relative;
+    top: -3px;
+  }
+
+  .nav-item.nav-link {
+    background: rgba(255, 193, 0, 0.251) !important;
+    border-radius: 0 !important;
+    color: #000000;
+    padding: 5px 30px !important;
+    line-height: 18px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
   }
 
   @media only screen and (max-width: 660px) {
