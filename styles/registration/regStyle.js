@@ -96,6 +96,16 @@ export const regStyle = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .p-text-3-1-fg {
+    line-height: 18px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+  }
+
   .p-text-3-2 {
     line-height: 16px;
     text-align: left;
@@ -152,6 +162,10 @@ export const regStyle = css.global`
     border-bottom: 4px solid rgb(255, 193, 0);
   }
 
+  .border-bottom-custom-1 {
+    border-bottom: 2px solid rgb(255, 193, 0);
+  }
+
   .border-custom-yellow {
     border: 2px solid rgb(255, 224, 128);
   }
@@ -162,6 +176,10 @@ export const regStyle = css.global`
 
   .border-bottom-custom {
     border-bottom: 4px solid rgb(255, 193, 0);
+  }
+
+  .border-custom-green {
+    border: 2px solid #adc2a3;
   }
 
   .align-top-custom {
@@ -356,6 +374,42 @@ export const regStyle = css.global`
     font-size: 16px;
     color: #000000;
     text-transform: capitalize;
+  }
+
+  .slots-bg {
+    background: rgba(255, 193, 0, 0.102);
+    padding: 5px 0;
+  }
+
+  .badge-green {
+    padding: 0px 8px;
+    border-radius: 50%;
+    background: rgba(91, 133, 70, 1);
+  }
+
+  .badge-red {
+    padding: 0px 8px;
+    border-radius: 50%;
+    background: rgba(230, 109, 29, 1);
+  }
+
+  .badge-yellow {
+    padding: 0px 8px;
+    border-radius: 50%;
+    background: rgba(255, 193, 0, 1);
+  }
+
+  .badge-blue {
+    padding: 0px 8px;
+    border-radius: 50%;
+    background: rgba(0, 66, 141, 1);
+  }
+
+  .badge-white {
+    padding: 0px 8px;
+    border-radius: 50%;
+    background: rgb(255, 255, 255);
+    border: 1px solid #808080;
   }
 
   @media only screen and (max-width: 660px) {
