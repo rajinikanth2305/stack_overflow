@@ -12,6 +12,7 @@ import { HikeHeader } from "components/ihhome";
 import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
+import { DIYSliceZone } from "../components/diytreks";
 
 /**
  * UpComing component
@@ -30,11 +31,11 @@ const DIY = ({ doc }) => {
           <title>DIY</title>
         </Head>
         <HikeHeader />
-        {/* <UpComingTreksSliceZone sliceZone={doc.data.body} /> */}
-        <div className="mt-5 py-5 text-center">
+        <DIYSliceZone sliceZone={doc.data.body} />
+        {/* <div className="mt-5 py-5 text-center">
           <h3>DIY</h3>
           <h4>Under development.!!</h4>
-        </div>
+        </div> */}
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
@@ -46,30 +47,19 @@ const DIY = ({ doc }) => {
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
 
-  const client = Client();
+  const { ref } = previewData
 
-  const doc =
-    (await client.getSingle(
-      "hike_upcoming_treks_ctype",
-      ref ? { ref } : null
-    )) || {};
+  const client = Client()
 
-  /*const doc = await client.query(
-    Prismic.Predicates.at("document.type", "hike_home_ctype"), {
-      ...(ref ? { ref } : null)
-    },
-  )*/
-
-  //console.log( "salomon" + JSON.stringify(doc));
+  const doc = await client.getSingle("diy_trek", ref ? { ref } : null) || {}
 
   return {
     props: {
       doc,
       preview
     }
-  };
+  }
 }
 
 export default DIY;

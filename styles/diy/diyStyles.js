@@ -1,6 +1,6 @@
 import css from "styled-jsx/css";
 
-export const aboutUsStyles = css.global`
+export const diyStyles = css.global`
   .banner-image-desktop {
     width: 100%;
     height: 700px;
@@ -223,6 +223,28 @@ export const aboutUsStyles = css.global`
     font-weight: normal;
     font-size: 12px;
     color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
+  }
+
+  .diyform > .form-control {
+    border-radius: 0;
+    font-family: Lora;
+    font-size: 18px;
+    padding: 10px 15px;
+}
+
+.btn-bihtn-yellow {
+    background: rgba(255, 193, 0, 1);
+    border: 0;
+    padding: 3px 30px;
+    border-radius: 0;
+    line-height: 24px;
+    text-align: center;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: #000000;
     text-transform: uppercase;
   }
 
