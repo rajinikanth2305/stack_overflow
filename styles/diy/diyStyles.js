@@ -14,6 +14,19 @@ export const diyStyles = css.global`
     background-position: bottom;
   }
 
+  .trek_image_bg {
+    width: 100%;
+    height: 275px;
+    position: relative;
+  }
+
+  .bg_overlay_trek_image_bg {
+    background: rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 99;
+    height: 275px;
+  }
+
   .bg_overlay {
     background: rgba(0, 0, 0, 0.2);
     position: relative;
@@ -85,6 +98,17 @@ export const diyStyles = css.global`
     font-size: 36px;
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
+  }
+
+  .p-text-1-main {
+    line-height: 36px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: uppercase;
   }
 
   .p-text-1 {
@@ -255,6 +279,12 @@ export const diyStyles = css.global`
     font-size: 16px;
     color: #000000;
     text-transform: uppercase;
+  }
+
+  .slick-prev::before,
+  .slick-next::before {
+    color: #ffc100;
+    font-size: 26px;
   }
 
   @media only screen and (max-width: 660px) {

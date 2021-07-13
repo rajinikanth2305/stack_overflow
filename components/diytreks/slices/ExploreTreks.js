@@ -2,7 +2,6 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { diyStyles } from "styles";
 import Image from "next/image";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const ExploreTreks = ({ slice }) => {
   const heading1 = slice.primary.heading1;
