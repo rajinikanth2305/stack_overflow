@@ -287,6 +287,11 @@ export const diyStyles = css.global`
     font-size: 26px;
   }
 
+  .diyres_img_bg {
+    height: 100px;
+    position: relative;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

@@ -1,5 +1,5 @@
 import React from "react";
-import { DIYBanner, ExploreTreks, TrekCatagories } from "./slices";
+import { DIYBanner, ExploreTreks, TrekCatagories, DIYResources } from "./slices";
 
 /**
  *  slice zone component
@@ -14,6 +14,8 @@ const DIYSliceZone = ({ sliceZone }) =>
         return <ExploreTreks slice={slice} key={`slice-${index}`} />;
         case "diy_trek_categories":
         return <TrekCatagories slice={slice} key={`slice-${index}`} />;
+        case "diy_resources":
+        return <DIYResources slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }
