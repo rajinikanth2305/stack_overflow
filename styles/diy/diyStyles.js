@@ -1,6 +1,11 @@
 import css from "styled-jsx/css";
 
 export const diyStyles = css.global`
+  .container.container-custom {
+    max-width: 1600px;
+    padding: 0 25px;
+  }
+
   .banner-image-desktop {
     width: 100%;
     height: 700px;
@@ -178,6 +183,10 @@ export const diyStyles = css.global`
     border-bottom: 4px solid rgb(255, 193, 0);
   }
 
+  .border-top-custom {
+    border-top: 4px solid rgb(255, 193, 0);
+  }
+
   .founder_image {
     position: relative;
     height: 233px;
@@ -231,9 +240,9 @@ export const diyStyles = css.global`
     font-family: Lora;
     font-size: 18px;
     padding: 10px 15px;
-}
+  }
 
-.btn-bihtn-yellow {
+  .btn-bihtn-yellow {
     background: rgba(255, 193, 0, 1);
     border: 0;
     padding: 3px 30px;
