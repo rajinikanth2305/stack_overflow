@@ -892,6 +892,70 @@ export const trekStyle = css.global`
     height: 230px;
   }
 
+  .p-calendar .p-datepicker {
+    border: 0;
+  }
+
+  .p-datepicker table td {
+    border: 1px solid #d3d3d3;
+    font-weight: 600;
+  }
+
+  .p-datepicker table td > span {
+    width: 5rem;
+    height: 4rem;
+    border-radius: 0;
+  }
+
+  .p-datepicker table td.p-datepicker-today > span {
+    background: transprant;
+  }
+
+  .ad-highlight {
+    text-align: center;
+  }
+
+  .ad-d {
+    // font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 1);
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  .ad-highlight > span {
+    background: #2f9b45;
+    border-radius: 50%;
+    color: #ffffff;
+    width: 2rem;
+    height: 2rem;
+    display: inline-block;
+  }
+
+  .p-datepicker td > span {
+    overflow: unset;
+  }
+
+  .p-dropdown {
+    border: 2px solid rgb(112, 112, 112);
+    border-radius: 0;
+  }
+
+  .p-dropdown-label {
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .p-inputtext {
+    padding: 5px 10px;
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 36px;
@@ -1023,6 +1087,18 @@ export const trekStyle = css.global`
     .bg_overlay_sustainable {
       height: 500px;
       background: rgb(0, 0, 0);
+    }
+
+    .p-datepicker table td > span {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 0;
+    }
+
+    .p-datepicker table td {
+      border-bottom: 0;
+      border-left: 0;
+      border-right: 0;
     }
   }
 `;
