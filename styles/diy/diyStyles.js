@@ -172,6 +172,17 @@ export const diyStyles = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .p-text-3-popins {
+    line-height: 17.5px;
+    text-align: center;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
+  }
+
   .p-text-4 {
     line-height: 24px;
     text-align: left;
@@ -345,6 +356,17 @@ export const diyStyles = css.global`
     border-radius: 50%;
   }
 
+  .community_member_image {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .community_member_image > div > img {
+    border-radius: 50%;
+    border: 2px solid rgb(255, 193, 0) !important;
+  }
 
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
