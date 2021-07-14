@@ -292,6 +292,60 @@ export const diyStyles = css.global`
     position: relative;
   }
 
+  .best_treks_images {
+    width: 100%;
+    height: 275px;
+    position: relative;
+    border-bottom: 2px solid rgb(255, 193, 0);
+  }
+
+  .trek_badge {
+    position: relative;
+    z-index: 99;
+    left: -3px;
+    top: -3px;
+  }
+
+  .trek_badge > span {
+    line-height: 18px;
+    text-align: left;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
+    position: absolute;
+    left: 10px;
+    top: 5px;
+  }
+
+  .card_sec {
+    margin: 20px 0;
+  }
+
+  .trek_card {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+  }
+
+  .list-dot-style > span {
+    color: rgb(255, 193, 0) !important;
+    font-size: 50px;
+    position: relative;
+    top: -7px;
+  }
+
+  .doc_image {
+    width: 45px;
+    height: 45px;
+    position: relative;
+  }
+
+  .doc_image > div > img {
+    border-radius: 50%;
+  }
+
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
