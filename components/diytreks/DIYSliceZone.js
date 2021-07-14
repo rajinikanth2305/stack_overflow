@@ -5,7 +5,8 @@ import {
   TrekCatagories,
   DIYResources,
   BestPostTreks,
-  CommunityContentPitch
+  CommunityContentPitch,
+  DIYTreksGuide
 } from "./slices";
 
 /**
@@ -25,8 +26,10 @@ const DIYSliceZone = ({ sliceZone }) =>
         return <DIYResources slice={slice} key={`slice-${index}`} />;
       case "best_post_treks":
         return <BestPostTreks slice={slice} key={`slice-${index}`} />;
-        case "community_content_pitch":
+      case "community_content_pitch":
         return <CommunityContentPitch slice={slice} key={`slice-${index}`} />;
+      case "diy_treks_guide":
+        return <DIYTreksGuide slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }

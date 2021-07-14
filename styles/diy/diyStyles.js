@@ -368,6 +368,38 @@ export const diyStyles = css.global`
     border: 2px solid rgb(255, 193, 0) !important;
   }
 
+  .badge-green {
+    border-radius: 50%;
+    background: rgba(91, 133, 70, 1);
+    height: 10px;
+    width: 10px;
+  }
+
+  .badge-red {
+    border-radius: 50%;
+    background: rgba(230, 109, 29, 1);
+    height: 10px;
+    width: 10px;
+  }
+
+  .badge-yellow {
+    border-radius: 50%;
+    background: rgba(255, 193, 0, 1);
+    height: 10px;
+    width: 10px;
+  }
+
+  .badge-blue {
+    border-radius: 50%;
+    background: rgba(0, 66, 141, 1);
+    height: 10px;
+    width: 10px;
+  }
+
+  .bg-ihgreen {
+    background: rgba(91,133,70,1);
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
