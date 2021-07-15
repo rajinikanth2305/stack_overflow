@@ -44,16 +44,16 @@ const RegHome = ({ slice }) => {
         <div className="mt-4 mb-5">
           <div className="container">
             <div className="col-md-12">
-              <p className="p-text-2 mb-4">
+              <p className="p-text-2 m-p-text-gray mb-4">
                 <b>{RichText.asText(completeTheSteps)}</b>
               </p>
-              <div className="stepper-tabs">
+              <div className="stepper-tabs m-d-none">
                 <Tabs>
-                  <Tab eventKey="accepet" title="Accept T&C">
-                    <AcceptTC data={eligibilityCriteria} />
-                  </Tab>
                   <Tab eventKey="login" title="Login / Register">
                     <Login />
+                  </Tab>
+                  <Tab eventKey="accepet" title="Accept T&C">
+                    <AcceptTC data={eligibilityCriteria} />
                   </Tab>
                   <Tab eventKey="selectbatch" title="Select Batch">
                     <SelectBatch />
@@ -62,6 +62,26 @@ const RegHome = ({ slice }) => {
                     <AddTrekMates />
                   </Tab>
                   <Tab eventKey="makepayment" title="Make payment">
+                    <MakePayment />
+                  </Tab>
+                </Tabs>
+              </div>
+              <div className="stepper-tabs m-d-block">
+                <Tabs>
+                  <Tab eventKey="login" title="">
+                  <p className="p-text-1 mt-4 pt-2"><b>Start your trek Registration Process</b></p>
+                    <Login />
+                  </Tab>
+                  <Tab eventKey="accepet" title="">
+                    <AcceptTC data={eligibilityCriteria} />
+                  </Tab>
+                  <Tab eventKey="selectbatch" title="">
+                    <SelectBatch />
+                  </Tab>
+                  <Tab eventKey="addtrekmates" title="">
+                    <AddTrekMates />
+                  </Tab>
+                  <Tab eventKey="makepayment" title="">
                     <MakePayment />
                   </Tab>
                 </Tabs>

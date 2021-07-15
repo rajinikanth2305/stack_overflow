@@ -5,7 +5,7 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 const Login = () => {
   return (
     <>
-      <div className="my-5 py-4">
+      <div className="my-5 py-4 m-mt-0">
         <div className="row">
           <div className="col-lg-2 col-md-12"></div>
           <div className="col-lg-8 col-md-12">
@@ -41,7 +41,7 @@ const Login = () => {
                       <small className="p-text-xtra-small-franklin">
                         forgot email id or password
                       </small>
-                      <div className="mt-3">
+                      <div className="mt-3 m-text-center">
                         <button type="button" className="btn btn-ih-green">
                           Log in
                         </button>
