@@ -403,17 +403,9 @@ export const diyStyles = css.global`
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
-      height: 550px;
+      height: 450px;
       background-position: -425px 0;
     }
-
-    // .banner-image-mobile {
-    //   display: block;
-    //   width: 100%;
-    //   height: 585px;
-    //   background-position: -183px;
-    //   position: relative;
-    // }
 
     .banner-text-sec {
       text-align: left;
@@ -425,9 +417,8 @@ export const diyStyles = css.global`
     }
 
     .banner-text-1 {
-      font-size: 30px;
-      line-height: 36px;
-      margin-bottom: 35px;
+      font-size: 42px;
+      margin-bottom: 0px;
       text-align: left;
     }
 
@@ -463,6 +454,31 @@ export const diyStyles = css.global`
       font-weight: normal;
       font-size: 14px;
       text-transform: capitalize;
+    }
+
+    .diyform > .form-control {
+      font-size: 10px;
+      padding: 5px 15px;
+    }
+
+    .title-h2 {
+      font-size: 24px;
+    }
+
+    .m-d-none {
+      display: none;
+    }
+
+    .m-mt-5 {
+      margin-top: 50px;
+    }
+
+    .m-pt-0 {
+      padding-top: 0px !important;
+    }
+
+    .p-text-2 {
+      font-size: 16px;
     }
   }
 

@@ -146,7 +146,7 @@ const BestPostTreks = ({ slice }) => {
 
   return (
     <>
-      <div className="my-5 pt-4">
+      <div className="my-5 pt-4 m-pt-0">
         <div className="container">
           <div className="row d-flex align-items-center mt-4 mb-4 border-bottom-custom">
             <div className="col-lg-6 col-md-12">
@@ -162,7 +162,9 @@ const BestPostTreks = ({ slice }) => {
             <Slider {...settings}>{bestPostTreks}</Slider>
           </div>
         </div>
+        <div className="m-mt-5">
         <TrekkersVideoCommon />
+        </div>
         <style jsx global>
           {diyStyles}
         </style>

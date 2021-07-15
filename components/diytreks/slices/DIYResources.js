@@ -13,7 +13,7 @@ const DIYResources = ({ slice }) => {
       <>
         <div key={i} className="col-lg-4 col-md-6">
           <div className="d-flex align-items-center row mb-4">
-            <div className="diyres_img_bg col-lg-3 col-md-12">
+            <div className="diyres_img_bg col-3 col-lg-3 col-md-12">
               <Image
                 src={data.res_image.url}
                 layout="fill"
@@ -21,7 +21,7 @@ const DIYResources = ({ slice }) => {
                 objectPosition="top"
               />
             </div>
-            <div className="col-lg-9 col-md-12">
+            <div className="col-9 col-lg-9 col-md-12">
               <p className="p-text-3">
                 <b>{data.title[0].text}</b>
               </p>

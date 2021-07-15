@@ -17,7 +17,7 @@ const ExploreTreks = ({ slice }) => {
                     <h2 className="title-h2 border-0">{RichText.asText(heading1)}</h2>
                 </div>
                 <div className="col-lg-6 col-md-12">
-                    <p className="p-text-2">{RichText.asText(heading2)}</p>
+                    <p className="p-text-2 m-d-none">{RichText.asText(heading2)}</p>
                 </div>
             </div>
           </div>
@@ -26,8 +26,9 @@ const ExploreTreks = ({ slice }) => {
             <Image
               src={imageUrl}
               layout="fill"
-              objectFit="contain"
+              objectFit="cover"
               objectPosition="top"
+              quality={100}
             />
           </div>
         </div>
