@@ -36,7 +36,7 @@ const OurTeam = () => {
       const member = membersArray.map(function(mem, i) {
         return (
           <>
-            <div className="col-lg-2 col-md-6">
+            <div className="col-4 col-lg-2 col-md-6">
               <div className="member_image">
                 <Image
                   src={mem.member_photo.url}
@@ -48,7 +48,7 @@ const OurTeam = () => {
               <p className="p-text-2-franklin text-center mb-0 pt-2">
                 {mem.name[0].text}
               </p>
-              <p className="p-text-3 text-center">{mem.position[0].text}</p>
+              <p className="p-text-3 m-text-3 text-center">{mem.position[0].text}</p>
             </div>
           </>
         );

@@ -229,7 +229,7 @@ export const aboutUsStyles = css.global`
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
-      height: 550px;
+      height: 400px;
       background-position: -425px 0;
     }
 
@@ -251,9 +251,9 @@ export const aboutUsStyles = css.global`
     }
 
     .banner-text-1 {
-      font-size: 30px;
-      line-height: 36px;
-      margin-bottom: 35px;
+      font-size: 42px;
+      // line-height: 36px;
+      // margin-bottom: 35px;
       text-align: left;
     }
 
@@ -289,6 +289,60 @@ export const aboutUsStyles = css.global`
       font-weight: normal;
       font-size: 14px;
       text-transform: capitalize;
+    }
+
+    .p-text-1 {
+      font-size: 18px;
+    }
+
+    .p-text-2 {
+      font-size: 14px;
+    }
+
+    .title-h3 {
+      font-size: 18px;
+    }
+
+    .member_image {
+      height: 133px;
+    }
+
+    .p-text-2-franklin {
+      font-size: 14px;
+      line-height: 16px;
+    }
+
+    .p-text-3.m-text-3 {
+      font-size: 11px;
+    }
+
+    .m-d-none {
+      display: none;
+    }
+
+    .nav-tabs {
+      padding: 0;
+    }
+
+    .nav-item.nav-link.active {
+      top: 0;
+    }
+
+    .nav-item.nav-link {
+      padding: 5px 15px !important;
+    }
+
+    .m-mt-2 {
+      margin-top: 20px !important;
+    }
+
+    .m-mb-2 {
+      margin-bottom: 20px !important;
+    }
+
+    .m-border-bottom {
+      border-bottom: 2px solid rgb(255,193,0);
+      padding-bottom: 15px;
     }
   }
 

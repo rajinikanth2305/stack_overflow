@@ -43,12 +43,12 @@ const TeamIntro = ({ slice }) => {
     <>
       <div>
         <div className="container">
-          <div className="row my-5">
+          <div className="row my-5 m-mt-2">
             <div className="col-lg-7 col-md-12">
-              <h1 className="title-h1 border-bottom-custom mb-3 pb-2">
+              <h1 className="title-h1 border-bottom-custom mb-3 pb-2 m-d-none">
                 {RichText.asText(heading1)}
               </h1>
-              <p className="p-text-1 mb-5">
+              <p className="p-text-1 m-border-bottom m-mb-2 mb-5">
                 <b>{RichText.asText(heading2)}</b>
               </p>
               {teamContent}
