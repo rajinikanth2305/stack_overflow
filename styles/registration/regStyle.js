@@ -547,7 +547,7 @@ export const regStyle = css.global`
     }
 
     .nav-item.nav-link {
-      padding: 8px 20px !important;
+      padding: 8px 15px !important;
     }
 
     .nav-item.nav-link.active:nth-child(1)::before,
