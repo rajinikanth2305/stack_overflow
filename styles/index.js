@@ -28,3 +28,4 @@ export { trekStyle } from "./trek";
 export { aboutUsStyles } from "./aboutus";
 export { regStyle } from "./registration";
 export { diyStyles } from "./diy";
+export { customStyles } from "./common";

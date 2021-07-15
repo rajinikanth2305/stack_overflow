@@ -12,6 +12,7 @@ import { HikeHeader } from "components/ihhome";
 import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
+import FaqSliceZone from "../components/faq/FaqSliceZone";
 
 /**
  * UpComing component
@@ -27,11 +28,7 @@ const FAQ = ({ doc }) => {
          <title>DIY</title>
         </Head>
         <HikeHeader/>
-        {/* <UpComingTreksSliceZone sliceZone={doc.data.body} /> */}
-        <div className="mt-5 py-5 text-center">
-            <h3>Frequently Asked Questions</h3>
-            <h4>Under development.!!</h4>
-        </div>
+        <FaqSliceZone sliceZone={doc.data.body} />
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
@@ -48,15 +45,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const client = Client()
 
-  const doc = await client.getSingle("hike_upcoming_treks_ctype", ref ? { ref } : null) || {}
-
-  /*const doc = await client.query(
-    Prismic.Predicates.at("document.type", "hike_home_ctype"), {
-      ...(ref ? { ref } : null)
-    },
-  )*/
-  
-  //console.log( "salomon" + JSON.stringify(doc));
+  const doc = await client.getSingle("trek_faq", ref ? { ref } : null) || {}
 
   return {
     props: {
