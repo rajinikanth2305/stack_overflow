@@ -11,7 +11,7 @@ import { Client } from "utils/prismicHelpers";
 /**
  * Homepage component
  */
-const Home = ({ doc, posts }) => {
+const Posts = ({ doc, posts }) => {
   const router = useRouter()
 
   useEffect(() => {
@@ -69,4 +69,4 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   }
 }
 
-export default Home;
+export default Posts;

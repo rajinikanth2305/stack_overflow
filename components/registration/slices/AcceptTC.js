@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
 
-const AcceptTC = ({ data }) => {
+const AcceptTC = ( {data,props,onTermAccept} ) => {
   const eligibilityCriteria = data;
+ 
 
   const EligibilityCriteriaTitle =
     eligibilityCriteria &&
@@ -45,6 +46,11 @@ const AcceptTC = ({ data }) => {
     );
   });
 
+  const termAccepted=()=>{
+       console.log(props.trekId);
+       onTermAccept(true);
+  }
+
   return (
     <>
       <div className="my-5">
@@ -70,6 +76,9 @@ const AcceptTC = ({ data }) => {
             </p>
             {ecExplainedList}
           </div>
+          <button className="btn btn-ptr" onClick={termAccepted}>
+                          Accepted the term and conditions
+                        </button>
         </div>
       </div>
     </>

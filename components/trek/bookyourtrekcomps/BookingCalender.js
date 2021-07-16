@@ -4,10 +4,8 @@ import { trekStyle } from "styles";
 import { Calendar } from "primereact/calendar";
 import { Dropdown } from "primereact/dropdown";
 import moment from "moment";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-//const localizer = momentLocalizer(moment);
-// import events from './event'
-import Head from "next/head";
+import { useRouter } from 'next/router';
+
 
 import "primeicons/primeicons.css";
 import "primereact/resources/themes/saga-blue/theme.css";
@@ -15,40 +13,25 @@ import "primereact/resources/primereact.css";
 import "primeflex/primeflex.css";
 
 // Project components & functions
-import { UpComingTreksSliceZone } from "components/upcoming";
-import { SetupRepo } from "components/home";
-import HomeLayout from "layouts";
-import { HikeHeader } from "components/ihhome";
-import { Client } from "utils/prismicHelpers";
-import IHFooter from "../components/Footer";
-import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import { getBatches } from 'utils/queries';
 
-const BasicCal = ({ doc }) => {
-  const heading1 = "headig1";
-  const cancelInfoHeading = "sadsa";
-  const cancelInfodetailsList = "[asdsad,sdfsdfdsf]";
-  let today = new Date();
-  let month = today.getMonth();
-  let year = today.getFullYear();
-  let prevMonth = month === 0 ? 11 : month - 1;
-  let prevYear = prevMonth === 11 ? year - 1 : year;
-  let nextMonth = month === 11 ? 0 : month + 1;
-  let nextYear = nextMonth === 0 ? year + 1 : year;
+const BookingCalender = ( props ) => {
+ 
   const [selectedBatchDate, setSelectedBatchDate] = useState();
-
   const [selectedMonthYear, setSelectedMonthYear] = useState();
   const [invalidDates, setInvalidDates] = useState();
   const [batchDates, setBatchDates] = useState();
   const [batchData, setBatchData] = useState([]);
 
-  ///api/trek/?trekname/?month/?year
-
+  const router = useRouter();
+  const { trekName } = router.pathname;
 
   const  fetchTrekMonthBatches = async (date) => {
-    console.log("batch-date-fetched for " + date.month);
-    const trekName='kashmir great lakes';
-    const data=await getBatches(trekName,date.month+1,2021);
+    const pageUrl= window.location.href;
+    const pageNamesArray= pageUrl.split('/');
+    const pageName=pageNamesArray[pageNamesArray.length-1];
+    const actualTrekPageName=pageName.replace("_"," ");
+    const data=await getBatches(actualTrekPageName,date.month + 1,2021);
     //console.log(data);
       setBatchData(data);
       prepareDateDisableList(date,data);
@@ -161,29 +144,16 @@ const BasicCal = ({ doc }) => {
     console.log(e);
   };
 
-  const onSelect = e => {
-    setSelectedBatchDate(e);
-    console.log(selectedBatchDate);
+  const onSelect = (e) => {
+    
+    if (batchDates !== undefined && batchDates[e.getDate()] !== undefined) {
+          props.onBookingSelect(batchDates[e.getDate()]);
+    }
   };
 
-  const onViewDateChange2 = e => {
-    setDate16(e);
-    console.log(e);
-  };
 
   return (
     <>
-      <HomeLayout>
-        <Head>
-          <meta charset="utf-8" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          <title>Upcoming Treks</title>
-        </Head>
-        <HikeHeader />
         <div>
           <div className="container">
             <div className="row">
@@ -207,39 +177,10 @@ const BasicCal = ({ doc }) => {
             </div>
           </div>
         </div>
-      </HomeLayout>
       <style jsx global>
         {trekStyle}
       </style>
     </>
   );
 };
-
-export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
-
-  const client = Client();
-
-  const doc =
-    (await client.getSingle(
-      "hike_upcoming_treks_ctype",
-      ref ? { ref } : null
-    )) || {};
-
-  /*const doc = await client.query(
-      Prismic.Predicates.at("document.type", "hike_home_ctype"), {
-        ...(ref ? { ref } : null)
-      },
-    )*/
-
-  //console.log( "salomon" + JSON.stringify(doc));
-
-  return {
-    props: {
-      doc,
-      preview
-    }
-  };
-}
-
-export default BasicCal;
+export default BookingCalender;

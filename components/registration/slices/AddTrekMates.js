@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
-const AddTrekMates = () => {
+const AddTrekMates = ({onNextTabEvent}) => {
+
+  const nextTabNav=()=>{
+    onNextTabEvent('makepayment');
+}
+
+
   return (
     <>
       <div className="my-5 py-2">
@@ -190,7 +196,7 @@ const AddTrekMates = () => {
         </div>
         <div className="text-center">
           <div className="mt-5 mb-3">
-            <button type="button" className="btn btn-ih-green py-2">
+            <button type="button" className="btn btn-ih-green py-2" onClick={nextTabNav}>
               proceed to next step of registration
             </button>
           </div>

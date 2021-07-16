@@ -18,7 +18,7 @@ const events = [
   }
 ];
 
-const SelectBatch = () => {
+const SelectBatch = ({onNextTabEvent}) => {
   const [quickItinerary, setquickItinerary] = useState();
 
   useEffect(() => {
@@ -63,6 +63,13 @@ const SelectBatch = () => {
       </>
     );
   });
+
+
+  const nextTabNav=()=>{
+    onNextTabEvent('addtrekmates');
+}
+
+
   return (
     <>
       <div className="">
@@ -138,7 +145,7 @@ const SelectBatch = () => {
         </div>
         <div className="text-center">
           <div className="my-3">
-            <button type="button" className="btn btn-ih-green py-2">
+            <button type="button" className="btn btn-ih-green py-2" onClick={nextTabNav}>
               proceed to next step of registration
             </button>
           </div>

@@ -1,5 +1,25 @@
 import { Client } from './prismicHelpers'
 
+import axios from 'axios';
+
+//Backend base url
+const REACT_APP_TMS_BACKEND_URL="https://tmsstaging.indiahikes.com/tms-service/api/v1";
+//const REACT_APP_IAM_URL=http://143.110.177.110:8080
+
+//export const batchBaseApi = `${process.env.REACT_APP_TMS_BACKEND_URL}/batches`;
+
+ const batchBaseApi = `${REACT_APP_TMS_BACKEND_URL}/batches`;
+
+// export const locationBaseApi = `http://localhost:9090/api/v1/locations`;
+export const getBatches = async (trekName, month,year)  => {
+    let url = `${batchBaseApi}/availableBatches/${trekName}?month=${month}&year=${year}`;
+    const data= await axios.get(url) ;
+    //console.log(JSON.stringify(data));
+    return data.data;
+  };
+
+
+
 async function fetchDocs(page = 1, routes = []) {
   const response = await Client().query('', { pageSize: 100, lang: '*', page });
   const allRoutes = routes.concat(response.results);
