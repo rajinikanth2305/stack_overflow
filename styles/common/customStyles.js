@@ -213,6 +213,40 @@ export const customStyles = css.global`
     z-index: 999;
   }
 
+  .btn-bihtn-yellow {
+    background: rgba(255, 193, 0, 1);
+    border: 0;
+    padding: 3px 30px;
+    border-radius: 0;
+    line-height: 24px;
+    text-align: center;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: #000000;
+    text-transform: uppercase;
+  }
+
+  .border-bottom-custom {
+    border-bottom: 4px solid rgb(255, 193, 0);
+  }
+
+  .diyres_img_bg {
+    height: 100px;
+    position: relative;
+  }
+
+  .p-text-small {
+    line-height: 16px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(112, 112, 112, 1);
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

@@ -1,5 +1,10 @@
 import React from "react";
-import { FaqBanner, MoreHelpAndSupport, GetInTouchWithIh } from "./slices";
+import {
+  FaqBanner,
+  MoreHelpAndSupport,
+  GetInTouchWithIh,
+  TrekkingTips
+} from "./slices";
 
 /**
  *  slice zone component
@@ -14,6 +19,8 @@ const FaqSliceZone = ({ sliceZone }) =>
         return <MoreHelpAndSupport slice={slice} key={`slice-${index}`} />;
       case "get_in_touch_with_ih":
         return <GetInTouchWithIh slice={slice} key={`slice-${index}`} />;
+        case "trekking_tips":
+        return <TrekkingTips slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }

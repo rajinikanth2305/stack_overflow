@@ -35,9 +35,9 @@ const FaqBanner = ({ slice }) => {
                         />
                       </FormGroup>
                     </div>
-                    {/* <div>
-                      <button type="button" className="btn btn-bihtn-yellow">explore</button>
-                    </div> */}
+                    <div>
+                      <button type="button" className="btn btn-bihtn-yellow">Search</button>
+                    </div>
                   </form>
                 </div>
               </div>

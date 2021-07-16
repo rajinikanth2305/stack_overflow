@@ -1,14 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
-import { diyStyles } from "styles";
+import { customStyles } from "styles";
+import { Client } from "utils/prismicHelpers";
+import Prismic from "@prismicio/client";
 import Image from "next/image";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
-const DIYResources = ({ slice }) => {
+const TrekkingTips = ({ slice }) => {
+  const [diyResDetails, setDiyResDetails] = useState();
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
-  const diyResArray = slice.items;
 
-  const diyResList = diyResArray.map(function(data, i) {
+  useEffect(() => {
+    findDiyResources();
+    return () => {
+      //   console.log("test");
+    };
+  }, []);
+
+  async function findDiyResources() {
+    const client = Client();
+    const doc = await client
+      .query([Prismic.Predicates.at("document.type", "diy_trek")])
+      .then(function(response) {
+        const tt = response.results[0].data.body;
+        const slice = tt && tt.find(x => x.slice_type === "diy_resources");
+        setDiyResDetails(slice);
+      });
+  }
+
+  const diyResArray = diyResDetails && diyResDetails.items;
+
+  const diyResList = diyResArray?.map(function(data, i) {
     return (
       <>
         <div key={i} className="col-lg-4 col-md-6">
@@ -40,11 +63,11 @@ const DIYResources = ({ slice }) => {
 
   return (
     <>
-      <div className="my-5">
+      <div>
         <div className="container">
           <div className="row d-flex align-items-center mt-4 mb-4 border-bottom-custom">
             <div className="col-lg-6 col-md-12">
-              <h2 className="title-h2 border-0">
+              <h2 className="title-h2 border-0 m-0">
                 <b>{RichText.asText(heading1)}</b>
               </h2>
             </div>
@@ -62,11 +85,11 @@ const DIYResources = ({ slice }) => {
           </div>
         </div>
         <style jsx global>
-          {diyStyles}
+          {customStyles}
         </style>
       </div>
     </>
   );
 };
 
-export default DIYResources;
+export default TrekkingTips;
