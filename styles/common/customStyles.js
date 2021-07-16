@@ -106,6 +106,16 @@ export const customStyles = css.global`
     text-transform: capitalize;
   }
 
+  .p-text-3 {
+    line-height: 16px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+  }
+
   .p-text-4 {
     line-height: 24px;
     text-align: left;
@@ -168,6 +178,16 @@ export const customStyles = css.global`
   .expand_plus {
     color: #ffc100;
     font-weight: bold;
+  }
+
+  .more_help_support_accordion > div > div > .card {
+    box-shadow: none;
+    margin-bottom: 0;
+  }
+
+  .more_help_support_accordion > div > div > .card > .card-header {
+    background: transparent;
+    border-bottom: 1px solid rgb(255, 224, 128);
   }
 
   @media only screen and (max-width: 660px) {
