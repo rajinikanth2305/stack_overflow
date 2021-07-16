@@ -8,6 +8,14 @@ export const customStyles = css.global`
     position: relative;
     background-position: bottom;
   }
+  
+  .help_support_bg {
+    width: 100%;
+    height: 350px;
+    background-size: cover;
+    position: relative;
+    background-position: bottom;
+  }
 
   .bg_overlay {
     height: 360px;
@@ -106,6 +114,16 @@ export const customStyles = css.global`
     text-transform: capitalize;
   }
 
+  .p-text-2 {
+    line-height: 24px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+  }
+
   .p-text-3 {
     line-height: 16px;
     text-align: left;
@@ -190,11 +208,21 @@ export const customStyles = css.global`
     border-bottom: 1px solid rgb(255, 224, 128);
   }
 
+  .overlay-zx {
+    position: relative;
+    z-index: 999;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
       height: 360px;
       background-position: -425px 0;
+    }
+
+    .help_support_bg {
+      position: relative;
+      height: 350px;
     }
 
     // .banner-image-mobile {
