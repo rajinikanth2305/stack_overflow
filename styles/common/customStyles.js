@@ -72,6 +72,104 @@ export const customStyles = css.global`
     font-family: Franklin Gothic;
   }
 
+  .title-h1 {
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 60px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .title-h2 {
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    margin-bottom: 15px;
+    border-bottom: 4px solid rgb(255, 193, 0);
+    padding-bottom: 3px;
+    margin-bottom: 20px;
+  }
+
+  .p-text-1 {
+    line-height: 30px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .p-text-4 {
+    line-height: 24px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .faq_navbar.nav {
+    width: 100% !important;
+    flex-wrap: initial;
+  }
+
+  .faq_navbar.nav-tabs {
+    border: 0;
+  }
+
+  .faq_nav > .nav-link.active {
+    border-bottom: 4px solid rgb(255, 193, 0);
+  }
+
+  .faq_nav > .nav-link {
+    box-shadow: 0px 1px 4px rgb(112, 112, 112) !important;
+    border-radius: 0;
+    cursor: pointer;
+    margin: 0 15px;
+  }
+
+  .faq_icon_image {
+    position: relative;
+    width: 90px;
+    height: 100px;
+  }
+
+  .card {
+    border-radius: 0;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
+    border: 0;
+    margin-bottom: 10px;
+  }
+
+  .card-header {
+    padding: 10px;
+  }
+
+  .card-header > button {
+    background: transparent;
+    border: 0;
+    width: 100%;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .expand_plus {
+    color: #ffc100;
+    font-weight: bold;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -135,6 +233,10 @@ export const customStyles = css.global`
       font-weight: normal;
       font-size: 14px;
       text-transform: capitalize;
+    }
+
+    .title-h2 {
+      font-szie: 24px !important;
     }
   }
 

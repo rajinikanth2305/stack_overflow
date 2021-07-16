@@ -3,6 +3,7 @@ import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Image from "next/image";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import FaqSection from "./FaqSection";
 
 const FaqBanner = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -25,7 +26,7 @@ const FaqBanner = ({ slice }) => {
                   <p className="banner-text-1 mb-1"><b>{RichText.asText(heading1)}</b></p>
                   <form>
                     <div className="mt-4 mb-2">
-                      <FormGroup class="diyform">
+                      <FormGroup className="diyform">
                         <Input
                           type="text"
                           name="search"
@@ -48,6 +49,9 @@ const FaqBanner = ({ slice }) => {
             objectFit="cover"
             objectPosition="bottom"
           />
+        </div>
+        <div>
+          <FaqSection />
         </div>
         <style jsx global>
           {customStyles}
