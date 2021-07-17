@@ -53,6 +53,14 @@ const UCOpenForSmallGroup = ({ slice }) => {
     router.push('/trek/hampta_pass');
   };
 
+  // const goToTrekPage = (target_url) => {
+  //   const slugUrl = target_url.slug;
+
+  //   if (slugUrl)
+  //   url = linkResolver(slugUrl);
+  //   router.push();
+  // };
+
   const ucOpenForSmallGroupImages = ucOpenForSmallGroupImagesArray.map(function(
     data,
     i

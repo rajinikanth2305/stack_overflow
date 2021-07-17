@@ -17,7 +17,7 @@ const UpComingTreks = ({ slice }) => {
   const [pageCount, setPageCount] = useState(1);
   const [isLoaded, setisLoaded] = useState(false);
   const [currentPage, setcurrentPage] = useState(0);
-  const pageSize = 1;
+  const pageSize = 2;
   const pagination = useRef();
   const [criteria, setCriteria] = useState({
     all: false,

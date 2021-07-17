@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Sidebar from "../Sidebar";
+import FeeDetails from "./FeeDetails";
 /**
  * Trek Banner Slice Components
  */
@@ -154,7 +155,7 @@ const TrekOverView = ({ slice }) => {
             </div>
             <div className="col-12 col-lg-1 col-md-12"></div>
             <div className="col-12 col-lg-4 col-md-12 d-m-none">
-              <div className="card border-0">
+              {/* <div className="card border-0">
                 <div className="card-body trek_fee_outer_bg">
                   <div className="trek_fee_bg">
                     <p className="trek_fee_title m-0">Trek Fee</p>
@@ -190,7 +191,8 @@ const TrekOverView = ({ slice }) => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
+              <FeeDetails />
             </div>
           </div>
         </div>

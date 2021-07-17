@@ -1,14 +1,16 @@
-import React, {useState,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { RichText } from "prismic-reactjs";
 import { trekStyle } from "styles";
 import moment from "moment";
 import Link from "next/link";
 import BookingCalender from "../bookyourtrekcomps/BookingCalender";
-import { Toast } from 'primereact/toast';
+import { Toast } from "primereact/toast";
 //import UserService from '../../../utils/UserService';
-import { useRouter } from 'next/router';
-import dynamic from 'next/dynamic'
+import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 import { route } from "next/dist/next-server/server/router";
+import { Client } from "utils/prismicHelpers";
+import Prismic from "@prismicio/client";
 
 //const userService = dynamic(() => import('../../../utils/UserService'),{ ssr: false });
 
@@ -18,35 +20,59 @@ const BookYourTrek = ({ slice }) => {
   const cancelInfodetailsList = slice.primary.cancel_info_details;
   const [bookingDate, setBookingDate] = useState(undefined);
   const [showSelectedLabel, setShowSelectedLabel] = useState(false);
-
+  const [feeDetails, setFeeDetails] = useState();
 
   const toast = useRef(null);
   const router = useRouter();
 
-  const bookingSelect=(value) => {
+  useEffect(() => {
+    findFeeDetails();
+    return () => {
+      //   console.log("test");
+    };
+  }, []);
+
+  async function findFeeDetails() {
+    const client = Client();
+    const doc = await client
+      .query([Prismic.Predicates.at("document.type", "trek")])
+      .then(function(response) {
+        const tt = response.results[0].data.body;
+        const slice = tt && tt.find(x => x.slice_type === "trek_fee_details");
+        setFeeDetails(slice);
+      });
+  }
+
+  let myRef = feeDetails && feeDetails.primary.ref_id_tosroll[0].text;
+  myRef = useRef(null);
+
+  const bookingSelect = value => {
     console.log(JSON.stringify(value));
     setBookingDate(value);
     setShowSelectedLabel(true);
-  }
+  };
 
-
-
-
-  const register=()=> {
-
-    if(bookingDate==undefined){
-      toast.current.show({severity: 'error', summary: 'Seelct your Trek Booking date to proceed for registration', detail: 'No Booking date is selected'});
+  const register = () => {
+    if (bookingDate == undefined) {
+      toast.current.show({
+        severity: "error",
+        summary: "Seelct your Trek Booking date to proceed for registration",
+        detail: "No Booking date is selected"
+      });
       return;
     }
 
     //router.push("/registration?batch_id=5887&dt=2021-07-24");
-    router.push(`/registration?trekId=${bookingDate.trekId}&trekName=${bookingDate.trekName}&batchId=${bookingDate.batchId}&dt=${bookingDate.startDate.substr(0,10)}`);
-   // router.push("/registration");
-  }
-
-
-
-
+    router.push(
+      `/registration?trekId=${bookingDate.trekId}&trekName=${
+        bookingDate.trekName
+      }&batchId=${bookingDate.batchId}&dt=${bookingDate.startDate.substr(
+        0,
+        10
+      )}`
+    );
+    // router.push("/registration");
+  };
 
   const cancelInfodetails = cancelInfodetailsList.map((data, i) => {
     return (
@@ -56,12 +82,10 @@ const BookYourTrek = ({ slice }) => {
     );
   });
 
-
-
   return (
     <>
-      <div>
-      <Toast ref={toast} />
+      <div ref={myRef}>
+        <Toast ref={toast} />
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-12">
@@ -114,22 +138,26 @@ const BookYourTrek = ({ slice }) => {
                     </p>
                     <p className="p-text-4">{cancelInfodetails}</p>
                     <div className="mt-5 pt-3">
-                      {
-                      showSelectedLabel && (
+                      {showSelectedLabel && (
                         <div>
-                      <p className="m-0 p-text-3-1">
-                        <b>Selected {bookingDate.trekName}:</b>
-                      </p>
-                      <p className="p-text-2">
-                        <b>{moment(bookingDate.startDate).format('MM/DD/YYYY')} -  {moment(bookingDate.endDate).format('MM/DD/YYYY')}</b>
-                      </p>
-                      </div>
+                          <p className="m-0 p-text-3-1">
+                            <b>Selected {bookingDate.trekName}:</b>
+                          </p>
+                          <p className="p-text-2">
+                            <b>
+                              {moment(bookingDate.startDate).format(
+                                "MM/DD/YYYY"
+                              )}{" "}
+                              -{" "}
+                              {moment(bookingDate.endDate).format("MM/DD/YYYY")}
+                            </b>
+                          </p>
+                        </div>
                       )}
-                      
-                        <button className="btn btn-ptr" onClick={register}>
-                          Proceed to registration
-                        </button>
-                     
+
+                      <button className="btn btn-ptr" onClick={register}>
+                        Proceed to registration
+                      </button>
                     </div>
                   </div>
                 </div>
