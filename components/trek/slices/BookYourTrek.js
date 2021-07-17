@@ -121,7 +121,7 @@ const BookYourTrek = ({ slice }) => {
                         <b>Selected {bookingDate.trekName}:</b>
                       </p>
                       <p className="p-text-2">
-                        <b>{bookingDate.startDate} -  {bookingDate.endDate}</b>
+                        <b>{moment(bookingDate.startDate).format('MM/DD/YYYY')} -  {moment(bookingDate.endDate).format('MM/DD/YYYY')}</b>
                       </p>
                       </div>
                       )}

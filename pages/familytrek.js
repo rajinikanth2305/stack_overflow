@@ -12,6 +12,7 @@ import { HikeHeader } from "components/ihhome";
 import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
+import { FamilyTrekSliceZone } from "../components/familytrek";
 
 /**
  * UpComing component
@@ -27,14 +28,10 @@ const FamilyTrek = ({ doc }) => {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <title>DIY</title>
+          <title>Family Trek</title>
         </Head>
         <HikeHeader />
-        {/* <UpComingTreksSliceZone sliceZone={doc.data.body} /> */}
-        <div className="mt-5 py-5 text-center">
-          <h3>Family Trek</h3>
-          <h4>Under development.!!</h4>
-        </div>
+        <FamilyTrekSliceZone sliceZone={doc.data.body} />
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
@@ -52,17 +49,9 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const doc =
     (await client.getSingle(
-      "hike_upcoming_treks_ctype",
+      "family_trek",
       ref ? { ref } : null
     )) || {};
-
-  /*const doc = await client.query(
-    Prismic.Predicates.at("document.type", "hike_home_ctype"), {
-      ...(ref ? { ref } : null)
-    },
-  )*/
-
-  //console.log( "salomon" + JSON.stringify(doc));
 
   return {
     props: {

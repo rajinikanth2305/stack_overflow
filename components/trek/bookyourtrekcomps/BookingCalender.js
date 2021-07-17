@@ -155,9 +155,9 @@ const BookingCalender = ( props ) => {
   return (
     <>
         <div>
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-6 col-md-12">
+          <div>
+            <div>
+              <div>
                 <div>
                   <Calendar
                     id="navigatorstemplate"

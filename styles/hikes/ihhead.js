@@ -10,8 +10,8 @@ export const ihheaderStyles = css.global`
     font-weight: normal;
     font-size: 14px;
     color: rgba(0, 0, 0, 1);
-    padding-right: 2rem;
-    padding-left: 2rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
   }
 
   .navbar-light .navbar-nav .nav-link.active,
@@ -21,6 +21,10 @@ export const ihheaderStyles = css.global`
 
   .navbar-light .navbar-toggler {
     border: 0;
+  }
+
+  .border-bottom-custom-header {
+    border: 1.5px solid #b7b7b7 !important;
   }
 
   .navbar-expand-lg .navbar-collapse {
