@@ -8,7 +8,7 @@ export const customStyles = css.global`
     position: relative;
     background-position: bottom;
   }
-  
+
   .help_support_bg {
     width: 100%;
     height: 350px;
@@ -17,9 +17,24 @@ export const customStyles = css.global`
     background-position: bottom;
   }
 
+  .banner-image-desktop-ft {
+    width: 100%;
+    height: 700px;
+    background-size: cover;
+    position: relative;
+    background-position: bottom;
+  }
+
   .bg_overlay {
     height: 360px;
     background: rgba(0, 0, 0, 0.2);
+  }
+
+  .bg_overlay-ft {
+    height: 700px;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    position: relative;
   }
 
   .banner-image-mobile {
@@ -245,6 +260,79 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 12px;
     color: rgba(112, 112, 112, 1);
+  }
+
+  .ft-image {
+    position: relative;
+    height: 355px;
+    width: 100%;
+  }
+
+  .carousel_trek_image {
+    width: 100%;
+    height: 275px;
+    position: relative;
+    border-bottom: 2px solid rgb(255, 193, 0);
+  }
+
+  .card-info-text > div > p {
+    line-height: 18px;
+    text-align: left;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 12px;
+    color: rgba(112, 112, 112, 1);
+    text-transform: capitalize;
+    margin-bottom: 7px;
+  }
+
+  .list-dot-style > span {
+    color: rgb(255, 193, 0) !important;
+    font-size: 50px;
+    position: relative;
+    top: -7px;
+  }
+
+  .title-diplay-3 {
+    line-height: 30px;
+    text-align: left;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+  }
+
+  .p-display-2 {
+    line-height: 18px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgb(112, 112, 112);
+  }
+
+  .btn-ih-green {
+    background: rgb(91, 133, 70);
+    border: 0;
+    padding: 3px 30px;
+    border-radius: 0;
+    line-height: 24px;
+    text-align: center;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: uppercase;
+  }
+
+  .slick-prev::before,
+  .slick-next::before {
+    color: #ffc100;
+    font-size: 26px;
   }
 
   @media only screen and (max-width: 660px) {
