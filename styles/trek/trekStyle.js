@@ -977,7 +977,7 @@ export const trekStyle = css.global`
     font-family: Franklin Gothic Book;
     font-style: normal;
     font-weight: normal;
-    font-size: 10px;
+    font-size: 8px;
     color: rgba(0, 0, 0, 1);
   }
   .p-text-20size {
@@ -1133,7 +1133,7 @@ export const trekStyle = css.global`
     }
 
     .p-datepicker table td > span {
-      width: 3.2rem;
+      width: 3rem;
       height: 3rem;
       border-radius: 0;
     }
