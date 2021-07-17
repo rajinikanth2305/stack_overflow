@@ -78,7 +78,10 @@ const TrekOverView = ({ slice }) => {
     <>
       <div>
         <div className="container">
-          <div className="row my-5 pt-4 mmt-0">
+          <div className="row my-5 pt-4 mmt-0 m-p-t-2">
+            <div className="col-12 col-lg-4 col-md-12 d-m-block p-0">
+              <FeeDetails />
+            </div>
             <div className="col-12 col-lg-7 col-md-12">
               <div>
                 <h1 className="title-h1 border-bottom-custom pb-3">
@@ -155,43 +158,6 @@ const TrekOverView = ({ slice }) => {
             </div>
             <div className="col-12 col-lg-1 col-md-12"></div>
             <div className="col-12 col-lg-4 col-md-12 d-m-none">
-              {/* <div className="card border-0">
-                <div className="card-body trek_fee_outer_bg">
-                  <div className="trek_fee_bg">
-                    <p className="trek_fee_title m-0">Trek Fee</p>
-                    <p className="">
-                      <span className="trek_fee">₹ 9,950</span>{" "}
-                      <span className="trek_gts">+ 5% GST</span>
-                    </p>
-                    <p className="trek-info-detail m-0">
-                      This fee includes everything from basecamp to basecamp.
-                    </p>
-                    <p className="trek-info-detail">
-                      <a>See Inclusions and Exclusions</a>
-                    </p>
-                    <div className="my-3">
-                      <button className="btn btn-block btn-ih-green-trek-fee">
-                        View Dates / Register
-                      </button>
-                    </div>
-                  </div>
-                  <div className="p-3">
-                    <p className="trek_gts mb-2">optional additions</p>
-                    <p className="trek_optional_details">
-                      1.Pickup and Drop from Manali – This costs Rs 5,500 per
-                      vehicle, which is shared by 5-6 trekkers.
-                    </p>
-                    <p className="trek_optional_details">
-                      2.Backpack Offloading – Rs. 1000+ 5% GST for the entire
-                      trek. Cloakroom available free of charge.
-                    </p>
-                    <p className="trek_optional_details m-0">
-                      3.Rental Gear – We have a range of products available on
-                      our rental store. See here
-                    </p>
-                  </div>
-                </div>
-              </div> */}
               <FeeDetails />
             </div>
           </div>

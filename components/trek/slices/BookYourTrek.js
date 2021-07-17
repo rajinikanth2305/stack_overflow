@@ -25,26 +25,26 @@ const BookYourTrek = ({ slice }) => {
   const toast = useRef(null);
   const router = useRouter();
 
-  useEffect(() => {
-    findFeeDetails();
-    return () => {
-      //   console.log("test");
-    };
-  }, []);
+  // useEffect(() => {
+  //   findFeeDetails();
+  //   return () => {
+  //     //   console.log("test");
+  //   };
+  // }, []);
 
-  async function findFeeDetails() {
-    const client = Client();
-    const doc = await client
-      .query([Prismic.Predicates.at("document.type", "trek")])
-      .then(function(response) {
-        const tt = response.results[0].data.body;
-        const slice = tt && tt.find(x => x.slice_type === "trek_fee_details");
-        setFeeDetails(slice);
-      });
-  }
+  // async function findFeeDetails() {
+  //   const client = Client();
+  //   const doc = await client
+  //     .query([Prismic.Predicates.at("document.type", "trek")])
+  //     .then(function(response) {
+  //       const tt = response.results[0].data.body;
+  //       const slice = tt && tt.find(x => x.slice_type === "trek_fee_details");
+  //       setFeeDetails(slice);
+  //     });
+  // }
 
-  let myRef = feeDetails && feeDetails.primary.ref_id_tosroll[0].text;
-  myRef = useRef(null);
+  // let myRef = feeDetails && feeDetails.primary.ref_id_tosroll[0].text;
+  // myRef = useRef(null);
 
   const bookingSelect = value => {
     console.log(JSON.stringify(value));
@@ -84,7 +84,7 @@ const BookYourTrek = ({ slice }) => {
 
   return (
     <>
-      <div ref={myRef}>
+      <div id="goToBookTicket">
         <Toast ref={toast} />
         <div className="container">
           <div className="row">
@@ -132,7 +132,7 @@ const BookYourTrek = ({ slice }) => {
                 </div>
                 <div className="col-lg-1 col-md-12"></div>
                 <div className="col-12 col-lg-5 col-md-12">
-                  <div className="mt-5 pt-5 mmt-0">
+                  <div className="mt-5 pt-5 mmt-0 m-p-t-2">
                     <p className="p-text-1 b-left">
                       <b>{RichText.asText(cancelInfoHeading)}</b>
                     </p>

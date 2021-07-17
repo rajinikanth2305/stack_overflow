@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { RichText } from "prismic-reactjs";
 import { trekStyle } from "styles";
 import Image from "next/image";
@@ -35,16 +35,12 @@ const FeeDetails = () => {
   const price = feeDetails && feeDetails.primary.price;
   const tax = feeDetails && feeDetails.primary.tax;
   const descriptions = feeDetails && feeDetails.primary.descriptions;
-  const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)   
-
-  let myRef = feeDetails && feeDetails.primary.ref_id_tosroll[0].text;
-  myRef = useRef(null);
-  const executeScroll = () => scrollToRef(myRef);
+  const insurance = feeDetails && feeDetails.primary.insurance;
 
   return (
     <>
       <div>
-        <div className="card border-0">
+        <div className="card border-0 d-m-none">
           <div className="card-body trek_fee_outer_bg">
             <div className="trek_fee_bg">
               <p className="trek_fee_title m-0">{RichText.asText(heading)}</p>
@@ -60,7 +56,7 @@ const FeeDetails = () => {
               </p>
               <div className="my-3">
                 <button className="btn btn-block btn-ih-green-trek-fee">
-                  View Dates / Register
+                  <a href="#goToBookTicket">View Dates / Register</a>
                 </button>
               </div>
             </div>
@@ -78,6 +74,42 @@ const FeeDetails = () => {
                 3.Rental Gear – We have a range of products available on our
                 rental store. See here
               </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="d-m-block m-fee-details-card">
+          <div className="row">
+            <div className="col-3 p-0">
+              <div>
+                <div className="text-center">
+                  <p className="p-xs-text m-0">Know your trek</p>
+                  <img src="/kn.png" alt="img" />
+                </div>
+              </div>
+            </div>
+            <div className="col-5 p-0">
+              <div className="d-flex align-items-center">
+                <div>
+                  <p className="p-xs-text m-0">Know your trek</p>
+                  <p className="p-text-20size m-0">
+                    ₹ {RichText.asText(price)}
+                  </p>
+                </div>
+                <div className="mx-2">
+                  <p className="p-xxs-text mb-2">
+                    <span>+ {RichText.asText(tax)}% gst</span>
+                  </p>
+                  <p className="p-xxs-text m-0">
+                    <span>+ {RichText.asText(insurance)}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-4">
+              <button className="btn btn-block btn-ih-green-trek-fee">
+                <a href="#goToBookTicket">View Dates</a>
+              </button>
             </div>
           </div>
         </div>
