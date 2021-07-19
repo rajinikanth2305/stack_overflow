@@ -84,7 +84,7 @@ const RegHome = ({ slice }) => {
   const showToken=()=>{
     if(userServiceObject!==undefined) {
       let x= userServiceObject.getUsername();
-       console.log(x);
+      //  console.log(x);
     }
   }
 

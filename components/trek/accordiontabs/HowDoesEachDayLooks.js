@@ -14,7 +14,7 @@ const HowDoesEachDayLooks = () => {
   useEffect(() => {
     findTrekStories();
     return () => {
-      console.log("test");
+      // console.log("test");
     };
   }, []);
 
@@ -27,7 +27,7 @@ const HowDoesEachDayLooks = () => {
         const slice =
           tt && tt.filter(x => x.slice_type === "day_wise_itinerary");
         setDayWise(slice);
-        console.log(slice);
+        // console.log(slice);
       });
   }
 

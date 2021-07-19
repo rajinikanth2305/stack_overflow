@@ -5,6 +5,7 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Link from "next/link";
 /**
  * Founder Slice Components
  */
@@ -95,10 +96,7 @@ const DoItYourself = ({ slice }) => {
               <Slider {...settings}>{doitImage}</Slider>
               <div class="mt-4 text-center">
                 <button class="btn btn-lg btn-ih-primary text-capitalized">
-                  {/* <Link href={url}>
-                    <a> {linkButtonText}</a>
-                  </Link> */}
-                  View More DIY Treks
+                  <Link href="../../../diy">View More DIY Treks</Link>
                 </button>
               </div>
             </div>

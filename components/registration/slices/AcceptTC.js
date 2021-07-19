@@ -47,7 +47,7 @@ const AcceptTC = ( {data,props,onTermAccept} ) => {
   });
 
   const termAccepted=()=>{
-       console.log(props.trekId);
+      //  console.log(props.trekId);
        onTermAccept(true);
   }
 

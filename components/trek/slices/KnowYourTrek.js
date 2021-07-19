@@ -22,7 +22,7 @@ const KnowYourTrek = ({ slice, data }) => {
   const accordionTabImgArray = slice.items;
 
   const slice_zone = data;
-  console.log(slice_zone);
+  // console.log(slice_zone);
 
   const heading2data = heading2.map((data, i) => {
     return <p key={i}>{data.text}</p>;
@@ -33,7 +33,7 @@ const KnowYourTrek = ({ slice, data }) => {
     const sliceType = slice_zone.find(
       x => x.slice_type === data.inner_content_slice_id[0].text
     );
-    console.log(sliceType);
+    // console.log(sliceType);
     return (
       <>
         <Accordion>

@@ -14,7 +14,7 @@ const HowDifficultTrekIs = () => {
   useEffect(() => {
     findTrekStories();
     return () => {
-      console.log("test");
+      // console.log("test");
     };
   }, []);
 
@@ -40,7 +40,7 @@ const HowDifficultTrekIs = () => {
   const howSafeContentList = howDiff && howDiff.primary.how_safe_content;
   const tabsDataArray = howDiff && howDiff.items;
 
-  console.log(tabsDataArray);
+  // console.log(tabsDataArray);
 
   const hdText = hdTextList?.map(function(data, i) {
     return (

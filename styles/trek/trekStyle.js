@@ -843,7 +843,7 @@ export const trekStyle = css.global`
   }
 
   .why_so_video_image {
-    position: relativel;
+    position: relative;
     height: 250px;
     width: 100%;
   }
