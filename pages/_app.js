@@ -1,6 +1,7 @@
 // import App from 'next/app'
 import { reset, globals } from "styles";
 import "bootstrap/dist/css/bootstrap.css";
+import "font-awesome/css/font-awesome.css";   
 
 // add bootstrap css 
 //import 'bootstrap/dist/css/bootstrap.css'
