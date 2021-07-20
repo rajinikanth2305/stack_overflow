@@ -84,13 +84,6 @@ const HikeHeader = ({ image, headline, description }) => {
                 <Link href="../../../careers">careers</Link>
               </NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink
-                className={router.pathname == "/careers" ? "active" : ""}
-              >
-                <Link href="../../../careers">careers</Link>
-              </NavLink>
-            </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav>
                 <i class="fa fa-user-o" aria-hidden="true"></i>

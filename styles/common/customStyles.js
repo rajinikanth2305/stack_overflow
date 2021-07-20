@@ -247,6 +247,10 @@ export const customStyles = css.global`
     border-bottom: 4px solid rgb(255, 193, 0);
   }
 
+  .border-bottom-custom-1 {
+    border-bottom: 2px solid rgb(255, 193, 0);
+  }
+
   .diyres_img_bg {
     height: 100px;
     position: relative;
@@ -410,6 +414,87 @@ export const customStyles = css.global`
 
   .table-dashboard-profile-style-2 > tbody > tr > td {
     background: rgba(242, 242, 242, 1);
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .table.table-dashboard-voucher > thead > tr > th {
+    background: rgba(255,193,0,1);
+    border: 0;
+    line-height: 17.5px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal !important;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .table.table-dashboard-voucher > tbody > tr > td {
+    border-bottom: 2px solid rgb(255, 224, 127);
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .table.table-dashboard-voucher-style-1 > thead > tr > th {
+    background: rgba(91,133,70,1);
+    border: 0;
+    line-height: 17.5px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal !important;
+    font-size: 14px;
+    color: #ffffff;
+    text-transform: capitalize;
+  }
+
+  .table.table-dashboard-voucher-style-1 > tbody > tr > td {
+    border-bottom: 2px solid #acc2a2;
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .table.table-dashboard-voucher-style-2 > thead > tr > th {
+    background: rgba(242,242,242,1);
+    border: 0;
+    line-height: 17.5px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal !important;
+    font-size: 14px;
+    color: #000000;
+    text-transform: capitalize;
+  }
+
+  .table.table-dashboard-voucher-style-2 > tbody > tr > td {
+    border-bottom: 2px solid rgb(189, 189, 189);
     line-height: 20px;
     text-align: left;
     font-family: Franklin Gothic;

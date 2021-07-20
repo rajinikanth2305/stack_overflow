@@ -1,1 +1,1 @@
-export { default as TeamBanner } from "./TeamBanner";
+export { default as VoucherList } from "./VoucherList";

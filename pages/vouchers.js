@@ -11,7 +11,7 @@ import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
 import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
-import IHTrekWithSwathi from "../components/Trek_With_Swathi";
+import { VoucherList } from "../components/vouchers/slices";
 
 /**
  * UpComing component
@@ -30,11 +30,7 @@ const Vouchers = ({ doc }) => {
           <title>Vouchers</title>
         </Head>
         <HikeHeader />
-        {/* <UpComingTreksSliceZone sliceZone={doc.data.body} /> */}
-        <div className="mt-5 py-5 text-center">
-          <h3>Vouchers</h3>
-          <h4>Under development.!!</h4>
-        </div>
+        <VoucherList sliceZone={doc.data.body} />
         <IHFooter />
       </HomeLayout>
     );
@@ -51,7 +47,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const doc =
     (await client.getSingle(
-      "hike_upcoming_treks_ctype",
+      "hike_team",
       ref ? { ref } : null
     )) || {};
 
