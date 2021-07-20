@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
+import Modal from "react-bootstrap/Modal";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const WelcomeProfile = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <>
       <div className="mt-4">
@@ -93,7 +99,10 @@ const WelcomeProfile = () => {
                       </td>
                       <td>Pending</td>
                       <td>
-                        <button className="btn table-btn-yellow-sm">
+                        <button
+                          className="btn table-btn-yellow-sm"
+                          onClick={handleShow}
+                        >
                           Add / Modify
                         </button>
                       </td>
@@ -195,6 +204,131 @@ const WelcomeProfile = () => {
           {customStyles}
         </style>
       </div>
+      <Modal
+        size="md"
+        show={show}
+        onHide={handleClose}
+        animation={false}
+        centered
+      >
+        <Modal.Header>
+          <Modal.Title>
+            Sandhya has registered you for a trek. confirm your details here.
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div>
+            <p>
+              {" "}
+              You are trekking with 2 others for the Hampta Pass Trek batch of
+              16th to 23rd September 2021{" "}
+            </p>
+            <Form>
+              <div className="register-form-box">
+                <FormGroup>
+                  <Input
+                    type="text"
+                    name="fname"
+                    id="fname"
+                    placeholder="First Name"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Input
+                    type="text"
+                    name="lname"
+                    id="lname"
+                    placeholder="Last Name"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Email Id"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Input
+                    type="email"
+                    name="email"
+                    id="confirmemail"
+                    placeholder="Confirm Email Id"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Input
+                    type="number"
+                    name="phone"
+                    id="phone"
+                    placeholder="Phone Number"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Input
+                    type="date"
+                    name="dob"
+                    id="dob"
+                    placeholder="Date of Birth"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Input
+                    type="select"
+                    name="height"
+                    id="exampleSelectMulti"
+                    placeholder="Height (In Ft)"
+                  >
+                    <option>Height (In Ft)</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </Input>
+                </FormGroup>
+                <FormGroup>
+                  <Input
+                    type="select"
+                    name="weight"
+                    id="exampleSelectMulti"
+                    placeholder="weight (in kg)"
+                  >
+                    <option>weight (in kg)</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </Input>
+                </FormGroup>
+                <FormGroup>
+                  <Input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="set a log in Password"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Input
+                    type="password"
+                    name="confirmpassword"
+                    id="confirmpassword"
+                    placeholder="Confirm Password"
+                  />
+                </FormGroup>
+              </div>
+              <div className="mt-3">
+                <button type="button" className="btn btn-ih-green">
+                  Confirm Details
+                </button>
+              </div>
+            </Form>
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

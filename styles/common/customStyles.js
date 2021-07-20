@@ -627,6 +627,35 @@ export const customStyles = css.global`
     padding: 0 10px;
   }
 
+  .register-form-box {
+    background: rgba(242,242,242,1);
+    padding: 5px;
+  }
+
+  .form-control {
+    border: 1px solid rgb(161, 156, 156);
+    border-radius: 0;
+    margin: 4px 0;
+    color: rgb(112, 112, 112);
+    font-family: Franklin Gothic Book;
+    font-size: 12px;
+  }
+
+  .btn-ih-green {
+    background: rgb(91, 133, 70);
+    border: 0;
+    padding: 3px 30px;
+    border-radius: 0;
+    line-height: 24px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
