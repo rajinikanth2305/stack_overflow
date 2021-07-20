@@ -335,6 +335,213 @@ export const customStyles = css.global`
     font-size: 26px;
   }
 
+  .font-weight-bold {
+    font-weight: bold;
+  }
+
+  .list_ul_style > ol {
+    padding: 0 15px;
+  }
+
+  .list_ul_style > ol > li {
+    line-height: 18px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .table.table-dashboard-profile {
+    width: 100%;
+  }
+
+  .table.table-dashboard-profile > thead > tr > th {
+    background: rgba(255, 193, 0, 0.502);
+    border: 0;
+    line-height: 17.5px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal !important;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .table.table-dashboard-profile > tbody > tr > td {
+    border: 0;
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .table.table-dashboard-profile-style-1 > thead > tr > th {
+    background: rgba(255, 193, 0, 0.2);
+    line-height: 17.5px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal !important;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .table.table-dashboard-profile-style-1 > tbody > tr > td {
+    background: rgba(255, 243, 204, 0.329);
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .table-dashboard-profile-style-2 > tbody > tr > td {
+    background: rgba(242, 242, 242, 1);
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .w-20per {
+    width: 20%;
+  }
+
+  .w-15per {
+    width: 15%;
+  }
+
+  .table-btn-gray {
+    background: rgba(112, 112, 112, 1);
+    border-radius: 0;
+    line-height: 28px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
+    padding: 0 20px;
+  }
+
+  .table-btn-maroon {
+    background: rgba(157, 58, 11, 1);
+    border-radius: 0;
+    line-height: 28px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
+    padding: 0 20px;
+  }
+
+  .table-btn-blue {
+    background: rgba(35, 76, 187, 1);
+    border-radius: 0;
+    line-height: 28px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
+    padding: 0 20px;
+  }
+
+  .table-btn-green {
+    background: rgba(13, 193, 67, 1);
+    border-radius: 0;
+    line-height: 28px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
+    padding: 0 20px;
+  }
+
+  .table-btn-yellow {
+    background: rgba(255, 193, 0, 1);
+    border-radius: 0;
+    line-height: 28px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: #000000;
+    text-transform: capitalize;
+    padding: 0 20px;
+  }
+
+  .table-btn-green-lg {
+    background: rgba(57,114,41,1);
+    border-radius: 0;
+    line-height: 28px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
+    padding: 0 20px;
+  }
+
+  .table-btn-green-sm {
+    background: rgba(57, 114, 41, 1);
+    border-radius: 0;
+    line-height: 20px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
+    padding: 0 10px;
+  }
+
+  .table-btn-yellow-sm {
+    background: rgba(255, 193, 0, 1);
+    border-radius: 0;
+    line-height: 20px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: #000000;
+    text-transform: capitalize;
+    padding: 0 10px;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
