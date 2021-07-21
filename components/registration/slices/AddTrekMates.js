@@ -53,13 +53,14 @@ const AddTrekMates = forwardRef((props,ref) => {
     
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+
     const existUser= users?.find(x=>x.email===data.email);
     if(existUser!==undefined) {
       toast.current.show({severity: 'error', summary: `'Create Trekmate ${data.email} is already added'`, detail: 'Create Trekker'});
       return;
      }
+
      setUsers([...users,{
       email:data.email,
       firstName:data.firstName,
@@ -73,10 +74,13 @@ const AddTrekMates = forwardRef((props,ref) => {
           firstName:data.firstName,
           lastName:data.lastName,
           email:data.email,
-          primaryUser:false
+          primaryUser:false,
+          trekFee:0,
+          voucherCode:'',
+          voucherAmount:0
         }
       );
-      dispatch(addOrUpdateState(sdata));
+      await dispatch(addOrUpdateState(sdata));
       add();
 
     reset({
@@ -151,7 +155,6 @@ const AddTrekMates = forwardRef((props,ref) => {
   // with whatever you return from the callback passed
   // as the second argument
   useImperativeHandle(ref, () => ({
-
     changeState() {
       const data=stateData.data;
       const bookingDates = {
@@ -163,12 +166,35 @@ const AddTrekMates = forwardRef((props,ref) => {
       }
       setBookingDate(bookingDates);
     }
-
   }));
 
+  
   const nextTabNav=()=>{
-    onNextTabEvent('makepayment');
+      props.onNextTabEvent('makepayment');
   }
+
+const addFindUsers=async (data)=>{
+  setUsers([...users,{
+    email:data,
+    firstName:data,
+    lastName:''
+  }]);
+
+  const sdata= JSON.parse(JSON.stringify( stateData.data));
+  sdata.trekUsers.push(
+    {
+      firstName:data,
+      lastName:data,
+      email:data,
+      primaryUser:false,
+      trekFee:0,
+      voucherCode:'',
+      voucherAmount:0
+    }
+  );
+  await dispatch(addOrUpdateState(sdata));
+  add();
+}
 
 const findUser= async (e) => {
  // console.log(fieldRef.current.value);
@@ -186,27 +212,7 @@ const findUser= async (e) => {
     target: e.currentTarget,
     message: `Are you sure you want to add trek mate ${email} ?'`,
     icon: 'pi pi-exclamation-triangle',
-    accept: () => {
-      setUsers([...users,{
-        email:email,
-        firstName:email,
-        lastName:''
-      }]);
-
-      const data= JSON.parse(JSON.stringify( stateData.data));
-      console.log(JSON.stringify(data));
-      data.trekUsers.push(
-        {
-          firstName:email,
-          lastName:email,
-          email:email,
-          primaryUser:false
-        }
-      );
-       dispatch(addOrUpdateState(data));
-
-      add();
-    },
+    accept: () => {addFindUsers(email);},
     reject: () => {}
   });
  }
@@ -225,21 +231,23 @@ function acceptFunc() {
 const add = () => {
   setIndexes([...indexes, counter]);
   setCounter((prevCounter) => prevCounter + 1);
+  props.trekUsersChange();
 };
 
-const remove = (index)  => {
+const remove = async (index)  => {
   var user=users[index];
   setIndexes((prevIndexes) => [...prevIndexes.filter((item) => item !== index)]);
   // setCounter((prevCounter) => prevCounter - 1);
 
   const data= JSON.parse(JSON.stringify( stateData.data));
-  console.log(JSON.stringify(data));
+  //console.log(JSON.stringify(data));
   var tindex=data.trekUsers.findIndex(x=>x.email==user.email);
-  console.log(tindex);
+  //console.log(tindex);
   data.trekUsers.splice(tindex,1);
-  console.log(JSON.stringify(data));
-   dispatch(addOrUpdateState(data));
-   
+  //console.log(JSON.stringify(data));
+  await dispatch(addOrUpdateState(data));
+
+  props.trekUsersChange();
 };
 
 const heights = [

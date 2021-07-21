@@ -33,6 +33,7 @@ const RegHome = ({ slice }) => {
   const [key, setKey] = useState('accepet');
   const childRef = useRef();
   const trekMateChildRef = useRef();
+  const paymentChildRef = useRef();
 
   const router = useRouter();
 
@@ -96,10 +97,8 @@ const RegHome = ({ slice }) => {
     const onTermAccept= async (value) => {
     setTermAccepted(value);
 
-    if(stateData.data==undefined) {
-
-  
-
+    if(stateData.data===undefined) {
+      
     const bookDetails = {
       trekId:router.query.trekId,
       batchId:router.query.batchId,
@@ -111,7 +110,10 @@ const RegHome = ({ slice }) => {
           firstName:userServiceObject.getName(),
           lastName:userServiceObject.getName(),
           email:userServiceObject.getUsername(),
-          primaryUser:true
+          primaryUser:true,
+          trekFee:0,
+          voucherCode:'',
+          voucherAmount:0
         }
       ]
     };
@@ -119,6 +121,7 @@ const RegHome = ({ slice }) => {
       await dispatch(addOrUpdateState(bookDetails));
       childRef.current.changeState();
       trekMateChildRef.current.changeState();
+      paymentChildRef.current.changeState();
     }
     setKey('selectbatch');
   }
@@ -126,15 +129,22 @@ const RegHome = ({ slice }) => {
   const setTabActive=(value) => {
     setKey(value);
   }
+
   const setBatchDateChange=() => {
     trekMateChildRef.current.changeState();
+    paymentChildRef.current.changeState();
+  }
+
+  const setTrekUsersChange=() => {
+    paymentChildRef.current.changeState();
   }
 
   let selectBatchProps = {
     bookDetails:bookDetails,
     onNextTabEvent:setBatchDateChange,
-    batchDateChange:setBatchDateChange
-    }
+    batchDateChange:setBatchDateChange,
+    trekUsersChange:setTrekUsersChange
+  }
 
   return (
     <>
@@ -160,10 +170,10 @@ const RegHome = ({ slice }) => {
                     <SelectBatch  {...selectBatchProps}  ref={childRef} />
                   </Tab>
                   <Tab eventKey="addtrekmates" title="Add Trekmates"  disabled={!termAccepted}>
-                    <AddTrekMates onNextTabEvent={setTabActive} ref={trekMateChildRef}/>
+                    <AddTrekMates {...selectBatchProps} ref={trekMateChildRef}/>
                   </Tab>
                   <Tab eventKey="makepayment" title="Make payment" disabled={!termAccepted}>
-                    <MakePayment />
+                    <MakePayment ref={paymentChildRef} />
                   </Tab>
                 </Tabs>
               </div>

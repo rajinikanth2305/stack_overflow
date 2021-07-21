@@ -12,6 +12,8 @@ const AcceptTC = ( {data,props,onTermAccept} ) => {
   const stateData = useSelector(selectStateData);
   const dispatch = useDispatch();
   const router = useRouter();
+  const[showButton,setShowButton]=useState(false);
+  
 
   const EligibilityCriteriaTitle =
     eligibilityCriteria &&
@@ -22,13 +24,10 @@ const AcceptTC = ( {data,props,onTermAccept} ) => {
   const heading2 = eligibilityCriteria && eligibilityCriteria.primary.heading2;
   const ecArray = eligibilityCriteria && eligibilityCriteria.items;
 
-
-
-
   useEffect ( () => {
-    
-   //dispatch(addOrUpdateState(bookDetails));
-
+    setTimeout(() => {
+      setShowButton(true);
+    }, 2000);
   }, []);
 
   const ecList = ecArray?.map(function(data, i) {
@@ -64,10 +63,7 @@ const AcceptTC = ( {data,props,onTermAccept} ) => {
   });
 
   const termAccepted=()=>{
-
       onTermAccept(true);
-
-
   }
 
   return (
@@ -95,9 +91,11 @@ const AcceptTC = ( {data,props,onTermAccept} ) => {
             </p>
             {ecExplainedList}
           </div>
+          {showButton && (
           <button className="btn btn-ptr" onClick={termAccepted}>
                           Accepted the term and conditions
                         </button>
+                        )}
         </div>
       </div>
     </>

@@ -17,7 +17,7 @@ import { render } from "react-dom";
 const localizer = momentLocalizer(moment);
 
 
-const SelectBatch = forwardRef((props,ref,onNextTabEvent) => {
+const SelectBatch = forwardRef((props,ref) => {
   const [quickItinerary, setquickItinerary] = useState();
   const [bookingDate, setBookingDate] = useState(undefined);
 
@@ -89,17 +89,20 @@ const SelectBatch = forwardRef((props,ref,onNextTabEvent) => {
     );
   });
 
-
 const nextTabNav=()=>{
     props.onNextTabEvent('addtrekmates');
 }
 
 const bookingSelect=async (value) => {
   setBookingDate(value);
+
   const data= JSON.parse(JSON.stringify( stateData.data));
   data.startDate=value.startDate;
   data.endDate=value.endDate;
+  data.batchId=value.batchId;
+
   await dispatch(addOrUpdateState(data));
+
   props.batchDateChange();
 }
 

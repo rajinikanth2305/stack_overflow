@@ -1,8 +1,103 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,forwardRef, useImperativeHandle  } from "react";
 import { RichText } from "prismic-reactjs";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 
-const MakePayment = () => {
+import {
+  addOrUpdateState,
+  selectStateData,
+} from '../../reduxstate/counterSlice';
+
+import moment from "moment";
+
+const MakePayment = forwardRef((props,ref) => {
+
+  const [bookingDate, setBookingDate] = useState(undefined);
+  const [trekData, setTrekData] = useState(undefined);
+
+
+  const stateData = useSelector(selectStateData);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const [indexes, setIndexes] = React.useState([]);
+  const [counter, setCounter] = React.useState(0);
+
+  const [computeFields, setComputeFields] = useState(
+     {
+      computations: {
+          totalTrekFee: 0,
+          totaltax: 0,
+          total:0,
+          voucherDeduction: 0,
+          youpay: 0
+     }
+    });
+
+// The component instance will be extended
+  // with whatever you return from the callback passed
+  // as the second argument
+  useImperativeHandle(ref, () => ({
+    async changeState () {
+      
+      if(trekData===undefined){
+        /// get the trekdetails with fee and gst etc.. and set... one time...
+        const trekdt= {
+          trekFee:10500
+        }
+      }
+
+      const sdata= JSON.parse(JSON.stringify(stateData.data));
+      
+      sdata.trekUsers.map(x=>
+        x.trekFee= 1000
+      );
+
+      console.log(JSON.stringify(sdata));
+
+     await dispatch(addOrUpdateState(sdata));
+
+      const bookingDates = {
+        trekId:sdata.trekId,
+        batchId:sdata.batchId,
+        startDate:sdata.startDate,
+        endDate:sdata.endDate,
+        trekName:sdata.trekName,
+        trekkersCount:sdata.trekUsers?.length,
+        trekUsers:sdata.trekUsers,
+        batchId:sdata.batchId
+      }
+
+      setBookingDate(bookingDates);
+      computeTotal(sdata.trekUsers);
+      const arr = Array.from(new Array(sdata.trekUsers?.length), (x, i) => i);
+      setIndexes(arr);
+      setCounter(arr.length);
+    }
+
+  }));
+ 
+  const computeTotal=(usersData)=>{
+    const totalTrekFee=usersData.reduce((a,v) =>  a = a + v.trekFee , 0 );
+    const totalVoucherAmount=usersData.reduce((a,v) =>  a = a + v.voucherAmount , 0 );
+    const gst=5;
+    const gstValue=(gst/100) * totalTrekFee;
+    const total= totalTrekFee + gstValue;
+    const youpay=total-totalVoucherAmount;
+    
+    setComputeFields({...computeFields,  computations: 
+      {
+      totalTrekFee: totalTrekFee,
+      totaltax: gstValue,
+      total:total,
+      voucherDeduction: totalVoucherAmount,
+      youpay: youpay
+      }
+});
+
+  }
+
   return (
     <>
       <div className="my-5">
@@ -20,10 +115,10 @@ const MakePayment = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Hampta Pass</td>
-                    <td>16th to 23rd September</td>
+                    <td>{bookingDate?.trekName}</td>
+                    <td><b>{moment(bookingDate?.startDate).format('MM/DD/YYYY')} -  {moment(bookingDate?.endDate).format('MM/DD/YYYY')}</b></td>
                     <td>Moderate-Difficult</td>
-                    <td>5 trekkers</td>
+                    <td>{bookingDate?.trekkersCount} trekkers</td>
                   </tr>
                 </tbody>
               </table>
@@ -40,8 +135,12 @@ const MakePayment = () => {
                   </tr>
                 </thead>
                 <tbody>
+                {indexes.map((index) => {
+                  const data = bookingDate?.trekUsers[index];
+                  const name=data?.primaryUser==true ? data?.firstName + ' (You) ' : data?.firstName;
+                  return (
                   <tr>
-                    <td>Nayana Jambe (You)</td>
+                    <td>{name}</td>
                     <td>
                       <div className="d-flex align-items-center">
                         <div>
@@ -71,43 +170,11 @@ const MakePayment = () => {
                         </div>
                       </div>
                     </td>
-                    <td>Rs. 10,500</td>
-                    <td>Rs. 10,299</td>
+                    <td>Rs. {data?.trekFee}</td>
+                    <td>Rs. {data?.trekFee-Number(data?.voucherAmount)}</td>
                   </tr>
-                  <tr>
-                    <td>Sandhya UC</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <div>
-                          <FormGroup>
-                            <Input
-                              type="select"
-                              name="height"
-                              id="exampleSelectMulti"
-                              placeholder="Height (In Ft)"
-                            >
-                              <option>Rs. 301 : Voucher 1</option>
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </Input>
-                          </FormGroup>
-                        </div>
-                        <div className="mx-2">
-                          <button
-                            type="button"
-                            className="btn btn-bihtn-yellow-sm"
-                          >
-                            Apply
-                          </button>
-                        </div>
-                      </div>
-                    </td>
-                    <td>Rs. 10,500</td>
-                    <td>Rs. 10,299</td>
-                  </tr>
+                  )
+                })}
                 </tbody>
               </table>
             </div>
@@ -124,18 +191,18 @@ const MakePayment = () => {
                     trek fee payable
                   </span>
                 </p>
-                <p className="p-text-3-2-fg mb-2 mt-4">Hampta Pass Trek</p>
+                <p className="p-text-3-2-fg mb-2 mt-4">{bookingDate?.trekName}</p>
                 <p className="p-text-3-2-fg mb-2">
-                  16th Sep 2021 to 23rd Sep 2021
+                {moment(bookingDate?.startDate).format('MM/DD/YYYY')} -  {moment(bookingDate?.endDate).format('MM/DD/YYYY')}
                 </p>
-                <p className="p-text-3-2-fg mb-2">5 trekkers</p>
+                <p className="p-text-3-2-fg mb-2">{bookingDate?.trekkersCount} trekkers</p>
 
                 <div className="d-flex justify-content-between mt-4 pt-2">
                   <div>
-                    <p className="p-text-3-1-2 mb-3">Trek Fee for 5 trekkers</p>
+                    <p className="p-text-3-1-2 mb-3">Trek Fee for {bookingDate?.trekkersCount}  trekkers</p>
                   </div>
                   <div>
-                    <p className="p-text-3-1-2 mb-3">Rs. 56,768</p>
+                    <p className="p-text-3-1-2 mb-3">Rs. {computeFields.computations.totalTrekFee}</p>
                   </div>
                 </div>
                 <div className="d-flex justify-content-between">
@@ -143,7 +210,7 @@ const MakePayment = () => {
                     <p className="p-text-3-1-2 mb-3">GST 5%</p>
                   </div>
                   <div>
-                    <p className="p-text-3-1-2 mb-3">Rs. 2,235</p>
+                    <p className="p-text-3-1-2 mb-3">Rs. {computeFields.computations.totaltax}</p>
                   </div>
                 </div>
                 <div className="d-flex">
@@ -151,7 +218,7 @@ const MakePayment = () => {
                     <p className="p-text-3-1-2 text-align-right mb-2">Total</p>
                   </div>
                   <div>
-                    <p className="p-text-3-1-2 mb-2">Rs. 59,003</p>
+                    <p className="p-text-3-1-2 mb-2">Rs. {computeFields.computations.total}</p>
                   </div>
                 </div>
                 <div className="d-flex border-bottom-custom-1">
@@ -161,7 +228,7 @@ const MakePayment = () => {
                     </p>
                   </div>
                   <div>
-                    <p className="p-text-3-1-2 mb-3">Rs. 30,997</p>
+                    <p className="p-text-3-1-2 mb-3">Rs. {computeFields.computations.voucherDeduction}</p>
                   </div>
                 </div>
                 <div className="d-flex mt-2">
@@ -171,7 +238,7 @@ const MakePayment = () => {
                     </p>
                   </div>
                   <div>
-                    <p className="p-text-2-franklin-g mb-3">Rs. 28,006</p>
+                    <p className="p-text-2-franklin-g mb-3">Rs. {computeFields.computations.youpay}</p>
                   </div>
                 </div>
               </div>
@@ -188,6 +255,6 @@ const MakePayment = () => {
       </div>
     </>
   );
-};
+});
 
 export default MakePayment;
