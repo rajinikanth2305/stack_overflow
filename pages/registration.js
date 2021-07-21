@@ -9,7 +9,8 @@ import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import { RegistrationSliceZone } from "../components/registration";
-
+import { Provider } from 'react-redux';
+import store from '../components/reduxstate/store';
 /**
  * Registration component
  */
@@ -24,7 +25,9 @@ const Registration = ({ doc }) => {
          <title>Registration</title>
         </Head>
         <HikeHeader/>
+        <Provider store={store}>
         <RegistrationSliceZone sliceZone={doc.data.body} />
+        </Provider>
         {/* <div className="mt-5 py-5 text-center">
             <h3>Registration</h3>
             <h4>Under development.!!</h4>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef,forwardRef, useImperativeHandle  } from "react";
 import { RichText } from "prismic-reactjs";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { Calendar, momentLocalizer } from "react-big-calendar";
@@ -6,27 +6,52 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { Client } from "utils/prismicHelpers";
 import Prismic from "@prismicio/client";
-
+import BookingCalender from "../../trek/bookyourtrekcomps/BookingCalender";
+import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
+import {
+  addOrUpdateState,
+  selectStateData,
+} from '../../reduxstate/counterSlice';
+import { render } from "react-dom";
 const localizer = momentLocalizer(moment);
 
-const events = [
-  {
-    title: "My event",
-    allDay: false,
-    start: "2021-07-19",
-    end: "2021-07-25"
-  }
-];
 
-const SelectBatch = ({onNextTabEvent}) => {
+const SelectBatch = forwardRef((props,ref,onNextTabEvent) => {
   const [quickItinerary, setquickItinerary] = useState();
+  const [bookingDate, setBookingDate] = useState(undefined);
+
+  const stateData = useSelector(selectStateData);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const[viewDate,setViewDate]=useState(new Date());
+  const[renderControl,setRenderControl]=useState(false);
+
+
+
 
   useEffect(() => {
+    const batchStartDt=getBatchStartDate();
+    const splitdt=batchStartDt.split('-');
+    const dt=new Date(splitdt[0],(splitdt[1]-1)); /// one month subtracting...
+  
+    setViewDate(dt);
+    setRenderControl(true);
+
     findquickItinerary();
-    return () => {
-      //   console.log("test");
-    };
   }, []);
+ 
+  function getBatchStartDate () {
+    /// Get the 'BatchStartDate' from QueryString
+    let url=location.href.replace(location.origin, '');
+    //console.log(url);
+    let pageUrl=url.split("&");
+    let pageUrl3=pageUrl[1]; //trekName
+    //console.log(pageUrl3);
+    return(pageUrl[3].split("="))[1];
+ }
+
+    
 
   async function findquickItinerary() {
     const client = Client();
@@ -65,9 +90,38 @@ const SelectBatch = ({onNextTabEvent}) => {
   });
 
 
-  const nextTabNav=()=>{
-    onNextTabEvent('addtrekmates');
+const nextTabNav=()=>{
+    props.onNextTabEvent('addtrekmates');
 }
+
+const bookingSelect=async (value) => {
+  setBookingDate(value);
+  const data= JSON.parse(JSON.stringify( stateData.data));
+  data.startDate=value.startDate;
+  data.endDate=value.endDate;
+  await dispatch(addOrUpdateState(data));
+  props.batchDateChange();
+}
+
+// The component instance will be extended
+  // with whatever you return from the callback passed
+  // as the second argument
+  useImperativeHandle(ref, () => ({
+
+    changeState() {
+      const data=stateData.data;
+      const bookingDates = {
+        trekId:data.trekId,
+        batchId:data.batchId,
+        startDate:data.startDate,
+        endDate:data.endDate,
+        trekName:data.trekName
+      }
+      setBookingDate(bookingDates);
+    }
+
+  }));
+
 
 
   return (
@@ -108,14 +162,9 @@ const SelectBatch = ({onNextTabEvent}) => {
                           </div>
                         </div>
                       </div>
-                      {/* reference https://jquense.github.io/react-big-calendar/examples/index.html#api */}
-                      <Calendar
-                        localizer={localizer}
-                        events={events}
-                        startAccessor="start"
-                        endAccessor="end"
-                        style={{ height: 500 }}
-                      />
+                      { (typeof window !== 'undefined' && renderControl)  && (
+                           <BookingCalender onBookingSelect={bookingSelect} mode={'inline_tab'} viewDt={viewDate}  />
+                      )}
                     </div>
                   </div>
                 </div>
@@ -126,9 +175,9 @@ const SelectBatch = ({onNextTabEvent}) => {
             <div className="px-3">
               <div className="px-4 py-3 border-custom-green">
                 <p className="p-text-3-1-fg m-0">
-                  Selected Hampta Pass Trek Group:{" "}
+                  Selected {bookingDate?.trekName} Trek Group:{" "}
                   <span style={{ fontSize: "18px" }}>
-                    16th to 21st September
+                  <b>{moment(bookingDate?.startDate).format('MM/DD/YYYY')} -  {moment(bookingDate?.endDate).format('MM/DD/YYYY')}</b>
                   </span>
                 </p>
               </div>
@@ -153,6 +202,6 @@ const SelectBatch = ({onNextTabEvent}) => {
       </div>
     </>
   );
-};
+});
 
-export default SelectBatch;
+export default   SelectBatch;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import { RichText } from "prismic-reactjs";
 import AcceptTC from "./AcceptTC";
 import Image from "next/image";
@@ -14,7 +14,14 @@ import MakePayment from "./MakePayment";
 // import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  addOrUpdateState,
+  selectStateData,
+} from '../../reduxstate/counterSlice';
+
 const RegHome = ({ slice }) => {
+
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
 
@@ -24,26 +31,24 @@ const RegHome = ({ slice }) => {
   const [queryString, setQueryString] = useState();
   const [termAccepted, setTermAccepted] = useState(false);
   const [key, setKey] = useState('accepet');
+  const childRef = useRef();
+  const trekMateChildRef = useRef();
 
   const router = useRouter();
 
-  const bookDetails = {
-       trekId:router.query.trekId,
-       batchId:router.query.batchId,
-       batchDate:router.query.dt,
-       trekName:router.query.trekName,
-  };
+  const stateData = useSelector(selectStateData);
+  const dispatch = useDispatch();
 
-
+  const [bookDetails, setBookDetails] = useState('null');
+  const [stateChange, setStateChange] = useState(1);
   const completeTheSteps =eligibilityCriteria && eligibilityCriteria.primary.complete_the_steps;
+
 
    useEffect ( () => {
     import('../../../utils/UserService').then(mod => {
         setUserServiceObject(mod);
         mod.initKeycloak(postAuthenticAction);
     }),{ ssr: false };
-  
-   
   }, []);
 
 
@@ -85,23 +90,56 @@ const RegHome = ({ slice }) => {
     if(userServiceObject!==undefined) {
       let x= userServiceObject.getUsername();
        console.log(x);
+       
     }
   }
 
-  const onTermAccept=(value) => {
-    console.log(value);
+    const onTermAccept= async (value) => {
     setTermAccepted(value);
+
+    if(stateData.data==undefined) {
+
+  
+
+    const bookDetails = {
+      trekId:router.query.trekId,
+      batchId:router.query.batchId,
+      startDate:router.query.dt,
+      endDate:router.query.endDt,
+      trekName:router.query.trekName,
+      trekUsers:[
+        {
+          firstName:userServiceObject.getName(),
+          lastName:userServiceObject.getName(),
+          email:userServiceObject.getUsername(),
+          primaryUser:true
+        }
+      ]
+    };
+
+      await dispatch(addOrUpdateState(bookDetails));
+      childRef.current.changeState();
+      trekMateChildRef.current.changeState();
+    }
     setKey('selectbatch');
   }
 
   const setTabActive=(value) => {
     setKey(value);
   }
+  const setBatchDateChange=() => {
+    trekMateChildRef.current.changeState();
+  }
+
+  let selectBatchProps = {
+    bookDetails:bookDetails,
+    onNextTabEvent:setBatchDateChange,
+    batchDateChange:setBatchDateChange
+    }
 
   return (
     <>
       <div>
-       
         <div className="mt-4 mb-5">
           <div className="container">
             <div className="col-md-12">
@@ -113,16 +151,17 @@ const RegHome = ({ slice }) => {
                 <Tabs 
                  activeKey={key}
                  onSelect={(k) => setKey(k)}
+                 unmountOnExit={false}
                 >
                   <Tab eventKey="accepet" title="Accept T&C">
                     <AcceptTC data={eligibilityCriteria} props={bookDetails} onTermAccept={onTermAccept} />
                   </Tab>
                   
-                  <Tab eventKey="selectbatch" title="Select Batch" disabled={!termAccepted}>
-                    <SelectBatch onNextTabEvent={setTabActive} />
+                  <Tab eventKey="selectbatch" title="Select Batch"  disabled={!termAccepted}>
+                    <SelectBatch  {...selectBatchProps}  ref={childRef} />
                   </Tab>
-                  <Tab eventKey="addtrekmates" title="Add Trekmates" disabled={!termAccepted}>
-                    <AddTrekMates onNextTabEvent={setTabActive}/>
+                  <Tab eventKey="addtrekmates" title="Add Trekmates"  disabled={!termAccepted}>
+                    <AddTrekMates onNextTabEvent={setTabActive} ref={trekMateChildRef}/>
                   </Tab>
                   <Tab eventKey="makepayment" title="Make payment" disabled={!termAccepted}>
                     <MakePayment />
@@ -136,6 +175,7 @@ const RegHome = ({ slice }) => {
           {regStyle}
         </style>
       </div>
+     
     </>
   );
 };

@@ -14,25 +14,46 @@ import "primeflex/primeflex.css";
 
 // Project components & functions
 import { getBatches } from 'utils/queries';
+import { batch } from "react-redux";
 
-const BookingCalender = ( props ) => {
+const BookingCalender = ( {onBookingSelect,mode,viewDt} ) => {
  
   const [selectedBatchDate, setSelectedBatchDate] = useState();
   const [selectedMonthYear, setSelectedMonthYear] = useState();
   const [invalidDates, setInvalidDates] = useState();
   const [batchDates, setBatchDates] = useState();
   const [batchData, setBatchData] = useState([]);
-
+  const[viewDate,setViewDate]=useState(new Date());
   const router = useRouter();
   const { trekName } = router.pathname;
+  const [batchId, setBatchId] = useState();
+  const [onceSelectClicked, setOnceSelectClicked] = useState();
+
+  function getTrekNameFromUrlQueryPath () {
+    /// Get the trekName from QueryString
+    let url=location.href.replace(location.origin, '');
+    //console.log(url);
+    let pageUrl=url.split("&");
+    let pageUrl3=pageUrl[1]; //trekName
+    setBatchId(pageUrl[2]);
+    return(pageUrl[1].split("="))[1];
+ }
 
   const  fetchTrekMonthBatches = async (date) => {
+
+   let  actualTrekPageName ='';
+    if(mode==='inline_page') {
+      console.log(mode);
     const pageUrl= window.location.href;
     const pageNamesArray= pageUrl.split('/');
     const pageName=pageNamesArray[pageNamesArray.length-1];
-    const actualTrekPageName=pageName.replace("_"," ");
+     actualTrekPageName=pageName.replace("_"," ");
+  }
+  else {
+    console.log(mode);
+    actualTrekPageName=getTrekNameFromUrlQueryPath();
+  }
     const data=await getBatches(actualTrekPageName,date.month + 1,2021);
-    //console.log(data);
       setBatchData(data);
       prepareDateDisableList(date,data);
   };
@@ -49,7 +70,6 @@ const BookingCalender = ( props ) => {
       dict[startDt] = x;
     });
   }
-
     setBatchDates(dict);
     // console.log(JSON.stringify(dict));
    //console.log(JSON.stringify(batchDateNumInMonth));
@@ -147,7 +167,8 @@ const BookingCalender = ( props ) => {
   const onSelect = (e) => {
     
     if (batchDates !== undefined && batchDates[e.getDate()] !== undefined) {
-          props.onBookingSelect(batchDates[e.getDate()]);
+          setOnceSelectClicked(true);
+          onBookingSelect(batchDates[e.getDate()]);
     }
   };
 
@@ -171,6 +192,7 @@ const BookingCalender = ( props ) => {
                     dateTemplate={dateTemplate}
                     monthNavigatorTemplate={monthNavigatorTemplate}
                     yearNavigatorTemplate={yearNavigatorTemplate}
+                    viewDate={viewDt!=undefined?viewDt:new Date()}
                   />
                 </div>
               </div>

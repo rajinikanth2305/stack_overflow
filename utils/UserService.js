@@ -47,7 +47,9 @@ const updateToken = (successCallback) => keycloakContext.updateToken(5).then(suc
 
 export const getUsername = () => keycloakContext.tokenParsed?.preferred_username;
 
-const getName = () => `${keycloakContext.tokenParsed?.given_name} ${keycloakContext.tokenParsed?.family_name}`;
+export const getUserId = () => keycloakContext.tokenParsed?.email;
+
+export const getName = () => `${keycloakContext.tokenParsed?.given_name} ${keycloakContext.tokenParsed?.family_name}`;
 
 const hasRole = (roleName) => keycloakContext.hasRealmRole(roleName);
 

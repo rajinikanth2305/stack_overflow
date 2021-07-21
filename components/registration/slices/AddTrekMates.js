@@ -1,16 +1,257 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef,useMemo,forwardRef, useImperativeHandle } from "react";
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
+//import { ConfirmPopup } from 'primereact/confirmpopup'; // To use <ConfirmPopup> tag
+import { confirmPopup } from 'primereact/confirmpopup'; // To use confirmPopup method
+import { Toast } from 'primereact/toast';
 import { RichText } from "prismic-reactjs";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { InputText } from 'primereact/inputtext';
+import { InputNumber } from 'primereact/inputnumber';
+import { findUserByEmail } from '../../../utils/queries';
+import { Dropdown } from 'primereact/dropdown';
+import { Calendar } from 'primereact/calendar';
+import moment from "moment";
+import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
+import {
+  addOrUpdateState,
+  selectStateData,
+} from '../../reduxstate/counterSlice';
 
-const AddTrekMates = ({onNextTabEvent}) => {
+const AddTrekMates = forwardRef((props,ref) => {
+
+  const fieldRef = useRef();
+  const toast = useRef(null);
+  const [users, setUsers] = useState();
+  const [indexes, setIndexes] = React.useState([]);
+  const [counter, setCounter] = React.useState(0);
+  const [bookingDate, setBookingDate] = useState(undefined);
+  const stateData = useSelector(selectStateData);
+  const dispatch = useDispatch();
+
+  const validationSchema = useMemo(
+    () =>
+      Yup.object({
+        firstName: Yup.string().required('First Name is required'),
+        lastName: Yup.string().required('LastName  is required'),
+        email: Yup.string().email().required('Email  is required'),
+        phone: Yup.string().required('Phone  is required'),
+        height: Yup.string().required('Height  is required'),
+        weight: Yup.string().required('Weight  is required'),
+        dob: Yup.string().required('Date Of Birth  is required')
+      }),
+    [],
+  );
+  
+  // functions to build form returned by useForm() hook
+  const { register, handleSubmit, reset, setValue, control, errors, formState } = useForm({
+    resolver: yupResolver(validationSchema),
+    criteriaMode: "firstError",
+    shouldFocusError: true
+    
+  });
+
+  const onSubmit = (data) => {
+    console.log(data);
+    const existUser= users?.find(x=>x.email===data.email);
+    if(existUser!==undefined) {
+      toast.current.show({severity: 'error', summary: `'Create Trekmate ${data.email} is already added'`, detail: 'Create Trekker'});
+      return;
+     }
+     setUsers([...users,{
+      email:data.email,
+      firstName:data.firstName,
+      lastName:''
+    }]);
+
+      const sdata= JSON.parse(JSON.stringify( stateData.data));
+      console.log(JSON.stringify(sdata));
+      sdata.trekUsers.push(
+        {
+          firstName:data.firstName,
+          lastName:data.lastName,
+          email:data.email,
+          primaryUser:false
+        }
+      );
+      dispatch(addOrUpdateState(sdata));
+      add();
+
+    reset({
+      firstName: "",
+      lastName:"",
+      email:'',
+      phone:'',
+      weight:'',
+      height:'',
+      dob:''
+    }, {
+      keepErrors: true, 
+      keepDirty: true,
+      keepIsSubmitted: false,
+      keepTouched: false,
+      keepIsValid: false,
+      keepSubmitCount: false,
+    });
+  };
+
+  const validationSummary = (
+    <div className="validation-summary-error">
+      <pre>
+        {Object.keys(errors).length > 0 && (
+          <div>
+            Please fill in the following required information:
+            <ul>
+              {Object.keys(errors).map((field) => (
+                <li>{field}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </pre>
+    </div>
+  );
+
+  const usersData=[];
+   /* {
+      email:'one',
+      firstName:'Nayana Jambe',
+      lastName:''
+    },
+    {
+      email:'one',
+      firstName:'Sandhya UC',
+      lastName:''
+    },
+    {
+      email:'one',
+      firstName:'Manisha Hegde',
+      lastName:''
+    },
+    {
+      email:'one',
+      firstName:'Lakshmi Selvakumaran ',
+      lastName:''
+    }
+  ];*/
+  
+
+  React.useEffect(() => {
+    setUsers(usersData);
+    const arr = Array.from(new Array(usersData.length), (x, i) => i);
+      setIndexes(arr);
+      setCounter(arr.length);
+    // Logs `HTMLInputElement` 
+    
+  }, []);
+
+// The component instance will be extended
+  // with whatever you return from the callback passed
+  // as the second argument
+  useImperativeHandle(ref, () => ({
+
+    changeState() {
+      const data=stateData.data;
+      const bookingDates = {
+        trekId:data.trekId,
+        batchId:data.batchId,
+        startDate:data.startDate,
+        endDate:data.endDate,
+        trekName:data.trekName
+      }
+      setBookingDate(bookingDates);
+    }
+
+  }));
 
   const nextTabNav=()=>{
     onNextTabEvent('makepayment');
+  }
+
+const findUser= async (e) => {
+ // console.log(fieldRef.current.value);
+ const email= document.getElementById("email").value;
+ const existUser= users?.find(x=>x.email===email);
+
+ if(existUser!==undefined) {
+  toast.current.show({severity: 'error', summary: `'Find Trekker ${email} is already added'`, detail: 'Find Trekker'});
+  return;
+ }
+
+ const found=true;
+ if(found){
+  confirmPopup({
+    target: e.currentTarget,
+    message: `Are you sure you want to add trek mate ${email} ?'`,
+    icon: 'pi pi-exclamation-triangle',
+    accept: () => {
+      setUsers([...users,{
+        email:email,
+        firstName:email,
+        lastName:''
+      }]);
+
+      const data= JSON.parse(JSON.stringify( stateData.data));
+      console.log(JSON.stringify(data));
+      data.trekUsers.push(
+        {
+          firstName:email,
+          lastName:email,
+          email:email,
+          primaryUser:false
+        }
+      );
+       dispatch(addOrUpdateState(data));
+
+      add();
+    },
+    reject: () => {}
+  });
+ }
+ else {
+  toast.current.show({severity: 'error', summary: `'Find Trekker ${email} is not found in the system, you can create new mates'`, detail: 'Find Trekker'});
+ }
+}
+
+function acceptFunc() {
+  const usr=users;
+
+  
 }
 
 
+const add = () => {
+  setIndexes([...indexes, counter]);
+  setCounter((prevCounter) => prevCounter + 1);
+};
+
+const remove = (index)  => {
+  var user=users[index];
+  setIndexes((prevIndexes) => [...prevIndexes.filter((item) => item !== index)]);
+  // setCounter((prevCounter) => prevCounter - 1);
+
+  const data= JSON.parse(JSON.stringify( stateData.data));
+  console.log(JSON.stringify(data));
+  var tindex=data.trekUsers.findIndex(x=>x.email==user.email);
+  console.log(tindex);
+  data.trekUsers.splice(tindex,1);
+  console.log(JSON.stringify(data));
+   dispatch(addOrUpdateState(data));
+   
+};
+
+const heights = [
+  { name: '4 feet', code: '4' },
+  { name: '5 feet ', code: '5' },
+  { name: '6 feet ', code: '6' },
+  { name: '7 feet', code: '7' },
+];
+
   return (
     <>
+     <Toast ref={toast} />
       <div className="my-5 py-2">
         <div className="row">
           <div className="col-lg-2 col-md-12"></div>
@@ -24,27 +265,23 @@ const AddTrekMates = ({onNextTabEvent}) => {
                 </p>
                 <p className="p-text-4 text-center mt-4">
                   {" "}
-                  You are adding trekmates for the <b>Hampta Pass Trek</b> batch
-                  of
-                  <b>16th to 23rd September</b>{" "}
+                  You are adding trekmates for the <b>{bookingDate?.trekName}</b> batch
+                  of { }
+                  <b>{moment(bookingDate?.startDate).format('MM/DD/YYYY')} -  {moment(bookingDate?.endDate).format('MM/DD/YYYY')}</b>
                 </p>
                 <div className="d-flex align-items-center flex-wrap justify-content-center mb-2">
-                  <div>
-                    <p className="quick-info-bage-outline mb-1">Nayana Jambe <span className="px-2">x</span></p>
-                  </div>
-                  <div>
-                    <p className="quick-info-bage-outline mb-1">Sandhya UC <span className="px-2">x</span></p>
-                  </div>
-                  <div>
-                    <p className="quick-info-bage-outline mb-1">
-                      Manisha Hegde <span className="px-2">x</span>
-                    </p>
-                  </div>
-                  <div>
-                    <p className="quick-info-bage-outline mb-1">
-                      Lakshmi Selvakumaran <span className="px-2">x</span>
-                    </p>
-                  </div>
+                 {indexes.map((index) => {
+                  const data = users[index];
+                  return (
+               <div>
+                  <p className="quick-info-bage-outline mb-1">{data.firstName} 
+                  <a href="#" onClick={() => remove(index)} >
+                  <span className="px-2">x</span>
+                  </a>
+                  </p>
+              </div>
+                  )
+              })}
                 </div>
               </div>
             </div>
@@ -61,15 +298,16 @@ const AddTrekMates = ({onNextTabEvent}) => {
                       <div className="login-form-box">
                         <FormGroup>
                           <Input
-                            type="email"
+                            type="text"
                             name="email"
                             id="email"
                             placeholder="Email Id"
+                            ref={fieldRef}
                           />
                         </FormGroup>
                       </div>
                       <div className="mt-3">
-                        <button type="button" className="btn btn-ih-green">
+                        <button type="button" className="btn btn-ih-green" onClick={findUser}>
                           Find Trekker
                         </button>
                       </div>
@@ -84,109 +322,117 @@ const AddTrekMates = ({onNextTabEvent}) => {
                     <p className="p-text-1-franklin">
                       trekmate New to indiahikes? register them here
                     </p>
-                    <Form>
+                    <form onSubmit={handleSubmit(onSubmit)} onReset={() => reset}>
                       <div className="register-form-box">
                         <FormGroup>
-                          <Input
-                            type="text"
-                            name="fname"
-                            id="fname"
-                            placeholder="First Name"
-                          />
+                        <Controller
+                  name="firstName"
+                  control={control}
+                  defaultValue=""
+                  rules={{ required: true }}
+                  render={({ onChange, value }) => <InputText   placeholder="First Name"  value={value} onChange={onChange} />}
+                />
+                {errors.firstName && (
+                  <span className="p-error">
+                    <p>Error:{errors.firstName?.message}</p>
+                  </span>
+                )}
                         </FormGroup>
                         <FormGroup>
-                          <Input
-                            type="text"
-                            name="lname"
-                            id="lname"
-                            placeholder="Last Name"
-                          />
+                        <Controller
+                  name="lastName"
+                  control={control}
+                  defaultValue=""
+                  rules={{ required: true }}
+                  render={({ onChange, value }) => <InputText   placeholder="Last Name"  value={value} onChange={onChange} />}
+                />
+                {errors.lastName && (
+                  <span className="p-error">
+                    <p>Error:{errors.lastName?.message}</p>
+                  </span>
+                )}
                         </FormGroup>
                         <FormGroup>
-                          <Input
-                            type="email"
-                            name="email"
-                            id="email"
-                            placeholder="Email Id"
-                          />
+                        <Controller
+                  name="email"
+                  control={control}
+                  defaultValue=""
+                  rules={{ required: true }}
+                  render={({ onChange, value }) => <InputText   placeholder="Email"  value={value} onChange={onChange} />}
+                />
+                {errors.email && (
+                  <span className="p-error">
+                    <p>Error:{errors.email?.message}</p>
+                  </span>
+                )}
+                        </FormGroup>
+
+                        <FormGroup>
+                        <Controller
+                    name="phone"
+                    control={control}
+                    render={({ onChange, value }) =>
+                    <InputNumber value={value} onValueChange={(e) => onChange(e.value)}  />}
+                    />
+                {errors.phone && (
+                    <span className="p-error">
+                    <p>Error:{errors.phone?.message}</p>
+                  </span>
+                )}
+                        </FormGroup>
+
+                        <FormGroup>
+                        <Controller
+                    name="dob"
+                    control={control}
+                    render={({ onChange, value }) =>
+                        <Calendar dateFormat="dd/mm/yy"  placeholder="Dob" value={value} onChange={(e) => onChange(e.value)}></Calendar>}
+                       />
+                {errors.dob && (
+                    <span className="p-error">
+                    <p>Error:{errors.dob?.message}</p>
+                  </span>
+                )}
                         </FormGroup>
                         <FormGroup>
-                          <Input
-                            type="email"
-                            name="email"
-                            id="confirmemail"
-                            placeholder="Confirm Email Id"
-                          />
+                        <Controller
+                              name="weight"
+                              control={control}
+                              defaultValue=""
+                              render={({ onChange, value }) =>
+                                  <InputNumber value={value} onValueChange={(e) => onChange(e.value)}  />}
+
+                  />
+                          {errors.weight && (
+                              <span className="p-error">
+                    <p>Error:{errors.weight?.message}</p>
+                  </span>
+                          )}
                         </FormGroup>
                         <FormGroup>
-                          <Input
-                            type="number"
-                            name="phone"
-                            id="phone"
-                            placeholder="Phone Number"
-                          />
+                        <Controller
+                              name="height"
+                              control={control}
+                              defaultValue=""
+                              render={({ onChange, value }) =>
+                                  <InputNumber value={value} onValueChange={(e) => onChange(e.value)}  />}
+
+                  />
+          {errors.height && (
+            <span className="p-error">
+              <p>Error:height is required</p>
+            </span>
+          )}
                         </FormGroup>
-                        <FormGroup>
-                          <Input
-                            type="date"
-                            name="dob"
-                            id="dob"
-                            placeholder="Date of Birth"
-                          />
-                        </FormGroup>
-                        <FormGroup>
-                          <Input
-                            type="select"
-                            name="height"
-                            id="exampleSelectMulti"
-                            placeholder="Height (In Ft)"
-                          >
-                            <option>Height (In Ft)</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </Input>
-                        </FormGroup>
-                        <FormGroup>
-                          <Input
-                            type="select"
-                            name="weight"
-                            id="exampleSelectMulti"
-                            placeholder="weight (in kg)"
-                          >
-                            <option>weight (in kg)</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </Input>
-                        </FormGroup>
-                        <FormGroup>
-                          <Input
-                            type="password"
-                            name="password"
-                            id="password"
-                            placeholder="set a log in Password"
-                          />
-                        </FormGroup>
-                        <FormGroup>
-                          <Input
-                            type="password"
-                            name="confirmpassword"
-                            id="confirmpassword"
-                            placeholder="Confirm Password"
-                          />
-                        </FormGroup>
+                        
+                          
                       </div>
                       <div className="mt-3">
-                        <button type="button" className="btn btn-bihtn-yellow">
+                        <button type="submit" className="btn btn-bihtn-yellow">
                           create account
                         </button>
                       </div>
-                    </Form>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -204,6 +450,6 @@ const AddTrekMates = ({onNextTabEvent}) => {
       </div>
     </>
   );
-};
+});
 
 export default AddTrekMates;

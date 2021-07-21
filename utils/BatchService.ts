@@ -16,4 +16,12 @@ export const getBatches = async (trekName: string, month: number,year:number)  =
     return data;
   };
 
+  // export const locationBaseApi = `http://localhost:9090/api/v1/locations`;
+export const findUserByEmail = async (email: string)  => {
+  const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
+  let url = `${userApi}/lookups/users/${email}`;
+  const data= await  (await axios.get(url)).data ;
+  return data;
+};
+
 

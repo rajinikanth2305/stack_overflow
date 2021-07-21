@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  addOrUpdateState,
+  selectStateData,
+} from '../../reduxstate/counterSlice';
+import { useRouter } from 'next/router';
 
 const AcceptTC = ( {data,props,onTermAccept} ) => {
   const eligibilityCriteria = data;
- 
+  const stateData = useSelector(selectStateData);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const EligibilityCriteriaTitle =
     eligibilityCriteria &&
@@ -13,6 +21,15 @@ const AcceptTC = ( {data,props,onTermAccept} ) => {
     eligibilityCriteria.primary.eligibility_criteria_desc;
   const heading2 = eligibilityCriteria && eligibilityCriteria.primary.heading2;
   const ecArray = eligibilityCriteria && eligibilityCriteria.items;
+
+
+
+
+  useEffect ( () => {
+    
+   //dispatch(addOrUpdateState(bookDetails));
+
+  }, []);
 
   const ecList = ecArray?.map(function(data, i) {
     return (
@@ -47,8 +64,7 @@ const AcceptTC = ( {data,props,onTermAccept} ) => {
   });
 
   const termAccepted=()=>{
-       console.log(props.trekId);
-       onTermAccept(true);
+      onTermAccept(true);
   }
 
   return (

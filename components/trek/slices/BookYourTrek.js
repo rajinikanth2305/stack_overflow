@@ -40,7 +40,7 @@ const BookYourTrek = ({ slice }) => {
     }
 
     //router.push("/registration?batch_id=5887&dt=2021-07-24");
-    router.push(`/registration?trekId=${bookingDate.trekId}&trekName=${bookingDate.trekName}&batchId=${bookingDate.batchId}&dt=${bookingDate.startDate.substr(0,10)}`);
+    router.push(`/registration?trekId=${bookingDate.trekId}&trekName=${bookingDate.trekName}&batchId=${bookingDate.batchId}&dt=${bookingDate.startDate.substr(0,10)}&endDt=${bookingDate.endDate.substr(0,10)}`);
    // router.push("/registration");
   }
 
@@ -103,7 +103,11 @@ const BookYourTrek = ({ slice }) => {
                       </div>
                     </div>
                     {/* reference https://jquense.github.io/react-big-calendar/examples/index.html#api */}
-                    <BookingCalender onBookingSelect={bookingSelect} />
+                    {typeof window !== 'undefined' && (
+                      
+                    <BookingCalender onBookingSelect={bookingSelect} mode={'inline_page'}  />
+                  
+                    )}
                   </div>
                 </div>
                 <div className="col-lg-1 col-md-12"></div>
