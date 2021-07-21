@@ -9,7 +9,7 @@ import { RichText } from "prismic-reactjs";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { InputText } from 'primereact/inputtext';
 import { InputNumber } from 'primereact/inputnumber';
-import { findUserByEmail } from '../../../utils/queries';
+import { findUserByEmail,findUserByBatchId } from '../../../utils/queries';
 import { Dropdown } from 'primereact/dropdown';
 import { Calendar } from 'primereact/calendar';
 import moment from "moment";
@@ -119,41 +119,13 @@ const AddTrekMates = forwardRef((props,ref) => {
   );
 
   const usersData=[];
-   /* {
-      email:'one',
-      firstName:'Nayana Jambe',
-      lastName:''
-    },
-    {
-      email:'one',
-      firstName:'Sandhya UC',
-      lastName:''
-    },
-    {
-      email:'one',
-      firstName:'Manisha Hegde',
-      lastName:''
-    },
-    {
-      email:'one',
-      firstName:'Lakshmi Selvakumaran ',
-      lastName:''
-    }
-  ];*/
-  
-
   React.useEffect(() => {
     setUsers(usersData);
     const arr = Array.from(new Array(usersData.length), (x, i) => i);
       setIndexes(arr);
       setCounter(arr.length);
-    // Logs `HTMLInputElement` 
-    
   }, []);
 
-// The component instance will be extended
-  // with whatever you return from the callback passed
-  // as the second argument
   useImperativeHandle(ref, () => ({
     changeState() {
       const data=stateData.data;
@@ -173,19 +145,19 @@ const AddTrekMates = forwardRef((props,ref) => {
       props.onNextTabEvent('makepayment');
   }
 
-const addFindUsers=async (data)=>{
+const addFindUsers=async (udata)=>{
   setUsers([...users,{
-    email:data,
-    firstName:data,
-    lastName:''
+    email:udata.email,
+    firstName:udata.firstName,
+    lastName:udata.lastName
   }]);
 
   const sdata= JSON.parse(JSON.stringify( stateData.data));
   sdata.trekUsers.push(
     {
-      firstName:data,
-      lastName:data,
-      email:data,
+      firstName:udata.firstName,
+      lastName:udata.lastName,
+      email:udata.email,
       primaryUser:false,
       trekFee:0,
       voucherCode:'',
@@ -199,34 +171,35 @@ const addFindUsers=async (data)=>{
 const findUser= async (e) => {
  // console.log(fieldRef.current.value);
  const email= document.getElementById("email").value;
- const existUser= users?.find(x=>x.email===email);
 
+ if(email===undefined || email==='') {
+  toast.current.show({severity: 'error', summary: `'Find Trekker email should not be empty'`, detail: 'Find Trekker'});
+  return;
+ }
+
+ const existUser= users?.find(x=>x.email===email);
  if(existUser!==undefined) {
   toast.current.show({severity: 'error', summary: `'Find Trekker ${email} is already added'`, detail: 'Find Trekker'});
   return;
  }
 
- const found=true;
- if(found){
-  confirmPopup({
-    target: e.currentTarget,
-    message: `Are you sure you want to add trek mate ${email} ?'`,
-    icon: 'pi pi-exclamation-triangle',
-    accept: () => {addFindUsers(email);},
-    reject: () => {}
-  });
- }
- else {
-  toast.current.show({severity: 'error', summary: `'Find Trekker ${email} is not found in the system, you can create new mates'`, detail: 'Find Trekker'});
- }
+ findUserByEmail(email)
+      .then((udata) => {
+        confirmPopup({
+          target: e.currentTarget,
+          message: `Are you sure you want to add trek mate ${email} ?'`,
+          icon: 'pi pi-exclamation-triangle',
+          accept: () => {addFindUsers(udata);},
+          reject: () => {}
+        });
+      })
+      .catch((res)=>{
+        if(res.response.data.message) 
+        toast.current.show({severity: 'error', summary: `${res.response.data.message}`, detail: ''});
+        else
+        toast.current.show({severity: 'error', summary: 'Find failed;Re-try in few mins. ...If not succeeded contact support team', detail: ''});
+      })
 }
-
-function acceptFunc() {
-  const usr=users;
-
-  
-}
-
 
 const add = () => {
   setIndexes([...indexes, counter]);

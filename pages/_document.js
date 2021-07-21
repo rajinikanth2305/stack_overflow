@@ -22,6 +22,7 @@ class MyDocument extends Document {
           />
           <link rel="icon" href="/favicon.png" type="image/png" />
          {/*<script async defer src={`//static.cdn.prismic.io/prismic.js?repo=${prismicRepoName}&new=true`} /> :*/}
+         
         </Head>
         <body>
           <Main />

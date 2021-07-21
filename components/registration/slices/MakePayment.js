@@ -1,8 +1,11 @@
-import React, { useEffect, useState,forwardRef, useImperativeHandle  } from "react";
+import React, { useEffect, useState,forwardRef, useImperativeHandle,useRef  } from "react";
 import { RichText } from "prismic-reactjs";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
+import { findUserByBatchId } from '../../../utils/queries';
+//const $ = window.$
+import jQuery from 'jquery';
 
 import {
   addOrUpdateState,
@@ -23,6 +26,7 @@ const MakePayment = forwardRef((props,ref) => {
 
   const [indexes, setIndexes] = React.useState([]);
   const [counter, setCounter] = React.useState(0);
+  const [batchData, setBatchData] = React.useState(undefined);
 
   const [computeFields, setComputeFields] = useState(
      {
@@ -35,48 +39,169 @@ const MakePayment = forwardRef((props,ref) => {
      }
     });
 
+    const e1 = useRef();
+
+    useEffect ( () => {
+
+      //const script = document.createElement("script");   
+     // script.async = false;    
+      //script.src = "https://www.paynimo.com/paynimocheckout/server/lib/checkout.js";    
+     // e1.current.appendChild(script);  
+
+      //document.getElementById('scriptPlaceholder').appendChild(script);  
+
+      const script = document.createElement('script');
+     // https://www.paynimo.com/paynimocheckout/server/lib/checkout.js
+     script.src = "https://www.paynimo.com/paynimocheckout/server/lib/checkout.js";
+     script.async = true;
+     script.onload = function(script){
+        console.log(script + ' loaded!');
+    };
+      document.body.appendChild(script);
+
+
+      jQuery(document).ready(function() {
+        function handleResponse(res) {
+            if (typeof res != 'undefined' && typeof res.paymentMethod != 'undefined' && typeof res.paymentMethod.paymentTransaction != 'undefined' && typeof res.paymentMethod.paymentTransaction.statusCode != 'undefined' && res.paymentMethod.paymentTransaction.statusCode == '0300') {
+                // success block
+            } else if (typeof res != 'undefined' && typeof res.paymentMethod != 'undefined' && typeof res.paymentMethod.paymentTransaction != 'undefined' && typeof res.paymentMethod.paymentTransaction.statusCode != 'undefined' && res.paymentMethod.paymentTransaction.statusCode == '0398') {
+                // initiated block
+            } else {
+                // error block
+            }
+        };
+
+        window.jQuery(document).off('click', '#btnSubmit').on('click', '#btnSubmit', function(e) {
+            e.preventDefault();
+
+            var configJson = {
+                'tarCall': false,
+                'features': {
+                    'showPGResponseMsg': true,
+                    'enableAbortResponse': true,
+                    'enableExpressPay': true,
+                    'enableNewWindowFlow': true    //for hybrid applications please disable this by passing false
+                },
+                'consumerData': {
+                    'deviceId': 'WEBSH2',	//possible values 'WEBSH1' and 'WEBSH2'
+                    'token': '5b5bd734b515ec337bb712ed7a36dea77e50d41d612f353278d094a94ad6b259633d629e940b89d0f8de21a8ca6f5d8b0c24277905dc54b9af13380fcf5ac230',
+                    'returnUrl': 'https://www.tekprocess.co.in/MerchantIntegrationClient/MerchantResponsePage.jsp',    //merchant response page URL
+                    'responseHandler': handleResponse,
+                    'paymentMode': 'all',
+                    'merchantLogoUrl': 'https://www.paynimo.com/CompanyDocs/company-logo-md.png',  //provided merchant logo will be displayed
+                    'merchantId': 'L3348',
+                    'currency': 'INR',
+                    'consumerId': 'c964634',
+                    'consumerMobileNo': '9876543210',
+                    'consumerEmailId': 'test@test.com',
+                    'txnId': '1626855977224',   //Unique merchant transaction ID
+                    'items': [{
+                        'itemId': 'test',
+                        'amount': 10,
+                        'comAmt': '0'
+                    }],
+                    'customStyle': {
+                        'PRIMARY_COLOR_CODE': '#3977b7',   //merchant primary color code
+                        'SECONDARY_COLOR_CODE': '#FFFFFF',   //provide merchant's suitable color code
+                        'BUTTON_COLOR_CODE_1': '#1969bb',   //merchant's button background color code
+                        'BUTTON_COLOR_CODE_2': '#FFFFFF'   //provide merchant's suitable color code for button text
+                    }
+                }
+            };var configJson = {
+              'tarCall': false,
+              'features': {
+                  'showPGResponseMsg': true,
+                  'enableAbortResponse': true,
+                  'enableExpressPay': true,
+                  'enableNewWindowFlow': true    //for hybrid applications please disable this by passing false
+              },
+              'consumerData': {
+                  'deviceId': 'WEBSH2',	//possible values 'WEBSH1' and 'WEBSH2'
+                  'token': '72fc9ba7631c7d63f506b0ce96653fa65767f334b85352da481289b658bfe758ff9a98cb43909911b6040647533216ccb114cca1b0871e1697f3f8adc6505a30',
+                  'returnUrl': 'https://www.tekprocess.co.in/MerchantIntegrationClient/MerchantResponsePage.jsp',    //merchant response page URL
+                  'responseHandler': handleResponse,
+                  'paymentMode': 'all',
+                  'merchantLogoUrl': 'https://www.paynimo.com/CompanyDocs/company-logo-md.png',  //provided merchant logo will be displayed
+                  'merchantId': 'L3348',
+                  'currency': 'INR',
+                  'consumerId': 'c964634',
+                  'consumerMobileNo': '9876543210',
+                  'consumerEmailId': 'test2345@test.com',
+                  'txnId': '1626879012136',   //Unique merchant transaction ID
+                  'items': [{
+                      'itemId': 'test',
+                      'amount': '1',
+                      'comAmt': '0'
+                  }],
+                  'customStyle': {
+                      'PRIMARY_COLOR_CODE': '#3977b7',   //merchant primary color code
+                      'SECONDARY_COLOR_CODE': '#FFFFFF',   //provide merchant's suitable color code
+                      'BUTTON_COLOR_CODE_1': '#1969bb',   //merchant's button background color code
+                      'BUTTON_COLOR_CODE_2': '#FFFFFF'   //provide merchant's suitable color code for button text
+                  }
+              }
+          };
+            window.jQuery.pnCheckout(configJson);
+            if(configJson.features.enableNewWindowFlow){
+                pnCheckoutShared.openNewWindow();
+            }
+        });
+    })
+
+    }, []);
+  
+
 // The component instance will be extended
   // with whatever you return from the callback passed
   // as the second argument
   useImperativeHandle(ref, () => ({
-    async changeState () {
-      
-      if(trekData===undefined){
-        /// get the trekdetails with fee and gst etc.. and set... one time...
-        const trekdt= {
-          trekFee:10500
-        }
-      }
 
+     changeState () {
       const sdata= JSON.parse(JSON.stringify(stateData.data));
-      
-      sdata.trekUsers.map(x=>
-        x.trekFee= 1000
-      );
 
-      console.log(JSON.stringify(sdata));
-
-     await dispatch(addOrUpdateState(sdata));
-
-      const bookingDates = {
-        trekId:sdata.trekId,
-        batchId:sdata.batchId,
-        startDate:sdata.startDate,
-        endDate:sdata.endDate,
-        trekName:sdata.trekName,
-        trekkersCount:sdata.trekUsers?.length,
-        trekUsers:sdata.trekUsers,
-        batchId:sdata.batchId
+      if(bookingDate!==undefined || sdata.batchId !==bookingDate?.batchId ) {
+        /// get the trekdetails with fee and gst etc.. and set... one time...
+        findUserByBatchId(sdata.batchId)
+        .then((batchData) => {
+          setBatchData(batchData);
+          setChangeStateData(sdata,batchData.trekFee);
+        })
+        .catch((res)=>{
+          if(res.response.data.message) 
+          toast.current.show({severity: 'error', summary: `${res.response.data.message}`, detail: ''});
+          else
+          toast.current.show({severity: 'error', summary: 'Batch details get failed;Re-try in few mins. ...If not succeeded contact support team', detail: ''});
+        })
       }
-
-      setBookingDate(bookingDates);
-      computeTotal(sdata.trekUsers);
-      const arr = Array.from(new Array(sdata.trekUsers?.length), (x, i) => i);
-      setIndexes(arr);
-      setCounter(arr.length);
+      else {
+        setChangeStateData(sdata,sdata.trekFee);
+      }
     }
-
   }));
+
+  const setChangeStateData= async (sdata,trekFee)=> {
+    sdata.trekUsers.map(x=>
+      x.trekFee= trekFee
+    );
+
+   await dispatch(addOrUpdateState(sdata));
+
+    const bookingDates = {
+      trekId:sdata.trekId,
+      batchId:sdata.batchId,
+      startDate:sdata.startDate,
+      endDate:sdata.endDate,
+      trekName:sdata.trekName,
+      trekkersCount:sdata.trekUsers?.length,
+      trekUsers:sdata.trekUsers,
+      batchId:sdata.batchId
+    }
+    setBookingDate(bookingDates);
+    computeTotal(sdata.trekUsers);
+    const arr = Array.from(new Array(sdata.trekUsers?.length), (x, i) => i);
+    setIndexes(arr);
+    setCounter(arr.length);
+  }
  
   const computeTotal=(usersData)=>{
     const totalTrekFee=usersData.reduce((a,v) =>  a = a + v.trekFee , 0 );
@@ -96,11 +221,79 @@ const MakePayment = forwardRef((props,ref) => {
       }
 });
 
-  }
+}
+
+  function handleResponse(res) {
+      if (typeof res != 'undefined' 
+      && typeof res.paymentMethod != 'undefined' 
+      && typeof res.paymentMethod.paymentTransaction != 'undefined' 
+      && typeof res.paymentMethod.paymentTransaction.statusCode != 'undefined' 
+      && res.paymentMethod.paymentTransaction.statusCode == '0300') {
+        console.log('success');
+      } else if (typeof res != 'undefined' 
+      && typeof res.paymentMethod != 'undefined' 
+      && typeof res.paymentMethod.paymentTransaction != 'undefined' 
+      && typeof res.paymentMethod.paymentTransaction.statusCode != 'undefined' 
+      && res.paymentMethod.paymentTransaction.statusCode == '0398') {
+          // initiated block
+          console.log('initiated');
+      } else {
+          // error block
+          console.log('error');
+      }
+  };
+
+const makePayment=  ()=>{
+
+  var configJson = {
+    'tarCall': false,
+    'features': {
+        'showPGResponseMsg': true,
+        'enableAbortResponse': true,
+        'enableExpressPay': true,
+        'enableNewWindowFlow': true    //for hybrid applications please disable this by passing false
+    },
+    'consumerData': {
+        'deviceId': 'WEBSH2',	//possible values 'WEBSH1' and 'WEBSH2'
+        'token': '9d2d65f429045de21053d937c4aabee5a1b346cca53db523ea9108dec1e5f6ee022cde0656cdbbe3156d1624065e3388e956eb0c51b9d1fa3eb7e4113f96068c',
+        'returnUrl': 'https://localhost/careers',    //merchant response page URL
+        'responseHandler': handleResponse,
+        'paymentMode': 'all',
+        'merchantLogoUrl': 'https://www.paynimo.com/CompanyDocs/company-logo-md.png',  //provided merchant logo will be displayed
+        'merchantId': 'T596042',
+        'currency': 'INR',
+        'consumerId': 'c964634',
+        'consumerMobileNo': '980566174',
+        'consumerEmailId': 'test@test.com',
+        'txnId': '1626855585158',   //Unique merchant transaction ID
+        'items': [{
+            'itemId': 'test-booking',
+            'amount': '1',
+            'comAmt': '0'
+        }],
+        'customStyle': {
+            'PRIMARY_COLOR_CODE': '#3977b7',   //merchant primary color code
+            'SECONDARY_COLOR_CODE': '#FFFFFF',   //provide merchant's suitable color code
+            'BUTTON_COLOR_CODE_1': '#1969bb',   //merchant's button background color code
+            'BUTTON_COLOR_CODE_2': '#FFFFFF'   //provide merchant's suitable color code for button text
+        }
+    }
+};
+
+window.jQuery.pnCheckout(configJson);
+  if(configJson.features.enableNewWindowFlow){
+    pnCheckoutShared.openNewWindow();
+
+}
+
+}
 
   return (
     <>
       <div className="my-5">
+      <div  ref={e1} id="scriptPlaceholder">        
+        {/* paynimoc script injecting Script is inserted here */}
+      </div>
         <div className="row">
           <div className="col-lg-7 col-md-12">
             <div className="table-responsive">
@@ -245,7 +438,7 @@ const MakePayment = forwardRef((props,ref) => {
             </div>
             <div className="text-center">
               <div className="mt-5 mb-3">
-                <button type="button" className="btn btn-ih-green py-2">
+                <button type="button" className="btn btn-ih-green py-2"  id="btnSubmit"  >
                   Make Payment
                 </button>
               </div>

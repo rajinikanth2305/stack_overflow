@@ -19,13 +19,17 @@ export const getBatches = async (trekName, month,year)  => {
     return data.data;
   };
 
-  export const findUserByEmail = async (email)  => {
+  export const findUserByEmail =  (email)  => {
     const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
-    let url = `${userApi}/lookups/users/${email}`;
-    const data=   await axios.get(url).data ;
-    return data;
+    let url = `${userApi}/users/${email}`;
+    return axios.get(url).then((res) => res.data);
   };
 
+  export const findUserByBatchId =  (batchId)  => {
+    const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
+    let url = `${userApi}/batches/${batchId}`;
+    return axios.get(url).then((res) => res.data);
+  };
 
 async function fetchDocs(page = 1, routes = []) {
   const response = await Client().query('', { pageSize: 100, lang: '*', page });

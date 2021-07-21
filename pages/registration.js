@@ -13,6 +13,9 @@ import { Provider } from 'react-redux';
 import store from '../components/reduxstate/store';
 /**
  * Registration component
+ * <script src="https://www.paynimo.com/paynimocheckout/client/lib/jquery.min.js" type="text/javascript"></script>
+ * <script type="text/javascript" src="https://www.paynimo.com/paynimocheckout/server/lib/checkout.js"></script>
+ * <script type="text/javascript" src="./assets/js/checkout.js"></script>
  */
 const Registration = ({ doc }) => {
   if (doc && doc.data) {
@@ -23,6 +26,7 @@ const Registration = ({ doc }) => {
          <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
          <title>Registration</title>
+         <script src="https://www.paynimo.com/paynimocheckout/client/lib/jquery.min.js" type="text/javascript"></script>
         </Head>
         <HikeHeader/>
         <Provider store={store}>
