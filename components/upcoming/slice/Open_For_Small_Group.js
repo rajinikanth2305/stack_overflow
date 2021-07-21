@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { hrefResolver, linkResolver } from "prismic-configuration";
 
 const UCOpenForSmallGroup = ({ slice }) => {
   const ucOpenForSmallGroupTitle = slice.primary.uc_open_for_small_group_title;
@@ -48,11 +49,18 @@ const UCOpenForSmallGroup = ({ slice }) => {
     ]
   };
 
-  const goToTrekPage = (e) => {
-    e.preventDefault()
-    router.push('/trek/hampta_pass');
-  };
+  const goToTrekPage = (data) => {
+    // e.preventDefault()
+    // router.push('/trek/hampta_pass');
+    const slugUrl = data?.target_url.slug;
 
+    if (slugUrl) {
+      // const url = linkResolver(data?.target_url);
+      // router.push(url + 'trek/' + slugUrl);
+      router.push(`/trek/${data.target_url.uid}`);
+    }
+  };
+  
   const ucOpenForSmallGroupImages = ucOpenForSmallGroupImagesArray.map(function(
     data,
     i
@@ -111,7 +119,7 @@ const UCOpenForSmallGroup = ({ slice }) => {
                       : data.uc_open_desc[0].text}
                   </p>
                   <div className="float-right pt-2 pb-4">
-                    <button className="btn btn-ih-green" onClick={goToTrekPage}>View Details</button>
+                    <button className="btn btn-ih-green" onClick={ () => goToTrekPage(data)}>View Details</button>
                   </div>
                 </div>
               </div>

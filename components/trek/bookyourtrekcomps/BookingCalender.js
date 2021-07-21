@@ -47,12 +47,20 @@ const BookingCalender = ( {onBookingSelect,mode,viewDt} ) => {
     const pageUrl= window.location.href;
     const pageNamesArray= pageUrl.split('/');
     const pageName=pageNamesArray[pageNamesArray.length-1];
+    const hashIndex=pageName.indexOf("#");
+
+    if(hashIndex>0){
+      actualTrekPageName=pageName.substring(0,hashIndex).replace("_"," ");
+    }
+    else{
      actualTrekPageName=pageName.replace("_"," ");
+    }
   }
   else {
     console.log(mode);
     actualTrekPageName=getTrekNameFromUrlQueryPath();
   }
+    
     const data=await getBatches(actualTrekPageName,date.month + 1,2021);
       setBatchData(data);
       prepareDateDisableList(date,data);

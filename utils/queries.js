@@ -13,6 +13,7 @@ const REACT_APP_TMS_BACKEND_URL="https://tmsstaging.indiahikes.com/tms-service/a
 // export const locationBaseApi = `http://localhost:9090/api/v1/locations`;
 export const getBatches = async (trekName, month,year)  => {
     let url = `${batchBaseApi}/availableBatches/${trekName}?month=${month}&year=${year}`;
+    console.log((url));
     const data= await axios.get(url) ;
     //console.log(JSON.stringify(data));
     return data.data;

@@ -17,7 +17,7 @@ const UpComingTreks = ({ slice }) => {
   const [pageCount, setPageCount] = useState(1);
   const [isLoaded, setisLoaded] = useState(false);
   const [currentPage, setcurrentPage] = useState(0);
-  const pageSize = 1;
+  const pageSize = 2;
   const pagination = useRef();
   const [criteria, setCriteria] = useState({
     all: false,
@@ -256,10 +256,10 @@ const UpComingTreks = ({ slice }) => {
                     const slice = result.data.body.find(
                       x => x.slice_type === "trek_banner"
                     );
-                    console.log(slice);
+                    // console.log(slice);
                     const bannerImage = slice.primary.trek_banner_image.url;
                     const trekCaptions = slice.primary.trek_caption;
-                    console.log(trekCaptions);
+                    // console.log(trekCaptions);
                     return (
                       <div className="col-lg-4 col-md-6" key={i}>
                         <div alt="imgs" className="uc_featured_treks_images">

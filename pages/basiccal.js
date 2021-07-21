@@ -158,17 +158,17 @@ const BasicCal = ({ doc }) => {
   };
 
   const onMonthChange = e => {
-    console.log(e);
+    // console.log(e);
   };
 
   const onSelect = e => {
     setSelectedBatchDate(e);
-    console.log(selectedBatchDate);
+    // console.log(selectedBatchDate);
   };
 
   const onViewDateChange2 = e => {
     setDate16(e);
-    console.log(e);
+    // console.log(e);
   };
 
   return (

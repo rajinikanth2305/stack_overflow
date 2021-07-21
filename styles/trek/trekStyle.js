@@ -263,6 +263,10 @@ export const trekStyle = css.global`
     padding: 0;
   }
 
+  .btn-ih-green-trek-fee > a {
+    color: #ffffff;
+  }
+
   .rating_text {
     line-height: 24px;
     text-align: left;
@@ -839,7 +843,7 @@ export const trekStyle = css.global`
   }
 
   .why_so_video_image {
-    position: relativel;
+    position: relative;
     height: 250px;
     width: 100%;
   }
@@ -954,6 +958,45 @@ export const trekStyle = css.global`
 
   .p-inputtext {
     padding: 5px 10px;
+  }
+
+  .p-xs-text {
+    line-height: 16px;
+    // text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 8px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .p-xxs-text {
+    line-height: 10px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 8px;
+    color: rgba(0, 0, 0, 1);
+  }
+  .p-text-20size {
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .m-fee-details-card {
+    box-shadow: 3px 0px 6px rgba(112, 112, 112, 0.502);
+    padding: 5px;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 999;
+    margin-bottom: 15px;
   }
 
   @media only screen and (max-width: 660px) {
@@ -1099,6 +1142,18 @@ export const trekStyle = css.global`
       border-bottom: 0;
       border-left: 0;
       border-right: 0;
+    }
+
+    .btn-ih-green-trek-fee {
+      font-family: Franklin Gothic;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      padding: 10px;
+    }
+
+    .m-p-t-2 {
+      padding-top: 2px !important;
     }
   }
 `;

@@ -6,6 +6,8 @@ import { ChooseTreks } from "styles";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { hrefResolver, linkResolver } from "prismic-configuration";
+import Link from "next/link";
 
 const TrekkersStories = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -57,35 +59,42 @@ const TrekkersStories = ({ slice }) => {
     const trekkers_stories_desc = data.trekkers_stories_desc.map((desc, j) => {
       return <p>{desc.text}</p>;
     });
+    let url;
+    const slugUrl = data?.link_article_url.slug;
+    if (slugUrl) {
+      url = linkResolver(data?.link_article_url);
+    }
     return (
       <>
-        <div className="c-mx-2" key={`trekkstory` + i}>
-          <div className="card_sec">
-            <div className="card trek_card">
-              <div alt="imgs" className="choose_trek_image">
-                <Image
-                  src={data.trekkers_stories_image.url}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                  // width={350}
-                  // height={215}
-                />
-              </div>
-              <div class="p-4">
-                <div>
-                  <h3 class="title-diplay-3 ts-lable">
-                    {data.trekkers_stories_title[0].text}
-                  </h3>
-                  <p className="p-display-2">
-                    {trekkers_stories_desc.length > 125
-                      ? `${trekkers_stories_desc.substring(0, 125)}...`
-                      : trekkers_stories_desc}
-                  </p>
+        <div className="c-mx-2 cursor-pointer" key={`trekkstory` + i}>
+          <Link href={url}>
+            <div className="card_sec">
+              <div className="card trek_card">
+                <div alt="imgs" className="choose_trek_image">
+                  <Image
+                    src={data.trekkers_stories_image.url}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                    // width={350}
+                    // height={215}
+                  />
+                </div>
+                <div class="p-4">
+                  <div>
+                    <h3 class="title-diplay-3 ts-lable">
+                      {data.trekkers_stories_title[0].text}
+                    </h3>
+                    <p className="p-display-2">
+                      {trekkers_stories_desc.length > 125
+                        ? `${trekkers_stories_desc.substring(0, 125)}...`
+                        : trekkers_stories_desc}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
       </>
     );

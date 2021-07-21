@@ -9,8 +9,6 @@ const GetInTouchWithIh = ({ slice }) => {
   const heading2 = slice.primary.heading2;
   const detailsList = slice.primary.details;
   const imageUrl = slice.primary.image.url;
-
-  console.log(slice);
   
   const details = detailsList.map(function(data, i) {
     return(

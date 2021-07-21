@@ -64,7 +64,10 @@ const AcceptTC = ( {data,props,onTermAccept} ) => {
   });
 
   const termAccepted=()=>{
+
       onTermAccept(true);
+
+
   }
 
   return (

@@ -223,6 +223,10 @@ export const ChooseTreks = css.global`
     padding: 5px;
   }
 
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
   @media only screen and (max-width: 600px) {
     .card_sec {
       margin: 5px 0;

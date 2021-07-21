@@ -15,7 +15,7 @@ const TrekkersStoriesCommon = () => {
   useEffect(() => {
     findTrekStories();
     return () => {
-      console.log("test");
+      // console.log("test");
     };
   }, []);
 

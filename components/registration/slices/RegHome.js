@@ -90,7 +90,6 @@ const RegHome = ({ slice }) => {
     if(userServiceObject!==undefined) {
       let x= userServiceObject.getUsername();
        console.log(x);
-       
     }
   }
 

@@ -2,6 +2,8 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { experimentStyles } from "styles";
 import Image from "next/image";
+import { hrefResolver, linkResolver } from "prismic-configuration";
+import Link from "next/link";
 /**
  * Home Banner Slice Components
  */
@@ -13,24 +15,41 @@ const Experiment = ({ slice }) => {
   const cardDesc = slice.primary.card_desc;
   const expImageArray = slice.items;
 
+  let primary_url;
+  const slugUrl = slice.primary.link_url_primary.slug;
+  if (slugUrl) {
+    primary_url = linkResolver(slice.primary.link_url_primary);
+  }
+
   const expImage = expImageArray.map((data, i) => {
+    let url;
+    const slugUrl = data.link_url.slug;
+    if (slugUrl) {
+      url = linkResolver(data.link_url);
+    }
     return (
-      <div className="card exp-card mb-4 pb-1 mmx-0">
-        <div className="expImage">
-          <Image
-            src={data.image.url}
-            layout="fill"
-            objectFit="cover"
-            objectPosition="50% 50%"
-          />
+      <>
+        <div className="card exp-card mb-4 pb-1 mmx-0 cursor-pointer">
+          <Link href={url}>
+            <div>
+              <div className="expImage">
+                <Image
+                  src={data.image.url}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                />
+              </div>
+              <div className="p-3">
+                <div className="">
+                  <p className="p-text-3 m-0">{data.image_caption[0].text}</p>
+                  <p className="p-text-5 m-0">{data.image_subtitle[0].text}</p>
+                </div>
+              </div>
+            </div>
+          </Link>
         </div>
-        <div className="p-3">
-          <div className="">
-            <p className="p-text-3 m-0">{data.image_caption[0].text}</p>
-            <p className="p-text-5 m-0">{data.image_subtitle[0].text}</p>
-          </div>
-        </div>
-      </div>
+      </>
     );
   });
 
@@ -52,22 +71,28 @@ const Experiment = ({ slice }) => {
           <div className="row">
             <div className="col-lg-8 col-md-12">
               <p className="exp_desc pb-4 mpb-0">{RichText.asText(heading2)}</p>
-              <div className="card exp-card mt-5 mx-0 mmt-0 mb-4">
-                <div className="expirimentMainImage">
-                  <Image
-                    src={expirimentMainImage}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="50% 50%"
-                  />
-                </div>
-                <div className="p-3">
-                  <div className="">
-                    <p className="p-text-3 m-0">{RichText.asText(cardTitle)}</p>
-                    <p className="p-text-5 m-0">{RichText.asText(cardDesc)}</p>
+              <Link href={primary_url}>
+                <div className="card exp-card mt-5 mx-0 mmt-0 mb-4 cursor-pointer">
+                  <div className="expirimentMainImage">
+                    <Image
+                      src={expirimentMainImage}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="50% 50%"
+                    />
+                  </div>
+                  <div className="p-3">
+                    <div className="">
+                      <p className="p-text-3 m-0">
+                        {RichText.asText(cardTitle)}
+                      </p>
+                      <p className="p-text-5 m-0">
+                        {RichText.asText(cardDesc)}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
             <div className="col-lg-4 col-md-6">{expImage}</div>
           </div>

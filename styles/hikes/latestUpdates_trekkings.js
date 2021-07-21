@@ -109,6 +109,26 @@ export const latestUpdatesTrekkingsStyles = css.global`
     min-height: 450px;
   }
 
+  .paly-icon {
+    position: relative;
+    z-index: 999;
+    cursor: pointer;
+  }
+
+  .icon-size-50 {
+    width: 50px;
+  }
+
+  .icon-size-70 {
+    width: 70px;
+  }
+
+  .latest_update_img {
+    position: relative;
+    height: 300px;
+    width: 100%;
+  }
+
   @media only screen and (max-width: 660px) {
     .lut_section_title {
       line-height: 40px;

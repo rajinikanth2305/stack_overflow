@@ -247,6 +247,10 @@ export const customStyles = css.global`
     border-bottom: 4px solid rgb(255, 193, 0);
   }
 
+  .border-bottom-custom-1 {
+    border-bottom: 2px solid rgb(255, 193, 0);
+  }
+
   .diyres_img_bg {
     height: 100px;
     position: relative;
@@ -333,6 +337,323 @@ export const customStyles = css.global`
   .slick-next::before {
     color: #ffc100;
     font-size: 26px;
+  }
+
+  .font-weight-bold {
+    font-weight: bold;
+  }
+
+  .list_ul_style > ol {
+    padding: 0 15px;
+  }
+
+  .list_ul_style > ol > li {
+    line-height: 18px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .table.table-dashboard-profile {
+    width: 100%;
+  }
+
+  .table.table-dashboard-profile > thead > tr > th {
+    background: rgba(255, 193, 0, 0.502);
+    border: 0;
+    line-height: 17.5px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal !important;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .table.table-dashboard-profile > tbody > tr > td {
+    border: 0;
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .table.table-dashboard-profile-style-1 > thead > tr > th {
+    background: rgba(255, 193, 0, 0.2);
+    line-height: 17.5px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal !important;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .table.table-dashboard-profile-style-1 > tbody > tr > td {
+    background: rgba(255, 243, 204, 0.329);
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .table-dashboard-profile-style-2 > tbody > tr > td {
+    background: rgba(242, 242, 242, 1);
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .table.table-dashboard-voucher > thead > tr > th {
+    background: rgba(255,193,0,1);
+    border: 0;
+    line-height: 17.5px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal !important;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .table.table-dashboard-voucher > tbody > tr > td {
+    border-bottom: 2px solid rgb(255, 224, 127);
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .table.table-dashboard-voucher-style-1 > thead > tr > th {
+    background: rgba(91,133,70,1);
+    border: 0;
+    line-height: 17.5px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal !important;
+    font-size: 14px;
+    color: #ffffff;
+    text-transform: capitalize;
+  }
+
+  .table.table-dashboard-voucher-style-1 > tbody > tr > td {
+    border-bottom: 2px solid #acc2a2;
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .table.table-dashboard-voucher-style-2 > thead > tr > th {
+    background: rgba(242,242,242,1);
+    border: 0;
+    line-height: 17.5px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal !important;
+    font-size: 14px;
+    color: #000000;
+    text-transform: capitalize;
+  }
+
+  .table.table-dashboard-voucher-style-2 > tbody > tr > td {
+    border-bottom: 2px solid rgb(189, 189, 189);
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .w-20per {
+    width: 20%;
+  }
+
+  .w-15per {
+    width: 15%;
+  }
+
+  .table-btn-gray {
+    background: rgba(112, 112, 112, 1);
+    border-radius: 0;
+    line-height: 28px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
+    padding: 0 20px;
+  }
+
+  .table-btn-maroon {
+    background: rgba(157, 58, 11, 1);
+    border-radius: 0;
+    line-height: 28px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
+    padding: 0 20px;
+  }
+
+  .table-btn-blue {
+    background: rgba(35, 76, 187, 1);
+    border-radius: 0;
+    line-height: 28px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
+    padding: 0 20px;
+  }
+
+  .table-btn-green {
+    background: rgba(13, 193, 67, 1);
+    border-radius: 0;
+    line-height: 28px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
+    padding: 0 20px;
+  }
+
+  .table-btn-yellow {
+    background: rgba(255, 193, 0, 1);
+    border-radius: 0;
+    line-height: 28px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: #000000;
+    text-transform: capitalize;
+    padding: 0 20px;
+  }
+
+  .table-btn-green-lg {
+    background: rgba(57,114,41,1);
+    border-radius: 0;
+    line-height: 28px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
+    padding: 0 20px;
+  }
+
+  .table-btn-green-sm {
+    background: rgba(57, 114, 41, 1);
+    border-radius: 0;
+    line-height: 20px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
+    padding: 0 10px;
+  }
+
+  .table-btn-yellow-sm {
+    background: rgba(255, 193, 0, 1);
+    border-radius: 0;
+    line-height: 20px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: #000000;
+    text-transform: capitalize;
+    padding: 0 10px;
+  }
+
+  .register-form-box {
+    background: rgba(242,242,242,1);
+    padding: 5px;
+  }
+
+  .form-control {
+    border: 1px solid rgb(161, 156, 156);
+    border-radius: 0;
+    margin: 4px 0;
+    color: rgb(112, 112, 112);
+    font-family: Franklin Gothic Book;
+    font-size: 12px;
+  }
+
+  .btn-ih-green {
+    background: rgb(91, 133, 70);
+    border: 0;
+    padding: 3px 30px;
+    border-radius: 0;
+    line-height: 24px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: capitalize;
   }
 
   @media only screen and (max-width: 660px) {
