@@ -29,7 +29,7 @@ const Careers = ({ doc }) => {
           />
           <title>Careers</title>
         </Head>
-        <HikeHeader />
+        <HikeHeader auth={true} />
         {/* <UpComingTreksSliceZone sliceZone={doc.data.body} /> */}
         <div className="mt-5 py-5 text-center">
           <h3>Careers</h3>

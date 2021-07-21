@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import {
   Collapse,
   Navbar,
@@ -21,11 +21,31 @@ import { useRouter } from "next/router";
 /**
  * Homepage header component
  */
-const HikeHeader = ({ image, headline, description }) => {
+const HikeHeader = ({ auth=false }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
   const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userServiceObject, setUserServiceObject] = useState(undefined);
+
+  useEffect ( () => {
+    if(auth) {
+    import('../../utils/UserService').then(mod => {
+        //setUserServiceObject(mod);
+        console.log('token' + mod.getToken());
+          setUserServiceObject(mod);
+          mod.initKeycloak(postAuthenticAction);
+        
+    }),{ ssr: false };
+  }
+  }, []);
+
+    // React Render
+    const postAuthenticAction = () => {
+      setIsLoggedIn(true);
+  }
+
   return (
     <div className="border-bottom-custom-header">
       <Navbar light expand="lg" className="container">
@@ -84,6 +104,7 @@ const HikeHeader = ({ image, headline, description }) => {
                 <Link href="../../../careers">careers</Link>
               </NavLink>
             </NavItem>
+            {isLoggedIn && (
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav>
                 <i class="fa fa-user-o" aria-hidden="true"></i>
@@ -98,6 +119,7 @@ const HikeHeader = ({ image, headline, description }) => {
                 <DropdownItem>Logout</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
+            )}
           </Nav>
         </Collapse>
       </Navbar>
