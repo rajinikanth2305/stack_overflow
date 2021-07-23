@@ -83,20 +83,18 @@ const MakePayment = forwardRef((props,ref) => {
                     'enableNewWindowFlow': true    //for hybrid applications please disable this by passing false
                 },
                 'consumerData': {
-                    'deviceId': 'WEBSH2',	//possible values 'WEBSH1' and 'WEBSH2'
-                    'token': '5b5bd734b515ec337bb712ed7a36dea77e50d41d612f353278d094a94ad6b259633d629e940b89d0f8de21a8ca6f5d8b0c24277905dc54b9af13380fcf5ac230',
-                    'returnUrl': 'https://www.tekprocess.co.in/MerchantIntegrationClient/MerchantResponsePage.jsp',    //merchant response page URL
+                    'deviceId': 'WEBSH1',	//possible values 'WEBSH1' and 'WEBSH2'
+                    'token': 'de4d66b655750034efe29e1a0a3a466a5f8348b1609766b4e615fce00c4e710e',
+                    'returnUrl': 'https://tmsstaging.indiahikes.com/tms-service/api/v1/payments/response',    //merchant response page URL
                     'responseHandler': handleResponse,
                     'paymentMode': 'all',
                     'merchantLogoUrl': 'https://www.paynimo.com/CompanyDocs/company-logo-md.png',  //provided merchant logo will be displayed
-                    'merchantId': 'L3348',
+                    'redirectOnClose':'https://tmsstaging.indiahikes.com/tms-service/api/v1/payments/token',
+                    'merchantId': 'T596042',
                     'currency': 'INR',
-                    'consumerId': 'c964634',
-                    'consumerMobileNo': '9876543210',
-                    'consumerEmailId': 'test@test.com',
                     'txnId': '1626855977224',   //Unique merchant transaction ID
                     'items': [{
-                        'itemId': 'test',
+                        'itemId': 'Hampta Trek Booking',
                         'amount': 10,
                         'comAmt': '0'
                     }],
@@ -107,40 +105,8 @@ const MakePayment = forwardRef((props,ref) => {
                         'BUTTON_COLOR_CODE_2': '#FFFFFF'   //provide merchant's suitable color code for button text
                     }
                 }
-            };var configJson = {
-              'tarCall': false,
-              'features': {
-                  'showPGResponseMsg': true,
-                  'enableAbortResponse': true,
-                  'enableExpressPay': true,
-                  'enableNewWindowFlow': true    //for hybrid applications please disable this by passing false
-              },
-              'consumerData': {
-                  'deviceId': 'WEBSH2',	//possible values 'WEBSH1' and 'WEBSH2'
-                  'token': '72fc9ba7631c7d63f506b0ce96653fa65767f334b85352da481289b658bfe758ff9a98cb43909911b6040647533216ccb114cca1b0871e1697f3f8adc6505a30',
-                  'returnUrl': 'https://www.tekprocess.co.in/MerchantIntegrationClient/MerchantResponsePage.jsp',    //merchant response page URL
-                  'responseHandler': handleResponse,
-                  'paymentMode': 'all',
-                  'merchantLogoUrl': 'https://www.paynimo.com/CompanyDocs/company-logo-md.png',  //provided merchant logo will be displayed
-                  'merchantId': 'L3348',
-                  'currency': 'INR',
-                  'consumerId': 'c964634',
-                  'consumerMobileNo': '9876543210',
-                  'consumerEmailId': 'test2345@test.com',
-                  'txnId': '1626879012136',   //Unique merchant transaction ID
-                  'items': [{
-                      'itemId': 'test',
-                      'amount': '1',
-                      'comAmt': '0'
-                  }],
-                  'customStyle': {
-                      'PRIMARY_COLOR_CODE': '#3977b7',   //merchant primary color code
-                      'SECONDARY_COLOR_CODE': '#FFFFFF',   //provide merchant's suitable color code
-                      'BUTTON_COLOR_CODE_1': '#1969bb',   //merchant's button background color code
-                      'BUTTON_COLOR_CODE_2': '#FFFFFF'   //provide merchant's suitable color code for button text
-                  }
-              }
-          };
+            };
+          
             window.jQuery.pnCheckout(configJson);
             if(configJson.features.enableNewWindowFlow){
                 pnCheckoutShared.openNewWindow();
@@ -230,6 +196,7 @@ const MakePayment = forwardRef((props,ref) => {
       && typeof res.paymentMethod.paymentTransaction.statusCode != 'undefined' 
       && res.paymentMethod.paymentTransaction.statusCode == '0300') {
         console.log('success');
+        console.log(JSON.stringify(res.paymentMethod.paymentTransaction));
       } else if (typeof res != 'undefined' 
       && typeof res.paymentMethod != 'undefined' 
       && typeof res.paymentMethod.paymentTransaction != 'undefined' 

@@ -104,7 +104,7 @@ const HikeHeader = ({ auth=false }) => {
                 <Link href="../../../careers">careers</Link>
               </NavLink>
             </NavItem>
-            {isLoggedIn && (
+            {!isLoggedIn && (
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav>
                 <i class="fa fa-user-o" aria-hidden="true"></i>
