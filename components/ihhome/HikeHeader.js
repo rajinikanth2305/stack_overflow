@@ -56,13 +56,13 @@ const HikeHeader = ({ auth=false }) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink className={router.pathname == "/" ? "active" : ""}>
+              <NavLink className={router.pathname == "/" ? "active-custom" : ""}>
                 <Link href="/">Home</Link>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
-                className={router.pathname == "/upcoming" ? "active" : ""}
+                className={router.pathname == "/upcoming" ? "active-custom" : ""}
               >
                 <Link href="../../../upcoming">Upcoming Treks</Link>
               </NavLink>
@@ -70,7 +70,7 @@ const HikeHeader = ({ auth=false }) => {
             <NavItem>
               <NavLink
                 className={
-                  router.pathname == "/experiential-learning" ? "active" : ""
+                  router.pathname == "/experiential-learning" ? "active-custom" : ""
                 }
               >
                 <Link href="../../../experiential-learning">
@@ -79,27 +79,27 @@ const HikeHeader = ({ auth=false }) => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className={router.pathname == "/diy" ? "active" : ""}>
+              <NavLink className={router.pathname == "/diy" ? "active-custom" : ""}>
                 <Link href="../../../diy">DIY treks</Link>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
-                className={router.pathname == "/contact-us" ? "active" : ""}
+                className={router.pathname == "/contact-us" ? "active-custom" : ""}
               >
                 <Link href="../../../contact-us">Contact Us</Link>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
-                className={router.pathname == "/aboutus" ? "active" : ""}
+                className={router.pathname == "/aboutus" ? "active-custom" : ""}
               >
                 <Link href="../../../aboutus">Our Story</Link>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
-                className={router.pathname == "/careers" ? "active" : ""}
+                className={router.pathname == "/careers" ? "active-custom" : ""}
               >
                 <Link href="../../../careers">careers</Link>
               </NavLink>
