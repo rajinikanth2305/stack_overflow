@@ -227,6 +227,12 @@ export const ChooseTreks = css.global`
     cursor: pointer;
   }
 
+  .slick-prev::before,
+  .slick-next::before {
+    color: #ffc100;
+    font-size: 26px;
+  }
+
   @media only screen and (max-width: 600px) {
     .card_sec {
       margin: 5px 0;

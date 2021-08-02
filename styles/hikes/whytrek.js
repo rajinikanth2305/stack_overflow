@@ -51,6 +51,10 @@ export const whyTrekWithStyles = css.global`
     margin: 0 10px;
   }
 
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
   @media only screen and (max-width: 600px) {
     .why_trek_sec {
       padding: 5px 0px 40px;
