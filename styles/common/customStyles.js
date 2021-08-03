@@ -174,6 +174,20 @@ export const customStyles = css.global`
     text-transform: capitalize;
   }
 
+  .p-text-3-fg-book {
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: capitalize;
+    line-height: 24px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+  }
+
   .p-text-3 {
     line-height: 16px;
     text-align: left;
@@ -642,7 +656,7 @@ export const customStyles = css.global`
 
   .table-btn-yellow {
     background: rgba(255, 193, 0, 1);
-    box-shadow: 1px 1px 2px rgba(0,0,0,0.353);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.353);
     border-radius: 0;
     line-height: 28px;
     text-align: center;
@@ -765,7 +779,7 @@ export const customStyles = css.global`
   }
 
   .progress {
-    background-color: rgba(112,112,112,1);
+    background-color: rgba(112, 112, 112, 1);
     border-radius: 0;
     height: 5px;
   }
