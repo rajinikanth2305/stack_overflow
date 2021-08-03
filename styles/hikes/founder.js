@@ -47,7 +47,9 @@ export const founderStyles = css.global`
   }
 
   .img-margin {
-    margin-top: -40px;
+    margin-top: -30px;
+    height: 350px;
+    position: relative;
   }
 
   .author_name {
@@ -59,6 +61,16 @@ export const founderStyles = css.global`
     font-size: 18px;
     color: rgba(112, 99, 99, 1);
     margin-top: 30px;
+  }
+
+  .paly-icon {
+    position: relative;
+    z-index: 999;
+    cursor: pointer;
+  }
+
+  .icon-size-50 {
+    width: 50px;
   }
 
   @media only screen and (max-width: 600px) {
@@ -83,6 +95,7 @@ export const founderStyles = css.global`
 
     .img-margin {
       margin-top: 0;
+      height: 200px;
     }
   }
 `;

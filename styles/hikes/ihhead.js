@@ -14,13 +14,18 @@ export const ihheaderStyles = css.global`
     padding-left: 1.5rem;
   }
 
-  .navbar-light .navbar-nav .nav-link.active,
-  .navbar-light .navbar-nav .show > .nav-link {
-    border-bottom: 3px solid rgb(255, 193, 0);
-  }
+  // .navbar-light .navbar-nav .nav-link.active,
+  // .navbar-light .navbar-nav .show > .nav-link {
+  //   border-bottom: 3px solid rgb(255, 193, 0);
+  // }
 
   .navbar-light .navbar-toggler {
     border: 0;
+  }
+
+  .navbar-light .navbar-nav .nav-link.active-custom > a {
+    border-bottom: 3px solid rgb(255, 193, 0);
+    padding-bottom: 5px;
   }
 
   .border-bottom-custom-header {
