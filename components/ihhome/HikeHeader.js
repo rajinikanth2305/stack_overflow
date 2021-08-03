@@ -70,10 +70,10 @@ const HikeHeader = ({ auth=false }) => {
             <NavItem>
               <NavLink
                 className={
-                  router.pathname == "/experiential-learning" ? "active-custom" : ""
+                  router.pathname == "/familytrek" ? "active-custom" : ""
                 }
               >
-                <Link href="../../../experiential-learning">
+                <Link href="../../../familytrek">
                   Experiential Learning
                 </Link>
               </NavLink>
@@ -85,9 +85,9 @@ const HikeHeader = ({ auth=false }) => {
             </NavItem>
             <NavItem>
               <NavLink
-                className={router.pathname == "/contact-us" ? "active-custom" : ""}
+                className={router.pathname == "/faq" ? "active-custom" : ""}
               >
-                <Link href="../../../contact-us">Contact Us</Link>
+                <Link href="../../../faq">FAQs</Link>
               </NavLink>
             </NavItem>
             <NavItem>
