@@ -3,7 +3,7 @@ import { RichText } from "prismic-reactjs";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-import { findUserByBatchId } from '../../../utils/queries';
+import { findUserByBatchId,makePayment } from '../../../services/queries';
 //const $ = window.$
 import jQuery from 'jquery';
 
@@ -60,7 +60,7 @@ const MakePayment = forwardRef((props,ref) => {
       document.body.appendChild(script);
 
 
-      jQuery(document).ready(function() {
+    /*  jQuery(document).ready(function() {
         function handleResponse(res) {
             if (typeof res != 'undefined' && typeof res.paymentMethod != 'undefined' && typeof res.paymentMethod.paymentTransaction != 'undefined' && typeof res.paymentMethod.paymentTransaction.statusCode != 'undefined' && res.paymentMethod.paymentTransaction.statusCode == '0300') {
                 // success block
@@ -73,6 +73,8 @@ const MakePayment = forwardRef((props,ref) => {
 
         window.jQuery(document).off('click', '#btnSubmit').on('click', '#btnSubmit', function(e) {
             e.preventDefault();
+
+            ///call your api // payload
 
             var configJson = {
                 'tarCall': false,
@@ -112,7 +114,7 @@ const MakePayment = forwardRef((props,ref) => {
                 pnCheckoutShared.openNewWindow();
             }
         });
-    })
+    })*/
 
     }, []);
   
@@ -210,49 +212,50 @@ const MakePayment = forwardRef((props,ref) => {
       }
   };
 
-const makePayment=  ()=>{
+const makePayment1=() => {
 
-  var configJson = {
-    'tarCall': false,
-    'features': {
-        'showPGResponseMsg': true,
-        'enableAbortResponse': true,
-        'enableExpressPay': true,
-        'enableNewWindowFlow': true    //for hybrid applications please disable this by passing false
-    },
-    'consumerData': {
-        'deviceId': 'WEBSH2',	//possible values 'WEBSH1' and 'WEBSH2'
-        'token': '9d2d65f429045de21053d937c4aabee5a1b346cca53db523ea9108dec1e5f6ee022cde0656cdbbe3156d1624065e3388e956eb0c51b9d1fa3eb7e4113f96068c',
-        'returnUrl': 'https://localhost/careers',    //merchant response page URL
-        'responseHandler': handleResponse,
-        'paymentMode': 'all',
-        'merchantLogoUrl': 'https://www.paynimo.com/CompanyDocs/company-logo-md.png',  //provided merchant logo will be displayed
-        'merchantId': 'T596042',
-        'currency': 'INR',
-        'consumerId': 'c964634',
-        'consumerMobileNo': '980566174',
-        'consumerEmailId': 'test@test.com',
-        'txnId': '1626855585158',   //Unique merchant transaction ID
-        'items': [{
-            'itemId': 'test-booking',
-            'amount': '1',
-            'comAmt': '0'
-        }],
-        'customStyle': {
-            'PRIMARY_COLOR_CODE': '#3977b7',   //merchant primary color code
-            'SECONDARY_COLOR_CODE': '#FFFFFF',   //provide merchant's suitable color code
-            'BUTTON_COLOR_CODE_1': '#1969bb',   //merchant's button background color code
-            'BUTTON_COLOR_CODE_2': '#FFFFFF'   //provide merchant's suitable color code for button text
-        }
-    }
-};
-
-window.jQuery.pnCheckout(configJson);
-  if(configJson.features.enableNewWindowFlow){
-    pnCheckoutShared.openNewWindow();
-
-}
-
+  makePayment(stateData.data)
+         .then(res=> {
+    
+    //console.log('PaymentRespone'+ JSON.stringify(res));
+    var configJson = {
+      'tarCall': false,
+      'features': {
+          'showPGResponseMsg': true,
+          'enableAbortResponse': true,
+          'enableExpressPay': true,
+          'enableNewWindowFlow': true    //for hybrid applications please disable this by passing false
+      },
+      'consumerData': {
+          'deviceId': 'WEBSH1',	//possible values 'WEBSH1' and 'WEBSH2'
+          'token': res.token,
+          'returnUrl': 'https://tmsstaging.indiahikes.com/tms-service/public-api/v1/transaction-responses',    //merchant response page URL
+          'responseHandler': handleResponse,
+          'paymentMode': 'all',
+          'merchantLogoUrl': 'https://www.paynimo.com/CompanyDocs/company-logo-md.png',  //provided merchant logo will be displayed
+          'merchantId': res.merchantCode,
+          'currency': 'INR',
+          'txnId': res.transactionId,   //Unique merchant transaction ID
+          'items': [{
+              'itemId': 'Trek-booking',
+              'amount': 10,//,computeFields.computations.youpay,
+              'comAmt': '0'
+          }],
+          'customStyle': {
+              'PRIMARY_COLOR_CODE': '#3977b7',   //merchant primary color code
+              'SECONDARY_COLOR_CODE': '#FFFFFF',   //provide merchant's suitable color code
+              'BUTTON_COLOR_CODE_1': '#1969bb',   //merchant's button background color code
+              'BUTTON_COLOR_CODE_2': '#FFFFFF'   //provide merchant's suitable color code for button text
+          }
+      }
+  };
+  console.log(configJson);
+  
+  window.jQuery.pnCheckout(configJson);
+    if(configJson.features.enableNewWindowFlow){
+      pnCheckoutShared.openNewWindow();
+  }
+  })
 }
 
   return (
@@ -405,7 +408,7 @@ window.jQuery.pnCheckout(configJson);
             </div>
             <div className="text-center">
               <div className="mt-5 mb-3">
-                <button type="button" className="btn btn-ih-green py-2"  id="btnSubmit"  >
+                <button type="button" className="btn btn-ih-green py-2"  id="btnSubmit"  onClick={makePayment1} >
                   Make Payment
                 </button>
               </div>

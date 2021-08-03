@@ -13,10 +13,10 @@ import "primereact/resources/primereact.css";
 import "primeflex/primeflex.css";
 
 // Project components & functions
-import { getBatches } from 'utils/queries';
+import { getBatches } from 'services/queries';
 import { batch } from "react-redux";
 
-const BookingCalender = ( {onBookingSelect,mode,viewDt} ) => {
+const BookingCalender = ( {onBookingSelect,mode,viewDt,paramTrekName} ) => {
  
   const [selectedBatchDate, setSelectedBatchDate] = useState();
   const [selectedMonthYear, setSelectedMonthYear] = useState();
@@ -30,6 +30,8 @@ const BookingCalender = ( {onBookingSelect,mode,viewDt} ) => {
   const [onceSelectClicked, setOnceSelectClicked] = useState();
 
   function getTrekNameFromUrlQueryPath () {
+    return paramTrekName;
+
     /// Get the trekName from QueryString
     let url=location.href.replace(location.origin, '');
     //console.log(url);
@@ -43,7 +45,7 @@ const BookingCalender = ( {onBookingSelect,mode,viewDt} ) => {
 
    let  actualTrekPageName ='';
     if(mode==='inline_page') {
-      console.log(mode);
+      //console.log(mode);
     const pageUrl= window.location.href;
     const pageNamesArray= pageUrl.split('/');
     const pageName=pageNamesArray[pageNamesArray.length-1];
@@ -57,11 +59,11 @@ const BookingCalender = ( {onBookingSelect,mode,viewDt} ) => {
     }
   }
   else {
-    console.log(mode);
+   // console.log(mode);
     actualTrekPageName=getTrekNameFromUrlQueryPath();
   }
     
-    const data=await getBatches(actualTrekPageName,date.month + 1,2021);
+    const data=await getBatches(actualTrekPageName,date.month + 1,date.year);
       setBatchData(data);
       prepareDateDisableList(date,data);
   };

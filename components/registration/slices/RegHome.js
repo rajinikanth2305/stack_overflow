@@ -13,6 +13,7 @@ import AddTrekMates from "./AddTrekMates";
 import MakePayment from "./MakePayment";
 // import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
+//import { withRouter } from 'next/router'
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -20,7 +21,10 @@ import {
   selectStateData,
 } from '../../reduxstate/counterSlice';
 
-const RegHome = ({ slice }) => {
+import auth  from '../../../services/Authenticate';
+import { onAccept,getUserBooking,getBatchInfoByUserAndBatchId } from '../../../services/queries';
+
+const RegHome = ({  slice }) => {
 
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
@@ -34,6 +38,7 @@ const RegHome = ({ slice }) => {
   const childRef = useRef();
   const trekMateChildRef = useRef();
   const paymentChildRef = useRef();
+  const [batchBookingData, setBatchBookingData] = useState(undefined);
 
   const router = useRouter();
 
@@ -44,19 +49,13 @@ const RegHome = ({ slice }) => {
   const [stateChange, setStateChange] = useState(1);
   const completeTheSteps =eligibilityCriteria && eligibilityCriteria.primary.complete_the_steps;
 
-
-   useEffect ( () => {
-    import('../../../utils/UserService').then(mod => {
-        setUserServiceObject(mod);
-        mod.initKeycloak(postAuthenticAction);
-    }),{ ssr: false };
+   useEffect ( async () => {
+     // console.log("Reg-Home" + JSON.stringify( router.query));
+     auth.keycloak().then(userTokenObject=>{ 
+        setUserServiceObject(userTokenObject);
+      });
   }, []);
 
-
-  // React Render
-  const postAuthenticAction = () => {
-      findEligibilityCriteria();
-  }
 
    function getTrekNameFromUrlQueryPath () {
       /// Get the trekName from QueryString
@@ -87,6 +86,7 @@ const RegHome = ({ slice }) => {
       });*/
   }
 
+
   const showToken=()=>{
     if(userServiceObject!==undefined) {
       let x= userServiceObject.getUsername();
@@ -95,35 +95,77 @@ const RegHome = ({ slice }) => {
   }
 
     const onTermAccept= async (value) => {
-    setTermAccepted(value);
-
+     const batchId= router.query.batchId;
+     const userId= userServiceObject.getUsername();
+    setTermAccepted(value); 
     if(stateData.data===undefined) {
-      
-    const bookDetails = {
-      trekId:router.query.trekId,
-      batchId:router.query.batchId,
-      startDate:router.query.dt,
-      endDate:router.query.endDt,
-      trekName:router.query.trekName,
-      trekUsers:[
-        {
-          firstName:userServiceObject.getName(),
-          lastName:userServiceObject.getName(),
-          email:userServiceObject.getUsername(),
-          primaryUser:true,
-          trekFee:0,
-          voucherCode:'',
-          voucherAmount:0
-        }
-      ]
-    };
-
-      await dispatch(addOrUpdateState(bookDetails));
-      childRef.current.changeState();
-      trekMateChildRef.current.changeState();
-      paymentChildRef.current.changeState();
+      getBatchInfoByUserAndBatchId(userId,batchId)
+      .then(data => {
+        setStateStoreData(data);
+    })
+    .catch((res)=>{
+      if(res.response.data.message) {
+           ///Batch not exits will create and then query
+            onAccept(userServiceObject.getUsername(),batchId)
+                   .then(response=> {
+                             getBatchInfoByUserAndBatchId(userId,batchId)
+                                .then(data => {
+                                    setStateStoreData(data);
+                                })
+                               .catch((err)=>{
+                                  console.log(err.response?.data?.message);
+                                })
+           })
+           .catch((res)=>{
+            if(res.response.data?.message) {
+              console.log(res.response.data?.message);
+            }
+           })
+      }
+     })
     }
+    else {
+      setKey('selectbatch');
+    }
+  }
+
+  const setStateStoreData =(data) => {
+    const bookDetails = {
+      trekId:data.trekId,
+      batchId:data.batchId,
+      startDate:data.startDate,
+      endDate:data.endDate,
+      trekName:data.trekName,
+      bookingId:data.id,
+      primaryUserEmail:userServiceObject.getUsername(),
+      trekUsers:[]
+    };
+    /// check any other participants if then push
+    data.participants?.map(userData=>{
+      bookDetails.trekUsers.push(  {
+        firstName:userData.userDetailsForDisplay?.firstName,
+        lastName:userData.userDetailsForDisplay?.lastName,
+        email:userData.userDetailsForDisplay?.email,
+        primaryUser:false,
+        trekFee:data.trekFee,
+        voucherCode:'',
+        voucherAmount:0,
+        userId:userData.userId,
+        gender:'N/A',
+        height:0,
+        weight:0,
+        dob:''
+      })
+    });
+    setStateStoreDataAndTriggerTabChangesState(bookDetails);
     setKey('selectbatch');
+  }
+
+  const setStateStoreDataAndTriggerTabChangesState= async (bookDetails)=>{
+    await dispatch(addOrUpdateState(bookDetails));
+    childRef.current.changeState();
+    trekMateChildRef.current.changeState();
+    paymentChildRef.current.changeState();
   }
 
   const setTabActive=(value) => {
@@ -189,4 +231,4 @@ const RegHome = ({ slice }) => {
   );
 };
 
-export default RegHome;
+export default (RegHome);

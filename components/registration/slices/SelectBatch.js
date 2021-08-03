@@ -14,6 +14,9 @@ import {
   selectStateData,
 } from '../../reduxstate/counterSlice';
 import { render } from "react-dom";
+
+import { findUserByEmail,saveDraftBooking,getUserByAutoSearch } from '../../../services/queries';
+
 const localizer = momentLocalizer(moment);
 
 
@@ -24,19 +27,18 @@ const SelectBatch = forwardRef((props,ref) => {
   const stateData = useSelector(selectStateData);
   const dispatch = useDispatch();
   const router = useRouter();
-  const[viewDate,setViewDate]=useState(new Date());
+  const[viewDate,setViewDate]=useState(undefined);
   const[renderControl,setRenderControl]=useState(false);
 
 
-
-
   useEffect(() => {
-    const batchStartDt=getBatchStartDate();
-    const splitdt=batchStartDt.split('-');
-    const dt=new Date(splitdt[0],(splitdt[1]-1)); /// one month subtracting...
+
+    //const batchStartDt=getBatchStartDate();
+    //const splitdt=batchStartDt.split('-');
+    //const dt=new Date(splitdt[0],(splitdt[1]-1)); /// one month subtracting...
   
-    setViewDate(dt);
-    setRenderControl(true);
+   // setViewDate(dt);
+    //setRenderControl(true);
 
     findquickItinerary();
   }, []);
@@ -96,21 +98,31 @@ const nextTabNav=()=>{
 const bookingSelect=async (value) => {
   setBookingDate(value);
 
+  
   const data= JSON.parse(JSON.stringify( stateData.data));
+
+  if(data.batchId!==value.batchId) {
+    
   data.startDate=value.startDate;
   data.endDate=value.endDate;
   data.batchId=value.batchId;
 
   await dispatch(addOrUpdateState(data));
-
   props.batchDateChange();
+  await saveDraftBooking(data);
+
+  let index=location.href.indexOf("?");
+  let url=location.href.substring(0,index) + '?batchId='+ value.batchId;
+  //console.log(url);
+  router.push(url, undefined, { shallow: true });
+  }
 }
 
 // The component instance will be extended
   // with whatever you return from the callback passed
   // as the second argument
   useImperativeHandle(ref, () => ({
-
+   
     changeState() {
       const data=stateData.data;
       const bookingDates = {
@@ -120,12 +132,19 @@ const bookingSelect=async (value) => {
         endDate:data.endDate,
         trekName:data.trekName
       }
+
       setBookingDate(bookingDates);
+      if(viewDate===undefined) {
+        const date = new Date(bookingDates.startDate);
+        const additionOfMonths = 1;
+        date.setMonth(date.getMonth()); // For subtract use minus (-)
+       // date.setMonth(date.getMonth() - additionOfMonths); // For subtract use minus (-)
+        setViewDate(date);
+        setRenderControl(true);
+      }
     }
-
+    
   }));
-
-
 
   return (
     <>
@@ -165,8 +184,10 @@ const bookingSelect=async (value) => {
                           </div>
                         </div>
                       </div>
-                      { (typeof window !== 'undefined' && renderControl)  && (
-                           <BookingCalender onBookingSelect={bookingSelect} mode={'inline_tab'} viewDt={viewDate}  />
+                      { (typeof window !== 'undefined' && renderControl ) && ( 
+                             <div> 
+                               <BookingCalender onBookingSelect={bookingSelect} mode={'inline_tab'} viewDt={viewDate} paramTrekName={bookingDate.trekName}  />
+                               </div>
                       )}
                     </div>
                   </div>

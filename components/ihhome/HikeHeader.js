@@ -31,7 +31,7 @@ const HikeHeader = ({ auth=false }) => {
 
   useEffect ( () => {
     if(auth) {
-    import('../../utils/UserService').then(mod => {
+    import('../../services/UserService').then(mod => {
         //setUserServiceObject(mod);
         console.log('token' + mod.getToken());
           setUserServiceObject(mod);
@@ -104,7 +104,7 @@ const HikeHeader = ({ auth=false }) => {
                 <Link href="../../../careers">careers</Link>
               </NavLink>
             </NavItem>
-            {!isLoggedIn && (
+            {isLoggedIn && (
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav>
                 <i class="fa fa-user-o" aria-hidden="true"></i>

@@ -9,7 +9,7 @@ import { RichText } from "prismic-reactjs";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { InputText } from 'primereact/inputtext';
 import { InputNumber } from 'primereact/inputnumber';
-import { findUserByEmail,findUserByBatchId } from '../../../utils/queries';
+import { findUserByEmail,saveDraftBooking,getUserByAutoSearch } from '../../../services/queries';
 import { Dropdown } from 'primereact/dropdown';
 import { Calendar } from 'primereact/calendar';
 import moment from "moment";
@@ -20,16 +20,29 @@ import {
   selectStateData,
 } from '../../reduxstate/counterSlice';
 
+import mySingleton  from '../../../services/Authenticate';
+import { data } from "jquery";
+
+import {AutoComplete} from "primereact/autocomplete";    
+
+
+
+  
+
 const AddTrekMates = forwardRef((props,ref) => {
 
   const fieldRef = useRef();
   const toast = useRef(null);
-  const [users, setUsers] = useState();
+  const [users, setUsers] = useState([]);
   const [indexes, setIndexes] = React.useState([]);
   const [counter, setCounter] = React.useState(0);
   const [bookingDate, setBookingDate] = useState(undefined);
   const stateData = useSelector(selectStateData);
   const dispatch = useDispatch();
+
+  const [autoSlopeUserData, setAutoSlopeUserData] = useState([]);
+  const [autoFilteredSlopeUserValue, setAutoFilteredSlopeUserValue] = useState([]);
+  const [selectedSlopeUserAutoValue, setSelectedSlopeUserAutoValue] = useState();
 
   const validationSchema = useMemo(
     () =>
@@ -38,8 +51,9 @@ const AddTrekMates = forwardRef((props,ref) => {
         lastName: Yup.string().required('LastName  is required'),
         email: Yup.string().email().required('Email  is required'),
         phone: Yup.string().required('Phone  is required'),
-        height: Yup.string().required('Height  is required'),
-        weight: Yup.string().required('Weight  is required'),
+        gender: Yup.string().required('Gender  is required'),
+        height: Yup.number().required('Height  is required'),
+        weight: Yup.number().required('Weight  is required'),
         dob: Yup.string().required('Date Of Birth  is required')
       }),
     [],
@@ -52,6 +66,20 @@ const AddTrekMates = forwardRef((props,ref) => {
     shouldFocusError: true
     
   });
+
+  const autoSearchUsers = (event) => {
+    if (!event.query.trim().length) {
+        setAutoFilteredSlopeUserValue([...autoSlopeUserData]);
+    } else {
+      console.log(event.query);
+      getUserByAutoSearch('CUSTOMER',event.query.toLowerCase()).then(data=>{
+        setAutoFilteredSlopeUserValue(data.filter((user) => {
+          return user?.firstName?.toLowerCase().startsWith(event.query.toLowerCase());
+      }));
+      });
+    }
+};
+
 
   const onSubmit = async (data) => {
 
@@ -68,7 +96,6 @@ const AddTrekMates = forwardRef((props,ref) => {
     }]);
 
       const sdata= JSON.parse(JSON.stringify( stateData.data));
-      console.log(JSON.stringify(sdata));
       sdata.trekUsers.push(
         {
           firstName:data.firstName,
@@ -77,10 +104,17 @@ const AddTrekMates = forwardRef((props,ref) => {
           primaryUser:false,
           trekFee:0,
           voucherCode:'',
-          voucherAmount:0
+          voucherAmount:0,
+          userId:0,
+          height:data.height,
+          weight:data.weight,
+          gender:data.gender,
+          dob:data.dob
         }
       );
+
       await dispatch(addOrUpdateState(sdata));
+      saveDraft(sdata);
       add();
 
     reset({
@@ -90,6 +124,7 @@ const AddTrekMates = forwardRef((props,ref) => {
       phone:'',
       weight:'',
       height:'',
+      gender:'',
       dob:''
     }, {
       keepErrors: true, 
@@ -100,6 +135,19 @@ const AddTrekMates = forwardRef((props,ref) => {
       keepSubmitCount: false,
     });
   };
+
+ const saveDraft = async (sdata) => {
+  console.log("TEmp Saved Successfully");
+  await saveDraftBooking(sdata)
+  .then(data => {
+    console.log("Draft2 Saved Successfully");
+})
+.catch((res)=>{
+if(res.response?.data?.message) {
+  console.log("Draft Save error occurred ");
+}
+});
+}
 
   const validationSummary = (
     <div className="validation-summary-error">
@@ -119,6 +167,7 @@ const AddTrekMates = forwardRef((props,ref) => {
   );
 
   const usersData=[];
+  
   React.useEffect(() => {
     setUsers(usersData);
     const arr = Array.from(new Array(usersData.length), (x, i) => i);
@@ -137,7 +186,29 @@ const AddTrekMates = forwardRef((props,ref) => {
         trekName:data.trekName
       }
       setBookingDate(bookingDates);
+
+
+      if(users.length==0 && data.trekUsers.length>0){
+        const sdata=  stateData.data;
+        const tempUsers=[];
+
+        sdata.trekUsers.filter(x=>x.email!==sdata.primaryUserEmail).map(x=> {
+          tempUsers.push(
+            {
+              email:x.email,
+              firstName:x.firstName,
+              lastName:x.lastName
+            }
+          );
+        });
+
+        setUsers(tempUsers);
+       // console.log(tempUsers);
+        const arr = Array.from(new Array(tempUsers.length), (x, i) => i);
+        setIndexes(arr);
+        setCounter(arr.length);
     }
+  }
   }));
 
   
@@ -158,48 +229,47 @@ const addFindUsers=async (udata)=>{
       firstName:udata.firstName,
       lastName:udata.lastName,
       email:udata.email,
+      userId:udata.id,
       primaryUser:false,
       trekFee:0,
       voucherCode:'',
-      voucherAmount:0
+      voucherAmount:0,
+      height:data.height,
+      weight:data.weight,
+      dob:'',
+      gender:''
     }
   );
   await dispatch(addOrUpdateState(sdata));
+  await saveDraftBooking(sdata);
   add();
 }
 
-const findUser= async (e) => {
+const findUser=  (e) => {
  // console.log(fieldRef.current.value);
- const email= document.getElementById("email").value;
 
- if(email===undefined || email==='') {
+  const userData= selectedSlopeUserAutoValue//document.getElementById("email").value;
+  console.log(JSON.stringify(userData));
+
+ if(userData===undefined || userData==='') {
   toast.current.show({severity: 'error', summary: `'Find Trekker email should not be empty'`, detail: 'Find Trekker'});
   return;
  }
 
- const existUser= users?.find(x=>x.email===email);
+ const existUser= stateData.data.trekUsers.find(x=>x.email===userData.email);
  if(existUser!==undefined) {
   toast.current.show({severity: 'error', summary: `'Find Trekker ${email} is already added'`, detail: 'Find Trekker'});
   return;
  }
-
- findUserByEmail(email)
-      .then((udata) => {
         confirmPopup({
           target: e.currentTarget,
-          message: `Are you sure you want to add trek mate ${email} ?'`,
+          message: `Are you sure you want to add trek mate ${userData.email} ?'`,
           icon: 'pi pi-exclamation-triangle',
-          accept: () => {addFindUsers(udata);},
-          reject: () => {}
+          accept: () => {addFindUsers(userData);},
+          reject: (e) => {}
         });
-      })
-      .catch((res)=>{
-        if(res.response.data.message) 
-        toast.current.show({severity: 'error', summary: `${res.response.data.message}`, detail: ''});
-        else
-        toast.current.show({severity: 'error', summary: 'Find failed;Re-try in few mins. ...If not succeeded contact support team', detail: ''});
-      })
-}
+     
+      }
 
 const add = () => {
   setIndexes([...indexes, counter]);
@@ -212,13 +282,14 @@ const remove = async (index)  => {
   setIndexes((prevIndexes) => [...prevIndexes.filter((item) => item !== index)]);
   // setCounter((prevCounter) => prevCounter - 1);
 
-  const data= JSON.parse(JSON.stringify( stateData.data));
+  const sdata= JSON.parse(JSON.stringify( stateData.data));
   //console.log(JSON.stringify(data));
-  var tindex=data.trekUsers.findIndex(x=>x.email==user.email);
+  var tindex=sdata.trekUsers.findIndex(x=>x.email==user.email);
   //console.log(tindex);
-  data.trekUsers.splice(tindex,1);
+  sdata.trekUsers.splice(tindex,1);
   //console.log(JSON.stringify(data));
-  await dispatch(addOrUpdateState(data));
+  await dispatch(addOrUpdateState(sdata));
+  await saveDraft(sdata);
 
   props.trekUsersChange();
 };
@@ -230,6 +301,11 @@ const heights = [
   { name: '7 feet', code: '7' },
 ];
 
+
+const genderOptions = [
+  {name: 'Male', code: 'Male'},
+  {name: 'FeMale', code: 'Female'}
+];
   return (
     <>
      <Toast ref={toast} />
@@ -278,18 +354,28 @@ const heights = [
                     <Form>
                       <div className="login-form-box">
                         <FormGroup>
-                          <Input
-                            type="text"
-                            name="email"
-                            id="email"
-                            placeholder="Email Id"
-                            ref={fieldRef}
-                          />
+                        <div style={{width:'300px'}}>
+              <Controller
+                          name="slopeManagerIds"
+                          control={control}
+                          render={({onChange, value}) =>
+                              <AutoComplete placeholder="Search"
+                                               value={selectedSlopeUserAutoValue}
+                                            onChange={(e) => {
+                                                setSelectedSlopeUserAutoValue(e.value);
+                                                onChange(e.value)
+                                            }}
+                                            placeholder="type starting 3 chars to search"
+                                            minLength={3}
+                                            delay={300}
+                                            suggestions={autoFilteredSlopeUserValue}
+                                            completeMethod={autoSearchUsers} field="email"></AutoComplete>}/>
+              </div>
                         </FormGroup>
                       </div>
                       <div className="mt-3">
                         <button type="button" className="btn btn-ih-green" onClick={findUser}>
-                          Find Trekker
+                          Add Trekker
                         </button>
                       </div>
                     </Form>
@@ -353,7 +439,7 @@ const heights = [
                     name="phone"
                     control={control}
                     render={({ onChange, value }) =>
-                    <InputNumber value={value} onValueChange={(e) => onChange(e.value)}  />}
+                    <InputNumber  placeholder="Phone" value={value} onValueChange={(e) => onChange(e.value)}  />}
                     />
                 {errors.phone && (
                     <span className="p-error">
@@ -364,10 +450,35 @@ const heights = [
 
                         <FormGroup>
                         <Controller
+                    name="gender"
+                    control={control}
+                    render={({ onChange, value }) =>
+                    <Dropdown
+                                              optionLabel="name"
+                                              optionValue="code"
+                                              value={value}
+                                              options={genderOptions}
+                                              onChange={(e) => {
+                                                onChange(e.value);
+                                              }}
+                                              placeholder="Select a Gender  "
+                                          />}
+                    />
+                {errors.gender && (
+                    <span className="p-error">
+                    <p>Error:{errors.gender?.message}</p>
+                  </span>
+                )}
+                        </FormGroup>
+
+                        <FormGroup>
+                        <Controller
                     name="dob"
                     control={control}
                     render={({ onChange, value }) =>
-                        <Calendar dateFormat="dd/mm/yy"  placeholder="Dob" value={value} onChange={(e) => onChange(e.value)}></Calendar>}
+                        <Calendar dateFormat="dd/mm/yy"   monthNavigator yearNavigator yearRange="1960:2015"
+                        placeholder="Dob" value={value} 
+                        onChange={(e) => onChange(e.value)}></Calendar>}
                        />
                 {errors.dob && (
                     <span className="p-error">
@@ -379,9 +490,8 @@ const heights = [
                         <Controller
                               name="weight"
                               control={control}
-                              defaultValue=""
                               render={({ onChange, value }) =>
-                                  <InputNumber value={value} onValueChange={(e) => onChange(e.value)}  />}
+                                  <InputNumber  placeholder="Weight" value={value} onValueChange={(e) => onChange(e.value)}  />}
 
                   />
                           {errors.weight && (
@@ -394,9 +504,8 @@ const heights = [
                         <Controller
                               name="height"
                               control={control}
-                              defaultValue=""
                               render={({ onChange, value }) =>
-                                  <InputNumber value={value} onValueChange={(e) => onChange(e.value)}  />}
+                                  <InputNumber placeholder="height" value={value} onValueChange={(e) => onChange(e.value)}  />}
 
                   />
           {errors.height && (

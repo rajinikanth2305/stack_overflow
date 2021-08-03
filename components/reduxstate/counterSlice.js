@@ -11,7 +11,7 @@ export const slice = createSlice({
   reducers: {
     addOrUpdateState: (state, action) => {
        // state.value = action.payload;
-       const { trekId, batchId,trekName,startDate,endDate,trekUsers} = action.payload;
+       const { trekId, batchId,trekName,startDate,endDate,trekUsers,bookingId,primaryUserEmail} = action.payload;
        return {
         ...state,
         todos: {
@@ -22,7 +22,9 @@ export const slice = createSlice({
             trekId:trekId,
             startDate:startDate,
             endDate:endDate,
-            trekUsers:trekUsers
+            trekUsers:trekUsers,
+            bookingId:bookingId,
+            primaryUserEmail:primaryUserEmail
           }
         }
       };

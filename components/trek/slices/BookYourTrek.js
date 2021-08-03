@@ -61,7 +61,7 @@ const BookYourTrek = ({ slice }) => {
       });
       return;
     }
-    router.push(`/registration?trekId=${bookingDate.trekId}&trekName=${bookingDate.trekName}&batchId=${bookingDate.batchId}&dt=${bookingDate.startDate.substr(0,10)}&endDt=${bookingDate.endDate.substr(0,10)}`);
+    router.push(`/registration?batchId=${bookingDate.batchId}`);
   };
 
   const cancelInfodetails = cancelInfodetailsList.map((data, i) => {

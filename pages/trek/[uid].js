@@ -1,8 +1,8 @@
 import React from "react";
 import Head from "next/head";
 import { RichText } from "prismic-reactjs";
-
-import { queryRepeatableDocuments } from 'utils/queries'
+import Prismic from "@prismicio/client";
+import { queryRepeatableDocuments } from 'services/queries'
 import {  TrekSliceZone } from "components/trek";
 // Project components
 
@@ -52,7 +52,7 @@ const Trek = ({ trekData }) => {
 export async function getStaticProps({ params, preview = null, previewData = {} }) {
   const { ref } = previewData
   const trekData  = await Client().getByUID("trek", params.uid, ref ? { ref } : null) || {}
-  console.log(JSON.stringify(trekData));
+  //console.log(JSON.stringify(trekData));
   return {
     props: {
       preview,
@@ -62,8 +62,10 @@ export async function getStaticProps({ params, preview = null, previewData = {} 
 }
 
 export async function getStaticPaths() {
-  const documents = await queryRepeatableDocuments((doc) => doc.type === 'trek')
- 
+  //const documents = await queryRepeatableDocuments((doc) => doc.type === 'trek')
+
+  const response = await Client().query(Prismic.Predicates.at("document.type", "trek"));
+   const documents=response.results;
   return {
     paths: documents.map(doc => `/trek/${doc.uid}`),
     fallback: true,
