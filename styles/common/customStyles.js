@@ -860,6 +860,12 @@ export const customStyles = css.global`
     padding: 2px;
   }
 
+  .p-fileupload-files > div > div > img {
+    height: 140px;
+    width: 105px;
+    object-fit: cover;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
