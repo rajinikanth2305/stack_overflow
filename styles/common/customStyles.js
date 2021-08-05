@@ -873,6 +873,18 @@ export const customStyles = css.global`
     object-fit: cover;
   }
 
+  .trek-completed-progress.progress > .progress-bar {
+    background: rgba(91,133,70,1);
+  }
+
+  .trek-cancelled-progress.progress > .progress-bar {
+    background: rgba(157,58,11,1);
+  }
+
+  .ml-custom-3 {
+    margin-left: 20px;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
