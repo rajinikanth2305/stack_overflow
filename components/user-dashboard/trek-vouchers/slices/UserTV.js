@@ -8,6 +8,52 @@ const UserTV = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const vouchetList = [
+    {
+      id: 1,
+      vouchercode: "2gihvjri7980dfgh",
+      voucherAmount: "1,050",
+      amountUsed: "0",
+      balanceAmount: "1,050",
+      validTill: "21 June 2022",
+      voucherStatus: "Available"
+    },
+    {
+      id: 2,
+      vouchercode: "5safdgnfi3560dfgh",
+      voucherAmount: "10,789",
+      amountUsed: "10,789",
+      balanceAmount: "0",
+      validTill: "07 August 2019",
+      voucherStatus: "Used"
+    },
+    {
+      id: 3,
+      vouchercode: "5safdgnfi3560dfgh",
+      voucherAmount: "301",
+      amountUsed: "1,050",
+      balanceAmount: "0",
+      validTill: "30 January 2017",
+      voucherStatus: "expired"
+    }
+  ];
+
+  const vouchetListTr = vouchetList.map(function(data, i) {
+    return (
+      <>
+        <tr key={data.id}>
+          <td>{data.vouchercode}</td>
+          <td>Rs. {data.voucherAmount}</td>
+          <td>Rs. {data.amountUsed}</td>
+          <td>Rs. {data.balanceAmount}</td>
+          <td>{data.validTill}</td>
+          <td>{data.voucherStatus}</td>
+        </tr>
+      </>
+    );
+  });
+
   return (
     <>
       <div>
@@ -29,6 +75,26 @@ const UserTV = () => {
                       aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                       ullamco laboris nisi ut aliquip ex ea commodo consequa
                     </p>
+                  </div>
+
+                  <h5 className="p-text-2-fg b-left-3px mb-4">trek vouchers</h5>
+
+                  <div className="card px-3 mb-5">
+                    <div>
+                      <table class="table table-dashboard-profile-style-1">
+                        <thead>
+                          <tr className="header-bg">
+                            <th>voucher code</th>
+                            <th>Voucher amount</th>
+                            <th>Amount used</th>
+                            <th>balance amount</th>
+                            <th>valid till</th>
+                            <th>voucher status</th>
+                          </tr>
+                        </thead>
+                        <tbody>{vouchetListTr}</tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
                 <div className="col-lg-2 col-md-12 bg-white p-0">
