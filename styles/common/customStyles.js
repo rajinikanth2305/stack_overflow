@@ -326,6 +326,17 @@ export const customStyles = css.global`
     text-transform: capitalize;
   }
 
+  .p-text-small-fg-blue {
+    line-height: 17.5px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    color: rgba(35, 76, 187, 1);
+    text-transform: capitalize;
+  }
+
   .p-text-small-brown {
     line-height: 17.5px;
     text-align: left;
@@ -824,7 +835,7 @@ export const customStyles = css.global`
   }
 
   .right-menu-dashboard > ul > li > span.active-li {
-    border-bottom: 2px solid rgba(255,193,0,1);
+    border-bottom: 2px solid rgba(255, 193, 0, 1);
     color: #000000;
     padding-bottom: 2px;
   }
@@ -874,15 +885,20 @@ export const customStyles = css.global`
   }
 
   .trek-completed-progress.progress > .progress-bar {
-    background: rgba(91,133,70,1);
+    background: rgba(91, 133, 70, 1);
   }
 
   .trek-cancelled-progress.progress > .progress-bar {
-    background: rgba(157,58,11,1);
+    background: rgba(157, 58, 11, 1);
   }
 
   .ml-custom-3 {
     margin-left: 20px;
+  }
+
+  .text-green {
+    color: rgba(57,114,41,1);
+    font-family: Franklin Gothic;
   }
 
   @media only screen and (max-width: 660px) {

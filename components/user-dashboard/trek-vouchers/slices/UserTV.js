@@ -44,11 +44,20 @@ const UserTV = () => {
       <>
         <tr key={data.id}>
           <td>{data.vouchercode}</td>
-          <td>Rs. {data.voucherAmount}</td>
+          <td>
+            <div className="d-flex align-items-center justify-content-between">
+              <div>Rs. {data.voucherAmount} </div>
+              <div>
+                <p className="m-0 text-decoration-underline p-text-small-fg-blue">
+                  Download
+                </p>
+              </div>
+            </div>
+          </td>
           <td>Rs. {data.amountUsed}</td>
           <td>Rs. {data.balanceAmount}</td>
           <td>{data.validTill}</td>
-          <td>{data.voucherStatus}</td>
+          <td><p className={data.voucherStatus === 'Available' ? 'text-green m-0' : 'm-0'}>{data.voucherStatus}</p></td>
         </tr>
       </>
     );
