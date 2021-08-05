@@ -811,6 +811,7 @@ export const customStyles = css.global`
   }
 
   .right-menu-dashboard > ul > li {
+    cursor: pointer;
     list-style: none;
     text-align: left;
     font-family: Franklin Gothic;
@@ -820,6 +821,12 @@ export const customStyles = css.global`
     color: rgba(112, 112, 112, 1);
     text-transform: uppercase;
     padding: 4px 0;
+  }
+
+  .right-menu-dashboard > ul > li > span.active-li {
+    border-bottom: 2px solid rgba(255,193,0,1);
+    color: #000000;
+    padding-bottom: 2px;
   }
 
   .user-dashboard-tab > nav {

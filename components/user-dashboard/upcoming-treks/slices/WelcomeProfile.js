@@ -11,6 +11,7 @@ import MyTreks from "./MyTreks";
 import Offloading from "./Offloading";
 import TrekFAQS from "./TrekFAQS";
 import FitnessApproval from "./FitnessApproval";
+import Link from "next/link";
 
 const WelcomeProfile = () => {
   const [show, setShow] = useState(false);
@@ -51,7 +52,7 @@ const WelcomeProfile = () => {
                           <div className="row">
                             <div className="col-lg-3 col-md-12">
                               <div className="trekimg">
-                                <img src="./Rectangle_486.png" />
+                                <img src="/Rectangle_486.png" />
                               </div>
                             </div>
                             <div className="col-lg-9 col-md-12">
@@ -152,7 +153,7 @@ const WelcomeProfile = () => {
                             <div className="row">
                               <div className="col-lg-3 col-md-12">
                                 <div className="trekimg">
-                                  <img src="./Rectangle_486.png" />
+                                  <img src="/Rectangle_486.png" />
                                 </div>
                               </div>
                               <div className="col-lg-9 col-md-12">
@@ -227,7 +228,7 @@ const WelcomeProfile = () => {
                             <div className="row">
                               <div className="col-lg-3 col-md-12">
                                 <div className="trekimg">
-                                  <img src="./Rectangle_486.png" />
+                                  <img src="/Rectangle_486.png" />
                                 </div>
                               </div>
                               <div className="col-lg-9 col-md-12">
@@ -305,10 +306,26 @@ const WelcomeProfile = () => {
                     </div>
                     <div className="right-menu-dashboard sticky-top">
                       <ul>
-                        <li><span className="active-li">upcoming treks</span></li>
-                        <li>previous treks</li>
-                        <li>my profile</li>
-                        <li>trek vouchers</li>
+                        <li>
+                          <Link href="../../../user-dashboard/user-upcoming-treks">
+                            <span className="active-li">upcoming treks</span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="../../../user-dashboard/user-previous-treks">
+                            <span>previous treks</span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="../../../user-dashboard/user-myprofile">
+                            <span>my profile</span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="../../../user-dashboard/user-trekvouchers">
+                            <span>trek vouchers</span>
+                          </Link>
+                        </li>
                         <li>payment receipts</li>
                       </ul>
                     </div>
