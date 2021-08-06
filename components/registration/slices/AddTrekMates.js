@@ -9,7 +9,7 @@ import { RichText } from "prismic-reactjs";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { InputText } from 'primereact/inputtext';
 import { InputNumber } from 'primereact/inputnumber';
-import { findUserByEmail,saveDraftBooking,getUserByAutoSearch } from '../../../services/queries';
+import { findUserByEmail,saveDraftBooking,getUserByAutoSearch,getUserVoucher,createNewUser } from '../../../services/queries';
 import { Dropdown } from 'primereact/dropdown';
 import { Calendar } from 'primereact/calendar';
 import moment from "moment";
@@ -64,7 +64,6 @@ const AddTrekMates = forwardRef((props,ref) => {
     resolver: yupResolver(validationSchema),
     criteriaMode: "firstError",
     shouldFocusError: true
-    
   });
 
   const autoSearchUsers = (event) => {
@@ -95,21 +94,30 @@ const AddTrekMates = forwardRef((props,ref) => {
       lastName:''
     }]);
 
+
+    //// new user first store into server then local store persistence
+     const newUserData=await createNewUser(data);
+     //console.log(newUserData);
+     console.log(JSON.stringify(newUserData));
+    
       const sdata= JSON.parse(JSON.stringify( stateData.data));
       sdata.trekUsers.push(
         {
+          id:newUserData.id,
           firstName:data.firstName,
           lastName:data.lastName,
           email:data.email,
           primaryUser:false,
           trekFee:0,
-          voucherCode:'',
+          voucherId:'',
           voucherAmount:0,
           userId:0,
           height:data.height,
           weight:data.weight,
           gender:data.gender,
-          dob:data.dob
+          dob:data.dob,
+          vouchers:[],
+          optedVoucherId:0
         }
       );
 
@@ -223,26 +231,43 @@ const addFindUsers=async (udata)=>{
     lastName:udata.lastName
   }]);
 
+  /// get users vouchers
+ 
+  let vouchers=await getVoucher(udata.email);
   const sdata= JSON.parse(JSON.stringify( stateData.data));
   sdata.trekUsers.push(
     {
       firstName:udata.firstName,
       lastName:udata.lastName,
       email:udata.email,
-      userId:udata.id,
+      id:udata.id,
       primaryUser:false,
       trekFee:0,
-      voucherCode:'',
+      voucherId:'',
       voucherAmount:0,
       height:data.height,
       weight:data.weight,
       dob:'',
-      gender:''
+      gender:'',
+      vouchers:vouchers,
+      optedVoucherId:0
     }
   );
   await dispatch(addOrUpdateState(sdata));
   await saveDraftBooking(sdata);
   add();
+}
+
+const getVoucher= async (userEmail)  => {
+  let dt=[];
+  const data1=await getUserVoucher(userEmail)
+  .then((data)=> {return data})
+  .catch((res)=>{
+    if(res.response.data?.message) {
+     return dt;
+    }
+   })
+   return data1;
 }
 
 const findUser=  (e) => {
@@ -251,12 +276,12 @@ const findUser=  (e) => {
   const userData= selectedSlopeUserAutoValue//document.getElementById("email").value;
   console.log(JSON.stringify(userData));
 
- if(userData===undefined || userData==='') {
-  toast.current.show({severity: 'error', summary: `'Find Trekker email should not be empty'`, detail: 'Find Trekker'});
+ if(userData===undefined || userData==='' || userData===null) {
+  toast.current.show({severity: 'error', summary: `'Find Trekker email should not be empty or entered text not in auto suggestion list'`, detail: 'Find Trekker'});
   return;
  }
 
- const existUser= stateData.data.trekUsers.find(x=>x.email===userData.email);
+ const existUser= stateData.data?.trekUsers?.find(x=>x.email===userData.email);
  if(existUser!==undefined) {
   toast.current.show({severity: 'error', summary: `'Find Trekker ${email} is already added'`, detail: 'Find Trekker'});
   return;
@@ -284,14 +309,14 @@ const remove = async (index)  => {
 
   const sdata= JSON.parse(JSON.stringify( stateData.data));
   //console.log(JSON.stringify(data));
-  var tindex=sdata.trekUsers.findIndex(x=>x.email==user.email);
+  var tindex=sdata.trekUsers.findIndex(x=>x.email===user.email);
   //console.log(tindex);
   sdata.trekUsers.splice(tindex,1);
   //console.log(JSON.stringify(data));
   await dispatch(addOrUpdateState(sdata));
   await saveDraft(sdata);
-
   props.trekUsersChange();
+
 };
 
 const heights = [
@@ -369,7 +394,8 @@ const genderOptions = [
                                             minLength={3}
                                             delay={300}
                                             suggestions={autoFilteredSlopeUserValue}
-                                            completeMethod={autoSearchUsers} field="email"></AutoComplete>}/>
+                                            forceSelection={true}
+                                            completeMethod={autoSearchUsers} field="display_name"></AutoComplete>}/>
               </div>
                         </FormGroup>
                       </div>
@@ -439,7 +465,7 @@ const genderOptions = [
                     name="phone"
                     control={control}
                     render={({ onChange, value }) =>
-                    <InputNumber  placeholder="Phone" value={value} onValueChange={(e) => onChange(e.value)}  />}
+                    <InputNumber  placeholder="Phone" useGrouping={false}  value={value} onValueChange={(e) => onChange(e.value)}  />}
                     />
                 {errors.phone && (
                     <span className="p-error">
@@ -491,7 +517,7 @@ const genderOptions = [
                               name="weight"
                               control={control}
                               render={({ onChange, value }) =>
-                                  <InputNumber  placeholder="Weight" value={value} onValueChange={(e) => onChange(e.value)}  />}
+                                  <InputNumber  placeholder="Weight" useGrouping={false} mode="decimal" minFractionDigits={2}  value={value} onValueChange={(e) => onChange(e.value)}  />}
 
                   />
                           {errors.weight && (
@@ -505,7 +531,7 @@ const genderOptions = [
                               name="height"
                               control={control}
                               render={({ onChange, value }) =>
-                                  <InputNumber placeholder="height" value={value} onValueChange={(e) => onChange(e.value)}  />}
+                                  <InputNumber placeholder="height" value={value} mode="decimal" useGrouping={false} minFractionDigits={2} onValueChange={(e) => onChange(e.value)}  />}
 
                   />
           {errors.height && (

@@ -25,7 +25,43 @@ export const getBatches = async (trekName, month,year)  => {
 
     const header=await getTokenHeader();
     return axios.get(url,{headers: header})
-                 .then((res) => res.data);
+                 .then((res) => {
+                   if(res.data && res.data?.length >0) {
+                      const tusers=[];
+                      res.data.map(x=> {
+                        tusers.push( {
+                          "id": x.id,
+                          "firstName": x.firstName,
+                          "lastName":x.lastName,
+                          "email": x.email,
+                          "display_name" :  x.email + ' -[' + x.firstName + ' ' +  x.lastName +  ']'
+                        });
+                      });
+                     // console.log(tusers);
+                      return tusers;
+                   }
+                  return res.data;
+                 })
+  };
+
+  export const getUserVoucher = async (userEmail) => {
+    const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
+    const url = `${userApi}/vouchers?userEmail=${userEmail}`;
+    const header=await getTokenHeader();
+
+            try {
+              let res =  await axios.get(url,{ headers:  header })
+               if(res.status == 200){
+                   // test for status you want, etc
+                  // console.log(res.status)
+               }    
+               // Don't forget to return something   
+              // console.log(res.data)
+               return res.data
+           }
+           catch (err) {
+               console.error(err);
+           }
   };
 
   // export const locationBaseApi = `http://localhost:9090/api/v1/locations`;
@@ -76,18 +112,52 @@ const getTokenHeader=async () => {
             .then((res) => res.data);
 };
 
-export const saveDraftBooking =  async (data)  => {
+
+export const createNewUser =  async (data)  => {
+  const header=await getTokenHeader();
+  const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
+  let url = `${userApi}/users`;
+
+  const payload=
+    {
+      "firstName": data.firstName,
+      "lastName": data.lastName,
+      "userReferenceId": "",
+      "height": data.height,
+      "weight": data.weight,
+      "bmi": 0,
+      "phone": data.phone,
+      "email": data.email
+ }
+
+         try {
+          let res = await axios.post(url,payload,{ headers:  header })
+           if(res.status == 200){
+               // test for status you want, etc
+               console.log(res.status)
+           }    
+           // Don't forget to return something   
+           return res.data
+       }
+       catch (err) {
+          return 0;
+       }
+};
+
+export const saveDraftBooking =  async (data,stepName='Default')  => {
 
    const header=await getTokenHeader();
    const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
    const primaryUserEmail=data.primaryUserEmail;
    let url = `${userApi}/users/${primaryUserEmail}/bookings`;
+
    const payload={
     "bookingId": data.bookingId,
     "batchId": data.batchId,
     "termsAndConditionsAccepted": true,
-    "trekMates": buildTrekMates(data,primaryUserEmail)
+    "trekMates": buildTrekMates(data,primaryUserEmail,stepName)
   }
+  console.log(JSON.stringify(payload));
    return axios.put(url,payload,{ headers:  header })
           .then((res) => res.data);
 };
@@ -114,27 +184,34 @@ const computeTotal=(usersData)=>{
   return youpay;
 }
 
-const buildTrekMates = (data,primaryUserEmail) => {
+const buildTrekMates = (data,primaryUserEmail,stepName='Default') => {
  
   const trekMates= [];
-  data?.trekUsers?.filter(x=>x.email!==primaryUserEmail)?.map(y => {
-    const dobstring=Date.parse(y.dob);
-    var date = new Date(dobstring);
-    const dob=new Date(date.getTime() + Math.abs(date.getTimezoneOffset() * 60000));
+  //data?.trekUsers?.filter(x=>x.email!==primaryUserEmail)?.map(y => {
+    data?.trekUsers?.map(y => {
+   // const dobstring=Date.parse(y.dob);
+   // var date = new Date(dobstring);
+   // const dob=new Date(date.getTime() + Math.abs(date.getTimezoneOffset() * 60000));
+    
+   if(stepName==='make_payment') {  /// only make payment step saveDraft pass the voucher id if exists
     const userdata= {
       participantId: 0,
       userEmail: y?.email,
-      userId: y?.userId,
-      firstName: y?.firstName,
-      lastName: y?.lastName,
-     dateOfBirth:  dob,
-      gender: y.gender,
-      height: y.height,
-      weight: y.weight
+      userId: y?.id,
+      voucherId:y.voucherId
     }
     trekMates.push(userdata);
+   }
+   else {
+    const userdata= {
+      participantId: 0,
+      userEmail: y?.email,
+      userId: y?.id
+    }
+    trekMates.push(userdata);
+   }
   });
-  //console.log(JSON.stringify(trekMates));
+  console.log(JSON.stringify(trekMates));
   return trekMates;
 };
 

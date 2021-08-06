@@ -22,7 +22,8 @@ import {
 } from '../../reduxstate/counterSlice';
 
 import auth  from '../../../services/Authenticate';
-import { onAccept,getUserBooking,getBatchInfoByUserAndBatchId } from '../../../services/queries';
+import { onAccept,getUserBooking,getBatchInfoByUserAndBatchId,getUserVoucher } from '../../../services/queries';
+import { data } from "jquery";
 
 const RegHome = ({  slice }) => {
 
@@ -48,6 +49,9 @@ const RegHome = ({  slice }) => {
   const [bookDetails, setBookDetails] = useState('null');
   const [stateChange, setStateChange] = useState(1);
   const completeTheSteps =eligibilityCriteria && eligibilityCriteria.primary.complete_the_steps;
+
+
+  const    dataItems = [];
 
    useEffect ( async () => {
      // console.log("Reg-Home" + JSON.stringify( router.query));
@@ -95,17 +99,21 @@ const RegHome = ({  slice }) => {
   }
 
     const onTermAccept= async (value) => {
+
      const batchId= router.query.batchId;
      const userId= userServiceObject.getUsername();
-    setTermAccepted(value); 
+     setTermAccepted(value); 
+
     if(stateData.data===undefined) {
       getBatchInfoByUserAndBatchId(userId,batchId)
       .then(data => {
+        console.log("Booking found for the batchid and useremailid");
         setStateStoreData(data);
     })
     .catch((res)=>{
-      if(res.response.data.message) {
+      if(res) {
            ///Batch not exits will create and then query
+           console.log("Booking not found for the batchid and useremailid");
             onAccept(userServiceObject.getUsername(),batchId)
                    .then(response=> {
                              getBatchInfoByUserAndBatchId(userId,batchId)
@@ -117,7 +125,7 @@ const RegHome = ({  slice }) => {
                                 })
            })
            .catch((res)=>{
-            if(res.response.data?.message) {
+            if(res.response?.data?.message) {
               console.log(res.response.data?.message);
             }
            })
@@ -129,8 +137,11 @@ const RegHome = ({  slice }) => {
     }
   }
 
-  const setStateStoreData =(data) => {
-    const bookDetails = {
+  const setStateStoreData = async (data) => {
+
+    try{
+      
+    const bookDetails2 = {
       trekId:data.trekId,
       batchId:data.batchId,
       startDate:data.startDate,
@@ -140,28 +151,57 @@ const RegHome = ({  slice }) => {
       primaryUserEmail:userServiceObject.getUsername(),
       trekUsers:[]
     };
+
+     let index=0;
     /// check any other participants if then push
-    data.participants?.map(userData=>{
-      bookDetails.trekUsers.push(  {
+
+    for (const userData of  data.participants) {
+      const dt= await buildParticipants(userData);
+      bookDetails2.trekUsers.push(dt);
+    }
+    setStateStoreDataAndTriggerTabChangesState(bookDetails2);
+    setKey('selectbatch');
+    }
+  catch(err) {
+    console.log(err);
+  }
+  }
+
+  const buildParticipants=  async  (userData)=>{
+      let res=await getVoucher(userData.userDetailsForDisplay.email);
+      const obh={
         firstName:userData.userDetailsForDisplay?.firstName,
         lastName:userData.userDetailsForDisplay?.lastName,
         email:userData.userDetailsForDisplay?.email,
         primaryUser:false,
         trekFee:data.trekFee,
-        voucherCode:'',
+        voucherId:'',
         voucherAmount:0,
-        userId:userData.userId,
+        id:userData.id,
         gender:'N/A',
         height:0,
         weight:0,
-        dob:''
-      })
-    });
-    setStateStoreDataAndTriggerTabChangesState(bookDetails);
-    setKey('selectbatch');
+        dob:'',
+        vouchers:res,
+        optedVoucherId:0
+      }
+      return obh;
+    }
+
+  const getVoucher= async (userEmail)  => {
+    let dt=[];
+    const data1=await getUserVoucher(userEmail)
+    .then((data)=> {return data})
+    .catch((res)=>{
+      if(res.response.data?.message) {
+       return dt;
+      }
+     })
+     return data1;
   }
 
   const setStateStoreDataAndTriggerTabChangesState= async (bookDetails)=>{
+    //console.log(JSON.stringify(bookDetails));
     await dispatch(addOrUpdateState(bookDetails));
     childRef.current.changeState();
     trekMateChildRef.current.changeState();

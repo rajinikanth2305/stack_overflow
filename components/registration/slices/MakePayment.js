@@ -3,8 +3,9 @@ import { RichText } from "prismic-reactjs";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-import { findUserByBatchId,makePayment } from '../../../services/queries';
-//const $ = window.$
+import { findUserByBatchId,makePayment, saveDraftBooking } from '../../../services/queries';
+import { Dropdown } from 'primereact/dropdown';
+import { useForm, Controller } from 'react-hook-form';
 import jQuery from 'jquery';
 
 import {
@@ -40,6 +41,8 @@ const MakePayment = forwardRef((props,ref) => {
     });
 
     const e1 = useRef();
+      // functions to build form returned by useForm() hook
+  const { register, handleSubmit, reset, setValue, control, errors, formState,getValues  } = useForm();
 
     useEffect ( () => {
 
@@ -58,63 +61,6 @@ const MakePayment = forwardRef((props,ref) => {
         console.log(script + ' loaded!');
     };
       document.body.appendChild(script);
-
-
-    /*  jQuery(document).ready(function() {
-        function handleResponse(res) {
-            if (typeof res != 'undefined' && typeof res.paymentMethod != 'undefined' && typeof res.paymentMethod.paymentTransaction != 'undefined' && typeof res.paymentMethod.paymentTransaction.statusCode != 'undefined' && res.paymentMethod.paymentTransaction.statusCode == '0300') {
-                // success block
-            } else if (typeof res != 'undefined' && typeof res.paymentMethod != 'undefined' && typeof res.paymentMethod.paymentTransaction != 'undefined' && typeof res.paymentMethod.paymentTransaction.statusCode != 'undefined' && res.paymentMethod.paymentTransaction.statusCode == '0398') {
-                // initiated block
-            } else {
-                // error block
-            }
-        };
-
-        window.jQuery(document).off('click', '#btnSubmit').on('click', '#btnSubmit', function(e) {
-            e.preventDefault();
-
-            ///call your api // payload
-
-            var configJson = {
-                'tarCall': false,
-                'features': {
-                    'showPGResponseMsg': true,
-                    'enableAbortResponse': true,
-                    'enableExpressPay': true,
-                    'enableNewWindowFlow': true    //for hybrid applications please disable this by passing false
-                },
-                'consumerData': {
-                    'deviceId': 'WEBSH1',	//possible values 'WEBSH1' and 'WEBSH2'
-                    'token': 'de4d66b655750034efe29e1a0a3a466a5f8348b1609766b4e615fce00c4e710e',
-                    'returnUrl': 'https://tmsstaging.indiahikes.com/tms-service/api/v1/payments/response',    //merchant response page URL
-                    'responseHandler': handleResponse,
-                    'paymentMode': 'all',
-                    'merchantLogoUrl': 'https://www.paynimo.com/CompanyDocs/company-logo-md.png',  //provided merchant logo will be displayed
-                    'redirectOnClose':'https://tmsstaging.indiahikes.com/tms-service/api/v1/payments/token',
-                    'merchantId': 'T596042',
-                    'currency': 'INR',
-                    'txnId': '1626855977224',   //Unique merchant transaction ID
-                    'items': [{
-                        'itemId': 'Hampta Trek Booking',
-                        'amount': 10,
-                        'comAmt': '0'
-                    }],
-                    'customStyle': {
-                        'PRIMARY_COLOR_CODE': '#3977b7',   //merchant primary color code
-                        'SECONDARY_COLOR_CODE': '#FFFFFF',   //provide merchant's suitable color code
-                        'BUTTON_COLOR_CODE_1': '#1969bb',   //merchant's button background color code
-                        'BUTTON_COLOR_CODE_2': '#FFFFFF'   //provide merchant's suitable color code for button text
-                    }
-                }
-            };
-          
-            window.jQuery.pnCheckout(configJson);
-            if(configJson.features.enableNewWindowFlow){
-                pnCheckoutShared.openNewWindow();
-            }
-        });
-    })*/
 
     }, []);
   
@@ -212,50 +158,84 @@ const MakePayment = forwardRef((props,ref) => {
       }
   };
 
-const makePayment1=() => {
-
-  makePayment(stateData.data)
-         .then(res=> {
+  const onVoucherApply = async (id,index) => {
     
-    //console.log('PaymentRespone'+ JSON.stringify(res));
-    var configJson = {
-      'tarCall': false,
-      'features': {
-          'showPGResponseMsg': true,
-          'enableAbortResponse': true,
-          'enableExpressPay': true,
-          'enableNewWindowFlow': true    //for hybrid applications please disable this by passing false
-      },
-      'consumerData': {
-          'deviceId': 'WEBSH1',	//possible values 'WEBSH1' and 'WEBSH2'
-          'token': res.token,
-          'returnUrl': 'https://tmsstaging.indiahikes.com/tms-service/public-api/v1/transaction-responses',    //merchant response page URL
-          'responseHandler': handleResponse,
-          'paymentMode': 'all',
-          'merchantLogoUrl': 'https://www.paynimo.com/CompanyDocs/company-logo-md.png',  //provided merchant logo will be displayed
-          'merchantId': res.merchantCode,
-          'currency': 'INR',
-          'txnId': res.transactionId,   //Unique merchant transaction ID
-          'items': [{
-              'itemId': 'Trek-booking',
-              'amount': 10,//,computeFields.computations.youpay,
-              'comAmt': '0'
-          }],
-          'customStyle': {
-              'PRIMARY_COLOR_CODE': '#3977b7',   //merchant primary color code
-              'SECONDARY_COLOR_CODE': '#FFFFFF',   //provide merchant's suitable color code
-              'BUTTON_COLOR_CODE_1': '#1969bb',   //merchant's button background color code
-              'BUTTON_COLOR_CODE_2': '#FFFFFF'   //provide merchant's suitable color code for button text
-          }
-      }
-  };
-  console.log(configJson);
-  
-  window.jQuery.pnCheckout(configJson);
-    if(configJson.features.enableNewWindowFlow){
-      pnCheckoutShared.openNewWindow();
+    const sdata= JSON.parse(JSON.stringify( stateData.data));
+    const user=sdata.trekUsers.find(u=>u.id===id);
+    if(user.optedVoucherId >0) {
+      sdata.trekUsers.find(u=>u.id===id).voucherId=user.optedVoucherId;
+      sdata.trekUsers.find(u=>u.id===id).voucherAmount=user.vouchers.find(vid=>vid.id==user.optedVoucherId).amount;
+     // console.log(JSON.stringify(sdata));
+      await dispatch(addOrUpdateState(sdata));
+      computeTotal(sdata.trekUsers);
+    }
   }
+
+  const onVoucherSelect = async (id,value) => {
+   // console.log(JSON.stringify(value));
+      const sdata= JSON.parse(JSON.stringify( stateData.data));
+      sdata.trekUsers.find(u=>u.id===id).optedVoucherId=value;
+     // console.log(JSON.stringify(sdata));
+      await dispatch(addOrUpdateState(sdata));
+  }
+  
+  
+
+const doPayment=() => {
+
+  /// call & saveDraft then
+  saveDraftBooking(stateData.data,'make_payment')
+  .then(res=>{
+            makePayment(stateData.data)
+            .then(res=> {
+                //console.log('PaymentRespone'+ JSON.stringify(res));
+                var configJson = {
+                'tarCall': false,
+                'features': {
+                    'showPGResponseMsg': true,
+                    'enableAbortResponse': true,
+                    'enableExpressPay': true,
+                    'enableNewWindowFlow': true    //for hybrid applications please disable this by passing false
+                },
+                'consumerData': {
+                    'deviceId': 'WEBSH1',	//possible values 'WEBSH1' and 'WEBSH2'
+                    'token': res.token,
+                    'returnUrl': 'https://tmsstaging.indiahikes.com/tms-service/public-api/v1/transaction-responses',    //merchant response page URL
+                    'responseHandler': handleResponse,
+                    'paymentMode': 'all',
+                    'merchantLogoUrl': 'https://www.paynimo.com/CompanyDocs/company-logo-md.png',  //provided merchant logo will be displayed
+                    'merchantId': res.merchantCode,
+                    'currency': 'INR',
+                    'txnId': res.transactionId,   //Unique merchant transaction ID
+                    'items': [{
+                        'itemId': 'Trek-booking',
+                        'amount': 10,//,computeFields.computations.youpay,
+                        'comAmt': '0'
+                    }],
+                    'customStyle': {
+                        'PRIMARY_COLOR_CODE': '#3977b7',   //merchant primary color code
+                        'SECONDARY_COLOR_CODE': '#FFFFFF',   //provide merchant's suitable color code
+                        'BUTTON_COLOR_CODE_1': '#1969bb',   //merchant's button background color code
+                        'BUTTON_COLOR_CODE_2': '#FFFFFF'   //provide merchant's suitable color code for button text
+                    }
+                }
+                };
+                window.jQuery.pnCheckout(configJson);
+                if(configJson.features.enableNewWindowFlow){
+                pnCheckoutShared.openNewWindow();
+                }
+        })
+        .catch((res)=>{
+          if(res.response?.data?.message) {
+            console.log(res.response.data?.message);
+          }
+         })
   })
+  .catch((res)=>{
+    if(res.response?.data?.message) {
+      console.log(res.response.data?.message);
+    }
+   })
 }
 
   return (
@@ -264,6 +244,7 @@ const makePayment1=() => {
       <div  ref={e1} id="scriptPlaceholder">        
         {/* paynimoc script injecting Script is inserted here */}
       </div>
+      <Form>
         <div className="row">
           <div className="col-lg-7 col-md-12">
             <div className="table-responsive">
@@ -298,38 +279,57 @@ const makePayment1=() => {
                   </tr>
                 </thead>
                 <tbody>
-                {indexes.map((index) => {
+                {
+                indexes.map((index) => {
                   const data = bookingDate?.trekUsers[index];
-                  const name=data?.primaryUser==true ? data?.firstName + ' (You) ' : data?.firstName;
+                  //console.log(JSON.stringify(data));
+                  const name=data?.email===bookingDate.primaryUserEmail ? data?.firstName + ' (You) ' : data?.firstName;
+                  const vouchers=[];
+                  if(data?.vouchers?.length > 0){
+                    data.vouchers.map(v=>{
+                      vouchers.push(
+                        {
+                          title: v.title + '-' + v.amount, 
+                          id: v.id,
+                       })
+                  });
+                  }
                   return (
                   <tr>
                     <td>{name}</td>
                     <td>
                       <div className="d-flex align-items-center">
                         <div>
+                        {vouchers.length>0 && (
                           <FormGroup>
-                            <Input
-                              type="select"
-                              name="height"
-                              id="exampleSelectMulti"
-                              placeholder="Height (In Ft)"
-                            >
-                              <option>Rs. 301 : Voucher 1</option>
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </Input>
+                          <Controller
+                                 name="selectedVoucher"
+                                 control={control}
+                                render={({ onChange, value }) =>
+                                   <Dropdown
+                                              optionLabel="title"
+                                              optionValue="id"
+                                              value={value}
+                                              options={vouchers}
+                                              onChange={(e) => {
+                                                onChange(e.value);
+                                                onVoucherSelect(data.id,e.value)
+                                              }}
+                                              placeholder="Select a Voucher "
+                                          />}
+                                      />
                           </FormGroup>
+                            )}
                         </div>
                         <div className="mx-2">
+                          {vouchers.length>0 && (
                           <button
                             type="button"
-                            className="btn btn-bihtn-yellow-sm"
+                            className="btn btn-bihtn-yellow-sm" onClick={(e) => onVoucherApply(data.id,index)}
                           >
                             Apply
                           </button>
+                          )}
                         </div>
                       </div>
                     </td>
@@ -408,13 +408,14 @@ const makePayment1=() => {
             </div>
             <div className="text-center">
               <div className="mt-5 mb-3">
-                <button type="button" className="btn btn-ih-green py-2"  id="btnSubmit"  onClick={makePayment1} >
+                <button type="button" className="btn btn-ih-green py-2"  id="btnSubmit"  onClick={doPayment} >
                   Make Payment
                 </button>
               </div>
             </div>
           </div>
         </div>
+        </Form>
       </div>
     </>
   );
