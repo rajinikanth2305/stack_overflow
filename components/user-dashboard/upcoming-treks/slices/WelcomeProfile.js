@@ -205,7 +205,7 @@ const WelcomeProfile = () => {
                                       </p>
                                     </div>
                                     <div>
-                                      <button className="btn table-btn-blue mx-3">
+                                      <button className="btn table-btn-blue mx-3" onClick={handleShow}>
                                         <span className="px-2">
                                           add participants
                                         </span>
@@ -326,7 +326,6 @@ const WelcomeProfile = () => {
                             <span>trek vouchers</span>
                           </Link>
                         </li>
-                        <li>payment receipts</li>
                       </ul>
                     </div>
                   </div>

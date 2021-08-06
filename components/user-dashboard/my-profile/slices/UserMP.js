@@ -60,7 +60,6 @@ const UserMP = () => {
                             <span>trek vouchers</span>
                           </Link>
                         </li>
-                        <li>payment receipts</li>
                       </ul>
                     </div>
                   </div>

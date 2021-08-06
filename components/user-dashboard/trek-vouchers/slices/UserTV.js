@@ -135,7 +135,6 @@ const UserTV = () => {
                             <span className="active-li">trek vouchers</span>
                           </Link>
                         </li>
-                        <li>payment receipts</li>
                       </ul>
                     </div>
                   </div>
