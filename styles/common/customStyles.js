@@ -326,6 +326,11 @@ export const customStyles = css.global`
     text-transform: capitalize;
   }
 
+  .p-text-small-fg.font-italic {
+    font-style: italic;
+    font-size: 10px;
+  }
+
   .p-text-small-fg-blue {
     line-height: 17.5px;
     text-align: left;
@@ -334,6 +339,17 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 10px;
     color: rgba(35, 76, 187, 1);
+    text-transform: capitalize;
+  }
+
+  .p-text-small-fg-red {
+    line-height: 17.5px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    color: rgba(157, 58, 11, 1);
     text-transform: capitalize;
   }
 
@@ -357,6 +373,17 @@ export const customStyles = css.global`
     font-size: 10px;
     color: rgba(0, 40, 148, 1);
     text-transform: capitalize;
+  }
+
+  .p-text-f20 {
+    line-height: 28px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
   }
 
   .ft-image {
@@ -897,7 +924,7 @@ export const customStyles = css.global`
   }
 
   .text-green {
-    color: rgba(57,114,41,1);
+    color: rgba(57, 114, 41, 1);
     font-family: Franklin Gothic;
   }
 
