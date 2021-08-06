@@ -22,8 +22,8 @@ import {
 } from '../../reduxstate/counterSlice';
 
 import auth  from '../../../services/Authenticate';
-import { onAccept,getUserBooking,getBatchInfoByUserAndBatchId,getUserVoucher } from '../../../services/queries';
-import { data } from "jquery";
+import { onAccept,getUserBooking,getBatchInfoByUserAndBatchId,getUserVoucher,findUserByEmail } from '../../../services/queries';
+//import { data } from "jquery";
 
 const RegHome = ({  slice }) => {
 
@@ -98,8 +98,7 @@ const RegHome = ({  slice }) => {
     }
   }
 
-    const onTermAccept= async (value) => {
-
+const onTermAccept= async (value) => {
      const batchId= router.query.batchId;
      const userId= userServiceObject.getUsername();
      setTermAccepted(value); 
@@ -108,28 +107,16 @@ const RegHome = ({  slice }) => {
       getBatchInfoByUserAndBatchId(userId,batchId)
       .then(data => {
         console.log("Booking found for the batchid and useremailid");
-        setStateStoreData(data);
+        setStateStoreData(data.data);
     })
     .catch((res)=>{
-      if(res) {
-           ///Batch not exits will create and then query
-           console.log("Booking not found for the batchid and useremailid");
-            onAccept(userServiceObject.getUsername(),batchId)
-                   .then(response=> {
-                             getBatchInfoByUserAndBatchId(userId,batchId)
-                                .then(data => {
-                                    setStateStoreData(data);
-                                })
-                               .catch((err)=>{
-                                  console.log(err.response?.data?.message);
-                                })
-           })
-           .catch((res)=>{
-            if(res.response?.data?.message) {
-              console.log(res.response.data?.message);
-            }
-           })
-      }
+      //// Booking is not found for the batchid and userid
+    //  if(res?.status===500) {
+        createNewBooking();
+      //}
+     // else {
+        console.log("getBatchInfoByUserAndBatchId(userId,batchId)");
+     // }
      })
     }
     else {
@@ -137,10 +124,44 @@ const RegHome = ({  slice }) => {
     }
   }
 
+  const createNewBooking=()=> {
+    const batchId= router.query.batchId;
+    const userId= userServiceObject.getUsername();
+     ///Batch not exits will create and then query
+     console.log("Booking not found for the batchid and useremailid");
+     /// get userid by email
+     findUserByEmail(userServiceObject.getUsername())
+                    .then (res=>{
+                          const id=res.id;
+                          onAccept(userServiceObject.getUsername(),batchId,id)
+                          .then(response=> {
+                                    getBatchInfoByUserAndBatchId(userId,batchId)
+                                      .then(bres => {
+                                          setStateStoreData(bres.data);
+                                      })
+                                      .catch((err)=>{
+                                        console.log(err.response?.data?.message);
+                                      })
+                  })
+                  .catch((res)=>{
+                  if(res.response?.data?.message) {
+                    console.log(res.response.data?.message);
+                  }
+                  })
+            .catch((res)=>{
+              if(res.response?.data?.message) {
+                console.log(res.response.data?.message);
+              }
+              })
+     });
+  }
+
   const setStateStoreData = async (data) => {
 
-    try{
+    //try{
       
+    console.log(JSON.stringify(data));
+
     const bookDetails2 = {
       trekId:data.trekId,
       batchId:data.batchId,
@@ -159,12 +180,14 @@ const RegHome = ({  slice }) => {
       const dt= await buildParticipants(userData);
       bookDetails2.trekUsers.push(dt);
     }
+
+
     setStateStoreDataAndTriggerTabChangesState(bookDetails2);
     setKey('selectbatch');
-    }
-  catch(err) {
-    console.log(err);
-  }
+   // }
+  //catch(err) {
+    //console.log(err);
+  //}
   }
 
   const buildParticipants=  async  (userData)=>{
@@ -174,10 +197,10 @@ const RegHome = ({  slice }) => {
         lastName:userData.userDetailsForDisplay?.lastName,
         email:userData.userDetailsForDisplay?.email,
         primaryUser:false,
-        trekFee:data.trekFee,
+        trekFee:userData.trekFee,
         voucherId:'',
         voucherAmount:0,
-        id:userData.id,
+        id:userData.userId,
         gender:'N/A',
         height:0,
         weight:0,

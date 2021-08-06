@@ -232,7 +232,9 @@ const addFindUsers=async (udata)=>{
   }]);
 
   /// get users vouchers
- 
+  
+  console.log(udata);
+
   let vouchers=await getVoucher(udata.email);
   const sdata= JSON.parse(JSON.stringify( stateData.data));
   sdata.trekUsers.push(

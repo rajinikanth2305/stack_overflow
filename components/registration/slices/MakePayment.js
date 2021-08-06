@@ -108,7 +108,8 @@ const MakePayment = forwardRef((props,ref) => {
       trekName:sdata.trekName,
       trekkersCount:sdata.trekUsers?.length,
       trekUsers:sdata.trekUsers,
-      batchId:sdata.batchId
+      batchId:sdata.batchId,
+      email:sdata.primaryUserEmail
     }
     setBookingDate(bookingDates);
     computeTotal(sdata.trekUsers);
@@ -283,9 +284,10 @@ const doPayment=() => {
                 indexes.map((index) => {
                   const data = bookingDate?.trekUsers[index];
                   //console.log(JSON.stringify(data));
-                  const name=data?.email===bookingDate.primaryUserEmail ? data?.firstName + ' (You) ' : data?.firstName;
+                  const name=data?.email===bookingDate.email ? data?.firstName + ' (You) ' : data?.firstName;
+                  const isPrimaryUser=(data.email===bookingDate.email);
                   const vouchers=[];
-                  if(data?.vouchers?.length > 0){
+                  if( isPrimaryUser && data?.vouchers?.length > 0){
                     data.vouchers.map(v=>{
                       vouchers.push(
                         {

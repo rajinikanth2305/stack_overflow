@@ -12,11 +12,31 @@ import Offloading from "./Offloading";
 import TrekFAQS from "./TrekFAQS";
 import FitnessApproval from "./FitnessApproval";
 
+import auth  from '../../../services/Authenticate';
+import { dashboardService } from '../../../services/dashboard';
+//import { data } from "jquery";
+
+
 const WelcomeProfile = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [userServiceObject, setUserServiceObject] = useState(undefined);
+ 
+  useEffect ( async () => {
+    // console.log("Reg-Home" + JSON.stringify( router.query));
+    auth.keycloak().then(userTokenObject=>{ 
+       setUserServiceObject(userTokenObject);
+       getUserBookings(userTokenObject.userServiceObject.getUsername());
+
+     });
+ }, []);
+
+const getUserBookings=(email)=> {
+    console.log(email);
+}
+
   return (
     <>
       <div>
