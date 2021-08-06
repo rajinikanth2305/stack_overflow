@@ -3,12 +3,18 @@ import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Link from "next/link";
 import { Progress } from "reactstrap";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const UserPT = () => {
-  const [show, setShow] = useState(false);
+  const [activeTab, setActiveTab] = useState(null);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const toggle = tab => {
+    if (activeTab !== tab) setActiveTab(tab);
+  };
+
+  const saveData = () => {
+    setActiveTab(null);
+  }
 
   const dummyDataArray = [
     {
@@ -43,81 +49,247 @@ const UserPT = () => {
   const dummyData = dummyDataArray.map(function(data, i) {
     return (
       <>
-        <div className="card mb-4" key={data.id}>
-          <div className="row">
-            <div className="col-lg-3 col-md-12">
-              <div className="trekimg">
-                <img src="/Rectangle_486.png" />
-              </div>
-            </div>
-            <div className="col-lg-9 col-md-12">
-              <div className="py-3 px-5">
-                <div className="d-flex justify-content-between align-items-end">
-                  <div>
-                    <h3 className="title-h3">{data.trekName}</h3>
-                  </div>
-                  <div>
-                    <p className="m-0 p-text-10-fgb">{data.trekStatus}</p>
-                  </div>
+        <div key={data.id}>
+          <div className="card mb-4">
+            <div className="row">
+              <div className="col-lg-3 col-md-12">
+                <div className="trekimg">
+                  <img src="/Rectangle_486.png" />
                 </div>
-                <Progress
-                  className={
-                    data.trekStatus === "Trek Completed"
-                      ? "trek-completed-progress"
-                      : "trek-cancelled-progress"
-                  }
-                  value="100"
-                />
+              </div>
+              <div className="col-lg-9 col-md-12">
+                <div className="py-3 px-5">
+                  <div className="d-flex justify-content-between align-items-end">
+                    <div>
+                      <h3 className="title-h3">{data.trekName}</h3>
+                    </div>
+                    <div>
+                      <p className="m-0 p-text-10-fgb">{data.trekStatus}</p>
+                    </div>
+                  </div>
+                  <Progress
+                    className={
+                      data.trekStatus === "Trek Completed"
+                        ? "trek-completed-progress"
+                        : "trek-cancelled-progress"
+                    }
+                    value="100"
+                  />
 
-                <div className="d-flex flex-wrap align-items-center justify-content-between py-4 mb-2">
-                  <div>
-                    <p className="m-0 p-text-small-fg">batch dates</p>
-                    <p className="m-0 p-text-2-fg">{data.batchDate}</p>
+                  <div className="d-flex flex-wrap align-items-center justify-content-between py-4 mb-2">
+                    <div>
+                      <p className="m-0 p-text-small-fg">batch dates</p>
+                      <p className="m-0 p-text-2-fg">{data.batchDate}</p>
+                    </div>
+                    <div>
+                      <p className="m-0 p-text-small-fg">participants</p>
+                      <p className="m-0 p-text-2-fg">
+                        {data.participants} trekkers
+                      </p>
+                    </div>
+                    <div>
+                      <p className="m-0 p-text-small-fg">
+                        Experience Coordinator
+                      </p>
+                      <p className="m-0 p-text-2-fg text-decoration-underline">
+                        {data.experienceCoordinator}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="m-0 p-text-small-fg">participants</p>
-                    <p className="m-0 p-text-2-fg">
-                      {data.participants} trekkers
-                    </p>
-                  </div>
-                  <div>
-                    <p className="m-0 p-text-small-fg">
-                      Experience Coordinator
-                    </p>
-                    <p className="m-0 p-text-2-fg text-decoration-underline">
-                      {data.experienceCoordinator}
-                    </p>
-                  </div>
-                </div>
-                <div className="d-flex align-items-center">
-                  <div className="flex-grow-1">
-                    <p className="m-0 text-decoration-underline p-text-small-fg">
-                      View receipts
-                    </p>
-                    <p className="m-0 text-decoration-underline p-text-small-fg">
-                      View Rented Gear
-                    </p>
-                  </div>
-                  <div>
-                    {data.trekStatus === "Trek Completed" && (
-                      <button className="btn table-btn-blue">
-                        <span className="px-2">Download Certificate</span>
-                      </button>
-                    )}
-                    {data.reviewStatus === "no" && (
-                      <button className="btn table-btn-yellow ml-custom-3">
-                        Write About Your Experience
-                      </button>
-                    )}
-                    {data.trekStatus === "Cancelled" && (
-                      <button className="btn table-btn-green-lg">
-                        register again
-                      </button>
-                    )}
+                  <div className="d-flex align-items-center">
+                    <div className="flex-grow-1">
+                      <p className="m-0 text-decoration-underline p-text-small-fg">
+                        View receipts
+                      </p>
+                      <p className="m-0 text-decoration-underline p-text-small-fg">
+                        View Rented Gear
+                      </p>
+                    </div>
+                    <div>
+                      {data.trekStatus === "Trek Completed" && (
+                        <button className="btn table-btn-blue">
+                          <span className="px-2">Download Certificate</span>
+                        </button>
+                      )}
+                      {data.reviewStatus === "no" && (
+                        <button
+                          className="btn table-btn-yellow ml-custom-3"
+                          onClick={() => {
+                            toggle(i);
+                          }}
+                        >
+                          Write About Your Experience
+                        </button>
+                      )}
+                      {data.trekStatus === "Cancelled" && (
+                        <button className="btn table-btn-green-lg">
+                          register again
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div>
+            {i === activeTab && (
+              <div className="row mb-3">
+                <div className="col-lg-1 col-md-12"></div>
+                <div className="col-lg-10 col-md-12">
+                  <div className="card">
+                    <div className="py-4 px-5 mx-5">
+                      <h5 className="p-text-2-fg b-left-3px">
+                        your thoughts on the miyar valley trek expereience
+                      </h5>
+                      <p className="p-text-3">
+                        At Indiahikes, we take your feedback very seriously.
+                        Every question that you answer is not only seen by me
+                        but our entire team. We even forward sections of your
+                        feedback to our teams on the slopes. I admit, we also
+                        share the happy sections!{" "}
+                      </p>
+                      <p className="p-text-3 mb-5">Let us start right away. </p>
+
+                      <div className="q-border py-4">
+                        <p className="p-text-3 font-weight-bold m-0">
+                          Drop down field Lorem ipsum dolor sit amet,
+                          consectetur adipiscing
+                        </p>
+                        <div className="w-50 mt-3">
+                          <FormGroup>
+                            <Input
+                              type="select"
+                              name="weight"
+                              id="exampleSelectMulti"
+                              placeholder="weight (in kg)"
+                            >
+                              <option>weight (in kg)</option>
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </Input>
+                          </FormGroup>
+                        </div>
+                      </div>
+
+                      <div className="q-border py-4">
+                        <p className="p-text-3 font-weight-bold m-0">
+                          Yes/ No Field Lorem ipsum dolor sit amet, consectetur
+                          adipiscing
+                        </p>
+                        <div className="mt-3">
+                          <div className="d-flex align-items-cemter">
+                            <div>
+                              <Label check>
+                                <Input type="radio" name="radio1" /> Yes
+                              </Label>
+                            </div>
+                            <div className="mx-5" />
+                            <div>
+                              <Label check>
+                                <Input type="radio" name="radio1" /> No
+                              </Label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="q-border py-4">
+                        <p className="p-text-3 font-weight-bold m-0">
+                          Options Field
+                        </p>
+                        <div className="mt-3">
+                          <div className="d-flex align-items-cemter">
+                            <div>
+                              <Label check>
+                                <Input type="checkbox" /> Option 1
+                              </Label>
+                            </div>
+                            <div className="mx-5" />
+                            <div>
+                              <Label check>
+                                <Input type="checkbox" /> Option 2
+                              </Label>
+                            </div>
+                            <div className="mx-5" />
+                            <div>
+                              <Label check>
+                                <Input type="checkbox" /> Option 3
+                              </Label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="q-border py-4">
+                        <p className="p-text-3 font-weight-bold m-0">
+                          Prompt line 1 Lorem ipsum dolor sit amet, consectetur
+                          adipiscing elit, sed do eiusmod tempor incididunt ut
+                          labore et dolore magna aliqua
+                        </p>
+                        <div className="mt-3">
+                          <FormGroup>
+                            <Input
+                              type="textarea"
+                              name="text"
+                              id="exampleText"
+                              value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa."
+                            />
+                          </FormGroup>
+                        </div>
+                      </div>
+
+                      <div className="q-border py-4">
+                        <h5 className="p-text-2-fg b-left-3px mb-5">
+                          your thoughts on the miyar valley trek expereience
+                        </h5>
+                        <p className="p-text-3 font-weight-bold m-0">
+                          Prompt line 2 Lorem ipsum dolor sit amet, consectetur
+                          adipiscing elit, sed do eiusmod tempor
+                        </p>
+                        <div className="mt-3">
+                          <FormGroup>
+                            <Input
+                              type="textarea"
+                              name="text"
+                              id="exampleText"
+                              value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa"
+                            />
+                          </FormGroup>
+                        </div>
+                      </div>
+
+                      <div className="q-border py-4">
+                        <p className="p-text-3 font-weight-bold m-0">
+                          Prompt line 3 Lorem ipsum dolor sit amet, consectetur
+                          adipiscing elit
+                        </p>
+                        <div className="mt-3">
+                          <FormGroup>
+                            <Input
+                              type="textarea"
+                              name="text"
+                              id="exampleText"
+                              placeholder="Your response"
+                            />
+                          </FormGroup>
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <button type="button" className="btn table-btn-green-lg" onClick={saveData}>
+                          submit review
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-1 col-md-12"></div>
+              </div>
+            )}
           </div>
         </div>
       </>

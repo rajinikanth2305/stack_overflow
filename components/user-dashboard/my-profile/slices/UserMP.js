@@ -29,6 +29,8 @@ const UserMP = () => {
                       aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                       ullamco laboris nisi ut aliquip ex ea commodo consequa
                     </p>
+
+                    <h3>Redirect it to keycloak edit profile</h3>
                   </div>
                 </div>
                 <div className="col-lg-2 col-md-12 bg-white p-0">

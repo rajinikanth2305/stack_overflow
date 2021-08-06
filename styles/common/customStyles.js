@@ -928,6 +928,10 @@ export const customStyles = css.global`
     font-family: Franklin Gothic;
   }
 
+  .q-border {
+    border-top: 2px solid rgba(255,193,0,1);
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
