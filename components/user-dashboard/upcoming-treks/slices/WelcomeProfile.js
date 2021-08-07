@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect,useRef } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Modal from "react-bootstrap/Modal";
@@ -12,14 +12,144 @@ import Offloading from "./Offloading";
 import TrekFAQS from "./TrekFAQS";
 import FitnessApproval from "./FitnessApproval";
 import Link from "next/link";
+import auth  from '../../../../services/Authenticate';
+import { getdashBoardUserBooking } from '../../../../services/queries';
+import moment from "moment";
+import { useRouter } from "next/router";
+import Prismic from "@prismicio/client";
+import { Client } from "../../../../utils/prismicHelpers";
 
 const WelcomeProfile = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [userServiceObject, setUserServiceObject] = useState(undefined);
+  const [userEmail, setUserEmail] = useState(undefined);
+  const [hasMounted, setHasMounted] = useState(false);
+  const [bookings, setBookings] = useState(undefined);
+  const [bookingOwner, setBookingOwner] = useState(undefined);
+  const [upComingTrek, setUpComingTrek] = useState(undefined);
+  const [nextComingTreks, setNextComingTreks] = useState([]);
+  const [render, setRender] = useState(false);
+
+  const [indexes, setIndexes] = React.useState([]);
+  const [counter, setCounter] = React.useState(0);
+
+  const router = useRouter();
+  const myTrekRef = useRef();
+
+
+
+  React.useEffect(  () => {
+    //const res=await 
+  auth.keycloak()
+       .then(([userTokenObject, userEmail])=>{ 
+             setUserEmail(userEmail);
+             setUserServiceObject(userTokenObject);
+             fetchAndBindUserBookings(userEmail);
+            // return userEmail;
+         });
+       // console.log(res);
+        //fetchAndBindUserBookings(res);
+  }, []);
+
+
+  function fetchAndBindUserBookings (email) {
+   console.log(email);
+  
+    getdashBoardUserBooking(email)
+       .then(bookingsData=>{
+        /// Idenitify and get the booking owner profile informations 
+        const bookingOwner= bookingsData.map((element) => {
+            const mainuser=element.userTrekBookingParticipants.find((subElement) => subElement.userDetailsForDisplay.email === email);
+            if(mainuser!==undefined)
+              return mainuser;
+         });
+        setBookingOwner(bookingOwner[0]);
+        getAndSetTrekContents(bookingsData,email);
+   });
+  }
+
+
+const setStates =(bookTrekContents) => {
+
+  console.log(bookTrekContents);
+
+  setBookings(bookTrekContents);
+  setUpComingTrek(bookTrekContents[0]);  /// setting the first trek has upcoming trek
+
+   const arr = Array.from(new Array(bookTrekContents.length-1), (x, i) => i);
+   setIndexes(arr);
+   setCounter(arr.length);
+
+   const nextTreks=bookTrekContents.filter(x=>x.bookingId!==bookTrekContents[0].bookingId);  /// Excluding the first trek;
+   setNextComingTreks(nextTreks);
+    
+   setRender(true);
+
+   myTrekRef.current?.changeState(bookTrekContents[0]);
+}
+
+const getAndSetTrekContents = async (bookingsData,userEmail) => {
+
+  const bookTrekContents=[];
+  const client = Client();
+  /// Now get Trek content data from Prismic 
+  for (const book of  bookingsData) {
+    const trekName=book.trekName.trim().replace(" ","_").toLowerCase();
+    const result  = await Client().getByUID("trek", trekName);
+   // console.log(result);
+    const slice = result.data.body.find(x => x.slice_type === "trek_banner");
+    //console.log(slice);
+    const bannerImage = slice.primary.trek_banner_image.url;
+    const trekCaptions = slice.primary.trek_caption;
+    bookTrekContents.push({
+      trekId:book.trekId,
+      batchId:book.batchId,
+      bookingId:book.bookingId,
+      email:userEmail,
+      bannerImageUrl:bannerImage,
+      trekName:trekCaptions,
+      startDate: book.batchStartDate,
+      endDate: book.batchEndDate,
+      trekCoordinator: book.trekCoordinator,
+      trekWhatsappLink: book.trekWhatsappLink,
+      bookingParticipantState: book.bookingParticipantState,
+      participantsCount:book.userTrekBookingParticipants.length,
+      userTrekBookingParticipants:book.userTrekBookingParticipants
+
+    });
+  }
+ setStates(bookTrekContents);
+}
+
+const toggleTrekDisplay= (bookingId) =>{
+ 
+  const activeBooking=bookings.find(x=>x.bookingId===bookingId);
+  setUpComingTrek(activeBooking);  /// setting the toggled bookingid trek has upcoming trek
+  myTrekRef.current.changeState(activeBooking);
+
+  const arr = Array.from(new Array(bookings.length-1), (x, i) => i);
+  setIndexes(arr);
+  setCounter(arr.length);
+
+  const nextTreks=bookings.filter(x=>x.bookingId !== activeBooking.bookingId);  /// Excluding the active display trek;
+  setNextComingTreks(nextTreks);
+}
+
+const makePayment= (batchId) =>{
+  router.push(`/registration?batchId=${batchId}&step=payment`);
+}
+
+const addParticipants= (batchId) =>{
+  router.push(`/registration?batchId=${batchId}&step=addparticipant`);
+}
+
   return (
     <>
+      { render && ( 
+        <div>
       <div>
         <div className="container container-custom p-0">
           <div className="bg-gray-shade">
@@ -28,7 +158,7 @@ const WelcomeProfile = () => {
                 <div className="col-lg-10 col-md-12 bg-gray border-right b-right-2px">
                   <div className="mb-2 py-4">
                     <p className="p-text-1 font-weight-bold m-0">
-                      Hi Sandhya Uc
+                      Hi {bookingOwner?.userDetailsForDisplay.firstName} - {bookingOwner?.userDetailsForDisplay.lastName}
                     </p>
                     <p className="p-text-1 font-weight-bold">
                       Welcome To Your Indiahikes Trek Dashboard!
@@ -52,7 +182,7 @@ const WelcomeProfile = () => {
                           <div className="row">
                             <div className="col-lg-3 col-md-12">
                               <div className="trekimg">
-                                <img src="/Rectangle_486.png" />
+                                <img src= {upComingTrek?.bannerImageUrl} height="220px" width="320px"/>
                               </div>
                             </div>
                             <div className="col-lg-9 col-md-12">
@@ -60,7 +190,7 @@ const WelcomeProfile = () => {
                                 <div className="d-flex justify-content-between align-items-end">
                                   <div>
                                     <h3 className="title-h3">
-                                      hampta pass trek
+                                      {upComingTrek?.trekName}
                                     </h3>
                                   </div>
                                   <div>
@@ -77,7 +207,9 @@ const WelcomeProfile = () => {
                                       batch dates
                                     </p>
                                     <p className="m-0 p-text-2-fg">
-                                      16 Sep - 23 Sep 2021
+                                      {upComingTrek && (
+                                    <b>{moment(upComingTrek?.startDate).format('MM/DD/YYYY')} -  {moment(upComingTrek?.endDate).format('MM/DD/YYYY')}</b>
+                                      )}
                                     </p>
                                   </div>
                                   <div>
@@ -85,7 +217,7 @@ const WelcomeProfile = () => {
                                       participants
                                     </p>
                                     <p className="m-0 p-text-2-fg">
-                                      3 trekkers
+                                    {upComingTrek?.participantsCount}
                                     </p>
                                   </div>
                                   <div>
@@ -93,7 +225,7 @@ const WelcomeProfile = () => {
                                       Experience Coordinator
                                     </p>
                                     <p className="m-0 p-text-2-fg text-decoration-underline">
-                                      Nandana Kamasani
+                                    {upComingTrek?.trekCoordinator?.firstName} {upComingTrek?.trekCoordinator?.lastName}
                                     </p>
                                   </div>
                                 </div>
@@ -123,9 +255,10 @@ const WelcomeProfile = () => {
                       defaultActiveKey="mytrek"
                       id="uncontrolled-tab-example"
                       className="mb-3"
+                      unmountOnExit={false}
                     >
                       <Tab eventKey="mytrek" title="My trek">
-                        <MyTreks />
+                        <MyTreks ref={myTrekRef}  />
                       </Tab>
                       <Tab eventKey="rentgear" title="Rent gear">
                         <RentGear />
@@ -141,11 +274,19 @@ const WelcomeProfile = () => {
                       </Tab>
                     </Tabs>
                   </div>
+
+
                   <div className="my-5">
                     <div>
                       <h5 className="p-text-2-fg b-left-3px">
                         your Next Indiahikes treks
                       </h5>
+                      {
+                   indexes?.map((index) => {
+                  const trekData = nextComingTreks[index];
+                  //console.log(JSON.stringify(data));
+                  //const name=pdata?.userDetailsForDisplay.email===participantData.email ? pdata?.userDetailsForDisplay.firstName +  pdata?.userDetailsForDisplay.lastName + ' (You) ' : pdata?.userDetailsForDisplay.firstName +  pdata?.userDetailsForDisplay.lastName;
+                  return (
 
                       <div className="row">
                         <div className="col-lg-12 col-md-12">
@@ -153,7 +294,7 @@ const WelcomeProfile = () => {
                             <div className="row">
                               <div className="col-lg-3 col-md-12">
                                 <div className="trekimg">
-                                  <img src="/Rectangle_486.png" />
+                                <img src= {trekData?.bannerImageUrl} height="220px" width="300px"  onClick={(e) => toggleTrekDisplay(trekData?.bookingId)}/>
                                 </div>
                               </div>
                               <div className="col-lg-9 col-md-12">
@@ -161,7 +302,7 @@ const WelcomeProfile = () => {
                                   <div className="d-flex justify-content-between align-items-end">
                                     <div>
                                       <h3 className="title-h3">
-                                        miyar valley Trek
+                                         {trekData?.trekName}
                                       </h3>
                                     </div>
                                     <div>
@@ -178,7 +319,7 @@ const WelcomeProfile = () => {
                                         batch dates
                                       </p>
                                       <p className="m-0 p-text-2-fg">
-                                        02 Oct - 08 Oct 2021
+                                      <b>{moment(trekData?.startDate).format('MM/DD/YYYY')} -  {moment(trekData?.endDate).format('MM/DD/YYYY')}</b>
                                       </p>
                                     </div>
                                     <div>
@@ -186,7 +327,7 @@ const WelcomeProfile = () => {
                                         participants
                                       </p>
                                       <p className="m-0 p-text-2-fg">
-                                        2 trekker
+                                      {trekData?.participantsCount}
                                       </p>
                                     </div>
                                     <div>
@@ -194,7 +335,7 @@ const WelcomeProfile = () => {
                                         Experience Coordinator
                                       </p>
                                       <p className="m-0 p-text-2-fg text-decoration-underline">
-                                        Nandana Kamasani
+                                      {trekData?.trekCoordinator?.firstName} {trekData?.trekCoordinator?.lastName}
                                       </p>
                                     </div>
                                   </div>
@@ -205,12 +346,12 @@ const WelcomeProfile = () => {
                                       </p>
                                     </div>
                                     <div>
-                                      <button className="btn table-btn-blue mx-3" onClick={handleShow}>
+                                      <button className="btn table-btn-blue mx-3" onClick={(e) => addParticipants(trekData?.batchId)}>
                                         <span className="px-2">
                                           add participants
                                         </span>
                                       </button>
-                                      <button className="btn table-btn-green-lg">
+                                      <button className="btn table-btn-green-lg"  onClick={(e) =>makePayment(trekData?.batchId)}>
                                         Make payment
                                       </button>
                                     </div>
@@ -222,75 +363,9 @@ const WelcomeProfile = () => {
                         </div>
                       </div>
 
-                      <div className="row my-3">
-                        <div className="col-lg-12 col-md-12">
-                          <div className="card">
-                            <div className="row">
-                              <div className="col-lg-3 col-md-12">
-                                <div className="trekimg">
-                                  <img src="/Rectangle_486.png" />
-                                </div>
-                              </div>
-                              <div className="col-lg-9 col-md-12">
-                                <div className="py-3 px-5">
-                                  <div className="d-flex justify-content-between align-items-end">
-                                    <div>
-                                      <h3 className="title-h3">
-                                        Everest Base Camp via Gokyo Ri Trek
-                                      </h3>
-                                    </div>
-                                    <div>
-                                      <p className="m-0 p-text-10-fgb">
-                                        80% of booking process completed
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <Progress value="80" />
-
-                                  <div className="d-flex flex-wrap align-items-center justify-content-between py-4 mb-2">
-                                    <div>
-                                      <p className="m-0 p-text-small-fg">
-                                        batch dates
-                                      </p>
-                                      <p className="m-0 p-text-2-fg">
-                                        16 Sep - 23 Sep 2021
-                                      </p>
-                                    </div>
-                                    <div>
-                                      <p className="m-0 p-text-small-fg">
-                                        participants
-                                      </p>
-                                      <p className="m-0 p-text-2-fg">
-                                        3 trekkers
-                                      </p>
-                                    </div>
-                                    <div>
-                                      <p className="m-0 p-text-small-fg">
-                                        Experience Coordinator
-                                      </p>
-                                      <p className="m-0 p-text-2-fg text-decoration-underline">
-                                        suhas saya
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="d-flex align-items-center">
-                                    <div className="flex-grow-1">
-                                      <p className="m-0 text-decoration-underline p-text-small-fg">
-                                        view details
-                                      </p>
-                                    </div>
-                                    <div>
-                                      <button className="btn table-btn-yellow">
-                                        waitlist #3
-                                      </button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    )
+                  })
+                }
                     </div>
                     <style jsx global>
                       {customStyles}
@@ -460,6 +535,9 @@ const WelcomeProfile = () => {
           </div>
         </Modal.Body>
       </Modal>
+      
+      </div>
+      )}
     </>
   );
 };

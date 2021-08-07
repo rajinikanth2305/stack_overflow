@@ -49,17 +49,39 @@ const RegHome = ({  slice }) => {
   const [bookDetails, setBookDetails] = useState('null');
   const [stateChange, setStateChange] = useState(1);
   const completeTheSteps =eligibilityCriteria && eligibilityCriteria.primary.complete_the_steps;
-
+  const [userEmail, setUserEmail] = useState(undefined);
+  const [disableOnAcceptTab, setDisableOnAcceptTab] = useState(false);
 
   const    dataItems = [];
 
-   useEffect ( async () => {
-     // console.log("Reg-Home" + JSON.stringify( router.query));
-     auth.keycloak().then(userTokenObject=>{ 
-        setUserServiceObject(userTokenObject);
-      });
+   useEffect (  () => {
+     
+   auth.keycloak().then(([userTokenObject, userEmail])=>{ 
+       setUserServiceObject(userTokenObject);
+       setUserEmail(userEmail);
+       DoBindIfBookingExists(userEmail);
+   });
   }, []);
 
+
+   const DoBindIfBookingExists=(userEmail)=> {
+    let url=location.href.replace(location.origin, '');
+    let pageUrl=url.split("&");
+    let batchKeyVal=pageUrl[0]; //batchid
+    const batchId=batchKeyVal.split("=")[1];
+    ///
+    let stepName='';
+    if(pageUrl.length>1) {
+      let stepKeyVal=pageUrl[1]; //StepKey
+      stepName=stepKeyVal.split("=")[1];
+    }
+
+    onTermAccept(true,userEmail,batchId,stepName,'Redirect');
+
+    //console.log(stepName);
+    //console.log(batchId);
+
+   }
 
    function getTrekNameFromUrlQueryPath () {
       /// Get the trekName from QueryString
@@ -98,24 +120,49 @@ const RegHome = ({  slice }) => {
     }
   }
 
-const onTermAccept= async (value) => {
-     const batchId= router.query.batchId;
-     const userId= userServiceObject.getUsername();
+const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,callMode='Button_Click') => {
+     const batchId= router.query.batchId?router.query.batchId:pbatchId;
+     const userId= userEmail==''?userServiceObject.getUsername():userEmail;
+
+     console.log(batchId);
+     console.log(userId);
+
      setTermAccepted(value); 
 
     if(stateData.data===undefined) {
+
       getBatchInfoByUserAndBatchId(userId,batchId)
       .then(data => {
         console.log("Booking found for the batchid and useremailid");
-        setStateStoreData(data.data);
+        setStateStoreData(data.data,userId);
+
+        if(stepName!==undefined){
+          if(stepName==='addparticipant') {
+            setDisableOnAcceptTab(true);
+            setTermAccepted(true);
+            setKey('addtrekmates');
+          }
+          else   if(stepName==='make_payment') {
+            setDisableOnAcceptTab(true);
+            setTermAccepted(true);
+            setKey('makepayment');
+          }
+          else {
+            setDisableOnAcceptTab(true);
+            setTermAccepted(true);
+            setKey('makepayment');
+          }
+        }
     })
     .catch((res)=>{
       //// Booking is not found for the batchid and userid
+      console.log("Booking Not found for the batchid and user emailid");
     //  if(res?.status===500) {
-        createNewBooking();
+      if( callMode==='Button_Click')
+          createNewBooking();
       //}
      // else {
-        console.log("getBatchInfoByUserAndBatchId(userId,batchId)");
+        console.log(callMode);
      // }
      })
     }
@@ -156,11 +203,13 @@ const onTermAccept= async (value) => {
      });
   }
 
-  const setStateStoreData = async (data) => {
+  const setStateStoreData = async (data,userId) => {
 
     //try{
       
     console.log(JSON.stringify(data));
+
+    console.log(userId);
 
     const bookDetails2 = {
       trekId:data.trekId,
@@ -169,7 +218,7 @@ const onTermAccept= async (value) => {
       endDate:data.endDate,
       trekName:data.trekName,
       bookingId:data.id,
-      primaryUserEmail:userServiceObject.getUsername(),
+      primaryUserEmail:userId,
       trekUsers:[]
     };
 
@@ -180,10 +229,8 @@ const onTermAccept= async (value) => {
       const dt= await buildParticipants(userData);
       bookDetails2.trekUsers.push(dt);
     }
-
-
     setStateStoreDataAndTriggerTabChangesState(bookDetails2);
-    setKey('selectbatch');
+   
    // }
   //catch(err) {
     //console.log(err);
@@ -191,7 +238,10 @@ const onTermAccept= async (value) => {
   }
 
   const buildParticipants=  async  (userData)=>{
-      let res=await getVoucher(userData.userDetailsForDisplay.email);
+      let vouchers=[];
+      if(userData.userDetailsForDisplay.email===userEmail){
+        vouchers=await getVoucher(userData.userDetailsForDisplay?.email);
+      }
       const obh={
         firstName:userData.userDetailsForDisplay?.firstName,
         lastName:userData.userDetailsForDisplay?.lastName,
@@ -205,7 +255,7 @@ const onTermAccept= async (value) => {
         height:0,
         weight:0,
         dob:'',
-        vouchers:res,
+        vouchers:vouchers,
         optedVoucherId:0
       }
       return obh;
@@ -246,7 +296,7 @@ const onTermAccept= async (value) => {
 
   let selectBatchProps = {
     bookDetails:bookDetails,
-    onNextTabEvent:setBatchDateChange,
+    onNextTabEvent:setTabActive,
     batchDateChange:setBatchDateChange,
     trekUsersChange:setTrekUsersChange
   }
@@ -267,7 +317,7 @@ const onTermAccept= async (value) => {
                  onSelect={(k) => setKey(k)}
                  unmountOnExit={false}
                 >
-                  <Tab eventKey="accepet" title="Accept T&C">
+                  <Tab eventKey="accepet" title="Accept T&C" disabled={!disableOnAcceptTab}>
                     <AcceptTC data={eligibilityCriteria} props={bookDetails} onTermAccept={onTermAccept} />
                   </Tab>
                   

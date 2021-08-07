@@ -52,7 +52,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     },
   )*/
   
-  //console.log( "salomon" + JSON.stringify(doc));
+
 
   return {
     props: {

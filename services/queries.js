@@ -75,7 +75,7 @@ export const getBatchInfoByUserAndBatchId = async (userEmail, batchId)  => {
 
 const getTokenHeader=async () => {
   const obj=await auth.keycloak()
-  .then(userTokenObject=>{ return userTokenObject});
+            .then(([userTokenObject, userEmail])=>{ return userTokenObject});
   return {Accept: 'application/json',Authorization: `Bearer ${obj.getToken()}`};
 }
 
@@ -224,6 +224,17 @@ const buildTrekMates = (data,primaryUserEmail,stepName='Default') => {
   console.log(JSON.stringify(trekMates));
   return trekMates;
 };
+
+
+export const getdashBoardUserBooking =  async (email)  => {
+  const header=await getTokenHeader();
+  const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
+  let url = `${userApi}/users/${email}/bookings`;
+  return axios.get(url,{ headers:  header })
+         .then((res) => res.data);
+};
+
+
 
   // React Render
   const postAuthenticAction = () => {

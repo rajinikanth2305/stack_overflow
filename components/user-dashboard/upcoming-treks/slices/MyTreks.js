@@ -1,11 +1,40 @@
-import React from "react";
+import React, {useState,forwardRef, useImperativeHandle,useRef} from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
-const MyTreks = () => {
+const MyTreks =  forwardRef((props,ref) => {
+
+
+  const [indexes, setIndexes] = React.useState([]);
+  const [counter, setCounter] = React.useState(0);
+  const [participantData, setParticipantData] = React.useState([]);
+  const [render, setRender] = useState(true);
+
+  React.useEffect(() => {
+
+
+     }, []);
+
+     // The component instance will be extended
+  // with whatever you return from the callback passed
+  // as the second argument
+  useImperativeHandle(ref, () => ({
+
+    changeState (data) {
+      setParticipantData(data);
+      console.log(data);
+     const arr = Array.from(new Array(data?.userTrekBookingParticipants?.length), (x, i) => i);
+     setIndexes(arr);
+     setCounter(arr.length);
+     setRender(true);
+   }
+ }));
+
   return (
     <>
+       {render && (
+         <div>
       <div>
         <h5 className="p-text-3-fg b-left-blue-3px">Participant Details</h5>
       </div>
@@ -21,10 +50,16 @@ const MyTreks = () => {
             </tr>
           </thead>
           <tbody>
+          {
+                indexes?.map((index) => {
+                  const pdata = participantData?.userTrekBookingParticipants[index];
+                  //console.log(JSON.stringify(data));
+                  const name=pdata?.userDetailsForDisplay.email===participantData.email ? pdata?.userDetailsForDisplay.firstName +  pdata?.userDetailsForDisplay.lastName + ' (You) ' : pdata?.userDetailsForDisplay.firstName +  pdata?.userDetailsForDisplay.lastName;
+                  return (
             <tr>
-              <td>1. Nayana Jambe (You)</td>
-              <td>4690488008</td>
-              <td>nayanarjhabhe@gmail.com</td>
+              <td>{name}</td>
+              <td>{pdata?.userDetailsForDisplay?.phone}</td>
+              <td>{pdata?.userDetailsForDisplay?.email}</td>
               <td>
                 <FormGroup>
                   <Input
@@ -60,45 +95,8 @@ const MyTreks = () => {
                 </FormGroup>
               </td>
             </tr>
-            <tr>
-              <td>2. Sandhya UC</td>
-              <td>9874579009</td>
-              <td>sandhyauc@gmail.com</td>
-              <td>
-                <FormGroup>
-                  <Input
-                    type="select"
-                    name="height"
-                    id="exampleSelectMulti"
-                    className="profile-input"
-                  >
-                    <option>not required</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </Input>
-                </FormGroup>
-              </td>
-              <td>
-                <FormGroup>
-                  <Input
-                    type="select"
-                    name="height"
-                    id="exampleSelectMulti"
-                    className="profile-input"
-                  >
-                    <option>not required</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </Input>
-                </FormGroup>
-              </td>
-            </tr>
+            )
+          })}
           </tbody>
         </table>
         <div className="d-flex align-items-center">
@@ -115,8 +113,13 @@ const MyTreks = () => {
           </div>
         </div>
       </div>
+      </div>
+       )
+        }
     </>
   );
-};
+});
+
+
 
 export default MyTreks;

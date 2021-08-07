@@ -235,7 +235,7 @@ const addFindUsers=async (udata)=>{
   
   console.log(udata);
 
-  let vouchers=await getVoucher(udata.email);
+  let vouchers=[];//await getVoucher(udata.email);
   const sdata= JSON.parse(JSON.stringify( stateData.data));
   sdata.trekUsers.push(
     {
@@ -255,8 +255,9 @@ const addFindUsers=async (udata)=>{
       optedVoucherId:0
     }
   );
+  
   await dispatch(addOrUpdateState(sdata));
-  await saveDraftBooking(sdata);
+  await saveDraft(sdata);
   add();
 }
 

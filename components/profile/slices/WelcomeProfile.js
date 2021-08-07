@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Modal from "react-bootstrap/Modal";
@@ -17,13 +17,33 @@ import { dashboardService } from '../../../services/dashboard';
 //import { data } from "jquery";
 
 
-const WelcomeProfile = () => {
+const WelcomeProfile = ({  slice }) => {
+
+  const heading1 = slice.primary.heading1;
+  const heading2 = slice.primary.heading2;
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [userServiceObject, setUserServiceObject] = useState(undefined);
+  const [hasMounted, setHasMounted] = useState(false);
+  const userId="Raghu ";
+  const [bookings, setBookings] = useState(undefined);
+  const [bookingOwner, setBookingOwner] = useState(undefined);
+ /* useEffect(() => {
+
+    console.log("called-1");
+    setHasMounted(true);
+  }, []);*/
+
+  /*if (!hasMounted) {
+    console.log("called-2");
+    return null;
+  }*/
  
+  //console.log("called-3");
+
   useEffect ( async () => {
     // console.log("Reg-Home" + JSON.stringify( router.query));
     auth.keycloak().then(userTokenObject=>{ 
@@ -35,6 +55,11 @@ const WelcomeProfile = () => {
 
 const getUserBookings=(email)=> {
     console.log(email);
+    dashboardService.getUserBookings(email).then(bookingsData=>{
+    setBookings(bookingsData);
+    const bookingOwner=bookingsData.userTrekBookingParticipants.find(x=>x.userDetailsForDisplay.email==email);
+    setbBokingOwner(bookingOwner);
+    });
 }
 
   return (
@@ -47,10 +72,10 @@ const getUserBookings=(email)=> {
                 <div className="col-lg-10 col-md-12 bg-gray border-right b-right-2px">
                   <div className="mb-2 py-4">
                     <p className="p-text-1 font-weight-bold m-0">
-                      Hi Sandhya Uc
+                      Hi   {bookingOwner.firstName} {bookingOwner.lastName}
                     </p>
                     <p className="p-text-1 font-weight-bold">
-                      Welcome To Your Indiahikes Trek Dashboard!
+                      Welcome To Your Indiahikes Trek Dashboard!!!
                     </p>
                     <p className="col-md-8 p-text-4">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,

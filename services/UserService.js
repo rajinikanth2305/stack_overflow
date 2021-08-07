@@ -26,12 +26,11 @@ const keycloakContext = new Keycloak(initOptions);
 };*/
 
 export const initKeycloak = (onAuthenticatedCallback) => {
-  keycloakContext.init({ onLoad: 'login-required' }).then((authenticated) => {
-    // if (authenticated) {
-    onAuthenticatedCallback();
-    // } else {
-    //   doLogin();
-    // }
+  keycloakContext.init({ onLoad: 'login-required' })
+  .then((authenticated) => {
+    if (authenticated) {
+        onAuthenticatedCallback(keycloakContext.tokenParsed?.preferred_username);
+    } 
   });
 };
 

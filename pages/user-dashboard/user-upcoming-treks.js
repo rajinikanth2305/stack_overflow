@@ -38,6 +38,11 @@ const UserUpcomingTreks = ({ doc }) => {
   return <SetupRepo />;
 };
 
+
+/*export async function getInitialProps  (ctx)  {
+  return { stars: 'doc' }
+}*/
+
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const { ref } = previewData;
 
@@ -49,14 +54,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       ref ? { ref } : null
     )) || {};
 
-  /*const doc = await client.query(
-    Prismic.Predicates.at("document.type", "hike_home_ctype"), {
-      ...(ref ? { ref } : null)
-    },
-  )*/
-
-  //console.log( "salomon" + JSON.stringify(doc));
-
+  //console.log(JSON.stringify(doc));
   return {
     props: {
       doc,
