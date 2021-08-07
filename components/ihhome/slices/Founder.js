@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { founderStyles } from "styles";
 import Image from "next/image";
@@ -35,17 +35,18 @@ const Founder = ({ slice }) => {
   return (
     <>
       <div className="mb-5">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6 col-md-12"></div>
-            <div className="col-lg-6 col-md-12">
-              <h2 className="title-h2 m-0">{RichText.asText(title)}</h2>
-              <p className="p-text-1">{RichText.asText(sub_title)}</p>
+        <div className="m-d-none">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-6 col-md-12"></div>
+              <div className="col-lg-6 col-md-12">
+                <h2 className="title-h2 m-0">{RichText.asText(title)}</h2>
+                <p className="p-text-1">{RichText.asText(sub_title)}</p>
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-6 col-md-12">
-              {/* <div className="img-margin">
+            <div className="row">
+              <div className="col-lg-6 col-md-12">
+                {/* <div className="img-margin">
                 <Image
                   src={imageUrl}
                   width={imageWidth}
@@ -53,44 +54,92 @@ const Founder = ({ slice }) => {
                   layout="responsive"
                 />
               </div> */}
-              <div className="card card-box-shadow">
-                <div className="img-margin">
-                  <div className="d-flex align-items-center justify-content-center w-100 h-100">
-                    <div className="text-center">
-                      <img
-                        src="/v-icon.png"
-                        alt="playicon'"
-                        className="paly-icon icon-size-50"
-                        onClick={handleShow}
-                      />
+                <div className="card card-box-shadow">
+                  <div className="img-margin">
+                    <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                      <div className="text-center">
+                        <img
+                          src="/v-icon.png"
+                          alt="playicon'"
+                          className="paly-icon icon-size-50"
+                          onClick={handleShow}
+                        />
+                      </div>
                     </div>
+                    <Image
+                      src={imageUrl}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="bottom"
+                      onClick={handleShow}
+                    />
                   </div>
-                  <Image
-                    src={imageUrl}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="bottom"
-                    onClick={handleShow}
-                  />
+                </div>
+              </div>
+              <div className="col-lg-6 col-md-12">
+                <p className="p-text-2">
+                  {/* <span>{RichText.asText(founder_Message)}</span> */}
+                  {founder_Message}
+                </p>
+                <div>
+                  <p className="author_name mb-2">{RichText.asText(authors)}</p>
+                </div>
+                <div>
+                  <p className="m-0 p-text-2">
+                    <b>{RichText.asText(authors)}</b>
+                  </p>
+                  <p className="m-0 p-text-2">
+                    <b>{RichText.asText(author_position)}</b>
+                  </p>
                 </div>
               </div>
             </div>
-            <div className="col-lg-6 col-md-12">
-              <p className="p-text-2">
-                {/* <span>{RichText.asText(founder_Message)}</span> */}
-                {founder_Message}
+          </div>
+        </div>
+
+        <div className="m-d-block">
+          <div className="container">
+            <h2 className="title-h2 m-0 border-0">{RichText.asText(title)}</h2>
+          </div>
+          <div>
+            <div className="card card-box-shadow">
+              <div className="img-margin border-top-image">
+                <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                  <div className="text-center">
+                    <img
+                      src="/v-icon.png"
+                      alt="playicon'"
+                      className="paly-icon icon-size-50"
+                      onClick={handleShow}
+                    />
+                  </div>
+                </div>
+                <Image
+                  src={imageUrl}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="bottom"
+                  onClick={handleShow}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="container">
+            <p className="p-text-1 mt-3">{RichText.asText(sub_title)}</p>
+            <p className="p-text-2">
+              {/* <span>{RichText.asText(founder_Message)}</span> */}
+              {founder_Message}
+            </p>
+            <div>
+              <p className="author_name mb-2">{RichText.asText(authors)}</p>
+            </div>
+            <div>
+              <p className="m-0 p-text-2">
+                <b>{RichText.asText(authors)}</b>
               </p>
-              <div>
-                <p className="author_name mb-2">{RichText.asText(authors)}</p>
-              </div>
-              <div>
-                <p className="m-0 p-text-2">
-                  <b>{RichText.asText(authors)}</b>
-                </p>
-                <p className="m-0 p-text-2">
-                  <b>{RichText.asText(author_position)}</b>
-                </p>
-              </div>
+              <p className="m-0 p-text-2">
+                <b>{RichText.asText(author_position)}</b>
+              </p>
             </div>
           </div>
         </div>

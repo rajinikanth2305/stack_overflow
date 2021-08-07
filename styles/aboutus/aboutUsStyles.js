@@ -261,7 +261,7 @@ export const aboutUsStyles = css.global`
       line-height: 22px;
       text-align: left;
       font-size: 16px;
-      font-family: Poppins;
+      font-family: Franklin Gothic;
     }
 
     .banner-text-3 {

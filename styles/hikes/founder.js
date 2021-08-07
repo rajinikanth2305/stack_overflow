@@ -73,11 +73,15 @@ export const founderStyles = css.global`
     width: 50px;
   }
 
+  .m-d-block {
+    display: none;
+  }
+
   @media only screen and (max-width: 600px) {
     .title-h2 {
       line-height: 40px;
       font-size: 36px;
-      padding-bottom: 25px;
+      padding-bottom: 25px; 
     }
 
     .p-text-1 {
@@ -96,6 +100,18 @@ export const founderStyles = css.global`
     .img-margin {
       margin-top: 0;
       height: 200px;
+    }
+
+    .m-d-none {
+      display: none;
+    }
+
+    .m-d-block {
+      display: block;
+    }
+
+    .border-top-image {
+      border-top: 2px solid rgb(255, 193, 0);
     }
   }
 `;

@@ -42,5 +42,8 @@ export const annoumentStyles = css.global`
       font-style: italic;
       font-size: 16px;
     }
+    .announcement_sec {
+      padding: 5px 15px 20px;
+    }
   }
 `;
