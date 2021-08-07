@@ -13,55 +13,15 @@ import TrekFAQS from "./TrekFAQS";
 import FitnessApproval from "./FitnessApproval";
 
 import auth  from '../../../services/Authenticate';
-import { dashboardService } from '../../../services/dashboard';
+
 //import { data } from "jquery";
 
 
-const WelcomeProfile = ({  slice }) => {
-
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-
+const WelcomeProfile = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [userServiceObject, setUserServiceObject] = useState(undefined);
-  const [hasMounted, setHasMounted] = useState(false);
-  const userId="Raghu ";
-  const [bookings, setBookings] = useState(undefined);
-  const [bookingOwner, setBookingOwner] = useState(undefined);
- /* useEffect(() => {
-
-    console.log("called-1");
-    setHasMounted(true);
-  }, []);*/
-
-  /*if (!hasMounted) {
-    console.log("called-2");
-    return null;
-  }*/
- 
-  //console.log("called-3");
-
-  useEffect ( async () => {
-    // console.log("Reg-Home" + JSON.stringify( router.query));
-    auth.keycloak().then(userTokenObject=>{ 
-       setUserServiceObject(userTokenObject);
-       getUserBookings(userTokenObject.userServiceObject.getUsername());
-
-     });
- }, []);
-
-const getUserBookings=(email)=> {
-    console.log(email);
-    dashboardService.getUserBookings(email).then(bookingsData=>{
-    setBookings(bookingsData);
-    const bookingOwner=bookingsData.userTrekBookingParticipants.find(x=>x.userDetailsForDisplay.email==email);
-    setbBokingOwner(bookingOwner);
-    });
-}
-
   return (
     <>
       <div>
@@ -72,7 +32,7 @@ const getUserBookings=(email)=> {
                 <div className="col-lg-10 col-md-12 bg-gray border-right b-right-2px">
                   <div className="mb-2 py-4">
                     <p className="p-text-1 font-weight-bold m-0">
-                      Hi   {bookingOwner.firstName} {bookingOwner.lastName}
+                      Hi   
                     </p>
                     <p className="p-text-1 font-weight-bold">
                       Welcome To Your Indiahikes Trek Dashboard!!!
