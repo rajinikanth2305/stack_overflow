@@ -12,7 +12,7 @@ const UCOpenForSmallGroup = ({ slice }) => {
   const ucOpenForSmallGroupTitle = slice.primary.uc_open_for_small_group_title;
   const ucOpenForSmallGroupDesc = slice.primary.uc_open_for_small_group_desc;
   const ucOpenForSmallGroupImagesArray = slice.items;
-  const router = useRouter()
+  const router = useRouter();
 
   const settings = {
     dots: true,
@@ -67,7 +67,7 @@ const UCOpenForSmallGroup = ({ slice }) => {
   ) {
     return (
       <>
-        <div className="mx-2" key={i}>
+        <div className="mx-4 m-mx-0" key={i}>
           <div className="card_sec">
             <div className="card trek_card">
               <div alt="imgs" className="uc_open_for_small_group_images">

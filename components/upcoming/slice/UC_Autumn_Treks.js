@@ -5,11 +5,13 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useRouter } from "next/router";
 
 const UCAutnumTreks = ({ slice }) => {
   const ucAutumnTreksTitle = slice.primary.uc_autumn_treks_title;
   const ucAutumnTreksDesc = slice.primary.uc_autumn_treks_desc;
   const ucAutumnTreksImagesArray = slice.items;
+  const router = useRouter();
 
   const settings = {
     dots: true,
@@ -46,10 +48,18 @@ const UCAutnumTreks = ({ slice }) => {
     ]
   };
 
+  const goToTrekPage = data => {
+    const slugUrl = data?.target_url.slug;
+
+    if (slugUrl) {
+      router.push(`/trek/${data.target_url.uid}`);
+    }
+  };
+
   const ucAutumnTreksImages = ucAutumnTreksImagesArray.map(function(data, i) {
     return (
       <>
-        <div className="mx-2" key={i}>
+        <div className="mx-4 m-mx-0" key={i}>
           <div className="card_sec">
             <div className="card trek_card">
               <div alt="imgs" className="uc_open_for_small_group_images">
@@ -105,7 +115,12 @@ const UCAutnumTreks = ({ slice }) => {
                       : data.uc_autumn_treks_image_caption_desc[0].text}
                   </p>
                   <div className="float-right pt-2 pb-4">
-                    <button className="btn btn-ih-green">View Details</button>
+                    <button
+                      className="btn btn-ih-green"
+                      onClick={() => goToTrekPage(data)}
+                    >
+                      View Details
+                    </button>
                   </div>
                 </div>
               </div>

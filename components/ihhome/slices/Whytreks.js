@@ -22,7 +22,7 @@ const WhyTrek = ({ slice }) => {
     });
     return (
       <>
-        <div className="card card-shadow cursor-pointer" key={`pillar-${i}`}>
+        <div className="pillar-card card card-shadow cursor-pointer" key={`pillar-${i}`}>
           <div className="card-body">
             <div>
               <div className="d-flex align-items-center">

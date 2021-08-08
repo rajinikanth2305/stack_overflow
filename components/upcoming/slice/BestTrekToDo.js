@@ -5,11 +5,13 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useRouter } from 'next/router';
 
 const BestTrekToDo = ({ slice }) => {
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
   const trekToDoImageArray = slice.items;
+  const router = useRouter();
 
   const settings = {
     dots: true,
@@ -46,10 +48,18 @@ const BestTrekToDo = ({ slice }) => {
     ]
   };
 
+  const goToTrekPage = data => {
+    const slugUrl = data?.target_url.slug;
+
+    if (slugUrl) {
+      router.push(`/trek/${data.target_url.uid}`);
+    }
+  };
+
   const trekToDoImage = trekToDoImageArray.map(function(data, i) {
     return (
       <>
-        <div className="mx-2" key={i}>
+        <div className="mx-4 m-mx-0" key={i}>
           <div className="card_sec ">
             <div className="card trek_card">
               <div alt="imgs" className="uc_open_for_small_group_images">
@@ -101,7 +111,12 @@ const BestTrekToDo = ({ slice }) => {
                       : data.trek_desc[0].text}
                   </p>
                   <div className="float-right pt-2 pb-4">
-                    <button className="btn btn-ih-green">View Details</button>
+                    <button
+                      className="btn btn-ih-green"
+                      onClick={() => goToTrekPage(data)}
+                    >
+                      View Details
+                    </button>
                   </div>
                 </div>
               </div>
@@ -144,10 +159,14 @@ const BestTrekToDo = ({ slice }) => {
                       ? `${data.trek_desc[0].text.substring(0, 125)}...`
                       : data.trek_desc[0].text}
                   </p>
-                  <p className="m-card-info-text m-0">{data.trek_days[0].text} Days</p>
+                  <p className="m-card-info-text m-0">
+                    {data.trek_days[0].text} Days
+                  </p>
                   <p className="m-card-info-text">{data.trek_guide[0].text}</p>
                   <div className="t-2 pb-4">
-                    <button className="btn m-btn-ih-green">View Dates / Register</button>
+                    <button className="btn m-btn-ih-green">
+                      View Dates / Register
+                    </button>
                   </div>
                 </div>
               </div>
@@ -169,7 +188,9 @@ const BestTrekToDo = ({ slice }) => {
           </div>
           <div className="row">
             <div className="col-md-12">
-              <p className="p-display-1 m-d-1 mb-4">{RichText.asText(heading2)}</p>
+              <p className="p-display-1 m-d-1 mb-4">
+                {RichText.asText(heading2)}
+              </p>
             </div>
           </div>
           <div className="m-d-none">

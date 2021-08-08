@@ -1,6 +1,21 @@
 import css from "styled-jsx/css";
 
 export const trekWithStyles = css.global`
+  @font-face {
+    font-family: Franklin Gothic Medium;
+    src: url(/font/FRANKLINGOTHIC/framd.ttf);
+  }
+
+  @font-face {
+    font-family: Franklin Gothic Book;
+    src: url(/font/FRANKLINGOTHIC/FRABK.ttf);
+  }
+
+  @font-face {
+    font-family: Lora-Medium;
+    src: url(/font/LORA/Lora-Medium.TTF);
+  }
+
   .trek_with_logo {
     height: 180px;
   }
@@ -11,7 +26,7 @@ export const trekWithStyles = css.global`
 
   .sign_up_text {
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 48px;
@@ -23,7 +38,7 @@ export const trekWithStyles = css.global`
   .sign_up_text_desc {
     line-height: 24px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -32,17 +47,20 @@ export const trekWithStyles = css.global`
 
   .form-control {
     border-radius: 0;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-size: 12px;
     padding: 12px 10px;
   }
 
   .btn.btn-secondary {
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
+    font-family: Franklin Gothic Medium;
     margin-top: 25px;
     background: rgb(255, 193, 0);
     color: rgb(0, 0, 0);
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: normal;
     border-radius: 0;
     padding: 6px 30px;
   }
@@ -66,6 +84,20 @@ export const trekWithStyles = css.global`
       font-size: 14px;
       margin-top: 15px;
       margin-bottom: 10px;
+    }
+
+    .btn.btn-secondary {
+      border-radius: 2px;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
+      font-family: Franklin Gothic Medium;
+      margin-top: 25px;
+      background: rgb(255, 193, 0);
+      color: rgb(0, 0, 0);
+      font-size: 14px;
+      color: rgba(0, 0, 0, 1);
+      text-transform: capitalize;
+      border-radius: 0;
+      padding: 6px 30px;
     }
   }
 `;
