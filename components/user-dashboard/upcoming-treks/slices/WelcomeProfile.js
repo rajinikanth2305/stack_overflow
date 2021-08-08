@@ -61,8 +61,9 @@ const WelcomeProfile = () => {
     getdashBoardUserBooking(email)
        .then(bookingsData=>{
         /// Idenitify and get the booking owner profile informations 
+        console.log(bookingsData);
         const bookingOwner= bookingsData.map((element) => {
-            const mainuser=element.userTrekBookingParticipants.find((subElement) => subElement.userDetailsForDisplay.email === email);
+            const mainuser=element.trekMates.find((subElement) => subElement.userDetailsForDisplay.email === email);
             if(mainuser!==undefined)
               return mainuser;
          });
@@ -116,8 +117,8 @@ const getAndSetTrekContents = async (bookingsData,userEmail) => {
       trekCoordinator: book.trekCoordinator,
       trekWhatsappLink: book.trekWhatsappLink,
       bookingParticipantState: book.bookingParticipantState,
-      participantsCount:book.userTrekBookingParticipants.length,
-      userTrekBookingParticipants:book.userTrekBookingParticipants
+      participantsCount:book.trekMates.length,
+      userTrekBookingParticipants:book.trekMates
 
     });
   }
