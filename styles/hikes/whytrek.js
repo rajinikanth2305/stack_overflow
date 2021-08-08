@@ -31,6 +31,16 @@ export const whyTrekWithStyles = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .p-text-3-wt {
+    line-height: 16px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+  }
+
   .m-view-d-block {
 	  display: none;
   }

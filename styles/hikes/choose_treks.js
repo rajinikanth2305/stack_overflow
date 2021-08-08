@@ -1,6 +1,15 @@
 import css from "styled-jsx/css";
 
 export const ChooseTreks = css.global`
+  @font-face {
+    font-family: Franklin Gothic Medium;
+    src: url(/font/FRANKLINGOTHIC/framd.ttf);
+  }
+
+  @font-face {
+    font-family: Franklin Gothic Book;
+    src: url(/font/FRANKLINGOTHIC/FRABK.ttf);
+  }
   .container.container-custom {
     max-width: 1600px;
   }
@@ -54,7 +63,7 @@ export const ChooseTreks = css.global`
   .trek_video_badge > span {
     line-height: 18px;
     text-align: left;
-    font-family: Franklin Gothic;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -87,10 +96,20 @@ export const ChooseTreks = css.global`
   .title-diplay-3 {
     line-height: 30px;
     text-align: left;
-    font-family: Franklin Gothic;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .title-diplay-3-18px {
+    line-height: 30px;
+    text-align: left;
+    font-family: Franklin Gothic Medium;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
     color: rgba(0, 0, 0, 1);
   }
 
@@ -126,14 +145,16 @@ export const ChooseTreks = css.global`
   .btn-ih-green {
     background: rgb(91, 133, 70);
     border: 0;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.659);
+    border-radius: 2px;
     padding: 3px 30px;
     border-radius: 0;
     line-height: 24px;
     text-align: center;
-    font-family: Poppins;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 18px;
     color: rgba(255, 255, 255, 1);
     text-transform: capitalize;
   }
@@ -164,7 +185,7 @@ export const ChooseTreks = css.global`
   }
 
   .c-mx-2 {
-    margin: 0 8px;
+    margin: 0 20px;
   }
 
   .trekking_world_image_desktop {
@@ -187,7 +208,7 @@ export const ChooseTreks = css.global`
   .p-text-5 {
     line-height: 17.5px;
     text-align: left;
-    font-family: Franklin Gothic;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -229,8 +250,22 @@ export const ChooseTreks = css.global`
 
   .slick-prev::before,
   .slick-next::before {
-    color: #ffc100;
-    font-size: 26px;
+    color: #707070;
+    font-family: "FontAwesome" !important;
+    font-size: 36px;
+  }
+
+  .slick-next::before {
+    content: "\f101" !important;
+  }
+
+  .slick-prev::before {
+    content: "\f100" !important;
+  }
+
+  .slick-dots li.slick-active button::before {
+    opacity: 1;
+    color: rgb(255, 193, 0);
   }
 
   @media only screen and (max-width: 600px) {

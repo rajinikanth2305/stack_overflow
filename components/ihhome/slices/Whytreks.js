@@ -16,7 +16,7 @@ const WhyTrek = ({ slice }) => {
     const pillarDesc = data.pillar_desc.map((pd, j) => {
       return (
         <>
-          <p key={`pd-${j}`}>{pd.text}</p>
+          <p className="p-text-3-wt" key={`pd-${j}`}>{pd.text}</p>
         </>
       );
     });
