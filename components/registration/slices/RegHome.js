@@ -50,7 +50,7 @@ const RegHome = ({  slice }) => {
   const [stateChange, setStateChange] = useState(1);
   const completeTheSteps =eligibilityCriteria && eligibilityCriteria.primary.complete_the_steps;
   const [userEmail, setUserEmail] = useState(undefined);
-  const [disableOnAcceptTab, setDisableOnAcceptTab] = useState(false);
+  const [enableOnAcceptTab, setEnableOnAcceptTab] = useState(true);
 
   const    dataItems = [];
 
@@ -132,7 +132,10 @@ const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,cal
      console.log(batchId);
      console.log(userId);
 
-     setTermAccepted(value); 
+     if(callMode==='Button_Click'){
+         setTermAccepted(value); 
+     }
+
      console.log(stateData.data===undefined);
      console.log(JSON.stringify(stateData.data));
 
@@ -145,17 +148,17 @@ const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,cal
 
         if(stepName!==undefined){
           if(stepName==='addparticipant') {
-            setDisableOnAcceptTab(true);
+            setEnableOnAcceptTab(false);
             setTermAccepted(true);
             setKey('addtrekmates');
           }
           else   if(stepName==='make_payment') {
-            setDisableOnAcceptTab(true);
+            setEnableOnAcceptTab(false);
             setTermAccepted(true);
             setKey('makepayment');
           }
           else {
-            setDisableOnAcceptTab(true);
+            setEnableOnAcceptTab(false);
             setTermAccepted(true);
             setKey('makepayment');
           }
@@ -165,8 +168,11 @@ const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,cal
       //// Booking is not found for the batchid and userid
       console.log("Booking Not found for the batchid and user emailid");
     //  if(res?.status===500) {
-      if( callMode==='Button_Click')
+      if( callMode==='Button_Click') {
           createNewBooking();
+          setKey('selectbatch');
+          setEnableOnAcceptTab(false);
+      }
       //}
      // else {
         console.log(callMode);
@@ -324,7 +330,7 @@ const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,cal
                  onSelect={(k) => setKey(k)}
                  unmountOnExit={false}
                 >
-                  <Tab eventKey="accepet" title="Accept T&C" disabled={!disableOnAcceptTab}>
+                  <Tab eventKey="accepet" title="Accept T&C" disabled={!enableOnAcceptTab}>
                     <AcceptTC data={eligibilityCriteria} props={bookDetails} onTermAccept={onTermAccept} />
                   </Tab>
                   
