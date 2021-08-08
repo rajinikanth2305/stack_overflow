@@ -226,10 +226,10 @@ const buildTrekMates = (data,primaryUserEmail,stepName='Default') => {
 };
 
 
-export const getdashBoardUserBooking =  async (email)  => {
+export const getdashBoardUserBooking =  async (email,prevBookings=false)  => {
   const header=await getTokenHeader();
   const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
-  let url = `${userApi}/users/${email}/bookings`;
+  let url = `${userApi}/users/${email}/bookings?previousBookingOnly=${prevBookings}`;
   return axios.get(url,{ headers:  header })
          .then((res) => res.data);
 };

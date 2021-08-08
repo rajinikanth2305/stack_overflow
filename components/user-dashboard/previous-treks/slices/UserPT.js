@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState,useEffect,useRef } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
-import Link from "next/link";
-import { Progress } from "reactstrap";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Progress } from "reactstrap";
+import Link from "next/link";
+import auth  from '../../../../services/Authenticate';
+import { getdashBoardUserBooking } from '../../../../services/queries';
+import moment from "moment";
+import { useRouter } from "next/router";
+import Prismic from "@prismicio/client";
+import { Client } from "../../../../utils/prismicHelpers";
+
+
 
 const UserPT = () => {
   const [activeTab, setActiveTab] = useState(null);
@@ -16,37 +24,103 @@ const UserPT = () => {
     setActiveTab(null);
   }
 
-  const dummyDataArray = [
-    {
-      id: 1,
-      trekName: "miyar valley Trek",
-      batchDate: "16 Sep - 23 Sep 2021",
-      participants: 3,
-      experienceCoordinator: "Nandana Kamasani",
-      trekStatus: "Trek Completed",
-      reviewStatus: "no"
-    },
-    {
-      id: 2,
-      trekName: "Deoriatal Chandrashila Trek",
-      batchDate: "16 Sep - 23 Sep 2021",
-      participants: 2,
-      experienceCoordinator: "Nandana Kamasani",
-      trekStatus: "Trek Completed",
-      reviewStatus: "Yes"
-    },
-    {
-      id: 3,
-      trekName: "Kashmir great lakes Trek",
-      batchDate: "18 Aug - 24 Aug 2019",
-      participants: 12,
-      experienceCoordinator: "Prathima Chhabria",
-      trekStatus: "Cancelled",
-      reviewStatus: "-"
-    }
-  ];
 
-  const dummyData = dummyDataArray.map(function(data, i) {
+  const [userServiceObject, setUserServiceObject] = useState(undefined);
+  const [userEmail, setUserEmail] = useState(undefined);
+  const [hasMounted, setHasMounted] = useState(false);
+  const [bookings, setBookings] = useState(undefined);
+  const [bookingOwner, setBookingOwner] = useState(undefined);
+  const [render, setRender] = useState(false);
+
+  const [indexes, setIndexes] = React.useState([]);
+  const [counter, setCounter] = React.useState(0);
+
+  const router = useRouter();
+  const myTrekRef = useRef();
+
+  const toast = useRef(null);
+
+  React.useEffect(  () => {
+    //const res=await 
+  auth.keycloak()
+       .then(([userTokenObject, userEmail])=>{ 
+             setUserEmail(userEmail);
+             setUserServiceObject(userTokenObject);
+             fetchAndBindUserBookings(userEmail);
+            // return userEmail;
+         });
+       // console.log(res);
+        //fetchAndBindUserBookings(res);
+  }, []);
+
+
+  function fetchAndBindUserBookings (email) {
+    console.log(email);
+   
+     getdashBoardUserBooking(email,true)
+        .then(bookingsData=>{
+         /// Idenitify and get the booking owner profile informations 
+         console.log(bookingsData);
+         if(bookingsData.length>0) {  
+             const bookingOwner= bookingsData.map((element) => {
+                 const mainuser=element.trekMates.find((subElement) => subElement.userDetailsForDisplay.email === email);
+                 if(mainuser!==undefined)
+                   return mainuser;
+             });
+             setBookingOwner(bookingOwner[0]);
+             getAndSetTrekContents(bookingsData,email);
+         }
+    });
+   }
+ 
+ 
+ const setStates =(bookTrekContents) => {
+ 
+   console.log(bookTrekContents);
+   setBookings(bookTrekContents);
+    const arr = Array.from(new Array(bookTrekContents.length), (x, i) => i);
+    setIndexes(arr);
+    setCounter(arr.length);
+    setRender(true);
+ }
+ 
+ const getAndSetTrekContents = async (bookingsData,userEmail) => {
+ 
+   const bookTrekContents=[];
+   const client = Client();
+   /// Now get Trek content data from Prismic 
+   for (const book of  bookingsData) {
+     const trekName=book.trekName.trim().replace(" ","_").toLowerCase();
+     const result  = await Client().getByUID("trek", trekName);
+    // console.log(result);
+     const slice = result.data.body.find(x => x.slice_type === "trek_banner");
+     //console.log(slice);
+     const bannerImage = slice.primary.trek_banner_image.url;
+     const trekCaptions = slice.primary.trek_caption;
+     bookTrekContents.push({
+       trekId:book.trekId,
+       batchId:book.batchId,
+       bookingId:book.bookingId,
+       email:userEmail,
+       bannerImageUrl:bannerImage,
+       trekName:trekCaptions,
+       startDate: book.batchStartDate,
+       endDate: book.batchEndDate,
+       trekCoordinator: book.trekCoordinator,
+       trekWhatsappLink: book.trekWhatsappLink,
+       bookingParticipantState: book.bookingParticipantState,
+       participantsCount:book.trekMates.length,
+       userTrekBookingParticipants:book.trekMates,
+       trekStatus:book.bookingState,
+       reviewStatus:'yes'
+     });
+   }
+  setStates(bookTrekContents);
+ }
+
+
+
+  const prevTrekData = bookings?.map(function(data, i) {
     return (
       <>
         <div key={data.id}>
@@ -54,7 +128,7 @@ const UserPT = () => {
             <div className="row">
               <div className="col-lg-3 col-md-12">
                 <div className="trekimg">
-                  <img src="/Rectangle_486.png" />
+                <img src= {data?.bannerImageUrl} height="220px" width="320px"/>
                 </div>
               </div>
               <div className="col-lg-9 col-md-12">
@@ -64,7 +138,7 @@ const UserPT = () => {
                       <h3 className="title-h3">{data.trekName}</h3>
                     </div>
                     <div>
-                      <p className="m-0 p-text-10-fgb">{data.trekStatus}</p>
+                      <p className="m-0 p-text-10-fgb">{data?.trekStatus}</p>
                     </div>
                   </div>
                   <Progress
@@ -79,12 +153,12 @@ const UserPT = () => {
                   <div className="d-flex flex-wrap align-items-center justify-content-between py-4 mb-2">
                     <div>
                       <p className="m-0 p-text-small-fg">batch dates</p>
-                      <p className="m-0 p-text-2-fg">{data.batchDate}</p>
+                      <p className="m-0 p-text-2-fg">{moment(data?.startDate).format('MM/DD/YYYY')} - {moment(data?.endDate).format('MM/DD/YYYY')}</p>
                     </div>
                     <div>
                       <p className="m-0 p-text-small-fg">participants</p>
                       <p className="m-0 p-text-2-fg">
-                        {data.participants} trekkers
+                      {data?.participantsCount} trekkers
                       </p>
                     </div>
                     <div>
@@ -92,7 +166,7 @@ const UserPT = () => {
                         Experience Coordinator
                       </p>
                       <p className="m-0 p-text-2-fg text-decoration-underline">
-                        {data.experienceCoordinator}
+                      {data?.trekCoordinator?.firstName} {data?.trekCoordinator?.lastName}
                       </p>
                     </div>
                   </div>
@@ -306,7 +380,7 @@ const UserPT = () => {
                 <div className="col-lg-10 col-md-12 bg-gray border-right b-right-2px">
                   <div className="mb-2 py-4">
                     <p className="p-text-1 font-weight-bold m-0">
-                      Hi Sandhya Uc
+                    Hi {bookingOwner?.userDetailsForDisplay.firstName} - {bookingOwner?.userDetailsForDisplay.lastName}
                     </p>
                     <p className="p-text-1 font-weight-bold">
                       Welcome To Your Indiahikes Trek Dashboard!
@@ -325,7 +399,7 @@ const UserPT = () => {
                     </h5>
 
                     <div className="row">
-                      <div className="col-lg-12 col-md-12">{dummyData}</div>
+                      <div className="col-lg-12 col-md-12">{prevTrekData}</div>
                     </div>
                   </div>
                 </div>

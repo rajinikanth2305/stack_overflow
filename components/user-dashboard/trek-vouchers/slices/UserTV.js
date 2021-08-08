@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useEffect,useRef } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Link from "next/link";
+import auth  from '../../../../services/Authenticate';
+import { getUserVoucher,findUserByEmail } from '../../../../services/queries';
+
 
 const UserTV = () => {
   const [show, setShow] = useState(false);
@@ -9,44 +13,60 @@ const UserTV = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const vouchetList = [
-    {
-      id: 1,
-      vouchercode: "2gihvjri7980dfgh",
-      voucherAmount: "1,050",
-      amountUsed: "0",
-      balanceAmount: "1,050",
-      validTill: "21 June 2022",
-      voucherStatus: "Available"
-    },
-    {
-      id: 2,
-      vouchercode: "5safdgnfi3560dfgh",
-      voucherAmount: "10,789",
-      amountUsed: "10,789",
-      balanceAmount: "0",
-      validTill: "07 August 2019",
-      voucherStatus: "Used"
-    },
-    {
-      id: 3,
-      vouchercode: "5safdgnfi3560dfgh",
-      voucherAmount: "301",
-      amountUsed: "1,050",
-      balanceAmount: "0",
-      validTill: "30 January 2017",
-      voucherStatus: "expired"
-    }
-  ];
+  const [userServiceObject, setUserServiceObject] = useState(undefined);
+  const [userEmail, setUserEmail] = useState(undefined);
+  const [vouchers, setVouchers] = useState([]);
+  const [bookingOwner, setBookingOwner] = useState(undefined);
+  const [render, setRender] = useState(false);
 
-  const vouchetListTr = vouchetList.map(function(data, i) {
+  const [indexes, setIndexes] = React.useState([]);
+  const [counter, setCounter] = React.useState(0);
+
+
+  React.useEffect(  () => {
+    //const res=await 
+  auth.keycloak()
+       .then(([userTokenObject, userEmail])=>{ 
+             setUserEmail(userEmail);
+             fetchAndBindUserVouchers(userEmail);
+            // return userEmail;
+         });
+       // console.log(res);
+        //fetchAndBindUserBookings(res);
+  }, []);
+
+
+  function fetchAndBindUserVouchers (email) {
+    console.log(email);
+   
+    getUserVoucher(email)
+        .then(vouchersData=>{
+         /// Idenitify and get the booking owner profile informations 
+         console.log(vouchersData);
+         if(vouchersData.length>0) {  
+              /// get userid by email
+              findUserByEmail(email)
+                  .then (res=>{ 
+                        setBookingOwner(res);
+                        console.log(res);
+                        setVouchers(vouchersData);
+                        const arr = Array.from(new Array(vouchersData.length), (x, i) => i);
+                        setIndexes(arr);
+                        setCounter(arr.length);
+                        setRender(true);
+                  });
+         }
+    });
+   }
+  
+  const vouchetListTr = vouchers.map(function(data, i) {
     return (
       <>
-        <tr key={data.id}>
-          <td>{data.vouchercode}</td>
+        <tr key={data?.id}>
+          <td>{data?.title}</td>
           <td>
             <div className="d-flex align-items-center justify-content-between">
-              <div>Rs. {data.voucherAmount} </div>
+              <div>Rs. {data?.amount} </div>
               <div>
                 <p className="m-0 text-decoration-underline p-text-small-fg-blue">
                   Download
@@ -54,10 +74,10 @@ const UserTV = () => {
               </div>
             </div>
           </td>
-          <td>Rs. {data.amountUsed}</td>
-          <td>Rs. {data.balanceAmount}</td>
-          <td>{data.validTill}</td>
-          <td><p className={data.voucherStatus === 'Available' ? 'text-green m-0' : 'm-0'}>{data.voucherStatus}</p></td>
+          <td>Rs. {data?.amountAvailed}</td>
+          <td>Rs. {data?.amount-data?.amountAvailed}</td>
+          <td>{data?.validTill}</td>
+          <td><p className={data?.voucherStatus === 'Available' ? 'text-green m-0' : 'm-0'}>{data?.voucherStatus}</p></td>
         </tr>
       </>
     );
@@ -73,7 +93,7 @@ const UserTV = () => {
                 <div className="col-lg-10 col-md-12 bg-gray border-right b-right-2px">
                   <div className="mb-2 py-4">
                     <p className="p-text-1 font-weight-bold m-0">
-                      Hi Sandhya Uc
+                      Hi   {bookingOwner?.firstName} - {bookingOwner?.lastName}
                     </p>
                     <p className="p-text-1 font-weight-bold">
                       Welcome To Your Indiahikes Trek Dashboard!
