@@ -1,6 +1,21 @@
 import css from "styled-jsx/css";
 
 export const upcomingTrekPageStyle = css.global`
+  @font-face {
+    font-family: Franklin Gothic Medium;
+    src: url(/font/FRANKLINGOTHIC/framd.ttf);
+  }
+
+  @font-face {
+    font-family: Franklin Gothic Book;
+    src: url(/font/FRANKLINGOTHIC/FRABK.ttf);
+  }
+
+  @font-face {
+    font-family: Lora-Medium;
+    src: url(/font/LORA/Lora-Medium.TTF);
+  }
+
   .container.container-custom {
     max-width: 1600px;
   }
@@ -24,7 +39,7 @@ export const upcomingTrekPageStyle = css.global`
 
   .title-display-1 {
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 60px;
@@ -36,7 +51,7 @@ export const upcomingTrekPageStyle = css.global`
 
   .title-display-2 {
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 48px;
@@ -48,7 +63,7 @@ export const upcomingTrekPageStyle = css.global`
   .title-diplay-3 {
     line-height: 30px;
     text-align: left;
-    font-family: Poppins;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -59,7 +74,7 @@ export const upcomingTrekPageStyle = css.global`
     white-space: nowrap;
     line-height: 48px;
     text-align: left;
-    font-family: Franklin Gothic;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 30px;
@@ -70,7 +85,7 @@ export const upcomingTrekPageStyle = css.global`
   .desc-dispaly-1 {
     line-height: 30px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 24px;
@@ -82,7 +97,7 @@ export const upcomingTrekPageStyle = css.global`
   .p-display-1 {
     line-height: 24px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -95,7 +110,7 @@ export const upcomingTrekPageStyle = css.global`
   .p-display-2 {
     line-height: 18px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -105,7 +120,7 @@ export const upcomingTrekPageStyle = css.global`
   .p-display-3 {
     line-height: 20px;
     text-align: left;
-    font-family: Poppins;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -122,7 +137,7 @@ export const upcomingTrekPageStyle = css.global`
 
   .link_text {
     line-height: 18px;
-    font-family: Poppins;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: lighter;
     font-size: 14px;
@@ -139,7 +154,7 @@ export const upcomingTrekPageStyle = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
   }
 
@@ -154,7 +169,7 @@ export const upcomingTrekPageStyle = css.global`
   .form-label {
     line-height: 16px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -164,16 +179,18 @@ export const upcomingTrekPageStyle = css.global`
   .btn-ih-green {
     background: rgb(91, 133, 70);
     border: 0;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.659);
+    border-radius: 2px;
     padding: 3px 30px;
     border-radius: 0;
     line-height: 24px;
     text-align: center;
-    font-family: Poppins;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 18px;
     color: rgba(255, 255, 255, 1);
-    text-transform: uppercase;
+    text-transform: capitalize;
   }
 
   .btn-bihtn-yellow {
@@ -183,7 +200,7 @@ export const upcomingTrekPageStyle = css.global`
     border-radius: 0;
     line-height: 24px;
     text-align: center;
-    font-family: Poppins;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -233,7 +250,7 @@ export const upcomingTrekPageStyle = css.global`
   .image_overlay_text_title {
     line-height: 36px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 30px;
@@ -244,7 +261,7 @@ export const upcomingTrekPageStyle = css.global`
   .image_overlay_text_desc {
     line-height: 24px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -261,7 +278,7 @@ export const upcomingTrekPageStyle = css.global`
   .card-info-text > div > p {
     line-height: 18px;
     text-align: left;
-    font-family: Poppins;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: lighter;
     font-size: 12px;
@@ -287,7 +304,7 @@ export const upcomingTrekPageStyle = css.global`
   .trek_badge > span {
     line-height: 18px;
     text-align: left;
-    font-family: Poppins;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -311,7 +328,7 @@ export const upcomingTrekPageStyle = css.global`
   .why_trek_box_title {
     line-height: 30px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -322,7 +339,7 @@ export const upcomingTrekPageStyle = css.global`
   .why_trek_box_desc {
     line-height: 24px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -494,7 +511,7 @@ export const upcomingTrekPageStyle = css.global`
 
     .m-title-3 {
       text-align: left;
-      font-family: Franklin Gothic;
+      font-family: Franklin Gothic Medium;
       font-style: normal;
       font-weight: normal;
       font-size: 18px;
@@ -506,7 +523,7 @@ export const upcomingTrekPageStyle = css.global`
     .m-display-2 {
       line-height: 16px;
       text-align: left;
-      font-family: Lora;
+      font-family: Lora-Medium;
       font-style: normal;
       font-weight: normal;
       font-size: 12px;
@@ -521,7 +538,7 @@ export const upcomingTrekPageStyle = css.global`
       border-radius: 0;
       line-height: 24px;
       text-align: center;
-      font-family: Franklin Gothic;
+      font-family: Franklin Gothic Medium;
       font-style: normal;
       font-weight: normal;
       font-size: 12px;
