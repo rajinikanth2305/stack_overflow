@@ -76,6 +76,11 @@ const RegHome = ({  slice }) => {
       stepName=stepKeyVal.split("=")[1];
     }
 
+    /// clear state.data if previous any
+    if(stateData.data!==undefined){
+      
+    }
+
     onTermAccept(true,userEmail,batchId,stepName,'Redirect');
 
     //console.log(stepName);
@@ -128,6 +133,8 @@ const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,cal
      console.log(userId);
 
      setTermAccepted(value); 
+     console.log(stateData.data===undefined);
+     console.log(JSON.stringify(stateData.data));
 
     if(stateData.data===undefined) {
 

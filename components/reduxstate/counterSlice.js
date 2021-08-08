@@ -10,7 +10,7 @@ export const slice = createSlice({
   },
   reducers: {
     addOrUpdateState: (state, action) => {
-       // state.value = action.payload;
+       console.log(action.type);
        const { trekId, batchId,trekName,startDate,endDate,trekUsers,bookingId,primaryUserEmail} = action.payload;
        return {
         ...state,
