@@ -200,9 +200,9 @@ export const ChooseTreks = css.global`
     float: right;
   }
 
-  .c-mx-2 {
-    margin: 0 20px;
-  }
+  // .c-mx-2 {
+  //   margin: 0 20px;
+  // }
 
   .trekking_world_image_desktop {
     position: relative;
@@ -358,6 +358,10 @@ export const ChooseTreks = css.global`
       font-size: 12px;
       color: rgba(0, 0, 0, 1);
       text-transform: capitalize;
+    }
+
+    .mx-4.m-mx-0 {
+      margin: 0px !important;
     }
   }
 `;

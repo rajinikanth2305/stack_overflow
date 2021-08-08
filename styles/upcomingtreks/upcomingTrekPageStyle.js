@@ -335,8 +335,22 @@ export const upcomingTrekPageStyle = css.global`
 
   .slick-prev::before,
   .slick-next::before {
-    color: #ffc100;
-    font-size: 26px;
+    color: #707070;
+    font-family: "FontAwesome" !important;
+    font-size: 36px;
+  }
+
+  .slick-next::before {
+    content: "\f101" !important;
+  }
+
+  .slick-prev::before {
+    content: "\f100" !important;
+  }
+
+  .slick-dots li.slick-active button::before {
+    opacity: 1;
+    color: rgb(255, 193, 0);
   }
 
   .uc_family_treks_image {
@@ -542,6 +556,10 @@ export const upcomingTrekPageStyle = css.global`
     .desc-dispaly-1.m-d-1 {
       font-size: 16px;
       line-height: 20px;
+    }
+
+    .mx-4.m-mx-0 {
+      margin: 0px !important;
     }
   }
 `;

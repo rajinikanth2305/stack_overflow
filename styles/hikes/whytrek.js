@@ -60,7 +60,7 @@ export const whyTrekWithStyles = css.global`
     display: none;
   }
 
-  .card {
+  .pillar-card.card {
     margin: 0 10px;
     border-radius: 0;
   }

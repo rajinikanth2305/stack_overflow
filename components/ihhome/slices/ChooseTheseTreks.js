@@ -58,7 +58,7 @@ const ChooseTheseTreks = ({ slice }) => {
     }
     return (
       <>
-        <div className="c-mx-2 cursor-pointer" key={`choosetrek` + i}>
+        <div className="mx-4 m-mx-0 cursor-pointer" key={`choosetrek` + i}>
           <Link href={url}>
             <div className="card_sec">
               <div className="card trek_card">

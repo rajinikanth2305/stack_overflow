@@ -5,11 +5,13 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useRouter } from "next/router";
 
 const UCTreksToDo = ({ slice }) => {
   const ucTreksToDoTitle = slice.primary.uc_treks_to_do_title;
   const ucTreksToDoDesc = slice.primary.uc_treks_to_do_desc;
   const ucTreksToDoImagesArray = slice.items;
+  const router = useRouter();
 
   const settings = {
     dots: true,
@@ -46,10 +48,18 @@ const UCTreksToDo = ({ slice }) => {
     ]
   };
 
+  const goToTrekPage = data => {
+    const slugUrl = data?.target_url.slug;
+
+    if (slugUrl) {
+      router.push(`/trek/${data.target_url.uid}`);
+    }
+  };
+
   const ucTreksToDoImages = ucTreksToDoImagesArray.map(function(data, i) {
     return (
       <>
-        <div className="mx-2" key={i}>
+        <div className="mx-4 m-mx-0" key={i}>
           <div className="card_sec">
             <div className="card trek_card">
               <div alt="imgs" className="uc_open_for_small_group_images">
@@ -96,8 +106,7 @@ const UCTreksToDo = ({ slice }) => {
                     {data.uc_treks_to_do_image_caption[0].text}
                   </h3>
                   <p className="p-display-2">
-                    {data.uc_treks_to_do_image_caption_desc[0].text.length >
-                    125
+                    {data.uc_treks_to_do_image_caption_desc[0].text.length > 125
                       ? `${data.uc_treks_to_do_image_caption_desc[0].text.substring(
                           0,
                           125
@@ -105,7 +114,12 @@ const UCTreksToDo = ({ slice }) => {
                       : data.uc_treks_to_do_image_caption_desc[0].text}
                   </p>
                   <div className="float-right pt-2 pb-4">
-                    <button className="btn btn-ih-green">View Details</button>
+                    <button
+                      className="btn btn-ih-green"
+                      onClick={() => goToTrekPage(data)}
+                    >
+                      View Details
+                    </button>
                   </div>
                 </div>
               </div>

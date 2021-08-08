@@ -5,11 +5,13 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useRouter } from "next/router";
 
 const UCWinterTreks = ({ slice }) => {
   const ucWinterTreksTitle = slice.primary.uc_winter_treks_title;
   const ucWinterTreksDesc = slice.primary.uc_winter_treks_desc;
   const ucWinterWreksImagesArray = slice.items;
+  const router = useRouter();
 
   const settings = {
     dots: true,
@@ -46,10 +48,18 @@ const UCWinterTreks = ({ slice }) => {
     ]
   };
 
+  const goToTrekPage = data => {
+    const slugUrl = data?.target_url.slug;
+
+    if (slugUrl) {
+      router.push(`/trek/${data.target_url.uid}`);
+    }
+  };
+
   const ucWinterWreksImages = ucWinterWreksImagesArray.map(function(data, i) {
     return (
       <>
-        <div className="mx-2" key={i}>
+        <div className="mx-4 m-mx-0" key={i}>
           <div className="card_sec">
             <div className="card trek_card">
               <div alt="imgs" className="uc_open_for_small_group_images">
@@ -105,7 +115,12 @@ const UCWinterTreks = ({ slice }) => {
                       : data.uc_winter_treks_image_caption_desc[0].text}
                   </p>
                   <div className="float-right pt-2 pb-4">
-                    <button className="btn btn-ih-green">View Details</button>
+                    <button
+                      className="btn btn-ih-green"
+                      onClick={() => goToTrekPage(data)}
+                    >
+                      View Details
+                    </button>
                   </div>
                 </div>
               </div>
@@ -116,7 +131,10 @@ const UCWinterTreks = ({ slice }) => {
     );
   });
 
-  const ucWinterWreksImagesMobileView = ucWinterWreksImagesArray.map(function(data, j) {
+  const ucWinterWreksImagesMobileView = ucWinterWreksImagesArray.map(function(
+    data,
+    j
+  ) {
     return (
       <>
         <div className="col-6" key={j}>
@@ -144,15 +162,27 @@ const UCWinterTreks = ({ slice }) => {
                     {data.uc_winter_treks_image_caption[0].text}
                   </h3>
                   <p className="m-display-2">
-                    {data.uc_winter_treks_image_caption_desc[0].text.length > 125
-                      ? `${data.uc_winter_treks_image_caption_desc[0].text.substring(0, 125)}...`
+                    {data.uc_winter_treks_image_caption_desc[0].text.length >
+                    125
+                      ? `${data.uc_winter_treks_image_caption_desc[0].text.substring(
+                          0,
+                          125
+                        )}...`
                       : data.uc_winter_treks_image_caption_desc[0].text}
                   </p>
-                  <p className="m-card-info-text m-0">{data.uc_winter_treks_days[0].text} Days</p>
-                  <p className="m-card-info-text m-0">{data.uc_winter_treks_seasons[0].text}</p>
-                  <p className="m-card-info-text">{data.uc_winter_treks_guide[0].text}</p>
+                  <p className="m-card-info-text m-0">
+                    {data.uc_winter_treks_days[0].text} Days
+                  </p>
+                  <p className="m-card-info-text m-0">
+                    {data.uc_winter_treks_seasons[0].text}
+                  </p>
+                  <p className="m-card-info-text">
+                    {data.uc_winter_treks_guide[0].text}
+                  </p>
                   <div className="t-2 pb-4">
-                    <button className="btn m-btn-ih-green">View Dates / Register</button>
+                    <button className="btn m-btn-ih-green">
+                      View Dates / Register
+                    </button>
                   </div>
                 </div>
               </div>
