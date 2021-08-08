@@ -61,6 +61,11 @@ const RegHome = ({  slice }) => {
        setUserEmail(userEmail);
        DoBindIfBookingExists(userEmail);
    });
+
+   return () => {
+     dispatch(addOrUpdateState({type: 'RESET'}));
+   
+};
   }, []);
 
 
@@ -125,6 +130,15 @@ const RegHome = ({  slice }) => {
     }
   }
 
+  function isEmpty(obj) {
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            return false;
+    }
+
+    return true;
+}
+
 const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,callMode='Button_Click') => {
      const batchId= router.query.batchId?router.query.batchId:pbatchId;
      const userId= userEmail==''?userServiceObject.getUsername():userEmail;
@@ -136,10 +150,16 @@ const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,cal
          setTermAccepted(value); 
      }
 
-     console.log(stateData.data===undefined);
-     console.log(JSON.stringify(stateData.data));
+     let stateEmpty=true;
+     
+     if(stateData.data!==undefined){
+      const sdata= JSON.parse(JSON.stringify(stateData.data));
+      stateEmpty= isEmpty(sdata)
+     }
+        
+     console.log(stateEmpty);
 
-    if(stateData.data===undefined) {
+    if(stateEmpty){
 
       getBatchInfoByUserAndBatchId(userId,batchId)
       .then(data => {
