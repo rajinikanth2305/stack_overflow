@@ -1,13 +1,28 @@
 import css from "styled-jsx/css";
 
 export const founderStyles = css.global`
+  @font-face {
+    font-family: Franklin Gothic Medium;
+    src: url(/font/FRANKLINGOTHIC/framd.ttf);
+  }
+
+  @font-face {
+    font-family: Franklin Gothic Book;
+    src: url(/font/FRANKLINGOTHIC/FRABK.ttf);
+  }
+
+  @font-face {
+    font-family: Lora-Medium;
+    src: url(/font/LORA/Lora-Medium.TTF);
+  }
+
   .container.container-custom {
     max-width: 1600px;
   }
 
   .title-h2 {
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 48px;
@@ -20,7 +35,7 @@ export const founderStyles = css.global`
   .p-text-1 {
     line-height: 30px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -31,7 +46,7 @@ export const founderStyles = css.global`
 
   .p-text-2 {
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -81,7 +96,7 @@ export const founderStyles = css.global`
     .title-h2 {
       line-height: 40px;
       font-size: 36px;
-      padding-bottom: 25px; 
+      padding-bottom: 25px;
     }
 
     .p-text-1 {

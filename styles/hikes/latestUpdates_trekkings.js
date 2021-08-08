@@ -182,5 +182,8 @@ export const latestUpdatesTrekkingsStyles = css.global`
     .m-d-block {
       display: block;
     }
+    .border-bottom-4 {
+      border-bottom: 2px solid rgb(255,193,0);
+    }
   }
 `;

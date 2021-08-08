@@ -1,9 +1,24 @@
 import css from "styled-jsx/css";
 
 export const whyTrekWithStyles = css.global`
+  @font-face {
+    font-family: Franklin Gothic Medium;
+    src: url(/font/FRANKLINGOTHIC/framd.ttf);
+  }
+
+  @font-face {
+    font-family: Franklin Gothic Book;
+    src: url(/font/FRANKLINGOTHIC/FRABK.ttf);
+  }
+
+  @font-face {
+    font-family: Lora-Medium;
+    src: url(/font/LORA/Lora-Medium.TTF);
+  }
+
   .title-h2 {
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 48px;
@@ -14,7 +29,7 @@ export const whyTrekWithStyles = css.global`
   .p-text-1 {
     line-height: 30px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -24,7 +39,7 @@ export const whyTrekWithStyles = css.global`
   .why_trek_box_desc {
     line-height: 24px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -34,7 +49,7 @@ export const whyTrekWithStyles = css.global`
   .p-text-3-wt {
     line-height: 16px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -42,9 +57,9 @@ export const whyTrekWithStyles = css.global`
   }
 
   .m-view-d-block {
-	  display: none;
+    display: none;
   }
-  
+
   .card {
     margin: 0 10px;
     border-radius: 0;
@@ -85,15 +100,15 @@ export const whyTrekWithStyles = css.global`
     .why_trek_box_title {
       line-height: 24px;
       text-align: left;
-      font-family: Lora;
+      font-family: Lora-Medium;
       font-style: normal;
       font-weight: normal;
       font-size: 16px;
       color: rgba(0, 0, 0, 1);
-	}
-	
-	.m-view-d-block {
-		display: block;
-	}
+    }
+
+    .m-view-d-block {
+      display: block;
+    }
   }
 `;

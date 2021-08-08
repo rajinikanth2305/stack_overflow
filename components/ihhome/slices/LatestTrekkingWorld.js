@@ -55,7 +55,7 @@ const LatestTrekkingWorld = ({ slice }) => {
   const trekkingWorldImage = trekkingWorldImageArray.map(function(data, i) {
     const trekking_world_desc = data.trekking_world_desc.map(function(desc, j) {
         return (
-            <p>{desc.text}</p>
+            <p className="p-text-4">{desc.text}</p>
         );
     });
     return (
@@ -64,7 +64,7 @@ const LatestTrekkingWorld = ({ slice }) => {
           <div className="row d-flex">
             <div className="col-lg-6 col-md-12 order-1">
               <div>
-                <h3 className="title-diplay-3 mpt-3">{data.trekking_world_heading[0].text}</h3>
+                <h3 className="title-diplay-3-ltw mpt-3-ltw">{data.trekking_world_heading[0].text}</h3>
                 <p>{trekking_world_desc}</p>
               </div>
             </div>

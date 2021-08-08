@@ -10,6 +10,12 @@ export const ChooseTreks = css.global`
     font-family: Franklin Gothic Book;
     src: url(/font/FRANKLINGOTHIC/FRABK.ttf);
   }
+
+  @font-face {
+    font-family: Lora-Medium;
+    src: url(/font/LORA/Lora-Medium.TTF);
+  }
+
   .container.container-custom {
     max-width: 1600px;
   }
@@ -77,7 +83,7 @@ export const ChooseTreks = css.global`
   .card-info-text > div > p {
     line-height: 18px;
     text-align: left;
-    font-family: Poppins;
+    font-family: Franklin Gothic Book;
     font-style: normal;
     font-weight: lighter;
     font-size: 12px;
@@ -103,6 +109,16 @@ export const ChooseTreks = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .title-diplay-3-ltw {
+    line-height: 24px;
+    text-align: left;
+    font-family: Lora-Medium;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    color: rgba(0, 0, 0, 1);
+  }
+
   .title-diplay-3-18px {
     line-height: 30px;
     text-align: left;
@@ -114,7 +130,7 @@ export const ChooseTreks = css.global`
   }
 
   .title-diplay-3.ts-lable {
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-size: 18px;
     line-height: 24px;
     border-left: 4px solid rgb(255, 193, 0);
@@ -125,7 +141,7 @@ export const ChooseTreks = css.global`
   .p-display-2 {
     line-height: 18px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -135,7 +151,7 @@ export const ChooseTreks = css.global`
   .p-text-4 {
     line-height: 24px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -171,7 +187,7 @@ export const ChooseTreks = css.global`
 
   .title-display-2 {
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 48px;
@@ -307,6 +323,10 @@ export const ChooseTreks = css.global`
       padding: 40px 0 20px;
     }
 
+    .mpt-3-ltw {
+      padding: 25px 0 20px;
+    }
+
     .trekking_world_image_desktop {
       display: none;
     }
@@ -315,6 +335,29 @@ export const ChooseTreks = css.global`
       position: relative;
       display: block;
       height: 200px;
+    }
+
+    .card-info-text > div > p {
+      font-size: 11px;
+      line-height: 10px;
+    }
+
+    .title-diplay-3-18px {
+      font-weight: normal;
+    }
+
+    .title-diplay-3 {
+      font-size: 18px;
+    }
+
+    .title-diplay-3-ltw {
+      font-size: 18px;
+    }
+
+    .p-display-2 {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 1);
+      text-transform: capitalize;
     }
   }
 `;
