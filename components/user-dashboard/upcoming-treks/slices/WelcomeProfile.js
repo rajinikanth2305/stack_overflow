@@ -13,11 +13,13 @@ import TrekFAQS from "./TrekFAQS";
 import FitnessApproval from "./FitnessApproval";
 import Link from "next/link";
 import auth  from '../../../../services/Authenticate';
-import { getdashBoardUserBooking } from '../../../../services/queries';
+import { getdashBoardUserBooking,cancelUserBooking } from '../../../../services/queries';
 import moment from "moment";
 import { useRouter } from "next/router";
 import Prismic from "@prismicio/client";
 import { Client } from "../../../../utils/prismicHelpers";
+import { confirmPopup } from 'primereact/confirmpopup'; // To use confirmPopup method
+import { Toast } from 'primereact/toast';
 
 const WelcomeProfile = () => {
   const [show, setShow] = useState(false);
@@ -39,7 +41,7 @@ const WelcomeProfile = () => {
   const router = useRouter();
   const myTrekRef = useRef();
 
-
+  const toast = useRef(null);
 
   React.useEffect(  () => {
     //const res=await 
@@ -62,13 +64,15 @@ const WelcomeProfile = () => {
        .then(bookingsData=>{
         /// Idenitify and get the booking owner profile informations 
         console.log(bookingsData);
-        const bookingOwner= bookingsData.map((element) => {
-            const mainuser=element.trekMates.find((subElement) => subElement.userDetailsForDisplay.email === email);
-            if(mainuser!==undefined)
-              return mainuser;
-         });
-        setBookingOwner(bookingOwner[0]);
-        getAndSetTrekContents(bookingsData,email);
+        if(bookingsData.length>0) {  
+            const bookingOwner= bookingsData.map((element) => {
+                const mainuser=element.trekMates.find((subElement) => subElement.userDetailsForDisplay.email === email);
+                if(mainuser!==undefined)
+                  return mainuser;
+            });
+            setBookingOwner(bookingOwner[0]);
+            getAndSetTrekContents(bookingsData,email);
+        }
    });
   }
 
@@ -147,11 +151,39 @@ const addParticipants= (batchId) =>{
   router.push(`/registration?batchId=${batchId}&step=addparticipant`);
 }
 
+const onCancelUserBooking= (e,trekData) =>{
+
+  confirmPopup({
+    target: e.currentTarget,
+    message: `Are you sure you want to cancel trek booking for  ${trekData.trekName} ?'`,
+    icon: 'pi pi-exclamation-triangle',
+    accept: () => {
+      cancelUserBooking(trekData.email,trekData.bookingId).then(res=>{
+        toast.current.show({severity: 'info', summary: `'Cancelled   ${trekData.trekName} Booking successfully'`, detail: 'Cancel-Trek-Booking'});
+        fetchAndBindUserBookings(trekData.email);
+      });
+    },
+    reject: (e) => {}
+  });
+}
+
+const refresh=(bookingId,email) => {
+  //fetchAndBindUserBookings(email);
+  //toggleTrekDisplay(bookingId);
+}
+
+
+let callBackProps = {
+  onMyTrekSaveDetail:refresh
+}
+
   return (
     <>
+
       { render && ( 
         <div>
       <div>
+      <Toast ref={toast} />
         <div className="container container-custom p-0">
           <div className="bg-gray-shade">
             <div className="container">
@@ -240,8 +272,8 @@ const addParticipants= (batchId) =>{
                                       Join whatsapp group
                                     </span>
                                   </button>
-                                  <button className="btn table-btn-maroon">
-                                    cancel trek booking
+                                  <button className="btn table-btn-maroon"  onClick={(e) => onCancelUserBooking(e,upComingTrek)}>
+                                    Cancel trek booking
                                   </button>
                                 </div>
                               </div>
@@ -259,7 +291,7 @@ const addParticipants= (batchId) =>{
                       unmountOnExit={false}
                     >
                       <Tab eventKey="mytrek" title="My trek">
-                        <MyTreks ref={myTrekRef}  />
+                        <MyTreks ref={myTrekRef}  {...callBackProps} />
                       </Tab>
                       <Tab eventKey="rentgear" title="Rent gear">
                         <RentGear />
@@ -303,7 +335,9 @@ const addParticipants= (batchId) =>{
                                   <div className="d-flex justify-content-between align-items-end">
                                     <div>
                                       <h3 className="title-h3">
-                                         {trekData?.trekName}
+                                      <a href='javascript:;' onClick={(e) => toggleTrekDisplay(trekData?.bookingId)} tooltip="Click here to view the trek-details">
+                                      {trekData?.trekName}
+                                      </a>
                                       </h3>
                                     </div>
                                     <div>

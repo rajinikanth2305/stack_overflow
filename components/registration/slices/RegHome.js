@@ -208,7 +208,7 @@ const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,cal
     const batchId= router.query.batchId;
     const userId= userServiceObject.getUsername();
      ///Batch not exits will create and then query
-     console.log("Booking not found for the batchid and useremailid");
+     console.log("Booking not found for the batchid and user emailid");
      /// get userid by email
      findUserByEmail(userServiceObject.getUsername())
                     .then (res=>{
@@ -217,7 +217,7 @@ const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,cal
                           .then(response=> {
                                     getBatchInfoByUserAndBatchId(userId,batchId)
                                       .then(bres => {
-                                          setStateStoreData(bres.data);
+                                          setStateStoreData(bres.data,res.email);
                                       })
                                       .catch((err)=>{
                                         console.log(err.response?.data?.message);
@@ -259,7 +259,7 @@ const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,cal
     /// check any other participants if then push
 
     for (const userData of  data.participants) {
-      const dt= await buildParticipants(userData);
+      const dt= await buildParticipants(userData,userId);
       bookDetails2.trekUsers.push(dt);
     }
     setStateStoreDataAndTriggerTabChangesState(bookDetails2);
@@ -270,9 +270,9 @@ const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,cal
   //}
   }
 
-  const buildParticipants=  async  (userData)=>{
+  const buildParticipants=  async  (userData,primaryUserEmail)=>{
       let vouchers=[];
-      if(userData.userDetailsForDisplay.email===userEmail){
+      if(userData.userDetailsForDisplay.email===primaryUserEmail){
         vouchers=await getVoucher(userData.userDetailsForDisplay?.email);
       }
       const obh={

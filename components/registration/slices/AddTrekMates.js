@@ -15,6 +15,7 @@ import { Calendar } from 'primereact/calendar';
 import moment from "moment";
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
+
 import {
   addOrUpdateState,
   selectStateData,
@@ -22,12 +23,7 @@ import {
 
 import mySingleton  from '../../../services/Authenticate';
 import { data } from "jquery";
-
 import {AutoComplete} from "primereact/autocomplete";    
-
-
-
-  
 
 const AddTrekMates = forwardRef((props,ref) => {
 
@@ -196,11 +192,11 @@ if(res.response?.data?.message) {
       setBookingDate(bookingDates);
 
 
-      if(users.length==0 && data.trekUsers.length>0){
+      if(users.length===0 && data.trekUsers.length>0){
         const sdata=  stateData.data;
         const tempUsers=[];
 
-        sdata.trekUsers.filter(x=>x.email!==sdata.primaryUserEmail).map(x=> {
+        sdata.trekUsers.filter(x=>x.email !== sdata.primaryUserEmail).map(x=> {
           tempUsers.push(
             {
               email:x.email,
@@ -231,11 +227,7 @@ const addFindUsers=async (udata)=>{
     lastName:udata.lastName
   }]);
 
-  /// get users vouchers
-  
-  console.log(udata);
-
-  let vouchers=[];//await getVoucher(udata.email);
+  let vouchers=[];//await getVoucher(udata.email); Vouchers os only for main owner user
   const sdata= JSON.parse(JSON.stringify( stateData.data));
   sdata.trekUsers.push(
     {
@@ -259,6 +251,7 @@ const addFindUsers=async (udata)=>{
   await dispatch(addOrUpdateState(sdata));
   await saveDraft(sdata);
   add();
+  setSelectedSlopeUserAutoValue('');
 }
 
 const getVoucher= async (userEmail)  => {

@@ -235,11 +235,35 @@ export const getdashBoardUserBooking =  async (email)  => {
 };
 
 
+export const cancelUserBooking =  async (userEmail,bookingId)  => {
 
-  // React Render
-  const postAuthenticAction = () => {
-    //findEligibilityCriteria();
-}
+  const header=await getTokenHeader();
+  const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
+  let url = `${userApi}/users/${userEmail}/bookings/${bookingId}/cancel-treks`;
+  return axios.patch(url,{},{ headers:  header })
+         .then((res) => res.data);
+};
+
+export const getTrekLocations = async (trekId)  => {
+  const header=await getTokenHeader();
+  const api = `${REACT_APP_TMS_BACKEND_URL}`;
+  let url = `${api}/lookups/treks/${trekId}/locations`;
+
+  return axios.get(url,{ headers:  header })
+  .then((res) => res.data);
+  
+};
+
+export const saveUserLocations =  async (bookingId,payload)  => {
+
+  const header=await getTokenHeader();
+  const api = `${REACT_APP_TMS_BACKEND_URL}`;
+  let url = `${api}/bookings/${bookingId}/participant-locations`;
+  console.log(JSON.stringify(payload));
+  return axios.patch(url,payload,{ headers:  header })
+         .then((res) => res.data);
+};
+
 
   export const findUserByBatchId = async (batchId)  => {
     const header=await getTokenHeader();
