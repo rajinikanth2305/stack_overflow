@@ -70,7 +70,7 @@ const HomeBannerWithCaption = ({ slice }) => {
             <div class="container">
               <div class="banner-text-sec">
                 <p class="banner-text-1">{RichText.asText(heading1)}</p>
-                <p class="banner-text-2 mb-0">
+                <p class="banner-text-2 mb-0 m-w-50p">
                   They trek because they want to be part of the team that is
                 </p>
                 <p class="banner-text-3">defining the future of trekking</p>

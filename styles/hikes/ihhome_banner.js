@@ -1,6 +1,11 @@
 import css from "styled-jsx/css";
 
 export const ihhomeBannerStyles = css.global`
+  @font-face {
+    font-family: Franklin Gothic Medium;
+    src: url(/font/FRANKLINGOTHIC/framd.ttf);
+  }
+
   .banner-image-desktop {
     width: 100%;
     height: 700px;
@@ -32,7 +37,7 @@ export const ihhomeBannerStyles = css.global`
   .banner-text-1 {
     line-height: 56px;
     text-align: center;
-    font-family: Franklin Gothic;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 48px;
@@ -44,7 +49,7 @@ export const ihhomeBannerStyles = css.global`
   .banner-text-2 {
     line-height: 30px;
     text-align: center;
-    font-family: Franklin Gothic;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 24px;
@@ -55,7 +60,7 @@ export const ihhomeBannerStyles = css.global`
   .banner-text-3 {
     line-height: 30px;
     text-align: center;
-    font-family: Franklin Gothic;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 24px;
@@ -71,7 +76,8 @@ export const ihhomeBannerStyles = css.global`
     color: black;
     font-size: 18px;
     text-transform: uppercase;
-    font-family: Franklin Gothic;
+    font-family: Franklin Gothic Medium;
+    padding: 5px 30px;
   }
 
   @media only screen and (max-width: 660px) {
@@ -81,13 +87,10 @@ export const ihhomeBannerStyles = css.global`
       background-position: -425px 0;
     }
 
-    // .banner-image-mobile {
-    //   display: block;
-    //   width: 100%;
-    //   height: 585px;
-    //   background-position: -183px;
-    //   position: relative;
-    // }
+    .btn-ih-primary {
+      text-transform: capitalize !important;
+      font-size: 14px !important;
+    }
 
     .banner-text-sec {
       text-align: left;
@@ -101,7 +104,7 @@ export const ihhomeBannerStyles = css.global`
     .banner-text-1 {
       font-size: 30px;
       line-height: 36px;
-      margin-bottom: 35px;
+      margin-bottom: 40px;
       text-align: left;
     }
 
@@ -109,14 +112,14 @@ export const ihhomeBannerStyles = css.global`
       line-height: 22px;
       text-align: left;
       font-size: 16px;
-      font-family: Poppins;
+      font-family: Franklin Gothic;
     }
 
     .banner-text-3 {
       line-height: 22px;
       text-align: left;
       font-size: 16px;
-      font-family: Poppins;
+      font-family: Franklin Gothic;
       font-weight: bold;
     }
 
@@ -137,6 +140,10 @@ export const ihhomeBannerStyles = css.global`
       font-weight: normal;
       font-size: 14px;
       text-transform: capitalize;
+    }
+
+    .m-w-50p {
+      width: 75%;
     }
   }
 
