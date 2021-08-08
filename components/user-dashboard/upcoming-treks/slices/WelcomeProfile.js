@@ -377,7 +377,9 @@ let callBackProps = {
                                   <div className="d-flex align-items-center">
                                     <div className="flex-grow-1">
                                       <p className="m-0 text-decoration-underline p-text-small-fg">
+                                      <a href='javascript:;' onClick={(e) => toggleTrekDisplay(trekData?.bookingId)} tooltip="Click here to view the trek-details">
                                         view details
+                                        </a>
                                       </p>
                                     </div>
                                     <div>
