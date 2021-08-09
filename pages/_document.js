@@ -96,6 +96,15 @@ class MyDocument extends Document {
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GGTM-WKDG2F6');`}}></script>
 
+
+          {/* <!-- Heat Map --> */}
+          <script dangerouslySetInnerHTML={{ __html: `function(h,e,a,t,m,p) {
+              m=e.createElement(a);m.async=!0;m.src=t;
+              p=e.getElementsByTagName(a)[0];p.parentNode.insertBefore(m,p);
+              })(window,document,'script','https://u.heatmap.it/log.js');
+          `}}></script>
+           {/* <!-- end Heat Map --> */}
+
          {/*<script async defer src={`//static.cdn.prismic.io/prismic.js?repo=${prismicRepoName}&new=true`} /> :*/}
          
         </Head>
