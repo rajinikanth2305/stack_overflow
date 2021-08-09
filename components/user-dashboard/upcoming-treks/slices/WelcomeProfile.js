@@ -103,12 +103,20 @@ const getAndSetTrekContents = async (bookingsData,userEmail) => {
   /// Now get Trek content data from Prismic 
   for (const book of  bookingsData) {
     const trekName=book.trekName.trim().replace(" ","_").toLowerCase();
+    
     const result  = await Client().getByUID("trek", trekName);
-   // console.log(result);
+    //console.log(result);
+
+    let bannerImage = '';
+    let trekCaptions = book.trekName ;
+
+    if(result !== undefined) {
     const slice = result.data.body.find(x => x.slice_type === "trek_banner");
-    //console.log(slice);
-    const bannerImage = slice.primary.trek_banner_image.url;
-    const trekCaptions = slice.primary.trek_caption;
+      //console.log(slice);
+     bannerImage = slice.primary.trek_banner_image.url;
+     trekCaptions = slice.primary.trek_caption;
+    }
+
     bookTrekContents.push({
       trekId:book.trekId,
       batchId:book.batchId,
