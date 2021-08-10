@@ -189,40 +189,8 @@ const doPayment=() => {
   .then(res=>{
             makePayment(stateData.data)
             .then(res=> {
-                //console.log('PaymentRespone'+ JSON.stringify(res));
-                var configJson = {
-                'tarCall': false,
-                'features': {
-                    'showPGResponseMsg': true,
-                    'enableAbortResponse': true,
-                    'enableExpressPay': true,
-                    'enableNewWindowFlow': true    //for hybrid applications please disable this by passing false
-                },
-                'consumerData': {
-                    'deviceId': 'WEBSH1',	//possible values 'WEBSH1' and 'WEBSH2'
-                    'token': res.token,
-                    'returnUrl': 'https://tmsstaging.indiahikes.com/tms-service/public-api/v1/transaction-responses',    //merchant response page URL
-                    'responseHandler': handleResponse,
-                    'paymentMode': 'all',
-                    'merchantLogoUrl': 'https://www.paynimo.com/CompanyDocs/company-logo-md.png',  //provided merchant logo will be displayed
-                    'merchantId': res.merchantCode,
-                    'currency': 'INR',
-                    'txnId': res.transactionId,   //Unique merchant transaction ID
-                    'items': [{
-                        'itemId': 'Trek-booking',
-                        'amount': 10,//,computeFields.computations.youpay,
-                        'comAmt': '0'
-                    }],
-                    'customStyle': {
-                        'PRIMARY_COLOR_CODE': '#3977b7',   //merchant primary color code
-                        'SECONDARY_COLOR_CODE': '#FFFFFF',   //provide merchant's suitable color code
-                        'BUTTON_COLOR_CODE_1': '#1969bb',   //merchant's button background color code
-                        'BUTTON_COLOR_CODE_2': '#FFFFFF'   //provide merchant's suitable color code for button text
-                    }
-                }
-                };
-                window.jQuery.pnCheckout(configJson);
-                if(configJson.features.enableNewWindowFlow){
+                window.jQuery.pnCheckout(res);
+                if(res.features.enableNewWindowFlow){
                 pnCheckoutShared.openNewWindow();
                 }
         })
