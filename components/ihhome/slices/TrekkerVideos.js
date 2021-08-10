@@ -53,7 +53,8 @@ const TrekkerVideos = ({ slice }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
+          arrows: false,
+          centerMode: true
         }
       }
     ]
@@ -111,8 +112,8 @@ const TrekkerVideos = ({ slice }) => {
           <span>Trekker Videos</span>
         </div>
         <div className="container container-custom">
-          <div>
-            <Slider {...settings}>{ihTrekkerVideosImage}</Slider>
+          <div className="m-mt-15">
+            <Slider className="trekvideos-carosule" {...settings}>{ihTrekkerVideosImage}</Slider>
           </div>
         </div>
         <style jsx global>

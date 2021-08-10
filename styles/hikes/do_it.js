@@ -71,5 +71,22 @@ export const doItStyles = css.global`
     .doit_img_caption {
       font-size: 20px;
     }
+
+    .slick-slider.do-it-yourself-carosule
+      > .slick-list
+      > .slick-track
+      > .slick-slide.slick-active.slick-center.slick-current {
+      width: 290px !important;
+      margin: 0px 5px 0 -60px;
+      padding: 0 10px;
+    }
+    
+    .m-mx-0 {
+      margin: 0 !important;
+    }
+
+    .m-mt-5 {
+      margin-top: 50px !important;
+    }
   }
 `;

@@ -298,8 +298,9 @@ export const ChooseTreks = css.global`
     }
 
     .choose_trek_sec {
-      padding-top: 35px;
+      padding-top: 30px;
       margin-top: 0;
+      padding-bottom: 45px;
     }
 
     .title-display-2 {
@@ -365,6 +366,28 @@ export const ChooseTreks = css.global`
 
     .mx-4.m-mx-0 {
       margin: 0px !important;
+    }
+
+    .slick-slider.home-choose-treks
+      > .slick-list
+      > .slick-track
+      > .slick-slide.slick-active.slick-center.slick-current {
+      width: 290px !important;
+      margin: 0px 5px 0 -60px;
+      padding: 0 10px;
+    }
+
+    .slick-slider.trekvideos-carosule
+      > .slick-list
+      > .slick-track
+      > .slick-slide.slick-active.slick-center.slick-current {
+      width: 290px !important;
+      margin: 0px 5px 0 -60px;
+      padding: 0 10px;
+    }
+
+    .m-mt-15 {
+      margin-top: 15px;
     }
   }
 `;

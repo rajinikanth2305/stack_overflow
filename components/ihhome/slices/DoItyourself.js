@@ -43,7 +43,8 @@ const DoItYourself = ({ slice }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
+          arrows: false,
+          centerMode: true
         }
       }
     ]
@@ -58,7 +59,7 @@ const DoItYourself = ({ slice }) => {
 
     return (
       <>
-        <div className="mx-2" key={i}>
+        <div className="mx-2 m-mx-0" key={i}>
           <div alt="imgs" className="doit_images">
             <Image
               src={data.doit_image.url}
@@ -93,8 +94,8 @@ const DoItYourself = ({ slice }) => {
           </div>
           <div className="container container-custom">
             <div className="my-3">
-              <Slider {...settings}>{doitImage}</Slider>
-              <div class="mt-4 text-center">
+              <Slider className="do-it-yourself-carosule" {...settings}>{doitImage}</Slider>
+              <div class="mt-4 m-mt-5 text-center">
                 <button class="btn btn-lg btn-ih-primary text-capitalized">
                   <Link href="../../../diy">View More DIY Treks</Link>
                 </button>

@@ -43,7 +43,7 @@ const ChooseTheseTreks = ({ slice }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          centerMode: true,
+          centerMode: true
         }
       }
     ]
@@ -136,7 +136,7 @@ const ChooseTheseTreks = ({ slice }) => {
             </div>
           </div>
           <div>
-            <Slider {...settings}>{chooseTrekImage}</Slider>
+            <Slider className="home-choose-treks" {...settings}>{chooseTrekImage}</Slider>
           </div>
         </div>
         <style jsx global>
