@@ -3,12 +3,14 @@ import css from "styled-jsx/css";
 export const annoumentStyles = css.global`
   @font-face {
     font-family: Franklin Gothic Medium;
-    src: url(/font/FRANKLINGOTHIC/framd.ttf);
+    src: url('/font/FRANKLINGOTHIC/framd.ttf');
+    src: url('/font/FRANKLINGOTHIC/framd.ttf')format('truetype');
   }
 
   @font-face {
     font-family: Franklin Gothic Book;
-    src: url(/font/FRANKLINGOTHIC/FRABK.ttf);
+    src: url('/font/FRANKLINGOTHIC/FRABK.ttf');
+    src: url('/font/FRANKLINGOTHIC/FRABK.ttf') format('truetype');
   }
 
   @font-face {
