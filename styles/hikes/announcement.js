@@ -13,7 +13,8 @@ export const annoumentStyles = css.global`
 
   @font-face {
     font-family: Lora-Medium;
-    src: url(./font/LORA/Lora-Medium.TTF);
+    src: url(/font/LORA/Lora-Medium.TTF);
+    src: url(/font/LORA/Lora-Medium.TTF) format('truetype');
   }
 
   .position-relative {
