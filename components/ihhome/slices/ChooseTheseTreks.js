@@ -53,7 +53,6 @@ const ChooseTheseTreks = ({ slice }) => {
     let url;
     const slugUrl = data?.link_url.slug;
     if (slugUrl) {
-      // url = linkResolver(data?.link_url);
       url = `/trek/${data.link_url.uid}`;
     }
     return (
