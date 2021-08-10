@@ -63,7 +63,7 @@ const TrekkerVideos = ({ slice }) => {
   const ihTrekkerVideosImage = ihTrekkerVideosImageArray.map(function(data, i) {
     return (
       <>
-        <div className="c-mx-2" key={`choosetrek` + i}>
+        <div className="mx-2 m-mx-0" key={`choosetrek` + i}>
           <div className="card_sec">
             <div className="card video_trek_card">
               <div alt="imgs" className="ih_trekker_videos_image">
@@ -80,7 +80,7 @@ const TrekkerVideos = ({ slice }) => {
               </div>
               <div class="px-3 py-2">
                 <div>
-                  <p className="p-text-5 mb-1">
+                  <p className="p-text-5-tv mb-1">
                     {data.ih_trekker_videos_title[0].text}
                   </p>
                   <div className="d-flex alifn-center justify-content-between video_views">

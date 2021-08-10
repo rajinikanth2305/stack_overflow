@@ -1,6 +1,24 @@
 import css from "styled-jsx/css";
 
 export const doItStyles = css.global`
+  @font-face {
+    font-family: Franklin Gothic Medium;
+    src: url("/font/FRANKLINGOTHIC/framd.ttf");
+    src: url("/font/FRANKLINGOTHIC/framd.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: Franklin Gothic Book;
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf");
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: Lora-Medium;
+    src: url("/font/LORA/Lora-Medium.ttf");
+    src: url("/font/LORA/Lora-Medium.ttf") format("truetype");
+  }
+
   .doit_images {
     position: relative;
     width: 100%;
@@ -10,7 +28,7 @@ export const doItStyles = css.global`
   }
   .doit_title {
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 48px;
@@ -24,7 +42,7 @@ export const doItStyles = css.global`
   .doit_desc {
     line-height: 24px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -34,7 +52,7 @@ export const doItStyles = css.global`
   .doit_img_caption {
     line-height: 45px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 30px;
@@ -51,7 +69,7 @@ export const doItStyles = css.global`
     color: black;
     font-size: 18px;
     text-transform: uppercase;
-    font-family: Franklin Gothic;
+    font-family: Franklin Gothic Medium;
   }
 
   @media only screen and (max-width: 600px) {
@@ -80,7 +98,7 @@ export const doItStyles = css.global`
       margin: 0px 5px 0 -60px;
       padding: 0 10px;
     }
-    
+
     .m-mx-0 {
       margin: 0 !important;
     }

@@ -72,7 +72,7 @@ const LatestUpdatesTrekkings = ({ slice }) => {
 
   return (
     <>
-      <div className="mt-5 mb-4 pb-5 expert-blog-bg">
+      <div className="mt-5 mb-4 pb-5 m-pb-2 expert-blog-bg">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -81,7 +81,7 @@ const LatestUpdatesTrekkings = ({ slice }) => {
               </p>
             </div>
           </div>
-          <div className="card tw_trek_card mx-0 my-4 cursor-pointer">
+          <div className="card tw_trek_card mx-0 my-4 m-mt-0 cursor-pointer">
             <Link href={primary_url}>
               <div className="row">
                 <div className="col-lg-6 col-md-12">
@@ -160,7 +160,7 @@ const LatestUpdatesTrekkings = ({ slice }) => {
             </div>
           </div>
           <div className="m-d-block">
-            <div className="d-flex align-items-center mb-4">
+            <div className="d-flex align-items-center mb-3 bg-white p-2 bg-shadow-1">
               <div>
                 <img src="/Mask_Group_10.png" alt="img" />
               </div>
@@ -174,7 +174,7 @@ const LatestUpdatesTrekkings = ({ slice }) => {
                 <p className="name_editor m-0">24 Jan 2020 | 6 min read</p>
               </div>
             </div>
-            <div className="d-flex align-items-center mb-4">
+            <div className="d-flex align-items-center mb-3 bg-white p-2 bg-shadow-1">
               <div>
                 <img src="/Mask_Group_10_bx.png" alt="img" />
               </div>
@@ -188,7 +188,7 @@ const LatestUpdatesTrekkings = ({ slice }) => {
                 <p className="name_editor m-0">24 Jan 2020 | 6 min read</p>
               </div>
             </div>
-            <div className="d-flex align-items-center mb-4">
+            <div className="d-flex align-items-center mb-3 bg-white p-2 bg-shadow-1">
               <div>
                 <img src="/Mask_Group_10_cb.png" alt="img" />
               </div>

@@ -1,6 +1,24 @@
 import css from "styled-jsx/css";
 
 export const experimentStyles = css.global`
+  @font-face {
+    font-family: Franklin Gothic Medium;
+    src: url("/font/FRANKLINGOTHIC/framd.ttf");
+    src: url("/font/FRANKLINGOTHIC/framd.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: Franklin Gothic Book;
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf");
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: Lora-Medium;
+    src: url("/font/LORA/Lora-Medium.ttf");
+    src: url("/font/LORA/Lora-Medium.ttf") format("truetype");
+  }
+
   .container.container-custom {
     max-width: 1600px;
   }
@@ -31,7 +49,7 @@ export const experimentStyles = css.global`
     line-height: 24px;
     margin-top: -4px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -47,7 +65,7 @@ export const experimentStyles = css.global`
   }
   .exp_title {
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 48px;
@@ -60,7 +78,7 @@ export const experimentStyles = css.global`
   .exp_desc {
     line-height: 24px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -76,7 +94,7 @@ export const experimentStyles = css.global`
   .p-text-3 {
     line-height: 30px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -85,7 +103,7 @@ export const experimentStyles = css.global`
   .p-text-5 {
     line-height: 18px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -109,7 +127,7 @@ export const experimentStyles = css.global`
   }
   .c-title {
     text-align: left;
-    font-family: Carbon;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 72px;
@@ -119,7 +137,7 @@ export const experimentStyles = css.global`
   .c-description {
     line-height: 45px;
     text-align: left;
-    font-family: Franklin Gothic;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 30px;
@@ -129,7 +147,7 @@ export const experimentStyles = css.global`
   .c-details {
     ine-height: 24px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -142,7 +160,7 @@ export const experimentStyles = css.global`
     color: black;
     font-size: 18px;
     text-transform: uppercase;
-    font-family: Franklin Gothic;
+    font-family: Franklin Gothic Medium;
   }
   @media only screen and (max-width: 600px) {
     .exprriment-bg {
@@ -153,7 +171,7 @@ export const experimentStyles = css.global`
     .exp_title {
       line-height: 40px;
       text-align: left;
-      font-family: Lora;
+      font-family: Lora-Medium;
       font-style: normal;
       font-weight: bold;
       font-size: 36px;

@@ -287,6 +287,17 @@ export const ChooseTreks = css.global`
     color: rgb(255, 193, 0);
   }
 
+  .p-text-5-tv {
+    line-height: 17.5px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
   @media only screen and (max-width: 600px) {
     .card_sec {
       margin: 5px 0;

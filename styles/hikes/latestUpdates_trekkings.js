@@ -1,13 +1,31 @@
 import css from "styled-jsx/css";
 
 export const latestUpdatesTrekkingsStyles = css.global`
+  @font-face {
+    font-family: Franklin Gothic Medium;
+    src: url("/font/FRANKLINGOTHIC/framd.ttf");
+    src: url("/font/FRANKLINGOTHIC/framd.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: Franklin Gothic Book;
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf");
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: Lora-Medium;
+    src: url("/font/LORA/Lora-Medium.ttf");
+    src: url("/font/LORA/Lora-Medium.ttf") format("truetype");
+  }
+
   .expert-blog-bg {
     background: rgba(242, 242, 242, 1);
   }
   .lut_section_title {
     border-bottom: 4px solid rgb(255, 193, 0);
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 48px;
@@ -33,7 +51,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
   .day_talk_title {
     line-height: 20px;
     text-align: left;
-    font-family: Franklin Gothic;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -49,7 +67,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
   .day_trek_talk_title {
     line-height: 40px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 36px;
@@ -61,7 +79,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
   .day_trek_talk_desc {
     line-height: 24px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -72,7 +90,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
   .name_editor {
     line-height: 18px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -89,7 +107,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
   .latestTrekWorld_caption {
     line-height: 24px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -157,6 +175,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
 
     .latest_trek_details {
       height: 370px;
+      padding: 45px 15px 30px 20px;
     }
 
     .name_editor {
@@ -173,7 +192,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
     .update_terk_title_text_mobile {
       line-height: 16px;
       text-align: left;
-      font-family: Lora;
+      font-family: Lora-Medium;
       font-style: normal;
       font-weight: normal;
       font-size: 14px;
@@ -183,7 +202,16 @@ export const latestUpdatesTrekkingsStyles = css.global`
       display: block;
     }
     .border-bottom-4 {
-      border-bottom: 2px solid rgb(255,193,0);
+      border-bottom: 2px solid rgb(255, 193, 0);
+    }
+    .m-mt-0 {
+      margin-top: 0 !important;
+    }
+    .bg-shadow-1 {
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
+    }
+    .m-pb-2 {
+      padding-bottom: 20px !important;
     }
   }
 `;

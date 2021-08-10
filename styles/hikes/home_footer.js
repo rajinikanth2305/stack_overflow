@@ -1,6 +1,24 @@
 import css from "styled-jsx/css";
 
 export const homeFooterStyles = css.global`
+  @font-face {
+    font-family: Franklin Gothic Medium;
+    src: url("/font/FRANKLINGOTHIC/framd.ttf");
+    src: url("/font/FRANKLINGOTHIC/framd.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: Franklin Gothic Book;
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf");
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: Lora-Medium;
+    src: url("/font/LORA/Lora-Medium.ttf");
+    src: url("/font/LORA/Lora-Medium.ttf") format("truetype");
+  }
+
   .home_footer_image {
     margin-top: 100px;
     position: relative;
@@ -17,7 +35,7 @@ export const homeFooterStyles = css.global`
     white-space: nowrap;
     line-height: 30px;
     text-align: left;
-    font-family: Lora;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -34,7 +52,7 @@ export const homeFooterStyles = css.global`
     white-space: nowrap;
     line-height: 24px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -44,7 +62,7 @@ export const homeFooterStyles = css.global`
   .footer_text {
     line-height: 24px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -67,7 +85,7 @@ export const homeFooterStyles = css.global`
     white-space: nowrap;
     line-height: 24px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
