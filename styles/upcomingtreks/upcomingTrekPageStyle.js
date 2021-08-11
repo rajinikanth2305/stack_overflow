@@ -314,7 +314,7 @@ export const upcomingTrekPageStyle = css.global`
   .card-info-text > div > p {
     line-height: 18px;
     text-align: left;
-    font-family: Franklin Gothic Medium;
+    font-family: Franklin Gothic Book;
     font-style: normal;
     font-weight: lighter;
     font-size: 12px;
@@ -646,6 +646,40 @@ export const upcomingTrekPageStyle = css.global`
 
     .m-d-none {
       display: none;
+    }
+
+    .slick-slider.treks-carosule
+      > .slick-list
+      > .slick-track
+      > .slick-slide.slick-active.slick-center.slick-current {
+      width: 290px !important;
+      margin: 0px 5px 0 -60px;
+      padding: 0 10px;
+    }
+
+    .card-info-text > div > p {
+      font-size: 11px;
+      line-height: 10px;
+    }
+
+    .title-diplay-3.m-d-3 {
+      font-weight: normal;
+      font-size: 18px;
+    }
+
+    .p-display-2.md-2 {
+      font-size: 12px;
+      color: rgb(0, 0, 0);
+      text-transform: capitalize;
+    }
+
+    .uc_open_for_small_group_images {
+      height: 200px;
+      margin-bottom: 10px;
+    }
+
+    .trek_card.opn-trek {
+      min-height: 480px;
     }
   }
 `;
