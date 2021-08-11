@@ -73,6 +73,17 @@ export const upcomingTrekPageStyle = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .title-diplay-3-lora {
+    line-height: 30px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
+  }
+
   .title-dispaly-4 {
     white-space: nowrap;
     line-height: 48px;
@@ -150,8 +161,8 @@ export const upcomingTrekPageStyle = css.global`
   }
 
   select.form-control {
-    background-color: rgb(255, 193, 0);
-    border: 0;
+    background-color: rgba(242, 242, 242, 1);
+    border: 1px solid rgb(210, 210, 210);
     border-radius: 0;
     padding: 3px 5px;
     font-weight: normal;
@@ -196,6 +207,22 @@ export const upcomingTrekPageStyle = css.global`
     text-transform: capitalize;
   }
 
+  .btn-ih-green-filter {
+    line-height: 24px;
+    text-align: center;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: uppercase;
+    background: rgb(91, 133, 70);
+    border: 0;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.659);
+    border-radius: 2px;
+    padding: 3px 30px;
+  }
+
   .btn-bihtn-yellow {
     background: rgba(255, 193, 0, 1);
     border: 0;
@@ -231,6 +258,12 @@ export const upcomingTrekPageStyle = css.global`
     position: relative;
     width: 100%;
     height: 222px;
+  }
+
+  .uc_fliter_treks_images {
+    position: relative;
+    width: 100%;
+    height: 282px;
   }
 
   .yellow-bg-4 {
@@ -419,6 +452,26 @@ export const upcomingTrekPageStyle = css.global`
     width: 10px;
   }
 
+  .filter_box {
+    background: rgba(255, 193, 0, 1);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
+    padding: 20px;
+  }
+
+  .filter_inner_box {
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
+    border-radius: 0;
+    padding: 10px 15px;
+  }
+
+  .m-d-none {
+    display: block;
+  }
+
+  .m-d-block {
+    display: none;
+  }
+
   @media only screen and (max-width: 660px) {
     .section-padd {
       padding: 15px 0;
@@ -462,6 +515,11 @@ export const upcomingTrekPageStyle = css.global`
     }
 
     .uc_featured_treks_images {
+      height: 200px;
+      margin-bottom: 10px;
+    }
+
+    .uc_fliter_treks_images {
       height: 200px;
       margin-bottom: 10px;
     }
@@ -580,6 +638,14 @@ export const upcomingTrekPageStyle = css.global`
 
     .mx-4.m-mx-0 {
       margin: 0px !important;
+    }
+
+    .m-d-block {
+      display: block;
+    }
+
+    .m-d-none {
+      display: none;
     }
   }
 `;

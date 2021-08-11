@@ -159,16 +159,18 @@ const UpComingTreks = ({ slice }) => {
     <>
       <div className="pt-5 pb-0">
         <div className="container">
-          <div className="row">
+          <div className="row border-bottom-4">
             <div className="col-lg-6 col-md-6">
               <h1 className="title-display-2">
                 {RichText.asText(upcomingTreksTitle)}
               </h1>
-              <h3 className="desc-dispaly-1 m-d-1">
+            </div>
+            <div className="col-lg-6 col-md-6">
+              <h3 className="p-display-1 m-d-1">
                 {RichText.asText(upcomingTreksDesc)}
               </h3>
             </div>
-            <div className="col-lg-6 col-md-6">
+            {/* <div className="col-lg-6 col-md-6">
               <div className="card ih_card shadow-md">
                 <div className="card-body-padd">
                   <div className="d-flex align-items-center">
@@ -239,30 +241,150 @@ const UpComingTreks = ({ slice }) => {
                   </div>
                 </div>
               </div>
+            </div> */}
+          </div>
+          <div className="row my-4">
+            <div className="col-lg-4 col-md-6 col-12">
+              <div className="filter_box">
+                <div className="card filter_inner_box">
+                  <div className="d-flex align-items-center mb-2">
+                    <div className="flex-grow-1">
+                      <h3 className="title-diplay-3-lora m-0">Filter</h3>
+                    </div>
+                    <div>
+                      <p className="m-0 link_text" onClick={clearAll}>
+                        Clear All
+                      </p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div>
+                      <p className="form-label mb-1">
+                        When do you want to trek?
+                      </p>
+                      <select
+                        class="form-control mb-2"
+                        id="exampleFormControlSelect1"
+                        ref={season}
+                      >
+                        <option>Winter</option>
+                        <option>Summer</option>
+                        <option>Autumn</option>
+                        <option>Rainy</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <p className="form-label mb-1">Trek Difficulty</p>
+                      <select
+                        class="form-control mb-2"
+                        id="exampleFormControlSelect1"
+                        ref={difficulty}
+                      >
+                        <option>Difficulty</option>
+                        <option>Beginner</option>
+                        <option>Moderate</option>
+                        <option>Difficult</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="d-flex align-items-center justify-content-between my-3">
+                      <div>
+                        <p className="m-0 link_text" onClick={findAll}>
+                          See All Treks
+                        </p>
+                      </div>
+                      <div>
+                        <button
+                          className="btn btn-ih-green-filter"
+                          onClick={find}
+                        >
+                          FIND TREKS
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+            {filterResult === true ? (
+              <div className="col-lg-8 col-md-12 col-12 m-d-none">
+                <div className="d-flex align-items-center justify-content-between">
+                  {results.map(function(result, i) {
+                    const slice = result.data.body.find(
+                      x => x.slice_type === "trek_banner"
+                    );
+                    const bannerImage = slice.primary.trek_banner_image.url;
+                    const trekCaptions = slice.primary.trek_caption;
+                    return (
+                      <div className="col-lg-6 col-md-12" key={i}>
+                        <div className="mx-4">
+                          <div alt="imgs" className="uc_fliter_treks_images">
+                            <Image
+                              src={bannerImage}
+                              layout="fill"
+                              objectFit="cover"
+                              objectPosition="50% 50%"
+                            />
+                            <div className="image_overlay_text_area_layout4">
+                              <div className="p-absolute">
+                                <p className="image_overlay_text_title mb-1">
+                                  {trekCaptions}
+                                </p>
+                                <p className="image_overlay_text_desc">
+                                  {trekCaptions}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="d-flex justify-content-end my-3 mx-4">
+                  <ReactPaginate
+                    ref={pagination}
+                    pageCount={pageCount}
+                    pageRangeDisplayed={4}
+                    marginPagesDisplayed={1}
+                    onPageChange={handlePageChange}
+                    containerClassName="pagination"
+                    activeClassName="active"
+                    pageLinkClassName="page-link"
+                    breakLinkClassName="page-link"
+                    nextLinkClassName="page-link"
+                    previousLinkClassName="page-link"
+                    pageClassName="page-item"
+                    breakClassName="page-item"
+                    nextClassName="page-item"
+                    previousClassName="page-item"
+                    previousLabel={<>&laquo;</>}
+                    nextLabel={<>&raquo;</>}
+                  />
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
 
           {filterResult === true ? (
-            <div className="mt-3 mb-5">
-              {/* <div className="container">
-                <h2 className="title-display-2 m-d-none">
-                  <span>Filter Results</span>
-                </h2>
-              </div> */}
-              {/* <div className="yellow-bg-4 mx-3"></div> */}
+            <div className="mt-3 mb-5 m-d-block">
               <div className="container">
                 <div className="row">
                   {results.map(function(result, i) {
                     const slice = result.data.body.find(
                       x => x.slice_type === "trek_banner"
                     );
-                    // console.log(slice);
                     const bannerImage = slice.primary.trek_banner_image.url;
                     const trekCaptions = slice.primary.trek_caption;
-                    // console.log(trekCaptions);
                     return (
                       <div className="col-lg-4 col-md-6" key={i}>
-                        <div alt="imgs" className="uc_featured_treks_images">
+                        <div alt="imgs" className="uc_fliter_treks_images">
                           <Image
                             src={bannerImage}
                             layout="fill"
