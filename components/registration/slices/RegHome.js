@@ -55,6 +55,7 @@ const RegHome = ({  slice }) => {
   const    dataItems = [];
 
    useEffect (  () => {
+    findEligibilityCriteria();
      
    auth.keycloak().then(([userTokenObject, userEmail])=>{ 
        setUserServiceObject(userTokenObject);
@@ -105,21 +106,21 @@ const RegHome = ({  slice }) => {
 
   async function findEligibilityCriteria() {
     const client = Client();
-    const prismicPageName=getTrekNameFromUrlQueryPath().replace("%20","_").toLocaleLowerCase();
-    console.log(prismicPageName);
-    const response = await Client().getByUID("trek", prismicPageName) || {};
-    // console.log(JSON.stringify(response));
-    const tt = response.data.body;///response.results.data.body;
-    const slice = tt && tt.find(x => x.slice_type === "book_your_trek");
-    setEligibilityCriteria(slice);
+    // const prismicPageName=getTrekNameFromUrlQueryPath().replace("%20","_").toLocaleLowerCase();
+    // console.log(prismicPageName);
+    // const response = await Client().getByUID("trek", prismicPageName) || {};
+    // // console.log(JSON.stringify(response));
+    // const tt = response.data.body;///response.results.data.body;
+    // const slice = tt && tt.find(x => x.slice_type === "book_your_trek");
+    // setEligibilityCriteria(slice);
 
-    /*const doc = await client
+    const doc = await client
       .query([Prismic.Predicates.at("document.type", "trek")])
       .then(function(response) {
         const tt = response.results[0].data.body;
         const slice = tt && tt.find(x => x.slice_type === "book_your_trek");
         setEligibilityCriteria(slice);
-      });*/
+      });
   }
 
 

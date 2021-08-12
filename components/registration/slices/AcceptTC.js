@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import {
   addOrUpdateState,
-  selectStateData,
-} from '../../reduxstate/counterSlice';
-import { useRouter } from 'next/router';
+  selectStateData
+} from "../../reduxstate/counterSlice";
+import { useRouter } from "next/router";
+import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 
-const AcceptTC = ( {data,props,onTermAccept} ) => {
+const AcceptTC = ({ data, props, onTermAccept }) => {
   const eligibilityCriteria = data;
   const stateData = useSelector(selectStateData);
   const dispatch = useDispatch();
   const router = useRouter();
-  const[showButton,setShowButton]=useState(false);
-  
+  const [showButton, setShowButton] = useState(false);
+  const [agree, setAgree] = useState();
 
   const EligibilityCriteriaTitle =
     eligibilityCriteria &&
@@ -24,7 +25,7 @@ const AcceptTC = ( {data,props,onTermAccept} ) => {
   const heading2 = eligibilityCriteria && eligibilityCriteria.primary.heading2;
   const ecArray = eligibilityCriteria && eligibilityCriteria.items;
 
-  useEffect ( () => {
+  useEffect(() => {
     setTimeout(() => {
       setShowButton(true);
     }, 2000);
@@ -62,9 +63,9 @@ const AcceptTC = ( {data,props,onTermAccept} ) => {
     );
   });
 
-  const termAccepted=()=>{
-      onTermAccept(true);
-  }
+  const termAccepted = () => {
+    onTermAccept(true);
+  };
 
   return (
     <>
@@ -91,11 +92,29 @@ const AcceptTC = ( {data,props,onTermAccept} ) => {
             </p>
             {ecExplainedList}
           </div>
-          {showButton && (
-          <button className="btn btn-ptr" onClick={termAccepted}>
-                          Accepted the term and conditions
-                        </button>
-                        )}
+          <div className="my-4 text-center">
+            <div className="mb-4">
+              <FormGroup check>
+                <Label check>
+                  <Input
+                    type="checkbox"
+                    onClick={e => setAgree(e.target.checked)}
+                  />{" "}
+                  I have read the eligibility criteria and understand the terms
+                  and conditions
+                </Label>
+              </FormGroup>
+            </div>
+            {showButton && (
+              <button
+                className="btn btn-ih-green"
+                onClick={termAccepted}
+                disabled={agree === true ? "" : "disabled"}
+              >
+                proceed to next step of registration
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </>

@@ -1,9 +1,27 @@
 import css from "styled-jsx/css";
 
 export const regStyle = css.global`
+@font-face {
+  font-family: Franklin Gothic;
+  src: url("/font/FRANKLINGOTHIC/framd.ttf");
+  src: url("/font/FRANKLINGOTHIC/framd.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Franklin Gothic Book;
+  src: url("/font/FRANKLINGOTHIC/FRABK.ttf");
+  src: url("/font/FRANKLINGOTHIC/FRABK.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Lora-Medium;
+  src: url("/font/LORA/Lora-Medium.ttf");
+  src: url("/font/LORA/Lora-Medium.ttf") format("truetype");
+}
+
   .title-h1 {
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 60px;
@@ -12,7 +30,7 @@ export const regStyle = css.global`
 
   .title-h2 {
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 48px;
@@ -27,7 +45,7 @@ export const regStyle = css.global`
   .title-h3 {
     line-height: 40px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 36px;
@@ -38,7 +56,7 @@ export const regStyle = css.global`
   .p-text-1 {
     line-height: 30px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 24px;
@@ -60,7 +78,7 @@ export const regStyle = css.global`
   .p-text-2 {
     line-height: 24px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -89,9 +107,9 @@ export const regStyle = css.global`
   }
 
   .p-text-3 {
-    line-height: 16px;
+    line-height: 18px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -141,7 +159,7 @@ export const regStyle = css.global`
   .p-text-3-2 {
     line-height: 16px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -151,7 +169,7 @@ export const regStyle = css.global`
   .p-text-4 {
     line-height: 24px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -161,7 +179,7 @@ export const regStyle = css.global`
   .p-text-small {
     line-height: 16px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -379,16 +397,18 @@ export const regStyle = css.global`
   }
 
   .btn-ih-green {
-    background: rgb(91, 133, 70);
+    background: rgba(57,114,41,1);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
     border: 0;
-    padding: 3px 30px;
+    border-radius: 2px;
+    padding: 10px 30px;
     border-radius: 0;
     line-height: 24px;
     text-align: center;
     font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 18px;
     color: rgba(255, 255, 255, 1);
     text-transform: capitalize;
   }
@@ -465,7 +485,7 @@ export const regStyle = css.global`
     padding: 2px 10px;
     line-height: 24px;
     text-align: left;
-    font-family: Lora;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -535,6 +555,33 @@ export const regStyle = css.global`
 
   .m-d-block {
     display: none;
+  }
+
+  .form-check-label {
+    // line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: rgba(0,0,0,1);
+    text-transform: capitalize;
+  }
+
+  .form-check-input[type="checkbox"] {
+    border: 2px solid rgb(255, 224, 127);
+    border-radius: 0;
+  }
+
+  .form-check-input {
+    width: 1.5em;
+    height: 1.5em;
+    margin-top: 0;
+    margin-right: 10px;
+  }
+
+  .form-check-input:checked {
+    background-color: rgb(255,224,127);
   }
 
   @media only screen and (max-width: 660px) {
