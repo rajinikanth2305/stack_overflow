@@ -219,8 +219,10 @@ export const trekStyle = css.global`
   }
 
   .btn-ih-green {
-    background: rgb(91, 133, 70);
+    background: rgba(57,114,41,1);
     border: 0;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.659);
+    border-radius: 2px;
     padding: 3px 30px;
     border-radius: 0;
     line-height: 24px;
@@ -228,9 +230,9 @@ export const trekStyle = css.global`
     font-family: Poppins;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 18px;
     color: rgba(255, 255, 255, 1);
-    text-transform: uppercase;
+    text-transform: capitalize;
     width: 100%;
   }
 
@@ -896,6 +898,10 @@ export const trekStyle = css.global`
     height: 230px;
   }
 
+  .p-calendar {
+    width: 100%;
+  }
+
   .p-calendar .p-datepicker {
     border: 0;
   }
@@ -906,8 +912,8 @@ export const trekStyle = css.global`
   }
 
   .p-datepicker table td > span {
-    width: 5rem;
-    height: 4rem;
+    width: auto;
+    height: auto;
     border-radius: 0;
   }
 

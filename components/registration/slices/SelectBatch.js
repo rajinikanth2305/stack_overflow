@@ -157,7 +157,7 @@ const SelectBatch = forwardRef((props, ref) => {
                 <div className="row my-4 mpt-0">
                   <div className="col-12 col-lg-12 col-md-12">
                     <div>
-                      <div className="slots-bg mb-4">
+                      <div className="slots-bg mb-2">
                         <div className="row">
                           <div className="col-6 col-lg-3 col-md-6">
                             <p className="p-text-3-1 mb-0">
@@ -201,8 +201,8 @@ const SelectBatch = forwardRef((props, ref) => {
               </div>
             </div>
           </div>
-          <div className="col-lg-6 col-md-12 mt-5">
-            <div className="px-3">
+          <div className="col-lg-6 col-md-12">
+            <div className="px-3 mt-custom-8">
               <div className="px-4 py-3 border-custom-green">
                 <p className="p-text-3-1-fg m-0">
                   Selected {bookingDate?.trekName} Trek Group:{" "}
@@ -225,15 +225,17 @@ const SelectBatch = forwardRef((props, ref) => {
             </div>
           </div>
         </div>
-        <div className="text-center">
-          <div className="my-3">
-            <button
-              type="button"
-              className="btn btn-ih-green py-2"
-              onClick={nextTabNav}
-            >
-              proceed to next step of registration
-            </button>
+        <div className="d-flex justify-content-center">
+          <div>
+            <div className="my-3">
+              <button
+                type="button"
+                className="btn btn-ih-green py-2"
+                onClick={nextTabNav}
+              >
+                proceed to next step of registration
+              </button>
+            </div>
           </div>
         </div>
       </div>

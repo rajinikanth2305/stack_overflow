@@ -1,23 +1,23 @@
 import css from "styled-jsx/css";
 
 export const regStyle = css.global`
-@font-face {
-  font-family: Franklin Gothic;
-  src: url("/font/FRANKLINGOTHIC/framd.ttf");
-  src: url("/font/FRANKLINGOTHIC/framd.ttf") format("truetype");
-}
+  @font-face {
+    font-family: Franklin Gothic;
+    src: url("/font/FRANKLINGOTHIC/framd.ttf");
+    src: url("/font/FRANKLINGOTHIC/framd.ttf") format("truetype");
+  }
 
-@font-face {
-  font-family: Franklin Gothic Book;
-  src: url("/font/FRANKLINGOTHIC/FRABK.ttf");
-  src: url("/font/FRANKLINGOTHIC/FRABK.ttf") format("truetype");
-}
+  @font-face {
+    font-family: Franklin Gothic Book;
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf");
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf") format("truetype");
+  }
 
-@font-face {
-  font-family: Lora-Medium;
-  src: url("/font/LORA/Lora-Medium.ttf");
-  src: url("/font/LORA/Lora-Medium.ttf") format("truetype");
-}
+  @font-face {
+    font-family: Lora-Medium;
+    src: url("/font/LORA/Lora-Medium.ttf");
+    src: url("/font/LORA/Lora-Medium.ttf") format("truetype");
+  }
 
   .title-h1 {
     text-align: left;
@@ -70,7 +70,7 @@ export const regStyle = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 24px;
-    color: rgba(0,0,0,1);
+    color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
     line-height: 26px;
   }
@@ -102,7 +102,7 @@ export const regStyle = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
-    color: rgba(0,0,0,1);
+    color: rgba(0, 0, 0, 1);
     text-transform: uppercase;
   }
 
@@ -193,7 +193,7 @@ export const regStyle = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
-    color: rgba(112,112,112,1);
+    color: rgba(112, 112, 112, 1);
     text-transform: capitalize;
   }
 
@@ -204,7 +204,7 @@ export const regStyle = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 10px;
-    color: rgba(112,112,112,1);
+    color: rgba(112, 112, 112, 1);
     text-transform: capitalize;
   }
 
@@ -253,7 +253,7 @@ export const regStyle = css.global`
     margin-bottom: 20px;
   }
 
-  .nav-item.nav-link.active {
+  .stepper-tabs > nav > .nav-item.nav-link.active {
     background-color: #ffffff !important;
     border: 0 !important;
     border-radius: 0 !important;
@@ -263,6 +263,7 @@ export const regStyle = css.global`
 
   .nav-item.nav-link.active:nth-child(1)::before {
     background: #ffc100;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -273,6 +274,7 @@ export const regStyle = css.global`
 
   .nav-item.nav-link.active:nth-child(2)::before {
     background: #ffc100;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -283,6 +285,7 @@ export const regStyle = css.global`
 
   .nav-item.nav-link.active:nth-child(3)::before {
     background: #ffc100;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -293,6 +296,7 @@ export const regStyle = css.global`
 
   .nav-item.nav-link.active:nth-child(4)::before {
     background: #ffc100;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -303,6 +307,7 @@ export const regStyle = css.global`
 
   .nav-item.nav-link.active:nth-child(5)::before {
     background: #ffc100;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -311,11 +316,12 @@ export const regStyle = css.global`
     margin-right: 15px;
   }
 
-  .nav-item.nav-link {
-    background: #ffc100; !important;
+  .stepper-tabs > nav > .nav-item.nav-link {
+    background: #ffc100 !important;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     border-radius: 0 !important;
     color: #000000;
-    padding: 12px 50px !important;
+    padding: 12px 5% !important;
     line-height: 18px;
     text-align: left;
     font-family: Franklin Gothic;
@@ -329,6 +335,7 @@ export const regStyle = css.global`
 
   .nav-item.nav-link:nth-child(1)::before {
     background: #ffffff;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -339,6 +346,7 @@ export const regStyle = css.global`
 
   .nav-item.nav-link:nth-child(2)::before {
     background: #ffffff;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -349,6 +357,7 @@ export const regStyle = css.global`
 
   .nav-item.nav-link:nth-child(3)::before {
     background: #ffffff;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -359,6 +368,7 @@ export const regStyle = css.global`
 
   .nav-item.nav-link:nth-child(4)::before {
     background: #ffffff;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -369,6 +379,7 @@ export const regStyle = css.global`
 
   .nav-item.nav-link:nth-child(5)::before {
     background: #ffffff;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -378,12 +389,12 @@ export const regStyle = css.global`
   }
 
   .login-form-box {
-      background: rgba(255,193,0,1);
-      padding: 5px;
+    background: rgba(255, 193, 0, 1);
+    padding: 5px;
   }
 
   .register-form-box {
-    background: rgba(242,242,242,1);
+    background: rgba(242, 242, 242, 1);
     padding: 5px;
   }
 
@@ -397,7 +408,7 @@ export const regStyle = css.global`
   }
 
   .btn-ih-green {
-    background: rgba(57,114,41,1);
+    background: rgba(57, 114, 41, 1);
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
     border: 0;
     border-radius: 2px;
@@ -413,9 +424,11 @@ export const regStyle = css.global`
     text-transform: capitalize;
   }
 
-  .btn-bihtn-yellow {
+  .btn-bihtn-yellow-reg {
     background: rgba(255, 193, 0, 1);
     border: 0;
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
     padding: 3px 30px;
     border-radius: 0;
     line-height: 24px;
@@ -423,7 +436,7 @@ export const regStyle = css.global`
     font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 18px;
     color: #000000;
     text-transform: capitalize;
   }
@@ -431,6 +444,8 @@ export const regStyle = css.global`
   .btn-bihtn-yellow-sm {
     background: rgba(255, 193, 0, 1);
     border: 0;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
+    border-radius: 2px;
     padding: 3px 15px;
     border-radius: 0;
     line-height: 24px;
@@ -494,11 +509,11 @@ export const regStyle = css.global`
   }
 
   .table.table-main > thead > tr {
-    background: rgba(91,133,70,1)
+    background: rgba(91, 133, 70, 1);
   }
 
   .table.table-secondar-main > thead > tr {
-    background: rgba(242,242,242,1);
+    background: rgba(242, 242, 242, 1);
   }
 
   .table.table-main > thead > tr > th {
@@ -507,7 +522,7 @@ export const regStyle = css.global`
     font-style: normal;
     font-weight: normal !important;
     font-size: 14px;
-    color: rgba(255,255,255,1);
+    color: rgba(255, 255, 255, 1);
     text-transform: capitalize;
   }
 
@@ -530,7 +545,7 @@ export const regStyle = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
-    color: rgba(0,0,0,1);
+    color: rgba(0, 0, 0, 1);
   }
 
   .table.table-secondar-main > tbody > tr > td {
@@ -541,7 +556,7 @@ export const regStyle = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
-    color: rgba(0,0,0,1);
+    color: rgba(0, 0, 0, 1);
   }
 
   .box-shadow {
@@ -564,7 +579,7 @@ export const regStyle = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
-    color: rgba(0,0,0,1);
+    color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
   }
 
@@ -581,7 +596,84 @@ export const regStyle = css.global`
   }
 
   .form-check-input:checked {
-    background-color: rgb(255,224,127);
+    background-color: rgb(255, 224, 127);
+  }
+
+  .p-calendar {
+    width: 100%;
+  }
+
+  .p-calendar .p-datepicker {
+    border: 0;
+  }
+
+  .p-datepicker table td {
+    border: 1px solid #d3d3d3;
+    font-weight: 600;
+  }
+
+  .p-datepicker table td > span {
+    width: auto;
+    height: auto;
+    border-radius: 0;
+  }
+
+  .p-datepicker table td.p-datepicker-today > span {
+    background: transprant;
+  }
+
+  .mt-custom-8 {
+    margin: 70px 0 20px;
+  }
+
+  .p-inputtext,
+  .p-inputnumber {
+    // border: 1px solid rgb(161, 156, 156);
+    width: 100%;
+    margin: 1px 0;
+    font-family: Lore-Medium;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(112, 112, 112, 1);
+    text-transform: capitalize;
+  }
+
+  .p-autocomplete {
+    width: 93% !important;
+    margin: 1px 0;
+    font-family: Lore-Medium;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(112, 112, 112, 1);
+    text-transform: capitalize;
+  }
+
+  .reg-dropdown.form-group > .p-dropdown {
+    border: 1px solid #ced4da;
+    border-radius: 2px;
+    width: 100%;
+  }
+
+  .reg-dropdown.form-group > .p-dropdown > .p-dropdown-label {
+    font-family: Lore-Medium;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(112, 112, 112, 1);
+    text-transform: capitalize;
+  }
+
+  .mp-dropdown.reg-dropdown.form-group > .p-dropdown {
+    border: 1px solid #ced4da;
+    border-radius: 2px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.161);
+    width: 100%;
+  }
+
+  .mp-dropdown.reg-dropdown.form-group > .p-dropdown > .p-dropdown-label {
+    padding: 0 10px;
   }
 
   @media only screen and (max-width: 660px) {
@@ -630,7 +722,7 @@ export const regStyle = css.global`
     }
 
     .p-text-2.m-p-text-gray {
-      color: rgba(112,112,112,1);
+      color: rgba(112, 112, 112, 1);
       font-size: 14px;
     }
 

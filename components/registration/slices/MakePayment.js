@@ -271,7 +271,7 @@ const doPayment=() => {
                       <div className="d-flex align-items-center">
                         <div>
                         {vouchers.length>0 && (
-                          <FormGroup>
+                          <FormGroup className="reg-dropdown mp-dropdown">
                           <Controller
                                  name="selectedVoucher"
                                  control={control}
