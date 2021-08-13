@@ -124,7 +124,7 @@ const UserPT = () => {
   };
 
   const prevTrekData = bookings?.map(function(data, i) {
-    return (
+    return ( 
       <>
         <div key={data.id}>
           <div className="card mb-4">
