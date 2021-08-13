@@ -1,17 +1,16 @@
-import React, { useState,useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { Progress } from "reactstrap";
 import Link from "next/link";
-import auth  from '../../../../services/Authenticate';
-import { getdashBoardUserBooking } from '../../../../services/queries';
+import auth from "../../../../services/Authenticate";
+import { getdashBoardUserBooking } from "../../../../services/queries";
 import moment from "moment";
 import { useRouter } from "next/router";
 import Prismic from "@prismicio/client";
 import { Client } from "../../../../utils/prismicHelpers";
-
-
+import Image from "next/image";
 
 const UserPT = () => {
   const [activeTab, setActiveTab] = useState(null);
@@ -22,8 +21,7 @@ const UserPT = () => {
 
   const saveData = () => {
     setActiveTab(null);
-  }
-
+  };
 
   const [userServiceObject, setUserServiceObject] = useState(undefined);
   const [userEmail, setUserEmail] = useState(undefined);
@@ -40,92 +38,90 @@ const UserPT = () => {
 
   const toast = useRef(null);
 
-  React.useEffect(  () => {
-    //const res=await 
-  auth.keycloak()
-       .then(([userTokenObject, userEmail])=>{ 
-             setUserEmail(userEmail);
-             setUserServiceObject(userTokenObject);
-             fetchAndBindUserBookings(userEmail);
-            // return userEmail;
-         });
-       // console.log(res);
-        //fetchAndBindUserBookings(res);
+  React.useEffect(() => {
+    //const res=await
+    auth.keycloak().then(([userTokenObject, userEmail]) => {
+      setUserEmail(userEmail);
+      setUserServiceObject(userTokenObject);
+      fetchAndBindUserBookings(userEmail);
+      // return userEmail;
+    });
+    // console.log(res);
+    //fetchAndBindUserBookings(res);
   }, []);
 
-
-  function fetchAndBindUserBookings (email) {
+  function fetchAndBindUserBookings(email) {
     console.log(email);
-   
-     getdashBoardUserBooking(email,true)
-        .then(bookingsData=>{
-         /// Idenitify and get the booking owner profile informations 
-         console.log(bookingsData);
-         if(bookingsData.length>0) {  
-             const bookingOwner= bookingsData.map((element) => {
-                 const mainuser=element.trekMates.find((subElement) => subElement.userDetailsForDisplay.email === email);
-                 if(mainuser!==undefined)
-                   return mainuser;
-             });
-             setBookingOwner(bookingOwner[0]);
-             getAndSetTrekContents(bookingsData,email);
-         }
+
+    getdashBoardUserBooking(email, true).then(bookingsData => {
+      /// Idenitify and get the booking owner profile informations
+      console.log(bookingsData);
+      if (bookingsData.length > 0) {
+        const bookingOwner = bookingsData.map(element => {
+          const mainuser = element.trekMates.find(
+            subElement => subElement.userDetailsForDisplay.email === email
+          );
+          if (mainuser !== undefined) return mainuser;
+        });
+        setBookingOwner(bookingOwner[0]);
+        getAndSetTrekContents(bookingsData, email);
+      }
     });
-   }
- 
- 
- const setStates =(bookTrekContents) => {
- 
-   console.log(bookTrekContents);
-   setBookings(bookTrekContents);
+  }
+
+  const setStates = bookTrekContents => {
+    console.log(bookTrekContents);
+    setBookings(bookTrekContents);
     const arr = Array.from(new Array(bookTrekContents.length), (x, i) => i);
     setIndexes(arr);
     setCounter(arr.length);
     setRender(true);
- }
- 
- const getAndSetTrekContents = async (bookingsData,userEmail) => {
- 
-   const bookTrekContents=[];
-   const client = Client();
-   /// Now get Trek content data from Prismic 
-   for (const book of  bookingsData) {
-     const trekName=book.trekName.trim().replace(" ","_").toLowerCase();
-     const result  = await Client().getByUID("trek", trekName);
-    
-     //console.log(slice);
-     let bannerImage = '';
-    let trekCaptions = book.trekName ;
+  };
 
-    if(result !== undefined) {
-    const slice = result.data.body.find(x => x.slice_type === "trek_banner");
+  const getAndSetTrekContents = async (bookingsData, userEmail) => {
+    const bookTrekContents = [];
+    const client = Client();
+    /// Now get Trek content data from Prismic
+    for (const book of bookingsData) {
+      const trekName = book.trekName
+        .trim()
+        .replace(" ", "_")
+        .toLowerCase();
+      const result = await Client().getByUID("trek", trekName);
+
       //console.log(slice);
-     bannerImage = slice.primary.trek_banner_image.url;
-     trekCaptions = slice.primary.trek_caption;
+      let bannerImage = "";
+      let trekCaptions = book.trekName;
+
+      if (result !== undefined) {
+        const slice = result.data.body.find(
+          x => x.slice_type === "trek_banner"
+        );
+        //console.log(slice);
+        bannerImage = slice.primary.trek_banner_image.url;
+        trekCaptions = slice.primary.trek_caption;
+      }
+
+      bookTrekContents.push({
+        trekId: book.trekId,
+        batchId: book.batchId,
+        bookingId: book.bookingId,
+        email: userEmail,
+        bannerImageUrl: bannerImage,
+        trekName: trekCaptions,
+        startDate: book.batchStartDate,
+        endDate: book.batchEndDate,
+        trekCoordinator: book.trekCoordinator,
+        trekWhatsappLink: book.trekWhatsappLink,
+        bookingParticipantState: book.bookingParticipantState,
+        participantsCount: book.trekMates.length,
+        userTrekBookingParticipants: book.trekMates,
+        trekStatus: book.bookingState,
+        reviewStatus: "yes"
+      });
     }
-
-     bookTrekContents.push({
-       trekId:book.trekId,
-       batchId:book.batchId,
-       bookingId:book.bookingId,
-       email:userEmail,
-       bannerImageUrl:bannerImage,
-       trekName:trekCaptions,
-       startDate: book.batchStartDate,
-       endDate: book.batchEndDate,
-       trekCoordinator: book.trekCoordinator,
-       trekWhatsappLink: book.trekWhatsappLink,
-       bookingParticipantState: book.bookingParticipantState,
-       participantsCount:book.trekMates.length,
-       userTrekBookingParticipants:book.trekMates,
-       trekStatus:book.bookingState,
-       reviewStatus:'yes'
-     });
-   }
-  setStates(bookTrekContents);
- }
-
-
+    setStates(bookTrekContents);
+  };
 
   const prevTrekData = bookings?.map(function(data, i) {
     return (
@@ -133,13 +129,25 @@ const UserPT = () => {
         <div key={data.id}>
           <div className="card mb-4">
             <div className="row">
-              <div className="col-lg-3 col-md-12">
-                <div className="trekimg">
-                <img src= {data?.bannerImageUrl} height="220px" width="320px"/>
-                </div>
+              <div className="col-lg-4 col-md-12">
+                {/* <div className="trekimg"> */}
+                {data?.bannerImageUrl !== "" ? (
+                  <img src={data?.bannerImageUrl} className="trekimg" />
+                ) : (
+                  <img src="/ip.png" className="trekimg" />
+                )}
+                {/* {data && (
+                    <Image
+                      src={data?.bannerImageUrl}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="50% 50%"
+                    />
+                  )} */}
+                {/* </div> */}
               </div>
-              <div className="col-lg-9 col-md-12">
-                <div className="py-3 px-5">
+              <div className="col-lg-8 col-md-12">
+                <div className="trek-card-inner-box">
                   <div className="d-flex justify-content-between align-items-end">
                     <div>
                       <h3 className="title-h3">{data.trekName}</h3>
@@ -150,7 +158,7 @@ const UserPT = () => {
                   </div>
                   <Progress
                     className={
-                      data.trekStatus === "Trek Completed"
+                      data.trekStatus === "COMPLETED"
                         ? "trek-completed-progress"
                         : "trek-cancelled-progress"
                     }
@@ -160,12 +168,15 @@ const UserPT = () => {
                   <div className="d-flex flex-wrap align-items-center justify-content-between py-4 mb-2">
                     <div>
                       <p className="m-0 p-text-small-fg">batch dates</p>
-                      <p className="m-0 p-text-2-fg">{moment(data?.startDate).format('MM/DD/YYYY')} - {moment(data?.endDate).format('MM/DD/YYYY')}</p>
+                      <p className="m-0 p-text-2-fg">
+                        {moment(data?.startDate).format("MM/DD/YYYY")} -{" "}
+                        {moment(data?.endDate).format("MM/DD/YYYY")}
+                      </p>
                     </div>
                     <div>
                       <p className="m-0 p-text-small-fg">participants</p>
                       <p className="m-0 p-text-2-fg">
-                      {data?.participantsCount} trekkers
+                        {data?.participantsCount} trekkers
                       </p>
                     </div>
                     <div>
@@ -173,7 +184,8 @@ const UserPT = () => {
                         Experience Coordinator
                       </p>
                       <p className="m-0 p-text-2-fg text-decoration-underline">
-                      {data?.trekCoordinator?.firstName} {data?.trekCoordinator?.lastName}
+                        {data?.trekCoordinator?.firstName}{" "}
+                        {data?.trekCoordinator?.lastName}
                       </p>
                     </div>
                   </div>
@@ -361,7 +373,11 @@ const UserPT = () => {
                         </div>
                       </div>
                       <div className="text-center">
-                        <button type="button" className="btn table-btn-green-lg" onClick={saveData}>
+                        <button
+                          type="button"
+                          className="btn table-btn-green-lg"
+                          onClick={saveData}
+                        >
                           submit review
                         </button>
                       </div>
@@ -387,7 +403,8 @@ const UserPT = () => {
                 <div className="col-lg-10 col-md-12 bg-gray border-right b-right-2px">
                   <div className="mb-2 py-4">
                     <p className="p-text-1 font-weight-bold m-0">
-                    Hi {bookingOwner?.userDetailsForDisplay.firstName} - {bookingOwner?.userDetailsForDisplay.lastName}
+                      Hi {bookingOwner?.userDetailsForDisplay.firstName} -{" "}
+                      {bookingOwner?.userDetailsForDisplay.lastName}
                     </p>
                     <p className="p-text-1 font-weight-bold">
                       Welcome To Your Indiahikes Trek Dashboard!
@@ -406,7 +423,7 @@ const UserPT = () => {
                     </h5>
 
                     <div className="row">
-                      <div className="col-lg-12 col-md-12">{prevTrekData}</div>
+                      <div className="col-lg-11 col-md-12">{prevTrekData}</div>
                     </div>
                   </div>
                 </div>

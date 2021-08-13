@@ -1,6 +1,24 @@
 import css from "styled-jsx/css";
 
 export const customStyles = css.global`
+  @font-face {
+    font-family: Franklin Gothic;
+    src: url("/font/FRANKLINGOTHIC/framd.ttf");
+    src: url("/font/FRANKLINGOTHIC/framd.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: Franklin Gothic Book;
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf");
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: Lora;
+    src: url("/font/LORA/Lora-Medium.ttf");
+    src: url("/font/LORA/Lora-Medium.ttf") format("truetype");
+  }
+
   .container.container-custom {
     max-width: 1600px;
   }
@@ -525,7 +543,7 @@ export const customStyles = css.global`
     font-family: Franklin Gothic Book;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 12px;
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
   }
@@ -831,6 +849,7 @@ export const customStyles = css.global`
   .trekimg {
     width: 100%;
     height: 225px;
+    position: relative;
   }
 
   .p-text-10-fgb {
@@ -929,7 +948,31 @@ export const customStyles = css.global`
   }
 
   .q-border {
-    border-top: 2px solid rgba(255,193,0,1);
+    border-top: 2px solid rgba(255, 193, 0, 1);
+  }
+
+  .trek-card-inner-box {
+    padding: 24px 30px 24px 0;
+  }
+
+  .ud-dropwon-1.form-group > .p-dropdown > .p-dropdown-label {
+    font-family: Lore-Medium;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(112, 112, 112, 1);
+    text-transform: capitalize;
+  }
+
+  .ud-dropwon-1.form-group > .p-dropdown {
+    background: #f2f2f2;
+    border: 0;
+    border-radius: 0;
+    width: 100%;
+  }
+
+  .ud-dropwon-1.form-group > .p-dropdown > .p-dropdown-label {
+    padding: 0 10px;
   }
 
   @media only screen and (max-width: 660px) {
