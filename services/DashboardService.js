@@ -21,7 +21,7 @@ const getTokenHeader=async () => {
   export const getUserBooking =  async (email)  => {
      const header=await getTokenHeader();
      const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
-     let url = `${userApi}/users/${email}/bookings`;
+     let url = `${userApi}/users/my-bookings`;
      return axios.get(url,{ headers:  header })
             .then((res) => res.data);
 };

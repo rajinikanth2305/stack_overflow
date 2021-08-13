@@ -46,7 +46,7 @@ export const getBatches = async (trekName, month,year)  => {
 
   export const getUserVoucher = async (userEmail) => {
     const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
-    const url = `${userApi}/vouchers?userEmail=${userEmail}`;
+    const url = `${userApi}/vouchers?myVoucherOnly=true`;
     const header=await getTokenHeader();
 
             try {
@@ -67,7 +67,7 @@ export const getBatches = async (trekName, month,year)  => {
   // export const locationBaseApi = `http://localhost:9090/api/v1/locations`;
 export const getBatchInfoByUserAndBatchId = async (userEmail, batchId)  => {
   const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
-  let url = `${userApi}/users/${userEmail}/bookings-for-the-batch/${batchId}`;
+  let url = `${userApi}/users/my-bookings-for-batches/${batchId}`;
   const header=await getTokenHeader();
   return axios.get(url,{ headers: header}) ;
   
@@ -82,7 +82,7 @@ const getTokenHeader=async () => {
   export const findUserByEmail =  async (email)  => {
     const header=await getTokenHeader();
                   const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
-                  let url = `${userApi}/users/${email}`;
+                  let url = `${userApi}/users/me`;
                   return axios.get(url,{ headers:  header })
                          .then((res) => res.data);
            
@@ -91,7 +91,7 @@ const getTokenHeader=async () => {
   export const getUserBooking =  async (email)  => {
      const header=await getTokenHeader();
      const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
-     let url = `${userApi}/users/${email}/bookings`;
+     let url = `${userApi}/users/my-bookings`;
      return axios.get(url,{ headers:  header })
             .then((res) => res.data);
 
@@ -103,7 +103,7 @@ const getTokenHeader=async () => {
 
      const header=await getTokenHeader();
      const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
-     let url = `${userApi}/users/${email}/bookings`;
+     let url = `${userApi}/users/my-bookings`;
   
      const payload={
       "bookingId": 0,
@@ -160,7 +160,7 @@ export const saveDraftBooking =  async (data,stepName='Default')  => {
    const header=await getTokenHeader();
    const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
    const primaryUserEmail=data.primaryUserEmail;
-   let url = `${userApi}/users/${primaryUserEmail}/bookings`;
+   let url = `${userApi}/users/my-bookings`;
 
    const ownerId=data.trekUsers.find(x=>x.email===primaryUserEmail).id;
 
@@ -229,7 +229,7 @@ const buildTrekMates = (data,primaryUserEmail,stepName='Default') => {
 export const getdashBoardUserBooking =  async (email,prevBookings=false)  => {
   const header=await getTokenHeader();
   const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
-  let url = `${userApi}/users/${email}/bookings?previousBookingOnly=${prevBookings}`;
+  let url = `${userApi}/users/my-bookings?previousBookingOnly=${prevBookings}`;
   return axios.get(url,{ headers:  header })
          .then((res) => res.data);
 };
@@ -239,7 +239,7 @@ export const cancelUserBooking =  async (userEmail,bookingId)  => {
 
   const header=await getTokenHeader();
   const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
-  let url = `${userApi}/users/${userEmail}/bookings/${bookingId}/cancel-treks`;
+  let url = `${userApi}/users/my-bookings/${bookingId}/cancel-treks`;
   return axios.patch(url,{},{ headers:  header })
          .then((res) => res.data);
 };
