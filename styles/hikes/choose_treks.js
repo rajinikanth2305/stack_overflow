@@ -282,6 +282,10 @@ export const ChooseTreks = css.global`
     content: "\f100" !important;
   }
 
+  .slick-dots li button::before {
+    font-size: 10px;
+  }
+
   .slick-dots li.slick-active button::before {
     opacity: 1;
     color: rgb(255, 193, 0);
