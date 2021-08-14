@@ -147,7 +147,8 @@ const AddTrekMates = forwardRef((props, ref) => {
       gender: data.gender,
       dob: data.dob,
       vouchers: [],
-      optedVoucherId: 0
+      optedVoucherId: 0,
+      trekFeeForTheUser:0
     });
 
     await dispatch(addOrUpdateState(sdata));
@@ -280,7 +281,8 @@ const AddTrekMates = forwardRef((props, ref) => {
       dob: "",
       gender: "",
       vouchers: vouchers,
-      optedVoucherId: 0
+      optedVoucherId: 0,
+      trekFeeForTheUser:0
     });
 
     await dispatch(addOrUpdateState(sdata));

@@ -165,6 +165,8 @@ const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,cal
       getBatchInfoByUserAndBatchId(userId,batchId)
       .then(data => {
         console.log("Booking found for the batchid and useremailid");
+        /// if state is cancelled or completed then block the flow
+
         setStateStoreData(data.data,userId);
 
         if(stepName!==undefined){
@@ -245,7 +247,13 @@ const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,cal
 
     console.log(userId);
 
-    const bookDetails2 = {
+    let vouchers=[];
+    vouchers=await getVoucher(userId);
+    if(vouchers.length>0 ){
+      vouchers= transFormVoucherPayload(vouchers);
+    }
+
+    const bookingInformaiton = {
       trekId:data.trekId,
       batchId:data.batchId,
       startDate:data.startDate,
@@ -253,17 +261,18 @@ const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,cal
       trekName:data.trekName,
       bookingId:data.id,
       primaryUserEmail:userId,
+      voucherDetails:vouchers,
       trekUsers:[]
     };
 
-     let index=0;
-    /// check any other participants if then push
+    const filterds=data.participants;//.filter(f=>f.bookingParticipantState!=='CANCELLED');
 
-    for (const userData of  data.participants) {
-      const dt= await buildParticipants(userData,userId);
-      bookDetails2.trekUsers.push(dt);
+    for (const userData of  filterds) {
+      const dt= await buildParticipants(userData);
+      bookingInformaiton.trekUsers.push(dt);
     }
-    setStateStoreDataAndTriggerTabChangesState(bookDetails2);
+    console.log(bookingInformaiton);
+    setStateStoreDataAndTriggerTabChangesState(bookingInformaiton);
    
    // }
   //catch(err) {
@@ -271,11 +280,7 @@ const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,cal
   //}
   }
 
-  const buildParticipants=  async  (userData,primaryUserEmail)=>{
-      let vouchers=[];
-      if(userData.userDetailsForDisplay.email===primaryUserEmail){
-        vouchers=await getVoucher(userData.userDetailsForDisplay?.email);
-      }
+  const buildParticipants=  async  (userData)=>{
       const obh={
         firstName:userData.userDetailsForDisplay?.firstName,
         lastName:userData.userDetailsForDisplay?.lastName,
@@ -289,8 +294,11 @@ const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,cal
         height:0,
         weight:0,
         dob:'',
-        vouchers:vouchers,
-        optedVoucherId:0
+       // vouchers:vouchers,
+        optedVoucherId:0,
+        trekFeeForTheUser: userData.trekFeeForTheUser,
+        taxPercentage: userData.taxPercentage,
+        insuranceAmount: userData.insuranceAmount,
       }
       return obh;
     }
@@ -315,6 +323,29 @@ const onTermAccept= async (value,userEmail='',pbatchId='',stepName=undefined,cal
     paymentChildRef.current.changeState();
   }
 
+  const transFormVoucherPayload =(vouchers)=>{
+    const voucherlist=[];
+    vouchers.map(v=>{
+      voucherlist.push({
+        id: v.id,
+        userId: v.userId,
+        title: v.title,
+        amount: v.amount,
+        validTill: v.validTill,
+        message: v.message,
+        amountAvailed: v.amountAvailed,
+        voucherTypeId:v.voucherTypeId,
+        sendMailer: v.sendMailer,
+        voucherStatus: v.voucherStatus,
+        voucherType: v.voucherType,
+        userName: v.userName,
+        amountAvailable: v.amountAvailable,
+        usedVocuherAmount:0,
+        appliedDetails:[]
+      })
+    })
+  return voucherlist;
+  }
   const setTabActive=(value) => {
     setKey(value);
   }

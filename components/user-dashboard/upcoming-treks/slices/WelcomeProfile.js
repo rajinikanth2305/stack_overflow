@@ -136,7 +136,8 @@ const WelcomeProfile = () => {
         trekWhatsappLink: book.trekWhatsappLink,
         bookingParticipantState: book.bookingParticipantState,
         participantsCount: book.trekMates.length,
-        userTrekBookingParticipants: book.trekMates
+        userTrekBookingParticipants: book.trekMates,
+        bookingState:book.bookingState
       });
     }
     setStates(bookTrekContents);
@@ -302,6 +303,22 @@ const WelcomeProfile = () => {
                                       </div>
                                     </div>
                                     <div className="d-flex justify-content-end">
+                                    { upComingTrek.bookingState==="PAYMENT" &&   (
+                                                <div>
+                                              <button
+                                                className="btn table-btn-blue"
+                                                onClick={e =>
+                                                  addParticipants(
+                                                    upComingTrek?.batchId
+                                                  )
+                                                }
+                                              >
+                                                <span className="px-2">
+                                                  add participants
+                                                </span>
+                                              </button>
+                                              </div>
+                                    )}
                                       <button className="btn table-btn-green mx-3">
                                         <i
                                           class="fa fa-whatsapp"
@@ -476,6 +493,8 @@ const WelcomeProfile = () => {
                                               </p>
                                             </div>
                                             <div>
+                                              { trekData.bookingState==="PAYMENT" && (
+                                                <>
                                               <button
                                                 className="btn table-btn-blue mx-3"
                                                 onClick={e =>
@@ -496,6 +515,8 @@ const WelcomeProfile = () => {
                                               >
                                                 Make payment
                                               </button>
+                                              </>
+                                             )}
                                             </div>
                                           </div>
                                         </div>

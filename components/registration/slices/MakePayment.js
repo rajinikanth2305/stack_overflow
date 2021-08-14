@@ -3,10 +3,11 @@ import { RichText } from "prismic-reactjs";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-import { findUserByBatchId,makePayment, saveDraftBooking } from '../../../services/queries';
+import { findUserByBatchId, saveDraftBooking ,doSavePayments} from '../../../services/queries';
 import { Dropdown } from 'primereact/dropdown';
 import { useForm, Controller } from 'react-hook-form';
 import jQuery from 'jquery';
+import { Toast } from "primereact/toast";
 
 import {
   addOrUpdateState,
@@ -17,9 +18,9 @@ import moment from "moment";
 
 const MakePayment = forwardRef((props,ref) => {
 
-  const [bookingDate, setBookingDate] = useState(undefined);
+  const [bookingInformation, setBookingInformation] = useState(undefined);
   const [trekData, setTrekData] = useState(undefined);
-
+  const toast = useRef(null);
 
   const stateData = useSelector(selectStateData);
   const dispatch = useDispatch();
@@ -73,7 +74,7 @@ const MakePayment = forwardRef((props,ref) => {
      changeState () {
       const sdata= JSON.parse(JSON.stringify(stateData.data));
 
-      if(bookingDate!==undefined || sdata.batchId !==bookingDate?.batchId ) {
+      if(bookingInformation!==undefined || sdata.batchId !==bookingInformation?.batchId ) {
         /// get the trekdetails with fee and gst etc.. and set... one time...
         findUserByBatchId(sdata.batchId)
         .then((batchData) => {
@@ -94,13 +95,15 @@ const MakePayment = forwardRef((props,ref) => {
   }));
 
   const setChangeStateData= async (sdata,trekFee)=> {
-    sdata.trekUsers.map(x=>
-      x.trekFee= trekFee
-    );
+    sdata.trekFee=trekFee;
+    sdata.trekUsers.map(x=> {
+      if(x.trekFeeForTheUser!==0)
+         x.trekFeeForTheUser= trekFee;
+    });
 
    await dispatch(addOrUpdateState(sdata));
 
-    const bookingDates = {
+    const bookingsInfo = {
       trekId:sdata.trekId,
       batchId:sdata.batchId,
       startDate:sdata.startDate,
@@ -111,19 +114,23 @@ const MakePayment = forwardRef((props,ref) => {
       batchId:sdata.batchId,
       email:sdata.primaryUserEmail
     }
-    setBookingDate(bookingDates);
+
+    setBookingInformation(bookingsInfo);
     computeTotal(sdata.trekUsers);
     const arr = Array.from(new Array(sdata.trekUsers?.length), (x, i) => i);
     setIndexes(arr);
     setCounter(arr.length);
+
   }
  
-  const computeTotal=(usersData)=>{
-    const totalTrekFee=usersData.reduce((a,v) =>  a = a + v.trekFee , 0 );
-    const totalVoucherAmount=usersData.reduce((a,v) =>  a = a + v.voucherAmount , 0 );
+  const computeTotal=(usersData,sdata)=>{
+
+    const totalTrekFee=usersData.reduce((a,v) =>  a = a + v.trekFeeForTheUser , 0 );
     const gst=5;
     const gstValue=(gst/100) * totalTrekFee;
     const total= totalTrekFee + gstValue;
+
+    const totalVoucherAmount=usersData.reduce((a,v) =>  a = a + v.voucherAmount , 0 );
     const youpay=total-totalVoucherAmount;
     
     setComputeFields({...computeFields,  computations: 
@@ -134,8 +141,10 @@ const MakePayment = forwardRef((props,ref) => {
       voucherDeduction: totalVoucherAmount,
       youpay: youpay
       }
-});
 
+     
+});
+return youpay;
 }
 
   function handleResponse(res) {
@@ -164,9 +173,23 @@ const MakePayment = forwardRef((props,ref) => {
     const sdata= JSON.parse(JSON.stringify( stateData.data));
     const user=sdata.trekUsers.find(u=>u.id===id);
     if(user.optedVoucherId >0) {
-      sdata.trekUsers.find(u=>u.id===id).voucherId=user.optedVoucherId;
-      sdata.trekUsers.find(u=>u.id===id).voucherAmount=user.vouchers.find(vid=>vid.id==user.optedVoucherId).amount;
-     // console.log(JSON.stringify(sdata));
+      const selectedVoucher=sdata.voucherDetails.find(vid=>vid.id==user.optedVoucherId);
+      const youPay=computeTotal(sdata.trekUsers);
+      console.log(youPay);
+      if (youPay > 0) {
+        const currentAvailableAmount=(selectedVoucher.amountAvailable);
+
+        if(  currentAvailableAmount > 0 ) {
+          const amountToDeductInVocuher=(youPay >  currentAvailableAmount) ? 
+                         ( currentAvailableAmount) : (youPay);
+
+                         console.log(amountToDeductInVocuher);
+
+         sdata.trekUsers.find(u=>u.id===id).voucherId=user.optedVoucherId;
+         sdata.trekUsers.find(u=>u.id===id).voucherAmount=amountToDeductInVocuher;
+        } 
+      }
+      console.log(JSON.stringify(sdata));
       await dispatch(addOrUpdateState(sdata));
       computeTotal(sdata.trekUsers);
     }
@@ -174,41 +197,87 @@ const MakePayment = forwardRef((props,ref) => {
 
   const onVoucherSelect = async (id,value) => {
    // console.log(JSON.stringify(value));
-      const sdata= JSON.parse(JSON.stringify( stateData.data));
+   const sdata= JSON.parse(JSON.stringify( stateData.data));
+          //// check if already it is selected:
+          const optedId=sdata.trekUsers.find(u=>u.optedVoucherId===value);
+          console.log(optedId);
+
+          if(optedId!==undefined) {
+            toast.current.show({
+              severity: "error",
+              summary: `'The selected Voucher is already applied'`,
+              detail: "Make payment"
+            });
+            /// Resetting the old selected voucher values;
+            sdata.trekUsers.find(u=>u.id===id).optedVoucherId='';
+            sdata.trekUsers.find(u=>u.id===id).voucherAmount=0;
+            sdata.trekUsers.find(u=>u.id===id).voucherId='';
+            await dispatch(addOrUpdateState(sdata));
+            computeTotal(sdata.trekUsers);
+            return;
+          }
       sdata.trekUsers.find(u=>u.id===id).optedVoucherId=value;
+      sdata.trekUsers.find(u=>u.id===id).voucherAmount=0;
+      sdata.trekUsers.find(u=>u.id===id).voucherId='';
      // console.log(JSON.stringify(sdata));
       await dispatch(addOrUpdateState(sdata));
   }
-  
-  
 
 const doPayment=() => {
+  const voucherList=buildVouchers(stateData.data);
 
-  /// call & saveDraft then
-  saveDraftBooking(stateData.data,'make_payment')
-  .then(res=>{
-            makePayment(stateData.data)
-            .then(res=> {
-                window.jQuery.pnCheckout(res);
-                if(res.features.enableNewWindowFlow){
-                pnCheckoutShared.openNewWindow();
-                }
-        })
-        .catch((res)=>{
-          if(res.response?.data?.message) {
-            console.log(res.response.data?.message);
-          }
-         })
-  })
-  .catch((res)=>{
-    if(res.response?.data?.message) {
-      console.log(res.response.data?.message);
-    }
-   })
+  if(computeFields.computations.youpay > 0) {  /// call the paymentgateway
+         processPayments(voucherList, stateData);
 }
+else {
+  doSavePayments(stateData.data.bookingId,voucherList)
+     .then(res=> {
+        /// redirect to booking confirmation page
+        router.push(`/bookingstatus`);
+ })
+ .catch((res)=>{
+   if(res.response?.data?.message) {
+    toast.current.show({
+      severity: "error",
+      summary: `'Make payment is not succeeded' ${res.response?.data?.message}`,
+      detail: "Find Trekker"
+    });
+   }
+  })
+}
+}
+const processPayments=(voucherList,stateData) => {
+  doSavePayments(stateData.data.bookingId, voucherList)
+    .then(res => {
+      window.jQuery.pnCheckout(res);
+      if (res.features.enableNewWindowFlow) {
+        pnCheckoutShared.openNewWindow();
+      }
+    })
+    .catch((res) => {
+      if (res.response?.data?.message) {
+        console.log(res.response.data?.message);
+      }
+    });
+}
+
+const buildVouchers =(data) => {
+  const vouchers= [];
+    data?.trekUsers?.map(u => {
+      if(u.voucherAmount>0) {
+          vouchers.push({
+            voucherId:u.voucherId,
+            voucherAmount:u.voucherAmount
+          });
+  }
+});
+return vouchers;
+}
+
 
   return (
     <>
+     <Toast ref={toast} />
       <div className="my-5">
       <div  ref={e1} id="scriptPlaceholder">        
         {/* paynimoc script injecting Script is inserted here */}
@@ -228,10 +297,10 @@ const doPayment=() => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>{bookingDate?.trekName}</td>
-                    <td><b>{moment(bookingDate?.startDate).format('MM/DD/YYYY')} -  {moment(bookingDate?.endDate).format('MM/DD/YYYY')}</b></td>
+                    <td>{bookingInformation?.trekName}</td>
+                    <td><b>{moment(bookingInformation?.startDate).format('MM/DD/YYYY')} -  {moment(bookingInformation?.endDate).format('MM/DD/YYYY')}</b></td>
                     <td>Moderate-Difficult</td>
-                    <td>{bookingDate?.trekkersCount} trekkers</td>
+                    <td>{bookingInformation?.trekkersCount} trekkers</td>
                   </tr>
                 </tbody>
               </table>
@@ -250,16 +319,18 @@ const doPayment=() => {
                 <tbody>
                 {
                 indexes.map((index) => {
-                  const data = bookingDate?.trekUsers[index];
+                  const fieldName = `voucher[${index}]`;
+                  const sdata= JSON.parse(JSON.stringify(stateData.data));
+                  const data = sdata?.trekUsers[index];
                   //console.log(JSON.stringify(data));
-                  const name=data?.email===bookingDate.email ? data?.firstName + ' (You) ' : data?.firstName;
-                  const isPrimaryUser=(data.email===bookingDate.email);
+                  const name=data?.email===bookingInformation.email ? data?.firstName + ' (You) ' : data?.firstName;
+                  //const isPrimaryUser=(data.email===bookingDate.email);
                   const vouchers=[];
-                  if( isPrimaryUser && data?.vouchers?.length > 0){
-                    data.vouchers.map(v=>{
+                  if(  sdata?.voucherDetails?.length > 0){
+                    sdata?.voucherDetails.map(v=>{
                       vouchers.push(
                         {
-                          title: v.title + '-' + v.amount, 
+                          title: v.title + '-' + v.amountAvailable, 
                           id: v.id,
                        })
                   });
@@ -273,7 +344,7 @@ const doPayment=() => {
                         {vouchers.length>0 && (
                           <FormGroup className="reg-dropdown mp-dropdown">
                           <Controller
-                                 name="selectedVoucher"
+                                  name={`${fieldName}.appliedVoucher`}
                                  control={control}
                                 render={({ onChange, value }) =>
                                    <Dropdown
@@ -303,8 +374,8 @@ const doPayment=() => {
                         </div>
                       </div>
                     </td>
-                    <td>Rs. {data?.trekFee}</td>
-                    <td>Rs. {data?.trekFee-Number(data?.voucherAmount)}</td>
+                    <td>Rs. {data?.trekFeeForTheUser}</td>
+                    <td>Rs. {data?.trekFeeForTheUser-Number(data?.voucherAmount)}</td>
                   </tr>
                   )
                 })}
@@ -324,15 +395,15 @@ const doPayment=() => {
                     trek fee payable
                   </span>
                 </p>
-                <p className="p-text-3-2-fg mb-2 mt-4">{bookingDate?.trekName}</p>
+                <p className="p-text-3-2-fg mb-2 mt-4">{bookingInformation?.trekName}</p>
                 <p className="p-text-3-2-fg mb-2">
-                {moment(bookingDate?.startDate).format('MM/DD/YYYY')} -  {moment(bookingDate?.endDate).format('MM/DD/YYYY')}
+                {moment(bookingInformation?.startDate).format('MM/DD/YYYY')} -  {moment(bookingInformation?.endDate).format('MM/DD/YYYY')}
                 </p>
-                <p className="p-text-3-2-fg mb-2">{bookingDate?.trekkersCount} trekkers</p>
+                <p className="p-text-3-2-fg mb-2">{bookingInformation?.trekkersCount} trekkers</p>
 
                 <div className="d-flex justify-content-between mt-4 pt-2">
                   <div>
-                    <p className="p-text-3-1-2 mb-3">Trek Fee for {bookingDate?.trekkersCount}  trekkers</p>
+                    <p className="p-text-3-1-2 mb-3">Trek Fee for {bookingInformation?.trekkersCount}  trekkers</p>
                   </div>
                   <div>
                     <p className="p-text-3-1-2 mb-3">Rs. {computeFields.computations.totalTrekFee}</p>
@@ -392,3 +463,5 @@ const doPayment=() => {
 });
 
 export default MakePayment;
+
+

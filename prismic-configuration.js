@@ -19,6 +19,9 @@ export const linkResolver = (doc) => {
   if (doc.type === 'hike_upcoming_treks_ctype') {
     return `/upcoming`
   }
+  if (doc.type === 'trek') {
+    return `/trek/${doc.uid}`
+  }
   return '/'
 }
 

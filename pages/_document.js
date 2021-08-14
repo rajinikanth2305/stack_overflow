@@ -105,7 +105,7 @@ class MyDocument extends Document {
           `}}></script>
            {/* <!-- end Heat Map --> */}
 
-         {/*<script async defer src={`//static.cdn.prismic.io/prismic.js?repo=${prismicRepoName}&new=true`} /> :*/}
+         <script async defer src={`//static.cdn.prismic.io/prismic.js?repo=${prismicRepoName}&new=true`} /> 
          
         </Head>
         <body>

@@ -99,24 +99,15 @@ const getTokenHeader=async () => {
 
   export const onAccept =  async (email,batchId,ownerId)  => {
 
-     console.log(ownerId);
-
      const header=await getTokenHeader();
      const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
      let url = `${userApi}/users/my-bookings`;
   
      const payload={
-      "bookingId": 0,
       "batchId": batchId,
       "termsAndConditionsAccepted": true,
       "ownerUserId":ownerId,
-      "trekMates": [{
-        "userId":ownerId
-      }]
     }
-
-    console.log(JSON.stringify(payload));
-
      return axios.post(url,payload,{ headers:  header })
             .then((res) => res.data);
 };
@@ -167,11 +158,9 @@ export const saveDraftBooking =  async (data,stepName='Default')  => {
    const payload={
     "bookingId": data.bookingId,
     "batchId": data.batchId,
-    "termsAndConditionsAccepted": true,
-    "ownerUserId":ownerId,
     "trekMates": buildTrekMates(data,primaryUserEmail,stepName)
   }
-  console.log(JSON.stringify(payload));
+   console.log(JSON.stringify(payload));
    return axios.put(url,payload,{ headers:  header })
           .then((res) => res.data);
 };
@@ -185,6 +174,18 @@ export const makePayment =  async (data)  => {
   let url = `${userApi}/booking-payments/${data.bookingId}/grand-totals/${total}`;  /// Later will change to POST
   
   return axios.get(url,{ headers:  header })
+         .then((res) => res.data);
+};
+
+
+export const doSavePayments =  async (bookingId,data)  => {
+
+  //console.log(JSON.stringify(data));
+
+  const header=await getTokenHeader();
+  const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
+  let url = `${userApi}/booking-payments/${bookingId}/do-payments`;  
+  return axios.post(url,data,{ headers:  header })
          .then((res) => res.data);
 };
 
@@ -215,10 +216,10 @@ const buildTrekMates = (data,primaryUserEmail,stepName='Default') => {
     trekMates.push(userdata);
    }
    else {
-    const userdata= {
-      userId: y?.id
-    }
-    trekMates.push(userdata);
+    //const userdata= {
+     // userId: y?.id
+    //}
+    trekMates.push(y?.id);
    }
   });
   console.log(JSON.stringify(trekMates));

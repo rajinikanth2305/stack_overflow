@@ -11,7 +11,7 @@ module.exports = {
     domains: ['images.prismic.io'],
   },
   prismic: {
-    preview: false
+    preview: true
   }
 };
 
