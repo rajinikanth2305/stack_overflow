@@ -85,7 +85,7 @@ const UserPT = () => {
     for (const book of bookingsData) {
       const trekName = book.trekName
         .trim()
-        .replace(" ", "_")
+        .replaceAll(" ", "_")
         .toLowerCase();
       const result = await Client().getByUID("trek", trekName);
 

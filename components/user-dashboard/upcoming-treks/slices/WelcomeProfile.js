@@ -103,10 +103,12 @@ const WelcomeProfile = () => {
     const client = Client();
     /// Now get Trek content data from Prismic
     for (const book of bookingsData) {
+
       const trekName = book.trekName
-        .trim()
-        .replace(" ", "_")
+        .replaceAll(" ", "_")
         .toLowerCase();
+
+       console.log(trekName);
 
       const result = await Client().getByUID("trek", trekName);
       //console.log(result);
@@ -119,8 +121,8 @@ const WelcomeProfile = () => {
           x => x.slice_type === "trek_banner"
         );
         //console.log(slice);
-        bannerImage = slice.primary.trek_banner_image.url;
-        trekCaptions = slice.primary.trek_caption;
+        bannerImage = slice.primary?.trek_banner_image?.url;
+        trekCaptions = slice.primary?.trek_caption;
       }
 
       bookTrekContents.push({
@@ -235,12 +237,14 @@ const WelcomeProfile = () => {
                                   <div className="trekimg">
                                     {/* <img src= {upComingTrek?.bannerImageUrl} height="220px" width="320px"/> */}
                                     {/* <img src= {upComingTrek?.bannerImageUrl} width="100%" /> */}
+                                    {upComingTrek?.bannerImageUrl && (
                                     <Image
                                       src={upComingTrek?.bannerImageUrl}
                                       layout="fill"
                                       objectFit="cover"
                                       objectPosition="50% 50%"
                                     />
+                                    )}
                                   </div>
                                 </div>
                                 <div className="col-lg-8 col-md-12">

@@ -50,7 +50,7 @@ const BestTrekToDo = ({ slice }) => {
 
   const goToTrekPage = data => {
     const slugUrl = data?.target_url.slug;
-
+    //console.log(slugUrl);
     if (slugUrl) {
       router.push(`/trek/${data.target_url.uid}`);
     }
