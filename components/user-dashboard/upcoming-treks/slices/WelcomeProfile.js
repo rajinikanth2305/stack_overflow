@@ -78,6 +78,7 @@ const WelcomeProfile = () => {
         //setUserName(userServiceObject.getName());
         //console.log(userServiceObject.getName);
 
+
         findUserByEmail(email).then(res => {
         const bookingOwner={
           userDetailsForDisplay:{
@@ -85,6 +86,8 @@ const WelcomeProfile = () => {
             lastName:res.lastName
           }
         }
+        setBookings(undefined);
+        setUpComingTrek(undefined);
         setBookingOwner(bookingOwner);
         setRender(true);
       });
