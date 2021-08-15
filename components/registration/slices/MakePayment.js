@@ -122,7 +122,9 @@ const MakePayment = forwardRef((props, ref) => {
   const setChangeStateData = async (sdata, trekFee) => {
     sdata.trekFee = trekFee;
     sdata.trekUsers.map(x => {
-      if (x.trekFeeForTheUser !== 0) x.trekFeeForTheUser = trekFee;
+      if (x.trekFeeForTheUser == 0) {
+        x.trekFeeForTheUser = trekFee;
+      }
     });
 
     await dispatch(addOrUpdateState(sdata));
