@@ -69,9 +69,9 @@ const AcceptTC = ({ data, props, onTermAccept }) => {
 
   return (
     <>
-      <div className="my-5">
+      <div className="my-5 m-mt-1">
         <div>
-          <h2 className="title-h2 pb-3">
+          <h2 className="title-h2 reg-t-2-m pb-3 m-pb-1">
             {RichText.asText(EligibilityCriteriaTitle)}
           </h2>
           <div className="row">

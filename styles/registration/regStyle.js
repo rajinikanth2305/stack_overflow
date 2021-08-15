@@ -85,6 +85,16 @@ export const regStyle = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .p-text-2-reg-title {
+    line-height: 24px;
+    text-align: left;
+    font-family: Lora-Medium;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+  }
+
   .p-text-2-franklin {
     line-height: 24px;
     font-family: Franklin Gothic;
@@ -676,6 +686,36 @@ export const regStyle = css.global`
     padding: 0 10px;
   }
 
+  .nav.nav-tabs > .nav-item .nav-link.activeRegTab > div > .active {
+    background: #ffffff;
+    border: 2px solid #ffc100;
+    padding: 4px;
+    text-align: center;
+  }
+
+  .nav.nav-tabs > .nav-item .nav-link > div > div {
+    background: #ffc100;
+    border: 2px solid #ffc100;
+    padding: 4px;
+    text-align: center;
+  }
+
+  .nav.nav-tabs.reg-tabs > .nav-item .nav-link {
+    padding: 0.1rem;
+    line-height: 10px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 9px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .nav.nav-tabs.reg-tabs .nav-link.disabled {
+    background: transparent !important;
+  }
+
   @media only screen and (max-width: 660px) {
     .m-d-none {
       display: none;
@@ -741,6 +781,40 @@ export const regStyle = css.global`
 
     .title-h2 {
       font-size: 30px;
+    }
+
+    .title-h2.reg-t-2-m {
+      border-bottom: 2px solid rgb(255, 193, 0);
+      font-size: 24px;
+    }
+
+    .m-mt-1 {
+      margin-top: 0.2rem !important;
+    }
+
+    .m-pb-1 {
+      padding-bottom: 0.5rem !important;
+    }
+
+    .p-text-2-reg-title {
+      line-height: 16px;
+      text-align: left;
+      font-family: Lora;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      color: rgba(112, 112, 112, 1);
+      text-transform: capitalize;
+    }
+
+    .m-m-custom-my {
+      margin-bottom: 0.2rem !important;
+      margin-top: -0.9rem !important;
+    }
+
+    .btn-ih-green {
+      font-size: 14px !important;
+      padding: 5px 30px !important;
     }
   }
 
