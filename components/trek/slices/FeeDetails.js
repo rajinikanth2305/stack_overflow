@@ -7,6 +7,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Client } from "utils/prismicHelpers";
 import Prismic from "@prismicio/client";
+import {
+  getTrekFeeByTrekName,
+} from "../../../../services/queries";
 /**
  * Trek Banner Slice Components
  */
@@ -22,6 +25,13 @@ const FeeDetails = () => {
 
   async function findFeeDetails() {
 
+    /*getTrekFeeByTrekName(getTrekNameFromUrlQueryPath()).then (res=> {
+      const feeDet= {
+        price:res[0]
+      }
+      setFeeDetails(slice);
+    });*/
+
     const client = Client();
     const doc = await client
       .query([Prismic.Predicates.at("document.type", "trek")])
@@ -30,7 +40,21 @@ const FeeDetails = () => {
         const slice = tt && tt.find(x => x.slice_type === "trek_fee_details");
         setFeeDetails(slice);
       });
-      
+  }
+
+  function getTrekNameFromUrlQueryPath() {
+     let actualTrekPageName = "";
+      //console.log(mode);
+      const pageUrl = window.location.href;
+      const pageNamesArray = pageUrl.split("/");
+      const pageName = pageNamesArray[pageNamesArray.length - 1];
+      const hashIndex = pageName.indexOf("#");
+
+      if (hashIndex > 0) {
+        actualTrekPageName = pageName.substring(0, hashIndex).replaceAll("_", " ");
+      } else {
+        actualTrekPageName = pageName.replaceAll("_", " ");
+      return actualTrekPageName;
   }
 
   const heading = feeDetails && feeDetails.primary.heading;
