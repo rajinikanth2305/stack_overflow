@@ -14,7 +14,7 @@ const AcceptTC = ({ data, props, onTermAccept }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [showButton, setShowButton] = useState(false);
-  const [agree, setAgree] = useState();
+  const [agree, setAgree] = useState(false);
 
   const EligibilityCriteriaTitle =
     eligibilityCriteria &&
@@ -26,9 +26,27 @@ const AcceptTC = ({ data, props, onTermAccept }) => {
   const ecArray = eligibilityCriteria && eligibilityCriteria.items;
 
   useEffect(() => {
+
+    let url = location.href.replace(location.origin, "");
+    let pageUrl = url.split("&");
+    let batchKeyVal = pageUrl[0]; //batchid
+    const batchId = batchKeyVal.split("=")[1];
+    ///
+    let stepName = "";
+    if (pageUrl.length > 1) {
+      let stepKeyVal = pageUrl[1]; //StepKey
+      stepName = stepKeyVal.split("=")[1];
+    }
+
+     if(stepName==="addparticipant" || stepName==="payment"){
+       console.log(stepName);
+      setAgree(true);
+     }
+
     setTimeout(() => {
       setShowButton(true);
     }, 2000);
+
   }, []);
 
   const ecList = ecArray?.map(function(data, i) {
@@ -99,6 +117,7 @@ const AcceptTC = ({ data, props, onTermAccept }) => {
                   <Input
                     type="checkbox"
                     onClick={e => setAgree(e.target.checked)}
+                    checked={agree}
                   />{" "}
                   I have read the eligibility criteria and understand the terms
                   and conditions

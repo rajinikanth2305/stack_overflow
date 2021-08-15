@@ -70,7 +70,7 @@ const RegHome = ({ slice }) => {
   const completeTheSteps =
     eligibilityCriteria && eligibilityCriteria.primary.complete_the_steps;
   const [userEmail, setUserEmail] = useState(undefined);
-  const [enableOnAcceptTab, setEnableOnAcceptTab] = useState(true);
+  const [disableOnAcceptTab, setDisableOnAcceptTab] = useState(false);
 
   const dataItems = [];
 
@@ -81,6 +81,7 @@ const RegHome = ({ slice }) => {
   };
 
   useEffect(() => {
+    //console.log("use-effect-called");
     findEligibilityCriteria();
 
     auth.keycloak().then(([userTokenObject, userEmail]) => {
@@ -175,7 +176,12 @@ const RegHome = ({ slice }) => {
     console.log(userId);
 
     if (callMode === "Button_Click") {
-      setTermAccepted(value);
+      if(disableOnAcceptTab==true) { /// it means terms is already accepted
+        setKey("selectbatch");
+      }
+      else {
+        setTermAccepted(value);
+      }
     }
 
     let stateEmpty = true;
@@ -197,15 +203,15 @@ const RegHome = ({ slice }) => {
 
           if (stepName !== undefined) {
             if (stepName === "addparticipant") {
-              setEnableOnAcceptTab(false);
+              setDisableOnAcceptTab(true);
               setTermAccepted(true);
               setKey("addtrekmates");
-            } else if (stepName === "make_payment") {
-              setEnableOnAcceptTab(false);
+            } else if (stepName === "payment") {
+              setDisableOnAcceptTab(true);
               setTermAccepted(true);
               setKey("makepayment");
             } else {
-              setEnableOnAcceptTab(false);
+              setDisableOnAcceptTab(true);
               setTermAccepted(true);
               setKey("makepayment");
             }
@@ -218,7 +224,7 @@ const RegHome = ({ slice }) => {
           if (callMode === "Button_Click") {
             createNewBooking();
             setKey("selectbatch");
-            setEnableOnAcceptTab(false);
+            setDisableOnAcceptTab(true);
           }
           //}
           // else {
@@ -404,9 +410,12 @@ const RegHome = ({ slice }) => {
                   activeKey={key}
                   onSelect={k => setKey(k)}
                   unmountOnExit={false}
-                  disabled={!enableOnAcceptTab}
+                  
                 >
-                  <Tab eventKey="accepet" title="Accept T&C">
+                  <Tab 
+                  eventKey="accepet" 
+                  title="Accept T&C" 
+                  >
                     <AcceptTC
                       data={eligibilityCriteria}
                       props={bookDetails}

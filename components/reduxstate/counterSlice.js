@@ -10,8 +10,7 @@ export const slice = createSlice({
   },
   reducers: {
     addOrUpdateState: (state, action) => {
-       console.log(action.type);
-
+      // console.log(action.type);
        switch (action.type) {
         case 'counter/addOrUpdateState': {
           const { trekId, batchId,trekName,startDate,endDate,trekUsers,bookingId,primaryUserEmail,voucherDetails} = action.payload;

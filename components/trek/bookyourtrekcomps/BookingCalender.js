@@ -54,7 +54,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
         actualTrekPageName = pageName.replaceAll("_", " ");
       }
     } else {
-      // console.log(mode);
+       console.log(mode);
       actualTrekPageName = getTrekNameFromUrlQueryPath();
     }
 

@@ -84,7 +84,7 @@ const getTokenHeader=async () => {
           }).catch(function() {
               console.log('Failed to refresh token');
           });
-          console.log('token' + token);
+         // console.log('token' + token);
   //return {Accept: 'application/json',Authorization: `Bearer ${obj.getToken()}`};
   return {Accept: 'application/json',Authorization: `Bearer ${token}`};
 }

@@ -186,6 +186,7 @@ const WelcomeProfile = () => {
       x => x.bookingId !== activeBooking.bookingId
     ); /// Excluding the active display trek;
     setNextComingTreks(nextTreks);
+    document.getElementById("detailView").focus();
   };
 
   const makePayment = batchId => {
@@ -252,7 +253,7 @@ const WelcomeProfile = () => {
                         </p>
                       </div>
 
-                      <div>
+                      <div id="detailView"> 
                         <h5 className="p-text-2-fg b-left-3px">
                           your upcoming Indiahikes trek
                         </h5>
@@ -283,13 +284,29 @@ const WelcomeProfile = () => {
                                           {upComingTrek?.trekName}
                                         </h3>
                                       </div>
+
                                       <div>
-                                        <p className="m-0 p-text-10-fgb">
-                                          booking confirmed and paid for
-                                        </p>
+                                          { upComingTrek.bookingState==="PAYMENT" ?   
+                                            <p className="m-0 p-text-10-fgb">
+                                            50% of booking process completed - {upComingTrek.bookingState}
+                                            </p> 
+                                          : 
+                                          upComingTrek.bookingState==="COMPLETED" ? 
+                                          <p className="m-0 p-text-10-fgb">
+                                            100% of booking process completed and paid for - {upComingTrek.bookingState}
+                                          </p>
+                                           :
+                                           <p className="m-0 p-text-10-fgb">
+                                            25% of booking process completed - {upComingTrek.bookingState}
+                                          </p>
+                                          }
                                       </div>
+
                                     </div>
-                                    <Progress value="100" />
+                                    { upComingTrek.bookingState==="PAYMENT" ?   
+                                          <Progress value="50"/> : 
+                                          upComingTrek.bookingState==="COMPLETED" ? 
+                                          <Progress value="100"/> : <Progress value="25"/> }
 
                                     <div className="d-flex flex-wrap align-items-center justify-content-between py-4 mb-2">
                                       <div>
@@ -338,15 +355,15 @@ const WelcomeProfile = () => {
                                     { upComingTrek.bookingState==="PAYMENT" &&   (
                                                 <div>
                                               <button
-                                                className="btn table-btn-blue"
+                                                className="table-btn-green-lg"
                                                 onClick={e =>
-                                                  addParticipants(
+                                                  makePayment(
                                                     upComingTrek?.batchId
                                                   )
                                                 }
                                               >
                                                 <span className="px-2">
-                                                  add participants
+                                                  Make payment
                                                 </span>
                                               </button>
                                               </div>
@@ -377,7 +394,7 @@ const WelcomeProfile = () => {
                         </div>
                       </div>
 
-                      <div className="row">
+                      <div className="row" >
                         <div className="col-lg-11 col-md-12">
                           <div className="user-dashboard-tab mb-3">
                             <Tabs
@@ -414,6 +431,7 @@ const WelcomeProfile = () => {
                           <h5 className="p-text-2-fg b-left-3px">
                             your Next Indiahikes treks
                           </h5>
+                          
                           {indexes?.map(index => {
                             const trekData = nextComingTreks[index];
                             //console.log(JSON.stringify(data));
@@ -460,12 +478,27 @@ const WelcomeProfile = () => {
                                               </h3>
                                             </div>
                                             <div>
-                                              <p className="m-0 p-text-10-fgb">
-                                                25% of booking process completed
-                                              </p>
+                                            { trekData.bookingState==="PAYMENT" ?   
+                                            <p className="m-0 p-text-10-fgb">
+                                            50% of booking process completed - {trekData.bookingState}
+                                            </p> 
+                                            
+                                          : 
+                                           trekData.bookingState==="COMPLETED" ? 
+                                          <p className="m-0 p-text-10-fgb">
+                                            100% of booking process completed - {trekData.bookingState}
+                                          </p>
+                                           :
+                                           <p className="m-0 p-text-10-fgb">
+                                            25% of booking process completed - {trekData.bookingState}
+                                          </p>
+                                          }
                                             </div>
                                           </div>
-                                          <Progress value="25" />
+                                          { trekData.bookingState==="PAYMENT" ?   
+                                          <Progress value="50"/> : 
+                                          trekData.bookingState==="COMPLETED" ? 
+                                          <Progress value="100"/> : <Progress value="25"/> }
 
                                           <div className="d-flex flex-wrap align-items-center justify-content-between py-4 mb-2">
                                             <div>
@@ -559,6 +592,7 @@ const WelcomeProfile = () => {
                               </div>
                             );
                           })}
+                          
                         </div>
                         <style jsx global>
                           {customStyles}

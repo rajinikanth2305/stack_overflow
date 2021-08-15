@@ -135,7 +135,9 @@ const SelectBatch = forwardRef((props, ref) => {
         trekName: data.trekName
       };
 
+      console.log(bookingDates);
       setBookingDate(bookingDates);
+
       if (viewDate === undefined) {
         const date = new Date(bookingDates.startDate);
         const additionOfMonths = 1;
