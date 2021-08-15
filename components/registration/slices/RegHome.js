@@ -451,7 +451,7 @@ const RegHome = ({ slice }) => {
               </div>
 
               {/* Mobile first desugn */}
-              <div className="m-d-block">
+              {/* <div className="m-d-block">
                 <Nav tabs className="reg-tabs">
                   <NavItem>
                     <NavLink
@@ -555,7 +555,7 @@ const RegHome = ({ slice }) => {
                     <MakePayment ref={paymentChildRef} />
                   </TabPane>
                 </TabContent>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
