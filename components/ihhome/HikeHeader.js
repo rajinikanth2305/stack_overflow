@@ -29,7 +29,7 @@ const HikeHeader = ({ auth = false }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userServiceObject, setUserServiceObject] = useState(undefined);
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (auth) {
       import("../../services/UserService").then(mod => {
         //setUserServiceObject(mod);
@@ -39,7 +39,7 @@ const HikeHeader = ({ auth = false }) => {
       }),
         { ssr: false };
     }
-  }, []);
+  }, []);*/
 
   // React Render
   const postAuthenticAction = () => {
@@ -115,28 +115,6 @@ const HikeHeader = ({ auth = false }) => {
                 </Link>
               </NavLink>
             </NavItem>
-            {isLoggedIn && (
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav>
-                  <i class="fa fa-user-o" aria-hidden="true"></i>
-                </DropdownToggle>
-                <DropdownMenu left>
-                  <DropdownItem>
-                    <Link href="../../../profile">Profile</Link>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <Link href="../../../vouchers">Vouchers</Link>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <Link href="../../../receipts">Receipts</Link>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <Link href="../../../certificates">Certificates</Link>
-                  </DropdownItem>
-                  <DropdownItem>Logout</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            )}
           </Nav>
         </Collapse>
       </Navbar>
