@@ -81,13 +81,27 @@ const UserPT = () => {
   const getAndSetTrekContents = async (bookingsData, userEmail) => {
     const bookTrekContents = [];
     const client = Client();
-    /// Now get Trek content data from Prismic
+
+    const prismicTrekContents=[];
     for (const book of bookingsData) {
       const trekName = book.trekName
-        .trim()
         .replaceAll(" ", "_")
         .toLowerCase();
-      const result = await Client().getByUID("trek", trekName);
+
+      let result;
+      const findContents=prismicTrekContents.find(x=>x.trekName===trekName);
+      //console.log(findContents);
+      if(findContents===undefined) {
+         result = await Client().getByUID("trek", trekName);
+        //console.log(result);
+        prismicTrekContents.push({
+          trekName:trekName,
+          result:result
+        });
+      }
+      else {
+        result=findContents.result
+      }
 
       //console.log(slice);
       let bannerImage = "";

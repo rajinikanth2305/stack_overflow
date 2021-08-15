@@ -60,11 +60,12 @@ const WelcomeProfile = () => {
   }, []);
 
   function fetchAndBindUserBookings(email) {
-    console.log(email);
+    //console.log(email);
 
     getdashBoardUserBooking(email).then(bookingsData => {
       /// Idenitify and get the booking owner profile informations
-      console.log(bookingsData);
+      //console.log(bookingsData);
+
       if (bookingsData.length > 0) {
         const bookingOwner = bookingsData.map(element => {
           const mainuser = element.trekMates.find(
@@ -72,6 +73,7 @@ const WelcomeProfile = () => {
           );
           if (mainuser !== undefined) return mainuser;
         });
+
         setBookingOwner(bookingOwner[0]);
         getAndSetTrekContents(bookingsData, email);
       }
@@ -79,7 +81,7 @@ const WelcomeProfile = () => {
   }
 
   const setStates = bookTrekContents => {
-    console.log(bookTrekContents);
+   // console.log(bookTrekContents);
 
     setBookings(bookTrekContents);
     setUpComingTrek(bookTrekContents[0]); /// setting the first trek has upcoming trek
@@ -92,9 +94,7 @@ const WelcomeProfile = () => {
       x => x.bookingId !== bookTrekContents[0].bookingId
     ); /// Excluding the first trek;
     setNextComingTreks(nextTreks);
-
     setRender(true);
-
     myTrekRef.current?.changeState(bookTrekContents[0]);
   };
 
@@ -102,16 +102,44 @@ const WelcomeProfile = () => {
     const bookTrekContents = [];
     const client = Client();
     /// Now get Trek content data from Prismic
-    for (const book of bookingsData) {
 
+    //var trekNames = ['hampta_pass', 'WC7GECUAAHBHQd-Y', 'WEE_gikAAC2feA-z'];
+
+    //for (const book of bookingsData) {
+     // trekNames.push(`${book.trekName.replaceAll(" ", "_").toLowerCase() }`);
+    //}
+
+    //console.log(trekNames);
+
+   //const allresult=await client.query(
+     //// Prismic.Predicates.in('document.id', trekNames),
+     // { lang : '*' }
+  //);
+
+ // console.log(JSON.stringify(allresult));
+
+    const prismicTrekContents=[];
+    for (const book of bookingsData) {
       const trekName = book.trekName
         .replaceAll(" ", "_")
         .toLowerCase();
 
-       console.log(trekName);
+      let result;
+      const findContents=prismicTrekContents.find(x=>x.trekName===trekName);
+      //console.log(findContents);
+      if(findContents===undefined) {
+         result = await Client().getByUID("trek", trekName);
+        //console.log(result);
+        prismicTrekContents.push({
+          trekName:trekName,
+          result:result
+        });
+      }
+      else {
+        result=findContents.result
+      }
 
-      const result = await Client().getByUID("trek", trekName);
-      //console.log(result);
+    
 
       let bannerImage = "";
       let trekCaptions = book.trekName;

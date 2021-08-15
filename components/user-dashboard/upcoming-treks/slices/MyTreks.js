@@ -38,13 +38,13 @@ const MyTreks = forwardRef((props, ref) => {
   // with whatever you return from the callback passed
   // as the second argument
   useImperativeHandle(ref, () => ({
-    changeState(data) {
+   async changeState(data) {
       //// Get Trek locations
       const trekId = data.trekId;
       getTrekLocations(trekId).then(res => {
         setLocations(res);
         setParticipantData(data);
-
+         
         /*const myTrekData = {
           participantData:data,
           locations:res
