@@ -404,6 +404,7 @@ const RegHome = ({ slice }) => {
                   activeKey={key}
                   onSelect={k => setKey(k)}
                   unmountOnExit={false}
+                  disabled={!enableOnAcceptTab}
                 >
                   <Tab eventKey="accepet" title="Accept T&C">
                     <AcceptTC
