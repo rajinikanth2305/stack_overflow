@@ -74,9 +74,19 @@ export const getBatchInfoByUserAndBatchId = async (userEmail, batchId)  => {
 };
 
 const getTokenHeader=async () => {
+
   const obj=await auth.keycloak()
             .then(([userTokenObject, userEmail])=>{ return userTokenObject});
-  return {Accept: 'application/json',Authorization: `Bearer ${obj.getToken()}`};
+
+   const token= await obj.updateToken()
+                  .then(function() {
+                   return obj.getToken();
+          }).catch(function() {
+              console.log('Failed to refresh token');
+          });
+          console.log('token' + token);
+  //return {Accept: 'application/json',Authorization: `Bearer ${obj.getToken()}`};
+  return {Accept: 'application/json',Authorization: `Bearer ${token}`};
 }
 
   export const findUserByEmail =  async (email)  => {

@@ -11,6 +11,7 @@ const keycloakContext = new Keycloak(initOptions);
 
 /**
  * Initializes Keycloak instance and calls the provided callback function if successfully authenticated.
+ * https://www.keycloak.org/docs/latest/securing_apps/#_javascript_adapter
  *
  * @param onAuthenticatedCallback
  */
@@ -42,7 +43,7 @@ export const getToken = () => keycloakContext.token;
 
 const isLoggedIn = () => !!keycloakContext.token;
 
-const updateToken = (successCallback) => keycloakContext.updateToken(5).then(successCallback).catch(doLogin);
+export const updateToken = (successCallback) => keycloakContext.updateToken(5).then(successCallback).catch(doLogin);
 
 export const getUsername = () => keycloakContext.tokenParsed?.preferred_username;
 

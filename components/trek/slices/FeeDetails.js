@@ -21,6 +21,7 @@ const FeeDetails = () => {
   }, []);
 
   async function findFeeDetails() {
+
     const client = Client();
     const doc = await client
       .query([Prismic.Predicates.at("document.type", "trek")])
@@ -29,6 +30,7 @@ const FeeDetails = () => {
         const slice = tt && tt.find(x => x.slice_type === "trek_fee_details");
         setFeeDetails(slice);
       });
+      
   }
 
   const heading = feeDetails && feeDetails.primary.heading;
