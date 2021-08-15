@@ -68,7 +68,7 @@ const MyTreks = forwardRef((props, ref) => {
 
     const userLocations = [];
 
-    participantData?.userTrekBookingParticipants.map((user, index) => {
+    participantData?.userTrekBookingParticipants?.map((user, index) => {
       const locid1 = formData.locs[index].pickupLocation;
       const locid2 = formData.locs[index].dropLocation;
 
@@ -124,7 +124,7 @@ const MyTreks = forwardRef((props, ref) => {
                     const name =
                       pdata?.userDetailsForDisplay.email ===
                       participantData.email
-                        ? pdata?.userDetailsForDisplay.firstName +
+                        ? " * " + pdata?.userDetailsForDisplay.firstName +
                           pdata?.userDetailsForDisplay.lastName +
                           " (You) "
                         : pdata?.userDetailsForDisplay.firstName +

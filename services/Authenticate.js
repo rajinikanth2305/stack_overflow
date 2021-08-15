@@ -21,7 +21,7 @@ class Authenticate  extends Component{
                  .then(mod=>{
                          mod.initKeycloak(
                            function(userEmail){ 
-                             console.log(userEmail) ;
+                             //console.log(userEmail) ;
                              Authenticate.userEmail=userEmail;
                              //console.log(" keycloak called 2 ");
                              Authenticate.classInstance=mod;

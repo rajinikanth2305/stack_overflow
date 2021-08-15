@@ -15,7 +15,8 @@ import Link from "next/link";
 import auth from "../../../../services/Authenticate";
 import {
   getdashBoardUserBooking,
-  cancelUserBooking
+  cancelUserBooking,
+  findUserByEmail
 } from "../../../../services/queries";
 import moment from "moment";
 import { useRouter } from "next/router";
@@ -38,6 +39,7 @@ const WelcomeProfile = () => {
   const [upComingTrek, setUpComingTrek] = useState(undefined);
   const [nextComingTreks, setNextComingTreks] = useState([]);
   const [render, setRender] = useState(false);
+  const [userName, setUserName] = useState();
 
   const [indexes, setIndexes] = React.useState([]);
   const [counter, setCounter] = React.useState(0);
@@ -60,12 +62,7 @@ const WelcomeProfile = () => {
   }, []);
 
   function fetchAndBindUserBookings(email) {
-    //console.log(email);
-
     getdashBoardUserBooking(email).then(bookingsData => {
-      /// Idenitify and get the booking owner profile informations
-      //console.log(bookingsData);
-
       if (bookingsData.length > 0) {
         const bookingOwner = bookingsData.map(element => {
           const mainuser = element.trekMates.find(
@@ -77,8 +74,23 @@ const WelcomeProfile = () => {
         setBookingOwner(bookingOwner[0]);
         getAndSetTrekContents(bookingsData, email);
       }
-    });
-  }
+      else {
+        //setUserName(userServiceObject.getName());
+        //console.log(userServiceObject.getName);
+
+        findUserByEmail(email).then(res => {
+        const bookingOwner={
+          userDetailsForDisplay:{
+            firstName:res.firstName,
+            lastName:res.lastName
+          }
+        }
+        setBookingOwner(bookingOwner);
+        setRender(true);
+      });
+    }
+  });
+}
 
   const setStates = bookTrekContents => {
    // console.log(bookTrekContents);
@@ -197,6 +209,10 @@ const WelcomeProfile = () => {
     router.push(`/registration?batchId=${batchId}&step=addparticipant`);
   };
 
+  const navigateToUpComingTreks =() => {
+    router.push(`/upcoming`);
+  };
+
   const onCancelUserBooking = (e, trekData) => {
     confirmPopup({
       target: e.currentTarget,
@@ -255,7 +271,20 @@ const WelcomeProfile = () => {
 
                       <div id="detailView"> 
                         <h5 className="p-text-2-fg b-left-3px">
-                          your upcoming Indiahikes trek
+                        { bookings!==undefined ?<p>your upcoming Indiahikes trek</p> :  
+                        
+                        <p className="p-text-2-fg b-left-3px text-decoration-underline">
+                        <a
+                          href="javascript:;"
+                          onClick={e =>
+                            navigateToUpComingTreks()
+                          }
+                          tooltip="No upcoming treks, click here to explore/book new treks"
+                        >
+                         No upcoming treks, click here to explore/book new treks
+                        </a>
+                      </p>
+                      }
                         </h5>
 
                         <div className="row">
@@ -286,26 +315,26 @@ const WelcomeProfile = () => {
                                       </div>
 
                                       <div>
-                                          { upComingTrek.bookingState==="PAYMENT" ?   
+                                          { upComingTrek?.bookingState==="PAYMENT" ?   
                                             <p className="m-0 p-text-10-fgb">
-                                            50% of booking process completed - {upComingTrek.bookingState}
+                                            50% of booking process completed - {upComingTrek?.bookingState}
                                             </p> 
                                           : 
-                                          upComingTrek.bookingState==="COMPLETED" ? 
+                                          upComingTrek?.bookingState==="COMPLETED" ? 
                                           <p className="m-0 p-text-10-fgb">
-                                            100% of booking process completed and paid for - {upComingTrek.bookingState}
+                                            100% of booking process completed and paid for - {upComingTrek?.bookingState}
                                           </p>
                                            :
                                            <p className="m-0 p-text-10-fgb">
-                                            25% of booking process completed - {upComingTrek.bookingState}
+                                            25% of booking process completed - {upComingTrek?.bookingState}
                                           </p>
                                           }
                                       </div>
 
                                     </div>
-                                    { upComingTrek.bookingState==="PAYMENT" ?   
+                                    { upComingTrek?.bookingState==="PAYMENT" ?   
                                           <Progress value="50"/> : 
-                                          upComingTrek.bookingState==="COMPLETED" ? 
+                                          upComingTrek?.bookingState==="COMPLETED" ? 
                                           <Progress value="100"/> : <Progress value="25"/> }
 
                                     <div className="d-flex flex-wrap align-items-center justify-content-between py-4 mb-2">
@@ -352,7 +381,7 @@ const WelcomeProfile = () => {
                                       </div>
                                     </div>
                                     <div className="d-flex justify-content-end">
-                                    { upComingTrek.bookingState==="PAYMENT" &&   (
+                                    { upComingTrek?.bookingState==="PAYMENT" &&   (
                                                 <div>
                                               <button
                                                 className="table-btn-green-lg"
@@ -368,6 +397,9 @@ const WelcomeProfile = () => {
                                               </button>
                                               </div>
                                     )}
+
+                                     { bookings!==undefined && (
+                                       <>
                                       <button className="btn table-btn-green mx-3">
                                         <i
                                           class="fa fa-whatsapp"
@@ -385,6 +417,8 @@ const WelcomeProfile = () => {
                                       >
                                         Cancel trek booking
                                       </button>
+                                      </>
+                                     )}
                                     </div>
                                   </div>
                                 </div>
@@ -397,6 +431,7 @@ const WelcomeProfile = () => {
                       <div className="row" >
                         <div className="col-lg-11 col-md-12">
                           <div className="user-dashboard-tab mb-3">
+                          { bookings!==undefined  && (
                             <Tabs
                               defaultActiveKey="mytrek"
                               id="uncontrolled-tab-example"
@@ -422,6 +457,7 @@ const WelcomeProfile = () => {
                                 <FitnessApproval />
                               </Tab>
                             </Tabs>
+                          )}
                           </div>
                         </div>
                       </div>

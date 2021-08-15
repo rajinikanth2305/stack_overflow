@@ -51,6 +51,9 @@ export const getUserId = () => keycloakContext.tokenParsed?.email;
 
 export const getName = () => `${keycloakContext.tokenParsed?.given_name} ${keycloakContext.tokenParsed?.family_name}`;
 
+export const getFirstName = () => `${keycloakContext.tokenParsed?.given_name}`;
+export const getLastName = () => `${keycloakContext.tokenParsed?.family_name}`;
+
 const hasRole = (roleName) => keycloakContext.hasRealmRole(roleName);
 
 const hasBackofficeRole = () => keycloakContext.hasRealmRole('BackOffice');
@@ -66,6 +69,8 @@ const UserService = {
   hasRole,
   hasBackofficeRole,
   getName,
+  getFirstName,
+  getLastName
 };
 
 export default UserService;
