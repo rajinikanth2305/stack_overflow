@@ -686,6 +686,11 @@ export const regStyle = css.global`
     padding: 0 10px;
   }
 
+  .mp-dropdown.reg-dropdown.m-r-d.form-group > .p-dropdown > .p-dropdown-label {
+    padding: 5px 10px;
+  }
+
+
   .nav.nav-tabs > .nav-item .nav-link.activeRegTab > div > .active {
     background: #ffffff;
     border: 2px solid #ffc100;
@@ -815,6 +820,28 @@ export const regStyle = css.global`
     .btn-ih-green {
       font-size: 14px !important;
       padding: 5px 30px !important;
+    }
+
+    .reg-mp-mob-table-td {
+      background: rgba(242, 242, 242, 1) !important;
+      text-align: left;
+      font-family: Franklin Gothic;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 1);
+      text-transform: capitalize;
+      vertical-align: middle;
+    }
+
+    .reg-mp-mob-table-td-1 {
+      text-align: left;
+      font-family: Franklin Gothic;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 1);
+      text-transform: capitalize;
     }
   }
 

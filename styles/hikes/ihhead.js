@@ -29,7 +29,8 @@ export const ihheaderStyles = css.global`
   }
 
   .border-bottom-custom-header {
-    border: 1.5px solid #b7b7b7 !important;
+    border-top: 1.5px solid #b7b7b7 !important;
+    border-bottom: 1.5px solid #b7b7b7 !important;
     position: relative;
     z-index: 999;
   }
