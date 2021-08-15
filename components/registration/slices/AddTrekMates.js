@@ -378,7 +378,7 @@ const AddTrekMates = forwardRef((props, ref) => {
   return (
     <>
       <Toast ref={toast} />
-      <div className="my-5 py-2">
+      <div className="my-5 py-2 m-mt-1">
         <div className="row">
           <div className="col-lg-2 col-md-12"></div>
           <div className="col-lg-8 col-md-12">
