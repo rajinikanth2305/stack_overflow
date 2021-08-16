@@ -14,7 +14,7 @@ export const linkResolver = (doc) => {
     return `/blog/${doc.uid}`
   }
   if (doc.type === 'hike_home_ctype') {
-    return `/hikehome`
+    return `/`
   }
   if (doc.type === 'hike_upcoming_treks_ctype') {
     return `/upcoming`
