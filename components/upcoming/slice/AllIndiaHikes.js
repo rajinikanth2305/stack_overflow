@@ -5,6 +5,7 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Dropdown } from "primereact/dropdown";
 
 const AllIndiaHikes = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -14,6 +15,14 @@ const AllIndiaHikes = ({ slice }) => {
   const difficultTreksList = slice.primary.difficult_treks;
   const familyTreksList = slice.primary.family_treks;
   const diyTreksList = slice.primary.diy_treks;
+
+  const citySelectItems = [
+    { label: "New York", value: "NY" },
+    { label: "Rome", value: "RM" },
+    { label: "London", value: "LDN" },
+    { label: "Istanbul", value: "IST" },
+    { label: "Paris", value: "PRS" }
+  ];
 
   const easyModerateTreks = easyModerateTreksList.map(function(data1, i1) {
     return (
@@ -100,6 +109,50 @@ const AllIndiaHikes = ({ slice }) => {
             </div>
             <div className="col-lg-6 col-md-12">
               <p className="p-display-1 m-d-1">{RichText.asText(heading2)}</p>
+            </div>
+          </div>
+          <div>
+            <div className="slots-bg mb-2">
+              <div className="d-flex align-items-center">
+                <div className="mx-2">
+                  <p className="p-text-3-1 mb-0">
+                    <span className="badge-green-lg mx-2"></span> Easy Moderate
+                    trek
+                  </p>
+                </div>
+                <div className="mx-2">
+                  <p className="p-text-3-1 mb-0">
+                    <span className="badge-red-lg mx-2"></span>
+                    Moderate trek{" "}
+                  </p>
+                </div>
+                <div className="mx-2">
+                  <p className="p-text-3-1 mb-0">
+                    <span className="badge-yellow-lg mx-2"></span> Difficult
+                    trek
+                  </p>
+                </div>
+                <div className="mx-2">
+                  <p className="p-text-3-1 mb-0">
+                    <span className="badge-blue-lg mx-2"></span> Family Trek{" "}
+                  </p>
+                </div>
+                <div className="flex-grow-1 mx-2">
+                  <p className="p-text-3-1 mb-0">
+                    <span className="badge-blue-lg mx-2"></span> DIY Trek{" "}
+                  </p>
+                </div>
+                <div>
+                  <select className="slot-filter">
+                    <option selected>Filter by Region</option>
+                    <option vlaue="">Easy Moderate trek</option>
+                    <option vlaue="">Moderate trek</option>
+                    <option vlaue="">Difficult trek</option>
+                    <option vlaue="">Family Trek</option>
+                    <option vlaue="">DIY Trek</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
           <div className="row">

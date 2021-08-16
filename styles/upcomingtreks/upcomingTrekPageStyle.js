@@ -435,11 +435,31 @@ export const upcomingTrekPageStyle = css.global`
     width: 10px;
   }
 
+  .badge-green-lg {
+    border-radius: 50%;
+    background: rgba(91, 133, 70, 1);
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+  }
+
   .badge-red {
     border-radius: 50%;
     background: rgba(230, 109, 29, 1);
     height: 10px;
     width: 10px;
+  }
+
+  .badge-red-lg {
+    border-radius: 50%;
+    background: rgba(230, 109, 29, 1);
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
   }
 
   .badge-yellow {
@@ -449,11 +469,31 @@ export const upcomingTrekPageStyle = css.global`
     width: 10px;
   }
 
+  .badge-yellow-lg {
+    border-radius: 50%;
+    background: rgba(255, 193, 0, 1);
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+  }
+
   .badge-blue {
     border-radius: 50%;
     background: rgba(0, 66, 141, 1);
     height: 10px;
     width: 10px;
+  }
+
+  .badge-blue-lg {
+    border-radius: 50%;
+    background: rgba(0, 66, 141, 1);
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
   }
 
   .filter_box {
@@ -474,6 +514,18 @@ export const upcomingTrekPageStyle = css.global`
 
   .m-d-block {
     display: none;
+  }
+
+  .slots-bg {
+    background: rgba(255, 193, 0, 0.102);
+    padding: 5px 0;
+  }
+
+  select.slot-filter {
+    background: rgba(255, 193, 0, 1);
+    border: 0;
+    padding: 3px;
+    width: 300px;
   }
 
   @media only screen and (max-width: 660px) {

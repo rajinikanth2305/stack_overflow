@@ -1,6 +1,24 @@
 import css from "styled-jsx/css";
 
 export const trekStyle = css.global`
+  @font-face {
+    font-family: Franklin Gothic;
+    src: url("/font/FRANKLINGOTHIC/framd.ttf");
+    src: url("/font/FRANKLINGOTHIC/framd.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: Franklin Gothic Book;
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf");
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: Lora;
+    src: url("/font/LORA/Lora-Medium.ttf");
+    src: url("/font/LORA/Lora-Medium.ttf") format("truetype");
+  }
+
   .title-h1 {
     text-align: left;
     font-family: Lora;
@@ -219,7 +237,7 @@ export const trekStyle = css.global`
   }
 
   .btn-ih-green {
-    background: rgba(57,114,41,1);
+    background: rgba(57, 114, 41, 1);
     border: 0;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.659);
     border-radius: 2px;
