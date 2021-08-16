@@ -135,10 +135,7 @@ const WelcomeProfile = () => {
 
     const prismicTrekContents=[];
     for (const book of bookingsData) {
-      const trekName = book.trekName
-        .replaceAll(" ", "_")
-        .toLowerCase();
-
+      const trekName = book.trekName.replaceAll(" ", "-").toLowerCase();
       let result;
       const findContents=prismicTrekContents.find(x=>x.trekName===trekName);
       //console.log(findContents);

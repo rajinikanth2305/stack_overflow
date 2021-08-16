@@ -49,9 +49,11 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
       const hashIndex = pageName.indexOf("#");
 
       if (hashIndex > 0) {
-        actualTrekPageName = pageName.substring(0, hashIndex).replaceAll("_", " ");
+        actualTrekPageName = pageName.substring(0, hashIndex).replaceAll("-", " ");
+        
       } else {
-        actualTrekPageName = pageName.replaceAll("_", " ");
+        actualTrekPageName = pageName.replaceAll("-", " ");
+       // actualTrekPageName = actualTrekPageName.replaceAll("-", " ");
       }
     } else {
        console.log(mode);
