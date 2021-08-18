@@ -16,13 +16,9 @@ const AllIndiaHikes = ({ slice }) => {
   const familyTreksList = slice.primary.family_treks;
   const diyTreksList = slice.primary.diy_treks;
 
-  const citySelectItems = [
-    { label: "New York", value: "NY" },
-    { label: "Rome", value: "RM" },
-    { label: "London", value: "LDN" },
-    { label: "Istanbul", value: "IST" },
-    { label: "Paris", value: "PRS" }
-  ];
+  const filterSelection = (e) => {
+    console.log(e.target.value);
+  }
 
   const easyModerateTreks = easyModerateTreksList.map(function(data1, i1) {
     return (
@@ -143,13 +139,13 @@ const AllIndiaHikes = ({ slice }) => {
                   </p>
                 </div>
                 <div>
-                  <select className="slot-filter">
-                    <option selected>Filter by Region</option>
-                    <option vlaue="">Easy Moderate trek</option>
-                    <option vlaue="">Moderate trek</option>
-                    <option vlaue="">Difficult trek</option>
-                    <option vlaue="">Family Trek</option>
-                    <option vlaue="">DIY Trek</option>
+                  <select className="slot-filter" onChange={e => filterSelection(e)} placeholder="test">
+                    <option selected value="test">Filter by Region</option>
+                    <option value="easyModerateTreks">Easy Moderate trek</option>
+                    <option value="moderateTrek">Moderate trek</option>
+                    <option value="difficultTrek">Difficult trek</option>
+                    <option value="familyTrek">Family Trek</option>
+                    <option value="DIYTrek">DIY Trek</option>
                   </select>
                 </div>
               </div>

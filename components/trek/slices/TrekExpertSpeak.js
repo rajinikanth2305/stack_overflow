@@ -24,16 +24,27 @@ const TrekExpertSpeak = ({ slice }) => {
       <>
         <div className="row mb-4">
           <div className="col-12 col-lg-7 col-md-12">
-            <h5 className="p-text-2 mb-3">
-              <b>
+            <div>
+              {/* <b>
                 {i + 1}.{data.what_i_like_content_title[0].text}
-              </b>
-            </h5>
+              </b> */}
+              {data.what_i_like_content_title.map((tit, index) => {
+                return (
+                  <>
+                    <h5 key={index} className="p-text-2 mb-3">
+                      <b>{tit.text}</b>
+                    </h5>
+                  </>
+                );
+              })}
+            </div>
             <div>
               {data.what_i_like_content_desc.map((paragraph, index) => {
                 return (
                   <>
-                    <p className="p-text-4">{paragraph.text}</p>
+                    <p key={index} className="p-text-4">
+                      {paragraph.text}
+                    </p>
                   </>
                 );
               })}
@@ -42,16 +53,27 @@ const TrekExpertSpeak = ({ slice }) => {
           <div className="col-12 col-lg-1 col-md-12"></div>
           <div className="col-12 col-lg-4 col-md-12">
             <div className="what_i_like_image">
-              <Image
-                src={data.what_i_like_image.url}
-                layout="fill"
-                objectFit="cover"
-                objectPosition="50% 50%"
-              />
+              {data.what_i_like_image.url !== undefined && (
+                <Image
+                  src={data.what_i_like_image.url}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                />
+              )}
             </div>
-            <p className="trek_summary_desc py-3 mpb-0">
-              {data.what_i_like_image_desc[0].text}
-            </p>
+            <div>
+              {/* {data.what_i_like_image_desc[0].text} */}
+              {data.what_i_like_image_desc.map((img_desc, index) => {
+                return (
+                  <>
+                    <p key={index} className="trek_summary_desc py-3 mpb-0">
+                      {img_desc.text}
+                    </p>
+                  </>
+                );
+              })}
+            </div>
           </div>
         </div>
       </>
