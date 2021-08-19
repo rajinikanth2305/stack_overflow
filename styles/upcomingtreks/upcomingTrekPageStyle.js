@@ -118,7 +118,7 @@ export const upcomingTrekPageStyle = css.global`
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
     margin: 0;
-    padding: 10px;
+    padding: 10px 0;
   }
 
   .p-display-2 {
@@ -653,7 +653,7 @@ export const upcomingTrekPageStyle = css.global`
       border: 0;
       padding: 3px 2px;
       border-radius: 0;
-      line-height: 24px;
+      line-height: 18px;
       text-align: center;
       font-family: Franklin Gothic Medium;
       font-style: normal;
@@ -736,6 +736,25 @@ export const upcomingTrekPageStyle = css.global`
 
     .trek_card.opn-trek {
       min-height: 480px;
+    }
+
+    .mob-autumn-img {
+      position: relative;
+      width: 100%;
+      height: 135px;
+    }
+
+    .list-dot-style-mob {
+      font-size: 14px;
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgb(255, 193, 0);
+    }
+
+    .color-yellow {
+      color: rgb(255, 193, 0);
     }
   }
 `;

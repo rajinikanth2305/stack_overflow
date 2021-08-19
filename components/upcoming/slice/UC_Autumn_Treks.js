@@ -59,7 +59,7 @@ const UCAutnumTreks = ({ slice }) => {
   const ucAutumnTreksImages = ucAutumnTreksImagesArray.map(function(data, i) {
     return (
       <>
-        <div className="mx-4 m-mx-0" key={i}>
+        <div className="mx-4 m-mx-0 m-d-none " key={i}>
           <div className="card_sec">
             <div className="card trek_card">
               <div alt="imgs" className="uc_open_for_small_group_images">
@@ -127,6 +127,76 @@ const UCAutnumTreks = ({ slice }) => {
             </div>
           </div>
         </div>
+
+        <div className="m-d-block mb-3 border-bottom pb-3">
+          <div className="row d-flex aling-items-center">
+            <div className="col-5">
+              <div className="mob-autumn-img">
+                <Image
+                  src={data.uc_autumn_treks_images.url}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                />
+              </div>
+            </div>
+            <div className="col-7">
+              <div>
+                <h3 class="m-title-3">
+                  {data.uc_autumn_treks_image_caption[0].text}
+                </h3>
+                <p className="m-display-2">
+                  {data.uc_autumn_treks_image_caption_desc[0].text.length > 125
+                    ? `${data.uc_autumn_treks_image_caption_desc[0].text.substring(
+                        0,
+                        125
+                      )}...`
+                    : data.uc_autumn_treks_image_caption_desc[0].text}
+                </p>
+                <div>
+                  <div>
+                    <p className="m-card-info-text m-0">
+                      <span className="list-dot-style-mob"></span>{" "}
+                      {data.uc_autumn_treks_days[0].text} Days
+                    </p>
+                  </div>
+                  <div>
+                    <p className="m-card-info-text m-0">
+                      <span className="list-dot-style-mob"></span>{" "}
+                      {data.uc_autumn_treks_seasons[0].text}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="m-card-info-text m-0">
+                      <span className="list-dot-style-mob"></span>{" "}
+                      {data.uc_autumn_treks_guide[0].text}
+                    </p>
+                  </div>
+                </div>
+                <div className="d-flex align-items-center mt-3">
+                {data.uc_autumn_treks_family_trek === true ? ( <div>
+                    <p className="m-card-info-text m-0"><span className="color-yellow">*</span> family friendly</p>
+                  </div>
+                  // <div className="mx-1"></div>
+                  // <div>
+                  //   <p className="m-card-info-text m-0">family friendly</p>
+                  // </div>
+                  ) : (
+                    ""
+                  )}
+                  <div className="flex-grow-1">
+                    <button
+                      className="btn m-btn-ih-green"
+                      onClick={() => goToTrekPage(data)}
+                    >
+                      View dates / Register
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </>
     );
   });
@@ -147,9 +217,10 @@ const UCAutnumTreks = ({ slice }) => {
               </p>
             </div>
           </div>
-          <div>
+          <div className="m-d-none">
             <Slider {...settings}>{ucAutumnTreksImages}</Slider>
           </div>
+          <div className="m-d-block">{ucAutumnTreksImages}</div>
         </div>
         <style jsx global>
           {upcomingTrekPageStyle}
