@@ -17,7 +17,7 @@ const UpComingTreks = ({ slice }) => {
   const [pageCount, setPageCount] = useState(1);
   const [isLoaded, setisLoaded] = useState(false);
   const [currentPage, setcurrentPage] = useState(0);
-  const pageSize = 2;
+  const pageSize = 10;
   const pagination = useRef();
   const [criteria, setCriteria] = useState({
     all: false,
@@ -312,7 +312,7 @@ const UpComingTreks = ({ slice }) => {
             </div>
             {filterResult === true ? (
               <div className="col-lg-8 col-md-12 col-12 m-d-none">
-                <div className="d-flex align-items-center justify-content-between">
+                <div className="row d-flex align-items-center justify-content-between">
                   {results.map(function(result, i) {
                     const slice = result.data.body.find(
                       x => x.slice_type === "trek_banner"
@@ -321,7 +321,7 @@ const UpComingTreks = ({ slice }) => {
                     const trekCaptions = slice.primary.trek_caption;
                     return (
                       <div className="col-lg-6 col-md-12" key={i}>
-                        <div className="mx-4">
+                        <div className="mb-4">
                           <div alt="imgs" className="uc_fliter_treks_images">
                             <Image
                               src={bannerImage}
