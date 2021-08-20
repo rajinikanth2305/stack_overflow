@@ -756,5 +756,35 @@ export const upcomingTrekPageStyle = css.global`
     .color-yellow {
       color: rgb(255, 193, 0);
     }
+
+    .allindia-mob-accordion > .card {
+      border-top: 0;
+      border-left: 0;
+      border-right: 0;
+      margin-bottom: 10px;
+    }
+
+    .allindia-mob-accordion > .card > .card-header {
+      background: transparent;
+      padding: 0
+    }
+
+    .allindia-mob-accordion > .card > .card-header > button {
+      background: transparent;
+      border: 0;
+      width: 100%;
+      text-align: left;
+    }
+
+    .mob_treek_img_allindia {
+      width: 100px;
+      height: 100px;
+      position: relative;
+    }
+
+    .p-display-3.p-display-3-md {
+      font-size: 12px;
+      line-height: 10px;  
+    }
   }
 `;

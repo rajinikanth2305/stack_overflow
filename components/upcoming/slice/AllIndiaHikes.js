@@ -6,6 +6,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Dropdown } from "primereact/dropdown";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
 
 const AllIndiaHikes = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -16,9 +18,21 @@ const AllIndiaHikes = ({ slice }) => {
   const familyTreksList = slice.primary.family_treks;
   const diyTreksList = slice.primary.diy_treks;
 
-  const filterSelection = (e) => {
+  const easyTrekImage = slice.primary.easy_trek_image.url;
+  const easyTrekTitleMobile = slice.primary.easy_trek_title_mobile;
+  const easyTrekDescMobile = slice.primary.easy_trek_desc_mobile;
+
+  const moderateTrekimage = slice.primary.moderate_trek_image.url;
+  const moderateTrekTitleMobile = slice.primary.moderate_trek_title_mobile;
+  const moderateTrekDescMobile = slice.primary.moderate_trek_desc_mobile;
+
+  const difficultTrekImage = slice.primary.difficult_trek_image.url;
+  const difficultTrekTitleMobile = slice.primary.difficult_trek_title_mobile;
+  const difficultTrekDescMobile = slice.primary.difficult_trek_desc_mobile;
+
+  const filterSelection = e => {
     console.log(e.target.value);
-  }
+  };
 
   const easyModerateTreks = easyModerateTreksList.map(function(data1, i1) {
     return (
@@ -28,7 +42,7 @@ const AllIndiaHikes = ({ slice }) => {
             <p className="badge-green"></p>
           </div>
           <div className="mx-3">
-            <p className="p-display-3">{data1.text}</p>
+            <p className="p-display-3 p-display-3-md">{data1.text}</p>
           </div>
         </div>
       </>
@@ -43,7 +57,7 @@ const AllIndiaHikes = ({ slice }) => {
             <p className="badge-yellow"></p>
           </div>
           <div className="mx-3">
-            <p className="p-display-3">{data2.text}</p>
+            <p className="p-display-3 p-display-3-md">{data2.text}</p>
           </div>
         </div>
       </>
@@ -58,7 +72,7 @@ const AllIndiaHikes = ({ slice }) => {
             <p className="badge-red"></p>
           </div>
           <div className="mx-3">
-            <p className="p-display-3">{data3.text}</p>
+            <p className="p-display-3 p-display-3-md">{data3.text}</p>
           </div>
         </div>
       </>
@@ -73,7 +87,7 @@ const AllIndiaHikes = ({ slice }) => {
             <p className="badge-blue"></p>
           </div>
           <div className="mx-3">
-            <p className="p-display-3">{data4.text}</p>
+            <p className="p-display-3 p-display-3-md">{data4.text}</p>
           </div>
         </div>
       </>
@@ -88,7 +102,7 @@ const AllIndiaHikes = ({ slice }) => {
             <p className="badge-blue"></p>
           </div>
           <div className="mx-3">
-            <p className="p-display-3">{data5.text}</p>
+            <p className="p-display-3 p-display-3-md">{data5.text}</p>
           </div>
         </div>
       </>
@@ -108,7 +122,7 @@ const AllIndiaHikes = ({ slice }) => {
             </div>
           </div>
           <div>
-            <div className="slots-bg mb-2">
+            <div className="slots-bg mb-2 m-d-none">
               <div className="d-flex align-items-center">
                 <div className="mx-2">
                   <p className="p-text-3-1 mb-0">
@@ -139,9 +153,17 @@ const AllIndiaHikes = ({ slice }) => {
                   </p>
                 </div>
                 <div>
-                  <select className="slot-filter" onChange={e => filterSelection(e)} placeholder="test">
-                    <option selected value="test">Filter by Region</option>
-                    <option value="easyModerateTreks">Easy Moderate trek</option>
+                  <select
+                    className="slot-filter"
+                    onChange={e => filterSelection(e)}
+                    placeholder="test"
+                  >
+                    <option selected value="test">
+                      Filter by Region
+                    </option>
+                    <option value="easyModerateTreks">
+                      Easy Moderate trek
+                    </option>
                     <option value="moderateTrek">Moderate trek</option>
                     <option value="difficultTrek">Difficult trek</option>
                     <option value="familyTrek">Family Trek</option>
@@ -151,7 +173,7 @@ const AllIndiaHikes = ({ slice }) => {
               </div>
             </div>
           </div>
-          <div className="row">
+          <div className="row m-d-none">
             <div className="col-lg-4 col-md-12">
               <h3 className="title-dispaly-4 my-3">Easy Moderate Treks</h3>
               {easyModerateTreks}
@@ -176,6 +198,112 @@ const AllIndiaHikes = ({ slice }) => {
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="m-d-block">
+            <Accordion defaultActiveKey="0" className="allindia-mob-accordion">
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle variant="link" eventKey="0">
+                    <div className="d-flex align-items-center">
+                      <div>
+                        <div className="mob_treek_img_allindia">
+                          <Image
+                            src={easyTrekImage}
+                            layout="fill"
+                            objectFit="cover"
+                            objectPosition="50% 50%"
+                          />
+                        </div>
+                      </div>
+                      <div className="mx-2"></div>
+                      <div>
+                        <p className="m-title-3 mb-1">
+                          {RichText.asText(easyTrekTitleMobile)}
+                        </p>
+                        <p className="m-card-info-text">
+                          {RichText.asText(easyTrekDescMobile)}
+                        </p>
+                      </div>
+                      <div>
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="0">
+                  <Card.Body>{easyModerateTreks}</Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle variant="link" eventKey="1">
+                    <div className="d-flex align-items-center">
+                      <div>
+                        <div className="mob_treek_img_allindia">
+                          <Image
+                            src={moderateTrekimage}
+                            layout="fill"
+                            objectFit="cover"
+                            objectPosition="50% 50%"
+                          />
+                        </div>
+                      </div>
+                      <div className="mx-2"></div>
+                      <div>
+                        <p className="m-title-3 mb-1">
+                          {RichText.asText(moderateTrekTitleMobile)}
+                        </p>
+                        <p className="m-card-info-text">
+                          {RichText.asText(moderateTrekDescMobile)}
+                        </p>
+                      </div>
+                      <div className="mx-2"></div>
+                      <div>
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="1">
+                  <Card.Body>{moderateTreks}</Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle variant="link" eventKey="2">
+                    <div className="d-flex align-items-center">
+                      <div>
+                        <div className="mob_treek_img_allindia">
+                          <Image
+                            src={difficultTrekImage}
+                            layout="fill"
+                            objectFit="cover"
+                            objectPosition="50% 50%"
+                          />
+                        </div>
+                      </div>
+                      <div className="mx-2"></div>
+                      <div>
+                        <p className="m-title-3 mb-1">
+                          {RichText.asText(difficultTrekTitleMobile)}
+                        </p>
+                        <p className="m-card-info-text">
+                          {RichText.asText(difficultTrekDescMobile)}
+                        </p>
+                      </div>
+                      <div className="mx-2"></div>
+                      <div>
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="2">
+                  <Card.Body>{difficultTreks}</Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </Accordion>
           </div>
         </div>
         <style jsx global>
