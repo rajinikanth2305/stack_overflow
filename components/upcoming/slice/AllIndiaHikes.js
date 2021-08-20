@@ -225,6 +225,7 @@ const AllIndiaHikes = ({ slice }) => {
                           {RichText.asText(easyTrekDescMobile)}
                         </p>
                       </div>
+                      <div className="mx-2"></div>
                       <div>
                         <i class="fa fa-angle-down" aria-hidden="true"></i>
                       </div>
