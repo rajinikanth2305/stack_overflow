@@ -50,7 +50,7 @@ const HikeHeader = ({ auth = false }) => {
     <div className="border-bottom-custom-header">
       <Navbar light expand="lg" className="container">
         <NavbarBrand href="/">
-          <img id="IH_Logo_in_PNG" src="/IH_Logo_in_PNG.png" />
+          <img id="IH_Logo_in_PNG" src="/IH_Logo_in_PNG@2x.png" className="logo-Icon" />
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>

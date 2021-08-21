@@ -1,6 +1,24 @@
 import css from "styled-jsx/css";
 
 export const ihheaderStyles = css.global`
+  @font-face {
+    font-family: Franklin Gothic;
+    src: url("/font/FRANKLINGOTHIC/framd.ttf");
+    src: url("/font/FRANKLINGOTHIC/framd.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: Franklin Gothic Book;
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf");
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: Lora;
+    src: url("/font/LORA/Lora-Medium.ttf");
+    src: url("/font/LORA/Lora-Medium.ttf") format("truetype");
+  }
+
   .navbar-expand-lg .navbar-nav .nav-link {
     white-space: nowrap;
     line-height: 17.5px;
@@ -61,6 +79,10 @@ export const ihheaderStyles = css.global`
   a:hover {
     color: #000;
     text-decoration: none;
+  }
+
+  .logo-Icon {
+    width: 136px;
   }
 
   @media only screen and (max-width: 900px) {
