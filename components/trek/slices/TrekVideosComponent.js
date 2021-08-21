@@ -92,8 +92,8 @@ const TrekVideosComponent = ({ slice }) => {
               <Image
                 src={data.image.url}
                 layout="fill"
-                objectFit="cover"
-                objectPosition="bottom"
+                // objectFit="cover"
+                // objectPosition="bottom"
                 onClick={() => {
                   setTrekVideoUrl(data.video_url.url);
                   setShow(true);
@@ -134,8 +134,8 @@ const TrekVideosComponent = ({ slice }) => {
                     <Image
                       src={primaryImage}
                       layout="fill"
-                      objectFit="cover"
-                      objectPosition="bottom"
+                      // objectFit="cover"
+                      // objectPosition="bottom"
                       onClick={handlePrimary}
                     />
                   </div>
@@ -160,8 +160,8 @@ const TrekVideosComponent = ({ slice }) => {
                     <Image
                       src={primaryImage}
                       layout="fill"
-                      objectFit="cover"
-                      objectPosition="bottom"
+                      // objectFit="cover"
+                      // objectPosition="bottom"
                       onClick={handleSecondary}
                     />
                   </div>
