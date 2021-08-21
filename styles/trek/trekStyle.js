@@ -1202,5 +1202,9 @@ export const trekStyle = css.global`
       margin-top: 2rem !important;
       margin-bottom: 1.8rem !important;
     }
+
+    .itinerary_map_image {
+      order: 1;
+    }
   }
 `;

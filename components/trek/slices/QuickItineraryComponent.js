@@ -33,9 +33,9 @@ const QuickItineraryComponent = ({ slice }) => {
   const dayNumberText = dayNumberTextArray.map(function(data, i) {
     return (
       <>
-        <div className="d-flex align-items-start">
+        <div className="d-flex align-items-start flex-wrap">
           <div className="col-lg-1 col-md-12">
-            <p className="p-text-2 text-brown-shade">
+            <p className="p-text-2 text-brown-shade mb-0">
               Day {data.day_number_text[0].text}
             </p>
           </div>
@@ -59,7 +59,7 @@ const QuickItineraryComponent = ({ slice }) => {
         <div className="container">
           <div className="row">
             <div className="col-lg-7 col-md-12">
-              <h2 className="title-h2 pb-3 mb-4">
+              <h2 className="title-h2 th-2m pb-3 mb-4">
                 {RichText.asText(heading1)}
               </h2>
             </div>
@@ -72,17 +72,6 @@ const QuickItineraryComponent = ({ slice }) => {
                   <p className="p-text-2-franklin">IMPORTANT POINTS</p>
                   <p className="p-text-4">{importantNoteListdata}</p>
                 </div>
-                {/* <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-                    <Tab eventKey="home" title="Home">
-                      <h5>Hi</h5>
-                    </Tab>
-                    <Tab eventKey="profile" title="Profile">
-                    <h5>Hkk</h5>
-                    </Tab>
-                    <Tab eventKey="contact" title="Contact" disabled>
-                      <h5>lkkl</h5>
-                    </Tab>
-                  </Tabs> */}
                 <div className="d-flex justify-content-end mt-3">
                   <button class="btn btn-ptr">read Detailed Itinerary</button>
                 </div>
