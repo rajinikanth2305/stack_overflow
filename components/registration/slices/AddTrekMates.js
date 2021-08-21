@@ -403,7 +403,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                     const data = users[index];
                     return (
                       <div>
-                        <p className="quick-info-bage-outline mb-1">
+                        <p className="quick-info-bage-outline mb-2">
                           {data.firstName}
                           <a href="#" onClick={() => remove(index)}>
                             <span className="px-2">x</span>

@@ -270,7 +270,7 @@ export const trekStyle = css.global`
   }
 
   .btn-ih-green-trek-fee {
-    background: rgba(59,118,42,1);
+    background: rgba(59, 118, 42, 1);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.353);
     border-radius: 2px;
     text-align: center;
@@ -632,8 +632,8 @@ export const trekStyle = css.global`
   }
 
   .quick-info-bage-outline {
-    border: 2px solid rgba(59, 118, 42, 1);
-    border-radius: 5px;
+    background: #ffc100;
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
     padding: 2px 10px;
     line-height: 24px;
     text-align: left;
@@ -642,7 +642,7 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    margin-right: 5px;
+    margin-right: 8px;
   }
 
   .quick-info-bage-outline.know_your {

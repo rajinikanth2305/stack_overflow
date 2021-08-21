@@ -100,58 +100,58 @@ const TrekOverView = ({ slice }) => {
               <div className="mt-5">
                 <div className="d-flex align-items-center flex-wrap">
                   <div>
-                    <p className="quick-info-bage-outline mb-1">
+                    <p className="quick-info-bage-outline mb-3">
                       Quick Itinerary
                     </p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-1">
+                    <p className="quick-info-bage-outline mb-3">
                       What I Like About Hampta Pass Trek
                     </p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-1">
+                    <p className="quick-info-bage-outline mb-3">
                       Photo Gallery
                     </p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-1">FAQs</p>
+                    <p className="quick-info-bage-outline mb-3">FAQs</p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-1">
+                    <p className="quick-info-bage-outline mb-3">
                       Detailed Itinerary
                     </p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-1">Trek Safety</p>
+                    <p className="quick-info-bage-outline mb-3">Trek Safety</p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-1">Trek Gear</p>
+                    <p className="quick-info-bage-outline mb-3">Trek Gear</p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-1">
+                    <p className="quick-info-bage-outline mb-3">
                       Sustainabilty
                     </p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-1">Best Time</p>
+                    <p className="quick-info-bage-outline mb-3">Best Time</p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-1">
+                    <p className="quick-info-bage-outline mb-3">
                       Travel Pro Tips
                     </p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-1">Trek Trivia</p>
+                    <p className="quick-info-bage-outline mb-3">Trek Trivia</p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-1">Campsites</p>
+                    <p className="quick-info-bage-outline mb-3">Campsites</p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-1"> Difficulty </p>
+                    <p className="quick-info-bage-outline mb-3"> Difficulty </p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-1">Weather</p>
+                    <p className="quick-info-bage-outline mb-3">Weather</p>
                   </div>
                 </div>
               </div>
