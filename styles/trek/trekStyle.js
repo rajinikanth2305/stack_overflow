@@ -1033,6 +1033,12 @@ export const trekStyle = css.global`
       font-size: 36px;
     }
 
+    .title-h2.th-2m {
+      border-bottom: 2px solid rgb(255,193,0);
+      font-size: 24px;
+      margin-bottom: 0;
+    }
+
     .pr-3 {
       padding-right: 0;
     }
@@ -1186,6 +1192,15 @@ export const trekStyle = css.global`
     .border-bottom-custom.m-bbc {
       border-bottom: 2px solid rgb(255, 193, 0);
       padding-bottom: 10px !important;
+    }
+
+    .terk-videos-secondary-image {
+      height: 201px;
+    }
+
+    .m-my-2x {
+      margin-top: 2rem !important;
+      margin-bottom: 1.8rem !important;
     }
   }
 `;
