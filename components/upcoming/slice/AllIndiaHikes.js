@@ -173,7 +173,8 @@ const AllIndiaHikes = ({ slice }) => {
               </div>
             </div>
           </div>
-          <div className="row m-d-none">
+          <div className="m-d-none">
+          <div className="row">
             <div className="col-lg-4 col-md-12">
               <h3 className="title-dispaly-4 my-3">Easy Moderate Treks</h3>
               {easyModerateTreks}
@@ -198,6 +199,7 @@ const AllIndiaHikes = ({ slice }) => {
                 </div>
               </div>
             </div>
+          </div>
           </div>
 
           <div className="m-d-block">

@@ -42,7 +42,8 @@ const UCTreksToDo = ({ slice }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
+          arrows: false,
+          centerMode: true
         }
       }
     ]
@@ -61,7 +62,7 @@ const UCTreksToDo = ({ slice }) => {
       <>
         <div className="mx-4 m-mx-0" key={i}>
           <div className="card_sec">
-            <div className="card trek_card">
+            <div className="card trek_card opn-trek">
               <div alt="imgs" className="uc_open_for_small_group_images">
                 {data.uc_treks_to_do_family_trek === true ? (
                   <div className="trek_badge">
@@ -102,10 +103,10 @@ const UCTreksToDo = ({ slice }) => {
                 </div>
 
                 <div>
-                  <h3 class="title-diplay-3 text-uppercase">
+                  <h3 class="title-diplay-3 m-d-3 text-uppercase">
                     {data.uc_treks_to_do_image_caption[0].text}
                   </h3>
-                  <p className="p-display-2">
+                  <p className="p-display-2 md-2">
                     {data.uc_treks_to_do_image_caption_desc[0].text.length > 125
                       ? `${data.uc_treks_to_do_image_caption_desc[0].text.substring(
                           0,
@@ -147,7 +148,7 @@ const UCTreksToDo = ({ slice }) => {
             </div>
           </div>
           <div>
-            <Slider {...settings}>{ucTreksToDoImages}</Slider>
+            <Slider className="treks-carosule" {...settings}>{ucTreksToDoImages}</Slider>
           </div>
         </div>
         <style jsx global>
