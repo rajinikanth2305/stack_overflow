@@ -270,8 +270,9 @@ export const trekStyle = css.global`
   }
 
   .btn-ih-green-trek-fee {
-    background: rgb(91, 133, 70);
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+    background: rgba(59,118,42,1);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.353);
+    border-radius: 2px;
     text-align: center;
     font-family: Franklin Gothic;
     font-style: normal;
@@ -1038,6 +1039,7 @@ export const trekStyle = css.global`
 
     .p-text-1 {
       font-size: 18px;
+      line-height: 24px;
     }
 
     .p-text-2 {
@@ -1173,11 +1175,17 @@ export const trekStyle = css.global`
       font-style: normal;
       font-weight: normal;
       font-size: 14px;
-      padding: 10px;
+      padding: 5px 10px;
+      text-transform: uppercase;
     }
 
     .m-p-t-2 {
       padding-top: 2px !important;
+    }
+
+    .border-bottom-custom.m-bbc {
+      border-bottom: 2px solid rgb(255, 193, 0);
+      padding-bottom: 10px !important;
     }
   }
 `;

@@ -87,7 +87,7 @@ export const bannerStyle = css.global`
 
     .short-info-sec {
       background: linear-gradient(#fff0, black);
-      margin-top: -85px;
+      margin-top: -68px;
       position: relative;
       padding: 10px 0;
     }

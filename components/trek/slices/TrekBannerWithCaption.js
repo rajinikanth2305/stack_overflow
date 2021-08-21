@@ -38,18 +38,95 @@ const TrekBannerWithCaption = ({ slice }) => {
         </div>
         <div className="short-info-sec">
           <div className="container">
-            <div className="row">
-              <div className="col-6 col-lg-3 col-md-6">
-                <p className="short-info-text m-0">Difficulty: <span className="mx-2 mmx-0 md-b">{RichText.asText(difficulty)}</span></p>
+            <div className="d-m-none">
+              <div className="row">
+                <div className="col-6 col-lg-3 col-md-6">
+                  <p className="short-info-text m-0">
+                    Difficulty:{" "}
+                    <span className="mx-2 mmx-0 md-b">
+                      {RichText.asText(difficulty)}
+                    </span>
+                  </p>
+                </div>
+                <div className="col-6 col-lg-3 col-md-6">
+                  <p className="short-info-text m-0">
+                    Duration:{" "}
+                    <span className="mx-2 mmx-0 md-b">
+                      {RichText.asText(duration)}
+                    </span>
+                  </p>
+                </div>
+                <div className="col-6 col-lg-3 col-md-6">
+                  <p className="short-info-text m-0">
+                    Highest Altitude:{" "}
+                    <span className="mx-2 mmx-0 md-b">
+                      {RichText.asText(altitude)}
+                    </span>
+                  </p>
+                </div>
+                <div className="col-6 col-lg-3 col-md-6">
+                  <p className="short-info-text m-0">
+                    Age:{" "}
+                    <span className="mx-2 mmx-0 md-b">
+                      {RichText.asText(age)}
+                    </span>
+                  </p>
+                </div>
               </div>
-              <div className="col-6 col-lg-3 col-md-6">
-                <p className="short-info-text m-0">Duration: <span className="mx-2 mmx-0 md-b">{RichText.asText(duration)}</span></p>
+            </div>
+
+            <div className="d-m-block">
+              <div className="row">
+                <div className="col-6">
+                  <div className="d-flex">
+                    <div>
+                      <p className="short-info-text m-0">Duration</p>
+                    </div>
+                    <div className="mx-3">
+                      <p className="short-info-text m-0">
+                        {RichText.asText(duration)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-6">
+                  <div className="d-flex">
+                    <div>
+                      <p className="short-info-text m-0">Age</p>
+                    </div>
+                    <div className="mx-3">
+                      <p className="short-info-text m-0">
+                        {RichText.asText(age)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="col-6 col-lg-3 col-md-6">
-                <p className="short-info-text m-0">Highest Altitude: <span className="mx-2 mmx-0 md-b">{RichText.asText(altitude)}</span></p>
-              </div>
-              <div className="col-6 col-lg-3 col-md-6">
-                <p className="short-info-text m-0">Age: <span className="mx-2 mmx-0 md-b">{RichText.asText(age)}</span></p>
+              <div className="row">
+                <div className="col-6">
+                  <div className="d-flex">
+                    <div>
+                      <p className="short-info-text m-0">Difficulty</p>
+                    </div>
+                    <div className="mx-3">
+                      <p className="short-info-text m-0">
+                        {RichText.asText(difficulty)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-6">
+                  <div className="d-flex">
+                    <div className="col-6">
+                      <p className="short-info-text m-0">Highest Altitude</p>
+                    </div>
+                    <div className="mx-3">
+                      <p className="short-info-text m-0">
+                        {RichText.asText(altitude)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
