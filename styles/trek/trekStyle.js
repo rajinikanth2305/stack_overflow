@@ -29,6 +29,16 @@ export const trekStyle = css.global`
     text-transform: capitalize;
   }
 
+  .title-h1-v {
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 56px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
   .title-h2 {
     text-align: left;
     font-family: Lora;
@@ -1111,13 +1121,20 @@ export const trekStyle = css.global`
 
     .expert_speak_box {
       top: -25px;
-      width: 275px;
+      width: 132px;
       left: -12px;
+    }
+
+    .expert_speak_box > p {
+      font-size: 10px;
+      font-family: Lora;
+      font-style: normal;
+      font-weight: bold;
     }
 
     .banner-image-expert-speak {
       background-position: bottom;
-      height: 260px;
+      height: 150px;
     }
 
     .discovery_trek_gallery {
@@ -1242,6 +1259,10 @@ export const trekStyle = css.global`
 
     .m-j-c-c {
       justify-content: center !important;
+    }
+
+    .title-h1-v {
+      font-size: 24px;
     }
   }
 `;
