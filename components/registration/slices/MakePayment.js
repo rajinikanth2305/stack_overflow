@@ -16,7 +16,7 @@ import {
 } from "../../../services/queries";
 import { Dropdown } from "primereact/dropdown";
 import { useForm, Controller } from "react-hook-form";
-import jQuery from "jquery";
+//import jQuery from "jquery";
 import { Toast } from "primereact/toast";
 
 import {
@@ -154,14 +154,14 @@ const MakePayment = forwardRef((props, ref) => {
       0
     );
     const gst = 5;
-    const gstValue = (gst / 100) * totalTrekFee;
-    const total = totalTrekFee + gstValue;
+    const gstValue = Math.round((gst / 100) * totalTrekFee);
+    const total = Math.round(totalTrekFee + gstValue);
 
     const totalVoucherAmount = usersData.reduce(
       (a, v) => (a = a + v.voucherAmount),
       0
     );
-    const youpay = total - totalVoucherAmount;
+    const youpay = Math.round(total - totalVoucherAmount);
 
     setComputeFields({
       ...computeFields,
@@ -213,7 +213,7 @@ const MakePayment = forwardRef((props, ref) => {
       if (youPay > 0) {
         const currentAvailableAmount = selectedVoucher.amountAvailable;
 
-        if (currentAvailableAmount > 0) {
+        if (currentAvailableAmount > 0) {  /// If Vocuher has available amount
           const amountToDeductInVocuher =
             youPay > currentAvailableAmount ? currentAvailableAmount : youPay;
 
@@ -226,7 +226,7 @@ const MakePayment = forwardRef((props, ref) => {
           ).voucherAmount = amountToDeductInVocuher;
         }
       }
-      console.log(JSON.stringify(sdata));
+     //console.log(JSON.stringify(sdata));
       await dispatch(addOrUpdateState(sdata));
       computeTotal(sdata.trekUsers);
     }
@@ -277,7 +277,7 @@ const MakePayment = forwardRef((props, ref) => {
             toast.current.show({
               severity: "error",
               summary: `'Make payment is not succeeded' ${res.response?.data?.message}`,
-              detail: "Find Trekker"
+              detail: "Make Booking Payment"
             });
           }
         });
@@ -402,7 +402,8 @@ const MakePayment = forwardRef((props, ref) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {indexes.map(index => {
+                    {
+                      indexes.map(index => {
                       const fieldName = `voucher[${index}]`;
                       const sdata = JSON.parse(JSON.stringify(stateData.data));
                       const data = sdata?.trekUsers[index];

@@ -103,7 +103,9 @@ class MyDocument extends Document {
               p=e.getElementsByTagName(a)[0];p.parentNode.insertBefore(m,p);
               })(window,document,'script','https://u.heatmap.it/log.js');
           `}}></script>
-           {/* <!-- end Heat Map --> */}
+           {/* <!-- end Heat Map --> 
+             <script async defer src={`//static.cdn.prismic.io/prismic.js?repo=${prismicRepoName}&new=true`} /> 
+           */}
 
          <script async defer src={`//static.cdn.prismic.io/prismic.js?repo=${prismicRepoName}&new=true`} /> 
          

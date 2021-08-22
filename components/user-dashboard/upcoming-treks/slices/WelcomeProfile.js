@@ -25,6 +25,7 @@ import { Client } from "../../../../utils/prismicHelpers";
 import { confirmPopup } from "primereact/confirmpopup"; // To use confirmPopup method
 import Image from "next/image";
 import { Toast } from "primereact/toast";
+import BoPayment from "../../bo-payment/slices/BoPayment";
 
 const WelcomeProfile = () => {
   const [show, setShow] = useState(false);
@@ -46,8 +47,12 @@ const WelcomeProfile = () => {
 
   const router = useRouter();
   const myTrekRef = useRef();
+  const offLoadingRef = useRef();
 
   const toast = useRef(null);
+  const [showOffLoadingPayment, setShowOffLoadingPayment] = useState(false);
+  const [offLoadingFeeSelectedData, setOffLoadingFeeSelectedData] = useState(false);
+  const [showOffLoadingTab, setShowOffLoadingTab] = useState(false);
 
   React.useEffect(() => {
     //const res=await
@@ -100,6 +105,7 @@ const WelcomeProfile = () => {
 
     setBookings(bookTrekContents);
     setUpComingTrek(bookTrekContents[0]); /// setting the first trek has upcoming trek
+    deriveAndSetOffLoadingTabVisible(bookTrekContents[0]);
 
     const arr = Array.from(new Array(bookTrekContents.length - 1), (x, i) => i);
     setIndexes(arr);
@@ -111,6 +117,7 @@ const WelcomeProfile = () => {
     setNextComingTreks(nextTreks);
     setRender(true);
     myTrekRef.current?.changeState(bookTrekContents[0]);
+    offLoadingRef.current?.changeState(bookTrekContents[0]);
   };
 
   const getAndSetTrekContents = async (bookingsData, userEmail) => {
@@ -179,16 +186,34 @@ const WelcomeProfile = () => {
         bookingParticipantState: book.bookingParticipantState,
         participantsCount: book.trekMates.length,
         userTrekBookingParticipants: book.trekMates,
-        bookingState:book.bookingState
+        bookingState:book.bookingState,
+        backPackOffloadingDays: book.backPackOffloadingDays,
+        backPackOffloadingCostPerDay:book.backPackOffloadingCostPerDay,
+        backPackOffloadingTax: book.backPackOffloadingTax
       });
     }
     setStates(bookTrekContents);
   };
 
+  const deriveAndSetOffLoadingTabVisible=(activeBooking) => {
+    
+    if(activeBooking.bookingState==="COMPLETED") {
+      setShowOffLoadingTab(true);
+      console.log(activeBooking.bookingState);
+    }
+    else {
+      setShowOffLoadingTab(false);
+    }
+  }
+
   const toggleTrekDisplay = bookingId => {
     const activeBooking = bookings.find(x => x.bookingId === bookingId);
     setUpComingTrek(activeBooking); /// setting the toggled bookingid trek has upcoming trek
-    myTrekRef.current.changeState(activeBooking);
+    deriveAndSetOffLoadingTabVisible(activeBooking);
+    myTrekRef.current?.changeState(activeBooking);
+
+    
+    offLoadingRef.current?.changeState(activeBooking);
 
     const arr = Array.from(new Array(bookings.length - 1), (x, i) => i);
     setIndexes(arr);
@@ -237,10 +262,17 @@ const WelcomeProfile = () => {
     //toggleTrekDisplay(bookingId);
   };
 
-  let callBackProps = {
-    onMyTrekSaveDetail: refresh
+  const OffLoadingPayment = (data) => {
+    //console.log(data);
+    setRender(false);
+    setOffLoadingFeeSelectedData(data);
+    setShowOffLoadingPayment(true);
   };
 
+  let callBackProps = {
+    onMyTrekSaveDetail: refresh,
+    onOffLoadingPayment:OffLoadingPayment
+  };
   return (
     <>
       {render && (
@@ -444,9 +476,13 @@ const WelcomeProfile = () => {
                               <Tab eventKey="rentgear" title="Rent gear">
                                 <RentGear />
                               </Tab>
-                              <Tab eventKey="offloading" title="Offloading">
-                                <Offloading />
+                             
+                              <Tab eventKey="offloading"   title="Offloading">
+                            
+                                <Offloading  ref={offLoadingRef} {...callBackProps} />
+                               
                               </Tab>
+                            
                               <Tab eventKey="trekfaqs" title="Trek Faqs">
                                 <TrekFAQS />
                               </Tab>
@@ -803,6 +839,12 @@ const WelcomeProfile = () => {
           </Modal>
         </div>
       )}
+      {
+        showOffLoadingPayment && (
+          <div>
+            <BoPayment data={offLoadingFeeSelectedData} ></BoPayment>
+          </div>
+        )}
     </>
   );
 };

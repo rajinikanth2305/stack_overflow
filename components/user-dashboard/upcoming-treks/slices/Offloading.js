@@ -1,79 +1,221 @@
-import React from "react";
+import React, {
+  useState,
+  forwardRef,
+  useImperativeHandle,
+  useRef
+} from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import {
+  getUserVoucher
+} from "../../../../services/queries";
+import { Dropdown } from "primereact/dropdown";
+import { useForm, Controller } from "react-hook-form";
 import Link from "next/link";
+import { Toast } from "primereact/toast";
+import { Checkbox  } from 'primereact/checkbox';
+import { computeStyles } from "@popperjs/core";
 
-const offLoadingList = [
-  {
-    id: 1,
-    participants: "Nayana Jambe (You)",
-    applicableVoucher: "Rs. 301 : Voucher 1",
-    offloadingFee: "1,050",
-    youPay: "1,050",
-    offloadingStatus: "Not Required"
-  },
-  {
-    id: 2,
-    participants: "Sandhya UC",
-    applicableVoucher: "No voucher",
-    offloadingFee: "1,050",
-    youPay: "750",
-    offloadingStatus: "Paid"
+const Offloading = forwardRef((props, ref) => {
+
+  const [indexes, setIndexes] = React.useState([]);
+  const [counter, setCounter] = React.useState(0);
+  const [headerData, setHeaderData] = React.useState([]);
+  const [render, setRender] = useState(true);
+  const [vouchers, setVouchers] = React.useState([]);
+  const [offLoadings, setOffLoadings] = React.useState([]);
+  const [showOffLoadingContents, setShowOffLoadingContents] = useState(false);
+  const [showSaveButton, setShowSaveButton] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    control,
+    errors,
+    formState,
+    getValues
+  } = useForm();
+  const [saveState, setSaveState] = useState(false);
+  const toast = useRef(null);
+
+  React.useEffect(() => {}, [indexes, offLoadings]);
+
+ // The component instance will be extended
+  // with whatever you return from the callback passed
+  // as the second argument
+  useImperativeHandle(ref, () => ({
+     changeState(data) {
+      initData(data);
+     }
+   }));
+ 
+   const deriveBookingState=(activeBooking) => {
+    
+    if(activeBooking.bookingState==="COMPLETED") {
+      setShowOffLoadingContents(true);
+      return true;
+    }
+    else {
+      setShowOffLoadingContents(false);
+      return false;
+    }
   }
-];
 
-const offLoading = offLoadingList.map(function(data, i) {
+   const initData = (data) => {
+     //console.log(data);
+     if(!deriveBookingState(data))
+        return;
+
+     getUserVoucher(data.email).then(vouchers => {
+         // console.log(data.email);
+         // console.log(vouchers);
+          setVouchers(vouchers);
+          setHeaderData(data);
+
+          const fee=data.backPackOffloadingDays*data.backPackOffloadingCostPerDay;
+          const tax=fee * (data.backPackOffloadingCostPerDay/100);//backPackOffloadingTax
+          const offLoadingFee=Math.round(fee+tax);
+          
+          const offLoadingList=[];
+
+          data?.userTrekBookingParticipants.map(pdata=> {
+           offLoadingList.push(
+             {
+               id: pdata.participantId,
+               name:  pdata?.userDetailsForDisplay.email === data.email
+                 ? " * " + pdata?.userDetailsForDisplay.firstName +
+                   pdata?.userDetailsForDisplay.lastName +
+                   " (You) "
+                 : pdata?.userDetailsForDisplay.firstName +
+                   pdata?.userDetailsForDisplay.lastName,
+               voucher: vouchers,
+               offloadingFee:offLoadingFee ,
+               youPay: offLoadingFee,
+               offloadingStatus: "",
+               optedVoucherId:'',
+               voucherAmount:0,
+               voucherId:'',
+               selected:false
+             }
+          );
+         });
+
+         setOffLoadings(offLoadingList);
+        // console.log(offLoadingList);
+
+          const arr = Array.from(
+            new Array(data?.userTrekBookingParticipants?.length),
+            (x, i) => i
+          );
+
+          setIndexes(arr);
+          setCounter(arr.length);
+          setRender(true);
+   
+        });
+   }
+
+   const localgetVoucher = async userEmail => {
+    let dt = [];
+    const data1 = await getUserVoucher(userEmail)
+      .then(data => {
+        return data;
+      })
+      .catch(res => {
+        if (res.response.data?.message) {
+          return dt;
+        }
+      });
+    return data1;
+  };
+
+  const onVoucherApply =  (id, index) => {
+    const sdata = offLoadings
+    const user = sdata.find(u => u.id === id);
+     if (user.optedVoucherId > 0) {
+      const selectedVoucher = user.voucher.find(vid => vid.id == user.optedVoucherId);
+      const youPay = user.youPay;//computeTotal(sdata.trekUsers);
+      //console.log(youPay);
+      if (youPay > 0) {
+        const currentAvailableAmount = selectedVoucher.amountAvailable;
+
+        if (currentAvailableAmount > 0) {
+          const amountToDeductInVocuher =
+            youPay > currentAvailableAmount ? currentAvailableAmount : youPay;
+         
+          sdata.find(u => u.id === id).voucherId =user.optedVoucherId;
+          sdata.find(u => u.id === id).voucherAmount = amountToDeductInVocuher;
+          sdata.find(u => u.id === id).youPay = Number(youPay-amountToDeductInVocuher);
+        }
+      }
+     // console.log(JSON.stringify(sdata.find(u => u.id === id)));
+      setOffLoadings(sdata);
+
+      const arr = Array.from(
+        new Array(offLoadings.length),
+        (x, i) => i
+      );
+
+      setIndexes(arr);
+      setCounter(arr.length);
+      setRender(true);
+     // await dispatch(addOrUpdateState(sdata));
+      //computeTotal(sdata.trekUsers);
+    }
+  };
+
+  const onVoucherSelect = async (id, value) => {
+    // console.log(JSON.stringify(value));
+    const sdata = offLoadings
+    //// check if already it is selected:
+    const optedId = sdata.find(u => u.optedVoucherId === value);
+    console.log(optedId);
+
+    if (optedId !== undefined) {
+      toast.current.show({
+        severity: "error",
+        summary: `'The selected Voucher is already applied'`,
+        detail: "Make payment"
+      });
+      /// Resetting the old selected voucher values;
+      sdata.find(u => u.id === id).optedVoucherId = "";
+      sdata.find(u => u.id === id).voucherAmount = 0;
+      sdata.find(u => u.id === id).voucherId = "";
+     // await dispatch(addOrUpdateState(sdata));
+      //computeTotal(sdata.trekUsers);
+      return;
+    }
+    sdata.find(u => u.id === id).optedVoucherId = value;
+    sdata.find(u => u.id === id).voucherAmount = 0;
+    sdata.find(u => u.id === id).voucherId = "";
+  };
+
+  const onChecked =  (id, value) => {
+    offLoadings.find(u => u.id === id).selected = value;
+    const selectedCount=offLoadings.filter(u => u.selected === true).length;
+    setShowSaveButton(selectedCount>0);
+  };
+
+  const navigateTo =  () => {
+    const selectedList=offLoadings.filter(u => u.selected === true);
+    selectedList.map(p=> {
+     // p.optedVoucherId='',
+      p.voucherId='',
+      p.voucherAmount=0
+    })
+    const dt= {
+         header:headerData,
+         participants:selectedList
+      };
+    props.onOffLoadingPayment(dt);
+  };
+
   return (
     <>
-      <tr key={data.id}>
-        <td>
-          {i + 1}. {data.participants}
-        </td>
-        <td>
-          <div className="d-flex alifn-items-center">
-            <div>
-              <FormGroup>
-                <Input
-                  type="select"
-                  name="height"
-                  id="exampleSelectMulti"
-                  className="profile-input"
-                >
-                  <option>Rs. 301 : Voucher 1 </option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </Input>
-              </FormGroup>
-            </div>
-            <div className="mx-2">
-              <button className="btn table-btn-yellow-sm">
-                <span className="px-2">Apply</span>
-              </button>
-            </div>
-          </div>
-        </td>
-        <td>{data.offloadingFee}</td>
-        <td>{data.youPay}</td>
-        <td>
-          <span>{data.offloadingStatus}</span>
-          {data.offloadingStatus === "Paid" && (
-            <span className="mx-2 p-text-small-fg-red text-decoration-underline">
-              Cancel
-            </span>
-          )}
-        </td>
-      </tr>
-    </>
-  );
-});
-
-const Offloading = () => {
-  return (
-    <>
+      <Toast ref={toast} />
+       {showOffLoadingContents ===true ? 
       <div>
         <h5 className="p-text-3-fg b-left-blue-3px mb-3">
           Backpack Offloading
@@ -86,22 +228,23 @@ const Offloading = () => {
         </p>
         <div className="d-flex justify-content-between p-text-3-fg-book">
           <div>
-            <p className="m-0">No. of offloading days: 4 days</p>
+            <p className="m-0">No. of offloading days: {headerData?.backPackOffloadingDays} days</p>
             <p className="p-text-small-fg font-italic">
-              Jobra - Jwara - Balu Ka Ghera - Chhatru
+              headerData?.trekName
             </p>
           </div>
           <div>
-            <p>BO. cost per day: Rs. 250</p>
+            <p>BO. cost per day: Rs. {headerData?.backPackOffloadingCostPerDay}</p>
           </div>
           <div>
-            <p>Applicable tax: 5%</p>
+            <p>Applicable tax: {headerData?.backPackOffloadingTax}%</p>
           </div>
         </div>
         <div>
           <table class="table table-dashboard-profile-style-1">
             <thead>
               <tr className="header-bg">
+                <th className="w-20per">Select</th>
                 <th className="w-20per">participants</th>
                 <th className="w-20per">Applicable Voucher</th>
                 <th className="w-15per">Offloading Fee</th>
@@ -109,24 +252,129 @@ const Offloading = () => {
                 <th className="w-15per">offloading status</th>
               </tr>
             </thead>
-            <tbody>{offLoading}</tbody>
+            <tbody>
+            {
+                      indexes.map(index => {
+                      const fieldName = `voucher[${index}]`;
+                      const sdata = offLoadings[index];
+                      const lvouchers = [];
+                      if (sdata?.voucher?.length > 0) {
+                        sdata?.voucher.map(v => {
+                          lvouchers.push({
+                            title: v.title + "-" + v.amountAvailable,
+                            id: v.id
+                          });
+                        });
+                      }
+                      let status =0;
+                        if (sdata.offloadingStatus==="Not Required" 
+                        || sdata.offloadingStatus==="paid"){
+                          status= 0;
+                        }
+                        else {
+                          status= 1
+                        }
+                      
+                      return (
+                        <>
+                          <tr key={sdata.id}>
+                          <td>
+                              <div className="d-flex alifn-items-center">
+                                <div>
+                                  {status==1 && (
+                                <FormGroup className="reg-dropdown mp-dropdown">
+                                    <Controller
+                                      name={`${fieldName}.checked`}
+                                      control={control}
+                                      defaultValue={sdata.selected}
+                                      render={({ onChange, value }) => (
+                                        <Checkbox  inputId="category1" name="category" 
+                                        onChange={e => {
+                                          onChange(e.checked);
+                                          onChecked(sdata.id,e.checked);
+                                        }}
+                                        checked={value} />
+                                      )}
+                                    />
+                                  </FormGroup>
+                                  )}
+                                </div>
+                              </div>
+                            </td>
+
+                            <td>
+                              {index + 1}. {sdata.name}
+                            </td>
+                            <td>
+                              <div className="d-flex alifn-items-center">
+                                <div>
+                                <FormGroup className="reg-dropdown mp-dropdown">
+                                    <Controller
+                                      name={`${fieldName}.appliedVoucher`}
+                                      control={control}
+                                      render={({ onChange, value }) => (
+                                        <Dropdown
+                                          optionLabel="title"
+                                          optionValue="id"
+                                          value={value}
+                                          options={lvouchers}
+                                          onChange={e => {
+                                            onChange(e.value);
+                                            onVoucherSelect(sdata.id, e.value);
+                                          }}
+                                          placeholder="Select a Voucher "
+                                        />
+                                      )}
+                                    />
+                                  </FormGroup>
+                                </div>
+                                <div className="mx-2">
+                                  <button className="btn table-btn-yellow-sm"  
+                                  onClick={e =>
+                                      onVoucherApply(sdata.id, index)
+                                    }>
+                                    <span className="px-2">Apply</span>
+                                  </button>
+                                </div>
+                              </div>
+                            </td>
+                            <td>{sdata.offloadingFee}</td>
+                            <td>{sdata.youPay}</td>
+                            <td>
+                              <span>{sdata.offloadingStatus}</span>
+                              {sdata.offloadingStatus === "Paid" && (
+                                <span className="mx-2 p-text-small-fg-red text-decoration-underline">
+                                  Cancel
+                                </span>
+                              )}
+                            </td>
+                          </tr>
+                        </>
+                      );
+            
+            
+                    })
+                  }
+            </tbody>
           </table>
           <div className="d-flex align-items-center">
             <div className="flex-grow-1">
               <p className="m-0 p-text-small-brown">* Primary participant</p>
             </div>
             <div>
-              <Link href="../../../user-dashboard/bo-payment">
-                <button className="btn table-btn-blue-sm">
+                {showSaveButton && (
+                <button className="btn table-btn-blue-sm"  onClick={e => navigateTo()}>
                   <span className="px-2">pay offloading fee</span>
                 </button>
-              </Link>
+                )}
             </div>
           </div>
         </div>
       </div>
+       : <div> Backpack offloading fee action will enable after the trek-payment</div>
+       }
     </>
   );
-};
+});
 
 export default Offloading;
