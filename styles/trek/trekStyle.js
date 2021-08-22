@@ -1204,7 +1204,7 @@ export const trekStyle = css.global`
     }
 
     .itinerary_map_image {
-      order: 1;
+      height: 291px;
     }
   }
 `;

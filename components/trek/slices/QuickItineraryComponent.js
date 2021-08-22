@@ -59,9 +59,20 @@ const QuickItineraryComponent = ({ slice }) => {
         <div className="container">
           <div className="row">
             <div className="col-lg-7 col-md-12">
-              <h2 className="title-h2 th-2m pb-3 mb-4">
+              <h2 className="title-h2 th-2m pb-3 mb-4 mmb-0">
                 {RichText.asText(heading1)}
               </h2>
+              <div className="d-m-block">
+                <div className="itinerary_map_image">
+                  <Image
+                    src={itineraryMapImage}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="bottom"
+                  />
+                </div>
+                <p className="p-text-small">{RichText.asText(imgDesc)}</p>
+              </div>
             </div>
           </div>
           <div className="row">
@@ -79,15 +90,17 @@ const QuickItineraryComponent = ({ slice }) => {
             </div>
             <div className="col-12 col-lg-1 col-md-12"></div>
             <div className="col-lg-4 col-md-12">
-              <div className="itinerary_map_image">
-                <Image
-                  src={itineraryMapImage}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="bottom"
-                />
+              <div className="d-m-none">
+                <div className="itinerary_map_image">
+                  <Image
+                    src={itineraryMapImage}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="bottom"
+                  />
+                </div>
+                <p className="p-text-small">{RichText.asText(imgDesc)}</p>
               </div>
-              <p className="p-text-small">{RichText.asText(imgDesc)}</p>
 
               <div className="pro_tips_box">
                 <p className="pro_tips">
