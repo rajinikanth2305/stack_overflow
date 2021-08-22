@@ -255,10 +255,11 @@ export const trekStyle = css.global`
   }
 
   .btn-ptr {
-    background: rgba(59, 118, 42, 1);
+    background: rgba(57, 114, 41, 1);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
+    border-radius: 2px;
     border: 0;
     padding: 10px 30px;
-    border-radius: 0;
     line-height: 24px;
     text-align: center;
     font-family: Poppins;
@@ -266,12 +267,13 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(255, 255, 255, 1);
-    text-transform: uppercase;
+    text-transform: capitalize;
   }
 
   .btn-ih-green-trek-fee {
-    background: rgb(91, 133, 70);
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+    background: rgba(59, 118, 42, 1);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.353);
+    border-radius: 2px;
     text-align: center;
     font-family: Franklin Gothic;
     font-style: normal;
@@ -457,17 +459,18 @@ export const trekStyle = css.global`
 
   .btn-bihtn-yellow {
     background: rgba(255, 193, 0, 1);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
     border: 0;
-    padding: 3px 30px;
+    padding: 10px 30px;
     border-radius: 0;
     line-height: 24px;
     text-align: center;
-    font-family: Poppins;
+    font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     color: #000000;
-    text-transform: uppercase;
+    text-transform: capitalize;
   }
 
   .btn-btn-yellow-new {
@@ -631,8 +634,8 @@ export const trekStyle = css.global`
   }
 
   .quick-info-bage-outline {
-    border: 2px solid rgba(59, 118, 42, 1);
-    border-radius: 5px;
+    background: #ffc100;
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
     padding: 2px 10px;
     line-height: 24px;
     text-align: left;
@@ -641,7 +644,7 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    margin-right: 5px;
+    margin-right: 8px;
   }
 
   .quick-info-bage-outline.know_your {
@@ -1032,12 +1035,19 @@ export const trekStyle = css.global`
       font-size: 36px;
     }
 
+    .title-h2.th-2m {
+      border-bottom: 2px solid rgb(255, 193, 0);
+      font-size: 24px;
+      margin-bottom: 0;
+    }
+
     .pr-3 {
       padding-right: 0;
     }
 
     .p-text-1 {
       font-size: 18px;
+      line-height: 24px;
     }
 
     .p-text-2 {
@@ -1064,6 +1074,11 @@ export const trekStyle = css.global`
     .mmy-0 {
       margin-top: 0px !important;
       margin-bottom: 0px !important;
+    }
+
+    .mmx-0 {
+      margin-left: 0px !important;
+      margin-right: 0px !important;
     }
 
     .mmt-0 {
@@ -1173,11 +1188,60 @@ export const trekStyle = css.global`
       font-style: normal;
       font-weight: normal;
       font-size: 14px;
-      padding: 10px;
+      padding: 5px 10px;
+      text-transform: uppercase;
     }
 
     .m-p-t-2 {
       padding-top: 2px !important;
+    }
+
+    .border-bottom-custom.m-bbc {
+      border-bottom: 2px solid rgb(255, 193, 0);
+      padding-bottom: 10px !important;
+    }
+
+    .terk-videos-secondary-image {
+      height: 201px;
+    }
+
+    .m-my-2x {
+      margin-top: 2rem !important;
+      margin-bottom: 1.8rem !important;
+    }
+
+    .itinerary_map_image {
+      height: 291px;
+    }
+
+    .btn-ptr {
+      font-size: 14px;
+      padding: 3px 20px;
+    }
+
+    .bg-transparent-text-effect {
+      background: rgba(255, 255, 255, 0.68);
+      padding: 40px 0 0;
+      margin-top: -25px;
+      z-index: 99;
+      position: relative;
+    }
+
+    .campsites_images {
+      height: 360px;
+    }
+
+    .why_so_video_image {
+      height: 201px;
+    }
+
+    .btn-bihtn-yellow {
+      font-size: 14px;
+      padding: 3px 30px !important;
+    }
+
+    .m-j-c-c {
+      justify-content: center !important;
     }
   }
 `;

@@ -64,7 +64,8 @@ const TrekVideosComponent = ({ slice }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
+          arrows: false,
+          centerMode: true
         }
       }
     ]
@@ -73,7 +74,7 @@ const TrekVideosComponent = ({ slice }) => {
   const videosList = videoArray.map(function(data, i) {
     return (
       <>
-        <div className="mx-2" key={i}>
+        <div className="mx-2 mb-3" key={i}>
           <div class="card card-box-shadow">
             <div className="trek_video_image_array">
               <div className="d-flex align-items-center justify-content-center w-100 h-100">
@@ -92,8 +93,8 @@ const TrekVideosComponent = ({ slice }) => {
               <Image
                 src={data.image.url}
                 layout="fill"
-                objectFit="cover"
-                objectPosition="bottom"
+                // objectFit="cover"
+                // objectPosition="bottom"
                 onClick={() => {
                   setTrekVideoUrl(data.video_url.url);
                   setShow(true);
@@ -112,7 +113,7 @@ const TrekVideosComponent = ({ slice }) => {
         <div className="container">
           <div className="row my-5 mmt-0">
             <div className="col-12 col-lg-7 col-md-12">
-              <h2 className="title-h2 pb-3">{RichText.asText(heading1)}</h2>
+              <h2 className="title-h2 th-2m pb-3">{RichText.asText(heading1)}</h2>
             </div>
             <div className="col-12 col-lg-7 col-md-12 d-m-none">
               <p className="mb-4 pb-2 p-text-4">{RichText.asText(heading2)}</p>
@@ -134,8 +135,8 @@ const TrekVideosComponent = ({ slice }) => {
                     <Image
                       src={primaryImage}
                       layout="fill"
-                      objectFit="cover"
-                      objectPosition="bottom"
+                      // objectFit="cover"
+                      // objectPosition="bottom"
                       onClick={handlePrimary}
                     />
                   </div>
@@ -160,14 +161,14 @@ const TrekVideosComponent = ({ slice }) => {
                     <Image
                       src={primaryImage}
                       layout="fill"
-                      objectFit="cover"
-                      objectPosition="bottom"
+                      // objectFit="cover"
+                      // objectPosition="bottom"
                       onClick={handleSecondary}
                     />
                   </div>
                 </div>
               </div>
-              <div className="my-5">
+              <div className="my-5 m-my-2x">
                 <Slider {...settings}>{videosList}</Slider>
               </div>
             </div>

@@ -25,33 +25,60 @@ const WhatSoDifferent = ({ slice }) => {
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-7 col-md-12 mb-4">
-              <h2 className="title-h2 pb-3">{RichText.asText(heading1)}</h2>
+              <h2 className="title-h2 th-2m pb-3 mb-4 mmb-0">
+                {RichText.asText(heading1)}
+              </h2>
+              <div className="d-m-block">
+                <div className="card card-box-shadow mb-3">
+                  <div className="why_so_video_image">
+                    <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                      <div className="text-center">
+                        <img
+                          src="/v-icon.png"
+                          alt="playicon'"
+                          className="paly-icon icon-size-50"
+                          onClick={handleShow}
+                        />
+                      </div>
+                    </div>
+                    <Image
+                      src={videoImage}
+                      layout="fill"
+                      // objectFit="cover"
+                      // objectPosition="bottom"
+                      onClick={handleShow}
+                    />
+                  </div>
+                </div>
+              </div>
               <p className="p-text-4">{heading2data}</p>
-              <div className="d-flex justify-content-end">
+              <div className="d-flex justify-content-end m-j-c-c">
                 <button className="btn btn-bihtn-yellow">Read More</button>
               </div>
             </div>
             <div className="col-12 col-lg-1 col-md-12"></div>
             <div className="col-12 col-lg-4 col-md-12 mb-5">
-              <div className="card card-box-shadow">
-                <div className="why_so_video_image">
-                  <div className="d-flex align-items-center justify-content-center w-100 h-100">
-                    <div className="text-center">
-                      <img
-                        src="/v-icon.png"
-                        alt="playicon'"
-                        className="paly-icon icon-size-50"
-                        onClick={handleShow}
-                      />
+              <div className="d-m-none">
+                <div className="card card-box-shadow">
+                  <div className="why_so_video_image">
+                    <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                      <div className="text-center">
+                        <img
+                          src="/v-icon.png"
+                          alt="playicon'"
+                          className="paly-icon icon-size-50"
+                          onClick={handleShow}
+                        />
+                      </div>
                     </div>
+                    <Image
+                      src={videoImage}
+                      layout="fill"
+                      // objectFit="cover"
+                      // objectPosition="bottom"
+                      onClick={handleShow}
+                    />
                   </div>
-                  <Image
-                    src={videoImage}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="bottom"
-                    onClick={handleShow}
-                  />
                 </div>
               </div>
             </div>

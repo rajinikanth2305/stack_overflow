@@ -12,7 +12,7 @@ const CampSite = ({ slice }) => {
   const campsitesImagesArray = slice.items;
 
   const heading2data = heading2.map((data, i) => {
-    return <p key={i}>{data.text}</p>;
+    return <p className="mmb-0" key={i}>{data.text}</p>;
   });
 
   const settings = {
@@ -53,13 +53,13 @@ const CampSite = ({ slice }) => {
   const campsitesImages = campsitesImagesArray.map(function(data, i) {
     return (
         <>
-      <div className="mx-2" key={i}>
+      <div className="mx-2 mmx-0" key={i}>
         <div alt="imgs" className="campsites_images">
           <Image
             src={data.campsites_images.url}
             layout="fill"
-            objectFit="cover"
-            objectPosition="50% 50%"
+            // objectFit="cover"
+            // objectPosition="50% 50%"
           />
         </div>
         <p className="p-text-small">{data.image_desc[0].text}</p>
@@ -74,11 +74,11 @@ const CampSite = ({ slice }) => {
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-6 col-md-12 mb-4">
-              <h2 className="title-h2 pb-3">{RichText.asText(heading1)}</h2>
-              <p className="p-text-4">{heading2data}</p>
+              <h2 className="title-h2 th-2m pb-3 mb-4">{RichText.asText(heading1)}</h2>
+              <p className="p-text-4 mmb-0">{heading2data}</p>
             </div>
           </div>
-          <div className="mt-4 mb-5 pb-5">
+          <div className="mt-4 mb-5 pb-5 mmt-0 mmb-0">
             <Slider {...settings}>{campsitesImages}</Slider>
           </div>
         </div>

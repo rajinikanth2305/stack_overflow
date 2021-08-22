@@ -63,7 +63,7 @@ export const bannerStyle = css.global`
     font-weight: normal;
     font-size: 14px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    // text-transform: capitalize;
     padding: 7px 0;
   }
 
@@ -87,7 +87,7 @@ export const bannerStyle = css.global`
 
     .short-info-sec {
       background: linear-gradient(#fff0, black);
-      margin-top: -85px;
+      margin-top: -68px;
       position: relative;
       padding: 10px 0;
     }
