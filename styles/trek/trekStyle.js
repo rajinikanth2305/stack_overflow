@@ -459,17 +459,18 @@ export const trekStyle = css.global`
 
   .btn-bihtn-yellow {
     background: rgba(255, 193, 0, 1);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
     border: 0;
-    padding: 3px 30px;
+    padding: 10px 30px;
     border-radius: 0;
     line-height: 24px;
     text-align: center;
-    font-family: Poppins;
+    font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     color: #000000;
-    text-transform: uppercase;
+    text-transform: capitalize;
   }
 
   .btn-btn-yellow-new {
@@ -1228,6 +1229,19 @@ export const trekStyle = css.global`
 
     .campsites_images {
       height: 360px;
+    }
+
+    .why_so_video_image {
+      height: 201px;
+    }
+
+    .btn-bihtn-yellow {
+      font-size: 14px;
+      padding: 3px 30px !important;
+    }
+
+    .m-j-c-c {
+      justify-content: center !important;
     }
   }
 `;
