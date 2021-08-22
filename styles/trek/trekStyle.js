@@ -255,10 +255,11 @@ export const trekStyle = css.global`
   }
 
   .btn-ptr {
-    background: rgba(59, 118, 42, 1);
+    background: rgba(57, 114, 41, 1);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
+    border-radius: 2px;
     border: 0;
     padding: 10px 30px;
-    border-radius: 0;
     line-height: 24px;
     text-align: center;
     font-family: Poppins;
@@ -266,7 +267,7 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(255, 255, 255, 1);
-    text-transform: uppercase;
+    text-transform: capitalize;
   }
 
   .btn-ih-green-trek-fee {
@@ -1034,7 +1035,7 @@ export const trekStyle = css.global`
     }
 
     .title-h2.th-2m {
-      border-bottom: 2px solid rgb(255,193,0);
+      border-bottom: 2px solid rgb(255, 193, 0);
       font-size: 24px;
       margin-bottom: 0;
     }
@@ -1205,6 +1206,19 @@ export const trekStyle = css.global`
 
     .itinerary_map_image {
       height: 291px;
+    }
+
+    .btn-ptr {
+      font-size: 14px;
+      padding: 3px 20px;
+    }
+
+    .bg-transparent-text-effect {
+      background: rgba(255, 255, 255, 0.68);
+      padding: 40px 0 0;
+      margin-top: -25px;
+      z-index: 99;
+      position: relative;
     }
   }
 `;

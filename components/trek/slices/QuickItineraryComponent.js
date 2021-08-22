@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
 import { trekStyle } from "styles";
@@ -12,6 +12,7 @@ const QuickItineraryComponent = ({ slice }) => {
   const imgDesc = slice.primary.img_desc;
   const importantNoteList = slice.primary.important_note;
   const proTipsList = slice.primary.pro_tips;
+  const [qiHeight, setQiHeight] = useState(480);
   // console.log(slice);
 
   const importantNoteListdata = importantNoteList.map((data, i) => {
@@ -75,38 +76,86 @@ const QuickItineraryComponent = ({ slice }) => {
               </div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-lg-7 col-md-12">
-              {dayNumberText}
-              <div>
-                <div className="important_notice_box">
-                  <p className="p-text-2-franklin">IMPORTANT POINTS</p>
-                  <p className="p-text-4">{importantNoteListdata}</p>
+          <div className="d-m-none">
+            <div className="row">
+              <div className="col-lg-7 col-md-12">
+                <div>
+                  {dayNumberText}
+                  <div>
+                    <div className="important_notice_box">
+                      <p className="p-text-2-franklin">IMPORTANT POINTS</p>
+                      <p className="p-text-4">{importantNoteListdata}</p>
+                    </div>
+                    <div className="d-flex justify-content-end mt-3">
+                      <button class="btn btn-ptr">
+                        read Detailed Itinerary
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div className="d-flex justify-content-end mt-3">
-                  <button class="btn btn-ptr">read Detailed Itinerary</button>
+              </div>
+              <div className="col-12 col-lg-1 col-md-12"></div>
+              <div className="col-lg-4 col-md-12">
+                <div className="d-m-none">
+                  <div className="itinerary_map_image">
+                    <Image
+                      src={itineraryMapImage}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="bottom"
+                    />
+                  </div>
+                  <p className="p-text-small">{RichText.asText(imgDesc)}</p>
+                </div>
+
+                <div className="pro_tips_box">
+                  <p className="pro_tips">
+                    <span className="p-text-2-franklin">PRO-TIPS</span>
+                  </p>
+                  <p className="m-0 p-text-4">{proTipsListData}</p>
                 </div>
               </div>
             </div>
-            <div className="col-12 col-lg-1 col-md-12"></div>
-            <div className="col-lg-4 col-md-12">
-              <div className="d-m-none">
-                <div className="itinerary_map_image">
-                  <Image
-                    src={itineraryMapImage}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="bottom"
-                  />
-                </div>
-                <p className="p-text-small">{RichText.asText(imgDesc)}</p>
-              </div>
+          </div>
 
-              <div className="pro_tips_box">
-                <p className="pro_tips">
-                  <span className="p-text-2-franklin">PRO-TIPS</span>
-                </p>
-                <p className="m-0 p-text-4">{proTipsListData}</p>
+          {/* mobile firest design */}
+          <div className="d-m-block" id="importantNoteListdata-sec">
+            <div className="row">
+              <div className="col-lg-7 col-md-12">
+                <div style={{ height: qiHeight, overflow: "hidden" }}>
+                  {dayNumberText}
+                  <div>
+                    <div className="important_notice_box">
+                      <p className="p-text-2-franklin">IMPORTANT POINTS</p>
+                      <p className="p-text-4">{importantNoteListdata}</p>
+                    </div>{" "}
+                  </div>
+                  <div className="pro_tips_box">
+                    <p className="pro_tips">
+                      <span className="p-text-2-franklin">PRO-TIPS</span>
+                    </p>
+                    <p className="m-0 p-text-4">{proTipsListData}</p>
+                  </div>
+                </div>
+                <div className="d-flex justify-content-center bg-transparent-text-effect">
+                  {qiHeight === 480 ? (
+                    <button
+                      class="btn btn-ptr"
+                      onClick={() => setQiHeight("auto")}
+                    >
+                      read more
+                    </button>
+                  ) : (
+                    <a href="#importantNoteListdata-sec">
+                      <button
+                        class="btn btn-ptr"
+                        onClick={() => setQiHeight(480)}
+                      >
+                        read less
+                      </button>
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </div>
