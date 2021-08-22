@@ -15,6 +15,7 @@ import { useForm, Controller } from "react-hook-form";
 import Link from "next/link";
 import { Toast } from "primereact/toast";
 import { Checkbox  } from 'primereact/checkbox';
+import moment from "moment";
 
 const BoPayment = (offSelectedData) => {
   const [show, setShow] = useState(false);
@@ -382,7 +383,15 @@ const buildVouchers = data => {
                     </p>
                     <p className="p-text-3-fg mb-1 mt-4"> { offSelectedData.data.header.trekName}</p>
                     <p className="p-text-3-fg mb-1">
-                      16th Sep 2021 to 23rd Sep 2021
+                    <b>
+                                              {moment(
+                                               offSelectedData.data.header?.startDate
+                                              ).format("MM/DD/YYYY")}{" "}
+                                              -{" "}
+                                              {moment(
+                                                offSelectedData.data.header?.endDate
+                                              ).format("MM/DD/YYYY")}
+                                            </b>
                     </p>
                     <p className="p-text-3-fg mb-2"> { offSelectedData.data.participants.count}</p>
 
