@@ -57,8 +57,8 @@ const TrekExpertSpeak = ({ slice }) => {
                 <Image
                   src={data.what_i_like_image.url}
                   layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
+                  // objectFit="cover"
+                  // objectPosition="50% 50%"
                 />
               )}
             </div>
@@ -93,11 +93,11 @@ const TrekExpertSpeak = ({ slice }) => {
               <div className="container">
                 <div className="d-flex">
                   <div class="expert_speak_box col-2">
-                    <h2 className="title-h2 m-0">
+                    <h2 className="title-h1-v m-0">
                       {RichText.asText(heading1)}
                     </h2>
-                    <p className="m-0 d-m-none">with</p>
-                    <p className="m-0 d-m-none">{RichText.asText(author)}</p>
+                    {/* <p clas="m-0 d-m-none">with</p> */}
+                    <p className="m-0">{RichText.asText(author)}</p>
                   </div>
                 </div>
               </div>
