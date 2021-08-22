@@ -1075,6 +1075,11 @@ export const trekStyle = css.global`
       margin-bottom: 0px !important;
     }
 
+    .mmx-0 {
+      margin-left: 0px !important;
+      margin-right: 0px !important;
+    }
+
     .mmt-0 {
       margin-top: 0px !important;
     }
@@ -1219,6 +1224,10 @@ export const trekStyle = css.global`
       margin-top: -25px;
       z-index: 99;
       position: relative;
+    }
+
+    .campsites_images {
+      height: 360px;
     }
   }
 `;
