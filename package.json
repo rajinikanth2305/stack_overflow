@@ -37,7 +37,8 @@
     "reactstrap": "^8.9.0",
     "save": "^2.4.0",
     "slick-carousel": "^1.8.1",
-    "yup": "^0.32.9"
+    "yup": "^0.32.9",
+    "@react-pdf/renderer": "^2.0.15"
   },
   "scripts": {
     "dev": "next dev",

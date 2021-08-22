@@ -11,10 +11,14 @@ import { useRouter } from "next/router";
 import Prismic from "@prismicio/client";
 import { Client } from "../../../../utils/prismicHelpers";
 import Image from "next/image";
+import ReceiptTemplate from "./ReceiptTemplate";
+import CertificateTemplate from "./CertificateTemplate;"
+import {  PDFDownloadLink } from '@react-pdf/renderer';
+
 
 const UserPT = () => {
   const [activeTab, setActiveTab] = useState(null);
-
+  const [selectedReceipts, setselectedReceipts] = useState();
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
   };
@@ -50,12 +54,11 @@ const UserPT = () => {
     //fetchAndBindUserBookings(res);
   }, []);
 
-  function fetchAndBindUserBookings(email) {
-    console.log(email);
 
+  function fetchAndBindUserBookings(email) {
     getdashBoardUserBooking(email, true).then(bookingsData => {
       /// Idenitify and get the booking owner profile informations
-      console.log(bookingsData);
+     // console.log(bookingsData);
       if (bookingsData.length > 0) {
         const bookingOwner = bookingsData.map(element => {
           const mainuser = element.trekMates.find(
@@ -70,7 +73,7 @@ const UserPT = () => {
   }
 
   const setStates = bookTrekContents => {
-    console.log(bookTrekContents);
+    //console.log(bookTrekContents);
     setBookings(bookTrekContents);
     const arr = Array.from(new Array(bookTrekContents.length), (x, i) => i);
     setIndexes(arr);
@@ -128,7 +131,7 @@ const UserPT = () => {
         bookingParticipantState: book.bookingParticipantState,
         participantsCount: book.trekMates.length,
         userTrekBookingParticipants: book.trekMates,
-        trekStatus: book.bookingState,
+        trekStatus: "COMPLETED",//book.bookingState,
         reviewStatus: "yes"
       });
     }
@@ -138,6 +141,7 @@ const UserPT = () => {
   const prevTrekData = bookings?.map(function(data, i) {
     return ( 
       <>
+      
         <div key={data.id}>
           <div className="card mb-4">
             <div className="row">
@@ -204,17 +208,25 @@ const UserPT = () => {
                   <div className="d-flex align-items-center">
                     <div className="flex-grow-1">
                       <p className="m-0 text-decoration-underline p-text-small-fg">
-                        View receipts
+                            <PDFDownloadLink document={<ReceiptTemplate receiptData={data}  />} fileName={data.trekName}>
+                              {/* {({ blob, url, loading, error }) => */}
+                              {/* loading ? <i className="pi pi-spin pi-spinner"></i> : <i className="pi pi-download"></i> */}
+                              {/* } */} <i className="pi pi-download p-pr-2"></i>
+                              Download Receipts
+                            </PDFDownloadLink>
                       </p>
                       <p className="m-0 text-decoration-underline p-text-small-fg">
                         View Rented Gear
                       </p>
                     </div>
                     <div>
-                      {data.trekStatus === "Trek Completed" && (
-                        <button className="btn table-btn-blue">
-                          <span className="px-2">Download Certificate</span>
-                        </button>
+                      {data.trekStatus === "COMPLETED" && (
+                          <PDFDownloadLink document={<CertificateTemplate certificateData={data}  />} fileName={data.trekName}>
+                              {/* {({ blob, url, loading, error }) => */}
+                              {/* loading ? <i className="pi pi-spin pi-spinner"></i> : <i className="pi pi-download"></i> */}
+                              {/* } */} <i className="pi pi-download p-pr-2"></i>
+                              <span className="btn table-btn-blue">Download Certificate</span>
+                            </PDFDownloadLink>
                       )}
                       {data.reviewStatus === "no" && (
                         <button

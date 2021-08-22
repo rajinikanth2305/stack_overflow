@@ -5,7 +5,8 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Link from "next/link";
 import auth  from '../../../../services/Authenticate';
 import { getUserVoucher,findUserByEmail } from '../../../../services/queries';
-
+import VoucherTemplate from "./VoucherTemplate";
+import {  PDFDownloadLink } from '@react-pdf/renderer';
 
 const UserTV = () => {
   const [show, setShow] = useState(false);
@@ -69,7 +70,12 @@ const UserTV = () => {
               <div>Rs. {data?.amount} </div>
               <div>
                 <p className="m-0 text-decoration-underline p-text-small-fg-blue">
-                  Download
+                <PDFDownloadLink document={<VoucherTemplate voucher={data}  />} fileName={data.title}>
+                              {/* {({ blob, url, loading, error }) => */}
+                              {/* loading ? <i className="pi pi-spin pi-spinner"></i> : <i className="pi pi-download"></i> */}
+                              {/* } */} <i className="pi pi-download p-pr-2"></i>
+                              <span className="btn table-btn-blue">Download Vocuher</span>
+                            </PDFDownloadLink>
                 </p>
               </div>
             </div>
