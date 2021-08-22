@@ -402,7 +402,8 @@ export const trekStyle = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
-    color: rgba(157, 58, 11, 1);
+    color: rgba(0, 0, 0, 1);
+    border-left: 1px soild rgba(255, 193, 0, 1);
   }
 
   .author_img {
@@ -1036,6 +1037,36 @@ export const trekStyle = css.global`
     margin-bottom: 15px;
   }
 
+  .author-sec-border {
+    border-right: 2px solid rgb(255, 224, 130);
+    padding-right: 20px;
+  }
+
+  .author-info-text {
+    line-height: 20px;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .expert_speak_box > p {
+    font-size: 14px;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+  }
+
+  .bg-transparent-text-effect-tes {
+    background: rgba(255, 255, 255, 0.68);
+    padding: 40px 0 0;
+    margin-top: -25px;
+    z-index: 99;
+    position: relative;
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 36px;
@@ -1263,6 +1294,10 @@ export const trekStyle = css.global`
 
     .title-h1-v {
       font-size: 24px;
+    }
+
+    .bg-transparent-text-effect-tes {
+      margin-top: 0;
     }
   }
 `;

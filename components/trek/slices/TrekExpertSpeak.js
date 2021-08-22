@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { trekStyle } from "styles";
 import Image from "next/image";
@@ -12,6 +12,7 @@ const TrekExpertSpeak = ({ slice }) => {
   const contentHeading = slice.primary.content_heading;
   const contentHeadingDesc = slice.primary.content_heading_desc;
   const whatILikeImageArray = slice.items;
+  const [trekExpertSecHeight, setTrekExpertSecHeight] = useState(375);
 
   const bannerImageExpertSpeak = {
     backgroundImage: `url('${bannerImage}')`,
@@ -63,7 +64,6 @@ const TrekExpertSpeak = ({ slice }) => {
               )}
             </div>
             <div>
-              {/* {data.what_i_like_image_desc[0].text} */}
               {data.what_i_like_image_desc.map((img_desc, index) => {
                 return (
                   <>
@@ -82,7 +82,7 @@ const TrekExpertSpeak = ({ slice }) => {
 
   return (
     <>
-      <div className="my-5 mmt-0">
+      <div className="my-5 mmt-0" id="trekexper-sec">
         <div className="container container-custom">
           {/* <h5>{RichText.asText(heading1)}</h5> */}
           <div>
@@ -121,27 +121,63 @@ const TrekExpertSpeak = ({ slice }) => {
                     <div className="col-12 col-lg-1 col-md-12"></div>
                     <div className="col-12 col-lg-4 col-md-12">
                       <div>
-                        <p className="author-text">
-                          <Image
-                            src={authorImage}
-                            width={60}
-                            height={60}
-                            className="author_img"
-                          />
-                          {RichText.asText(aboutAuthor)}
-                        </p>
+                        <div className="row">
+                          <div className="col-4">
+                            <div className="text-center author-sec-border">
+                              <Image
+                                src={authorImage}
+                                width={90}
+                                height={90}
+                                className="author_img"
+                              />
+                              <p className="m-0 author-info-text">
+                                {RichText.asText(author)}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="col-8">
+                            <div>
+                              <p className="author-text">
+                                {RichText.asText(aboutAuthor)}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  {whatILikeImage}
+                  <div
+                    style={{ height: trekExpertSecHeight, overflow: "hidden" }}
+                  >
+                    {whatILikeImage}
+                  </div>
                   <div className="row mt-custom-top">
-                    <div className="col-lg-7 col-md-12">
-                      <div className="d-flex justify-content-end">
+                    <div className="col-lg-12 col-md-12">
+                      {/* <div className="d-flex justify-content-end">
                         <div>
                           <button className="btn btn-ih-green">
                             Read More
                           </button>
                         </div>
+                      </div> */}
+                      <div className="d-flex justify-content-center bg-transparent-text-effect-tes">
+                        {trekExpertSecHeight === 375 ? (
+                          <button
+                            class="btn btn-ptr"
+                            onClick={() => setTrekExpertSecHeight("auto")}
+                          >
+                            read more
+                          </button>
+                        ) : (
+                          <a href="#trekexper-sec">
+                            <button
+                              class="btn btn-ptr"
+                              onClick={() => setTrekExpertSecHeight(375)}
+                            >
+                              read less
+                            </button>
+                          </a>
+                        )}
                       </div>
                     </div>
                   </div>
