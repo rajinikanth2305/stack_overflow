@@ -1085,6 +1085,11 @@ export const trekStyle = css.global`
     position: relative;
   }
 
+  .text-center-custom {
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.353));
+    text-align: center !important;
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 36px;
@@ -1210,7 +1215,7 @@ export const trekStyle = css.global`
 
     .sustainable_box {
       padding: 0px;
-      margin-top: -415px;
+      margin-top: -450px;
     }
 
     .m-btn-block {
@@ -1358,6 +1363,15 @@ export const trekStyle = css.global`
     .mpx-1 {
       padding-left: 0.3rem !important;
       padding-right: 0.3rem !important;
+    }
+
+    .text-center-custom {
+      border: 0;
+      text-align: left !important;
+    }
+
+    .mx-4.m-mx-0 {
+      margin: 0px !important;
     }
   }
 `;

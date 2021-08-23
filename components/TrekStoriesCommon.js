@@ -75,7 +75,7 @@ const TrekkersStoriesCommon = () => {
     });
     return (
       <>
-        <div className="c-mx-2" key={`trekkstory` + i}>
+        <div className="mx-4 m-mx-0" key={`trekkstory` + i}>
           <div className="card_sec">
             <div className="card trek_card">
               <div alt="imgs" className="choose_trek_image">

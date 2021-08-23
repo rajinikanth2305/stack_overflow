@@ -42,10 +42,19 @@ const SustainableTrekking = ({ slice }) => {
                   <div className="col-md-8">
                     <div>
                       <div className="sustainable_box">
-                        <h2 className="title-h2 text-white text-center">
+                        <h2 className="title-h2 text-white text-center-custom">
                           {RichText.asText(heading1)}
                         </h2>
-                        <p className="p-text-4 text-white mb-0 text-center">{heading2}</p>
+                        <p className="p-text-4 text-white mb-0 text-center-custom">
+                          {heading2}
+                        </p>
+                        <div className="d-m-block">
+                          <div className="d-flex justify-content-end m-j-c-c mt-5">
+                            <button className="btn btn-bihtn-yellow">
+                              Read more
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
