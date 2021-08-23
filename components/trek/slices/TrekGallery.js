@@ -61,14 +61,14 @@ const TrekGallery = ({ slice }) => {
           <div className="container">
             <div className="row">
               <div className="col-12 col-lg-6 col-md-12">
-                <p className="text-white p-text-2">
+                <p className="text-white mtw p-text-2">
                   Photo story: {data.discovery_trek_gallery_story[0].text}
                 </p>
-                <p className="text-white p-text-2">
+                <p className="text-white mtw p-text-2">
                   Picture by: {data.discovery_trek_gallery_pictured_by[0].text}
                 </p>
               </div>
-              <div className="col-12 col-lg-6 col-md-12">
+              <div className="col-12 col-lg-6 col-md-12 d-m-none">
                 <h2 className="text-white title-h2 border-0 px-5 mpy-0">
                   {data.discovery_trek_gallery_title[0].text}
                 </h2>
@@ -86,7 +86,7 @@ const TrekGallery = ({ slice }) => {
         <div className="container container-custom">
           <div className="bg-dark p-3 border-bottom-custom">
             <div className="container">
-              <h2 className="title-h2 text-white border-0 mb-0">
+              <h2 className="title-h2 gallery-title text-white border-0 mb-0">
                 {RichText.asText(heading1)}
               </h2>
             </div>

@@ -25,7 +25,7 @@ const KnowYourTrek = ({ slice, data }) => {
   // console.log(slice_zone);
 
   const heading2data = heading2.map((data, i) => {
-    return <p key={i}>{data.text}</p>;
+    return <p className="p-text-4 mpt4 pt-3" key={i}>{data.text}</p>;
   });
 
   const accordionTabImg = accordionTabImgArray.map((data, i) => {
@@ -40,8 +40,8 @@ const KnowYourTrek = ({ slice, data }) => {
           <Card>
             <Card.Header>
               <Accordion.Toggle variant="link" eventKey="0">
-                <div className="d-flex align-items-center border-bottom">
-                  <div className="px-3">
+                <div className="d-flex align-items-center border-bottom-custom-2x">
+                  <div className="px-3 mpx-1">
                     <img src={data.accordion_tab_img.url} className="accordion_tab_img" />
                   </div>
                   <div className="mx-2 flex-grow-1">
@@ -77,8 +77,8 @@ const KnowYourTrek = ({ slice, data }) => {
     <>
       <div>
         <div className="container">
-          <div className="row mt-5 mb-4 pt-4">
-            <div className="col-12 col-lg-3 col-md-12">
+          <div className="row mt-5 mb-4 pt-4 mmb-0">
+            <div className="col-12 col-lg-3 col-md-12 d-m-none">
               <div className="d-flex align-items-center flex-wrap pr-3">
                 <div>
                   <p className="quick-info-bage-outline know_your mb-1">
@@ -116,11 +116,11 @@ const KnowYourTrek = ({ slice, data }) => {
               <div className="row">
                 <div className="col-12 col-lg-12 col-md-12">
                   <div>
-                    <h2 className="title-h2 pb-3">
+                    <h2 className="title-h2 th-2m pb-3">
                       {RichText.asText(heading1)}
                     </h2>
-                    <p className="p-text-4 pt-3">{heading2data}</p>
-                    <div className="my-5">{accordionTabImg}</div>
+                    {heading2data}
+                    <div className="my-5 mmt-2">{accordionTabImg}</div>
                   </div>
                 </div>
               </div>

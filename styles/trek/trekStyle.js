@@ -53,6 +53,20 @@ export const trekStyle = css.global`
     margin-bottom: 20px;
   }
 
+  .title-h2.gallery-title {
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    margin-bottom: 15px;
+    border-bottom: 4px solid rgb(255, 193, 0);
+    padding-bottom: 3px;
+    margin-bottom: 20px;
+  }
+
   .p-text-1 {
     line-height: 30px;
     text-align: left;
@@ -418,6 +432,10 @@ export const trekStyle = css.global`
 
   .border-bottom-custom {
     border-bottom: 4px solid rgb(255, 193, 0);
+  }
+
+  .border-bottom-custom-2x {
+    border-bottom: 1px solid rgb(255, 193, 0);
   }
 
   .border-bottom-green {
@@ -1131,7 +1149,11 @@ export const trekStyle = css.global`
     }
 
     .mmb-1 {
-      margin-bottom: 10px;
+      margin-bottom: 10px !important;
+    }
+
+    .mmt-2 {
+      margin-top: 25px !important;
     }
 
     .border-line-right {
@@ -1298,6 +1320,44 @@ export const trekStyle = css.global`
 
     .bg-transparent-text-effect-tes {
       margin-top: 0;
+    }
+
+    .bg-dark.p-3,
+    .bg-dark.py-4 {
+      box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.161);
+      background: transparent !important;
+      padding: 8px 8px 0 !important;
+    }
+
+    .bg-dark.py-4 > .container {
+      padding: 8px 8px 0 !important;
+    }
+
+    .title-h2.gallery-title {
+      color: #000000 !important;
+      font-size: 24px;
+      margin-bottom: 15px !important;
+    }
+
+    .text-white.mtw {
+      color: #000000 !important;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .p-text-4.mpt4 {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .accordion_tab_img {
+      width: 23px;
+      height: 23px;
+    }
+
+    .mpx-1 {
+      padding-left: 0.3rem !important;
+      padding-right: 0.3rem !important;
     }
   }
 `;
