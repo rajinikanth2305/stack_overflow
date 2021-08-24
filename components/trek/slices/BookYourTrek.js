@@ -83,12 +83,12 @@ const BookYourTrek = ({ slice }) => {
                 <div className="col-12 col-lg-6 col-md-12">
                   <div>
                     <h2
-                      className="title-h2 pb-3"
+                      className="title-h2 th-2m pb-3"
                       style={{ marginBottom: "0 !important" }}
                     >
                       {RichText.asText(heading1)}
                     </h2>
-                    <div className="slots-bg mb-4">
+                    <div className="slots-bg mb-4 mmb-0">
                       <div className="row">
                         <div className="col-6 col-lg-3 col-md-6">
                           <p className="p-text-3-1 mb-0">
@@ -117,21 +117,44 @@ const BookYourTrek = ({ slice }) => {
                       </div>
                     </div>
                     {/* reference https://jquense.github.io/react-big-calendar/examples/index.html#api */}
-                    {typeof window !== 'undefined' && (
-                      
-                    <BookingCalender onBookingSelect={bookingSelect} mode={'inline_page'}  />
-                  
+                    {typeof window !== "undefined" && (
+                      <BookingCalender
+                        onBookingSelect={bookingSelect}
+                        mode={"inline_page"}
+                      />
                     )}
                   </div>
                 </div>
                 <div className="col-lg-1 col-md-12"></div>
                 <div className="col-12 col-lg-5 col-md-12">
                   <div className="mt-5 pt-5 mmt-0 m-p-t-2">
+                    <div className="pt-2 pb-2 mb-4 d-m-block">
+                      {showSelectedLabel && (
+                        <div>
+                          <p className="m-0 p-text-3-1">
+                            <b>Selected {bookingDate.trekName}:</b>
+                          </p>
+                          <p className="p-text-2">
+                            <b>
+                              {moment(bookingDate.startDate).format(
+                                "MM/DD/YYYY"
+                              )}{" "}
+                              -{" "}
+                              {moment(bookingDate.endDate).format("MM/DD/YYYY")}
+                            </b>
+                          </p>
+                        </div>
+                      )}
+
+                      <button className="btn btn-ptr" onClick={register}>
+                        Proceed to registration
+                      </button>
+                    </div>
                     <p className="p-text-1 b-left">
                       <b>{RichText.asText(cancelInfoHeading)}</b>
                     </p>
                     <p className="p-text-4">{cancelInfodetails}</p>
-                    <div className="mt-5 pt-3">
+                    <div className="mt-5 pt-3 d-m-none">
                       {showSelectedLabel && (
                         <div>
                           <p className="m-0 p-text-3-1">

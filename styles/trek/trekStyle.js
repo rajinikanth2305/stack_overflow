@@ -1253,8 +1253,8 @@ export const trekStyle = css.global`
     }
 
     .p-datepicker table td > span {
-      width: 3rem;
-      height: 3rem;
+      width: 2.8rem;
+      height: 3.5rem;
       border-radius: 0;
     }
 
