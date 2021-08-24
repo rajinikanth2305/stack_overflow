@@ -989,8 +989,8 @@ export const trekStyle = css.global`
     background: #2f9b45;
     border-radius: 50%;
     color: #ffffff;
-    width: 2rem;
-    height: 2rem;
+    width: 1.9rem;
+    height: 1.8rem;
     display: inline-block;
   }
 
@@ -1088,6 +1088,12 @@ export const trekStyle = css.global`
   .text-center-custom {
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.353));
     text-align: center !important;
+  }
+
+  .choose_trek_sec-common {
+    background: rgba(255, 247, 225, 1);
+    padding: 35px 0 70px;
+    margin-top: 80px;
   }
 
   @media only screen and (max-width: 660px) {
@@ -1372,6 +1378,29 @@ export const trekStyle = css.global`
 
     .mx-4.m-mx-0 {
       margin: 0px !important;
+    }
+
+    .slick-slider.trekvideos-carosule-common > .slick-list {
+      padding: 0 !important;
+    }
+
+    .slick-slider.trekvideos-carosule-common
+      > .slick-list
+      > .slick-track
+      > .slick-slide.slick-active.slick-center.slick-current {
+      width: 290px !important;
+      margin: 0px 5px 0 0 !important;
+      padding: 0 10px !important;
+    }
+
+    .choose_trek_sec-common {
+      padding-top: 30px;
+      margin-top: 0px;
+      padding-bottom: 45px;
+    }
+
+    .trek_video_badge.mmb2 {
+      margin-bottom: 15px;
     }
   }
 `;

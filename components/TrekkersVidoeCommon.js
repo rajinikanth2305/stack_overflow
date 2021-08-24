@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { ChooseTreks } from "styles";
+import { trekStyle } from "styles";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -62,7 +62,9 @@ const TrekkersVideoCommon = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
+          arrows: false,
+          centerMode: true,
+          adaptiveHeight: true
         }
       }
     ]
@@ -71,15 +73,15 @@ const TrekkersVideoCommon = () => {
   const ihTrekkerVideosImage = ihTrekkerVideosImageArray?.map(function(data, i) {
     return (
       <>
-        <div className="c-mx-2" key={`choosetrek` + i}>
+        <div className="mx-2 m-mx-0" key={`choosetrek` + i}>
           <div className="card_sec">
             <div className="card video_trek_card">
               <div alt="imgs" className="ih_trekker_videos_image">
                 <Image
                   src={data.ih_trekker_videos_image.url}
                   layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
+                  // objectFit="cover"
+                  // objectPosition="50% 50%"
                 />
               </div>
               <div class="px-3 py-2">
@@ -110,18 +112,18 @@ const TrekkersVideoCommon = () => {
 
   return (
     <>
-      <div className="mb-4 choose_trek_sec">
-        <div className="trek_video_badge">
+      <div className="mb-4 choose_trek_sec-common">
+        <div className="trek_video_badge mmb2">
           <img src="/trek-badge_badge.png" />
           <span>Trekker Videos</span>
         </div>
         <div className="container container-custom">
           <div>
-            <Slider {...settings}>{ihTrekkerVideosImage}</Slider>
+            <Slider className="trekvideos-carosule-common" {...settings}>{ihTrekkerVideosImage}</Slider>
           </div>
         </div>
         <style jsx global>
-          {ChooseTreks}
+          {trekStyle}
         </style>
       </div>
     </>
