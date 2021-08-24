@@ -39,7 +39,9 @@ const OtherTreksLike = ({ slice }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
+          arrows: false,
+          centerMode: true,
+          adaptiveHeight: true
         }
       }
     ]
@@ -48,7 +50,7 @@ const OtherTreksLike = ({ slice }) => {
   const imageView = imageViewArray.map(function(data, i) {
     return (
       <>
-        <div className="mx-2" key={i}>
+        <div className="mx-4 m-mx-0" key={i}>
           <div className="card_sec">
             <div className="card trek_card">
               <div alt="imgs" className="image-view">
@@ -137,7 +139,7 @@ const OtherTreksLike = ({ slice }) => {
             </div>
           </div>
           <div>
-            <Slider {...settings}>{imageView}</Slider>
+            <Slider className="home-choose-treks" {...settings}>{imageView}</Slider>
           </div>
         </div>
         <style jsx global>

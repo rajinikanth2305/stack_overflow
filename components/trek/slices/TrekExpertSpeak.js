@@ -106,12 +106,38 @@ const TrekExpertSpeak = ({ slice }) => {
         </div>
         <div className="container">
           <div className="row">
+            <div className="col-12 col-lg-4 col-md-12 d-m-block mt-3">
+              <div>
+                <div className="row">
+                  <div className="col-4">
+                    <div className="text-center author-sec-border">
+                      <Image
+                        src={authorImage}
+                        width={90}
+                        height={90}
+                        className="author_img"
+                      />
+                      <p className="m-0 author-info-text">
+                        {RichText.asText(author)}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-8">
+                    <div>
+                      <p className="author-text">
+                        {RichText.asText(aboutAuthor)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="col-12 col-lg-12 col-md-12">
               <div>
                 <div className="mt-5 pt-4 mpt-0">
                   <div className="row">
                     <div className="col-md-12 col-lg-7 col-md-12">
-                      <h2 className="title-h2 pb-3">
+                      <h2 className="title-h2 th-2m mmb-1 pb-3">
                         {RichText.asText(contentHeading)}
                       </h2>
                       <p className="p-text-1">
@@ -119,7 +145,7 @@ const TrekExpertSpeak = ({ slice }) => {
                       </p>
                     </div>
                     <div className="col-12 col-lg-1 col-md-12"></div>
-                    <div className="col-12 col-lg-4 col-md-12">
+                    <div className="col-12 col-lg-4 col-md-12 d-m-none">
                       <div>
                         <div className="row">
                           <div className="col-4">
