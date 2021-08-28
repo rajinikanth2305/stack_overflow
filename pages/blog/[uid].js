@@ -11,6 +11,9 @@ import { BackButton, SliceZone } from "components/post";
 // Project functions & styles
 import { Client } from "utils/prismicHelpers";
 import { postStyles } from "styles";
+import { HikeHeader } from "components/ihhome";
+import IHFooter from "components/Footer";
+import IHTrekWithSwathi from "components/Trek_With_Swathi";
 
 /**
  * Post page component
@@ -31,16 +34,19 @@ const Post = ({ post }) => {
           content = {meta_desc}
          />
         </Head>
+        <HikeHeader/>
         <div className="main">
-          <div className="outer-container">
+          <div className="container">
             <BackButton />
             <h1>{title}</h1>
           </div>
           <SliceZone sliceZone={post.data.body} />
         </div>
-        <style jsx global>
+        {/* <style jsx global>
           {postStyles}
-        </style>
+        </style> */}
+        <IHTrekWithSwathi />
+        <IHFooter />
       </DefaultLayout>
     );
   }
