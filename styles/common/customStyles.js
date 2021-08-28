@@ -160,6 +160,17 @@ export const customStyles = css.global`
     text-transform: capitalize;
   }
 
+  .p-text-1-fgt {
+    line-height: 30px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
   .p-text-2 {
     line-height: 24px;
     text-align: left;
@@ -973,6 +984,17 @@ export const customStyles = css.global`
 
   .ud-dropwon-1.form-group > .p-dropdown > .p-dropdown-label {
     padding: 0 10px;
+  }
+
+  .h-text > a {
+    color: rgba(0, 40, 148, 1);
+    text-decoration: underline;
+    line-height: 24px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
   }
 
   @media only screen and (max-width: 660px) {

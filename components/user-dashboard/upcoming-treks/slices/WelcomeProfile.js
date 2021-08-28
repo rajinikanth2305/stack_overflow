@@ -523,12 +523,14 @@ const WelcomeProfile = () => {
                                               )
                                             }
                                           /> */}
+                                          {trekData?.bannerImageUrl && (
                                           <Image
                                             src={trekData?.bannerImageUrl}
                                             layout="fill"
                                             objectFit="cover"
                                             objectPosition="50% 50%"
                                           />
+                                          )}
                                         </div>
                                       </div>
                                       <div className="col-lg-8 col-md-12">
