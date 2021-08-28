@@ -794,7 +794,7 @@ export const trekStyle = css.global`
     border-radius: 0 !important;
     color: #000000;
     padding: 5px 30px !important;
-    font-family: Poppins;
+    font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -1167,6 +1167,11 @@ export const trekStyle = css.global`
       margin-top: 25px !important;
     }
 
+    .mp-0 {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+
     .border-line-right {
       border: 0;
     }
@@ -1401,6 +1406,40 @@ export const trekStyle = css.global`
 
     .trek_video_badge.mmb2 {
       margin-bottom: 15px;
+    }
+
+    .nav-item.nav-link {
+      padding: 3px 15px !important;
+      font-size: 12px;
+    }
+
+    .accordio-sec-images {
+      height: 220px;
+      width: 360px;
+      position: relative;
+    }
+
+    // .nav.card-header-tabs.nav-tabs {
+    //   margin-bottom: 0px;
+    // }
+
+    .hd-tabs > .nav > .nav-item.nav-link.active {
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .hd-tabs > .nav > .nav-item.nav-link {
+      width: 100%;
+      margin: 1px 3px;
+      border-radius: 0 !important;
+    }
+
+    .bt-year-tabs {
+      margin: 0 0.5px;
+      padding: 3px 5px;
+      font-family: Franklin Gothic;
+      font-size: 11px;
+      font-weight: normal;
     }
   }
 `;

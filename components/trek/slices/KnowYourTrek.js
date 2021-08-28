@@ -77,8 +77,8 @@ const KnowYourTrek = ({ slice, data }) => {
     <>
       <div>
         <div className="container">
-          <div className="row mt-5 mb-4 pt-4 mmb-0">
-            <div className="col-12 col-lg-3 col-md-12 d-m-none">
+          <div className="row d-flex justify-content-center mt-5 mb-4 pt-4 mmb-0">
+            {/* <div className="col-12 col-lg-3 col-md-12 d-m-none">
               <div className="d-flex align-items-center flex-wrap pr-3">
                 <div>
                   <p className="quick-info-bage-outline know_your mb-1">
@@ -111,7 +111,7 @@ const KnowYourTrek = ({ slice, data }) => {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="col-12 col-lg-9 col-md-12">
               <div className="row">
                 <div className="col-12 col-lg-12 col-md-12">

@@ -7,9 +7,48 @@ import { Client } from "utils/prismicHelpers";
 import Prismic from "@prismicio/client";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const HowDoesEachDayLooks = () => {
   const [dayWise, setDayWise] = useState();
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          arrows: false
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: true,
+          dots: false
+        }
+      }
+    ]
+  };
 
   useEffect(() => {
     findTrekStories();
@@ -48,7 +87,47 @@ const HowDoesEachDayLooks = () => {
         return (
           <>
             <div key={i}>
-              <div className="my-5">
+              <div className="my-5 mmt-0">
+                <div className="mb-4 d-m-block">
+                  <Slider className="home-choose-treks" {...settings}>
+                    <div>
+                      <div class="accordio-sec-images">
+                        {daysIt.image1.url ? (
+                          <Image src={daysIt.image1.url} layout="fill" />
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                    </div>
+                    <div>
+                      <div class="accordio-sec-images">
+                        {daysIt.image2.url ? (
+                          <Image src={daysIt.image2.url} layout="fill" />
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                    </div>
+                    <div>
+                      <div class="accordio-sec-images">
+                        {daysIt.image3.url ? (
+                          <Image src={daysIt.image3.url} layout="fill" />
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                    </div>
+                    <div>
+                      <div class="accordio-sec-images">
+                        {daysIt.image4.url ? (
+                          <Image src={daysIt.image4.url} layout="fill" />
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                    </div>
+                  </Slider>
+                </div>
                 <p className="p-text-1">
                   <b>{daysIt.place_title[0].text}</b>
                 </p>
@@ -70,7 +149,7 @@ const HowDoesEachDayLooks = () => {
                 </p>
               </div>
 
-              <div className="row">
+              <div className="row d-m-none">
                 <div className="col-lg-7 col-md-12">
                   <div className="day1-image-1">
                     {daysIt.image1.url ? (
@@ -150,7 +229,7 @@ const HowDoesEachDayLooks = () => {
   return (
     <>
       <div>
-        <div className="container">
+        <div className="">
           <div>
             <div>
               <Tabs id="uncontrolled-tab-example">{dayNum}</Tabs>

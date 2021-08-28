@@ -168,7 +168,7 @@ const HowDifficultTrekIs = () => {
   return (
     <>
       <div>
-        <div className="container">
+        <div className="">
           <div className="row d-flex align-items-center my-4">
             <div className="col-lg-3 col-md-12">
               <div className="hd_heading_image">

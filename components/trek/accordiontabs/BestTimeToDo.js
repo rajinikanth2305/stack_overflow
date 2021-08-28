@@ -7,9 +7,48 @@ import { Client } from "utils/prismicHelpers";
 import Prismic from "@prismicio/client";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const BestTimeToDo = () => {
   const [bestTimeToDo, setBestTimeToDo] = useState();
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          arrows: false
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: true,
+          dots: false
+        }
+      }
+    ]
+  };
 
   useEffect(() => {
     findTrekStories();
@@ -97,9 +136,9 @@ const BestTimeToDo = () => {
   return (
     <>
       <div>
-        <div className="container">
+        <div className="">
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-md-12 mp-0">
               <div className="d-flex mb-4">
                 <div>
                   <span className="bt-year-tabs">Jan</span>
@@ -170,7 +209,47 @@ const BestTimeToDo = () => {
               </div>
             </div>
           </div>
-          <div className="row my-4">
+          <div className="mb-4 d-m-block">
+            <Slider className="home-choose-treks" {...settings}>
+              <div>
+                <div class="accordio-sec-images">
+                  {btImage1 ? (
+                    <Image src={btImage1} layout="fill" />
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
+              <div>
+                <div class="accordio-sec-images">
+                  {btImage2 ? (
+                    <Image src={btImage2} layout="fill" />
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
+              <div>
+                <div class="accordio-sec-images">
+                  {btImage3 ? (
+                    <Image src={btImage3} layout="fill" />
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
+              <div>
+                <div class="accordio-sec-images">
+                  {btImage4 ? (
+                    <Image src={btImage4} layout="fill" />
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
+            </Slider>
+          </div>
+          <div className="row my-4 d-m-none">
             <div className="col-lg-7 col-md-12">
               <div className="day1-image-1">
                 {btImage1 ? (
@@ -277,7 +356,9 @@ const BestTimeToDo = () => {
           </div>
 
           <div className="important_notice_box">
-            <p className="p-text-2-franklin">{RichText.asText(importantNoteTitle)}</p>
+            <p className="p-text-2-franklin">
+              {RichText.asText(importantNoteTitle)}
+            </p>
             <p className="p-text-4">{RichText.asText(importantNoteContent)}</p>
           </div>
         </div>
