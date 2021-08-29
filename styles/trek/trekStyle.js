@@ -140,7 +140,7 @@ export const trekStyle = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    color: rgba(109,109,109,1);
+    color: rgba(109, 109, 109, 1);
   }
 
   .p-text-4 {
@@ -1120,10 +1120,15 @@ export const trekStyle = css.global`
   }
 
   .important_note_box {
-    background: rgba(0,0,0,0.051);
-    border-top: 3px solid rgba(255,193,0,1);
+    background: rgba(0, 0, 0, 0.051);
+    border-top: 3px solid rgba(255, 193, 0, 1);
     padding: 25px 40px;
     margin-bottom: 30px;
+  }
+
+  .accordion_arrow_icon {
+    font-size: 30px;
+    color: #707070;
   }
 
   @media only screen and (max-width: 660px) {

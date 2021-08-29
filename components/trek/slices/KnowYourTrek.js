@@ -16,6 +16,7 @@ import HowDoesEachDayLooks from "../accordiontabs/HowDoesEachDayLooks";
 import HowDifficultTrekIs from "../accordiontabs/HowDfficultTresIs";
 import BestTimeToDo from "../accordiontabs/BestTimeToDo";
 import HowToReach from "../accordiontabs/HowToReach";
+import InclusionsAndExclusions from "../accordiontabs/InclusionsAndExclusions";
 
 const KnowYourTrek = ({ slice, data }) => {
   const heading1 = slice.primary.heading1;
@@ -61,7 +62,11 @@ const KnowYourTrek = ({ slice, data }) => {
                     </p>
                   </div>
                   <div className="mx-2">
-                    <img src="/arrow-down.png" />
+                    {/* <img src="/arrow-down.png" /> */}
+                    <i
+                      class="fa fa-angle-double-down accordion_arrow_icon"
+                      aria-hidden="true"
+                    ></i>
                   </div>
                 </div>
               </Accordion.Toggle>
@@ -74,6 +79,8 @@ const KnowYourTrek = ({ slice, data }) => {
                   <BestTimeToDo />
                 ) : sliceType.slice_type === "howto_reach" ? (
                   <HowToReach />
+                ) : sliceType.slice_type === "inclusions_exclusions" ? (
+                  <InclusionsAndExclusions />
                 ) : (
                   <HowDifficultTrekIs />
                 )}
