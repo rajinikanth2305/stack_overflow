@@ -157,10 +157,73 @@ const HowDifficultTrekIs = () => {
         ) : (
           ""
         )}
-        <div>{content1_title}</div>
-        {content1_data}
-        <div>{content2_title}</div>
-        {content2_data}
+        {data.title[0].text === "Safety - Terrain Wise" ? (
+          <>
+            <div class="hd-tab2-iamge mv mb-4 d-m-block">
+              <Image
+                src={data.heading1_image.url}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="50% 50%"
+              />
+            </div>
+            <div className="d-flex">
+              <div className="flex-fill">
+                <div>{content1_title}</div>
+                {content1_data}
+                <div>{content2_title}</div>
+                {content2_data}
+              </div>
+              <div className="w-100 d-m-none">
+                <div class="hd-tab2-iamge position-change mb-4">
+                  <Image
+                    src={data.heading1_image.url}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                  />
+                </div>
+              </div>
+            </div>
+            {/* <div className="row">
+              <div className="col-lg-6 col-md-12">
+                <div>{content1_title}</div>
+                {content1_data}
+                <div>{content2_title}</div>
+                {content2_data}
+              </div>
+              <div className="col-lg-6 col-md-12">
+                <div class="hd-tab2-iamge position-change mb-4">
+                  <Image
+                    src={data.heading1_image.url}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                  />
+                </div>
+              </div>
+            </div> */}
+          </>
+        ) : (
+          <>
+            <div>{content1_title}</div>
+            {content1_data}
+            <div>{content2_title}</div>
+            {content2_data}
+          </>
+        )}
+        {/* {data.title[0].text === "Safety - Terrain Wise" ? (
+          <div class="hd-tab2-iamge mb-4">
+            <Image
+              src={data.heading1_image.url}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="50% 50%"
+            />
+          </div>
+        ) : (
+          ""
+        )} */}
       </Tab>
     );
   });
@@ -202,7 +265,7 @@ const HowDifficultTrekIs = () => {
             </div>
             <div className="col-md-12">{hdText ? hdText : ""}</div>
             <div className="col-md-12">
-              <div className="my-5">
+              <div className="my-5 mmt-2">
                 <p className="p-text-1 border-bottom-green">
                   <b>{RichText.asText(howSafeTitle)}</b>
                 </p>

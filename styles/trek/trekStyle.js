@@ -802,7 +802,7 @@ export const trekStyle = css.global`
   }
 
   .hd-tabs > div.tab-content {
-    padding: 15px;
+    padding: 30px 75px;
     box-shadow: 1px 1px 3px rgb(157, 58, 11);
     margin-left: -5px;
   }
@@ -831,6 +831,7 @@ export const trekStyle = css.global`
     text-transform: capitalize;
     line-height: 20px;
     margin: 0px 3px;
+    width: 170px;
   }
 
   .accordion_tab_img {
@@ -867,6 +868,12 @@ export const trekStyle = css.global`
     position: relative;
     height: 280px;
     width: 100%;
+  }
+
+  .hd-tab2-iamge.position-change {
+    position: absolute;
+    left: 75%;
+    width: 45%;
   }
 
   .hd-tab4-iamge {
@@ -1440,6 +1447,14 @@ export const trekStyle = css.global`
       font-family: Franklin Gothic;
       font-size: 11px;
       font-weight: normal;
+    }
+
+    .hd-tabs > div.tab-content {
+      padding: 15px;
+    }
+
+    .hd-tab2-iamge.mv {
+      height: 200px;
     }
   }
 `;

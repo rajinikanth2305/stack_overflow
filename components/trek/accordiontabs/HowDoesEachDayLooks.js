@@ -13,6 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 const HowDoesEachDayLooks = () => {
   const [dayWise, setDayWise] = useState();
+  const [readMoreHeight, setReadMoreHeight] = useState(200);
 
   const settings = {
     dots: true,
@@ -147,6 +148,32 @@ const HowDoesEachDayLooks = () => {
                   <img src="/Offloading.png" alt="img" />{" "}
                   <span className="px-2">{daysIt.water_sources[0].text}</span>
                 </p>
+                <div className="my-4 d-m-block">
+                  <div
+                    style={{ height: readMoreHeight, overflow: "hidden" }}
+                  >
+                    <p className="p-text-4">{place_description_editor}</p>
+                  </div>
+                  <div className="d-flex justify-content-center bg-transparent-text-effect">
+                        {readMoreHeight === 200 ? (
+                          <button
+                            class="btn btn-ptr"
+                            onClick={() => setReadMoreHeight("auto")}
+                          >
+                            read more
+                          </button>
+                        ) : (
+                          <a href="#trekexper-sec">
+                            <button
+                              class="btn btn-ptr"
+                              onClick={() => setReadMoreHeight(200)}
+                            >
+                              read less
+                            </button>
+                          </a>
+                        )}
+                      </div>
+                </div>
               </div>
 
               <div className="row d-m-none">
@@ -208,9 +235,9 @@ const HowDoesEachDayLooks = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="my-5">
-                <p className="p-text-4">{place_description_editor}</p>
+                <div className="my-5 d-m-none">
+                  <p className="p-text-4">{place_description_editor}</p>
+                </div>
               </div>
             </div>
           </>
