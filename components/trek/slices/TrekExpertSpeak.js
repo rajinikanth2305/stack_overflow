@@ -12,7 +12,7 @@ const TrekExpertSpeak = ({ slice }) => {
   const contentHeading = slice.primary.content_heading;
   const contentHeadingDesc = slice.primary.content_heading_desc;
   const whatILikeImageArray = slice.items;
-  const [trekExpertSecHeight, setTrekExpertSecHeight] = useState(375);
+  const [trekExpertSecHeight, setTrekExpertSecHeight] = useState(270);
 
   const bannerImageExpertSpeak = {
     backgroundImage: `url('${bannerImage}')`,
@@ -187,7 +187,7 @@ const TrekExpertSpeak = ({ slice }) => {
                         </div>
                       </div> */}
                       <div className="d-flex justify-content-center bg-transparent-text-effect-tes">
-                        {trekExpertSecHeight === 375 ? (
+                        {trekExpertSecHeight === 270 ? (
                           <button
                             class="btn btn-ptr"
                             onClick={() => setTrekExpertSecHeight("auto")}
@@ -198,7 +198,7 @@ const TrekExpertSpeak = ({ slice }) => {
                           <a href="#trekexper-sec">
                             <button
                               class="btn btn-ptr"
-                              onClick={() => setTrekExpertSecHeight(375)}
+                              onClick={() => setTrekExpertSecHeight(270)}
                             >
                               read less
                             </button>

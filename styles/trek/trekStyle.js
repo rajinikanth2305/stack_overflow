@@ -133,6 +133,16 @@ export const trekStyle = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .p-text-3-gray {
+    line-height: 16px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(109,109,109,1);
+  }
+
   .p-text-4 {
     line-height: 24px;
     text-align: left;
@@ -876,6 +886,12 @@ export const trekStyle = css.global`
     width: 45%;
   }
 
+  .position-change {
+    position: absolute;
+    left: 75%;
+    width: 45%;
+  }
+
   .hd-tab4-iamge {
     position: relative;
     height: 495px;
@@ -1101,6 +1117,13 @@ export const trekStyle = css.global`
     background: rgba(255, 247, 225, 1);
     padding: 35px 0 70px;
     margin-top: 80px;
+  }
+
+  .important_note_box {
+    background: rgba(0,0,0,0.051);
+    border-top: 3px solid rgba(255,193,0,1);
+    padding: 25px 40px;
+    margin-bottom: 30px;
   }
 
   @media only screen and (max-width: 660px) {

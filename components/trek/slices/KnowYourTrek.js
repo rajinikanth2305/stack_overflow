@@ -15,6 +15,7 @@ import Card from "react-bootstrap/Card";
 import HowDoesEachDayLooks from "../accordiontabs/HowDoesEachDayLooks";
 import HowDifficultTrekIs from "../accordiontabs/HowDfficultTresIs";
 import BestTimeToDo from "../accordiontabs/BestTimeToDo";
+import HowToReach from "../accordiontabs/HowToReach";
 
 const KnowYourTrek = ({ slice, data }) => {
   const heading1 = slice.primary.heading1;
@@ -25,7 +26,11 @@ const KnowYourTrek = ({ slice, data }) => {
   // console.log(slice_zone);
 
   const heading2data = heading2.map((data, i) => {
-    return <p className="p-text-4 mpt4 pt-3" key={i}>{data.text}</p>;
+    return (
+      <p className="p-text-4 mpt4 pt-3" key={i}>
+        {data.text}
+      </p>
+    );
   });
 
   const accordionTabImg = accordionTabImgArray.map((data, i) => {
@@ -42,7 +47,10 @@ const KnowYourTrek = ({ slice, data }) => {
               <Accordion.Toggle variant="link" eventKey="0">
                 <div className="d-flex align-items-center border-bottom-custom-2x">
                   <div className="px-3 mpx-1">
-                    <img src={data.accordion_tab_img.url} className="accordion_tab_img" />
+                    <img
+                      src={data.accordion_tab_img.url}
+                      className="accordion_tab_img"
+                    />
                   </div>
                   <div className="mx-2 flex-grow-1">
                     <p className="p-text-1 m-0">
@@ -62,7 +70,11 @@ const KnowYourTrek = ({ slice, data }) => {
               <Card.Body>
                 {sliceType.slice_type === "how_does_each_day_looks" ? (
                   <HowDoesEachDayLooks />
-                ) : sliceType.slice_type === "best_time_to_do_trek" ? <BestTimeToDo /> : (
+                ) : sliceType.slice_type === "best_time_to_do_trek" ? (
+                  <BestTimeToDo />
+                ) : sliceType.slice_type === "howto_reach" ? (
+                  <HowToReach />
+                ) : (
                   <HowDifficultTrekIs />
                 )}
               </Card.Body>
