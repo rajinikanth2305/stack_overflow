@@ -301,6 +301,17 @@ export const saveUserLocations =  async (bookingId,payload)  => {
     return axios.get(url,{ headers:  header }).then((res) => res.data);
   };
 
+  export const getTrekReview = async (trekId,batchId)  => {
+    const header=await getTokenHeader();
+    const reviewId=15;
+    const api = `${REACT_APP_TMS_BACKEND_URL}`;
+    let url = `${api}/reviews/${reviewId}`;
+    return axios.get(url,{ headers:  header }).then((res) => res.data);
+  };
+
+
+  
+
 async function fetchDocs(page = 1, routes = []) {
   const response = await Client().query('', { pageSize: 100, lang: '*', page });
   const allRoutes = routes.concat(response.results);
@@ -309,6 +320,8 @@ async function fetchDocs(page = 1, routes = []) {
   }
   return [...new Set(allRoutes)];
 };
+
+
 
 
 /** Fetches all Prismic documents and filters them (eg. by document type).

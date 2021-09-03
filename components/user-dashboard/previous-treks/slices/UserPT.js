@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useForm, Controller } from "react-hook-form";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
+import { ratingStyles } from "styles";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { Progress } from "reactstrap";
 import Link from "next/link";
 import auth from "../../../../services/Authenticate";
-import { getdashBoardUserBooking } from "../../../../services/queries";
+import { getdashBoardUserBooking,getTrekReview } from "../../../../services/queries";
 import moment from "moment";
 import { useRouter } from "next/router";
 import Prismic from "@prismicio/client";
@@ -14,18 +16,17 @@ import Image from "next/image";
 import ReceiptTemplate from "./ReceiptTemplate";
 import CertificateTemplate from "./CertificateTemplate;"
 import {  PDFDownloadLink } from '@react-pdf/renderer';
-
+import { Checkbox } from 'primereact/checkbox';
+import { RadioButton } from 'primereact/radiobutton';
+import { Rating } from 'primereact/rating';
+import { Dropdown } from 'primereact/dropdown';
+import { InputText } from 'primereact/inputtext';
 
 const UserPT = () => {
+
   const [activeTab, setActiveTab] = useState(null);
   const [selectedReceipts, setselectedReceipts] = useState();
-  const toggle = tab => {
-    if (activeTab !== tab) setActiveTab(tab);
-  };
 
-  const saveData = () => {
-    setActiveTab(null);
-  };
 
   const [userServiceObject, setUserServiceObject] = useState(undefined);
   const [userEmail, setUserEmail] = useState(undefined);
@@ -42,18 +43,53 @@ const UserPT = () => {
 
   const toast = useRef(null);
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    control,
+    errors,
+    formState,
+    getValues
+  } = useForm();
+
+  const [reviewIndexes, setReviewIndexes] = React.useState([]);
+  const [reviewcounter, setReviewCounter] = React.useState(0);
+  const [reviewData, setReviewData] = React.useState();
+
   React.useEffect(() => {
     //const res=await
     auth.keycloak().then(([userTokenObject, userEmail]) => {
       setUserEmail(userEmail);
       setUserServiceObject(userTokenObject);
       fetchAndBindUserBookings(userEmail);
+
       // return userEmail;
     });
+
     // console.log(res);
     //fetchAndBindUserBookings(res);
   }, []);
 
+  const fetchTrekReview= ()=>{
+   
+    getTrekReview(bookings.trekId,bookings.batchId).then((data) => {
+      setReviewData(data);
+      const arr = Array.from(new Array(data.length), (x, i) => i);
+      setReviewIndexes(arr);
+      setReviewCounter(1);
+    });
+
+  }
+
+  const toggle = tab => {
+    if (activeTab !== tab) setActiveTab(tab);
+  };
+
+  const saveData = () => {
+    setActiveTab(null);
+  };
 
   function fetchAndBindUserBookings(email) {
     getdashBoardUserBooking(email, true).then(bookingsData => {
@@ -132,16 +168,24 @@ const UserPT = () => {
         participantsCount: book.trekMates.length,
         userTrekBookingParticipants: book.trekMates,
         trekStatus: "COMPLETED",//book.bookingState,
-        reviewStatus: "yes"
+        reviewStatus: "no"
       });
     }
     setStates(bookTrekContents);
   };
 
+  const  onSubmit = formData => {
+    console.log(JSON.stringify(formData));
+  }
+
+  const addItineraries = () => {
+    setReviewIndexes([...indexes, counter]);
+    setReviewCounter((prevCounter) => prevCounter + 1);
+  };
+
   const prevTrekData = bookings?.map(function(data, i) {
     return ( 
       <>
-      
         <div key={data.id}>
           <div className="card mb-4">
             <div className="row">
@@ -233,6 +277,7 @@ const UserPT = () => {
                           className="btn table-btn-yellow ml-custom-3"
                           onClick={() => {
                             toggle(i);
+                            fetchTrekReview();
                           }}
                         >
                           Write About Your Experience
@@ -254,6 +299,7 @@ const UserPT = () => {
               <div className="row mb-3">
                 <div className="col-lg-1 col-md-12"></div>
                 <div className="col-lg-10 col-md-12">
+                <form onSubmit={handleSubmit(onSubmit)} onReset={() => reset}>
                   <div className="card">
                     <div className="py-4 px-5 mx-5">
                       <h5 className="p-text-2-fg b-left-3px">
@@ -267,146 +313,134 @@ const UserPT = () => {
                         share the happy sections!{" "}
                       </p>
                       <p className="p-text-3 mb-5">Let us start right away. </p>
+                     
 
-                      <div className="q-border py-4">
-                        <p className="p-text-3 font-weight-bold m-0">
-                          Drop down field Lorem ipsum dolor sit amet,
-                          consectetur adipiscing
-                        </p>
-                        <div className="w-50 mt-3">
-                          <FormGroup>
-                            <Input
-                              type="select"
-                              name="weight"
-                              id="exampleSelectMulti"
-                              placeholder="weight (in kg)"
-                            >
-                              <option>weight (in kg)</option>
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </Input>
-                          </FormGroup>
-                        </div>
+          {reviewIndexes.slice(0, 1).map((i) => {
+            {
+              return reviewData?.reviewQuestions.map((item, index) => {
+
+                const multiple = item.reviewQuestionType.toLowerCase() == 'multiple_choice';
+                const single = item.reviewQuestionType.toLowerCase() == 'single_choice';
+                const descriptive = item.reviewQuestionType.toLowerCase() == 'descriptive';
+                const rating = item.reviewQuestionType.toLowerCase() == 'rating';
+
+                return (
+                  <div className="q-border py-4">
+                     <p className="p-text-3 font-weight-bold m-0">
+                     <span dangerouslySetInnerHTML={{ __html: item.question }} />
+                    </p>
+                    
+                    {multiple && (
+                      <div>
+                        {item.answers.map((ch, mindex) => {
+                          
+                          return (
+                            <div>
+                              <p></p>
+                              <Controller
+                                name={`${item.questionId}-${mindex}`}
+                                control={control}
+
+                                render={({ onChange, value }) => (
+                                  <Checkbox
+                                    checked={value}
+                                    onChange={(e) => {
+                                      onChange(e.checked);
+                                    }}
+                                  />
+                                )}
+                              />
+                              <label className="p-col-12 p-mb-2 p-md-2 p-mb-md-0">{ch}</label>
+                            </div>
+                          );
+                        })}
                       </div>
+                    )}
+                    {single && (
+                      <div>
+                        {item.answers.map((ch, rindex) => {
+                          // @ts-ignore
+                          const formValues = getValues(item.questionId.toString());
+                          // @ts-ignore
+                          let radioChecked = false;
+                          if (formValues !== undefined) {
+                            const val = formValues;//.split('-');
+                            //console.log(val);
+                            if (val === ch) radioChecked = true;
+                          }
+                          return (
+                            <div className="p-field-radiobutton">
+                              <p></p>
+                              <Controller
+                                name={`${item.questionId}`}
+                                control={control}
+                                render={({ onChange, value }) => (
+                                  <RadioButton
+                                    name={`${item.questionId}`}
+                                    onChange={(e) => {
+                                      onChange(`${ch}`);
+                                      addItineraries();
+                                    }}
+                                    checked={radioChecked}
+                                  />
+                                )}
+                              />
 
-                      <div className="q-border py-4">
-                        <p className="p-text-3 font-weight-bold m-0">
-                          Yes/ No Field Lorem ipsum dolor sit amet, consectetur
-                          adipiscing
-                        </p>
-                        <div className="mt-3">
-                          <div className="d-flex align-items-cemter">
-                            <div>
-                              <Label check>
-                                <Input type="radio" name="radio1" /> Yes
-                              </Label>
+                              <label className="p-col-12 p-mb-2 p-md-2 p-mb-md-0">{ch}</label>
                             </div>
-                            <div className="mx-5" />
-                            <div>
-                              <Label check>
-                                <Input type="radio" name="radio1" /> No
-                              </Label>
-                            </div>
-                          </div>
-                        </div>
+                          );
+                        })}
                       </div>
-
+                    )}
+                    {descriptive && (
                       <div className="q-border py-4">
-                        <p className="p-text-3 font-weight-bold m-0">
-                          Options Field
-                        </p>
-                        <div className="mt-3">
-                          <div className="d-flex align-items-cemter">
-                            <div>
-                              <Label check>
-                                <Input type="checkbox" /> Option 1
-                              </Label>
-                            </div>
-                            <div className="mx-5" />
-                            <div>
-                              <Label check>
-                                <Input type="checkbox" /> Option 2
-                              </Label>
-                            </div>
-                            <div className="mx-5" />
-                            <div>
-                              <Label check>
-                                <Input type="checkbox" /> Option 3
-                              </Label>
-                            </div>
-                          </div>
-                        </div>
+                        <p></p>
+                        <Controller
+                                name={`${item.questionId}`}
+                                control={control}
+                                render={({ onChange, value }) => (
+                                  <InputText value={value} onChange={onChange} className="p-my-2 w-100" />
+                                )}
+                              />
+                       
                       </div>
-
-                      <div className="q-border py-4">
-                        <p className="p-text-3 font-weight-bold m-0">
-                          Prompt line 1 Lorem ipsum dolor sit amet, consectetur
-                          adipiscing elit, sed do eiusmod tempor incididunt ut
-                          labore et dolore magna aliqua
-                        </p>
-                        <div className="mt-3">
-                          <FormGroup>
-                            <Input
-                              type="textarea"
-                              name="text"
-                              id="exampleText"
-                              value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa."
+                    )}
+                    {rating && (
+                      <div className="p-rating">
+                        <p></p>
+                        <Controller
+                          name={`${item.questionId}`}
+                          control={control}
+                          render={({ onChange, value }) => (
+                            <Rating
+                              stars={5}
+                              className="p-rating-star"
+                              value={value}
+                              onChange={(e) => {
+                                onChange(e.value);
+                              }}
                             />
-                          </FormGroup>
-                        </div>
+                          )}
+                        />
                       </div>
+                    )}
+                  </div>
+                );
+              });
+            }
+          })}
 
-                      <div className="q-border py-4">
-                        <h5 className="p-text-2-fg b-left-3px mb-5">
-                          your thoughts on the miyar valley trek expereience
-                        </h5>
-                        <p className="p-text-3 font-weight-bold m-0">
-                          Prompt line 2 Lorem ipsum dolor sit amet, consectetur
-                          adipiscing elit, sed do eiusmod tempor
-                        </p>
-                        <div className="mt-3">
-                          <FormGroup>
-                            <Input
-                              type="textarea"
-                              name="text"
-                              id="exampleText"
-                              value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa"
-                            />
-                          </FormGroup>
-                        </div>
-                      </div>
-
-                      <div className="q-border py-4">
-                        <p className="p-text-3 font-weight-bold m-0">
-                          Prompt line 3 Lorem ipsum dolor sit amet, consectetur
-                          adipiscing elit
-                        </p>
-                        <div className="mt-3">
-                          <FormGroup>
-                            <Input
-                              type="textarea"
-                              name="text"
-                              id="exampleText"
-                              placeholder="Your response"
-                            />
-                          </FormGroup>
-                        </div>
-                      </div>
                       <div className="text-center">
                         <button
-                          type="button"
+                          type="submit"
                           className="btn table-btn-green-lg"
-                          onClick={saveData}
                         >
-                          submit review
+                          Submit Review
                         </button>
                       </div>
                     </div>
                   </div>
+                 </form>
                 </div>
                 <div className="col-lg-1 col-md-12"></div>
               </div>

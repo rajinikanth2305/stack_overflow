@@ -29,3 +29,4 @@ export { aboutUsStyles } from "./aboutus";
 export { regStyle } from "./registration";
 export { diyStyles } from "./diy";
 export { customStyles } from "./common";
+export { ratingStyles } from "./common";

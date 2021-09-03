@@ -4,7 +4,7 @@ import moment from "moment";
 const ReceiptTemplate = (receiptData) => {
 const [selectedReceipts, setselectedReceipts] = useState();
 
-console.log(receiptData);
+//console.log(receiptData);
 //setselectedReceipts(selectedReceiptsData);
 
   const styles = StyleSheet.create({

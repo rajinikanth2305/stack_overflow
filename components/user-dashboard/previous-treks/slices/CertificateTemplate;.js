@@ -6,7 +6,7 @@ import moment from "moment";
 const CertificateTemplate = (certificateData) => {
 const [selectedReceipts, setselectedReceipts] = useState();
 
-console.log(certificateData);
+//console.log(certificateData);
 //setselectedReceipts(selectedReceiptsData);
 
   const styles = StyleSheet.create({

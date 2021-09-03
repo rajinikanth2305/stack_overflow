@@ -48,6 +48,7 @@ const WelcomeProfile = () => {
   const router = useRouter();
   const myTrekRef = useRef();
   const offLoadingRef = useRef();
+  const fitnessRef = useRef();
 
   const toast = useRef(null);
   const [showOffLoadingPayment, setShowOffLoadingPayment] = useState(false);
@@ -118,6 +119,7 @@ const WelcomeProfile = () => {
     setRender(true);
     myTrekRef.current?.changeState(bookTrekContents[0]);
     offLoadingRef.current?.changeState(bookTrekContents[0]);
+    fitnessRef.current?.changeState(bookTrekContents[0]);
   };
 
   const getAndSetTrekContents = async (bookingsData, userEmail) => {
@@ -211,6 +213,7 @@ const WelcomeProfile = () => {
     setUpComingTrek(activeBooking); /// setting the toggled bookingid trek has upcoming trek
     deriveAndSetOffLoadingTabVisible(activeBooking);
     myTrekRef.current?.changeState(activeBooking);
+    fitnessRef.current?.changeState(activeBooking);
 
     
     offLoadingRef.current?.changeState(activeBooking);
@@ -478,9 +481,7 @@ const WelcomeProfile = () => {
                               </Tab>
                              
                               <Tab eventKey="offloading"   title="Offloading">
-                            
                                 <Offloading  ref={offLoadingRef} {...callBackProps} />
-                               
                               </Tab>
                             
                               <Tab eventKey="trekfaqs" title="Trek Faqs">
@@ -490,7 +491,7 @@ const WelcomeProfile = () => {
                                 eventKey="fitnessapproval"
                                 title="Fitness approval"
                               >
-                                <FitnessApproval />
+                                <FitnessApproval ref={fitnessRef} />
                               </Tab>
                             </Tabs>
                           )}
