@@ -705,6 +705,11 @@ const WelcomeProfile = () => {
                                 <span>trek vouchers</span>
                               </Link>
                             </li>
+                            <li>
+                              <Link href="">
+                                <span>Logout</span>
+                              </Link>
+                            </li>
                           </ul>
                         </div>
                       </div>

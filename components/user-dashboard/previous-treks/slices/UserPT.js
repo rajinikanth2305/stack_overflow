@@ -7,26 +7,27 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { Progress } from "reactstrap";
 import Link from "next/link";
 import auth from "../../../../services/Authenticate";
-import { getdashBoardUserBooking,getTrekReview } from "../../../../services/queries";
+import {
+  getdashBoardUserBooking,
+  getTrekReview
+} from "../../../../services/queries";
 import moment from "moment";
 import { useRouter } from "next/router";
 import Prismic from "@prismicio/client";
 import { Client } from "../../../../utils/prismicHelpers";
 import Image from "next/image";
 import ReceiptTemplate from "./ReceiptTemplate";
-import CertificateTemplate from "./CertificateTemplate;"
-import {  PDFDownloadLink } from '@react-pdf/renderer';
-import { Checkbox } from 'primereact/checkbox';
-import { RadioButton } from 'primereact/radiobutton';
-import { Rating } from 'primereact/rating';
-import { Dropdown } from 'primereact/dropdown';
-import { InputText } from 'primereact/inputtext';
+import CertificateTemplate from "./CertificateTemplate;";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { Checkbox } from "primereact/checkbox";
+import { RadioButton } from "primereact/radiobutton";
+import { Rating } from "primereact/rating";
+import { Dropdown } from "primereact/dropdown";
+import { InputText } from "primereact/inputtext";
 
 const UserPT = () => {
-
   const [activeTab, setActiveTab] = useState(null);
   const [selectedReceipts, setselectedReceipts] = useState();
-
 
   const [userServiceObject, setUserServiceObject] = useState(undefined);
   const [userEmail, setUserEmail] = useState(undefined);
@@ -72,16 +73,14 @@ const UserPT = () => {
     //fetchAndBindUserBookings(res);
   }, []);
 
-  const fetchTrekReview= ()=>{
-   
-    getTrekReview(bookings.trekId,bookings.batchId).then((data) => {
+  const fetchTrekReview = () => {
+    getTrekReview(bookings.trekId, bookings.batchId).then(data => {
       setReviewData(data);
       const arr = Array.from(new Array(data.length), (x, i) => i);
       setReviewIndexes(arr);
       setReviewCounter(1);
     });
-
-  }
+  };
 
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
@@ -94,7 +93,7 @@ const UserPT = () => {
   function fetchAndBindUserBookings(email) {
     getdashBoardUserBooking(email, true).then(bookingsData => {
       /// Idenitify and get the booking owner profile informations
-     // console.log(bookingsData);
+      // console.log(bookingsData);
       if (bookingsData.length > 0) {
         const bookingOwner = bookingsData.map(element => {
           const mainuser = element.trekMates.find(
@@ -121,23 +120,24 @@ const UserPT = () => {
     const bookTrekContents = [];
     const client = Client();
 
-    const prismicTrekContents=[];
+    const prismicTrekContents = [];
     for (const book of bookingsData) {
       const trekName = book.trekName.replaceAll(" ", "-").toLowerCase();
 
       let result;
-      const findContents=prismicTrekContents.find(x=>x.trekName===trekName);
+      const findContents = prismicTrekContents.find(
+        x => x.trekName === trekName
+      );
       //console.log(findContents);
-      if(findContents===undefined) {
-         result = await Client().getByUID("trek", trekName);
+      if (findContents === undefined) {
+        result = await Client().getByUID("trek", trekName);
         //console.log(result);
         prismicTrekContents.push({
-          trekName:trekName,
-          result:result
+          trekName: trekName,
+          result: result
         });
-      }
-      else {
-        result=findContents.result
+      } else {
+        result = findContents.result;
       }
 
       //console.log(slice);
@@ -167,24 +167,24 @@ const UserPT = () => {
         bookingParticipantState: book.bookingParticipantState,
         participantsCount: book.trekMates.length,
         userTrekBookingParticipants: book.trekMates,
-        trekStatus: "COMPLETED",//book.bookingState,
+        trekStatus: "COMPLETED", //book.bookingState,
         reviewStatus: "no"
       });
     }
     setStates(bookTrekContents);
   };
 
-  const  onSubmit = formData => {
+  const onSubmit = formData => {
     console.log(JSON.stringify(formData));
-  }
+  };
 
   const addItineraries = () => {
     setReviewIndexes([...indexes, counter]);
-    setReviewCounter((prevCounter) => prevCounter + 1);
+    setReviewCounter(prevCounter => prevCounter + 1);
   };
 
   const prevTrekData = bookings?.map(function(data, i) {
-    return ( 
+    return (
       <>
         <div key={data.id}>
           <div className="card mb-4">
@@ -252,12 +252,15 @@ const UserPT = () => {
                   <div className="d-flex align-items-center">
                     <div className="flex-grow-1">
                       <p className="m-0 text-decoration-underline p-text-small-fg">
-                            <PDFDownloadLink document={<ReceiptTemplate receiptData={data}  />} fileName={data.trekName}>
-                              {/* {({ blob, url, loading, error }) => */}
-                              {/* loading ? <i className="pi pi-spin pi-spinner"></i> : <i className="pi pi-download"></i> */}
-                              {/* } */} <i className="pi pi-download p-pr-2"></i>
-                              Download Receipts
-                            </PDFDownloadLink>
+                        <PDFDownloadLink
+                          document={<ReceiptTemplate receiptData={data} />}
+                          fileName={data.trekName}
+                        >
+                          {/* {({ blob, url, loading, error }) => */}
+                          {/* loading ? <i className="pi pi-spin pi-spinner"></i> : <i className="pi pi-download"></i> */}
+                          {/* } */} <i className="pi pi-download p-pr-2"></i>
+                          Download Receipts
+                        </PDFDownloadLink>
                       </p>
                       <p className="m-0 text-decoration-underline p-text-small-fg">
                         View Rented Gear
@@ -265,12 +268,19 @@ const UserPT = () => {
                     </div>
                     <div>
                       {data.trekStatus === "COMPLETED" && (
-                          <PDFDownloadLink document={<CertificateTemplate certificateData={data}  />} fileName={data.trekName}>
-                              {/* {({ blob, url, loading, error }) => */}
-                              {/* loading ? <i className="pi pi-spin pi-spinner"></i> : <i className="pi pi-download"></i> */}
-                              {/* } */} <i className="pi pi-download p-pr-2"></i>
-                              <span className="btn table-btn-blue">Download Certificate</span>
-                            </PDFDownloadLink>
+                        <PDFDownloadLink
+                          document={
+                            <CertificateTemplate certificateData={data} />
+                          }
+                          fileName={data.trekName}
+                        >
+                          {/* {({ blob, url, loading, error }) => */}
+                          {/* loading ? <i className="pi pi-spin pi-spinner"></i> : <i className="pi pi-download"></i> */}
+                          {/* } */} <i className="pi pi-download p-pr-2"></i>
+                          <span className="btn table-btn-blue">
+                            Download Certificate
+                          </span>
+                        </PDFDownloadLink>
                       )}
                       {data.reviewStatus === "no" && (
                         <button
@@ -299,148 +309,175 @@ const UserPT = () => {
               <div className="row mb-3">
                 <div className="col-lg-1 col-md-12"></div>
                 <div className="col-lg-10 col-md-12">
-                <form onSubmit={handleSubmit(onSubmit)} onReset={() => reset}>
-                  <div className="card">
-                    <div className="py-4 px-5 mx-5">
-                      <h5 className="p-text-2-fg b-left-3px">
-                        your thoughts on the miyar valley trek expereience
-                      </h5>
-                      <p className="p-text-3">
-                        At Indiahikes, we take your feedback very seriously.
-                        Every question that you answer is not only seen by me
-                        but our entire team. We even forward sections of your
-                        feedback to our teams on the slopes. I admit, we also
-                        share the happy sections!{" "}
-                      </p>
-                      <p className="p-text-3 mb-5">Let us start right away. </p>
-                     
+                  <form onSubmit={handleSubmit(onSubmit)} onReset={() => reset}>
+                    <div className="card">
+                      <div className="py-4 px-5 mx-5">
+                        <h5 className="p-text-2-fg b-left-3px">
+                          your thoughts on the miyar valley trek expereience
+                        </h5>
+                        <p className="p-text-3">
+                          At Indiahikes, we take your feedback very seriously.
+                          Every question that you answer is not only seen by me
+                          but our entire team. We even forward sections of your
+                          feedback to our teams on the slopes. I admit, we also
+                          share the happy sections!{" "}
+                        </p>
+                        <p className="p-text-3 mb-5">
+                          Let us start right away.{" "}
+                        </p>
 
-          {reviewIndexes.slice(0, 1).map((i) => {
-            {
-              return reviewData?.reviewQuestions.map((item, index) => {
+                        {reviewIndexes.slice(0, 1).map(i => {
+                          {
+                            return reviewData?.reviewQuestions.map(
+                              (item, index) => {
+                                const multiple =
+                                  item.reviewQuestionType.toLowerCase() ==
+                                  "multiple_choice";
+                                const single =
+                                  item.reviewQuestionType.toLowerCase() ==
+                                  "single_choice";
+                                const descriptive =
+                                  item.reviewQuestionType.toLowerCase() ==
+                                  "descriptive";
+                                const rating =
+                                  item.reviewQuestionType.toLowerCase() ==
+                                  "rating";
 
-                const multiple = item.reviewQuestionType.toLowerCase() == 'multiple_choice';
-                const single = item.reviewQuestionType.toLowerCase() == 'single_choice';
-                const descriptive = item.reviewQuestionType.toLowerCase() == 'descriptive';
-                const rating = item.reviewQuestionType.toLowerCase() == 'rating';
+                                return (
+                                  <div className="q-border py-4">
+                                    <p className="p-text-3 font-weight-bold m-0">
+                                      <span
+                                        dangerouslySetInnerHTML={{
+                                          __html: item.question
+                                        }}
+                                      />
+                                    </p>
 
-                return (
-                  <div className="q-border py-4">
-                     <p className="p-text-3 font-weight-bold m-0">
-                     <span dangerouslySetInnerHTML={{ __html: item.question }} />
-                    </p>
-                    
-                    {multiple && (
-                      <div>
-                        {item.answers.map((ch, mindex) => {
-                          
-                          return (
-                            <div>
-                              <p></p>
-                              <Controller
-                                name={`${item.questionId}-${mindex}`}
-                                control={control}
+                                    {multiple && (
+                                      <div>
+                                        {item.answers.map((ch, mindex) => {
+                                          return (
+                                            <div>
+                                              <p></p>
+                                              <Controller
+                                                name={`${item.questionId}-${mindex}`}
+                                                control={control}
+                                                render={({
+                                                  onChange,
+                                                  value
+                                                }) => (
+                                                  <Checkbox
+                                                    checked={value}
+                                                    onChange={e => {
+                                                      onChange(e.checked);
+                                                    }}
+                                                  />
+                                                )}
+                                              />
+                                              <label className="p-col-12 p-mb-2 p-md-2 p-mb-md-0">
+                                                {ch}
+                                              </label>
+                                            </div>
+                                          );
+                                        })}
+                                      </div>
+                                    )}
+                                    {single && (
+                                      <div>
+                                        {item.answers.map((ch, rindex) => {
+                                          // @ts-ignore
+                                          const formValues = getValues(
+                                            item.questionId.toString()
+                                          );
+                                          // @ts-ignore
+                                          let radioChecked = false;
+                                          if (formValues !== undefined) {
+                                            const val = formValues; //.split('-');
+                                            //console.log(val);
+                                            if (val === ch) radioChecked = true;
+                                          }
+                                          return (
+                                            <div className="p-field-radiobutton">
+                                              <p></p>
+                                              <Controller
+                                                name={`${item.questionId}`}
+                                                control={control}
+                                                render={({
+                                                  onChange,
+                                                  value
+                                                }) => (
+                                                  <RadioButton
+                                                    name={`${item.questionId}`}
+                                                    onChange={e => {
+                                                      onChange(`${ch}`);
+                                                      addItineraries();
+                                                    }}
+                                                    checked={radioChecked}
+                                                  />
+                                                )}
+                                              />
 
-                                render={({ onChange, value }) => (
-                                  <Checkbox
-                                    checked={value}
-                                    onChange={(e) => {
-                                      onChange(e.checked);
-                                    }}
-                                  />
-                                )}
-                              />
-                              <label className="p-col-12 p-mb-2 p-md-2 p-mb-md-0">{ch}</label>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
-                    {single && (
-                      <div>
-                        {item.answers.map((ch, rindex) => {
-                          // @ts-ignore
-                          const formValues = getValues(item.questionId.toString());
-                          // @ts-ignore
-                          let radioChecked = false;
-                          if (formValues !== undefined) {
-                            const val = formValues;//.split('-');
-                            //console.log(val);
-                            if (val === ch) radioChecked = true;
+                                              <label className="p-col-12 p-mb-2 p-md-2 p-mb-md-0">
+                                                {ch}
+                                              </label>
+                                            </div>
+                                          );
+                                        })}
+                                      </div>
+                                    )}
+                                    {descriptive && (
+                                      <div className="q-border py-4">
+                                        <p></p>
+                                        <Controller
+                                          name={`${item.questionId}`}
+                                          control={control}
+                                          render={({ onChange, value }) => (
+                                            <InputText
+                                              value={value}
+                                              onChange={onChange}
+                                              className="p-my-2 w-100"
+                                            />
+                                          )}
+                                        />
+                                      </div>
+                                    )}
+                                    {rating && (
+                                      <div className="p-rating">
+                                        <p></p>
+                                        <Controller
+                                          name={`${item.questionId}`}
+                                          control={control}
+                                          render={({ onChange, value }) => (
+                                            <Rating
+                                              stars={5}
+                                              className="p-rating-star"
+                                              value={value}
+                                              onChange={e => {
+                                                onChange(e.value);
+                                              }}
+                                            />
+                                          )}
+                                        />
+                                      </div>
+                                    )}
+                                  </div>
+                                );
+                              }
+                            );
                           }
-                          return (
-                            <div className="p-field-radiobutton">
-                              <p></p>
-                              <Controller
-                                name={`${item.questionId}`}
-                                control={control}
-                                render={({ onChange, value }) => (
-                                  <RadioButton
-                                    name={`${item.questionId}`}
-                                    onChange={(e) => {
-                                      onChange(`${ch}`);
-                                      addItineraries();
-                                    }}
-                                    checked={radioChecked}
-                                  />
-                                )}
-                              />
-
-                              <label className="p-col-12 p-mb-2 p-md-2 p-mb-md-0">{ch}</label>
-                            </div>
-                          );
                         })}
-                      </div>
-                    )}
-                    {descriptive && (
-                      <div className="q-border py-4">
-                        <p></p>
-                        <Controller
-                                name={`${item.questionId}`}
-                                control={control}
-                                render={({ onChange, value }) => (
-                                  <InputText value={value} onChange={onChange} className="p-my-2 w-100" />
-                                )}
-                              />
-                       
-                      </div>
-                    )}
-                    {rating && (
-                      <div className="p-rating">
-                        <p></p>
-                        <Controller
-                          name={`${item.questionId}`}
-                          control={control}
-                          render={({ onChange, value }) => (
-                            <Rating
-                              stars={5}
-                              className="p-rating-star"
-                              value={value}
-                              onChange={(e) => {
-                                onChange(e.value);
-                              }}
-                            />
-                          )}
-                        />
-                      </div>
-                    )}
-                  </div>
-                );
-              });
-            }
-          })}
 
-                      <div className="text-center">
-                        <button
-                          type="submit"
-                          className="btn table-btn-green-lg"
-                        >
-                          Submit Review
-                        </button>
+                        <div className="text-center">
+                          <button
+                            type="submit"
+                            className="btn table-btn-green-lg"
+                          >
+                            Submit Review
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                 </form>
+                  </form>
                 </div>
                 <div className="col-lg-1 col-md-12"></div>
               </div>
@@ -512,6 +549,11 @@ const UserPT = () => {
                         <li>
                           <Link href="../../../user-dashboard/user-trekvouchers">
                             <span>trek vouchers</span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="">
+                            <span>Logout</span>
                           </Link>
                         </li>
                       </ul>

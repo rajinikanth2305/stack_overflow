@@ -1,12 +1,12 @@
-import React, { useState,useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Link from "next/link";
-import auth  from '../../../../services/Authenticate';
-import { getUserVoucher,findUserByEmail } from '../../../../services/queries';
+import auth from "../../../../services/Authenticate";
+import { getUserVoucher, findUserByEmail } from "../../../../services/queries";
 import VoucherTemplate from "./VoucherTemplate";
-import {  PDFDownloadLink } from '@react-pdf/renderer';
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 const UserTV = () => {
   const [show, setShow] = useState(false);
@@ -23,43 +23,38 @@ const UserTV = () => {
   const [indexes, setIndexes] = React.useState([]);
   const [counter, setCounter] = React.useState(0);
 
-
-  React.useEffect(  () => {
-    //const res=await 
-  auth.keycloak()
-       .then(([userTokenObject, userEmail])=>{ 
-             setUserEmail(userEmail);
-             fetchAndBindUserVouchers(userEmail);
-            // return userEmail;
-         });
-       // console.log(res);
-        //fetchAndBindUserBookings(res);
+  React.useEffect(() => {
+    //const res=await
+    auth.keycloak().then(([userTokenObject, userEmail]) => {
+      setUserEmail(userEmail);
+      fetchAndBindUserVouchers(userEmail);
+      // return userEmail;
+    });
+    // console.log(res);
+    //fetchAndBindUserBookings(res);
   }, []);
 
-
-  function fetchAndBindUserVouchers (email) {
+  function fetchAndBindUserVouchers(email) {
     console.log(email);
-   
-    getUserVoucher(email)
-        .then(vouchersData=>{
-         /// Idenitify and get the booking owner profile informations 
-         console.log(vouchersData);
-         if(vouchersData.length>0) {  
-              /// get userid by email
-              findUserByEmail(email)
-                  .then (res=>{ 
-                        setBookingOwner(res);
-                        console.log(res);
-                        setVouchers(vouchersData);
-                        const arr = Array.from(new Array(vouchersData.length), (x, i) => i);
-                        setIndexes(arr);
-                        setCounter(arr.length);
-                        setRender(true);
-                  });
-         }
+
+    getUserVoucher(email).then(vouchersData => {
+      /// Idenitify and get the booking owner profile informations
+      console.log(vouchersData);
+      if (vouchersData.length > 0) {
+        /// get userid by email
+        findUserByEmail(email).then(res => {
+          setBookingOwner(res);
+          console.log(res);
+          setVouchers(vouchersData);
+          const arr = Array.from(new Array(vouchersData.length), (x, i) => i);
+          setIndexes(arr);
+          setCounter(arr.length);
+          setRender(true);
+        });
+      }
     });
-   }
-  
+  }
+
   const vouchetListTr = vouchers.map(function(data, i) {
     return (
       <>
@@ -70,20 +65,31 @@ const UserTV = () => {
               <div>Rs. {data?.amount} </div>
               <div>
                 <p className="m-0 text-decoration-underline p-text-small-fg-blue">
-                <PDFDownloadLink document={<VoucherTemplate voucher={data}  />} fileName={data.title}>
-                              {/* {({ blob, url, loading, error }) => */}
-                              {/* loading ? <i className="pi pi-spin pi-spinner"></i> : <i className="pi pi-download"></i> */}
-                              {/* } */} <i className="pi pi-download p-pr-2"></i>
-                              <span className="btn table-btn-blue">Download Vocuher</span>
-                            </PDFDownloadLink>
+                  <PDFDownloadLink
+                    document={<VoucherTemplate voucher={data} />}
+                    fileName={data.title}
+                  >
+                    {/* {({ blob, url, loading, error }) => */}
+                    {/* loading ? <i className="pi pi-spin pi-spinner"></i> : <i className="pi pi-download"></i> */}
+                    {/* } */} <i className="pi pi-download p-pr-2"></i>
+                    <span className="btn table-btn-blue">Download Vocuher</span>
+                  </PDFDownloadLink>
                 </p>
               </div>
             </div>
           </td>
           <td>Rs. {data?.amountAvailed}</td>
-          <td>Rs. {data?.amount-data?.amountAvailed}</td>
+          <td>Rs. {data?.amount - data?.amountAvailed}</td>
           <td>{data?.validTill}</td>
-          <td><p className={data?.voucherStatus === 'Available' ? 'text-green m-0' : 'm-0'}>{data?.voucherStatus}</p></td>
+          <td>
+            <p
+              className={
+                data?.voucherStatus === "Available" ? "text-green m-0" : "m-0"
+              }
+            >
+              {data?.voucherStatus}
+            </p>
+          </td>
         </tr>
       </>
     );
@@ -99,7 +105,7 @@ const UserTV = () => {
                 <div className="col-lg-10 col-md-12 bg-gray border-right b-right-2px">
                   <div className="mb-2 py-4">
                     <p className="p-text-1 font-weight-bold m-0">
-                      Hi   {bookingOwner?.firstName} - {bookingOwner?.lastName}
+                      Hi {bookingOwner?.firstName} - {bookingOwner?.lastName}
                     </p>
                     <p className="p-text-1 font-weight-bold">
                       Welcome To Your Indiahikes Trek Dashboard!
@@ -159,6 +165,11 @@ const UserTV = () => {
                         <li>
                           <Link href="../../../user-dashboard/user-trekvouchers">
                             <span className="active-li">trek vouchers</span>
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="">
+                            <span>Logout</span>
                           </Link>
                         </li>
                       </ul>
