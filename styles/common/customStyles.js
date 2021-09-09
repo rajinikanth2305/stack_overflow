@@ -997,6 +997,13 @@ export const customStyles = css.global`
     font-size: 16px;
   }
 
+  .up-checkbox {
+    border-radius: 0px !important;
+    margin-top: 0.40rem;
+    width: 1rem;
+    height: 1rem;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
