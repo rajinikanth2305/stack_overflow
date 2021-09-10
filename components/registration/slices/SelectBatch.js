@@ -79,15 +79,15 @@ const SelectBatch = forwardRef((props, ref) => {
         <div className="d-flex align-items-start">
           <div className="col-lg-1 col-md-12">
             <p className="p-text-3 text-brown-shade">
-              Day {data.day_number_text[0].text}
+              Day {data?.day_number_text[0]?.text}
             </p>
           </div>
           <div className="col-lg-11 col-md-12">
             <p className="p-text-3 mb-0">
-              <b>{data.heading1[0].text}</b>
+              <b>{data?.heading1[0]?.text}</b>
             </p>
             <p className="p-text-small text-dark">
-              {data.sub_heading2[0].text}
+              {data?.sub_heading2[0]?.text}
             </p>
             {/*<p className="p-text-4">{data.heading2[0].text}</p> */}
           </div>
