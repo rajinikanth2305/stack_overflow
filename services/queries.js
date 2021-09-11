@@ -64,6 +64,26 @@ export const getBatches = async (trekName, month,year)  => {
            }
   };
 
+  export const getUsersVoucherByBookingId = async (bookingId) => {
+    const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
+    const url = `${userApi}/users/my-bookings/${bookingId}/vouchers`;
+    const header=await getTokenHeader();
+
+            try {
+              let res =  await axios.get(url,{ headers:  header })
+               if(res.status == 200){
+                   // test for status you want, etc
+                  // console.log(res.status)
+               }    
+               // Don't forget to return something   
+              // console.log(res.data)
+               return res.data
+           }
+           catch (err) {
+               console.error(err);
+           }
+  };
+
   // export const locationBaseApi = `http://localhost:9090/api/v1/locations`;
 export const getBatchInfoByUserAndBatchId = async (userEmail, batchId)  => {
   const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
@@ -270,6 +290,15 @@ export const cancelUserBooking =  async (userEmail,bookingId)  => {
   const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
   let url = `${userApi}/users/my-bookings/${bookingId}/cancel-treks`;
   return axios.patch(url,{},{ headers:  header })
+         .then((res) => res.data);
+};
+
+export const cancelParticipantBooking =  async (bookingId,data)  => {
+
+  const header=await getTokenHeader();
+  const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
+  let url = `${userApi}/users/my-bookings/${bookingId}/cancel-treks-for-the-participants`;
+  return axios.patch(url,data,{ headers:  header })
          .then((res) => res.data);
 };
 

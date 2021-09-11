@@ -75,13 +75,13 @@ const FitnessApproval = forwardRef((props, ref) => {
                     const pdata =participantData?.userTrekBookingParticipants[index];
                     const fieldName = `locs[${index}]`;
                     const name =
-                      pdata?.userDetailsForDisplay.email ===
+                      pdata?.userDetailsForDisplay?.email ===
                       participantData.email
-                        ? " * " + pdata?.userDetailsForDisplay.firstName +
-                          pdata?.userDetailsForDisplay.lastName +
+                        ? " * " + pdata?.userDetailsForDisplay?.firstName +
+                          pdata?.userDetailsForDisplay?.lastName +
                           " (You) "
-                        : pdata?.userDetailsForDisplay.firstName +
-                          pdata?.userDetailsForDisplay.lastName;
+                        : pdata?.userDetailsForDisplay?.firstName +
+                          pdata?.userDetailsForDisplay?.lastName;
                     return (
                       <tr>
                         <td>{name}</td>

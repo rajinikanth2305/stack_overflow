@@ -27,7 +27,8 @@ import {
   getUserBooking,
   getBatchInfoByUserAndBatchId,
   getUserVoucher,
-  findUserByEmail
+  findUserByEmail,
+  getUsersVoucherByBookingId
 } from "../../../services/queries";
 import {
   TabContent,
@@ -269,16 +270,20 @@ const RegHome = ({ slice }) => {
 
   const setStateStoreData = async (data, userId) => {
     //try{
-
-    console.log(JSON.stringify(data));
-
-    console.log(userId);
+    console.log((data));
+   // console.log(userId);
 
     let vouchers = [];
-    vouchers = await getVoucher(userId);
+    vouchers = await getUsersVoucherByBookingId(data.id);
     if (vouchers.length > 0) {
       vouchers = transFormVoucherPayload(vouchers);
     }
+
+    //console.log(vouchers);
+
+    const ownnerInfo=data.participants.find(user=>user.userId===data.ownerUserId);
+    const isOwnerActing=(ownnerInfo.userDetailsForDisplay.email.toLowerCase()===userId.toLowerCase());
+   // console.log(isOwnerActing);
 
     const bookingInformaiton = {
       trekId: data.trekId,
@@ -289,16 +294,18 @@ const RegHome = ({ slice }) => {
       bookingId: data.id,
       primaryUserEmail: userId,
       voucherDetails: vouchers,
-      trekUsers: []
+      trekUsers: [],
+      isOwnerActing:isOwnerActing
     };
 
-    const filterds = data.participants; //.filter(f=>f.bookingParticipantState!=='CANCELLED');
+    const filteredUsers=data.participants.filter(x=>x.bookingParticipantState!=='CANCELLED');
 
-    for (const userData of filterds) {
+    for (const userData of filteredUsers) {
       const dt = await buildParticipants(userData);
       bookingInformaiton.trekUsers.push(dt);
     }
-    console.log(bookingInformaiton);
+
+    //console.log(bookingInformaiton);
     setStateStoreDataAndTriggerTabChangesState(bookingInformaiton);
 
     // }
@@ -307,8 +314,9 @@ const RegHome = ({ slice }) => {
     //}
   };
 
-  const buildParticipants = async userData => {
-    const obh = {
+  const buildParticipants = async (userData) => {
+
+    const participants = {
       firstName: userData.userDetailsForDisplay?.firstName,
       lastName: userData.userDetailsForDisplay?.lastName,
       email: userData.userDetailsForDisplay?.email,
@@ -317,17 +325,19 @@ const RegHome = ({ slice }) => {
       voucherId: "",
       voucherAmount: 0,
       id: userData.userId,
+      participantsId: userData.id,
       gender: "N/A",
       height: 0,
       weight: 0,
       dob: "",
-      // vouchers:vouchers,
+      //vouchers:vouchersList,
       optedVoucherId: 0,
       trekFeeForTheUser: userData.trekFeeForTheUser,
       taxPercentage: userData.taxPercentage,
       insuranceAmount: userData.insuranceAmount
     };
-    return obh;
+
+    return participants;
   };
 
   const getVoucher = async userEmail => {
@@ -368,6 +378,7 @@ const RegHome = ({ slice }) => {
         voucherStatus: v.voucherStatus,
         voucherType: v.voucherType,
         userName: v.userName,
+        userEmail: v.userEmail,
         amountAvailable: v.amountAvailable,
         usedVocuherAmount: 0,
         appliedDetails: []

@@ -21,7 +21,8 @@ import {
   saveDraftBooking,
   getUserByAutoSearch,
   getUserVoucher,
-  createNewUser
+  createNewUser,
+  getUsersVoucherByBookingId
 } from "../../../services/queries";
 import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
@@ -107,7 +108,9 @@ const AddTrekMates = forwardRef((props, ref) => {
   };
 
   const onSubmit = async data => {
+
     const existUser = users?.find(x => x.email === data.email);
+
     if (existUser !== undefined) {
       toast.current.show({
         severity: "error",
@@ -129,7 +132,7 @@ const AddTrekMates = forwardRef((props, ref) => {
     //// new user first store into server then local store persistence
     const newUserData = await createNewUser(data);
     //console.log(newUserData);
-    console.log(JSON.stringify(newUserData));
+    //console.log(JSON.stringify(newUserData));
 
     const sdata = JSON.parse(JSON.stringify(stateData.data));
     sdata.trekUsers.push({
@@ -142,6 +145,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       voucherId: "",
       voucherAmount: 0,
       userId: 0,
+      participantsId: 0,
       height: data.height,
       weight: data.weight,
       gender: data.gender,
@@ -178,10 +182,10 @@ const AddTrekMates = forwardRef((props, ref) => {
   };
 
   const saveDraft = async sdata => {
-    console.log("TEmp Saved Successfully");
+    
     await saveDraftBooking(sdata)
       .then(data => {
-        console.log("Draft2 Saved Successfully");
+        return data;
       })
       .catch(res => {
         if (res.response?.data?.message) {
@@ -256,6 +260,7 @@ const AddTrekMates = forwardRef((props, ref) => {
   };
 
   const addFindUsers = async udata => {
+   
     setUsers([
       ...users,
       {
@@ -266,8 +271,8 @@ const AddTrekMates = forwardRef((props, ref) => {
     ]);
 
     let vouchers = []; //await getVoucher(udata.email); Vouchers os only for main owner user
-    const sdata = JSON.parse(JSON.stringify(stateData.data));
-    sdata.trekUsers.push({
+    const stdata = JSON.parse(JSON.stringify(stateData.data));
+    stdata.trekUsers.push({
       firstName: udata.firstName,
       lastName: udata.lastName,
       email: udata.email,
@@ -285,10 +290,64 @@ const AddTrekMates = forwardRef((props, ref) => {
       trekFeeForTheUser:0
     });
 
+    const responseData=await saveDraft(stdata);
+    console.log(responseData);
+
+    const participantData=responseData?.trekMates.find(x=>x.userId===udata.id);
+
+    const sdata = JSON.parse(JSON.stringify(stateData.data));
+    sdata.trekUsers.push({
+      firstName: udata.firstName,
+      lastName: udata.lastName,
+      email: udata.email,
+      id: udata.id,
+      participantsId:participantData?.id,
+      primaryUser: false,
+      trekFee: 0,
+      voucherId: "",
+      voucherAmount: 0,
+      height: data.height,
+      weight: data.weight,
+      dob: "",
+      gender: "",
+      vouchers: vouchers,
+      optedVoucherId: 0,
+      trekFeeForTheUser:0
+    });
+
+    vouchers = await getUsersVoucherByBookingId(stdata.bookingId);
+    if (vouchers.length > 0) {
+      vouchers = transFormVoucherPayload(vouchers);
+    }
+    sdata.voucherDetails=vouchers;
     await dispatch(addOrUpdateState(sdata));
-    await saveDraft(sdata);
     add();
     setSelectedSlopeUserAutoValue("");
+  };
+
+  const transFormVoucherPayload = vouchers => {
+    const voucherlist = [];
+    vouchers.map(v => {
+      voucherlist.push({
+        id: v.id,
+        userId: v.userId,
+        title: v.title,
+        amount: v.amount,
+        validTill: v.validTill,
+        message: v.message,
+        amountAvailed: v.amountAvailed,
+        voucherTypeId: v.voucherTypeId,
+        sendMailer: v.sendMailer,
+        voucherStatus: v.voucherStatus,
+        voucherType: v.voucherType,
+        userName: v.userName,
+        userEmail: v.userEmail,
+        amountAvailable: v.amountAvailable,
+        usedVocuherAmount: 0,
+        appliedDetails: []
+      });
+    });
+    return voucherlist;
   };
 
   const getVoucher = async userEmail => {
@@ -309,7 +368,7 @@ const AddTrekMates = forwardRef((props, ref) => {
     // console.log(fieldRef.current.value);
 
     const userData = selectedSlopeUserAutoValue; //document.getElementById("email").value;
-    console.log(JSON.stringify(userData));
+    console.log('hello'+userData);
 
     if (userData === undefined || userData === "" || userData === null) {
       toast.current.show({
@@ -326,11 +385,36 @@ const AddTrekMates = forwardRef((props, ref) => {
     if (existUser !== undefined) {
       toast.current.show({
         severity: "error",
-        summary: `'Find Trekker ${email} is already added'`,
+        summary: `'Find Trekker ${userData?.email} is already added'`,
         detail: "Find Trekker"
       });
       return;
     }
+
+    if(userData.email===undefined) {
+    getUserByAutoSearch("CUSTOMER", userData.toLowerCase()).then(data => {
+      if(data.length>0) {
+      confirmPopup({
+        //target: e.currentTarget,
+        message: `Are you sure you want to add trek mate ${data[0].email} ?'`,
+        icon: "pi pi-exclamation-triangle",
+        accept: () => {
+          addFindUsers(data[0]);
+        },
+        reject: e => {}
+      });
+    }
+    else {
+      toast.current.show({
+        severity: "error",
+        summary: `'Find Trekker ${userData.toLowerCase()} is not registered in  India hikes, Create new account'`,
+        detail: "Find Trekker"
+      });
+    }
+   
+    });
+  }
+  else {
     confirmPopup({
       target: e.currentTarget,
       message: `Are you sure you want to add trek mate ${userData.email} ?'`,
@@ -340,6 +424,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       },
       reject: e => {}
     });
+  }
   };
 
   const add = () => {
@@ -443,7 +528,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                                   minLength={3}
                                   delay={300}
                                   suggestions={autoFilteredSlopeUserValue}
-                                  forceSelection={true}
+                                  forceSelection={false}
                                   completeMethod={autoSearchUsers}
                                   field="display_name"
                                 ></AutoComplete>

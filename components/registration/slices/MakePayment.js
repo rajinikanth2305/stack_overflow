@@ -204,26 +204,24 @@ const MakePayment = forwardRef((props, ref) => {
   const onVoucherApply = async (id, index) => {
     const sdata = JSON.parse(JSON.stringify(stateData.data));
     const user = sdata.trekUsers.find(u => u.id === id);
+
     if (user.optedVoucherId > 0) {
+
       const selectedVoucher = sdata.voucherDetails.find(
         vid => vid.id == user.optedVoucherId
       );
-      const youPay = computeTotal(sdata.trekUsers);
-      console.log(youPay);
+
+      const youPay = user.trekFeeForTheUser;//computeTotal(sdata.trekUsers);
+
       if (youPay > 0) {
         const currentAvailableAmount = selectedVoucher.amountAvailable;
 
         if (currentAvailableAmount > 0) {  /// If Vocuher has available amount
-          const amountToDeductInVocuher =
-            youPay > currentAvailableAmount ? currentAvailableAmount : youPay;
-
+          const amountToDeductInVocuher =youPay > currentAvailableAmount ? currentAvailableAmount : youPay;
           console.log(amountToDeductInVocuher);
-
-          sdata.trekUsers.find(u => u.id === id).voucherId =
-            user.optedVoucherId;
-          sdata.trekUsers.find(
-            u => u.id === id
-          ).voucherAmount = amountToDeductInVocuher;
+          sdata.trekUsers.find(u => u.id === id).voucherId =user.optedVoucherId;
+          sdata.trekUsers.find(u => u.id === id).voucherAmount = amountToDeductInVocuher;
+         // sdata.trekUsers.find(u => u.id === id).youPay = (youPay-amountToDeductInVocuher);
         }
       }
      //console.log(JSON.stringify(sdata));
@@ -245,6 +243,7 @@ const MakePayment = forwardRef((props, ref) => {
         summary: `'The selected Voucher is already applied'`,
         detail: "Make payment"
       });
+
       /// Resetting the old selected voucher values;
       sdata.trekUsers.find(u => u.id === id).optedVoucherId = "";
       sdata.trekUsers.find(u => u.id === id).voucherAmount = 0;
@@ -304,6 +303,7 @@ const MakePayment = forwardRef((props, ref) => {
     data?.trekUsers?.map(u => {
       if (u.voucherAmount > 0) {
         vouchers.push({
+          participantId:u.participantsId,
           voucherId: u.voucherId,
           voucherAmount: u.voucherAmount
         });
@@ -407,21 +407,35 @@ const MakePayment = forwardRef((props, ref) => {
                       const fieldName = `voucher[${index}]`;
                       const sdata = JSON.parse(JSON.stringify(stateData.data));
                       const data = sdata?.trekUsers[index];
-                      //console.log(JSON.stringify(data));
+                     // console.log(JSON.stringify(sdata));
                       const name =
                         data?.email === bookingInformation.email
                           ? data?.firstName + " (You) "
                           : data?.firstName;
                       //const isPrimaryUser=(data.email===bookingDate.email);
+                      
                       const vouchers = [];
+                      if(sdata.isOwnerActing===true) {
                       if (sdata?.voucherDetails?.length > 0) {
-                        sdata?.voucherDetails.map(v => {
+                        sdata?.voucherDetails.filter(x=>x.userName===data?.email).map(v => {
                           vouchers.push({
                             title: v.title + "-" + v.amountAvailable,
                             id: v.id
                           });
                         });
                       }
+                    }
+                    else {
+                      if (sdata?.voucherDetails?.length > 0 
+                        && data?.email === bookingInformation.email) {
+                        sdata?.voucherDetails.filter(x=>x.userName===data?.email).map(v => {
+                          vouchers.push({
+                            title: v.title + "-" + v.amountAvailable,
+                            id: v.id
+                          });
+                        });
+                      }
+                    }
                       return (
                         <tr>
                           <td>{name}</td>

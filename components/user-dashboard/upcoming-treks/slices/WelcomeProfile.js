@@ -16,7 +16,8 @@ import auth from "../../../../services/Authenticate";
 import {
   getdashBoardUserBooking,
   cancelUserBooking,
-  findUserByEmail
+  findUserByEmail,
+  cancelParticipantBooking
 } from "../../../../services/queries";
 import moment from "moment";
 import { useRouter } from "next/router";
@@ -26,6 +27,9 @@ import { confirmPopup } from "primereact/confirmpopup"; // To use confirmPopup m
 import Image from "next/image";
 import { Toast } from "primereact/toast";
 import BoPayment from "../../bo-payment/slices/BoPayment";
+import { useForm, Controller } from "react-hook-form";
+import { Checkbox  } from 'primereact/checkbox';
+
 
 const WelcomeProfile = () => {
   const [show, setShow] = useState(false);
@@ -57,6 +61,19 @@ const WelcomeProfile = () => {
   );
   const [showOffLoadingTab, setShowOffLoadingTab] = useState(false);
 
+  const [cancelIndexes, setCancelIndexes] = React.useState([]);
+  const [cancelCounter, setCancelCounter] = React.useState(0);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    control,
+    errors,
+    formState,
+    getValues
+  } = useForm();
+
   React.useEffect(() => {
     //const res=await
     auth.keycloak().then(([userTokenObject, userEmail]) => {
@@ -74,7 +91,7 @@ const WelcomeProfile = () => {
       if (bookingsData.length > 0) {
         const bookingOwner = bookingsData.map(element => {
           const mainuser = element.trekMates.find(
-            subElement => subElement.userDetailsForDisplay.email === email
+            subElement => subElement.userDetailsForDisplay?.email === email
           );
           if (mainuser !== undefined) return mainuser;
         });
@@ -120,6 +137,7 @@ const WelcomeProfile = () => {
     myTrekRef.current?.changeState(bookTrekContents[0]);
     offLoadingRef.current?.changeState(bookTrekContents[0]);
     fitnessRef.current?.changeState(bookTrekContents[0]);
+    setCancelDialogueData(bookTrekContents[0].bookingId,bookTrekContents[0])
   };
 
   const getAndSetTrekContents = async (bookingsData, userEmail) => {
@@ -172,11 +190,13 @@ const WelcomeProfile = () => {
         bookingState: book.bookingState,
         backPackOffloadingDays: book.backPackOffloadingDays,
         backPackOffloadingCostPerDay: book.backPackOffloadingCostPerDay,
-        backPackOffloadingTax: book.backPackOffloadingTax
+        backPackOffloadingTax: book.backPackOffloadingTax,
       });
     }
     setStates(bookTrekContents);
   };
+
+ 
 
   const deriveAndSetOffLoadingTabVisible = activeBooking => {
     if (activeBooking.bookingState === "COMPLETED") {
@@ -205,7 +225,18 @@ const WelcomeProfile = () => {
     ); /// Excluding the active display trek;
     setNextComingTreks(nextTreks);
     document.getElementById("detailView").focus();
+    setCancelDialogueData(bookingId,activeBooking);
   };
+
+  const setCancelDialogueData=(bookingId,activeBooking)=> {
+
+    const arr = Array.from(
+      new Array(activeBooking?.userTrekBookingParticipants?.length),
+      (x, i) => i
+    );
+    setCancelIndexes(arr);
+    setCancelCounter(arr.length);
+  }
 
   const makePayment = batchId => {
     router.push(`/registration?batchId=${batchId}&step=payment`);
@@ -238,6 +269,12 @@ const WelcomeProfile = () => {
     });
   };
 
+  const onChecked =  (id, value) => {
+   // upComingTrek.userTrekBookingParticipants.find(u => u.id === id).cancelSelected = value;
+   // const selectedCount=upComingTrek.userTrekBookingParticipants.filter(u => u.selected === true).length;
+    //setShowSaveButton(selectedCount>0);
+  };
+
   const refresh = (bookingId, email) => {
     //fetchAndBindUserBookings(email);
     //toggleTrekDisplay(bookingId);
@@ -253,6 +290,43 @@ const WelcomeProfile = () => {
     onMyTrekSaveDetail: refresh,
     onOffLoadingPayment: OffLoadingPayment
   };
+
+const onCancelSubmit=(formData) => {
+
+ // console.log(formData);
+
+  const participantList=[];
+
+  Object.keys(formData).forEach(function(key) {
+    console.log('Key : ' + key + ', Value : ' + formData[key]);
+    if(formData[key]===true) {
+    participantList.push(
+       key
+    );
+  }
+  });
+
+  if(participantList.length>0) {
+      console.log(participantList);
+      cancelParticipantBooking(upComingTrek.bookingId,participantList).then(res=>{
+        toast.current.show({
+          severity: "info",
+          summary: `'Cancelled successfully'`,
+          detail: "Cancel-Trek-Booking"
+        });
+        fetchAndBindUserBookings(upComingTrek.email);
+        handleClose();
+      });
+  }
+  else {
+  toast.current.show({
+    severity: "error",
+    summary: `'None of the participant selected for cancellation'`,
+    detail: "Cancel-Trek-Booking"
+  });
+}
+}
+
   return (
     <>
       {render && (
@@ -844,6 +918,7 @@ const WelcomeProfile = () => {
               </div>
             </Modal.Body>
           </Modal> */}
+
           <Modal
             size="lg"
             show={show}
@@ -856,30 +931,70 @@ const WelcomeProfile = () => {
             </Modal.Header>
             <Modal.Body>
               <div>
+              <form onSubmit={handleSubmit(onCancelSubmit)} onReset={() => reset}>
                 <table class="table table-dashboard-profile-style-1">
                   <thead>
                     <tr className="header-bg">
                       <th style={{ width: '2%' }}>&nbsp;</th>
-                      <th className="w-20per">participants</th>
+                      <th className="w-20per">Participants</th>
                       <th className="w-20per">Phone</th>
-                      <th className="w-15per">email ID</th>
+                      <th className="w-15per">Email Id</th>
+                      <th className="w-15per">Booking State</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        <div>
-                          <input
-                            type="checkbox"
-                            class="form-check-input up-checkbox"
-                            id="exampleCheck1"
-                          />
-                        </div>
-                      </td>
-                      <td>* raghavendrak (You)</td>
-                      <td>9986121950</td>
-                      <td>rkaithal@gmail.com</td>
-                    </tr>
+                  {
+                      cancelIndexes.map(index => {
+                      const sdata = upComingTrek?.userTrekBookingParticipants[index];
+                      const fieldName = `${sdata?.participantId}`;
+                      const name =
+                      sdata?.userDetailsForDisplay?.email ===
+                      upComingTrek?.email
+                        ? " * " + sdata?.userDetailsForDisplay?.firstName +
+                          sdata?.userDetailsForDisplay?.lastName +
+                          " (You) "
+                        : sdata?.userDetailsForDisplay?.firstName +
+                          sdata?.userDetailsForDisplay?.lastName;
+
+                      const state= sdata?.bookingParticipantState==="CANCELLED";
+
+                      return (
+                        <>
+                          <tr key={sdata?.participantId}>
+                          <td>
+                              <div className="d-flex alifn-items-center">
+                                <div>
+                                {state==false && (
+                                <FormGroup className="reg-dropdown mp-dropdown">
+                                    <Controller
+                                      name={`${fieldName}`}
+                                      control={control}
+                                      render={({ onChange, value }) => (
+                                        <Checkbox  inputId="category1" name="category" 
+                                        onChange={e => {
+                                          onChange(e.checked);
+                                          onChecked(sdata.id,e.checked);
+                                        }}
+                                        checked={value} />
+                                      )}
+                                    />
+                                  </FormGroup>
+                                )}
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              {index + 1}. {name}
+                            </td>
+                            <td>{sdata?.userDetailsForDisplay?.email}</td>
+                            <td>{sdata?.userDetailsForDisplay?.phone}</td>
+                            <td>{sdata?.bookingParticipantState}</td>
+                          </tr>
+                        </>
+                      );
+            
+                    })
+                  }
                   </tbody>
                 </table>
                 <div className="d-flex justify-content-end">
@@ -887,6 +1002,7 @@ const WelcomeProfile = () => {
                     <span className="px-2">Confirm</span>
                   </button>
                 </div>
+                </form>
               </div>
             </Modal.Body>
           </Modal>

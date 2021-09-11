@@ -266,15 +266,21 @@ const Offloading = forwardRef((props, ref) => {
                           });
                         });
                       }
-                      let status =0;
-                        if (sdata.offloadingStatus==="Not Required" 
-                        || sdata.offloadingStatus==="paid"){
-                          status= 0;
+
+                        let status =0;
+                        const state= sdata?.bookingParticipantState==="CANCELLED";
+                        if(state==true) {
+                          status=0;
                         }
                         else {
-                          status= 1
+                          if (sdata.offloadingStatus==="Not Required" 
+                          || sdata.offloadingStatus==="paid"){
+                            status= 0;
+                          }
+                          else {
+                            status= 1
+                          }
                         }
-                      
                       return (
                         <>
                           <tr key={sdata.id}>

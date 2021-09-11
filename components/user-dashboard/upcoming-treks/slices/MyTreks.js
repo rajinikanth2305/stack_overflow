@@ -69,8 +69,9 @@ const MyTreks = forwardRef((props, ref) => {
     const userLocations = [];
 
     participantData?.userTrekBookingParticipants?.map((user, index) => {
-      const locid1 = formData.locs[index].pickupLocation;
-      const locid2 = formData.locs[index].dropLocation;
+
+      const locid1 = formData.locs[index]?.pickupLocation;
+      const locid2 = formData.locs[index]?.dropLocation;
 
       if (locid1 !== undefined && locid2 !== undefined) {
         const udata = {
@@ -112,6 +113,7 @@ const MyTreks = forwardRef((props, ref) => {
                     <th className="w-15per">email ID</th>
                     <th className="w-15per">pickup & location</th>
                     <th className="w-15per">Drop & Location</th>
+                    <th className="w-15per">Booking State</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -122,13 +124,13 @@ const MyTreks = forwardRef((props, ref) => {
                     // console.log(JSON.stringify(pdata));
 
                     const name =
-                      pdata?.userDetailsForDisplay.email ===
+                      pdata?.userDetailsForDisplay?.email ===
                       participantData.email
-                        ? " * " + pdata?.userDetailsForDisplay.firstName +
-                          pdata?.userDetailsForDisplay.lastName +
+                        ? " * " + pdata?.userDetailsForDisplay?.firstName +
+                          pdata?.userDetailsForDisplay?.lastName +
                           " (You) "
-                        : pdata?.userDetailsForDisplay.firstName +
-                          pdata?.userDetailsForDisplay.lastName;
+                        : pdata?.userDetailsForDisplay?.firstName +
+                          pdata?.userDetailsForDisplay?.lastName;
 
                     const pickupLocations = locations.filter(
                       x => x.type === "PICKUP"
@@ -146,6 +148,7 @@ const MyTreks = forwardRef((props, ref) => {
                         ? pdata.dropOffLocationId
                         : null;
 
+                        const state= pdata?.bookingParticipantState==="CANCELLED";
                     // console.log(currentPickupLocation + name);
                     // console.log(currentDropLocation +  name);
 
@@ -155,6 +158,7 @@ const MyTreks = forwardRef((props, ref) => {
                         <td>{pdata?.userDetailsForDisplay?.phone}</td>
                         <td>{pdata?.userDetailsForDisplay?.email}</td>
                         <td>
+                        {state==false && (
                           <FormGroup className="ud-dropwon-1">
                             <Controller
                               name={`${fieldName}.pickupLocation`}
@@ -174,8 +178,10 @@ const MyTreks = forwardRef((props, ref) => {
                               )}
                             />
                           </FormGroup>
+                        )}
                         </td>
                         <td>
+                        {state==false && (
                           <FormGroup className="ud-dropwon-1">
                             <Controller
                               name={`${fieldName}.dropLocation`}
@@ -195,7 +201,9 @@ const MyTreks = forwardRef((props, ref) => {
                               )}
                             />
                           </FormGroup>
+                        )}
                         </td>
+                        <td>{pdata?.bookingParticipantState}</td>
                       </tr>
                     );
                   })}
