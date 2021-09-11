@@ -1019,10 +1019,6 @@ export const customStyles = css.global`
     margin-top: -56px;
   }
 
-  .bg-gray.border-right.b-right-2px {
-    height: 95vh;
-  }
-
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

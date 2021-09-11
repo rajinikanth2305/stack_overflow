@@ -518,28 +518,6 @@ const UserPT = () => {
                       your Previous Indiahikes treks
                     </h5>
 
-                    {bookings === undefined && (
-                      <>
-                        <div className="d-flex align-items-center justify-content-center mt-5 mb-3">
-                          <div class="spinner-grow text-warning" role="status">
-                            <span class="sr-only">Loading...</span>
-                          </div>
-                          <div
-                            class="spinner-grow text-warning mx-2"
-                            role="status"
-                          >
-                            <span class="sr-only">Loading...</span>
-                          </div>
-                          <div class="spinner-grow text-warning" role="status">
-                            <span class="sr-only">Loading...</span>
-                          </div>
-                        </div>
-                        <div className="text-center">
-                          <p>Loading please wait...</p>
-                        </div>
-                      </>
-                    )}
-
                     <div className="row">
                       <div className="col-lg-11 col-md-12">{prevTrekData}</div>
                     </div>
@@ -586,6 +564,24 @@ const UserPT = () => {
               </div>
             </div>
           </div>
+          {bookings === undefined && (
+            <>
+              <div className="d-flex align-items-center justify-content-center mt-5 mb-3">
+                <div class="spinner-grow text-warning" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-warning mx-2" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-warning" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+              <div className="text-center">
+                <p>Loading please wait...</p>
+              </div>
+            </>
+          )}
         </div>
         <style jsx global>
           {customStyles}
