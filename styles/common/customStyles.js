@@ -1079,6 +1079,23 @@ export const customStyles = css.global`
     }
   }
 
+  @keyframes ui-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #d62d20;
+    }
+    40% {
+        stroke: #0057e7;
+    }
+    66% {
+        stroke: #008744;
+    }
+    80%,
+    90% {
+        stroke: #ffa700;
+    }
+}
+
   @media only screen and (max-width: 900px) and (min-width: 660px) {
     .banner-text-sec {
       padding: 100px 0;
