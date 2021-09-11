@@ -249,7 +249,7 @@ const UserPT = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex align-items-center flex-wrap">
                     <div className="flex-grow-1">
                       <p className="m-0 text-decoration-underline p-text-small-fg">
                         <PDFDownloadLink

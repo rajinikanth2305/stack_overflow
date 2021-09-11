@@ -400,7 +400,7 @@ const WelcomeProfile = () => {
                                           </p>
                                         </div>
                                       </div>
-                                      <div className="d-flex justify-content-end">
+                                      <div className="d-flex justify-content-end flex-wrap">
                                         {upComingTrek?.bookingState ===
                                           "PAYMENT" && (
                                           <div>
