@@ -24,6 +24,7 @@ import { RadioButton } from "primereact/radiobutton";
 import { Rating } from "primereact/rating";
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
+import { InputTextarea } from "primereact/inputtextarea";
 
 const UserPT = () => {
   const [activeTab, setActiveTab] = useState(null);
@@ -322,7 +323,7 @@ const UserPT = () => {
                           feedback to our teams on the slopes. I admit, we also
                           share the happy sections!{" "}
                         </p>
-                        <p className="p-text-3 mb-5">
+                        <p className="p-text-3 mb-4">
                           Let us start right away.{" "}
                         </p>
 
@@ -354,36 +355,42 @@ const UserPT = () => {
                                     </p>
 
                                     {multiple && (
-                                      <div>
+                                      <div className="d-flex align-items-center">
                                         {item.answers.map((ch, mindex) => {
                                           return (
-                                            <div>
-                                              <p></p>
-                                              <Controller
-                                                name={`${item.questionId}-${mindex}`}
-                                                control={control}
-                                                render={({
-                                                  onChange,
-                                                  value
-                                                }) => (
-                                                  <Checkbox
-                                                    checked={value}
-                                                    onChange={e => {
-                                                      onChange(e.checked);
-                                                    }}
+                                            <div className="mr-3">
+                                              {/* <p></p> */}
+                                              <div className="d-flex align-items-center">
+                                                <div>
+                                                  <Controller
+                                                    name={`${item.questionId}-${mindex}`}
+                                                    control={control}
+                                                    render={({
+                                                      onChange,
+                                                      value
+                                                    }) => (
+                                                      <Checkbox
+                                                        checked={value}
+                                                        onChange={e => {
+                                                          onChange(e.checked);
+                                                        }}
+                                                      />
+                                                    )}
                                                   />
-                                                )}
-                                              />
-                                              <label className="p-col-12 p-mb-2 p-md-2 p-mb-md-0">
-                                                {ch}
-                                              </label>
+                                                </div>
+                                                <div className="mx-2">
+                                                  <label className="p-col-12 p-mb-2 p-md-2 p-mb-md-0">
+                                                    {ch}
+                                                  </label>
+                                                </div>
+                                              </div>
                                             </div>
                                           );
                                         })}
                                       </div>
                                     )}
                                     {single && (
-                                      <div>
+                                      <div className="d-flex align-items-center">
                                         {item.answers.map((ch, rindex) => {
                                           // @ts-ignore
                                           const formValues = getValues(
@@ -397,29 +404,33 @@ const UserPT = () => {
                                             if (val === ch) radioChecked = true;
                                           }
                                           return (
-                                            <div className="p-field-radiobutton">
-                                              <p></p>
-                                              <Controller
-                                                name={`${item.questionId}`}
-                                                control={control}
-                                                render={({
-                                                  onChange,
-                                                  value
-                                                }) => (
-                                                  <RadioButton
+                                            <div className="mr-3">
+                                              <div className="d-flex align-items-center">
+                                                <div className="p-field-radiobutton">
+                                                  <Controller
                                                     name={`${item.questionId}`}
-                                                    onChange={e => {
-                                                      onChange(`${ch}`);
-                                                      addItineraries();
-                                                    }}
-                                                    checked={radioChecked}
+                                                    control={control}
+                                                    render={({
+                                                      onChange,
+                                                      value
+                                                    }) => (
+                                                      <RadioButton
+                                                        name={`${item.questionId}`}
+                                                        onChange={e => {
+                                                          onChange(`${ch}`);
+                                                          addItineraries();
+                                                        }}
+                                                        checked={radioChecked}
+                                                      />
+                                                    )}
                                                   />
-                                                )}
-                                              />
-
-                                              <label className="p-col-12 p-mb-2 p-md-2 p-mb-md-0">
-                                                {ch}
-                                              </label>
+                                                </div>
+                                                <div className="mx-2">
+                                                  <label className="p-col-12 p-mb-2 p-md-2 p-mb-md-0">
+                                                    {ch}
+                                                  </label>
+                                                </div>
+                                              </div>
                                             </div>
                                           );
                                         })}
@@ -432,10 +443,11 @@ const UserPT = () => {
                                           name={`${item.questionId}`}
                                           control={control}
                                           render={({ onChange, value }) => (
-                                            <InputText
+                                            <InputTextarea
                                               value={value}
                                               onChange={onChange}
                                               className="p-my-2 w-100"
+                                              rows={5}
                                             />
                                           )}
                                         />
