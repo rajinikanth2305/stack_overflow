@@ -4,7 +4,7 @@ const REACT_APP_IAM_URL="https://tmsstaging.indiahikes.com";
 const initOptions = {
   url: `${REACT_APP_IAM_URL}/auth/`,
   realm: 'IndiaHikes',
-  clientId: 'tms-ui',
+  clientId: 'tms-ui'
 };
 
 const keycloakContext = new Keycloak(initOptions);
@@ -37,7 +37,9 @@ export const initKeycloak = (onAuthenticatedCallback) => {
 
 const doLogin = keycloakContext.login;
 
-const doLogout = keycloakContext.logout;
+//export const doLogout= (successCallback) => keycloakContext.logout({redirectUri:'/'});
+
+export const doLogout= (successCallback) => keycloakContext.logout({redirectUri:window.location.origin}).then(successCallback);
 
 export const getToken = () => keycloakContext.token;
 

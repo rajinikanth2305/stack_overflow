@@ -327,6 +327,19 @@ const onCancelSubmit=(formData) => {
 }
 }
 
+const onLogoutCallback=()=>{
+  toast.current.show({
+    severity: "info",
+    summary: `'Logout successfully'`,
+    detail: "Logout"
+  });
+  router.push(`/`);
+}
+
+const onLogout =()=>{
+  userServiceObject.doLogout(onLogoutCallback);
+}
+
   return (
     <>
       {render && (
@@ -780,9 +793,9 @@ const onCancelSubmit=(formData) => {
                               </Link>
                             </li>
                             <li>
-                              <Link href="">
+                              <a   onClick={onLogout}>
                                 <span>Logout</span>
-                              </Link>
+                              </a>
                             </li>
                           </ul>
                         </div>
