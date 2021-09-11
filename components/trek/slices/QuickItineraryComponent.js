@@ -45,9 +45,9 @@ const QuickItineraryComponent = ({ slice }) => {
               <b>{data.heading1[0].text}</b>
             </p>
             <p className="p-text-small text-dark">
-              {data.sub_heading2[0].text}
+              {data?.sub_heading2[0]?.text}
             </p>
-            <p className="p-text-4">{data.heading2[0].text}</p>
+            <p className="p-text-4">{data?.heading2[0]?.text}</p>
           </div>
         </div>
       </>

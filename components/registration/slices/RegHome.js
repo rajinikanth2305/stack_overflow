@@ -168,6 +168,7 @@ const RegHome = ({ slice }) => {
     stepName = undefined,
     callMode = "Button_Click"
   ) => {
+    window.scrollTo(0, 0);
     const batchId = router.query.batchId ? router.query.batchId : pbatchId;
     const userId =
       userEmail == "" ? userServiceObject.getUsername() : userEmail;

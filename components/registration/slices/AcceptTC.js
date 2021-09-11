@@ -83,6 +83,7 @@ const AcceptTC = ({ data, props, onTermAccept }) => {
 
   const termAccepted = () => {
     onTermAccept(true);
+    window.scrollTo(0, 0);
   };
 
   return (
