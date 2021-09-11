@@ -1010,6 +1010,19 @@ export const customStyles = css.global`
     height: 1rem;
   }
 
+  .td-bg {
+    background: linear-gradient(to right, #f2f2f2 10%, #ffc100 20%);
+    height: 55px;
+  }
+
+  .td-bg-mr {
+    margin-top: -56px;
+  }
+
+  .bg-gray.border-right.b-right-2px {
+    height: 95vh;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

@@ -13,7 +13,8 @@ const UserMP = () => {
       <div>
         <div className="container container-custom p-0">
           <div className="bg-gray-shade">
-            <div className="container">
+            <div className="td-bg" />
+            <div className="container td-bg-mr">
               <div className="row">
                 <div className="col-lg-10 col-md-12 bg-gray border-right b-right-2px">
                   <div className="mb-2 py-4">

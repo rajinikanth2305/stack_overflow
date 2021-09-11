@@ -85,8 +85,9 @@ const FitnessApproval = forwardRef((props, ref) => {
                     return (
                       <tr>
                         <td>{name}</td>
-                        <td>{pdata?.userDetailsForDisplay?.phone}</td>
-                        <td>{pdata?.userDetailsForDisplay?.email}</td>
+                        {/* <td>{pdata?.userDetailsForDisplay?.phone}</td>
+                        <td>{pdata?.userDetailsForDisplay?.email}</td> */}
+                        <td>-</td>
                       </tr>
                     );
                   })}
