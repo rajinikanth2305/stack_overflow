@@ -900,6 +900,12 @@ export const customStyles = css.global`
   .user-dashboard-tab > nav {
     border: 0 !important;
     margin-bottom: 4px !important;
+    display: flex;
+  }
+
+  .user-dashboard-tab > nav > a {
+    -moz-box-flex: 1 !important;
+    flex: 1 1 auto !important;
   }
 
   .user-dashboard-tab > .nav-tabs .nav-link {
@@ -999,9 +1005,18 @@ export const customStyles = css.global`
 
   .up-checkbox {
     border-radius: 0px !important;
-    margin-top: 0.40rem;
+    margin-top: 0.4rem;
     width: 1rem;
     height: 1rem;
+  }
+
+  .td-bg {
+    background: linear-gradient(to right, #f2f2f2 10%, #ffc100 20%);
+    height: 55px;
+  }
+
+  .td-bg-mr {
+    margin-top: -56px;
   }
 
   @media only screen and (max-width: 660px) {
@@ -1079,6 +1094,23 @@ export const customStyles = css.global`
     }
   }
 
+  @keyframes ui-progress-spinner-color {
+    100%,
+    0% {
+      stroke: #d62d20;
+    }
+    40% {
+      stroke: #0057e7;
+    }
+    66% {
+      stroke: #008744;
+    }
+    80%,
+    90% {
+      stroke: #ffa700;
+    }
+  }
+
   @media only screen and (max-width: 900px) and (min-width: 660px) {
     .banner-text-sec {
       padding: 100px 0;
@@ -1094,23 +1126,33 @@ export const customStyles = css.global`
   .p-rating .p-rating-icon {
     color: #495057;
     margin-left: 0.5rem;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
-    font-size: 1.143rem; }
-    .p-rating .p-rating-icon.p-rating-cancel {
-      color: #e74c3c; }
-    .p-rating .p-rating-icon:focus {
-      outline: 0 none;
-      outline-offset: 0;
-      box-shadow: 0 0 0 0.2rem #ffe69c; }
-    .p-rating .p-rating-icon:first-child {
-      margin-left: 0; }
-    .p-rating .p-rating-icon.pi-star {
-      color: #FFC107; }
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+      box-shadow 0.2s;
+    font-size: 1.143rem;
+  }
+  .p-rating .p-rating-icon.p-rating-cancel {
+    color: #e74c3c;
+  }
+  .p-rating .p-rating-icon:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2rem #ffe69c;
+  }
+  .p-rating .p-rating-icon:first-child {
+    margin-left: 0;
+  }
+  .p-rating .p-rating-icon.pi-star {
+    color: #ffc107;
+  }
   .p-rating:not(.p-disabled):not(.p-readonly) .p-rating-icon:hover {
-    color: #FFC107; }
-  .p-rating:not(.p-disabled):not(.p-readonly) .p-rating-icon.p-rating-cancel:hover {
-    color: #c0392b; }
-  
+    color: #ffc107;
+  }
+  .p-rating:not(.p-disabled):not(.p-readonly)
+    .p-rating-icon.p-rating-cancel:hover {
+    color: #c0392b;
+  }
+
   .p-highlight .p-rating .p-rating-icon {
-    color: #000000; }
+    color: #000000;
+  }
 `;

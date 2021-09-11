@@ -257,6 +257,7 @@ const AddTrekMates = forwardRef((props, ref) => {
 
   const nextTabNav = () => {
     props.onNextTabEvent("makepayment");
+    window.scrollTo(0, 0);
   };
 
   const addFindUsers = async udata => {

@@ -335,7 +335,8 @@ const onCancelSubmit=(formData) => {
             <Toast ref={toast} />
             <div className="container container-custom p-0">
               <div className="bg-gray-shade">
-                <div className="container">
+              <div className="td-bg" />
+                <div className="container td-bg-mr">
                   <div className="row">
                     <div className="col-lg-10 col-md-12 bg-gray border-right b-right-2px">
                       <div className="mb-2 py-4">
@@ -455,7 +456,7 @@ const onCancelSubmit=(formData) => {
                                             participants
                                           </p>
                                           <p className="m-0 p-text-2-fg">
-                                            {upComingTrek?.participantsCount}
+                                            {upComingTrek?.participantsCount} trekkers
                                           </p>
                                         </div>
                                         <div>
@@ -474,7 +475,7 @@ const onCancelSubmit=(formData) => {
                                           </p>
                                         </div>
                                       </div>
-                                      <div className="d-flex justify-content-end">
+                                      <div className="d-flex justify-content-end flex-wrap">
                                         {upComingTrek?.bookingState ===
                                           "PAYMENT" && (
                                           <div>

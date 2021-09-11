@@ -249,7 +249,7 @@ const UserPT = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex align-items-center flex-wrap">
                     <div className="flex-grow-1">
                       <p className="m-0 text-decoration-underline p-text-small-fg">
                         <PDFDownloadLink
@@ -493,7 +493,8 @@ const UserPT = () => {
       <div>
         <div className="container container-custom p-0">
           <div className="bg-gray-shade">
-            <div className="container">
+            <div className="td-bg" />
+            <div className="container td-bg-mr">
               <div className="row">
                 <div className="col-lg-10 col-md-12 bg-gray border-right b-right-2px">
                   <div className="mb-2 py-4">
@@ -563,6 +564,24 @@ const UserPT = () => {
               </div>
             </div>
           </div>
+          {bookings === undefined && (
+            <>
+              <div className="d-flex align-items-center justify-content-center mt-5 mb-3">
+                <div class="spinner-grow text-warning" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-warning mx-2" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-warning" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+              <div className="text-center">
+                <p>Loading please wait...</p>
+              </div>
+            </>
+          )}
         </div>
         <style jsx global>
           {customStyles}

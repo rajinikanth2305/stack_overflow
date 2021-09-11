@@ -98,6 +98,7 @@ const SelectBatch = forwardRef((props, ref) => {
 
   const nextTabNav = () => {
     props.onNextTabEvent("addtrekmates");
+    window.scrollTo(0, 0);
   };
 
   const bookingSelect = async value => {
