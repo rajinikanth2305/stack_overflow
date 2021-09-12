@@ -26,6 +26,7 @@ const UserTV = () => {
   React.useEffect(() => {
     //const res=await
     auth.keycloak().then(([userTokenObject, userEmail]) => {
+      setUserServiceObject(userTokenObject);
       setUserEmail(userEmail);
       fetchAndBindUserVouchers(userEmail);
       // return userEmail;
@@ -53,6 +54,10 @@ const UserTV = () => {
         });
       }
     });
+  }
+
+  const onLogout =()=>{
+    userServiceObject.doLogout();
   }
 
   const vouchetListTr = vouchers.map(function(data, i) {
@@ -169,9 +174,9 @@ const UserTV = () => {
                           </Link>
                         </li>
                         <li>
-                          <Link href="">
-                            <span>Logout</span>
-                          </Link>
+                        <a   onClick={onLogout}>
+                                <span>Logout</span>
+                              </a>
                         </li>
                       </ul>
                     </div>

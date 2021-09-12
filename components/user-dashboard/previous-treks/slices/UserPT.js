@@ -184,6 +184,12 @@ const UserPT = () => {
     setReviewCounter(prevCounter => prevCounter + 1);
   };
 
+
+  const onLogout =()=>{
+    userServiceObject.doLogout();
+  }
+
+  
   const prevTrekData = bookings?.map(function(data, i) {
     return (
       <>
@@ -565,9 +571,10 @@ const UserPT = () => {
                           </Link>
                         </li>
                         <li>
-                          <Link href="">
-                            <span>Logout</span>
-                          </Link>
+                         
+                             <a   onClick={onLogout}>
+                                <span>Logout</span>
+                              </a>
                         </li>
                       </ul>
                     </div>

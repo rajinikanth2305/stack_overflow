@@ -2,12 +2,33 @@ import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Link from "next/link";
+import auth from "../../../../services/Authenticate";
 
 const UserMP = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [userServiceObject, setUserServiceObject] = useState(undefined);
+  const [userEmail, setUserEmail] = useState(undefined);
+
+  React.useEffect(() => {
+    //const res=await
+    auth.keycloak().then(([userTokenObject, userEmail]) => {
+      setUserServiceObject(userTokenObject);
+      setUserEmail(userEmail);
+      // return userEmail;
+    });
+    // console.log(res);
+    //fetchAndBindUserBookings(res);
+  }, []);
+
+  const onLogout =()=>{
+    userServiceObject.doLogout();
+  }
+  
+
   return (
     <>
       <div>
@@ -62,6 +83,11 @@ const UserMP = () => {
                           <Link href="../../../user-dashboard/user-trekvouchers">
                             <span>trek vouchers</span>
                           </Link>
+                        </li>
+                        <li>
+                        <a   onClick={onLogout}>
+                                <span>Logout</span>
+                              </a>
                         </li>
                       </ul>
                     </div>

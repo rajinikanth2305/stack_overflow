@@ -327,17 +327,14 @@ const onCancelSubmit=(formData) => {
 }
 }
 
-const onLogoutCallback=()=>{
-  toast.current.show({
+
+const onLogout =()=>{
+  /*toast.current.show({
     severity: "info",
     summary: `'Logout successfully'`,
     detail: "Logout"
-  });
-  router.push(`/`);
-}
-
-const onLogout =()=>{
-  userServiceObject.doLogout(onLogoutCallback);
+  });*/
+  userServiceObject.doLogout();
 }
 
   return (
