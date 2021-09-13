@@ -230,7 +230,7 @@ const HowDifficultTrekIs = () => {
 
   return (
     <>
-      <div>
+      {/* <div>
         <div className="">
           <div className="row d-flex align-items-center my-4">
             <div className="col-lg-3 col-md-12">
@@ -280,7 +280,7 @@ const HowDifficultTrekIs = () => {
         <style jsx global>
           {experimentStyles}
         </style>
-      </div>
+      </div> */}
     </>
   );
 };

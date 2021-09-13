@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
-Image;
 import { experimentStyles } from "styles";
 import { Client } from "utils/prismicHelpers";
 import Prismic from "@prismicio/client";
@@ -63,7 +62,7 @@ const HowDoesEachDayLooks = () => {
     const dayWise = await client
       .query([Prismic.Predicates.at("document.type", "trek")])
       .then(function(response) {
-        const tt = response.results[0].data.body;
+        const tt = response.results[0]?.data.body;
         const slice =
           tt && tt.filter(x => x.slice_type === "day_wise_itinerary");
         setDayWise(slice);
@@ -76,7 +75,7 @@ const HowDoesEachDayLooks = () => {
     dayWise.map(function(dd, i) {
       const daysItieneryArray = dd.items;
       const daysItienery = daysItieneryArray.map(function(daysIt, i) {
-        const place_description_editor = daysIt.place_description_editor.map(
+        const place_description_editor = daysIt?.place_description_editor.map(
           function(ed, j) {
             return (
               <>
@@ -91,151 +90,159 @@ const HowDoesEachDayLooks = () => {
               <div className="my-5 mmt-0">
                 <div className="mb-4 d-m-block">
                   <Slider className="home-choose-treks" {...settings}>
-                    <div>
-                      <div class="accordio-sec-images">
-                        {daysIt.image1.url ? (
-                          <Image src={daysIt.image1.url} layout="fill" />
-                        ) : (
-                          ""
-                        )}
+                    {daysIt?.image1?.url && (
+                      <div>
+                        <div class="accordio-sec-images">
+                          <Image src={daysIt?.image1?.url} layout="fill" />
+                        </div>
                       </div>
-                    </div>
-                    <div>
-                      <div class="accordio-sec-images">
-                        {daysIt.image2.url ? (
-                          <Image src={daysIt.image2.url} layout="fill" />
-                        ) : (
-                          ""
-                        )}
+                    )}
+                    {daysIt?.image2?.url && (
+                      <div>
+                        <div class="accordio-sec-images">
+                          <Image src={daysIt?.image2?.url} layout="fill" />
+                        </div>
                       </div>
-                    </div>
-                    <div>
-                      <div class="accordio-sec-images">
-                        {daysIt.image3.url ? (
-                          <Image src={daysIt.image3.url} layout="fill" />
-                        ) : (
-                          ""
-                        )}
+                    )}
+                    {daysIt?.image3?.url && (
+                      <div>
+                        <div class="accordio-sec-images">
+                          <Image src={daysIt?.image3?.url} layout="fill" />
+                        </div>
                       </div>
-                    </div>
-                    <div>
-                      <div class="accordio-sec-images">
-                        {daysIt.image4.url ? (
-                          <Image src={daysIt.image4.url} layout="fill" />
-                        ) : (
-                          ""
-                        )}
+                    )}
+                    {daysIt?.image3?.url && (
+                      <div>
+                        <div class="accordio-sec-images">
+                          <Image src={daysIt?.image4?.url} layout="fill" />
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </Slider>
                 </div>
-                <p className="p-text-1">
-                  <b>{daysIt.place_title[0].text}</b>
-                </p>
-                <p class="p-text-3-1">
-                  <img src="/Duration.png" alt="img" />{" "}
-                  <span className="px-2">{daysIt.duration[0].text}</span>
-                </p>
-                <p class="p-text-3-1">
-                  <img src="/shoes.png" alt="img" />{" "}
-                  <span className="px-2">{daysIt.altitude[0].text}</span>
-                </p>
-                <p class="p-text-3-1">
-                  <img src="/Offloading.png" alt="img" />{" "}
-                  <span className="px-2">{daysIt.difficulty[0].text}</span>
-                </p>
-                <p class="p-text-3-1">
-                  <img src="/Offloading.png" alt="img" />{" "}
-                  <span className="px-2">{daysIt.water_sources[0].text}</span>
-                </p>
+                {daysIt?.place_title[0]?.text && (
+                  <p className="p-text-1">
+                    <b>{daysIt?.place_title[0]?.text}</b>
+                  </p>
+                )}
+                {daysIt?.duration[0]?.text && (
+                  <p class="p-text-3-1">
+                    <img src="/Duration.png" alt="img" />{" "}
+                    <span className="px-2">{daysIt?.duration[0]?.text}</span>
+                  </p>
+                )}
+                {daysIt?.altitude[0]?.text && (
+                  <p class="p-text-3-1">
+                    <img src="/shoes.png" alt="img" />{" "}
+                    <span className="px-2">{daysIt?.altitude[0]?.text}</span>
+                  </p>
+                )}
+                {daysIt?.difficulty[0]?.text && (
+                  <p class="p-text-3-1">
+                    <img src="/Offloading.png" alt="img" />{" "}
+                    <span className="px-2">{daysIt?.difficulty[0]?.text}</span>
+                  </p>
+                )}
+                {daysIt?.water_sources[0]?.text && (
+                  <p class="p-text-3-1">
+                    <img src="/Offloading.png" alt="img" />{" "}
+                    <span className="px-2">
+                      {daysIt?.water_sources[0]?.text}
+                    </span>
+                  </p>
+                )}
                 <div className="my-4 d-m-block">
-                  <div
-                    style={{ height: readMoreHeight, overflow: "hidden" }}
-                  >
-                    <p className="p-text-4">{place_description_editor}</p>
-                  </div>
-                  <div className="d-flex justify-content-center bg-transparent-text-effect">
-                        {readMoreHeight === 200 ? (
+                  {daysItieneryArray &&
+                  daysItieneryArray[0].place_description_editor[0]?.text ? (
+                    <div style={{ height: readMoreHeight, overflow: "hidden" }}>
+                      <p className="p-text-4">{place_description_editor}</p>
+                    </div>
+                  ) : (
+                    <div>
+                      <p className="p-text-4">{place_description_editor}</p>
+                    </div>
+                  )}
+                  {daysItieneryArray &&
+                  daysItieneryArray[0].place_description_editor[0]?.text ? (
+                    <div className="d-flex justify-content-center bg-transparent-text-effect">
+                      {readMoreHeight === 200 ? (
+                        <button
+                          class="btn btn-ptr"
+                          onClick={() => setReadMoreHeight("auto")}
+                        >
+                          read more
+                        </button>
+                      ) : (
+                        <a href="#trekexper-sec">
                           <button
                             class="btn btn-ptr"
-                            onClick={() => setReadMoreHeight("auto")}
+                            onClick={() => setReadMoreHeight(200)}
                           >
-                            read more
+                            read less
                           </button>
-                        ) : (
-                          <a href="#trekexper-sec">
-                            <button
-                              class="btn btn-ptr"
-                              onClick={() => setReadMoreHeight(200)}
-                            >
-                              read less
-                            </button>
-                          </a>
-                        )}
-                      </div>
+                        </a>
+                      )}
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
 
               <div className="row d-m-none">
                 <div className="col-lg-7 col-md-12">
-                  <div className="day1-image-1">
-                    {daysIt.image1.url ? (
+                  {daysIt?.image1?.url && (
+                    <div className="day1-image-1">
                       <Image
-                        src={daysIt.image1.url}
+                        src={daysIt?.image1?.url}
                         layout="fill"
                         objectFit="cover"
                         objectPosition="50% 50%"
                       />
-                    ) : (
-                      ""
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
                 <div className="col-lg-5 col-md-12">
-                  <div className="day1-image-2">
-                    {daysIt.image2.url ? (
+                  {daysIt?.image2?.url && (
+                    <div className="day1-image-2">
                       <Image
-                        src={daysIt.image2.url}
+                        src={daysIt?.image2?.url}
                         layout="fill"
                         objectFit="cover"
                         objectPosition="50% 50%"
                       />
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                  <div className="row mt-4">
+                    </div>
+                  )}
+                  <div className={daysIt?.image4?.url ? "row mt-4" : "row"}>
                     <div className="col-lg-6 col-md-12">
-                      <div className="day1-image-3">
-                        {daysIt.image3.url ? (
+                      {daysIt?.image3?.url && (
+                        <div className="day1-image-3">
                           <Image
-                            src={daysIt.image3.url}
+                            src={daysIt?.image3?.url}
                             layout="fill"
                             objectFit="cover"
                             objectPosition="50% 50%"
                           />
-                        ) : (
-                          ""
-                        )}
-                      </div>
+                        </div>
+                      )}
                     </div>
                     <div className="col-lg-6 col-md-12">
-                      <div className="day1-image-3">
-                        {daysIt.image4.url ? (
+                      {daysIt?.image4?.url && (
+                        <div className="day1-image-3">
                           <Image
-                            src={daysIt.image4.url}
+                            src={daysIt?.image4?.url}
                             layout="fill"
                             objectFit="cover"
                             objectPosition="50% 50%"
                           />
-                        ) : (
-                          ""
-                        )}
-                      </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
-                <div className="my-5 d-m-none">
+                <div
+                  className={daysIt?.image4?.url ? "my-5 d-m-none" : "d-m-none"}
+                >
                   <p className="p-text-4">{place_description_editor}</p>
                 </div>
               </div>

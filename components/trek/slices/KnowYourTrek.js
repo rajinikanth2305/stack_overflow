@@ -45,7 +45,7 @@ const KnowYourTrek = ({ slice, data }) => {
         <Accordion>
           <Card>
             <Card.Header>
-              <Accordion.Toggle variant="link" eventKey="0">
+              <Accordion.Toggle variant="link" eventKey="0" className="kyt-tabs">
                 <div className="d-flex align-items-center border-bottom-custom-2x">
                   <div className="px-3 mpx-1">
                     <img
