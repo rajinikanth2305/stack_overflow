@@ -7,6 +7,7 @@ const TrekExpertSpeak = ({ slice }) => {
   const heading1 = slice.primary.heading1;
   const bannerImage = slice.primary.banner_image.url;
   const author = slice.primary.author;
+  const position = slice.primary.position;
   const aboutAuthor = slice.primary.about_author;
   const authorImage = slice.primary.author_image.url;
   const contentHeading = slice.primary.content_heading;
@@ -19,6 +20,8 @@ const TrekExpertSpeak = ({ slice }) => {
     width: "100%",
     backgroundRepeat: "no-repeat"
   };
+
+  console.log(position);
 
   const whatILikeImage = whatILikeImageArray.map((data, i) => {
     return (
@@ -97,7 +100,10 @@ const TrekExpertSpeak = ({ slice }) => {
                       {RichText.asText(heading1)}
                     </h2>
                     {/* <p clas="m-0 d-m-none">with</p> */}
-                    <p className="m-0">{RichText.asText(author)}</p>
+                    <p className="m-0 p-text-2">{RichText.asText(author)}</p>
+                    <p className="p-text-3 font-weigth-normal">
+                      {RichText.asText(position)}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -119,6 +125,9 @@ const TrekExpertSpeak = ({ slice }) => {
                       />
                       <p className="m-0 author-info-text">
                         {RichText.asText(author)}
+                      </p>
+                      <p className="m-0 author-info-text">
+                        {RichText.asText(position)}
                       </p>
                     </div>
                   </div>
@@ -149,7 +158,7 @@ const TrekExpertSpeak = ({ slice }) => {
                       <div>
                         <div className="row">
                           <div className="col-4">
-                            <div className="text-center author-sec-border">
+                            <div className="author-sec-border">
                               <Image
                                 src={authorImage}
                                 width={90}
@@ -158,6 +167,9 @@ const TrekExpertSpeak = ({ slice }) => {
                               />
                               <p className="m-0 author-info-text">
                                 {RichText.asText(author)}
+                              </p>
+                              <p className="m-0 author-text">
+                                {RichText.asText(position)}
                               </p>
                             </div>
                           </div>

@@ -30,7 +30,7 @@ const InclusionsAndExclusions = () => {
       });
   }
 
-  const mapUrl = howToReach && howToReach.primary.map_url.url;
+  // const mapUrl = howToReach && howToReach?.primary?.map_url?.url;
   //   console.log(howToReach);
 
   return (

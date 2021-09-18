@@ -400,10 +400,10 @@ export const trekStyle = css.global`
 
   .expert_speak_box {
     background: rgba(255, 193, 0, 1);
-    padding: 15px;
+    padding: 15px 30px;
     position: relative;
     top: -25px;
-    width: 225px;
+    width: 250px;
   }
 
   .quote_style {
@@ -1129,6 +1129,10 @@ export const trekStyle = css.global`
   .accordion_arrow_icon {
     font-size: 30px;
     color: #707070;
+  }
+
+  .font-weigth-normal {
+    font-weight: normal !important;
   }
 
   @media only screen and (max-width: 660px) {
