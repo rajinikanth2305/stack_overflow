@@ -28,7 +28,7 @@ const Experiment = ({ slice }) => {
       url = linkResolver(data.link_url);
     }
     return (
-      <>
+      <div key={i}>
         <div className="card exp-card mb-4 pb-1 mmx-0 cursor-pointer">
           <Link href={url}>
             <div>
@@ -49,7 +49,7 @@ const Experiment = ({ slice }) => {
             </div>
           </Link>
         </div>
-      </>
+      </div>
     );
   });
 

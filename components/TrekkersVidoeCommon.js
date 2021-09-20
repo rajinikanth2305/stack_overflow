@@ -84,7 +84,7 @@ const TrekkersVideoCommon = () => {
                   // objectPosition="50% 50%"
                 />
               </div>
-              <div class="px-3 py-2">
+              <div className="px-3 py-2">
                 <div>
                   <p className="p-text-5 mb-1">
                     {data.ih_trekker_videos_title[0].text}

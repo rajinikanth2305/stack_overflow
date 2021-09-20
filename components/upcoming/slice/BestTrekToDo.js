@@ -78,7 +78,7 @@ const BestTrekToDo = ({ slice }) => {
                   objectPosition="50% 50%"
                 />
               </div>
-              <div class="px-3 py-2">
+              <div className="px-3 py-2">
                 <div className="d-flex align-items-center card-info-text">
                   <div>
                     <p>{data.trek_days[0].text} Days</p>
@@ -102,7 +102,7 @@ const BestTrekToDo = ({ slice }) => {
                 </div>
 
                 <div>
-                  <h3 class="title-diplay-3 text-uppercase">
+                  <h3 className="title-diplay-3 text-uppercase">
                     {data.trek_title[0].text}
                   </h3>
                   <p className="p-display-2">
@@ -149,9 +149,9 @@ const BestTrekToDo = ({ slice }) => {
                   objectPosition="50% 50%"
                 />
               </div>
-              <div class="px-3 py-2">
+              <div className="px-3 py-2">
                 <div>
-                  <h3 class="m-title-3 text-uppercase">
+                  <h3 className="m-title-3 text-uppercase">
                     {data.trek_title[0].text}
                   </h3>
                   <p className="m-display-2">

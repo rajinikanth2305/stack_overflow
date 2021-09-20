@@ -64,7 +64,7 @@ const KnowYourTrek = ({ slice, data }) => {
                   <div className="mx-2">
                     {/* <img src="/arrow-down.png" /> */}
                     <i
-                      class="fa fa-angle-double-down accordion_arrow_icon"
+                      className="fa fa-angle-double-down accordion_arrow_icon"
                       aria-hidden="true"
                     ></i>
                   </div>

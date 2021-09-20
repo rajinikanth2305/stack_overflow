@@ -229,7 +229,7 @@ const AllIndiaHikes = ({ slice }) => {
                       </div>
                       <div className="mx-2"></div>
                       <div>
-                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        <i className="fa fa-angle-down" aria-hidden="true"></i>
                       </div>
                     </div>
                   </Accordion.Toggle>
@@ -263,7 +263,7 @@ const AllIndiaHikes = ({ slice }) => {
                       </div>
                       <div className="mx-2"></div>
                       <div>
-                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        <i className="fa fa-angle-down" aria-hidden="true"></i>
                       </div>
                     </div>
                   </Accordion.Toggle>
@@ -297,7 +297,7 @@ const AllIndiaHikes = ({ slice }) => {
                       </div>
                       <div className="mx-2"></div>
                       <div>
-                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        <i className="fa fa-angle-down" aria-hidden="true"></i>
                       </div>
                     </div>
                   </Accordion.Toggle>

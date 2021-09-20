@@ -54,41 +54,43 @@ const LatestTrekkingWorld = ({ slice }) => {
 
   const trekkingWorldImage = trekkingWorldImageArray.map(function(data, i) {
     const trekking_world_desc = data.trekking_world_desc.map(function(desc, j) {
-        return (
-            <p className="p-text-4">{desc.text}</p>
-        );
+      return (
+        <p className="p-text-4" key={j}>
+          {desc.text}
+        </p>
+      );
     });
     return (
-      <>
-        <div key={`latesttrekking` + i} className="py-3 mx-2 mm-0 mp-0">
-          <div className="row d-flex">
-            <div className="col-lg-6 col-md-12 order-1">
-              <div>
-                <h3 className="title-diplay-3-ltw mpt-3-ltw">{data.trekking_world_heading[0].text}</h3>
-                <p>{trekking_world_desc}</p>
-              </div>
+      <div key={`latesttrekking` + i} className="py-3 mx-2 mm-0 mp-0">
+        <div className="row d-flex">
+          <div className="col-lg-6 col-md-12 order-1">
+            <div>
+              <h3 className="title-diplay-3-ltw mpt-3-ltw">
+                {data.trekking_world_heading[0].text}
+              </h3>
+              {trekking_world_desc}
             </div>
-            <div className="col-lg-6 col-md-12">
-              <div alt="imgs" className="trekking_world_image_desktop">
-                <Image
-                  src={data.trekking_world_image.url}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                />
-              </div>
-              <div alt="imgs" className="trekking_world_image_mobile">
-                <Image
-                  src={data.trekking_world_image.url}
-                  layout="fill"
-                  objectFit="contain"
-                  objectPosition="top"
-                />
-              </div>
+          </div>
+          <div className="col-lg-6 col-md-12">
+            <div alt="imgs" className="trekking_world_image_desktop">
+              <Image
+                src={data.trekking_world_image.url}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="50% 50%"
+              />
+            </div>
+            <div alt="imgs" className="trekking_world_image_mobile">
+              <Image
+                src={data.trekking_world_image.url}
+                layout="fill"
+                objectFit="contain"
+                objectPosition="top"
+              />
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   });
 
@@ -101,7 +103,9 @@ const LatestTrekkingWorld = ({ slice }) => {
               <h2 className="title-display-2">{RichText.asText(heading1)}</h2>
             </div>
           </div>
-          <div className="my-4 mm-0"><Slider {...settings}>{trekkingWorldImage}</Slider></div>
+          <div className="my-4 mm-0">
+            <Slider {...settings}>{trekkingWorldImage}</Slider>
+          </div>
         </div>
         <style jsx global>
           {ChooseTreks}

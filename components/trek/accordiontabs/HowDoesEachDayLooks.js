@@ -92,28 +92,28 @@ const HowDoesEachDayLooks = () => {
                   <Slider className="home-choose-treks" {...settings}>
                     {daysIt?.image1?.url && (
                       <div>
-                        <div class="accordio-sec-images">
+                        <div className="accordio-sec-images">
                           <Image src={daysIt?.image1?.url} layout="fill" />
                         </div>
                       </div>
                     )}
                     {daysIt?.image2?.url && (
                       <div>
-                        <div class="accordio-sec-images">
+                        <div className="accordio-sec-images">
                           <Image src={daysIt?.image2?.url} layout="fill" />
                         </div>
                       </div>
                     )}
                     {daysIt?.image3?.url && (
                       <div>
-                        <div class="accordio-sec-images">
+                        <div className="accordio-sec-images">
                           <Image src={daysIt?.image3?.url} layout="fill" />
                         </div>
                       </div>
                     )}
                     {daysIt?.image3?.url && (
                       <div>
-                        <div class="accordio-sec-images">
+                        <div className="accordio-sec-images">
                           <Image src={daysIt?.image4?.url} layout="fill" />
                         </div>
                       </div>
@@ -126,25 +126,25 @@ const HowDoesEachDayLooks = () => {
                   </p>
                 )}
                 {daysIt?.duration[0]?.text && (
-                  <p class="p-text-3-1">
+                  <p className="p-text-3-1">
                     <img src="/Duration.png" alt="img" />{" "}
                     <span className="px-2">{daysIt?.duration[0]?.text}</span>
                   </p>
                 )}
                 {daysIt?.altitude[0]?.text && (
-                  <p class="p-text-3-1">
+                  <p className="p-text-3-1">
                     <img src="/shoes.png" alt="img" />{" "}
                     <span className="px-2">{daysIt?.altitude[0]?.text}</span>
                   </p>
                 )}
                 {daysIt?.difficulty[0]?.text && (
-                  <p class="p-text-3-1">
+                  <p className="p-text-3-1">
                     <img src="/Offloading.png" alt="img" />{" "}
                     <span className="px-2">{daysIt?.difficulty[0]?.text}</span>
                   </p>
                 )}
                 {daysIt?.water_sources[0]?.text && (
-                  <p class="p-text-3-1">
+                  <p className="p-text-3-1">
                     <img src="/Offloading.png" alt="img" />{" "}
                     <span className="px-2">
                       {daysIt?.water_sources[0]?.text}
@@ -167,7 +167,7 @@ const HowDoesEachDayLooks = () => {
                     <div className="d-flex justify-content-center bg-transparent-text-effect">
                       {readMoreHeight === 200 ? (
                         <button
-                          class="btn btn-ptr"
+                          className="btn btn-ptr"
                           onClick={() => setReadMoreHeight("auto")}
                         >
                           read more
@@ -175,7 +175,7 @@ const HowDoesEachDayLooks = () => {
                       ) : (
                         <a href="#trekexper-sec">
                           <button
-                            class="btn btn-ptr"
+                            className="btn btn-ptr"
                             onClick={() => setReadMoreHeight(200)}
                           >
                             read less

@@ -284,7 +284,7 @@ const buildVouchers = data => {
                   </div>
                 </div>
                 <div className="mb-5">
-                  <table class="table table-dashboard-profile-style-1">
+                  <table className="table table-dashboard-profile-style-1">
                     <thead>
                       <tr className="header-bg">
                         <th className="w-20per">participants</th>

@@ -44,18 +44,18 @@ const HomeBannerWithCaption = ({ slice }) => {
   return (
     <>
       <div>
-        {/* <div class="banner-image-mobile" style={bannerImageMobile}>
-          <div class="bg_overlay">
-            <div class="container-fluid">
-              <div class="banner-text-sec">
-                <p class="banner-text-1">{RichText.asText(heading1)}</p>
-                <p class="banner-text-2 mb-0">
+        {/* <div className="banner-image-mobile" style={bannerImageMobile}>
+          <div className="bg_overlay">
+            <div className="container-fluid">
+              <div className="banner-text-sec">
+                <p className="banner-text-1">{RichText.asText(heading1)}</p>
+                <p className="banner-text-2 mb-0">
                   They trek because they want to be part of the team that is
                 </p>
-                <p class="banner-text-3">defining the future of trekking</p>
-                <a class="banner-text-link">Read Our Story Here</a>
-                <div class="mt-3 m-text-center">
-                  <button class="btn btn-lg btn-primary btn-ih-primary">
+                <p className="banner-text-3">defining the future of trekking</p>
+                <a className="banner-text-link">Read Our Story Here</a>
+                <div className="mt-3 m-text-center">
+                  <button className="btn btn-lg btn-primary btn-ih-primary">
                     <Link href={url}>
                       <a> {linkButtonText}</a>
                     </Link>
@@ -65,17 +65,17 @@ const HomeBannerWithCaption = ({ slice }) => {
             </div>
           </div>
         </div> */}
-        <div class="banner-image-desktop" style={bannerImageDesktop}>
-          <div class="bg_overlay">
-            <div class="container">
-              <div class="banner-text-sec">
-                <p class="banner-text-1">{RichText.asText(heading1)}</p>
-                <p class="banner-text-2 mb-0 m-w-50p">
+        <div className="banner-image-desktop" style={bannerImageDesktop}>
+          <div className="bg_overlay">
+            <div className="container">
+              <div className="banner-text-sec">
+                <p className="banner-text-1">{RichText.asText(heading1)}</p>
+                <p className="banner-text-2 mb-0 m-w-50p">
                   They trek because they want to be part of the team that is
                 </p>
-                <p class="banner-text-3">defining the future of trekking</p>
-                <div class="mt-3 m-text-center">
-                  <button class="btn btn-lg btn-ih-primary">
+                <p className="banner-text-3">defining the future of trekking</p>
+                <div className="mt-3 m-text-center">
+                  <button className="btn btn-lg btn-ih-primary">
                     <Link href={url}>
                       <a> {linkButtonText}</a>
                     </Link>

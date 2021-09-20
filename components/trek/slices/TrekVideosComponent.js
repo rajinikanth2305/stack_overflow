@@ -75,7 +75,7 @@ const TrekVideosComponent = ({ slice }) => {
     return (
       <>
         <div className="mx-2 mb-3" key={i}>
-          <div class="card card-box-shadow">
+          <div className="card card-box-shadow">
             <div className="trek_video_image_array">
               <div className="d-flex align-items-center justify-content-center w-100 h-100">
                 <div className="text-center">

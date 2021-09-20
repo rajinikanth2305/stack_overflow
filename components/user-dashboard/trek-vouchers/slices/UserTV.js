@@ -128,7 +128,7 @@ const UserTV = () => {
 
                   <div className="card px-3 mb-5">
                     <div>
-                      <table class="table table-dashboard-profile-style-1">
+                      <table className="table table-dashboard-profile-style-1">
                         <thead>
                           <tr className="header-bg">
                             <th>voucher code</th>

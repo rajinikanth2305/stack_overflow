@@ -26,9 +26,9 @@ const Founder = ({ slice }) => {
 
   const founder_Message = founder_Message_List.map((data, i) => {
     return (
-      <>
-        <p key={`fm-${i}`}>{data.text}</p>
-      </>
+      <p className="p-text-2" key={i}>
+        {data.text}
+      </p>
     );
   });
 
@@ -77,10 +77,10 @@ const Founder = ({ slice }) => {
                 </div>
               </div>
               <div className="col-lg-6 col-md-12">
-                <p className="p-text-2">
+                <div>
                   {/* <span>{RichText.asText(founder_Message)}</span> */}
                   {founder_Message}
-                </p>
+                </div>
                 <div>
                   <p className="author_name mb-2">{RichText.asText(authors)}</p>
                 </div>
@@ -126,10 +126,10 @@ const Founder = ({ slice }) => {
           </div>
           <div className="container">
             <p className="p-text-1 mt-3">{RichText.asText(sub_title)}</p>
-            <p className="p-text-2">
+            <div>
               {/* <span>{RichText.asText(founder_Message)}</span> */}
               {founder_Message}
-            </p>
+            </div>
             <div>
               <p className="author_name mb-2">{RichText.asText(authors)}</p>
             </div>

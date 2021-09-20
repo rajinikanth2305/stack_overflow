@@ -28,6 +28,11 @@ export const ihheaderStyles = css.global`
     font-weight: normal;
     font-size: 14px;
     color: rgba(0, 0, 0, 1);
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .navbar-expand-lg .navbar-nav .nav-item {
     padding-right: 1.5rem;
     padding-left: 1.5rem;
   }
@@ -41,7 +46,7 @@ export const ihheaderStyles = css.global`
     border: 0;
   }
 
-  .navbar-light .navbar-nav .nav-link.active-custom > a {
+  .navbar-light .navbar-nav a.active-custom.nav-link {
     border-bottom: 3px solid rgb(255, 193, 0);
     padding-bottom: 5px;
   }

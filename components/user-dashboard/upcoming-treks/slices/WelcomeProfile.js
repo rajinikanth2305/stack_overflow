@@ -508,7 +508,7 @@ const onLogout =()=>{
                                           <>
                                             <button className="btn table-btn-green mx-3">
                                               <i
-                                                class="fa fa-whatsapp"
+                                                className="fa fa-whatsapp"
                                                 aria-hidden="true"
                                               ></i>{" "}
                                               <span className="px-2">
@@ -943,7 +943,7 @@ const onLogout =()=>{
             <Modal.Body>
               <div>
               <form onSubmit={handleSubmit(onCancelSubmit)} onReset={() => reset}>
-                <table class="table table-dashboard-profile-style-1">
+                <table className="table table-dashboard-profile-style-1">
                   <thead>
                     <tr className="header-bg">
                       <th style={{ width: '2%' }}>&nbsp;</th>

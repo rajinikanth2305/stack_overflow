@@ -88,12 +88,12 @@ const TrekExpertSpeak = ({ slice }) => {
           {/* <h5>{RichText.asText(heading1)}</h5> */}
           <div>
             <div
-              class="banner-image-expert-speak"
+              className="banner-image-expert-speak"
               style={bannerImageExpertSpeak}
             >
               <div className="container">
                 <div className="d-flex">
-                  <div class="expert_speak_box col-2">
+                  <div className="expert_speak_box col-2">
                     <h2 className="title-h1-v m-0">
                       {RichText.asText(heading1)}
                     </h2>
@@ -201,7 +201,7 @@ const TrekExpertSpeak = ({ slice }) => {
                       <div className="d-flex justify-content-center bg-transparent-text-effect-tes">
                         {trekExpertSecHeight === 375 ? (
                           <button
-                            class="btn btn-ptr"
+                            className="btn btn-ptr"
                             onClick={() => setTrekExpertSecHeight("auto")}
                           >
                             read more
@@ -209,7 +209,7 @@ const TrekExpertSpeak = ({ slice }) => {
                         ) : (
                           <a href="#trekexper-sec">
                             <button
-                              class="btn btn-ptr"
+                              className="btn btn-ptr"
                               onClick={() => setTrekExpertSecHeight(375)}
                             >
                               read less

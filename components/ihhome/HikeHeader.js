@@ -50,68 +50,80 @@ const HikeHeader = ({ auth = false }) => {
     <div className="border-bottom-custom-header">
       <Navbar light expand="lg" className="container">
         <NavbarBrand href="/">
-          <img id="IH_Logo_in_PNG" src="/IH_Logo_in_PNG@2x.png" className="logo-Icon" />
+          <img
+            id="IH_Logo_in_PNG"
+            src="/IH_Logo_in_PNG@2x.png"
+            className="logo-Icon"
+          />
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
               <NavLink
+                href="/"
                 className={router.pathname == "/" ? "active-custom" : ""}
               >
-                <Link href="/">Home</Link>
+                {/* <Link href="/">Home</Link> */}
+                Home
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
+                href="../../../upcoming"
                 className={
                   router.pathname == "/upcoming" ? "active-custom" : ""
                 }
               >
-                <Link href="../../../upcoming">Upcoming Treks</Link>
+                Upcoming Treks
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
+                href="../../../familytrek"
                 className={
                   router.pathname == "/familytrek" ? "active-custom" : ""
                 }
               >
-                <Link href="../../../familytrek">Experiential Learning</Link>
+                Experiential Learning
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
+                href="../../../diy"
                 className={router.pathname == "/diy" ? "active-custom" : ""}
               >
-                <Link href="../../../diy">DIY treks</Link>
+                DIY treks
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
+                href="../../../faq"
                 className={router.pathname == "/faq" ? "active-custom" : ""}
               >
-                <Link href="../../../faq">FAQs</Link>
+                FAQs
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
+                href="../../../aboutus"
                 className={router.pathname == "/aboutus" ? "active-custom" : ""}
               >
-                <Link href="../../../aboutus">Our Story</Link>
+                Our Story
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
+                href="../../../careers"
                 className={router.pathname == "/careers" ? "active-custom" : ""}
               >
-                <Link href="../../../careers">careers</Link>
+                careers
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink>
                 <Link href="../../../user-dashboard/user-upcoming-treks">
-                  <i class="fa fa-user-o" aria-hidden="true"></i>
+                  <i className="fa fa-user-o" aria-hidden="true"></i>
                 </Link>
               </NavLink>
             </NavItem>

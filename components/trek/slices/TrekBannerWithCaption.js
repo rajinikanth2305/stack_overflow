@@ -25,12 +25,12 @@ const TrekBannerWithCaption = ({ slice }) => {
   return (
     <>
       <div>
-        <div class="banner-image-desktop" style={bannerImageDesktop}>
-          <div class="bg_overlay">
+        <div className="banner-image-desktop" style={bannerImageDesktop}>
+          <div className="bg_overlay">
             {/* <Image src={imageUrl} /> */}
-            <div class="container-fluid">
-              <div class="banner-text-sec">
-                <h1 class="banner-text-1">{trekCaption}</h1>
+            <div className="container-fluid">
+              <div className="banner-text-sec">
+                <h1 className="banner-text-1">{trekCaption}</h1>
                 <p className="banner-text-2">{RichText.asText(subHeading)}</p>
               </div>
             </div>

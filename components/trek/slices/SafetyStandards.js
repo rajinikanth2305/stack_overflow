@@ -22,7 +22,7 @@ const SafetyStandards = ({ slice }) => {
         <div className="container container-custom">
           <div className="row">
             <div className="col-12 col-lg-12 col-md-12 p-0">
-              <div class="bg_overlay_sustainable">
+              <div className="bg_overlay_sustainable">
                 <div className="sustainable_img">
                   <Image
                     src={bannerImage}

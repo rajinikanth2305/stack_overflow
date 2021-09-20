@@ -88,9 +88,9 @@ const TrekkersStoriesCommon = () => {
                   // height={215}
                 />
               </div>
-              <div class="p-4">
+              <div className="p-4">
                 <div>
-                  <h3 class="title-diplay-3 ts-lable">
+                  <h3 className="title-diplay-3 ts-lable">
                     {data.trekkers_stories_title[0].text}
                   </h3>
                   <p className="p-display-2">

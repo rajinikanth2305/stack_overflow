@@ -20,7 +20,7 @@ const VoucherList = () => {
                 All your Indiahikes trek bookings
               </p>
               <div className="table-responsive">
-                <table class="table table-dashboard-voucher">
+                <table className="table table-dashboard-voucher">
                   <thead>
                     <tr className="header-bg">
                       <th className="w-20per">trek name</th>
@@ -90,7 +90,7 @@ const VoucherList = () => {
             <div className="col-md-12">
               <p className="p-text-1 font-weight-bold">Trek Vouchers</p>
               <div className="table-responsive">
-                <table class="table table-dashboard-voucher-style-1">
+                <table className="table table-dashboard-voucher-style-1">
                   <thead>
                     <tr className="header-bg">
                       <th className="w-20per">Voucher Code</th>
@@ -148,7 +148,7 @@ const VoucherList = () => {
             <div className="col-md-12">
               <p className="p-text-1 font-weight-bold">Backpack Offloading</p>
               <div className="table-responsive">
-                <table class="table table-dashboard-voucher-style-2">
+                <table className="table table-dashboard-voucher-style-2">
                   <thead>
                     <tr className="header-bg">
                       <th className="w-20per">trek name</th>

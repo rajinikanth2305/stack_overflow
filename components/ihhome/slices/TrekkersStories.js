@@ -57,7 +57,7 @@ const TrekkersStories = ({ slice }) => {
 
   const trekkersStoriesImage = trekkersStoriesImageArray.map(function(data, i) {
     const trekkers_stories_desc = data.trekkers_stories_desc.map((desc, j) => {
-      return <p>{desc.text}</p>;
+      return <p key={j}>{desc.text}</p>;
     });
     let url;
     const slugUrl = data?.link_article_url.slug;
@@ -65,8 +65,8 @@ const TrekkersStories = ({ slice }) => {
       url = linkResolver(data?.link_article_url);
     }
     return (
-      <>
-        <div className="mx-4 m-mx-0 cursor-pointer" key={`trekkstory` + i}>
+      <div key={`trekkstory` + i}>
+        <div className="mx-4 m-mx-0 cursor-pointer">
           <Link href={url}>
             <div className="card_sec">
               <div className="card trek_card">
@@ -80,23 +80,23 @@ const TrekkersStories = ({ slice }) => {
                     // height={215}
                   />
                 </div>
-                <div class="p-4">
+                <div className="p-4">
                   <div>
-                    <h3 class="title-diplay-3 ts-lable">
+                    <h3 className="title-diplay-3 ts-lable">
                       {data.trekkers_stories_title[0].text}
                     </h3>
-                    <p className="p-display-2">
+                    <div className="p-display-2">
                       {trekkers_stories_desc.length > 125
                         ? `${trekkers_stories_desc.substring(0, 125)}...`
                         : trekkers_stories_desc}
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </Link>
         </div>
-      </>
+      </div>
     );
   });
 

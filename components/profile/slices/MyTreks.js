@@ -10,7 +10,7 @@ const MyTreks = () => {
         <h5 className="p-text-3-fg b-left-blue-3px">Participant Details</h5>
       </div>
       <div>
-        <table class="table table-dashboard-profile-style-1">
+        <table className="table table-dashboard-profile-style-1">
           <thead>
             <tr className="header-bg">
               <th className="w-20per">participants</th>

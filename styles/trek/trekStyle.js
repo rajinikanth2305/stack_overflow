@@ -9,8 +9,8 @@ export const trekStyle = css.global`
 
   @font-face {
     font-family: Franklin Gothic Book;
-    src: url("/font/FRANKLINGOTHIC/FRABK.ttf");
-    src: url("/font/FRANKLINGOTHIC/FRABK.ttf") format("truetype");
+    src: url("/font/FRANKLINGOTHIC/Franklin Gothic Book Regular.ttf");
+    src: url("/font/FRANKLINGOTHIC/Franklin Gothic Book Regular.ttf") format("truetype");
   }
 
   @font-face {
@@ -184,7 +184,7 @@ export const trekStyle = css.global`
   .trek_fee_bg {
     background: rgba(255, 245, 210, 1);
     border-radius: 5px;
-    padding: 5px 30px;
+    padding: 5px 25px;
   }
 
   .trek_fee_title {

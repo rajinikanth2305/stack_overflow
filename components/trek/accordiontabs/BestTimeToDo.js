@@ -211,7 +211,7 @@ const BestTimeToDo = () => {
           <div className="mb-4 d-m-block">
             <Slider className="home-choose-treks" {...settings}>
               <div>
-                <div class="accordio-sec-images">
+                <div className="accordio-sec-images">
                   {btImage1 ? (
                     <Image src={btImage1} layout="fill" />
                   ) : (
@@ -220,7 +220,7 @@ const BestTimeToDo = () => {
                 </div>
               </div>
               <div>
-                <div class="accordio-sec-images">
+                <div className="accordio-sec-images">
                   {btImage2 ? (
                     <Image src={btImage2} layout="fill" />
                   ) : (
@@ -229,7 +229,7 @@ const BestTimeToDo = () => {
                 </div>
               </div>
               <div>
-                <div class="accordio-sec-images">
+                <div className="accordio-sec-images">
                   {btImage3 ? (
                     <Image src={btImage3} layout="fill" />
                   ) : (
@@ -238,7 +238,7 @@ const BestTimeToDo = () => {
                 </div>
               </div>
               <div>
-                <div class="accordio-sec-images">
+                <div className="accordio-sec-images">
                   {btImage4 ? (
                     <Image src={btImage4} layout="fill" />
                   ) : (

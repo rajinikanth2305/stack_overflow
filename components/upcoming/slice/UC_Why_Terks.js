@@ -56,7 +56,7 @@ const UCWhyTreks = ({ slice }) => {
                 </div>
               </div>
             </div>
-            <div class="row my-3">{ucWhyTrekImage}</div>
+            <div className="row my-3">{ucWhyTrekImage}</div>
           </div>
         </div>
         <style jsx global>

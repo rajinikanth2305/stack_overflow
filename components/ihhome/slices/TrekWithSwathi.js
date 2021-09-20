@@ -108,23 +108,23 @@ const TrekWithSwathi = ({ slice }) => {
     }
    `}} />
     
-  <div class="text" id="webformErrors" name="errorContent"></div>
-    <form accept-charset="UTF-8" action="https://dh315.infusionsoft.com/app/form/process/84a7deb63b24bef4c47dc0c2fd697605" 
-    class="infusion-form" id="inf_form_84a7deb63b24bef4c47dc0c2fd697605" method="POST" name="Web Form submitted" onsubmit="submitWebForm()">
+  <div className="text" id="webformErrors" name="errorContent"></div>
+    <form acceptCharset="UTF-8" action="https://dh315.infusionsoft.com/app/form/process/84a7deb63b24bef4c47dc0c2fd697605" 
+    className="infusion-form" id="inf_form_84a7deb63b24bef4c47dc0c2fd697605" method="POST" name="Web Form submitted" onsubmit="submitWebForm()">
                 
                 <input name="inf_form_xid" type="hidden" value="84a7deb63b24bef4c47dc0c2fd697605" />
     <input name="inf_form_name" type="hidden" value="Web Form submitted" />
     <input name="infusionsoft_version" type="hidden" value="1.70.0.176669" />
-    <div class="form-group-wrap">
-    <input class="infusion-field-input form-control" id="inf_field_FirstName" name="inf_field_FirstName" placeholder="First Name *" type="text" />
+    <div className="form-group-wrap">
+    <input className="infusion-field-input form-control" id="inf_field_FirstName" name="inf_field_FirstName" placeholder="First Name *" type="text" />
     </div>
-    <div class="form-group-wrap">
-    <input class="infusion-field-input form-control" id="inf_field_LastName" name="inf_field_LastName" placeholder="Last Name *" type="text" />
+    <div className="form-group-wrap">
+    <input className="infusion-field-input form-control" id="inf_field_LastName" name="inf_field_LastName" placeholder="Last Name *" type="text" />
     </div>
-    <div class="form-group">
-    <input class="infusion-field-input form-control" id="inf_field_Email" name="inf_field_Email" placeholder="Email *" type="text" />
+    <div className="form-group">
+    <input className="infusion-field-input form-control" id="inf_field_Email" name="inf_field_Email" placeholder="Email *" type="text" />
     </div>
-    <div class="form-group-wrap text-center,">
+    <div className="form-group-wrap text-center,">
     <Button type="submit"  value="Stay updated">Subscribe</Button>
     </div>
     </form>

@@ -56,8 +56,8 @@ const ChooseTheseTreks = ({ slice }) => {
       url = `/trek/${data.link_url.uid}`;
     }
     return (
-      <>
-        <div className="mx-4 m-mx-0 cursor-pointer" key={`choosetrek` + i}>
+      <div key={`choosetrek` + i}>
+        <div className="mx-4 m-mx-0 cursor-pointer">
           <Link href={url}>
             <div className="card_sec">
               <div className="card trek_card">
@@ -77,7 +77,7 @@ const ChooseTheseTreks = ({ slice }) => {
                     objectPosition="50% 50%"
                   />
                 </div>
-                <div class="px-3 py-2">
+                <div className="px-3 py-2">
                   <div className="d-flex align-items-center card-info-text">
                     <div>
                       <p>{data.choose_trek_days[0].text} Days</p>
@@ -121,7 +121,7 @@ const ChooseTheseTreks = ({ slice }) => {
             </div>
           </Link>
         </div>
-      </>
+      </div>
     );
   });
 

@@ -58,8 +58,8 @@ const DoItYourself = ({ slice }) => {
     };
 
     return (
-      <>
-        <div className="mx-2 m-mx-0" key={i}>
+      <div key={i}>
+        <div className="mx-2 m-mx-0">
           <div alt="imgs" className="doit_images">
             <Image
               src={data.doit_image.url}
@@ -70,7 +70,7 @@ const DoItYourself = ({ slice }) => {
           </div>
           <p className="doit_img_caption">{data.doit_image_caption[0].text}</p>
         </div>
-      </>
+      </div>
     );
   });
 
@@ -94,10 +94,12 @@ const DoItYourself = ({ slice }) => {
           </div>
           <div className="container container-custom">
             <div className="my-3">
-              <Slider className="do-it-yourself-carosule" {...settings}>{doitImage}</Slider>
-              <div class="mt-4 m-mt-5 text-center">
-                <button class="btn btn-lg btn-ih-primary text-capitalized">
-                  <Link href="../../../diy">View More DIY Treks</Link>
+              <Slider className="do-it-yourself-carosule" {...settings}>
+                {doitImage}
+              </Slider>
+              <div className="mt-4 m-mt-5 text-center">
+                <button className="btn btn-lg btn-ih-primary text-capitalized">
+                  <Link href="/diy">View More DIY Treks</Link>
                 </button>
               </div>
             </div>

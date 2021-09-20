@@ -15,40 +15,39 @@ const WhyTrek = ({ slice }) => {
   const pillarImages = pillarImagesArray.map((data, i) => {
     const pillarDesc = data.pillar_desc.map((pd, j) => {
       return (
-        <>
-          <p className="p-text-3-wt" key={`pd-${j}`}>{pd.text}</p>
-        </>
+        <p className="p-text-3-wt" key={`pd-${j}`}>
+          {pd.text}
+        </p>
       );
     });
     return (
-      <>
-        <div className="pillar-card card card-shadow cursor-pointer" key={`pillar-${i}`}>
-          <div className="card-body">
-            <div>
-              <div className="d-flex align-items-center">
+      <div
+        className="pillar-card card card-shadow cursor-pointer"
+        key={`pillar-${i}`}
+      >
+        <div className="card-body">
+          <div>
+            <div className="d-flex align-items-center">
+              <div>
                 <div>
-                  <div>
-                    <img
-                      src={data.pillar_images.url}
-                      alt="icons"
-                      className="pillar_images"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <p className="p-text-1">{data.pillar_title[0].text}</p>
+                  <img
+                    src={data.pillar_images.url}
+                    alt="icons"
+                    className="pillar_images"
+                  />
                 </div>
               </div>
               <div>
-                <p>{pillarDesc}</p>
+                <p className="p-text-1">{data.pillar_title[0].text}</p>
               </div>
-              <div className="float-right pt-2 pb-4">
-                <button className="btn btn-ih-green">Read more</button>
-              </div>
+            </div>
+            <div>{pillarDesc}</div>
+            <div className="float-right pt-2 pb-4">
+              <button className="btn btn-ih-green">Read more</button>
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   });
 

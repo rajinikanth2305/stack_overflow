@@ -81,7 +81,7 @@ const BestPostTreks = ({ slice }) => {
                   objectPosition="50% 50%"
                 />
               </div>
-              <div class="px-3 py-2">
+              <div className="px-3 py-2">
                 <div className="d-flex align-items-center card-info-text">
                   <div>
                     <p>{data.days[0].text} Days</p>

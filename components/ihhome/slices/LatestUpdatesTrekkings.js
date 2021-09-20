@@ -40,10 +40,10 @@ const LatestUpdatesTrekkings = ({ slice }) => {
       url = linkResolver(data.link_url);
     }
     return (
-      <>
-        <div className="col-lg-6 col-md-12" key={index}>
+      <div key={index}>
+        <div className="col-lg-6 col-md-12">
           <Link href={url}>
-            <div class="card exp-card-blog mx-0 cursor-pointer">
+            <div className="card exp-card-blog mx-0 cursor-pointer">
               <div alt="img" className="latestTrekWorld_bg">
                 <Image
                   src={data.latest_trekking_world_img.url}
@@ -60,7 +60,7 @@ const LatestUpdatesTrekkings = ({ slice }) => {
             </div>
           </Link>
         </div>
-      </>
+      </div>
     );
   });
 
@@ -130,7 +130,7 @@ const LatestUpdatesTrekkings = ({ slice }) => {
                 <div className="row">{latestTrekWorld}</div>
               </div>
               <div className="col-lg-6 col-md-12">
-                <div class="card exp-card-blog mx-0">
+                <div className="card exp-card-blog mx-0">
                   <div className="latest_update_img">
                     <div className="d-flex align-items-center justify-content-center w-100 h-100">
                       <div className="text-center">

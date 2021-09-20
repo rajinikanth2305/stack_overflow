@@ -93,7 +93,7 @@ const Gallery = ({ slice }) => {
                   {RichText.asText(homePhotoGalleryTitle)}
                 </p>
               </div>
-              <div class="mx-3 m-d-none">
+              <div className="mx-3 m-d-none">
                 <img src="./insta.png" alt="insta" />
               </div>
               <div className="gallery_community_text m-d-none">
@@ -111,7 +111,7 @@ const Gallery = ({ slice }) => {
             <div className="container">
               <div className="m-d-block">
                 <div className="d-flex align-items-center mt-5">
-                  <div class="mx-3">
+                  <div className="mx-3">
                     <img className="insta_icon" src="./insta.png" alt="insta" />
                   </div>
                   <div className="gallery_community_text">

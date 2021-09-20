@@ -57,7 +57,7 @@ const HomeFooter = ({ slice }) => {
                 <div>
                   <p className="footer_text contact_number">{RichText.asText(contactNumber)}</p>
                   </div>
-                <div class="address_padding">
+                <div className="address_padding">
                   <h5 className="footer_text footer_h5"><b>{RichText.asText(office1)}</b></h5>
                   <p className="footer_text">{RichText.asText(office1Address)}</p>
                 </div>
@@ -68,8 +68,8 @@ const HomeFooter = ({ slice }) => {
               </div>
               <div className="col-lg-6 col-md-12">
                 <div className="copy_rights_section">
-                  <p class="copy_rights_text m-0">© 2020 indiahikes.com</p>
-                  <p class="copy_rights_text m-0">All images are copyrighted by their respective authors.</p>
+                  <p className="copy_rights_text m-0">© 2020 indiahikes.com</p>
+                  <p className="copy_rights_text m-0">All images are copyrighted by their respective authors.</p>
                 </div>
               </div>
             </div>

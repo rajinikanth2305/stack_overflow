@@ -24,7 +24,7 @@ const DIYBanner = ({ slice }) => {
                   </p>
                   <form>
                     <div className="mt-5 mb-2">
-                      <FormGroup class="diyform">
+                      <FormGroup className="diyform">
                         <Input
                           type="text"
                           name="search"

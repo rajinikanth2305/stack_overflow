@@ -22,7 +22,6 @@ const FeeDetails = () => {
   }, []);
 
   async function findFeeDetails() {
-
     /*getTrekFeeByTrekName(getTrekNameFromUrlQueryPath()).then (res=> {
       const feeDet= {
         price:res[0]
@@ -37,15 +36,27 @@ const FeeDetails = () => {
         const tt = response.results[0].data.body;
         const slice = tt && tt.find(x => x.slice_type === "trek_fee_details");
         setFeeDetails(slice);
+        console.log(slice);
       });
   }
-
 
   const heading = feeDetails && feeDetails.primary.heading;
   const price = feeDetails && feeDetails.primary.price;
   const tax = feeDetails && feeDetails.primary.tax;
   const descriptions = feeDetails && feeDetails.primary.descriptions;
   const insurance = feeDetails && feeDetails.primary.insurance;
+  const optionalAdditionsArray = feeDetails && feeDetails.items;
+
+  const optionalAdditions = optionalAdditionsArray?.map(function(data, i) {
+    return (
+      <>
+        <p className="trek_optional_details">
+          {data.optional_additions_heading.text}
+        </p>
+        <p className="trek_optional_details">{data.optional_additions_desc.text}</p>
+      </>
+    );
+  });
 
   return (
     <>
@@ -54,10 +65,23 @@ const FeeDetails = () => {
           <div className="card-body trek_fee_outer_bg">
             <div className="trek_fee_bg">
               <p className="trek_fee_title m-0">{RichText.asText(heading)}</p>
-              <p className="">
-                <span className="trek_fee">₹ {RichText.asText(price)}</span>{" "}
-                <span className="trek_gts">+ {RichText.asText(tax)}% gst</span>
-              </p>
+
+              <div className="d-flex">
+                <div>
+                  <p className="trek_fee">₹ {RichText.asText(price)}</p>
+                </div>
+                <div className="mx-3">
+                  <p className="trek-info-detail m-0">
+                    + {RichText.asText(tax)}% gst
+                  </p>
+                  <p className="trek-info-detail m-0">
+                    + {RichText.asText(insurance)}{" "}
+                    <span className="mx-1">
+                      <i className="fa fa-info-circle" aria-hidden="true"></i>
+                    </span>
+                  </p>
+                </div>
+              </div>
               <p className="trek-info-detail m-0">
                 {RichText.asText(descriptions)}
               </p>
@@ -84,6 +108,7 @@ const FeeDetails = () => {
                 3.Rental Gear – We have a range of products available on our
                 rental store. See here
               </p>
+              {optionalAdditions}
             </div>
           </div>
         </div>

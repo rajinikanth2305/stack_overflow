@@ -61,7 +61,7 @@ const OtherTreksLike = ({ slice }) => {
                   objectPosition="50% 50%"
                 />
               </div>
-              <div class="px-3 py-2">
+              <div className="px-3 py-2">
                 <div className="d-flex align-items-center card-info-text">
                   <div>
                     <p>{data.days[0].text} Days</p>
@@ -84,7 +84,7 @@ const OtherTreksLike = ({ slice }) => {
                   </div>
                 </div>
                 <div>
-                  <p class="p-text-1">
+                  <p className="p-text-1">
                     <b>{data.heading1[0].text}</b>
                   </p>
                   <p className="p-text-4">

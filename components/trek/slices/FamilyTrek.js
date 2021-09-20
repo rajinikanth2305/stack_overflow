@@ -22,7 +22,7 @@ const FamilyTrek = ({ slice }) => {
         <div className="container container-custom">
           <div className="row">
             <div className="col-12 col-lg-6 col-md-12 p-0">
-              <div class="trek_family_trek_image">
+              <div className="trek_family_trek_image">
                 <Image
                   src={trekFamilyTrekImage}
                   layout="fill"

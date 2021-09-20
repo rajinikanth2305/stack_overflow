@@ -105,7 +105,7 @@ const MyTreks = forwardRef((props, ref) => {
           </div>
           <div>
             <form onSubmit={handleSubmit(onSubmit)} onReset={() => reset}>
-              <table class="table table-dashboard-profile-style-1">
+              <table className="table table-dashboard-profile-style-1">
                 <thead>
                   <tr className="header-bg">
                     <th className="w-20per">participants</th>

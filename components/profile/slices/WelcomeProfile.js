@@ -104,7 +104,7 @@ const WelcomeProfile = () => {
                                 <div className="d-flex justify-content-end">
                                   <button className="btn table-btn-green mx-3">
                                     <i
-                                      class="fa fa-whatsapp"
+                                      className="fa fa-whatsapp"
                                       aria-hidden="true"
                                     ></i>{" "}
                                     <span className="px-2">

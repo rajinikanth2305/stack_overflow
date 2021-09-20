@@ -133,7 +133,7 @@ const HowDifficultTrekIs = () => {
     return (
       <Tab eventKey={`tab` + data.title[0].text} title={data.title[0].text}>
         {data.title[0].text === "Safety – Altitude Wise" ? (
-          <div class="hd-tab2-iamge mb-4">
+          <div className="hd-tab2-iamge mb-4">
             <Image
               src={data.heading1_image.url}
               layout="fill"
@@ -146,7 +146,7 @@ const HowDifficultTrekIs = () => {
         )}
         {description}
         {data.title[0].text === "Exit Points & Emergency Details" ? (
-          <div class="hd-tab4-iamge mb-4">
+          <div className="hd-tab4-iamge mb-4">
             <Image
               src={data.heading1_image.url}
               layout="fill"
@@ -159,7 +159,7 @@ const HowDifficultTrekIs = () => {
         )}
         {data.title[0].text === "Safety - Terrain Wise" ? (
           <>
-            <div class="hd-tab2-iamge mv mb-4 d-m-block">
+            <div className="hd-tab2-iamge mv mb-4 d-m-block">
               <Image
                 src={data.heading1_image.url}
                 layout="fill"
@@ -175,7 +175,7 @@ const HowDifficultTrekIs = () => {
                 {content2_data}
               </div>
               <div className="w-100 d-m-none">
-                <div class="hd-tab2-iamge position-change mb-4">
+                <div className="hd-tab2-iamge position-change mb-4">
                   <Image
                     src={data.heading1_image.url}
                     layout="fill"
@@ -193,7 +193,7 @@ const HowDifficultTrekIs = () => {
                 {content2_data}
               </div>
               <div className="col-lg-6 col-md-12">
-                <div class="hd-tab2-iamge position-change mb-4">
+                <div className="hd-tab2-iamge position-change mb-4">
                   <Image
                     src={data.heading1_image.url}
                     layout="fill"
@@ -213,7 +213,7 @@ const HowDifficultTrekIs = () => {
           </>
         )}
         {/* {data.title[0].text === "Safety - Terrain Wise" ? (
-          <div class="hd-tab2-iamge mb-4">
+          <div className="hd-tab2-iamge mb-4">
             <Image
               src={data.heading1_image.url}
               layout="fill"

@@ -19,9 +19,9 @@ const CrossTrek = ({ slice }) => {
     <>
       <div className="mt-5">
         <div className="container container-custom mt-3 mb-5 mmt-0 mmb-0">
-          <div class="cross-trek-image-bg" style={crossTrekImagebg}>
+          <div className="cross-trek-image-bg" style={crossTrekImagebg}>
             <div className="cross-trek-section">
-              <div class="cross_bg_overlay">
+              <div className="cross_bg_overlay">
                 <div className="row">
                   <div className="col-lg-6 col-md-12"></div>
                   <div className="col-lg-6 col-md-12">
@@ -32,10 +32,10 @@ const CrossTrek = ({ slice }) => {
                       <p className="c-description">
                         {RichText.asText(description)}
                       </p>
-                      <p class="c-details">{RichText.asText(details)}</p>
+                      <p className="c-details">{RichText.asText(details)}</p>
                       <div>
-                        <div class="mt-5 m-text-center">
-                          <button class="btn btn-lg btn-ih-primary">
+                        <div className="mt-5 m-text-center">
+                          <button className="btn btn-lg btn-ih-primary">
                           View Crosstrek Store
                           </button>
                         </div>

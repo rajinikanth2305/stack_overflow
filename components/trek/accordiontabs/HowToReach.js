@@ -76,7 +76,7 @@ const HowToReach = () => {
             </div>
           </div>
           <div className="w-100 d-m-none">
-            <div class="position-change mb-4" style={{ height: '220px' }}>
+            <div className="position-change mb-4" style={{ height: '220px' }}>
               <Image
                 src="/ip.png"
                 layout="fill"

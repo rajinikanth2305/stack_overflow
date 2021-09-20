@@ -189,7 +189,7 @@ const UpComingTreks = ({ slice }) => {
                         When do you want to trek?
                       </p>
                       <select
-                        class="form-control mb-2"
+                        className="form-control mb-2"
                         id="exampleFormControlSelect1"
                         ref={season}
                       >
@@ -202,7 +202,7 @@ const UpComingTreks = ({ slice }) => {
                     <div className="col-lg-6 col-md-12">
                       <p className="form-label mb-1">Trek Difficulty</p>
                       <select
-                        class="form-control mb-2"
+                        className="form-control mb-2"
                         id="exampleFormControlSelect1"
                         ref={difficulty}
                       >
@@ -264,7 +264,7 @@ const UpComingTreks = ({ slice }) => {
                         When do you want to trek?
                       </p>
                       <select
-                        class="form-control mb-2"
+                        className="form-control mb-2"
                         id="exampleFormControlSelect1"
                         ref={season}
                       >
@@ -278,7 +278,7 @@ const UpComingTreks = ({ slice }) => {
                     <div>
                       <p className="form-label mb-1">Trek Difficulty</p>
                       <select
-                        class="form-control mb-2"
+                        className="form-control mb-2"
                         id="exampleFormControlSelect1"
                         ref={difficulty}
                       >

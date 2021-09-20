@@ -323,7 +323,7 @@ const MakePayment = forwardRef((props, ref) => {
           <div className="row">
             <div className="col-lg-7 col-md-12">
               <div className="table-responsive m-d-none">
-                <table class="table table-main">
+                <table className="table table-main">
                   <thead>
                     <tr className="header-bg">
                       <th>trek name</th>
@@ -392,7 +392,7 @@ const MakePayment = forwardRef((props, ref) => {
               </div>
 
               <div className="table-responsive my-5 m-d-none">
-                <table class="table table-secondar-main">
+                <table className="table table-secondar-main">
                   <thead>
                     <tr>
                       <th>trekker</th>
