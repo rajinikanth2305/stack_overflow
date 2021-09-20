@@ -13,7 +13,7 @@ const TrekExpertSpeak = ({ slice }) => {
   const contentHeading = slice.primary.content_heading;
   const contentHeadingDesc = slice.primary.content_heading_desc;
   const whatILikeImageArray = slice.items;
-  const [trekExpertSecHeight, setTrekExpertSecHeight] = useState(270);
+  const [trekExpertSecHeight, setTrekExpertSecHeight] = useState(375);
 
   const bannerImageExpertSpeak = {
     backgroundImage: `url('${bannerImage}')`,
@@ -26,57 +26,55 @@ const TrekExpertSpeak = ({ slice }) => {
   const whatILikeImage = whatILikeImageArray.map((data, i) => {
     return (
       <>
-        <div className="row mb-4">
-          <div className="col-12 col-lg-7 col-md-12">
-            <div>
-              {/* <b>
-                {i + 1}.{data.what_i_like_content_title[0].text}
-              </b> */}
-              {data.what_i_like_content_title.map((tit, index) => {
-                return (
-                  <>
-                    <h5 key={index} className="p-text-2 mb-3">
-                      <b>{tit.text}</b>
-                    </h5>
-                  </>
-                );
-              })}
-            </div>
-            <div>
-              {data.what_i_like_content_desc.map((paragraph, index) => {
-                return (
-                  <>
-                    <p key={index} className="p-text-4">
-                      {paragraph.text}
-                    </p>
-                  </>
-                );
-              })}
-            </div>
+        <div className="mb-5 pb-3">
+          <div>
+            {data.what_i_like_content_title.map((tit, index) => {
+              return (
+                <>
+                  <h5 key={index} className="p-text-2 mb-3">
+                    <b>
+                      {i + 1}. {tit.text}
+                    </b>
+                  </h5>
+                </>
+              );
+            })}
           </div>
-          <div className="col-12 col-lg-1 col-md-12"></div>
-          <div className="col-12 col-lg-4 col-md-12">
-            <div className="what_i_like_image">
-              {data.what_i_like_image.url !== undefined && (
-                <Image
-                  src={data.what_i_like_image.url}
-                  layout="fill"
-                  // objectFit="cover"
-                  // objectPosition="50% 50%"
-                />
-              )}
-            </div>
-            <div>
-              {data.what_i_like_image_desc.map((img_desc, index) => {
-                return (
-                  <>
-                    <p key={index} className="trek_summary_desc py-3 mpb-0">
-                      {img_desc.text}
-                    </p>
-                  </>
-                );
-              })}
-            </div>
+          <div>
+            {data.what_i_like_content_desc.map((paragraph, index) => {
+              return (
+                <>
+                  <p key={index} className="p-text-4">
+                    {paragraph.text}
+                  </p>
+                </>
+              );
+            })}
+          </div>
+        </div>
+      </>
+    );
+  });
+
+  const whatILikeImage1 = whatILikeImageArray.map((data, i) => {
+    return (
+      <>
+        <div className="mb-4">
+          <div className="what_i_like_image">
+            {data.what_i_like_image.url !== undefined && (
+              <Image src={data.what_i_like_image.url} layout="fill" />
+            )}
+          </div>
+          <div>
+            {data.what_i_like_image_desc.map((img_desc, index) => {
+              return (
+                <>
+                  <p key={index} className="trek_summary_desc py-3 mpb-0">
+                    {img_desc.text}
+                  </p>
+                </>
+              );
+            })}
           </div>
         </div>
       </>
@@ -185,21 +183,23 @@ const TrekExpertSpeak = ({ slice }) => {
                     </div>
                   </div>
                   <div
-                    style={{ height: trekExpertSecHeight, overflow: "hidden" }}
+                    style={{ minHeight: '300px', height: trekExpertSecHeight, overflow: "hidden" }}
                   >
-                    {whatILikeImage}
+                    {/* {whatILikeImage} */}
+                    <div className="row">
+                      <div className="col-12 col-lg-7 col-md-12">
+                        {whatILikeImage}
+                      </div>
+                      <div className="col-12 col-lg-1 col-md-12"></div>
+                      <div className="col-12 col-lg-4 col-md-12">
+                        <div className="m-t-expert-image">{whatILikeImage1}</div>
+                      </div>
+                    </div>
                   </div>
                   <div className="row mt-custom-top">
                     <div className="col-lg-12 col-md-12">
-                      {/* <div className="d-flex justify-content-end">
-                        <div>
-                          <button className="btn btn-ih-green">
-                            Read More
-                          </button>
-                        </div>
-                      </div> */}
                       <div className="d-flex justify-content-center bg-transparent-text-effect-tes">
-                        {trekExpertSecHeight === 270 ? (
+                        {trekExpertSecHeight === 375 ? (
                           <button
                             class="btn btn-ptr"
                             onClick={() => setTrekExpertSecHeight("auto")}
@@ -210,7 +210,7 @@ const TrekExpertSpeak = ({ slice }) => {
                           <a href="#trekexper-sec">
                             <button
                               class="btn btn-ptr"
-                              onClick={() => setTrekExpertSecHeight(270)}
+                              onClick={() => setTrekExpertSecHeight(375)}
                             >
                               read less
                             </button>

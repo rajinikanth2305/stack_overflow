@@ -296,7 +296,7 @@ export const trekStyle = css.global`
     padding: 10px 30px;
     line-height: 24px;
     text-align: center;
-    font-family: Poppins;
+    font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -1135,6 +1135,10 @@ export const trekStyle = css.global`
     font-weight: normal !important;
   }
 
+  .m-t-expert-image {
+    margin-top: 70px;
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 36px;
@@ -1487,6 +1491,10 @@ export const trekStyle = css.global`
 
     .hd-tab2-iamge.mv {
       height: 200px;
+    }
+
+    .m-t-expert-image {
+      margin-top: 20px;
     }
   }
 `;
