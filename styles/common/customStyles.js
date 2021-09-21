@@ -211,7 +211,6 @@ export const customStyles = css.global`
     text-transform: capitalize;
     line-height: 24px;
     text-align: left;
-    font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -373,7 +372,7 @@ export const customStyles = css.global`
   }
 
   .p-text-small-fg-blue > a {
-    color: rgba(35, 76, 187, 1)
+    color: rgba(35, 76, 187, 1);
   }
 
   .p-text-small-fg-red {
@@ -563,6 +562,29 @@ export const customStyles = css.global`
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
   }
+  
+  .table.table-dashboard-profile-style-3 > thead > tr > th {
+    line-height: 10px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    background: rgba(255,193,0,1);
+  }
+
+  .table.table-dashboard-profile-style-3 > tbody > tr > td {
+    line-height: 12px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
 
   .table-dashboard-profile-style-2 > tbody > tr > td {
     background: rgba(242, 242, 242, 1);
@@ -694,6 +716,21 @@ export const customStyles = css.global`
     color: rgba(255, 255, 255, 1);
     text-transform: capitalize;
     padding: 0 40px;
+  }
+
+  .table-btn-maroon-lg {
+    background: rgba(157, 58, 11, 1);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.353);
+    border-radius: 2px;
+    line-height: 28px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: uppercase;
+    padding: 8px 40px;
   }
 
   .table-btn-blue {
@@ -838,6 +875,11 @@ export const customStyles = css.global`
 
   .b-left-3px {
     border-left: 3px solid rgb(255, 193, 0);
+    padding-left: 8px;
+  }
+
+  .b-left-maroon-3px {
+    border-left: 3px solid rgba(157,58,11,1);
     padding-left: 8px;
   }
 
@@ -1055,6 +1097,26 @@ export const customStyles = css.global`
   .tv-download-link {
     position: relative;
     left: -2rem;
+  }
+
+  .p-cancel-text-fg {
+    margin-left: 10px;
+  }
+
+  .p-cancel-text-fg > div > p {
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    margin-bottom: 3px;
+  }
+
+  .m-l-border {
+    border-left: 2px solid rgb(255, 224, 127);
   }
 
   @media only screen and (max-width: 660px) {
