@@ -9,8 +9,9 @@ export const customStyles = css.global`
 
   @font-face {
     font-family: Franklin Gothic Book;
-    src: url("/font/FRANKLINGOTHIC/FRABK.ttf");
-    src: url("/font/FRANKLINGOTHIC/FRABK.ttf") format("truetype");
+    src: url("/font/FRANKLINGOTHIC/Franklin Gothic Book Regular.ttf");
+    src: url("/font/FRANKLINGOTHIC/Franklin Gothic Book Regular.ttf")
+      format("truetype");
   }
 
   @font-face {
@@ -371,6 +372,10 @@ export const customStyles = css.global`
     text-transform: capitalize;
   }
 
+  .p-text-small-fg-blue > a {
+    color: rgba(35, 76, 187, 1)
+  }
+
   .p-text-small-fg-red {
     line-height: 17.5px;
     text-align: left;
@@ -679,7 +684,7 @@ export const customStyles = css.global`
   .table-btn-maroon {
     background: rgba(157, 58, 11, 1);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.353);
-    border-radius: 0;
+    border-radius: 2px;
     line-height: 28px;
     text-align: center;
     font-family: Franklin Gothic;
@@ -688,7 +693,7 @@ export const customStyles = css.global`
     font-size: 16px;
     color: rgba(255, 255, 255, 1);
     text-transform: capitalize;
-    padding: 0 20px;
+    padding: 0 40px;
   }
 
   .table-btn-blue {
@@ -930,6 +935,7 @@ export const customStyles = css.global`
   }
 
   .user-dashboard-tab > .tab-content {
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     background: #ffffff;
     padding: 30px 20px;
   }
@@ -973,11 +979,11 @@ export const customStyles = css.global`
   }
 
   .ud-dropwon-1.form-group > .p-dropdown > .p-dropdown-label {
-    font-family: Lore-Medium;
+    font-family: Franklin Gothic Book;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
-    color: rgba(112, 112, 112, 1);
+    color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
   }
 
@@ -1021,6 +1027,34 @@ export const customStyles = css.global`
 
   .mr-3 {
     margin-right: 3.5rem;
+  }
+
+  .pi-chevron-down::before {
+    content: "\f0dd";
+    font-family: FontAwesome;
+    padding: 0;
+    position: relative;
+    top: -3px;
+    font-size: 20px;
+  }
+
+  .exp-co-icons {
+    box-shadow: 2px 1px 1px rgba(255, 193, 0, 1);
+    display: inline-block;
+    border: 1px solid;
+    border-radius: 50%;
+    padding: 0px;
+    margin: 0px 5px;
+    width: 17px;
+    height: 17px;
+    text-align: center;
+    position: relative;
+    top: -5px;
+  }
+
+  .tv-download-link {
+    position: relative;
+    left: -2rem;
   }
 
   @media only screen and (max-width: 660px) {

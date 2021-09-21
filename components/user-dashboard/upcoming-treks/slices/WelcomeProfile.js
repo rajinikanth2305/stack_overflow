@@ -28,8 +28,7 @@ import Image from "next/image";
 import { Toast } from "primereact/toast";
 import BoPayment from "../../bo-payment/slices/BoPayment";
 import { useForm, Controller } from "react-hook-form";
-import { Checkbox  } from 'primereact/checkbox';
-
+import { Checkbox } from "primereact/checkbox";
 
 const WelcomeProfile = () => {
   const [show, setShow] = useState(false);
@@ -137,7 +136,7 @@ const WelcomeProfile = () => {
     myTrekRef.current?.changeState(bookTrekContents[0]);
     offLoadingRef.current?.changeState(bookTrekContents[0]);
     fitnessRef.current?.changeState(bookTrekContents[0]);
-    setCancelDialogueData(bookTrekContents[0].bookingId,bookTrekContents[0])
+    setCancelDialogueData(bookTrekContents[0].bookingId, bookTrekContents[0]);
   };
 
   const getAndSetTrekContents = async (bookingsData, userEmail) => {
@@ -190,13 +189,11 @@ const WelcomeProfile = () => {
         bookingState: book.bookingState,
         backPackOffloadingDays: book.backPackOffloadingDays,
         backPackOffloadingCostPerDay: book.backPackOffloadingCostPerDay,
-        backPackOffloadingTax: book.backPackOffloadingTax,
+        backPackOffloadingTax: book.backPackOffloadingTax
       });
     }
     setStates(bookTrekContents);
   };
-
- 
 
   const deriveAndSetOffLoadingTabVisible = activeBooking => {
     if (activeBooking.bookingState === "COMPLETED") {
@@ -225,18 +222,17 @@ const WelcomeProfile = () => {
     ); /// Excluding the active display trek;
     setNextComingTreks(nextTreks);
     document.getElementById("detailView").focus();
-    setCancelDialogueData(bookingId,activeBooking);
+    setCancelDialogueData(bookingId, activeBooking);
   };
 
-  const setCancelDialogueData=(bookingId,activeBooking)=> {
-
+  const setCancelDialogueData = (bookingId, activeBooking) => {
     const arr = Array.from(
       new Array(activeBooking?.userTrekBookingParticipants?.length),
       (x, i) => i
     );
     setCancelIndexes(arr);
     setCancelCounter(arr.length);
-  }
+  };
 
   const makePayment = batchId => {
     router.push(`/registration?batchId=${batchId}&step=payment`);
@@ -269,9 +265,9 @@ const WelcomeProfile = () => {
     });
   };
 
-  const onChecked =  (id, value) => {
-   // upComingTrek.userTrekBookingParticipants.find(u => u.id === id).cancelSelected = value;
-   // const selectedCount=upComingTrek.userTrekBookingParticipants.filter(u => u.selected === true).length;
+  const onChecked = (id, value) => {
+    // upComingTrek.userTrekBookingParticipants.find(u => u.id === id).cancelSelected = value;
+    // const selectedCount=upComingTrek.userTrekBookingParticipants.filter(u => u.selected === true).length;
     //setShowSaveButton(selectedCount>0);
   };
 
@@ -291,51 +287,48 @@ const WelcomeProfile = () => {
     onOffLoadingPayment: OffLoadingPayment
   };
 
-const onCancelSubmit=(formData) => {
+  const onCancelSubmit = formData => {
+    // console.log(formData);
 
- // console.log(formData);
+    const participantList = [];
 
-  const participantList=[];
+    Object.keys(formData).forEach(function(key) {
+      console.log("Key : " + key + ", Value : " + formData[key]);
+      if (formData[key] === true) {
+        participantList.push(key);
+      }
+    });
 
-  Object.keys(formData).forEach(function(key) {
-    console.log('Key : ' + key + ', Value : ' + formData[key]);
-    if(formData[key]===true) {
-    participantList.push(
-       key
-    );
-  }
-  });
-
-  if(participantList.length>0) {
+    if (participantList.length > 0) {
       console.log(participantList);
-      cancelParticipantBooking(upComingTrek.bookingId,participantList).then(res=>{
-        toast.current.show({
-          severity: "info",
-          summary: `'Cancelled successfully'`,
-          detail: "Cancel-Trek-Booking"
-        });
-        fetchAndBindUserBookings(upComingTrek.email);
-        handleClose();
+      cancelParticipantBooking(upComingTrek.bookingId, participantList).then(
+        res => {
+          toast.current.show({
+            severity: "info",
+            summary: `'Cancelled successfully'`,
+            detail: "Cancel-Trek-Booking"
+          });
+          fetchAndBindUserBookings(upComingTrek.email);
+          handleClose();
+        }
+      );
+    } else {
+      toast.current.show({
+        severity: "error",
+        summary: `'None of the participant selected for cancellation'`,
+        detail: "Cancel-Trek-Booking"
       });
-  }
-  else {
-  toast.current.show({
-    severity: "error",
-    summary: `'None of the participant selected for cancellation'`,
-    detail: "Cancel-Trek-Booking"
-  });
-}
-}
+    }
+  };
 
-
-const onLogout =()=>{
-  /*toast.current.show({
+  const onLogout = () => {
+    /*toast.current.show({
     severity: "info",
     summary: `'Logout successfully'`,
     detail: "Logout"
   });*/
-  userServiceObject.doLogout();
-}
+    userServiceObject.doLogout();
+  };
 
   return (
     <>
@@ -345,7 +338,7 @@ const onLogout =()=>{
             <Toast ref={toast} />
             <div className="container container-custom p-0">
               <div className="bg-gray-shade">
-              <div className="td-bg" />
+                <div className="td-bg" />
                 <div className="container td-bg-mr">
                   <div className="row">
                     <div className="col-lg-10 col-md-12 bg-gray border-right b-right-2px">
@@ -449,15 +442,15 @@ const onLogout =()=>{
                                           </p>
                                           <p className="m-0 p-text-2-fg">
                                             {upComingTrek && (
-                                              <b>
+                                              <span>
                                                 {moment(
                                                   upComingTrek?.startDate
-                                                ).format("MM/DD/YYYY")}{" "}
+                                                ).format("DD MMM")}{" "}
                                                 -{" "}
                                                 {moment(
                                                   upComingTrek?.endDate
-                                                ).format("MM/DD/YYYY")}
-                                              </b>
+                                                ).format("DD MMM YYYY")}
+                                              </span>
                                             )}
                                           </p>
                                         </div>
@@ -466,12 +459,31 @@ const onLogout =()=>{
                                             participants
                                           </p>
                                           <p className="m-0 p-text-2-fg">
-                                            {upComingTrek?.participantsCount} trekkers
+                                            {upComingTrek?.participantsCount}{" "}
+                                            trekkers
                                           </p>
                                         </div>
                                         <div>
                                           <p className="m-0 p-text-small-fg">
                                             Experience Coordinator
+                                            <span className="exp-co-icons">
+                                              <i
+                                                class="fa fa-phone"
+                                                aria-hidden="true"
+                                              ></i>
+                                            </span>
+                                            <span className="exp-co-icons">
+                                              <i
+                                                class="fa fa-mobile"
+                                                aria-hidden="true"
+                                              ></i>
+                                            </span>
+                                            <span className="exp-co-icons">
+                                              <i
+                                                class="fa fa-envelope"
+                                                aria-hidden="true"
+                                              ></i>
+                                            </span>
                                           </p>
                                           <p className="m-0 p-text-2-fg text-decoration-underline">
                                             {
@@ -525,7 +537,7 @@ const onLogout =()=>{
                                               // }
                                               onClick={handleShow}
                                             >
-                                              Cancel trek booking
+                                              Cancel trek
                                             </button>
                                           </>
                                         )}
@@ -666,11 +678,11 @@ const onLogout =()=>{
                                                 <b>
                                                   {moment(
                                                     trekData?.startDate
-                                                  ).format("MM/DD/YYYY")}{" "}
+                                                  ).format("DD MMM")}{" "}
                                                   -{" "}
                                                   {moment(
                                                     trekData?.endDate
-                                                  ).format("MM/DD/YYYY")}
+                                                  ).format("DD MMM YYYY")}
                                                 </b>
                                               </p>
                                             </div>
@@ -679,12 +691,31 @@ const onLogout =()=>{
                                                 participants
                                               </p>
                                               <p className="m-0 p-text-2-fg">
-                                                {trekData?.participantsCount}
+                                                {trekData?.participantsCount}{" "}
+                                                trekkers
                                               </p>
                                             </div>
                                             <div>
                                               <p className="m-0 p-text-small-fg">
-                                                Experience Coordinator
+                                                Experience Coordinator{" "}
+                                                <span className="exp-co-icons">
+                                                  <i
+                                                    class="fa fa-phone"
+                                                    aria-hidden="true"
+                                                  ></i>
+                                                </span>
+                                                <span className="exp-co-icons">
+                                                  <i
+                                                    class="fa fa-mobile"
+                                                    aria-hidden="true"
+                                                  ></i>
+                                                </span>
+                                                <span className="exp-co-icons">
+                                                  <i
+                                                    class="fa fa-envelope"
+                                                    aria-hidden="true"
+                                                  ></i>
+                                                </span>
                                               </p>
                                               <p className="m-0 p-text-2-fg text-decoration-underline">
                                                 {
@@ -790,7 +821,7 @@ const onLogout =()=>{
                               </Link>
                             </li>
                             <li>
-                              <a   onClick={onLogout}>
+                              <a onClick={onLogout}>
                                 <span>Logout</span>
                               </a>
                             </li>
@@ -942,77 +973,83 @@ const onLogout =()=>{
             </Modal.Header>
             <Modal.Body>
               <div>
-              <form onSubmit={handleSubmit(onCancelSubmit)} onReset={() => reset}>
-                <table className="table table-dashboard-profile-style-1">
-                  <thead>
-                    <tr className="header-bg">
-                      <th style={{ width: '2%' }}>&nbsp;</th>
-                      <th className="w-20per">Participants</th>
-                      <th className="w-20per">Phone</th>
-                      <th className="w-15per">Email Id</th>
-                      <th className="w-15per">Booking State</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  {
-                      cancelIndexes.map(index => {
-                      const sdata = upComingTrek?.userTrekBookingParticipants[index];
-                      const fieldName = `${sdata?.participantId}`;
-                      const name =
-                      sdata?.userDetailsForDisplay?.email ===
-                      upComingTrek?.email
-                        ? " * " + sdata?.userDetailsForDisplay?.firstName +
-                          sdata?.userDetailsForDisplay?.lastName +
-                          " (You) "
-                        : sdata?.userDetailsForDisplay?.firstName +
-                          sdata?.userDetailsForDisplay?.lastName;
+                <form
+                  onSubmit={handleSubmit(onCancelSubmit)}
+                  onReset={() => reset}
+                >
+                  <table className="table table-dashboard-profile-style-1">
+                    <thead>
+                      <tr className="header-bg">
+                        <th style={{ width: "2%" }}>&nbsp;</th>
+                        <th className="w-20per">Participants</th>
+                        <th className="w-20per">Phone</th>
+                        <th className="w-15per">Email Id</th>
+                        <th className="w-15per">Booking State</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {cancelIndexes.map(index => {
+                        const sdata =
+                          upComingTrek?.userTrekBookingParticipants[index];
+                        const fieldName = `${sdata?.participantId}`;
+                        const name =
+                          sdata?.userDetailsForDisplay?.email ===
+                          upComingTrek?.email
+                            ? " * " +
+                              sdata?.userDetailsForDisplay?.firstName +
+                              sdata?.userDetailsForDisplay?.lastName +
+                              " (You) "
+                            : sdata?.userDetailsForDisplay?.firstName +
+                              sdata?.userDetailsForDisplay?.lastName;
 
-                      const state= sdata?.bookingParticipantState==="CANCELLED";
+                        const state =
+                          sdata?.bookingParticipantState === "CANCELLED";
 
-                      return (
-                        <>
-                          <tr key={sdata?.participantId}>
-                          <td>
-                              <div className="d-flex alifn-items-center">
-                                <div>
-                                {state==false && (
-                                <FormGroup className="reg-dropdown mp-dropdown">
-                                    <Controller
-                                      name={`${fieldName}`}
-                                      control={control}
-                                      render={({ onChange, value }) => (
-                                        <Checkbox  inputId="category1" name="category" 
-                                        onChange={e => {
-                                          onChange(e.checked);
-                                          onChecked(sdata.id,e.checked);
-                                        }}
-                                        checked={value} />
-                                      )}
-                                    />
-                                  </FormGroup>
-                                )}
+                        return (
+                          <>
+                            <tr key={sdata?.participantId}>
+                              <td>
+                                <div className="d-flex alifn-items-center">
+                                  <div>
+                                    {state == false && (
+                                      <FormGroup className="reg-dropdown mp-dropdown">
+                                        <Controller
+                                          name={`${fieldName}`}
+                                          control={control}
+                                          render={({ onChange, value }) => (
+                                            <Checkbox
+                                              inputId="category1"
+                                              name="category"
+                                              onChange={e => {
+                                                onChange(e.checked);
+                                                onChecked(sdata.id, e.checked);
+                                              }}
+                                              checked={value}
+                                            />
+                                          )}
+                                        />
+                                      </FormGroup>
+                                    )}
+                                  </div>
                                 </div>
-                              </div>
-                            </td>
-                            <td>
-                              {index + 1}. {name}
-                            </td>
-                            <td>{sdata?.userDetailsForDisplay?.email}</td>
-                            <td>{sdata?.userDetailsForDisplay?.phone}</td>
-                            <td>{sdata?.bookingParticipantState}</td>
-                          </tr>
-                        </>
-                      );
-            
-                    })
-                  }
-                  </tbody>
-                </table>
-                <div className="d-flex justify-content-end">
-                  <button type="submit" className="btn table-btn-blue-sm">
-                    <span className="px-2">Confirm</span>
-                  </button>
-                </div>
+                              </td>
+                              <td>
+                                {index + 1}. {name}
+                              </td>
+                              <td>{sdata?.userDetailsForDisplay?.email}</td>
+                              <td>{sdata?.userDetailsForDisplay?.phone}</td>
+                              <td>{sdata?.bookingParticipantState}</td>
+                            </tr>
+                          </>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                  <div className="d-flex justify-content-end">
+                    <button type="submit" className="btn table-btn-blue-sm">
+                      <span className="px-2">Confirm</span>
+                    </button>
+                  </div>
                 </form>
               </div>
             </Modal.Body>

@@ -236,8 +236,8 @@ const UserPT = () => {
                     <div>
                       <p className="m-0 p-text-small-fg">batch dates</p>
                       <p className="m-0 p-text-2-fg">
-                        {moment(data?.startDate).format("MM/DD/YYYY")} -{" "}
-                        {moment(data?.endDate).format("MM/DD/YYYY")}
+                        {moment(data?.startDate).format("DD MMM")} -{" "}
+                        {moment(data?.endDate).format("DD MMM YYYY")}
                       </p>
                     </div>
                     <div>
@@ -532,7 +532,7 @@ const UserPT = () => {
                   </div>
 
                   <div>
-                    <h5 className="p-text-2-fg b-left-3px">
+                    <h5 className="p-text-2-fg b-left-3px mb-3">
                       your Previous Indiahikes treks
                     </h5>
 

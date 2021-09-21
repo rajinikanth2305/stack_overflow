@@ -56,9 +56,9 @@ const UserTV = () => {
     });
   }
 
-  const onLogout =()=>{
+  const onLogout = () => {
     userServiceObject.doLogout();
-  }
+  };
 
   const vouchetListTr = vouchers.map(function(data, i) {
     return (
@@ -66,18 +66,16 @@ const UserTV = () => {
         <tr key={data?.id}>
           <td>{data?.title}</td>
           <td>
-            <div className="d-flex align-items-center justify-content-between">
-              <div>Rs. {data?.amount} </div>
-              <div>
+            <div className="d-flex align-items-center">
+              <div className="flex-grow-1">Rs. {data?.amount} </div>
+              <div className="tv-download-link">
                 <p className="m-0 text-decoration-underline p-text-small-fg-blue">
                   <PDFDownloadLink
                     document={<VoucherTemplate voucher={data} />}
                     fileName={data.title}
                   >
-                    {/* {({ blob, url, loading, error }) => */}
-                    {/* loading ? <i className="pi pi-spin pi-spinner"></i> : <i className="pi pi-download"></i> */}
-                    {/* } */} <i className="pi pi-download p-pr-2"></i>
-                    <span className="btn table-btn-blue">Download Vocuher</span>
+                    <i className="pi pi-download p-pr-2"></i>
+                    <span className="">Download</span>
                   </PDFDownloadLink>
                 </p>
               </div>
@@ -126,21 +124,23 @@ const UserTV = () => {
 
                   <h5 className="p-text-2-fg b-left-3px mb-4">trek vouchers</h5>
 
-                  <div className="card px-3 mb-5">
-                    <div>
-                      <table className="table table-dashboard-profile-style-1">
-                        <thead>
-                          <tr className="header-bg">
-                            <th>voucher code</th>
-                            <th>Voucher amount</th>
-                            <th>Amount used</th>
-                            <th>balance amount</th>
-                            <th>valid till</th>
-                            <th>voucher status</th>
-                          </tr>
-                        </thead>
-                        <tbody>{vouchetListTr}</tbody>
-                      </table>
+                  <div className="col-lg-11 col-md-12">
+                    <div className="card px-3 mb-5">
+                      <div>
+                        <table className="table table-dashboard-profile-style-1">
+                          <thead>
+                            <tr className="header-bg">
+                              <th>voucher code</th>
+                              <th>Voucher amount</th>
+                              <th>Amount used</th>
+                              <th>balance amount</th>
+                              <th>valid till</th>
+                              <th>voucher status</th>
+                            </tr>
+                          </thead>
+                          <tbody>{vouchetListTr}</tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -174,9 +174,9 @@ const UserTV = () => {
                           </Link>
                         </li>
                         <li>
-                        <a   onClick={onLogout}>
-                                <span>Logout</span>
-                              </a>
+                          <a onClick={onLogout}>
+                            <span>Logout</span>
+                          </a>
                         </li>
                       </ul>
                     </div>
