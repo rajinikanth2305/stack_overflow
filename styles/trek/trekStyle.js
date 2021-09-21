@@ -50,7 +50,7 @@ export const trekStyle = css.global`
     margin-bottom: 15px;
     border-bottom: 4px solid rgb(255, 193, 0);
     padding-bottom: 3px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   .title-h2.gallery-title {
@@ -161,9 +161,11 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 12px;
     color: rgba(112, 112, 112, 1);
+    padding-top: 7px;
   }
 
   .card-box-shadow {
+    border-radius: 0;
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
   }
 
@@ -674,8 +676,9 @@ export const trekStyle = css.global`
 
   .quick-info-bage-outline {
     background: #ffc100;
-    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
-    padding: 2px 10px;
+    // filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    border-radius: 5px;
+    padding: 5px 20px;
     line-height: 24px;
     text-align: left;
     font-family: Lora;

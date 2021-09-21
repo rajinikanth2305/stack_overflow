@@ -62,7 +62,7 @@ const FeeDetails = () => {
     <>
       <div>
         <div className="card border-0 d-m-none">
-          <div className="card-body trek_fee_outer_bg">
+          <div className="card-body trek_fee_outer_bg pb-0">
             <div className="trek_fee_bg">
               <p className="trek_fee_title m-0">{RichText.asText(heading)}</p>
 

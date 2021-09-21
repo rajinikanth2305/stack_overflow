@@ -34,7 +34,7 @@ const QuickItineraryComponent = ({ slice }) => {
   const dayNumberText = dayNumberTextArray.map(function(data, i) {
     return (
       <>
-        <div className="d-flex align-items-start flex-wrap">
+        <div className="d-flex align-items-start flex-wrap mt-1">
           <div className="col-lg-1 col-md-12">
             <p className="p-text-2 text-brown-shade mb-0">
               Day {data.day_number_text[0].text}
@@ -84,7 +84,7 @@ const QuickItineraryComponent = ({ slice }) => {
                   <div>
                     <div className="important_notice_box">
                       <p className="p-text-2-franklin">IMPORTANT POINTS</p>
-                      <p className="p-text-4">{importantNoteListdata}</p>
+                      <div>{importantNoteListdata}</div>
                     </div>
                     <div className="d-flex justify-content-end mt-3">
                       <button className="btn btn-ptr">
@@ -127,7 +127,7 @@ const QuickItineraryComponent = ({ slice }) => {
                   <div>
                     <div className="important_notice_box">
                       <p className="p-text-2-franklin">IMPORTANT POINTS</p>
-                      <p className="p-text-4">{importantNoteListdata}</p>
+                      <div>{importantNoteListdata}</div>
                     </div>{" "}
                   </div>
                   <div className="pro_tips_box">

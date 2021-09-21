@@ -42,7 +42,7 @@ const TrekBannerWithCaption = ({ slice }) => {
               <div className="row">
                 <div className="col-6 col-lg-3 col-md-6">
                   <p className="short-info-text m-0">
-                    Difficulty:{" "}
+                    <b>Difficulty</b>{" "}
                     <span className="mx-2 mmx-0 md-b">
                       {RichText.asText(difficulty)}
                     </span>
@@ -50,7 +50,7 @@ const TrekBannerWithCaption = ({ slice }) => {
                 </div>
                 <div className="col-6 col-lg-3 col-md-6">
                   <p className="short-info-text m-0">
-                    Duration:{" "}
+                    <b>Duration</b>{" "}
                     <span className="mx-2 mmx-0 md-b">
                       {RichText.asText(duration)}
                     </span>
@@ -58,7 +58,7 @@ const TrekBannerWithCaption = ({ slice }) => {
                 </div>
                 <div className="col-6 col-lg-3 col-md-6">
                   <p className="short-info-text m-0">
-                    Highest Altitude:{" "}
+                    <b>Highest Altitude</b>{" "}
                     <span className="mx-2 mmx-0 md-b">
                       {RichText.asText(altitude)}
                     </span>
@@ -66,7 +66,7 @@ const TrekBannerWithCaption = ({ slice }) => {
                 </div>
                 <div className="col-6 col-lg-3 col-md-6">
                   <p className="short-info-text m-0">
-                    Age:{" "}
+                    <b>Age</b>{" "}
                     <span className="mx-2 mmx-0 md-b">
                       {RichText.asText(age)}
                     </span>
