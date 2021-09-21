@@ -24,7 +24,7 @@ export const trekStyle = css.global`
     font-family: Lora;
     font-style: normal;
     font-weight: bold;
-    font-size: 72px;
+    font-size: 58px;
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
   }

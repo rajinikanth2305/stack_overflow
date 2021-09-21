@@ -21,29 +21,28 @@ const WhyTrek = ({ slice }) => {
       );
     });
     return (
-      <div
-        className="pillar-card card card-shadow cursor-pointer"
-        key={`pillar-${i}`}
-      >
-        <div className="card-body">
-          <div>
-            <div className="d-flex align-items-center">
-              <div>
+      <div key={`pillar-${i}`}>
+        <div className="pillar-card card card-shadow cursor-pointer">
+          <div className="card-body">
+            <div>
+              <div className="d-flex align-items-center">
                 <div>
-                  <img
-                    src={data.pillar_images.url}
-                    alt="icons"
-                    className="pillar_images"
-                  />
+                  <div>
+                    <img
+                      src={data.pillar_images.url}
+                      alt="icons"
+                      className="pillar_images"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <p className="p-text-1">{data.pillar_title[0].text}</p>
                 </div>
               </div>
-              <div>
-                <p className="p-text-1">{data.pillar_title[0].text}</p>
+              <div>{pillarDesc}</div>
+              <div className="float-right pt-2 pb-4">
+                <button className="btn btn-ih-green">Read more</button>
               </div>
-            </div>
-            <div>{pillarDesc}</div>
-            <div className="float-right pt-2 pb-4">
-              <button className="btn btn-ih-green">Read more</button>
             </div>
           </div>
         </div>

@@ -40,26 +40,24 @@ const LatestUpdatesTrekkings = ({ slice }) => {
       url = linkResolver(data.link_url);
     }
     return (
-      <div key={index}>
-        <div className="col-lg-6 col-md-12">
-          <Link href={url}>
-            <div className="card exp-card-blog mx-0 cursor-pointer">
-              <div alt="img" className="latestTrekWorld_bg">
-                <Image
-                  src={data.latest_trekking_world_img.url}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                />
-              </div>
-              <div className="p-3">
-                <p className="latestTrekWorld_caption">
-                  {data.latest_trekking_world_img_caption[0].text}
-                </p>
-              </div>
+      <div className="col-lg-6 col-md-12" key={index}>
+        <Link href={url}>
+          <div className="card exp-card-blog mx-0 cursor-pointer">
+            <div alt="img" className="latestTrekWorld_bg">
+              <Image
+                src={data.latest_trekking_world_img.url}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="50% 50%"
+              />
             </div>
-          </Link>
-        </div>
+            <div className="p-3">
+              <p className="latestTrekWorld_caption">
+                {data.latest_trekking_world_img_caption[0].text}
+              </p>
+            </div>
+          </div>
+        </Link>
       </div>
     );
   });

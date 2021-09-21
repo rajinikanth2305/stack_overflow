@@ -32,7 +32,7 @@ export const bannerStyle = css.global`
     font-family: Lora;
     font-style: normal;
     font-weight: bold;
-    font-size: 80px;
+    font-size: 58px;
     color: rgba(255, 255, 255, 1);
     text-transform: uppercase;
     filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.749));
