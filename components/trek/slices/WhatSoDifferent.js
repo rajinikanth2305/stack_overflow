@@ -59,7 +59,7 @@ const WhatSoDifferent = ({ slice }) => {
             <div className="col-12 col-lg-1 col-md-12"></div>
             <div className="col-12 col-lg-4 col-md-12 mb-5">
               <div className="d-m-none">
-                <div className="card card-box-shadow">
+                <div className="card card-box-shadow mt-4">
                   <div className="why_so_video_image">
                     <div className="d-flex align-items-center justify-content-center w-100 h-100">
                       <div className="text-center">
