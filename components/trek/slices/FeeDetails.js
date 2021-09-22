@@ -53,7 +53,9 @@ const FeeDetails = () => {
         <p className="trek_optional_details">
           {data.optional_additions_heading.text}
         </p>
-        <p className="trek_optional_details">{data.optional_additions_desc.text}</p>
+        <p className="trek_optional_details">
+          {data.optional_additions_desc.text}
+        </p>
       </>
     );
   });
@@ -85,7 +87,7 @@ const FeeDetails = () => {
               <p className="trek-info-detail m-0">
                 {RichText.asText(descriptions)}
               </p>
-              <p className="trek-info-detail">
+              <p className="trek-info-detail text-decoration-underline">
                 <a>See Inclusions and Exclusions</a>
               </p>
               <div className="my-3">
@@ -96,19 +98,46 @@ const FeeDetails = () => {
             </div>
             <div className="p-3">
               <p className="trek_gts mb-2">optional additions</p>
-              <p className="trek_optional_details">
-                1.Pickup and Drop from Manali – This costs Rs 5,500 per vehicle,
-                which is shared by 5-6 trekkers.
-              </p>
-              <p className="trek_optional_details">
-                2.Backpack Offloading – Rs. 1000+ 5% GST for the entire trek.
-                Cloakroom available free of charge.
-              </p>
-              <p className="trek_optional_details m-0">
-                3.Rental Gear – We have a range of products available on our
-                rental store. See here
-              </p>
-              {optionalAdditions}
+              <div className="d-flex align-items-start">
+                <div>
+                  <p className="trek_optional_details">
+                    <b>1.</b>
+                  </p>
+                </div>
+                <div className="mx-2">
+                  <p className="trek_optional_details">
+                    <b>Pickup and Drop from Manali</b> - This costs Rs 5,500 per
+                    vehicle, which is shared by 5-6 trekkers.
+                  </p>
+                </div>
+              </div>
+              <div className="d-flex align-items-start">
+                <div>
+                  <p className="trek_optional_details">
+                    <b>2.</b>
+                  </p>
+                </div>
+                <div className="mx-2">
+                  <p className="trek_optional_details">
+                    <b>Backpack Offloading</b> - Rs. 1000+ 5% GST for the entire
+                    trek. Cloakroom available free of charge.
+                  </p>
+                </div>
+              </div>
+              <div className="d-flex align-items-start">
+                <div>
+                  <p className="trek_optional_details">
+                    <b>3.</b>
+                  </p>
+                </div>
+                <div className="mx-2">
+                  <p className="trek_optional_details">
+                    <b>Rental Gear</b> - We have a range of products available
+                    on our rental store. <span className="text-decoration-underline">See here</span>
+                  </p>
+                </div>
+              </div>
+              {/* {optionalAdditions} */}
             </div>
           </div>
         </div>

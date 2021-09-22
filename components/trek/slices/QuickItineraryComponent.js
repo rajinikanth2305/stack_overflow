@@ -25,9 +25,23 @@ const QuickItineraryComponent = ({ slice }) => {
 
   const proTipsListData = proTipsList.map((data, i) => {
     return (
-      <p className="m-0" key={i}>
-        {data.text}
-      </p>
+      // <p className={data?.spans[0]?.type === 'strong' ? "font-weight-bold m-0 p-text-4" : "m-0"} key={i}>
+      //   {data.text}
+      // </p>
+      <div key={i}>
+        {data?.spans[0]?.type === "strong" && data?.type !== "heading2" && (
+          <p className="font-weight-bold m-0 p-text-4">{data.text}</p>
+        )}
+        {data?.type === "heading2" && data?.spans[0]?.type === "strong" && (
+          <p className="font-weight-bold m-0 p-text-1">{data.text}</p>
+        )}
+        {data?.spans[0]?.type === "hyperlink" && (
+          <p className="text-decoration-underline m-0 p-text-4"><a href={data?.spans[0]?.data?.url} target="_blank">{data.text}</a></p>
+        )}
+        {data?.spans[0]?.type !== "strong" && data?.spans[0]?.type !== "hyperlink" && (
+          <p className="m-0 p-text-4">{data.text}</p>
+        )}
+      </div>
     );
   });
 
@@ -112,7 +126,7 @@ const QuickItineraryComponent = ({ slice }) => {
                   <p className="pro_tips">
                     <span className="p-text-2-franklin">PRO-TIPS</span>
                   </p>
-                  <p className="m-0 p-text-4">{proTipsListData}</p>
+                  {proTipsListData}
                 </div>
               </div>
             </div>
@@ -134,7 +148,7 @@ const QuickItineraryComponent = ({ slice }) => {
                     <p className="pro_tips">
                       <span className="p-text-2-franklin">PRO-TIPS</span>
                     </p>
-                    <p className="m-0 p-text-4">{proTipsListData}</p>
+                    {proTipsListData}
                   </div>
                 </div>
                 <div className="d-flex justify-content-center bg-transparent-text-effect">

@@ -755,7 +755,7 @@ export const trekStyle = css.global`
   .pro_tips_box {
     padding: 20px 30px;
     border: 2px solid rgb(255, 193, 0);
-    margin-top: 50px;
+    margin-top: 100px;
     margin-bottom: 25px;
   }
 
@@ -1142,6 +1142,10 @@ export const trekStyle = css.global`
     margin-top: 70px;
   }
 
+  .font-weight-bold {
+    font-weight: bold !important;
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 36px;
@@ -1498,6 +1502,10 @@ export const trekStyle = css.global`
 
     .m-t-expert-image {
       margin-top: 20px;
+    }
+
+    .pro_tips_box {
+      margin-top: 35px;
     }
   }
 `;
