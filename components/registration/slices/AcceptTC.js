@@ -381,15 +381,19 @@ const AcceptTC = ({ data, props, onTermAccept }) => {
                 </Label>
               </FormGroup>
             </div>
-            {showButton && (
-              <button
-                className="btn btn-ih-green"
-                onClick={termAccepted}
-                disabled={agree === true ? "" : "disabled"}
-              >
-                proceed to next step of registration
-              </button>
-            )}
+          </div>
+          <div className="d-flex justify-content-center">
+            <div>
+              {showButton && (
+                <button
+                  className="btn btn-ih-green"
+                  onClick={termAccepted}
+                  disabled={agree === true ? "" : "disabled"}
+                >
+                  proceed to next step of registration
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>

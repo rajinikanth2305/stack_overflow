@@ -454,11 +454,11 @@ export const regStyle = css.global`
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
     border: 0;
     border-radius: 2px;
-    padding: 10px 30px;
+    padding: 10px 30px !important;
     border-radius: 0;
     line-height: 24px;
     text-align: center;
-    font-family: Franklin Gothic;
+    font-family: Franklin Gothic !important;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -808,10 +808,15 @@ export const regStyle = css.global`
     margin-bottom: 10px;
   }
 
-  .card-header {
+  .reg-acc-tabs.accordion > .card > .card-header {
     margin-bottom: 0;
     background-color: rgba(0, 0, 0, 0.03);
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 5px 15px;
+  }
+
+  .reg-acc-tabs.accordion > .card > div > .card-body {
+    padding: 16px;
   }
 
   .card-header > button {
