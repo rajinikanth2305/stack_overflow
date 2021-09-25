@@ -206,25 +206,29 @@ const MakePayment = forwardRef((props, ref) => {
     const user = sdata.trekUsers.find(u => u.id === id);
 
     if (user.optedVoucherId > 0) {
-
       const selectedVoucher = sdata.voucherDetails.find(
         vid => vid.id == user.optedVoucherId
       );
 
-      const youPay = user.trekFeeForTheUser;//computeTotal(sdata.trekUsers);
+      const youPay = user.trekFeeForTheUser; //computeTotal(sdata.trekUsers);
 
       if (youPay > 0) {
         const currentAvailableAmount = selectedVoucher.amountAvailable;
 
-        if (currentAvailableAmount > 0) {  /// If Vocuher has available amount
-          const amountToDeductInVocuher =youPay > currentAvailableAmount ? currentAvailableAmount : youPay;
+        if (currentAvailableAmount > 0) {
+          /// If Vocuher has available amount
+          const amountToDeductInVocuher =
+            youPay > currentAvailableAmount ? currentAvailableAmount : youPay;
           console.log(amountToDeductInVocuher);
-          sdata.trekUsers.find(u => u.id === id).voucherId =user.optedVoucherId;
-          sdata.trekUsers.find(u => u.id === id).voucherAmount = amountToDeductInVocuher;
-         // sdata.trekUsers.find(u => u.id === id).youPay = (youPay-amountToDeductInVocuher);
+          sdata.trekUsers.find(u => u.id === id).voucherId =
+            user.optedVoucherId;
+          sdata.trekUsers.find(
+            u => u.id === id
+          ).voucherAmount = amountToDeductInVocuher;
+          // sdata.trekUsers.find(u => u.id === id).youPay = (youPay-amountToDeductInVocuher);
         }
       }
-     //console.log(JSON.stringify(sdata));
+      //console.log(JSON.stringify(sdata));
       await dispatch(addOrUpdateState(sdata));
       computeTotal(sdata.trekUsers);
     }
@@ -303,7 +307,7 @@ const MakePayment = forwardRef((props, ref) => {
     data?.trekUsers?.map(u => {
       if (u.voucherAmount > 0) {
         vouchers.push({
-          participantId:u.participantsId,
+          participantId: u.participantsId,
           voucherId: u.voucherId,
           voucherAmount: u.voucherAmount
         });
@@ -323,7 +327,7 @@ const MakePayment = forwardRef((props, ref) => {
           <div className="row">
             <div className="col-lg-7 col-md-12">
               <div className="table-responsive m-d-none">
-                <table className="table table-main">
+                <table className="table table-secondar-main">
                   <thead>
                     <tr className="header-bg">
                       <th>trek name</th>
@@ -336,17 +340,10 @@ const MakePayment = forwardRef((props, ref) => {
                     <tr>
                       <td>{bookingInformation?.trekName}</td>
                       <td>
-                        <b>
-                          {moment(bookingInformation?.startDate).format(
-                            "MM/DD/YYYY"
-                          )}{" "}
-                          -{" "}
-                          {moment(bookingInformation?.endDate).format(
-                            "MM/DD/YYYY"
-                          )}
-                        </b>
+                        {moment(bookingInformation?.startDate).format("Do")} -{" "}
+                        {moment(bookingInformation?.endDate).format("Do MMMM")}
                       </td>
-                      <td>Moderate-Difficult</td>
+                      <td className="td-text-fgb">Moderate-Difficult</td>
                       <td>{bookingInformation?.trekkersCount} trekkers</td>
                     </tr>
                   </tbody>
@@ -391,7 +388,12 @@ const MakePayment = forwardRef((props, ref) => {
                 </table>
               </div>
 
-              <div className="table-responsive my-5 m-d-none">
+              <div className="table-responsive my-4 pt-2 m-d-none">
+                <p className="p-text-1-franklin text-capitalize mb-4 pb-1">
+                  <span className="border-bottom-custom-1 pb-2">
+                    trekkers [{bookingInformation?.trekkersCount}]
+                  </span>
+                </p>
                 <table className="table table-secondar-main">
                   <thead>
                     <tr>
@@ -402,43 +404,49 @@ const MakePayment = forwardRef((props, ref) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {
-                      indexes.map(index => {
+                    {indexes.map(index => {
                       const fieldName = `voucher[${index}]`;
                       const sdata = JSON.parse(JSON.stringify(stateData.data));
                       const data = sdata?.trekUsers[index];
-                     // console.log(JSON.stringify(sdata));
+                      // console.log(JSON.stringify(sdata));
                       const name =
                         data?.email === bookingInformation.email
                           ? data?.firstName + " (You) "
                           : data?.firstName;
                       //const isPrimaryUser=(data.email===bookingDate.email);
-                      
+
                       const vouchers = [];
-                      if(sdata.isOwnerActing===true) {
-                      if (sdata?.voucherDetails?.length > 0) {
-                        sdata?.voucherDetails.filter(x=>x.userName===data?.email).map(v => {
-                          vouchers.push({
-                            title: v.title + "-" + v.amountAvailable,
-                            id: v.id
-                          });
-                        });
+                      if (sdata.isOwnerActing === true) {
+                        if (sdata?.voucherDetails?.length > 0) {
+                          sdata?.voucherDetails
+                            .filter(x => x.userName === data?.email)
+                            .map(v => {
+                              vouchers.push({
+                                title: v.title + "-" + v.amountAvailable,
+                                id: v.id
+                              });
+                            });
+                        }
+                      } else {
+                        if (
+                          sdata?.voucherDetails?.length > 0 &&
+                          data?.email === bookingInformation.email
+                        ) {
+                          sdata?.voucherDetails
+                            .filter(x => x.userName === data?.email)
+                            .map(v => {
+                              vouchers.push({
+                                title: v.title + "-" + v.amountAvailable,
+                                id: v.id
+                              });
+                            });
+                        }
                       }
-                    }
-                    else {
-                      if (sdata?.voucherDetails?.length > 0 
-                        && data?.email === bookingInformation.email) {
-                        sdata?.voucherDetails.filter(x=>x.userName===data?.email).map(v => {
-                          vouchers.push({
-                            title: v.title + "-" + v.amountAvailable,
-                            id: v.id
-                          });
-                        });
-                      }
-                    }
                       return (
                         <tr>
-                          <td>{name}</td>
+                          <td className="text-capitalize">
+                            {index + 1}. {name}
+                          </td>
                           <td>
                             <div className="d-flex align-items-center">
                               <div>
@@ -479,7 +487,9 @@ const MakePayment = forwardRef((props, ref) => {
                               </div>
                             </div>
                           </td>
-                          <td>Rs. {data?.trekFeeForTheUser}</td>
+                          <td className="td-text-fgb">
+                            Rs. {data?.trekFeeForTheUser}
+                          </td>
                           <td>
                             Rs.{" "}
                             {data?.trekFeeForTheUser -
@@ -521,7 +531,9 @@ const MakePayment = forwardRef((props, ref) => {
                       </p>
 
                       <div className="mb-4">
-                        <p className="p-text-3-2-fg mb-1">{index + 1}. {name}</p>
+                        <p className="p-text-3-2-fg mb-1">
+                          {index + 1}. {name}
+                        </p>
                         <div className="d-flex align-items-center">
                           <div className="flex-grow-1">
                             {vouchers.length > 0 && (
@@ -562,12 +574,15 @@ const MakePayment = forwardRef((props, ref) => {
                         <div className="row my-1">
                           <div className="col-6 p-text-3-1 text-capitalize">
                             <span>trek fee</span>
-                            <span className="mx-2">Rs. {data?.trekFeeForTheUser}</span>
+                            <span className="mx-2">
+                              Rs. {data?.trekFeeForTheUser}
+                            </span>
                           </div>
                           <div className="col-6 p-text-3-1 text-capitalize">
                             <span>you pay</span>
                             <span className="mx-2">
-                              Rs. {data?.trekFeeForTheUser -
+                              Rs.{" "}
+                              {data?.trekFeeForTheUser -
                                 Number(data?.voucherAmount)}
                             </span>
                           </div>
@@ -625,7 +640,8 @@ const MakePayment = forwardRef((props, ref) => {
                       </p>
                     </div>
                   </div>
-                  <div className="d-flex">
+                  <div className="d-flex justify-content-end">
+                    <div className="d-flex border-top-custom-1 pt-2">
                     <div className="flex-grow-1 px-5">
                       <p className="p-text-3-1-2 text-align-right mb-2">
                         Total
@@ -635,6 +651,7 @@ const MakePayment = forwardRef((props, ref) => {
                       <p className="p-text-3-1-2 mb-2">
                         Rs. {computeFields.computations.total}
                       </p>
+                    </div>
                     </div>
                   </div>
                   <div className="d-flex border-bottom-custom-1">

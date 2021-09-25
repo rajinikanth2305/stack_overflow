@@ -238,6 +238,10 @@ export const regStyle = css.global`
     border-bottom: 2px solid rgb(255, 193, 0);
   }
 
+  .border-top-custom-1 {
+    border-top: 2px solid rgb(255, 193, 0);
+  }
+
   .border-custom-yellow {
     border: 2px solid rgb(255, 224, 128);
   }
@@ -504,7 +508,7 @@ export const regStyle = css.global`
     border: 0;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
     border-radius: 2px;
-    padding: 3px 15px;
+    padding: 0 15px;
     border-radius: 0;
     line-height: 24px;
     text-align: center;
@@ -586,6 +590,7 @@ export const regStyle = css.global`
   }
 
   .table.table-secondar-main > thead > tr > th {
+    border-bottom: 0;
     text-align: left;
     font-family: Franklin Gothic;
     font-style: normal;
@@ -608,10 +613,20 @@ export const regStyle = css.global`
   }
 
   .table.table-secondar-main > tbody > tr > td {
+    border-bottom: 2px solid rgb(248, 248, 248);
     padding: 20px 8px;
     line-height: 28px;
     text-align: left;
     font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .table.table-secondar-main > tbody > tr > td.td-text-fgb {
+    text-align: left;
+    font-family: Franklin Gothic Book;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
