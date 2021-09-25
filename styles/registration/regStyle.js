@@ -82,7 +82,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 24px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    // text-transform: capitalize;
     line-height: 26px;
   }
 
@@ -261,7 +261,7 @@ export const regStyle = css.global`
   .text-brown-shade {
     color: rgba(157, 58, 11, 1);
     font-family: Franklin Gothic;
-    text-transform: capitalize;
+    text-transform: capitalize !important;
   }
 
   .nav-tabs {
@@ -786,6 +786,14 @@ export const regStyle = css.global`
     text-transform: capitalize;
   }
 
+  .text-green-clr {
+    color: rgba(57, 114, 41, 1);
+  }
+
+  .text-blue-clr {
+    color: rgba(0, 40, 148, 1);
+  }
+
   .text-maroon {
     line-height: 20px;
     text-align: left;
@@ -795,6 +803,14 @@ export const regStyle = css.global`
     font-size: 18px;
     color: rgba(157, 58, 11, 1);
     text-transform: capitalize;
+  }
+
+  .text-maroon-clr {
+    color: rgba(157, 58, 11, 1);
+  }
+
+  .text-warning-clr {
+    color: rgba(255,193,0,1);
   }
 
   .font-weight-normal {
@@ -819,6 +835,36 @@ export const regStyle = css.global`
     padding: 16px;
   }
 
+  .reg-selectbatch-tabs > .card {
+    border-radius: 0;
+    border: 0;
+    margin-bottom: 15px;
+  }
+
+  .reg-selectbatch-tabs > .card > .card-header {
+    margin-bottom: 0;
+    background-color: rgba(112, 112, 112, 1);
+    border-radius: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 0 15px;
+  }
+
+  .reg-selectbatch-tabs > .card > div > .card-body {
+    background: rgb(242, 242, 242);
+    padding: 16px;
+  }
+
+  .reg-selectbatch-tabs > .card > .card-header > button {
+    line-height: 24px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px !important;
+    color: rgba(255, 255, 255, 1) !important;
+    text-transform: capitalize;
+  }
+
   .card-header > button {
     background: transparent;
     border: 0;
@@ -834,6 +880,10 @@ export const regStyle = css.global`
   .expand_plus {
     color: #ffc100;
     font-weight: bold;
+  }
+
+  .expand_plus_arrow {
+    color: #ffc100;
   }
 
   @media only screen and (max-width: 660px) {

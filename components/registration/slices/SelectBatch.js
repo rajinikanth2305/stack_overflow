@@ -20,6 +20,8 @@ import {
   selectStateData
 } from "../../reduxstate/counterSlice";
 import { render } from "react-dom";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
 
 import {
   findUserByEmail,
@@ -40,13 +42,6 @@ const SelectBatch = forwardRef((props, ref) => {
   const [renderControl, setRenderControl] = useState(false);
 
   useEffect(() => {
-    //const batchStartDt=getBatchStartDate();
-    //const splitdt=batchStartDt.split('-');
-    //const dt=new Date(splitdt[0],(splitdt[1]-1)); /// one month subtracting...
-
-    // setViewDate(dt);
-    //setRenderControl(true);
-
     findquickItinerary();
   }, []);
 
@@ -77,12 +72,16 @@ const SelectBatch = forwardRef((props, ref) => {
     return (
       <>
         <div className="d-flex align-items-start">
-          <div className="col-lg-1 col-md-12">
+          <div className="col-lg-2 col-md-12">
             <p className="p-text-3 text-brown-shade">
-              Day {data?.day_number_text[0]?.text}
+              {moment(bookingDate?.startDate).format("Do")}
+              <span className="mx-1">
+                {moment(bookingDate?.startDate).format("MMM")}
+              </span>
+              {/* Day {data?.day_number_text[0]?.text} */}
             </p>
           </div>
-          <div className="col-lg-11 col-md-12">
+          <div className="col-lg-10 col-md-12">
             <p className="p-text-3 mb-0">
               <b>{data?.heading1[0]?.text}</b>
             </p>
@@ -152,51 +151,179 @@ const SelectBatch = forwardRef((props, ref) => {
 
   return (
     <>
-      <div className="">
+      <div className="my-5">
         <div className="row">
-          <div className="col-lg-6 col-md-12">
+          <div className="col-lg-6 col-md-12" style={{ padding: "0 9rem" }}>
             <div className="row">
               <div className="col-12 col-md-12">
-                <div className="row my-4 mpt-0">
+                <div className="row mpt-0">
                   <div className="col-12 col-lg-12 col-md-12">
                     <div>
-                      <div className="slots-bg mb-2">
-                        <div className="row">
-                          <div className="col-6 col-lg-3 col-md-6">
-                            <p className="p-text-3-1 mb-0">
-                              <span className="badge-green mx-2"></span> Slots
-                              Available
-                            </p>
-                          </div>
-                          <div className="col-6 col-lg-3 col-md-6">
-                            <p className="p-text-3-1 mb-0">
-                              <span className="badge-red mx-2"></span> Filling
-                              Fast{" "}
-                            </p>
-                          </div>
-                          <div className="col-6 col-lg-3 col-md-6">
-                            <p className="p-text-3-1 mb-0">
-                              <span className="badge-yellow mx-2"></span>{" "}
-                              Waitlisted Batch
-                            </p>
-                          </div>
-                          <div className="col-6 col-lg-3 col-md-6">
-                            <p className="p-text-3-1 mb-0">
-                              <span className="badge-blue mx-2"></span> Family
-                              Trek{" "}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
                       {typeof window !== "undefined" && renderControl && (
-                        <div>
-                          <BookingCalender
-                            onBookingSelect={bookingSelect}
-                            mode={"inline_tab"}
-                            viewDt={viewDate}
-                            paramTrekName={bookingDate.trekName}
-                          />
-                        </div>
+                        // <div>
+                        //   <BookingCalender
+                        //     onBookingSelect={bookingSelect}
+                        //     mode={"inline_tab"}
+                        //     viewDt={viewDate}
+                        //     paramTrekName={bookingDate.trekName}
+                        //   />
+                        // </div>
+                        <>
+                          <div className="px-4 py-3 border-custom-green">
+                            <p className="p-text-1-franklin text-center m-0">
+                              Selected Batch:
+                            </p>
+                            <p className="p-text-1-franklin text-center m-0">
+                              <span>
+                                {moment(bookingDate?.startDate).format("Do")} to{" "}
+                                {moment(bookingDate?.endDate).format("Do")}{" "}
+                                {moment(bookingDate?.endDate).format("MMMM")}
+                              </span>
+                            </p>
+                          </div>
+                          <div className="mt-2 pt-2">
+                            <p className="p-text-3-1-fg text-center">
+                              Choose another batch of Hampta Pass Trek
+                            </p>
+                            <Accordion
+                              defaultActiveKey="0"
+                              className="reg-selectbatch-tabs"
+                            >
+                              <Card>
+                                <Card.Header>
+                                  <Accordion.Toggle variant="link" eventKey="0">
+                                    <div className="d-flex align-items-center">
+                                      <div className="flex-grow-1">
+                                        July 2021
+                                      </div>
+                                      <div>
+                                        <div>
+                                          <h2 className="m-0 expand_plus_arrow">
+                                            <i
+                                              class="fa fa-angle-down"
+                                              aria-hidden="true"
+                                            ></i>
+                                          </h2>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </Accordion.Toggle>
+                                </Card.Header>
+                                <Accordion.Collapse eventKey="0">
+                                  <Card.Body>
+                                    <div className="row">
+                                      <div className="col-lg-7 col-md-12">
+                                        <p className="p-text-3-1-fg mb-2 pb-1">
+                                          16th to 21st July
+                                        </p>
+                                      </div>
+                                      <div className="col-lg-3 col-md-12">
+                                        <p className="p-text-3-1-fg mb-2 pb-1 text-green-clr">
+                                          Available
+                                        </p>
+                                      </div>
+                                      <div className="col-lg-2 col-md-12">
+                                        <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
+                                          Select
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <div className="row">
+                                      <div className="col-lg-7 col-md-12">
+                                        <p className="p-text-3-1-fg mb-2 pb-1">
+                                          16th to 21st July
+                                        </p>
+                                      </div>
+                                      <div className="col-lg-3 col-md-12">
+                                        <p className="p-text-3-1-fg mb-2 pb-1 text-maroon-clr">
+                                          Full
+                                        </p>
+                                      </div>
+                                      <div className="col-lg-2 col-md-12">
+                                        <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
+                                          Select
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <div className="row">
+                                      <div className="col-lg-7 col-md-12">
+                                        <p className="p-text-3-1-fg mb-2 pb-1">
+                                          16th to 21st July
+                                        </p>
+                                      </div>
+                                      <div className="col-lg-3 col-md-12">
+                                        <p className="p-text-3-1-fg mb-2 pb-1 text-warning-clr">
+                                          Waitlist
+                                        </p>
+                                      </div>
+                                      <div className="col-lg-2 col-md-12">
+                                        <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
+                                          Select
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </Card.Body>
+                                </Accordion.Collapse>
+                              </Card>
+                              <Card>
+                                <Card.Header>
+                                  <Accordion.Toggle variant="link" eventKey="1">
+                                    <div className="d-flex align-items-center">
+                                      <div className="flex-grow-1">
+                                        August 2021
+                                      </div>
+                                      <div>
+                                        <div>
+                                          <h2 className="m-0 expand_plus_arrow">
+                                            <i
+                                              class="fa fa-angle-down"
+                                              aria-hidden="true"
+                                            ></i>
+                                          </h2>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </Accordion.Toggle>
+                                </Card.Header>
+                                <Accordion.Collapse eventKey="1">
+                                  <Card.Body>
+                                    <p className="p-text-3 m-0">
+                                      No data available
+                                    </p>
+                                  </Card.Body>
+                                </Accordion.Collapse>
+                              </Card>
+                              <Card>
+                                <Card.Header>
+                                  <Accordion.Toggle variant="link" eventKey="2">
+                                    <div className="d-flex align-items-center">
+                                      <div className="flex-grow-1">
+                                        September 2021
+                                      </div>
+                                      <div>
+                                        <div>
+                                          <h2 className="m-0 expand_plus_arrow">
+                                            <i
+                                              class="fa fa-angle-down"
+                                              aria-hidden="true"
+                                            ></i>
+                                          </h2>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </Accordion.Toggle>
+                                </Card.Header>
+                                <Accordion.Collapse eventKey="2">
+                                  <Card.Body>
+                                    <p className="p-text-3 m-0">
+                                      No data available
+                                    </p>
+                                  </Card.Body>
+                                </Accordion.Collapse>
+                              </Card>
+                            </Accordion>
+                          </div>
+                        </>
                       )}
                     </div>
                   </div>
@@ -205,32 +332,23 @@ const SelectBatch = forwardRef((props, ref) => {
             </div>
           </div>
           <div className="col-lg-6 col-md-12">
-            <div className="px-3 mt-custom-8">
-              <div className="px-4 py-3 border-custom-green">
-                <p className="p-text-3-1-fg m-0">
-                  Selected {bookingDate?.trekName} Trek Group:{" "}
-                  <span style={{ fontSize: "18px" }}>
-                    <b>
-                      {moment(bookingDate?.startDate).format("MM/DD/YYYY")} -{" "}
-                      {moment(bookingDate?.endDate).format("MM/DD/YYYY")}
-                    </b>
-                  </span>
-                </p>
-              </div>
-              <div className="p-3 my-3">
-                <p className="p-text-1">
-                  <span className="border-bottom-custom-1 pb-2">
-                    <b>{RichText.asText(heading1)}</b>
-                  </span>
-                </p>
-                <div className="mt-5">{dayNumberText}</div>
+            <div>
+              <div>
+                <div className="bg-light-gray-shade p-3">
+                  <p className="p-text-2 mb-4 pb-1">
+                    <span className="border-bottom-custom-1 pb-2">
+                      <b>{RichText.asText(heading1)}</b>
+                    </span>
+                  </p>
+                  {dayNumberText}
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="d-flex justify-content-center">
           <div>
-            <div className="my-3">
+            <div className="my-4 pt-2">
               <button
                 type="button"
                 className="btn btn-ih-green py-2"
