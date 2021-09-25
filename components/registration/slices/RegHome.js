@@ -418,6 +418,7 @@ const RegHome = ({ slice }) => {
                 Complete the below step for your {bookDetails?.trekName}
               </p>
               <div className="stepper-tabs m-d-none">
+              <p className="tabs-behind-border-bg"></p>
                 <Tabs
                   activeKey={key}
                   onSelect={k => setKey(k)}

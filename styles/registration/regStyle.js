@@ -53,6 +53,17 @@ export const regStyle = css.global`
     text-transform: capitalize;
   }
 
+  .title-h3-fg {
+    line-height: 40px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
   .p-text-1 {
     line-height: 30px;
     text-align: left;
@@ -255,24 +266,30 @@ export const regStyle = css.global`
 
   .nav-tabs {
     border-bottom: 0;
-    // background: #ffc100;
-    // box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.161);
   }
 
   .nav.card-header-tabs.nav-tabs {
     margin-bottom: 20px;
   }
 
+  .stepper-tabs > .nav.nav-tabs {
+    display: flex;
+  }
+
+  .stepper-tabs > .nav.nav-tabs > a.nav-item.nav-link {
+    -moz-box-flex: 1 !important;
+    flex: 1 1 auto !important;
+  }
+
   .stepper-tabs > nav > .nav-item.nav-link.active {
-    background-color: #ffffff !important;
-    border: 0 !important;
+    background: #ffc100 !important;
     border-radius: 0 !important;
     color: #000000;
     border: 2px solid #ffc100 !important;
   }
 
   .nav-item.nav-link.active:nth-child(1)::before {
-    background: #ffc100;
+    background: #ffffff;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
@@ -283,7 +300,7 @@ export const regStyle = css.global`
   }
 
   .nav-item.nav-link.active:nth-child(2)::before {
-    background: #ffc100;
+    background: #ffffff;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
@@ -294,7 +311,7 @@ export const regStyle = css.global`
   }
 
   .nav-item.nav-link.active:nth-child(3)::before {
-    background: #ffc100;
+    background: #ffffff;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
@@ -305,7 +322,7 @@ export const regStyle = css.global`
   }
 
   .nav-item.nav-link.active:nth-child(4)::before {
-    background: #ffc100;
+    background: #ffffff;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
@@ -316,7 +333,7 @@ export const regStyle = css.global`
   }
 
   .nav-item.nav-link.active:nth-child(5)::before {
-    background: #ffc100;
+    background: #ffffff;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
@@ -327,11 +344,12 @@ export const regStyle = css.global`
   }
 
   .stepper-tabs > nav > .nav-item.nav-link {
-    background: #ffc100 !important;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
+    background: #ffffff !important;
+    // box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     border-radius: 0 !important;
+    border: 2px solid rgb(255, 224, 127);
     color: #000000;
-    padding: 12px 5% !important;
+    padding: 12px 2% !important;
     line-height: 18px;
     text-align: left;
     font-family: Franklin Gothic;
@@ -343,8 +361,12 @@ export const regStyle = css.global`
     margin-right: 10px;
   }
 
+  .nav-item.nav-link:nth-last-child(1) {
+    margin-right: 0 !important;
+  }
+
   .nav-item.nav-link:nth-child(1)::before {
-    background: #ffffff;
+    background: #ffc100;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
@@ -355,7 +377,7 @@ export const regStyle = css.global`
   }
 
   .nav-item.nav-link:nth-child(2)::before {
-    background: #ffffff;
+    background: #ffc100;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
@@ -366,7 +388,7 @@ export const regStyle = css.global`
   }
 
   .nav-item.nav-link:nth-child(3)::before {
-    background: #ffffff;
+    background: #ffc100;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
@@ -377,7 +399,7 @@ export const regStyle = css.global`
   }
 
   .nav-item.nav-link:nth-child(4)::before {
-    background: #ffffff;
+    background: #ffc100;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
@@ -388,7 +410,7 @@ export const regStyle = css.global`
   }
 
   .nav-item.nav-link:nth-child(5)::before {
-    background: #ffffff;
+    background: #ffc100;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
@@ -396,6 +418,16 @@ export const regStyle = css.global`
     content: "5";
     padding: 4px 8px;
     margin-right: 15px;
+  }
+
+  .tabs-behind-border-bg {
+    background: black none repeat scroll 0% 0%;
+    position: relative;
+    top: 25px;
+    z-index: -99;
+    margin: 0px;
+    height: 5px;
+    width: 95%;
   }
 
   .login-form-box {
@@ -690,7 +722,6 @@ export const regStyle = css.global`
     padding: 5px 10px;
   }
 
-
   .nav.nav-tabs > .nav-item .nav-link.activeRegTab > div > .active {
     background: #ffffff;
     border: 2px solid #ffc100;
@@ -719,6 +750,85 @@ export const regStyle = css.global`
 
   .nav.nav-tabs.reg-tabs .nav-link.disabled {
     background: transparent !important;
+  }
+
+  .pr-custom-5 {
+    padding-right: 5rem;
+  }
+
+  .list-style-circle {
+    background: rgba(255, 193, 0, 1);
+    border-radius: 50%;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    position: relative;
+    top: -5px;
+  }
+
+  .bg-light-yellow-shade {
+    background: rgba(255, 193, 0, 0.102);
+  }
+
+  .bg-light-gray-shade {
+    background: rgba(242, 242, 242, 1);
+  }
+
+  .text-green {
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: rgba(57, 114, 41, 1);
+    text-transform: capitalize;
+  }
+
+  .text-maroon {
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: rgba(157, 58, 11, 1);
+    text-transform: capitalize;
+  }
+
+  .font-weight-normal {
+    font-weight: normal !important;
+  }
+
+  .reg-acc-tabs.accordion > .card {
+    border-radius: 0;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
+    border: 0;
+    margin-bottom: 10px;
+  }
+
+  .card-header {
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  }
+
+  .card-header > button {
+    background: transparent;
+    border: 0;
+    width: 100%;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .expand_plus {
+    color: #ffc100;
+    font-weight: bold;
   }
 
   @media only screen and (max-width: 660px) {
