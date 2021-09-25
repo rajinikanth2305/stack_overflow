@@ -9,8 +9,9 @@ export const regStyle = css.global`
 
   @font-face {
     font-family: Franklin Gothic Book;
-    src: url("/font/FRANKLINGOTHIC/FRABK.ttf");
-    src: url("/font/FRANKLINGOTHIC/FRABK.ttf") format("truetype");
+    src: url("/font/FRANKLINGOTHIC/Franklin Gothic Book Regular.ttf");
+    src: url("/font/FRANKLINGOTHIC/Franklin Gothic Book Regular.ttf")
+      format("truetype");
   }
 
   @font-face {
@@ -208,7 +209,7 @@ export const regStyle = css.global`
   }
 
   .p-text-small-franklin {
-    line-height: 18px;
+    line-height: 16px;
     text-align: left;
     font-family: Franklin Gothic;
     font-style: normal;
@@ -432,12 +433,12 @@ export const regStyle = css.global`
 
   .login-form-box {
     background: rgba(255, 193, 0, 1);
-    padding: 5px;
+    padding: 2px 5px;
   }
 
   .register-form-box {
     background: rgba(242, 242, 242, 1);
-    padding: 5px;
+    padding: 10px;
   }
 
   .form-control {
@@ -464,6 +465,21 @@ export const regStyle = css.global`
     font-size: 18px;
     color: rgba(255, 255, 255, 1);
     text-transform: capitalize;
+  }
+
+  .btn-yellow-outline {
+    border: 1px solid rgba(255, 193, 0, 1);
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
+    line-height: 20px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    padding: 5px 30px;
   }
 
   .btn-bihtn-yellow-reg {
@@ -539,6 +555,7 @@ export const regStyle = css.global`
   .quick-info-bage-outline {
     border: 2px solid rgba(59, 118, 42, 1);
     border-radius: 5px;
+    box-shadow: 1px 1px 2px rgba(112, 112, 112, 0.502);
     padding: 2px 10px;
     line-height: 24px;
     text-align: left;
@@ -668,12 +685,13 @@ export const regStyle = css.global`
     margin: 70px 0 20px;
   }
 
-  .p-inputtext,
-  .p-inputnumber {
-    // border: 1px solid rgb(161, 156, 156);
+  .p-inputtext {
+    // box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.161);
+    border-radius: 0;
+    border: 1px solid #aeaeae;
     width: 100%;
-    margin: 1px 0;
-    font-family: Lore-Medium;
+    margin: 2px 0;
+    font-family: Franklin Gothic Book;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -681,8 +699,17 @@ export const regStyle = css.global`
     text-transform: capitalize;
   }
 
+  .p-inputtext:enabled:focus {
+    box-shadow: none;
+    border-color: #333333;
+  }
+
+  .p-inputnumber {
+    width: 100%;
+  }
+
   .p-autocomplete {
-    width: 93% !important;
+    width: 100%;
     margin: 1px 0;
     font-family: Lore-Medium;
     font-style: normal;
@@ -693,13 +720,30 @@ export const regStyle = css.global`
   }
 
   .reg-dropdown.form-group > .p-dropdown {
-    border: 1px solid #ced4da;
+    border: 1px solid #aeaeae;
     border-radius: 2px;
     width: 100%;
+    margin: 2px 0;
+    border-radius: 0;
+  }
+
+  .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    padding: 0.1rem 0.5rem;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(112, 112, 112, 1);
+    text-transform: capitalize;
+  }
+
+  .p-dropdown:not(.p-disabled).p-focus {
+    box-shadow: none !important;
+    border-color: #333333;
   }
 
   .reg-dropdown.form-group > .p-dropdown > .p-dropdown-label {
-    font-family: Lore-Medium;
+    font-family: Franklin Gothic Book;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -810,7 +854,7 @@ export const regStyle = css.global`
   }
 
   .text-warning-clr {
-    color: rgba(255,193,0,1);
+    color: rgba(255, 193, 0, 1);
   }
 
   .font-weight-normal {
@@ -884,6 +928,10 @@ export const regStyle = css.global`
 
   .expand_plus_arrow {
     color: #ffc100;
+  }
+
+  .font-italic {
+    font-style: italic !important;
   }
 
   @media only screen and (max-width: 660px) {

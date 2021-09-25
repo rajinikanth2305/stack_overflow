@@ -108,7 +108,6 @@ const AddTrekMates = forwardRef((props, ref) => {
   };
 
   const onSubmit = async data => {
-
     const existUser = users?.find(x => x.email === data.email);
 
     if (existUser !== undefined) {
@@ -152,7 +151,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       dob: data.dob,
       vouchers: [],
       optedVoucherId: 0,
-      trekFeeForTheUser:0
+      trekFeeForTheUser: 0
     });
 
     await dispatch(addOrUpdateState(sdata));
@@ -182,7 +181,6 @@ const AddTrekMates = forwardRef((props, ref) => {
   };
 
   const saveDraft = async sdata => {
-    
     await saveDraftBooking(sdata)
       .then(data => {
         return data;
@@ -261,7 +259,6 @@ const AddTrekMates = forwardRef((props, ref) => {
   };
 
   const addFindUsers = async udata => {
-   
     setUsers([
       ...users,
       {
@@ -288,13 +285,15 @@ const AddTrekMates = forwardRef((props, ref) => {
       gender: "",
       vouchers: vouchers,
       optedVoucherId: 0,
-      trekFeeForTheUser:0
+      trekFeeForTheUser: 0
     });
 
-    const responseData=await saveDraft(stdata);
+    const responseData = await saveDraft(stdata);
     console.log(responseData);
 
-    const participantData=responseData?.trekMates.find(x=>x.userId===udata.id);
+    const participantData = responseData?.trekMates.find(
+      x => x.userId === udata.id
+    );
 
     const sdata = JSON.parse(JSON.stringify(stateData.data));
     sdata.trekUsers.push({
@@ -302,7 +301,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       lastName: udata.lastName,
       email: udata.email,
       id: udata.id,
-      participantsId:participantData?.id,
+      participantsId: participantData?.id,
       primaryUser: false,
       trekFee: 0,
       voucherId: "",
@@ -313,14 +312,14 @@ const AddTrekMates = forwardRef((props, ref) => {
       gender: "",
       vouchers: vouchers,
       optedVoucherId: 0,
-      trekFeeForTheUser:0
+      trekFeeForTheUser: 0
     });
 
     vouchers = await getUsersVoucherByBookingId(stdata.bookingId);
     if (vouchers.length > 0) {
       vouchers = transFormVoucherPayload(vouchers);
     }
-    sdata.voucherDetails=vouchers;
+    sdata.voucherDetails = vouchers;
     await dispatch(addOrUpdateState(sdata));
     add();
     setSelectedSlopeUserAutoValue("");
@@ -369,7 +368,7 @@ const AddTrekMates = forwardRef((props, ref) => {
     // console.log(fieldRef.current.value);
 
     const userData = selectedSlopeUserAutoValue; //document.getElementById("email").value;
-    console.log('hello'+userData);
+    console.log("hello" + userData);
 
     if (userData === undefined || userData === "" || userData === null) {
       toast.current.show({
@@ -392,40 +391,37 @@ const AddTrekMates = forwardRef((props, ref) => {
       return;
     }
 
-    if(userData.email===undefined) {
-    getUserByAutoSearch("CUSTOMER", userData.toLowerCase()).then(data => {
-      if(data.length>0) {
+    if (userData.email === undefined) {
+      getUserByAutoSearch("CUSTOMER", userData.toLowerCase()).then(data => {
+        if (data.length > 0) {
+          confirmPopup({
+            //target: e.currentTarget,
+            message: `Are you sure you want to add trek mate ${data[0].email} ?'`,
+            icon: "pi pi-exclamation-triangle",
+            accept: () => {
+              addFindUsers(data[0]);
+            },
+            reject: e => {}
+          });
+        } else {
+          toast.current.show({
+            severity: "error",
+            summary: `'Find Trekker ${userData.toLowerCase()} is not registered in  India hikes, Create new account'`,
+            detail: "Find Trekker"
+          });
+        }
+      });
+    } else {
       confirmPopup({
-        //target: e.currentTarget,
-        message: `Are you sure you want to add trek mate ${data[0].email} ?'`,
+        target: e.currentTarget,
+        message: `Are you sure you want to add trek mate ${userData.email} ?'`,
         icon: "pi pi-exclamation-triangle",
         accept: () => {
-          addFindUsers(data[0]);
+          addFindUsers(userData);
         },
         reject: e => {}
       });
     }
-    else {
-      toast.current.show({
-        severity: "error",
-        summary: `'Find Trekker ${userData.toLowerCase()} is not registered in  India hikes, Create new account'`,
-        detail: "Find Trekker"
-      });
-    }
-   
-    });
-  }
-  else {
-    confirmPopup({
-      target: e.currentTarget,
-      message: `Are you sure you want to add trek mate ${userData.email} ?'`,
-      icon: "pi pi-exclamation-triangle",
-      accept: () => {
-        addFindUsers(userData);
-      },
-      reject: e => {}
-    });
-  }
   };
 
   const add = () => {
@@ -459,7 +455,8 @@ const AddTrekMates = forwardRef((props, ref) => {
 
   const genderOptions = [
     { name: "Male", code: "Male" },
-    { name: "FeMale", code: "Female" }
+    { name: "FeMale", code: "Female" },
+    { name: "Other", code: "Other" }
   ];
   return (
     <>
@@ -472,19 +469,21 @@ const AddTrekMates = forwardRef((props, ref) => {
               <div className="p-3">
                 <p className="p-text-1 text-center">
                   <span className="border-bottom-custom-1 pb-2">
-                    <b>add trekmates</b>
+                    <b>add Participants</b>
                   </span>
                 </p>
-                <p className="p-text-4 text-center mt-4">
-                  {" "}
-                  You are adding trekmates for the{" "}
-                  <b>{bookingDate?.trekName}</b> batch of {}
-                  <b>
-                    {moment(bookingDate?.startDate).format("MM/DD/YYYY")} -{" "}
-                    {moment(bookingDate?.endDate).format("MM/DD/YYYY")}
-                  </b>
+                <p className="p-text-4 text-center mb-0">
+                  You are adding participants for the {bookingDate?.trekName}
+                  <span>
+                    on {moment(bookingDate?.startDate).format("Do")} to{" "}
+                    {moment(bookingDate?.endDate).format("Do MMMM")}
+                  </span>
                 </p>
-                <div className="d-flex align-items-center flex-wrap justify-content-center mb-2">
+                <p className="p-text-small font-italic text-center">
+                  If you are registering only for yourself, skip this step and
+                  proceed to next step of registration
+                </p>
+                <div className="d-flex align-items-center flex-wrap justify-content-center mb-2 mt-4 pt-1">
                   {indexes.map(index => {
                     const data = users[index];
                     return (
@@ -505,15 +504,15 @@ const AddTrekMates = forwardRef((props, ref) => {
               <div className="col-lg-5 col-md-12">
                 <div className="card border-custom-yellow">
                   <div className="px-4 py-3">
-                    <p className="p-text-1-franklin m-0">INDIAHIKES Trekker</p>
-                    <p className="p-text-small-franklin">
+                    <p className="p-text-1-franklin mb-1">INDIAHIKES Trekker</p>
+                    <p className="p-text-small-franklin font-italic">
                       Add your trekmates who already have an Indiahikes account
                       here.
                     </p>
                     <Form>
                       <div className="login-form-box">
                         <FormGroup>
-                          <div style={{ width: "300px" }}>
+                          <div>
                             <Controller
                               name="slopeManagerIds"
                               control={control}
@@ -525,7 +524,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                                     setSelectedSlopeUserAutoValue(e.value);
                                     onChange(e.value);
                                   }}
-                                  placeholder="type starting 3 chars to search"
+                                  placeholder="Email Id"
                                   minLength={3}
                                   delay={300}
                                   suggestions={autoFilteredSlopeUserValue}
@@ -538,13 +537,13 @@ const AddTrekMates = forwardRef((props, ref) => {
                           </div>
                         </FormGroup>
                       </div>
-                      <div className="mt-3">
+                      <div className="mt-4 pt-1">
                         <button
                           type="button"
-                          className="btn btn-ih-green"
+                          className="btn btn-yellow-outline"
                           onClick={findUser}
                         >
-                          Add Trekker
+                          Find Trekker
                         </button>
                       </div>
                     </Form>
@@ -555,7 +554,7 @@ const AddTrekMates = forwardRef((props, ref) => {
               <div className="col-lg-5 col-md-12">
                 <div className="card border-custom-gray">
                   <div className="px-4 py-3">
-                    <p className="p-text-1-franklin">
+                    <p className="p-text-1-franklin text-capitalize">
                       trekmate New to indiahikes? register them here
                     </p>
                     <form
@@ -696,7 +695,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                             control={control}
                             render={({ onChange, value }) => (
                               <InputNumber
-                                placeholder="Weight"
+                                placeholder="Weight (In Kg)"
                                 useGrouping={false}
                                 mode="decimal"
                                 minFractionDigits={2}
@@ -717,7 +716,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                             control={control}
                             render={({ onChange, value }) => (
                               <InputNumber
-                                placeholder="height"
+                                placeholder="height (In Ft)"
                                 value={value}
                                 mode="decimal"
                                 useGrouping={false}
@@ -736,7 +735,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                       <div className="mt-3">
                         <button
                           type="submit"
-                          className="btn btn-bihtn-yellow-reg"
+                          className="btn btn-yellow-outline"
                         >
                           create account
                         </button>
