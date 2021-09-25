@@ -151,9 +151,9 @@ const SelectBatch = forwardRef((props, ref) => {
 
   return (
     <>
-      <div className="my-5">
+      <div className="my-5 m-mt-0 ">
         <div className="row">
-          <div className="col-lg-6 col-md-12" style={{ padding: "0 9rem" }}>
+          <div className="col-lg-6 col-md-12 pr-custom-9">
             <div className="row">
               <div className="col-12 col-md-12">
                 <div className="row mpt-0">
@@ -200,7 +200,7 @@ const SelectBatch = forwardRef((props, ref) => {
                                         <div>
                                           <h2 className="m-0 expand_plus_arrow">
                                             <i
-                                              class="fa fa-angle-down"
+                                              className="fa fa-angle-down"
                                               aria-hidden="true"
                                             ></i>
                                           </h2>
@@ -212,51 +212,51 @@ const SelectBatch = forwardRef((props, ref) => {
                                 <Accordion.Collapse eventKey="0">
                                   <Card.Body>
                                     <div className="row">
-                                      <div className="col-lg-7 col-md-12">
+                                      <div className="col-lg-7 col-md-12 col-7">
                                         <p className="p-text-3-1-fg mb-2 pb-1">
                                           16th to 21st July
                                         </p>
                                       </div>
-                                      <div className="col-lg-3 col-md-12">
+                                      <div className="col-lg-3 col-md-12 col-3">
                                         <p className="p-text-3-1-fg mb-2 pb-1 text-green-clr">
                                           Available
                                         </p>
                                       </div>
-                                      <div className="col-lg-2 col-md-12">
+                                      <div className="col-lg-2 col-md-12 col-2">
                                         <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
                                           Select
                                         </p>
                                       </div>
                                     </div>
                                     <div className="row">
-                                      <div className="col-lg-7 col-md-12">
+                                      <div className="col-lg-7 col-md-12 col-7">
                                         <p className="p-text-3-1-fg mb-2 pb-1">
                                           16th to 21st July
                                         </p>
                                       </div>
-                                      <div className="col-lg-3 col-md-12">
+                                      <div className="col-lg-3 col-md-12 col-3">
                                         <p className="p-text-3-1-fg mb-2 pb-1 text-maroon-clr">
                                           Full
                                         </p>
                                       </div>
-                                      <div className="col-lg-2 col-md-12">
+                                      <div className="col-lg-2 col-md-12 col-2">
                                         <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
                                           Select
                                         </p>
                                       </div>
                                     </div>
                                     <div className="row">
-                                      <div className="col-lg-7 col-md-12">
+                                      <div className="col-lg-7 col-md-12 col-7">
                                         <p className="p-text-3-1-fg mb-2 pb-1">
                                           16th to 21st July
                                         </p>
                                       </div>
-                                      <div className="col-lg-3 col-md-12">
+                                      <div className="col-lg-3 col-md-12 col-3">
                                         <p className="p-text-3-1-fg mb-2 pb-1 text-warning-clr">
                                           Waitlist
                                         </p>
                                       </div>
-                                      <div className="col-lg-2 col-md-12">
+                                      <div className="col-lg-2 col-md-12 col-2">
                                         <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
                                           Select
                                         </p>
@@ -276,7 +276,7 @@ const SelectBatch = forwardRef((props, ref) => {
                                         <div>
                                           <h2 className="m-0 expand_plus_arrow">
                                             <i
-                                              class="fa fa-angle-down"
+                                              className="fa fa-angle-down"
                                               aria-hidden="true"
                                             ></i>
                                           </h2>
@@ -304,7 +304,7 @@ const SelectBatch = forwardRef((props, ref) => {
                                         <div>
                                           <h2 className="m-0 expand_plus_arrow">
                                             <i
-                                              class="fa fa-angle-down"
+                                              className="fa fa-angle-down"
                                               aria-hidden="true"
                                             ></i>
                                           </h2>

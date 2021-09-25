@@ -44,7 +44,8 @@ import {
   Col
 } from "reactstrap";
 import classnames from "classnames";
-//import { data } from "jquery";
+// import Nav from "react-bootstrap/Nav";
+// import TabContainer from "react-bootstrap/TabContainer";
 
 const RegHome = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -59,6 +60,7 @@ const RegHome = ({ slice }) => {
   const childRef = useRef();
   const trekMateChildRef = useRef();
   const paymentChildRef = useRef();
+  const paymentChildMobRef = useRef();
   const [batchBookingData, setBatchBookingData] = useState(undefined);
 
   const router = useRouter();
@@ -178,10 +180,10 @@ const RegHome = ({ slice }) => {
     console.log(userId);
 
     if (callMode === "Button_Click") {
-      if(disableOnAcceptTab==true) { /// it means terms is already accepted
+      if (disableOnAcceptTab == true) {
+        /// it means terms is already accepted
         setKey("selectbatch");
-      }
-      else {
+      } else {
         setTermAccepted(value);
       }
     }
@@ -271,8 +273,8 @@ const RegHome = ({ slice }) => {
 
   const setStateStoreData = async (data, userId) => {
     //try{
-    console.log((data));
-   // console.log(userId);
+    console.log(data);
+    // console.log(userId);
 
     let vouchers = [];
     vouchers = await getUsersVoucherByBookingId(data.id);
@@ -282,9 +284,13 @@ const RegHome = ({ slice }) => {
 
     //console.log(vouchers);
 
-    const ownnerInfo=data.participants.find(user=>user.userId===data.ownerUserId);
-    const isOwnerActing=(ownnerInfo.userDetailsForDisplay.email.toLowerCase()===userId.toLowerCase());
-   // console.log(isOwnerActing);
+    const ownnerInfo = data.participants.find(
+      user => user.userId === data.ownerUserId
+    );
+    const isOwnerActing =
+      ownnerInfo.userDetailsForDisplay.email.toLowerCase() ===
+      userId.toLowerCase();
+    // console.log(isOwnerActing);
 
     const bookingInformaiton = {
       trekId: data.trekId,
@@ -296,10 +302,12 @@ const RegHome = ({ slice }) => {
       primaryUserEmail: userId,
       voucherDetails: vouchers,
       trekUsers: [],
-      isOwnerActing:isOwnerActing
+      isOwnerActing: isOwnerActing
     };
 
-    const filteredUsers=data.participants.filter(x=>x.bookingParticipantState!=='CANCELLED');
+    const filteredUsers = data.participants.filter(
+      x => x.bookingParticipantState !== "CANCELLED"
+    );
 
     for (const userData of filteredUsers) {
       const dt = await buildParticipants(userData);
@@ -315,8 +323,7 @@ const RegHome = ({ slice }) => {
     //}
   };
 
-  const buildParticipants = async (userData) => {
-
+  const buildParticipants = async userData => {
     const participants = {
       firstName: userData.userDetailsForDisplay?.firstName,
       lastName: userData.userDetailsForDisplay?.lastName,
@@ -361,6 +368,7 @@ const RegHome = ({ slice }) => {
     childRef.current.changeState();
     trekMateChildRef.current.changeState();
     paymentChildRef.current.changeState();
+    paymentChildMobRef.current.changeState();
   };
 
   const transFormVoucherPayload = vouchers => {
@@ -394,10 +402,12 @@ const RegHome = ({ slice }) => {
   const setBatchDateChange = () => {
     trekMateChildRef.current.changeState();
     paymentChildRef.current.changeState();
+    paymentChildMobRef.current.changeState();
   };
 
   const setTrekUsersChange = () => {
     paymentChildRef.current.changeState();
+    paymentChildMobRef.current.changeState();
   };
 
   let selectBatchProps = {
@@ -418,17 +428,13 @@ const RegHome = ({ slice }) => {
                 Complete the below step for your {bookDetails?.trekName}
               </p>
               <div className="stepper-tabs m-d-none">
-              <p className="tabs-behind-border-bg"></p>
+                <p className="tabs-behind-border-bg"></p>
                 <Tabs
                   activeKey={key}
                   onSelect={k => setKey(k)}
                   unmountOnExit={false}
-                  
                 >
-                  <Tab 
-                  eventKey="accepet" 
-                  title="Accept T&C" 
-                  >
+                  <Tab eventKey="accepet" title="Accept T&C">
                     <AcceptTC
                       data={eligibilityCriteria}
                       props={bookDetails}
@@ -463,8 +469,29 @@ const RegHome = ({ slice }) => {
                 </Tabs>
               </div>
 
+              {/* <div>
+                <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+                  <Nav>
+                    <Nav.Item>
+                      <Nav.Link eventKey="first">Tab 1</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="second">Tab 2</Nav.Link>
+                    </Nav.Item>
+                  </Nav>
+                  <Tab.Content>
+                    <Tab.Pane eventKey="first">
+                      Test
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="second">
+                      Test
+                    </Tab.Pane>
+                  </Tab.Content>
+                </Tab.Container>
+              </div> */}
+
               {/* Mobile first desugn */}
-              {/* <div className="m-d-block">
+              <div className="m-d-block">
                 <Nav tabs className="reg-tabs">
                   <NavItem>
                     <NavLink
@@ -565,10 +592,10 @@ const RegHome = ({ slice }) => {
                     />
                   </TabPane>
                   <TabPane tabId="4">
-                    <MakePayment ref={paymentChildRef} />
+                    <MakePayment ref={paymentChildMobRef} />
                   </TabPane>
                 </TabContent>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>

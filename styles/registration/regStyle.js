@@ -949,6 +949,10 @@ export const regStyle = css.global`
     font-style: italic !important;
   }
 
+  .pr-custom-9 {
+    padding: 0 9rem;
+  }
+
   @media only screen and (max-width: 660px) {
     .m-d-none {
       display: none;
@@ -1070,6 +1074,14 @@ export const regStyle = css.global`
       font-size: 14px;
       color: rgba(0, 0, 0, 1);
       text-transform: capitalize;
+    }
+
+    .pr-custom-5 {
+      padding-right: 0;
+    }
+
+    .pr-custom-9 {
+      padding: 0 15px;
     }
   }
 

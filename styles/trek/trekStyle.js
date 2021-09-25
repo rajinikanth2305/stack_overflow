@@ -1173,7 +1173,7 @@ export const trekStyle = css.global`
     left: 0;
     right: 0;
     bottom: 0;
-    background: #333333;
+    background: rgb(59, 118, 42);
     border-radius: 5px;
     -webkit-transform: scaleX(0);
     transform: scaleX(0);
