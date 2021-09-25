@@ -122,6 +122,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     }
 
     if (batchDates !== undefined && batchDates[date.day] !== undefined) {
+      console.log(batchDates[date.day]);
       const sDate = batchDates[date.day].startDate;
       const eEdate = batchDates[date.day].endDate;
       return (

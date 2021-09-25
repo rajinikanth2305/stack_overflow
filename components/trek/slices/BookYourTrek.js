@@ -136,11 +136,8 @@ const BookYourTrek = ({ slice }) => {
                           </p>
                           <p className="p-text-2">
                             <b>
-                              {moment(bookingDate.startDate).format(
-                                "MM/DD/YYYY"
-                              )}{" "}
-                              -{" "}
-                              {moment(bookingDate.endDate).format("MM/DD/YYYY")}
+                              {moment(bookingDate.startDate).format("Do")} to{" "}
+                              {moment(bookingDate.endDate).format("Do MMMM")}
                             </b>
                           </p>
                         </div>
@@ -163,10 +160,10 @@ const BookYourTrek = ({ slice }) => {
                           <p className="p-text-2">
                             <b>
                               {moment(bookingDate.startDate).format(
-                                "MM/DD/YYYY"
+                                "Do"
                               )}{" "}
-                              -{" "}
-                              {moment(bookingDate.endDate).format("MM/DD/YYYY")}
+                              to{" "}
+                              {moment(bookingDate.endDate).format("Do MMMM")}
                             </b>
                           </p>
                         </div>

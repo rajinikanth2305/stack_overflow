@@ -61,7 +61,7 @@ const CampSite = ({ slice }) => {
           <div alt="imgs" className="campsites_images">
             <Image src={data.campsites_images.url} layout="fill" />
           </div>
-          <p className="p-text-small">{data.image_desc[0].text}</p>
+          <p className="p-text-small font-italic">{data.image_desc[0].text}</p>
         </div>
       </>
     );

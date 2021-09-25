@@ -86,7 +86,7 @@ const QuickItineraryComponent = ({ slice }) => {
                     objectPosition="bottom"
                   />
                 </div>
-                <p className="p-text-small">{RichText.asText(imgDesc)}</p>
+                <p className="p-text-small font-italic">{RichText.asText(imgDesc)}</p>
               </div>
             </div>
           </div>
@@ -119,7 +119,7 @@ const QuickItineraryComponent = ({ slice }) => {
                       objectPosition="bottom"
                     />
                   </div>
-                  <p className="p-text-small">{RichText.asText(imgDesc)}</p>
+                  <p className="p-text-small font-italic">{RichText.asText(imgDesc)}</p>
                 </div>
 
                 <div className="pro_tips_box">

@@ -69,7 +69,7 @@ const TrekExpertSpeak = ({ slice }) => {
             {data.what_i_like_image_desc.map((img_desc, index) => {
               return (
                 <>
-                  <p key={index} className="trek_summary_desc py-3 mpb-0">
+                  <p key={index} className="trek_summary_desc font-italic py-3 mpb-0">
                     {img_desc.text}
                   </p>
                 </>
@@ -131,7 +131,7 @@ const TrekExpertSpeak = ({ slice }) => {
                   </div>
                   <div className="col-8">
                     <div>
-                      <p className="author-text">
+                      <p className="author-text font-italic">
                         {RichText.asText(aboutAuthor)}
                       </p>
                     </div>
@@ -173,7 +173,7 @@ const TrekExpertSpeak = ({ slice }) => {
                           </div>
                           <div className="col-8">
                             <div>
-                              <p className="author-text">
+                              <p className="author-text font-italic">
                                 {RichText.asText(aboutAuthor)}
                               </p>
                             </div>
