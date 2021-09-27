@@ -52,7 +52,8 @@ const Trek = ({ trekData }) => {
 export async function getStaticProps({ params, preview = null, previewData = {} }) {
   const { ref } = previewData
   const trekData  = await Client().getByUID("trek", params.uid, ref ? { ref } : null) || {}
-  //console.log(JSON.stringify(trekData));
+
+  // console.log(JSON.stringify(trekData));
   return {
     props: {
       preview,

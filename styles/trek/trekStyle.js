@@ -324,6 +324,7 @@ export const trekStyle = css.global`
 
   .btn-ih-green-trek-fee > a {
     color: #ffffff;
+    text-decoration: none;
   }
 
   .rating_text {
@@ -1196,6 +1197,26 @@ export const trekStyle = css.global`
   .hvr-sweep-to-right:active:before {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
+  }
+
+  .inex_modal > div > .modal-content {
+    background: #ffffff !important;
+  }
+
+  .inex_modal > div > .modal-content > .modal-body {
+    padding: 0 15px;
+  }
+
+  .inex_modal > div > .modal-content > .modal-header > button {
+    color: #000000;
+  }
+
+  .mb-0-p > p {
+    margin: 0;
+  }
+
+  a {
+    text-decoration: underline;
   }
 
   @media only screen and (max-width: 660px) {
