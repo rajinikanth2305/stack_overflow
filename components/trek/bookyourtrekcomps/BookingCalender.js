@@ -5,7 +5,7 @@ import { Calendar } from "primereact/calendar";
 import { Dropdown } from "primereact/dropdown";
 import moment from "moment";
 import { useRouter } from "next/router";
-
+import { Toast } from "primereact/toast";
 import "primeicons/primeicons.css";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.css";
@@ -26,6 +26,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
   const { trekName } = router.pathname;
   const [batchId, setBatchId] = useState();
   const [onceSelectClicked, setOnceSelectClicked] = useState();
+  const toast = useRef(null);
 
   function getTrekNameFromUrlQueryPath() {
     return paramTrekName;
@@ -65,9 +66,23 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
       date.month + 1,
       date.year
     );
-    setBatchData(data);
-    prepareDateDisableList(date, data);
+
+    if(data.length>0){
+    var withoutDuplicates = removeDuplicatesBy(x => x.startDate, data);
+    //console.log(withoutDuplicates); 
+    setBatchData(withoutDuplicates);
+    prepareDateDisableList(date, withoutDuplicates);
+    }
   };
+
+  function removeDuplicatesBy(keyFn, array) {
+    var mySet = new Set();
+    return array.filter(function(x) {
+        var key = keyFn(x), isNew = !mySet.has(key);
+        if (isNew) mySet.add(key);
+        return isNew;
+    });
+}
 
   const prepareDateDisableList = (date, data) => {
     const batchDateNumInMonth = [];
@@ -81,9 +96,11 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
         dict[startDt] = x;
       });
     }
+
     setBatchDates(dict);
-    // console.log(JSON.stringify(dict));
-    //console.log(JSON.stringify(batchDateNumInMonth));
+   // console.log(JSON.stringify(dict));
+   // console.log(JSON.stringify(batchDateNumInMonth));
+
     for (var i = 1; i < 32; i++) {
       var val = batchDateNumInMonth.find(x => x === i);
       //console.log(val);
@@ -101,12 +118,13 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
         );
       }
     }
-    //console.log(JSON.stringify(invalidDatesList));
+   // console.log(JSON.stringify(invalidDatesList));
     // let invalidDates = [today];
     setInvalidDates(invalidDatesList);
   };
 
   const dateTemplate = date => {
+    // console.log(date.day);
     if (date.day === 1) {
       const dt = date.day + "-" + date.month + "-" + date.year;
       //console.log(date);
@@ -120,11 +138,13 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
         setSelectedMonthYear(dt);
       }
     }
+    const key=String(date.day).padStart(2, "0");
+    //console.log(key);
 
-    if (batchDates !== undefined && batchDates[date.day] !== undefined) {
-      console.log(batchDates[date.day]);
-      const sDate = batchDates[date.day].startDate;
-      const eEdate = batchDates[date.day].endDate;
+    if (batchDates !== undefined && batchDates[key] !== undefined) {
+     // console.log(batchDates[key]);
+      const sDate = batchDates[key].startDate;
+      const eEdate = batchDates[key].endDate;
       return (
         <div className="d-flex align-items-center">
           <div>
@@ -187,19 +207,33 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
   };
 
   const onMonthChange = e => {
-    console.log(e);
+    //console.log(e);
   };
 
   const onSelect = e => {
-    if (batchDates !== undefined && batchDates[e.getDate()] !== undefined) {
+   // console.log(e);
+    ///console.log(e.getDate());
+    const key= String(e.getDate()).padStart(2, "0");
+
+   /* if(e.status==='ÇLOSED'){
+      toast.current.show({
+        severity: "error",
+        summary: "Sorry! Selected  Trek Booking date - seats are filled, Please try other available booking slots",
+        detail: "No Seats available"
+      });
+      return;
+    }*/
+
+    if (batchDates !== undefined && batchDates[key] !== undefined) {
       setOnceSelectClicked(true);
-      onBookingSelect(batchDates[e.getDate()]);
+      onBookingSelect(batchDates[key]);
     }
   };
 
   return (
     <>
       <div>
+      <Toast ref={toast} />
         <div>
           <div>
             <div>

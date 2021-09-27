@@ -516,7 +516,7 @@ const WelcomeProfile = () => {
                                           </div>
                                         )}
 
-                                        {bookings !== undefined && (
+                                        {upComingTrek?.bookingState !== 'IN_ACTIVE' && (
                                           <>
                                             <button className="btn table-btn-green mx-3">
                                               <i
@@ -746,7 +746,7 @@ const WelcomeProfile = () => {
                                               </p>
                                             </div>
                                             <div>
-                                              {trekData.bookingState ===
+                                              {trekData?.bookingState ===
                                                 "PAYMENT" && (
                                                 <>
                                                   <button

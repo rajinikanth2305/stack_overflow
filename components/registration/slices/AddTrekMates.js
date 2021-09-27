@@ -58,6 +58,8 @@ const AddTrekMates = forwardRef((props, ref) => {
     setSelectedSlopeUserAutoValue
   ] = useState();
 
+  const [findUserData, setFindUserData] = useState(undefined);
+
   const validationSchema = useMemo(
     () =>
       Yup.object({
@@ -212,10 +214,10 @@ const AddTrekMates = forwardRef((props, ref) => {
   const usersData = [];
 
   React.useEffect(() => {
-    setUsers(usersData);
-    const arr = Array.from(new Array(usersData.length), (x, i) => i);
-    setIndexes(arr);
-    setCounter(arr.length);
+   // setUsers(usersData);
+  //const arr = Array.from(new Array(usersData.length), (x, i) => i);
+   // setIndexes(arr);
+   // setCounter(arr.length);
   }, []);
 
   useImperativeHandle(ref, () => ({
@@ -245,7 +247,7 @@ const AddTrekMates = forwardRef((props, ref) => {
           });
 
         setUsers(tempUsers);
-        // console.log(tempUsers);
+        console.log(tempUsers);
         const arr = Array.from(new Array(tempUsers.length), (x, i) => i);
         setIndexes(arr);
         setCounter(arr.length);
@@ -257,8 +259,14 @@ const AddTrekMates = forwardRef((props, ref) => {
     props.onNextTabEvent("makepayment");
     window.scrollTo(0, 0);
   };
+  
+  const addSearchUser = () => {
+    //console.log('called');
+    addFindUsers(findUserData);
+  }
 
-  const addFindUsers = async udata => {
+  const addFindUsers = async (udata) => {
+    console.log(users);
     setUsers([
       ...users,
       {
@@ -269,6 +277,7 @@ const AddTrekMates = forwardRef((props, ref) => {
     ]);
 
     let vouchers = []; //await getVoucher(udata.email); Vouchers os only for main owner user
+    console.log(JSON.stringify(stateData.data));
     const stdata = JSON.parse(JSON.stringify(stateData.data));
     stdata.trekUsers.push({
       firstName: udata.firstName,
@@ -322,7 +331,8 @@ const AddTrekMates = forwardRef((props, ref) => {
     sdata.voucherDetails = vouchers;
     await dispatch(addOrUpdateState(sdata));
     add();
-    setSelectedSlopeUserAutoValue("");
+    setFindUserData(undefined);
+    document.getElementById("email").value='';
   };
 
   const transFormVoucherPayload = vouchers => {
@@ -364,28 +374,30 @@ const AddTrekMates = forwardRef((props, ref) => {
     return data1;
   };
 
-  const findUser = e => {
+  const findUser = ( e ) => {
     // console.log(fieldRef.current.value);
 
-    const userData = selectedSlopeUserAutoValue; //document.getElementById("email").value;
+    const userData = document.getElementById("email").value;
     console.log("hello" + userData);
 
     if (userData === undefined || userData === "" || userData === null) {
       toast.current.show({
         severity: "error",
-        summary: `'Find Trekker email should not be empty or entered text not in auto suggestion list'`,
+        summary: `'Find Trekker email should not be empty'`,
         detail: "Find Trekker"
       });
       return;
     }
-
-    const existUser = stateData.data?.trekUsers?.find(
-      x => x.email === userData.email
+console.log(users);
+    const existUser = users?.find(x => x.email.toLowerCase() === userData.toLowerCase()
     );
+
+    console.log(existUser);
+
     if (existUser !== undefined) {
       toast.current.show({
         severity: "error",
-        summary: `'Find Trekker ${userData?.email} is already added'`,
+        summary: `'Find Trekker ${userData} is already added'`,
         detail: "Find Trekker"
       });
       return;
@@ -394,7 +406,9 @@ const AddTrekMates = forwardRef((props, ref) => {
     if (userData.email === undefined) {
       getUserByAutoSearch("CUSTOMER", userData.toLowerCase()).then(data => {
         if (data.length > 0) {
-          confirmPopup({
+          console.log(data[0]);
+         setFindUserData(data[0]);
+          /*confirmPopup({
             //target: e.currentTarget,
             message: `Are you sure you want to add trek mate ${data[0].email} ?'`,
             icon: "pi pi-exclamation-triangle",
@@ -402,7 +416,7 @@ const AddTrekMates = forwardRef((props, ref) => {
               addFindUsers(data[0]);
             },
             reject: e => {}
-          });
+          });*/
         } else {
           toast.current.show({
             severity: "error",
@@ -410,16 +424,6 @@ const AddTrekMates = forwardRef((props, ref) => {
             detail: "Find Trekker"
           });
         }
-      });
-    } else {
-      confirmPopup({
-        target: e.currentTarget,
-        message: `Are you sure you want to add trek mate ${userData.email} ?'`,
-        icon: "pi pi-exclamation-triangle",
-        accept: () => {
-          addFindUsers(userData);
-        },
-        reject: e => {}
       });
     }
   };
@@ -483,19 +487,22 @@ const AddTrekMates = forwardRef((props, ref) => {
                   If you are registering only for yourself, skip this step and
                   proceed to next step of registration
                 </p>
+                
+             
                 <div className="d-flex align-items-center flex-wrap justify-content-center mb-2 mt-4 pt-1">
-                  {indexes.map(index => {
+                  {  indexes.map(index => {
                     const data = users[index];
+                    console.log(data);
                     return (
                       <div>
                         <p className="quick-info-bage-outline mb-2">
-                          {data.firstName}
+                          {data?.firstName}-{data?.lastName}
                           <a href="#" onClick={() => remove(index)}>
                             <span className="px-2">x</span>
                           </a>
                         </p>
                       </div>
-                    );
+                    )
                   })}
                 </div>
               </div>
@@ -509,31 +516,12 @@ const AddTrekMates = forwardRef((props, ref) => {
                       Add your trekmates who already have an Indiahikes account
                       here.
                     </p>
-                    <Form>
+                   
                       <div className="login-form-box">
                         <FormGroup>
                           <div>
-                            <Controller
-                              name="slopeManagerIds"
-                              control={control}
-                              render={({ onChange, value }) => (
-                                <AutoComplete
-                                  placeholder="Search"
-                                  value={selectedSlopeUserAutoValue}
-                                  onChange={e => {
-                                    setSelectedSlopeUserAutoValue(e.value);
-                                    onChange(e.value);
-                                  }}
-                                  placeholder="Email Id"
-                                  minLength={3}
-                                  delay={300}
-                                  suggestions={autoFilteredSlopeUserValue}
-                                  forceSelection={false}
-                                  completeMethod={autoSearchUsers}
-                                  field="display_name"
-                                ></AutoComplete>
-                              )}
-                            />
+                            
+                                <InputText   id="email" name="email"/>
                           </div>
                         </FormGroup>
                       </div>
@@ -541,12 +529,30 @@ const AddTrekMates = forwardRef((props, ref) => {
                         <button
                           type="button"
                           className="btn btn-yellow-outline"
-                          onClick={findUser}
+                          onClick={(e) => {
+                            findUser(e);
+                          }}
                         >
                           Find Trekker
                         </button>
+
+                        {findUserData && (
+                        <p>
+                            FirstName : {findUserData?.firstName}
+                            LastName : {findUserData?.lastName}
+
+                            <button
+                          type="button"
+                          className="btn btn-yellow-outline"
+                          onClick={addSearchUser}
+                        >
+                          Add Trekker
+                        </button>
+                        </p>
+
+                        )}
                       </div>
-                    </Form>
+                
                   </div>
                 </div>
               </div>

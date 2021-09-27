@@ -15,6 +15,7 @@ import Prismic from "@prismicio/client";
 import BookingCalender from "../../trek/bookyourtrekcomps/BookingCalender";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
+
 import {
   addOrUpdateState,
   selectStateData
@@ -26,7 +27,8 @@ import Card from "react-bootstrap/Card";
 import {
   findUserByEmail,
   saveDraftBooking,
-  getUserByAutoSearch
+  getUserByAutoSearch,
+  getTrekOpenBatches
 } from "../../../services/queries";
 
 const localizer = momentLocalizer(moment);
@@ -40,7 +42,13 @@ const SelectBatch = forwardRef((props, ref) => {
   const router = useRouter();
   const [viewDate, setViewDate] = useState(undefined);
   const [renderControl, setRenderControl] = useState(false);
+  const [trekOpenBatches, setTrekOpenBatches] = useState([]);
+  
+  const [indexes, setIndexes] = React.useState([]);
+  const [counter, setCounter] = React.useState(0);
 
+  const [defaultActiveKey, setDefaultActiveKey] = useState([]);
+  
   useEffect(() => {
     findquickItinerary();
   }, []);
@@ -100,19 +108,27 @@ const SelectBatch = forwardRef((props, ref) => {
     window.scrollTo(0, 0);
   };
 
-  const bookingSelect = async value => {
-    setBookingDate(value);
+  const bookingSelect = async (selectedBatch) => {
 
-    const data = JSON.parse(JSON.stringify(stateData.data));
+    const bookingDates = {
+      trekId: selectedBatch.trekId,
+      batchId: selectedBatch.batchId,
+      startDate: selectedBatch.startDate,
+      endDate: selectedBatch.endDate,
+      trekName: selectedBatch.trek
+    };
+    setBookingDate(bookingDates);
 
-    if (data.batchId !== value.batchId) {
-      data.startDate = value.startDate;
-      data.endDate = value.endDate;
-      data.batchId = value.batchId;
+    const sdata = JSON.parse(JSON.stringify(stateData.data));
 
-      await dispatch(addOrUpdateState(data));
+    if (sdata.batchId !== selectedBatch.batchId) {
+      sdata.startDate = selectedBatch.startDate;
+      sdata.endDate = selectedBatch.endDate;
+      sdata.batchId = selectedBatch.batchId;
+
+      await dispatch(addOrUpdateState(sdata));
       props.batchDateChange();
-      await saveDraftBooking(data);
+      await saveDraftBooking(sdata);
 
       let index = location.href.indexOf("?");
       let url = location.href.substring(0, index) + "?batchId=" + value.batchId;
@@ -127,6 +143,7 @@ const SelectBatch = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     changeState() {
       const data = stateData.data;
+
       const bookingDates = {
         trekId: data.trekId,
         batchId: data.batchId,
@@ -135,19 +152,77 @@ const SelectBatch = forwardRef((props, ref) => {
         trekName: data.trekName
       };
 
-      console.log(bookingDates);
       setBookingDate(bookingDates);
-
-      if (viewDate === undefined) {
-        const date = new Date(bookingDates.startDate);
-        const additionOfMonths = 1;
-        date.setMonth(date.getMonth()); // For subtract use minus (-)
-        // date.setMonth(date.getMonth() - additionOfMonths); // For subtract use minus (-)
-        setViewDate(date);
+      const currentDate= new Date().toISOString();//new Date(new Date().getTime() + Math.abs((new Date().getTimezoneOffset() * 60000)));
+      getTrekOpenBatches(data.trekId,currentDate)
+         .then(res=>{
+        const groupedBatches=transFormDataWithGrouping(res,bookingDates.startDate);
+       // console.log(groupedBatches);
+        setTrekOpenBatches(groupedBatches);
+        const arr = Array.from(new Array(groupedBatches.length), (x, i) => i);
+        setIndexes(arr);
+        setCounter(arr.length);
         setRenderControl(true);
-      }
+
+      /* if (viewDate === undefined) {
+          const date = new Date(bookingDates.startDate);
+          const additionOfMonths = 1;
+          date.setMonth(date.getMonth()); // For subtract use minus (-)
+          // date.setMonth(date.getMonth() - additionOfMonths); // For subtract use minus (-)
+          setViewDate(date);
+          setRenderControl(true);
+        }*/
+      });
     }
   }));
+
+  const transFormDataWithGrouping= (trekBatches,selectedBatchStartDate) => {
+    const yearMonthGroupColl=[];
+    const bookingDateStartMonth=  moment(selectedBatchStartDate).format('YYYYMM');
+
+    trekBatches.forEach(batch=> {
+
+      const yearAndMonth=  moment(batch.startDate).format('YYYYMM');
+     // console.log(yearAndMonth);
+      const monthName=moment(batch.startDate).format('MMM-YYYY');
+
+      if(yearMonthGroupColl.length>0) {
+        const groupData=yearMonthGroupColl.find(y=>y.groupKey===yearAndMonth);
+        if(groupData===undefined) {
+           const gformattedData= {
+             groupKey:yearAndMonth,
+             data:[batch],
+             exPand:bookingDateStartMonth==yearAndMonth,
+             headingText:monthName
+           }
+           yearMonthGroupColl.push(gformattedData);
+        }
+        else {
+          groupData.data.push(batch);
+        }
+      }
+      else {
+          const gformattedData= {
+            groupKey:yearAndMonth,
+            data:[batch],
+            exPand:bookingDateStartMonth==yearAndMonth,
+            headingText:monthName
+          }
+          yearMonthGroupColl.push(gformattedData);
+      }
+    });
+
+    const activeKey=yearMonthGroupColl.find(x=>x.exPand===true);
+   // console.log(activeKey.groupKey);
+    setDefaultActiveKey(activeKey.groupKey);
+
+    return yearMonthGroupColl;
+  }
+
+  const onBatchSelect=(batchSelected)=> {
+     console.log(batchSelected);
+     bookingSelect(batchSelected);
+  }
 
   return (
     <>
@@ -185,142 +260,84 @@ const SelectBatch = forwardRef((props, ref) => {
                             <p className="p-text-3-1-fg text-center">
                               Choose another batch of Hampta Pass Trek
                             </p>
+                            
                             <Accordion
-                              defaultActiveKey="0"
+                              defaultActiveKey={`${defaultActiveKey}`}
                               className="reg-selectbatch-tabs"
                             >
-                              <Card>
-                                <Card.Header>
-                                  <Accordion.Toggle variant="link" eventKey="0">
-                                    <div className="d-flex align-items-center">
-                                      <div className="flex-grow-1">
-                                        July 2021
-                                      </div>
-                                      <div>
-                                        <div>
-                                          <h2 className="m-0 expand_plus_arrow">
-                                            <i
-                                              className="fa fa-angle-down"
-                                              aria-hidden="true"
-                                            ></i>
-                                          </h2>
+                                  {  indexes.map(index => {
+                                  const trekMonth = trekOpenBatches[index];
+                               
+                                  return (
+                                    <Card>
+                                    <Card.Header>
+                                      <Accordion.Toggle variant="link" eventKey={`${trekMonth.groupKey}`}>
+                                        <div className="d-flex align-items-center">
+                                          <div className="flex-grow-1">
+                                           {trekMonth.headingText}
+                                          </div>
+                                          <div>
+                                            <div>
+                                              <h2 className="m-0 expand_plus_arrow">
+                                                <i
+                                                  className="fa fa-angle-down"
+                                                  aria-hidden="true"
+                                                ></i>
+                                              </h2>
+                                            </div>
+                                          </div>
                                         </div>
-                                      </div>
-                                    </div>
-                                  </Accordion.Toggle>
-                                </Card.Header>
-                                <Accordion.Collapse eventKey="0">
-                                  <Card.Body>
-                                    <div className="row">
-                                      <div className="col-lg-7 col-md-12 col-7">
-                                        <p className="p-text-3-1-fg mb-2 pb-1">
-                                          16th to 21st July
-                                        </p>
-                                      </div>
-                                      <div className="col-lg-3 col-md-12 col-3">
-                                        <p className="p-text-3-1-fg mb-2 pb-1 text-green-clr">
-                                          Available
-                                        </p>
-                                      </div>
-                                      <div className="col-lg-2 col-md-12 col-2">
-                                        <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
-                                          Select
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <div className="row">
-                                      <div className="col-lg-7 col-md-12 col-7">
-                                        <p className="p-text-3-1-fg mb-2 pb-1">
-                                          16th to 21st July
-                                        </p>
-                                      </div>
-                                      <div className="col-lg-3 col-md-12 col-3">
-                                        <p className="p-text-3-1-fg mb-2 pb-1 text-maroon-clr">
-                                          Full
-                                        </p>
-                                      </div>
-                                      <div className="col-lg-2 col-md-12 col-2">
-                                        <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
-                                          Select
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <div className="row">
-                                      <div className="col-lg-7 col-md-12 col-7">
-                                        <p className="p-text-3-1-fg mb-2 pb-1">
-                                          16th to 21st July
-                                        </p>
-                                      </div>
-                                      <div className="col-lg-3 col-md-12 col-3">
-                                        <p className="p-text-3-1-fg mb-2 pb-1 text-warning-clr">
-                                          Waitlist
-                                        </p>
-                                      </div>
-                                      <div className="col-lg-2 col-md-12 col-2">
-                                        <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
-                                          Select
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </Card.Body>
-                                </Accordion.Collapse>
-                              </Card>
-                              <Card>
-                                <Card.Header>
-                                  <Accordion.Toggle variant="link" eventKey="1">
-                                    <div className="d-flex align-items-center">
-                                      <div className="flex-grow-1">
-                                        August 2021
-                                      </div>
-                                      <div>
-                                        <div>
-                                          <h2 className="m-0 expand_plus_arrow">
-                                            <i
-                                              className="fa fa-angle-down"
-                                              aria-hidden="true"
-                                            ></i>
-                                          </h2>
+                                      </Accordion.Toggle>
+                                    </Card.Header>
+                                    <Accordion.Collapse eventKey={`${trekMonth.groupKey}`}>
+                                      <Card.Body>
+                                         {
+                                         trekMonth.data.map(item=>{
+                                           return(
+                                          <div className="row">
+                                          <div className="col-lg-7 col-md-12 col-7">
+                                            <p className="p-text-3-1-fg mb-2 pb-1">
+                                            <span>
+                                            {moment(item?.startDate).format("Do")} to{" "}
+                                            {moment(item?.endDate).format("Do")}{" "}
+                                            {moment(item?.endDate).format("MMMM")}
+                                          </span>
+                                            </p>
+                                          </div>
+
+                                          <div className="col-lg-3 col-md-12 col-3">
+                                            <p className="p-text-3-1-fg mb-2 pb-1 text-green-clr">
+                                              {item.batchState==='ACTIVE' ? 
+                                                <span>Available</span>   :
+                                                <span>{item.batchState}</span> 
+                                              }
+                                            </p>
+                                          </div>
+                                          <div className="col-lg-2 col-md-12 col-2">
+                                             {item.batchState!=='FULL' && (
+                                            <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
+                                              <a
+                                                  href="javascript:;"
+                                                  onClick={e =>
+                                                    onBatchSelect(item)
+                                                  }
+                                                  tooltip="Click here to select the batch"
+                                                >
+                                                  Select
+                                                </a>
+                                            </p>
+                                             )}
+
+                                          </div>
                                         </div>
-                                      </div>
-                                    </div>
-                                  </Accordion.Toggle>
-                                </Card.Header>
-                                <Accordion.Collapse eventKey="1">
-                                  <Card.Body>
-                                    <p className="p-text-3 m-0">
-                                      No data available
-                                    </p>
-                                  </Card.Body>
-                                </Accordion.Collapse>
-                              </Card>
-                              <Card>
-                                <Card.Header>
-                                  <Accordion.Toggle variant="link" eventKey="2">
-                                    <div className="d-flex align-items-center">
-                                      <div className="flex-grow-1">
-                                        September 2021
-                                      </div>
-                                      <div>
-                                        <div>
-                                          <h2 className="m-0 expand_plus_arrow">
-                                            <i
-                                              className="fa fa-angle-down"
-                                              aria-hidden="true"
-                                            ></i>
-                                          </h2>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </Accordion.Toggle>
-                                </Card.Header>
-                                <Accordion.Collapse eventKey="2">
-                                  <Card.Body>
-                                    <p className="p-text-3 m-0">
-                                      No data available
-                                    </p>
-                                  </Card.Body>
-                                </Accordion.Collapse>
-                              </Card>
+                                           ) 
+                                        })
+                                        }
+                                      </Card.Body>
+                                    </Accordion.Collapse>
+                                  </Card>
+                                  );
+                                  })}
                             </Accordion>
                           </div>
                         </>

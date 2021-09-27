@@ -1,6 +1,6 @@
 import { Client } from '../utils/prismicHelpers'
 import axios from 'axios';
-
+import moment from "moment";
 import auth from './Authenticate.js';
 //Backend base url
 const REACT_APP_TMS_BACKEND_URL="https://tmsstaging.indiahikes.com/tms-service/api/v1";
@@ -338,8 +338,18 @@ export const saveUserLocations =  async (bookingId,payload)  => {
     return axios.get(url,{ headers:  header }).then((res) => res.data);
   };
 
-
   
+  export const getTrekOpenBatches = async (trekId,startDate)  => {
+    const header=await getTokenHeader();
+    const formattedDate=moment(new Date()).format('YYYY-MM-DDT00:00:00')
+    const api = `${REACT_APP_TMS_BACKEND_URL}`;
+    ///https://tmsstaging.indiahikes.com/tms-service/api/v1/batches?pageNo=0&pageSize=100&searchQuery=trekId:9 AND startDate>'2021-09-26T00:00:00'
+   
+    let url = `${api}/batches?pageNo=0&pageSize=100&searchQuery=trekId:${trekId} AND startDate>'${formattedDate}'&sortField=startDate&sortOrderDescending=false`;
+    return axios.get(url,{ headers:  header }).then((res) => res.data);
+  };
+
+ 
 
 async function fetchDocs(page = 1, routes = []) {
   const response = await Client().query('', { pageSize: 100, lang: '*', page });
