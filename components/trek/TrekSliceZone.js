@@ -29,7 +29,7 @@ const TrekSliceZone = ({ sliceZone }) =>
       case "trek_banner":
         return <TrekBannerWithCaption slice={slice} key={`slice-${index}`} />;
       case "trek_overview":
-        return <TrekOverView slice={slice} key={`slice-${index}`} />;
+        return <TrekOverView slice={slice} data={sliceZone} key={`slice-${index}`} />;
       case "trek_videos":
         return <TrekVideosComponent slice={slice} key={`slice-${index}`} />;
       case "whyit_so_different":

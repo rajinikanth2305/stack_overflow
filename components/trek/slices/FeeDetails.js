@@ -7,12 +7,20 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Client } from "utils/prismicHelpers";
 import Prismic from "@prismicio/client";
+import Modal from "react-bootstrap/Modal";
+import { hrefResolver, linkResolver } from "prismic-configuration";
+import InclusionsAndExclusions from "../accordiontabs/InclusionsAndExclusions";
 
 /**
  * Trek Banner Slice Components
  */
-const FeeDetails = () => {
+const FeeDetails = ({ data }) => {
   const [feeDetails, setFeeDetails] = useState();
+  const [incExc, setIncExc] = useState();
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     findFeeDetails();
@@ -29,15 +37,18 @@ const FeeDetails = () => {
       setFeeDetails(slice);
     });*/
 
-    const client = Client();
-    const doc = await client
-      .query([Prismic.Predicates.at("document.type", "trek")])
-      .then(function(response) {
-        const tt = response.results[0].data.body;
-        const slice = tt && tt.find(x => x.slice_type === "trek_fee_details");
-        setFeeDetails(slice);
-        console.log(slice);
-      });
+    // const client = Client();
+    // const doc = await client
+    //   .query([Prismic.Predicates.at("document.type", "trek")])
+    //   .then(function(response) {
+    //     const tt = response.results[0].data.body;
+    //     const slice = tt && tt.find(x => x.slice_type === "trek_fee_details");
+    //     setFeeDetails(slice);
+    //     console.log(slice);
+    //   });
+    const slice = data && data.find(x => x.slice_type === "trek_fee_details");
+    setFeeDetails(slice);
+    console.log(slice);
   }
 
   const heading = feeDetails && feeDetails.primary.heading;
@@ -49,14 +60,21 @@ const FeeDetails = () => {
 
   const optionalAdditions = optionalAdditionsArray?.map(function(data, i) {
     return (
-      <>
-        <p className="trek_optional_details">
-          {data.optional_additions_heading.text}
-        </p>
-        <p className="trek_optional_details">
-          {data.optional_additions_desc.text}
-        </p>
-      </>
+      <div className="d-flex align-items-start" key={i}>
+        <div>
+          <p className="trek_optional_details">
+            <b>{i + 1}.</b>
+          </p>
+        </div>
+        <div className="mx-2">
+          <p className="trek_optional_details mb-0 mb-0-p">
+            {RichText.render(data.optional_additions_heading, linkResolver)}
+          </p>
+          <p className="trek_optional_details">
+            {RichText.render(data.optional_additions_desc)}
+          </p>
+        </div>
+      </div>
     );
   });
 
@@ -87,8 +105,8 @@ const FeeDetails = () => {
               <p className="trek-info-detail m-0">
                 {RichText.asText(descriptions)}
               </p>
-              <p className="trek-info-detail text-decoration-underline">
-                <a>See Inclusions and Exclusions</a>
+              <p className="trek-info-detail text-decoration-underline cursor-pointer">
+                <a onClick={handleShow}>See Inclusions and Exclusions</a>
               </p>
               <div className="my-3">
                 <button className="btn btn-block btn-ih-green-trek-fee">
@@ -98,46 +116,7 @@ const FeeDetails = () => {
             </div>
             <div className="p-3">
               <p className="trek_gts mb-2">optional additions</p>
-              <div className="d-flex align-items-start">
-                <div>
-                  <p className="trek_optional_details">
-                    <b>1.</b>
-                  </p>
-                </div>
-                <div className="mx-2">
-                  <p className="trek_optional_details">
-                    <b>Pickup and Drop from Manali</b> - This costs Rs 5,500 per
-                    vehicle, which is shared by 5-6 trekkers.
-                  </p>
-                </div>
-              </div>
-              <div className="d-flex align-items-start">
-                <div>
-                  <p className="trek_optional_details">
-                    <b>2.</b>
-                  </p>
-                </div>
-                <div className="mx-2">
-                  <p className="trek_optional_details">
-                    <b>Backpack Offloading</b> - Rs. 1000+ 5% GST for the entire
-                    trek. Cloakroom available free of charge.
-                  </p>
-                </div>
-              </div>
-              <div className="d-flex align-items-start">
-                <div>
-                  <p className="trek_optional_details">
-                    <b>3.</b>
-                  </p>
-                </div>
-                <div className="mx-2">
-                  <p className="trek_optional_details">
-                    <b>Rental Gear</b> - We have a range of products available
-                    on our rental store. <span className="text-decoration-underline">See here</span>
-                  </p>
-                </div>
-              </div>
-              {/* {optionalAdditions} */}
+              {optionalAdditions}
             </div>
           </div>
         </div>
@@ -181,6 +160,17 @@ const FeeDetails = () => {
           {trekStyle}
         </style>
       </div>
+
+      <Modal size="lg" show={show} onHide={handleClose} className="inex_modal">
+        <Modal.Header closeButton>
+          <Modal.Title>Inclusions And Exclusions</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div>
+            <InclusionsAndExclusions data={data} />
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

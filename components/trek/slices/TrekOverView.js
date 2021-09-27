@@ -10,7 +10,7 @@ import FeeDetails from "./FeeDetails";
 /**
  * Trek Banner Slice Components
  */
-const TrekOverView = ({ slice }) => {
+const TrekOverView = ({ slice, data }) => {
   const heading1 = slice.primary.heading1;
   const heading1Subtitle = slice.primary.heading1_subtitle;
   const heading2 = slice.primary.heading2;
@@ -158,7 +158,7 @@ const TrekOverView = ({ slice }) => {
             </div>
             <div className="col-12 col-lg-1 col-md-12"></div>
             <div className="col-12 col-lg-4 col-md-12 d-m-none">
-              <FeeDetails />
+              <FeeDetails data={data} />
             </div>
           </div>
         </div>

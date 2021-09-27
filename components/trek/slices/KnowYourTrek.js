@@ -19,6 +19,7 @@ import HowToReach from "../accordiontabs/HowToReach";
 import InclusionsAndExclusions from "../accordiontabs/InclusionsAndExclusions";
 
 const KnowYourTrek = ({ slice, data }) => {
+  console.log(data);
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
   const accordionTabImgArray = slice.items;
@@ -73,14 +74,14 @@ const KnowYourTrek = ({ slice, data }) => {
             </Card.Header>
             <Accordion.Collapse eventKey="0">
               <Card.Body>
-                {sliceType.slice_type === "how_does_each_day_looks" ? (
+                {sliceType?.slice_type === "how_does_each_day_looks" ? (
                   <HowDoesEachDayLooks />
-                ) : sliceType.slice_type === "best_time_to_do_trek" ? (
+                ) : sliceType?.slice_type === "best_time_to_do_trek" ? (
                   <BestTimeToDo />
-                ) : sliceType.slice_type === "howto_reach" ? (
+                ) : sliceType?.slice_type === "howto_reach" ? (
                   <HowToReach />
-                ) : sliceType.slice_type === "inclusions_exclusions" ? (
-                  <InclusionsAndExclusions />
+                ) : sliceType?.slice_type === "trek_inclusions" ? (
+                  <InclusionsAndExclusions data={slice_zone}/>
                 ) : (
                   <HowDifficultTrekIs />
                 )}
