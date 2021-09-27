@@ -1203,12 +1203,33 @@ export const trekStyle = css.global`
     background: #ffffff !important;
   }
 
-  .inex_modal > div > .modal-content > .modal-body {
-    padding: 0 15px;
+  // .inex_modal > div > .modal-content > .modal-body {
+  //   padding: 0 15px;
+  // }
+
+  .inex_modal > div > .modal-content > .modal-header {
+    border: 0;
+    padding: 25px 25px 0;
+  }
+
+  .inex_modal > div > .modal-content > .modal-header > .modal-title {
+    border-bottom: 4px solid rgba(255, 193, 0, 1);
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Lora;
   }
 
   .inex_modal > div > .modal-content > .modal-header > button {
     color: #000000;
+  }
+
+  .inex_modal > div > .modal-content > .modal-header > button > span {
+    font-size: 44px;
+    color: #d3d3d3;
+    font-weight: normal;
+    position: absolute;
+    top: -20px;
+    right: 0px;
   }
 
   .mb-0-p > p {
@@ -1217,6 +1238,10 @@ export const trekStyle = css.global`
 
   a {
     text-decoration: underline;
+  }
+
+  .bg-gray {
+    background: rgba(0, 0, 0, 0.051);
   }
 
   @media only screen and (max-width: 660px) {

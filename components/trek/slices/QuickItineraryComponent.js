@@ -23,27 +23,27 @@ const QuickItineraryComponent = ({ slice }) => {
     );
   });
 
-  const proTipsListData = proTipsList.map((data, i) => {
-    return (
-      // <p className={data?.spans[0]?.type === 'strong' ? "font-weight-bold m-0 p-text-4" : "m-0"} key={i}>
-      //   {data.text}
-      // </p>
-      <div key={i}>
-        {data?.spans[0]?.type === "strong" && data?.type !== "heading2" && (
-          <p className="font-weight-bold m-0 p-text-4">{data.text}</p>
-        )}
-        {data?.type === "heading2" && data?.spans[0]?.type === "strong" && (
-          <p className="font-weight-bold m-0 p-text-1">{data.text}</p>
-        )}
-        {data?.spans[0]?.type === "hyperlink" && (
-          <p className="text-decoration-underline m-0 p-text-4"><a href={data?.spans[0]?.data?.url} target="_blank">{data.text}</a></p>
-        )}
-        {data?.spans[0]?.type !== "strong" && data?.spans[0]?.type !== "hyperlink" && (
-          <p className="m-0 p-text-4">{data.text}</p>
-        )}
-      </div>
-    );
-  });
+  // const proTipsListData = proTipsList.map((data, i) => {
+  //   return (
+  //     // <p className={data?.spans[0]?.type === 'strong' ? "font-weight-bold m-0 p-text-4" : "m-0"} key={i}>
+  //     //   {data.text}
+  //     // </p>
+  //     <div key={i}>
+  //       {data?.spans[0]?.type === "strong" && data?.type !== "heading2" && (
+  //         <p className="font-weight-bold m-0 p-text-4">{data.text}</p>
+  //       )}
+  //       {data?.type === "heading2" && data?.spans[0]?.type === "strong" && (
+  //         <p className="font-weight-bold m-0 p-text-1">{data.text}</p>
+  //       )}
+  //       {data?.spans[0]?.type === "hyperlink" && (
+  //         <p className="text-decoration-underline m-0 p-text-4"><a href={data?.spans[0]?.data?.url} target="_blank">{data.text}</a></p>
+  //       )}
+  //       {data?.spans[0]?.type !== "strong" && data?.spans[0]?.type !== "hyperlink" && (
+  //         <p className="m-0 p-text-4">{data.text}</p>
+  //       )}
+  //     </div>
+  //   );
+  // });
 
   const dayNumberText = dayNumberTextArray.map(function(data, i) {
     return (
@@ -86,7 +86,9 @@ const QuickItineraryComponent = ({ slice }) => {
                     objectPosition="bottom"
                   />
                 </div>
-                <p className="p-text-small font-italic">{RichText.asText(imgDesc)}</p>
+                <p className="p-text-small font-italic">
+                  {RichText.asText(imgDesc)}
+                </p>
               </div>
             </div>
           </div>
@@ -119,14 +121,17 @@ const QuickItineraryComponent = ({ slice }) => {
                       objectPosition="bottom"
                     />
                   </div>
-                  <p className="p-text-small font-italic">{RichText.asText(imgDesc)}</p>
+                  <p className="p-text-small font-italic">
+                    {RichText.asText(imgDesc)}
+                  </p>
                 </div>
 
                 <div className="pro_tips_box">
                   <p className="pro_tips">
                     <span className="p-text-2-franklin">PRO-TIPS</span>
                   </p>
-                  {proTipsListData}
+                  {/* {proTipsListData} */}
+                  <p className="p-text-4 m-0">{RichText.render(proTipsList)}</p>
                 </div>
               </div>
             </div>
@@ -148,7 +153,8 @@ const QuickItineraryComponent = ({ slice }) => {
                     <p className="pro_tips">
                       <span className="p-text-2-franklin">PRO-TIPS</span>
                     </p>
-                    {proTipsListData}
+                    {/* {proTipsListData} */}
+                    <p className="p-text-4">{RichText.render(proTipsList)}</p>
                   </div>
                 </div>
                 <div className="d-flex justify-content-center bg-transparent-text-effect">
