@@ -15,6 +15,7 @@ import Prismic from "@prismicio/client";
 import BookingCalender from "../../trek/bookyourtrekcomps/BookingCalender";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
+import { Toast } from "primereact/toast";
 
 import {
   addOrUpdateState,
@@ -23,7 +24,7 @@ import {
 import { render } from "react-dom";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
-
+  
 import {
   findUserByEmail,
   saveDraftBooking,
@@ -36,7 +37,7 @@ const localizer = momentLocalizer(moment);
 const SelectBatch = forwardRef((props, ref) => {
   const [quickItinerary, setquickItinerary] = useState();
   const [bookingDate, setBookingDate] = useState(undefined);
-
+  const toast = useRef(null);
   const stateData = useSelector(selectStateData);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -110,32 +111,51 @@ const SelectBatch = forwardRef((props, ref) => {
 
   const bookingSelect = async (selectedBatch) => {
 
+    const sdata = JSON.parse(JSON.stringify(stateData.data));
+
+    if (sdata.batchId !== selectedBatch.id) {
+      sdata.startDate = selectedBatch.startDate;
+      sdata.endDate = selectedBatch.endDate;
+      sdata.batchId = selectedBatch.id;
+
+       saveDraftBooking(sdata).then(res=>{
+        postBatchChange(res,sdata,selectedBatch);
+       })
+       .catch(res => {
+        if (res.response?.data?.message) {
+          console.log(res.response.data?.message);
+          toast.current.show({
+            severity: "error",
+            summary: `'Select Batch -  ${res.response.data?.message}'`,
+            detail: "Select Batch"
+          });
+        }
+      })
+     
+    }
+  };
+
+  const postBatchChange= async (res,sdata,selectedBatch)=> {
+
     const bookingDates = {
       trekId: selectedBatch.trekId,
-      batchId: selectedBatch.batchId,
+      batchId: selectedBatch.id,
       startDate: selectedBatch.startDate,
       endDate: selectedBatch.endDate,
       trekName: selectedBatch.trek
     };
+
     setBookingDate(bookingDates);
 
-    const sdata = JSON.parse(JSON.stringify(stateData.data));
+    await dispatch(addOrUpdateState(sdata));
 
-    if (sdata.batchId !== selectedBatch.batchId) {
-      sdata.startDate = selectedBatch.startDate;
-      sdata.endDate = selectedBatch.endDate;
-      sdata.batchId = selectedBatch.batchId;
+    props.batchDateChange();
 
-      await dispatch(addOrUpdateState(sdata));
-      props.batchDateChange();
-      await saveDraftBooking(sdata);
-
-      let index = location.href.indexOf("?");
-      let url = location.href.substring(0, index) + "?batchId=" + value.batchId;
-      //console.log(url);
-      router.push(url, undefined, { shallow: true });
-    }
-  };
+    let index = location.href.indexOf("?");
+    let url = location.href.substring(0, index) + "?batchId=" + selectedBatch.id;
+    
+    router.push(url, undefined, { shallow: true });
+  }
 
   // The component instance will be extended
   // with whatever you return from the callback passed
@@ -226,6 +246,7 @@ const SelectBatch = forwardRef((props, ref) => {
 
   return (
     <>
+     <Toast ref={toast} />
       <div className="my-5 m-mt-0 ">
         <div className="row">
           <div className="col-lg-6 col-md-12 pr-custom-9">
