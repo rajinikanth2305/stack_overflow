@@ -795,6 +795,15 @@ export const regStyle = css.global`
     text-align: center;
   }
 
+  .reg-tabs.mob.nav.nav-tabs {
+    display: flex;
+  }
+
+  .reg-tabs.mob.nav.nav-tabs > .nav-item {
+    -moz-box-flex: 1 !important;
+    flex: 1 1 auto !important;
+  }
+
   .nav.nav-tabs.reg-tabs > .nav-item .nav-link {
     padding: 0.1rem;
     line-height: 10px;

@@ -363,13 +363,15 @@ const MakePayment = forwardRef((props, ref) => {
                     <tr>
                       <td className="reg-mp-mob-table-td">batch dates</td>
                       <td className="reg-mp-mob-table-td-1">
-                        {moment(bookingInformation?.startDate).format(
+                        {/* {moment(bookingInformation?.startDate).format(
                           "MM/DD/YYYY"
                         )}{" "}
                         -{" "}
                         {moment(bookingInformation?.endDate).format(
                           "MM/DD/YYYY"
-                        )}
+                        )} */}
+                        {moment(bookingInformation?.startDate).format("Do")} -{" "}
+                        {moment(bookingInformation?.endDate).format("Do MMMM")}
                       </td>
                     </tr>
                     <tr>
@@ -610,8 +612,10 @@ const MakePayment = forwardRef((props, ref) => {
                     {bookingInformation?.trekName}
                   </p>
                   <p className="p-text-3-2-fg mb-2">
-                    {moment(bookingInformation?.startDate).format("MM/DD/YYYY")}{" "}
-                    - {moment(bookingInformation?.endDate).format("MM/DD/YYYY")}
+                    {/* {moment(bookingInformation?.startDate).format("MM/DD/YYYY")}{" "}
+                    - {moment(bookingInformation?.endDate).format("MM/DD/YYYY")} */}
+                    {moment(bookingInformation?.startDate).format("Do")} -{" "}
+                    {moment(bookingInformation?.endDate).format("Do MMMM")}
                   </p>
                   <p className="p-text-3-2-fg mb-2">
                     {bookingInformation?.trekkersCount} trekkers
@@ -642,16 +646,16 @@ const MakePayment = forwardRef((props, ref) => {
                   </div>
                   <div className="d-flex justify-content-end">
                     <div className="d-flex border-top-custom-1 pt-2">
-                    <div className="flex-grow-1 px-5">
-                      <p className="p-text-3-1-2 text-align-right mb-2">
-                        Total
-                      </p>
-                    </div>
-                    <div>
-                      <p className="p-text-3-1-2 mb-2">
-                        Rs. {computeFields.computations.total}
-                      </p>
-                    </div>
+                      <div className="flex-grow-1 px-5">
+                        <p className="p-text-3-1-2 text-align-right mb-2">
+                          Total
+                        </p>
+                      </div>
+                      <div>
+                        <p className="p-text-3-1-2 mb-2">
+                          Rs. {computeFields.computations.total}
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div className="d-flex border-bottom-custom-1">

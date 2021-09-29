@@ -494,7 +494,7 @@ const RegHome = ({ slice }) => {
 
               {/* Mobile first desugn */}
               <div className="m-d-block">
-                <Nav tabs className="reg-tabs">
+                <Nav tabs className="reg-tabs mob">
                   <NavItem>
                     <NavLink
                       className={classnames({
