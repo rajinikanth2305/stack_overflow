@@ -214,10 +214,10 @@ const AddTrekMates = forwardRef((props, ref) => {
   const usersData = [];
 
   React.useEffect(() => {
-   // setUsers(usersData);
-  //const arr = Array.from(new Array(usersData.length), (x, i) => i);
-   // setIndexes(arr);
-   // setCounter(arr.length);
+    // setUsers(usersData);
+    //const arr = Array.from(new Array(usersData.length), (x, i) => i);
+    // setIndexes(arr);
+    // setCounter(arr.length);
   }, []);
 
   useImperativeHandle(ref, () => ({
@@ -259,13 +259,13 @@ const AddTrekMates = forwardRef((props, ref) => {
     props.onNextTabEvent("makepayment");
     window.scrollTo(0, 0);
   };
-  
+
   const addSearchUser = () => {
     //console.log('called');
     addFindUsers(findUserData);
-  }
+  };
 
-  const addFindUsers = async (udata) => {
+  const addFindUsers = async udata => {
     console.log(users);
     setUsers([
       ...users,
@@ -332,7 +332,7 @@ const AddTrekMates = forwardRef((props, ref) => {
     await dispatch(addOrUpdateState(sdata));
     add();
     setFindUserData(undefined);
-    document.getElementById("email").value='';
+    document.getElementById("email").value = "";
   };
 
   const transFormVoucherPayload = vouchers => {
@@ -374,7 +374,7 @@ const AddTrekMates = forwardRef((props, ref) => {
     return data1;
   };
 
-  const findUser = ( e ) => {
+  const findUser = e => {
     // console.log(fieldRef.current.value);
 
     const userData = document.getElementById("email").value;
@@ -388,8 +388,9 @@ const AddTrekMates = forwardRef((props, ref) => {
       });
       return;
     }
-console.log(users);
-    const existUser = users?.find(x => x.email.toLowerCase() === userData.toLowerCase()
+    console.log(users);
+    const existUser = users?.find(
+      x => x.email.toLowerCase() === userData.toLowerCase()
     );
 
     console.log(existUser);
@@ -407,7 +408,7 @@ console.log(users);
       getUserByAutoSearch("CUSTOMER", userData.toLowerCase()).then(data => {
         if (data.length > 0) {
           console.log(data[0]);
-         setFindUserData(data[0]);
+          setFindUserData(data[0]);
           /*confirmPopup({
             //target: e.currentTarget,
             message: `Are you sure you want to add trek mate ${data[0].email} ?'`,
@@ -487,10 +488,9 @@ console.log(users);
                   If you are registering only for yourself, skip this step and
                   proceed to next step of registration
                 </p>
-                
-             
+
                 <div className="d-flex align-items-center flex-wrap justify-content-center mb-2 mt-4 pt-1">
-                  {  indexes.map(index => {
+                  {indexes.map(index => {
                     const data = users[index];
                     console.log(data);
                     return (
@@ -502,7 +502,7 @@ console.log(users);
                           </a>
                         </p>
                       </div>
-                    )
+                    );
                   })}
                 </div>
               </div>
@@ -516,43 +516,35 @@ console.log(users);
                       Add your trekmates who already have an Indiahikes account
                       here.
                     </p>
-                   
-                      <div className="login-form-box">
-                        <FormGroup>
-                          <div>
-                            
-                                <InputText   id="email" name="email"/>
-                          </div>
-                        </FormGroup>
-                      </div>
-                      <div className="mt-4 pt-1">
-                        <button
-                          type="button"
-                          className="btn btn-yellow-outline"
-                          onClick={(e) => {
-                            findUser(e);
-                          }}
-                        >
-                          Find Trekker
-                        </button>
 
-                        {findUserData && (
-                        <p>
-                            FirstName : {findUserData?.firstName}
-                            LastName : {findUserData?.lastName}
+                    <div className="login-form-box">
+                      <FormGroup>
+                        <div>
+                          <InputText id="email" name="email" placeholder="Email" style={{ textTransform: 'none' }} />
+                        </div>
+                      </FormGroup>
+                    </div>
+                    <div className="mt-4 pt-1">
+                      <button
+                        type="button"
+                        className="btn btn-yellow-outline"
+                        onClick={e => {
+                          findUser(e);
+                        }}
+                      >
+                        Find Trekker
+                      </button>
 
-                            <button
-                          type="button"
-                          className="btn btn-yellow-outline"
+                      {findUserData && (
+                        <p
+                          className="p-text-3-1-fg text-green-clr mt-3 text-capitalize cursor-pointer"
                           onClick={addSearchUser}
                         >
-                          Add Trekker
-                        </button>
+                          <span>{findUserData?.firstName}</span>
+                          <span className="px-2">{findUserData?.lastName}</span>
                         </p>
-
-                        )}
-                      </div>
-                
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

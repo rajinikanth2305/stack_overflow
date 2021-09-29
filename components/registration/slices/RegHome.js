@@ -58,6 +58,7 @@ const RegHome = ({ slice }) => {
   const [termAccepted, setTermAccepted] = useState(false);
   const [key, setKey] = useState("accepet");
   const childRef = useRef();
+  const childMobRef = useRef();
   const trekMateChildRef = useRef();
   const paymentChildRef = useRef();
   const paymentChildMobRef = useRef();
@@ -366,6 +367,7 @@ const RegHome = ({ slice }) => {
     //console.log(JSON.stringify(bookDetails));
     await dispatch(addOrUpdateState(bookDetails));
     childRef.current.changeState();
+    childMobRef.current.changeState();
     trekMateChildRef.current.changeState();
     paymentChildRef.current.changeState();
     paymentChildMobRef.current.changeState();
@@ -583,7 +585,7 @@ const RegHome = ({ slice }) => {
                     />
                   </TabPane>
                   <TabPane tabId="2">
-                    <SelectBatch {...selectBatchProps} ref={childRef} />
+                    <SelectBatch {...selectBatchProps} ref={childMobRef} />
                   </TabPane>
                   <TabPane tabId="3">
                     <AddTrekMates

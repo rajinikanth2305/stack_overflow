@@ -24,7 +24,7 @@ import {
 import { render } from "react-dom";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
-  
+
 import {
   findUserByEmail,
   saveDraftBooking,
@@ -44,12 +44,12 @@ const SelectBatch = forwardRef((props, ref) => {
   const [viewDate, setViewDate] = useState(undefined);
   const [renderControl, setRenderControl] = useState(false);
   const [trekOpenBatches, setTrekOpenBatches] = useState([]);
-  
+
   const [indexes, setIndexes] = React.useState([]);
   const [counter, setCounter] = React.useState(0);
 
   const [defaultActiveKey, setDefaultActiveKey] = useState([]);
-  
+
   useEffect(() => {
     findquickItinerary();
   }, []);
@@ -109,8 +109,7 @@ const SelectBatch = forwardRef((props, ref) => {
     window.scrollTo(0, 0);
   };
 
-  const bookingSelect = async (selectedBatch) => {
-
+  const bookingSelect = async selectedBatch => {
     const sdata = JSON.parse(JSON.stringify(stateData.data));
 
     if (sdata.batchId !== selectedBatch.id) {
@@ -118,25 +117,24 @@ const SelectBatch = forwardRef((props, ref) => {
       sdata.endDate = selectedBatch.endDate;
       sdata.batchId = selectedBatch.id;
 
-       saveDraftBooking(sdata).then(res=>{
-        postBatchChange(res,sdata,selectedBatch);
-       })
-       .catch(res => {
-        if (res.response?.data?.message) {
-          console.log(res.response.data?.message);
-          toast.current.show({
-            severity: "error",
-            summary: `'Select Batch -  ${res.response.data?.message}'`,
-            detail: "Select Batch"
-          });
-        }
-      })
-     
+      saveDraftBooking(sdata)
+        .then(res => {
+          postBatchChange(res, sdata, selectedBatch);
+        })
+        .catch(res => {
+          if (res.response?.data?.message) {
+            console.log(res.response.data?.message);
+            toast.current.show({
+              severity: "error",
+              summary: `'Select Batch -  ${res.response.data?.message}'`,
+              detail: "Select Batch"
+            });
+          }
+        });
     }
   };
 
-  const postBatchChange= async (res,sdata,selectedBatch)=> {
-
+  const postBatchChange = async (res, sdata, selectedBatch) => {
     const bookingDates = {
       trekId: selectedBatch.trekId,
       batchId: selectedBatch.id,
@@ -152,10 +150,11 @@ const SelectBatch = forwardRef((props, ref) => {
     props.batchDateChange();
 
     let index = location.href.indexOf("?");
-    let url = location.href.substring(0, index) + "?batchId=" + selectedBatch.id;
-    
+    let url =
+      location.href.substring(0, index) + "?batchId=" + selectedBatch.id;
+
     router.push(url, undefined, { shallow: true });
-  }
+  };
 
   // The component instance will be extended
   // with whatever you return from the callback passed
@@ -173,18 +172,20 @@ const SelectBatch = forwardRef((props, ref) => {
       };
 
       setBookingDate(bookingDates);
-      const currentDate= new Date().toISOString();//new Date(new Date().getTime() + Math.abs((new Date().getTimezoneOffset() * 60000)));
-      getTrekOpenBatches(data.trekId,currentDate)
-         .then(res=>{
-        const groupedBatches=transFormDataWithGrouping(res,bookingDates.startDate);
-       // console.log(groupedBatches);
+      const currentDate = new Date().toISOString(); //new Date(new Date().getTime() + Math.abs((new Date().getTimezoneOffset() * 60000)));
+      getTrekOpenBatches(data.trekId, currentDate).then(res => {
+        const groupedBatches = transFormDataWithGrouping(
+          res,
+          bookingDates.startDate
+        );
+        // console.log(groupedBatches);
         setTrekOpenBatches(groupedBatches);
         const arr = Array.from(new Array(groupedBatches.length), (x, i) => i);
         setIndexes(arr);
         setCounter(arr.length);
         setRenderControl(true);
 
-      /* if (viewDate === undefined) {
+        /* if (viewDate === undefined) {
           const date = new Date(bookingDates.startDate);
           const additionOfMonths = 1;
           date.setMonth(date.getMonth()); // For subtract use minus (-)
@@ -196,57 +197,58 @@ const SelectBatch = forwardRef((props, ref) => {
     }
   }));
 
-  const transFormDataWithGrouping= (trekBatches,selectedBatchStartDate) => {
-    const yearMonthGroupColl=[];
-    const bookingDateStartMonth=  moment(selectedBatchStartDate).format('YYYYMM');
+  const transFormDataWithGrouping = (trekBatches, selectedBatchStartDate) => {
+    const yearMonthGroupColl = [];
+    const bookingDateStartMonth = moment(selectedBatchStartDate).format(
+      "YYYYMM"
+    );
 
-    trekBatches.forEach(batch=> {
+    trekBatches.forEach(batch => {
+      const yearAndMonth = moment(batch.startDate).format("YYYYMM");
+      // console.log(yearAndMonth);
+      const monthName = moment(batch.startDate).format("MMM-YYYY");
 
-      const yearAndMonth=  moment(batch.startDate).format('YYYYMM');
-     // console.log(yearAndMonth);
-      const monthName=moment(batch.startDate).format('MMM-YYYY');
-
-      if(yearMonthGroupColl.length>0) {
-        const groupData=yearMonthGroupColl.find(y=>y.groupKey===yearAndMonth);
-        if(groupData===undefined) {
-           const gformattedData= {
-             groupKey:yearAndMonth,
-             data:[batch],
-             exPand:bookingDateStartMonth==yearAndMonth,
-             headingText:monthName
-           }
-           yearMonthGroupColl.push(gformattedData);
-        }
-        else {
+      if (yearMonthGroupColl.length > 0) {
+        const groupData = yearMonthGroupColl.find(
+          y => y.groupKey === yearAndMonth
+        );
+        if (groupData === undefined) {
+          const gformattedData = {
+            groupKey: yearAndMonth,
+            data: [batch],
+            exPand: bookingDateStartMonth == yearAndMonth,
+            headingText: monthName
+          };
+          yearMonthGroupColl.push(gformattedData);
+        } else {
           groupData.data.push(batch);
         }
-      }
-      else {
-          const gformattedData= {
-            groupKey:yearAndMonth,
-            data:[batch],
-            exPand:bookingDateStartMonth==yearAndMonth,
-            headingText:monthName
-          }
-          yearMonthGroupColl.push(gformattedData);
+      } else {
+        const gformattedData = {
+          groupKey: yearAndMonth,
+          data: [batch],
+          exPand: bookingDateStartMonth == yearAndMonth,
+          headingText: monthName
+        };
+        yearMonthGroupColl.push(gformattedData);
       }
     });
 
-    const activeKey=yearMonthGroupColl.find(x=>x.exPand===true);
-   // console.log(activeKey.groupKey);
+    const activeKey = yearMonthGroupColl.find(x => x.exPand === true);
+    // console.log(activeKey.groupKey);
     setDefaultActiveKey(activeKey.groupKey);
 
     return yearMonthGroupColl;
-  }
+  };
 
-  const onBatchSelect=(batchSelected)=> {
-     console.log(batchSelected);
-     bookingSelect(batchSelected);
-  }
+  const onBatchSelect = batchSelected => {
+    console.log(batchSelected);
+    bookingSelect(batchSelected);
+  };
 
   return (
     <>
-     <Toast ref={toast} />
+      <Toast ref={toast} />
       <div className="my-5 m-mt-0 ">
         <div className="row">
           <div className="col-lg-6 col-md-12 pr-custom-9">
@@ -281,21 +283,24 @@ const SelectBatch = forwardRef((props, ref) => {
                             <p className="p-text-3-1-fg text-center">
                               Choose another batch of Hampta Pass Trek
                             </p>
-                            
+
                             <Accordion
                               defaultActiveKey={`${defaultActiveKey}`}
                               className="reg-selectbatch-tabs"
                             >
-                                  {  indexes.map(index => {
-                                  const trekMonth = trekOpenBatches[index];
-                               
-                                  return (
-                                    <Card>
+                              {indexes.map(index => {
+                                const trekMonth = trekOpenBatches[index];
+
+                                return (
+                                  <Card>
                                     <Card.Header>
-                                      <Accordion.Toggle variant="link" eventKey={`${trekMonth.groupKey}`}>
+                                      <Accordion.Toggle
+                                        variant="link"
+                                        eventKey={`${trekMonth.groupKey}`}
+                                      >
                                         <div className="d-flex align-items-center">
                                           <div className="flex-grow-1">
-                                           {trekMonth.headingText}
+                                            {trekMonth.headingText}
                                           </div>
                                           <div>
                                             <div>
@@ -310,55 +315,79 @@ const SelectBatch = forwardRef((props, ref) => {
                                         </div>
                                       </Accordion.Toggle>
                                     </Card.Header>
-                                    <Accordion.Collapse eventKey={`${trekMonth.groupKey}`}>
+                                    <Accordion.Collapse
+                                      eventKey={`${trekMonth.groupKey}`}
+                                    >
                                       <Card.Body>
-                                         {
-                                         trekMonth.data.map(item=>{
-                                           return(
-                                          <div className="row">
-                                          <div className="col-lg-7 col-md-12 col-7">
-                                            <p className="p-text-3-1-fg mb-2 pb-1">
-                                            <span>
-                                            {moment(item?.startDate).format("Do")} to{" "}
-                                            {moment(item?.endDate).format("Do")}{" "}
-                                            {moment(item?.endDate).format("MMMM")}
-                                          </span>
-                                            </p>
-                                          </div>
+                                        {trekMonth.data.map(item => {
+                                          return (
+                                            <div className="row">
+                                              <div className="col-lg-7 col-md-12 col-7">
+                                                <p className="p-text-3-1-fg mb-2 pb-1">
+                                                  <span>
+                                                    {moment(
+                                                      item?.startDate
+                                                    ).format("Do")}{" "}
+                                                    to{" "}
+                                                    {moment(
+                                                      item?.endDate
+                                                    ).format("Do")}{" "}
+                                                    {moment(
+                                                      item?.endDate
+                                                    ).format("MMMM")}
+                                                  </span>
+                                                </p>
+                                              </div>
 
-                                          <div className="col-lg-3 col-md-12 col-3">
-                                            <p className="p-text-3-1-fg mb-2 pb-1 text-green-clr">
-                                              {item.batchState==='ACTIVE' ? 
-                                                <span>Available</span>   :
-                                                <span>{item.batchState}</span> 
-                                              }
-                                            </p>
-                                          </div>
-                                          <div className="col-lg-2 col-md-12 col-2">
-                                             {item.batchState!=='FULL' && (
-                                            <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
-                                              <a
-                                                  href="javascript:;"
-                                                  onClick={e =>
-                                                    onBatchSelect(item)
-                                                  }
-                                                  tooltip="Click here to select the batch"
-                                                >
-                                                  Select
-                                                </a>
-                                            </p>
-                                             )}
-
-                                          </div>
-                                        </div>
-                                           ) 
-                                        })
-                                        }
+                                              <div className="col-lg-3 col-md-12 col-3">
+                                                <p className="p-text-3-1-fg mb-2 pb-1">
+                                                  {/* {item.batchState==='ACTIVE' ? 
+                                                <span className="text-green-clr">Available</span> ? item.batchState==='FULL' ?
+                                                <span className="text-maroon-clr">Full</span> : <span className="text-maroon-clr">Waitlist</span>
+                                              } */}
+                                                  {item.batchState ===
+                                                    "ACTIVE" && (
+                                                    <span className="text-green-clr">
+                                                      Available
+                                                    </span>
+                                                  )}
+                                                  {item.batchState ===
+                                                    "FULL" && (
+                                                    <span className="text-maroon-clr">
+                                                      Full
+                                                    </span>
+                                                  )}
+                                                  {item.batchState ===
+                                                    "WAITING_LIST" && (
+                                                    <span className="text-warning-clr">
+                                                      Waitlist
+                                                    </span>
+                                                  )}
+                                                </p>
+                                              </div>
+                                              <div className="col-lg-2 col-md-12 col-2">
+                                                {item.batchState !== "FULL" && (
+                                                  <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
+                                                    <a
+                                                      href="javascript:;"
+                                                      onClick={e =>
+                                                        onBatchSelect(item)
+                                                      }
+                                                      tooltip="Click here to select the batch"
+                                                    >
+                                                      Select
+                                                    </a>
+                                                  </p>
+                                                )}
+                                              </div>
+                                            </div>
+                                          );
+                                        })}
                                       </Card.Body>
                                     </Accordion.Collapse>
                                   </Card>
-                                  );
-                                  })}
+                                );
+                              })}
                             </Accordion>
                           </div>
                         </>

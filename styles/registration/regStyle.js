@@ -853,6 +853,10 @@ export const regStyle = css.global`
     color: rgba(0, 40, 148, 1);
   }
 
+  .text-blue-clr > a {
+    color: rgba(0, 40, 148, 1);
+  }
+
   .text-maroon {
     line-height: 20px;
     text-align: left;
@@ -951,6 +955,10 @@ export const regStyle = css.global`
 
   .pr-custom-9 {
     padding: 0 9rem;
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
   }
 
   @media only screen and (max-width: 660px) {
