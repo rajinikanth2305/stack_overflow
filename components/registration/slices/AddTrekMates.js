@@ -59,6 +59,7 @@ const AddTrekMates = forwardRef((props, ref) => {
   ] = useState();
 
   const [findUserData, setFindUserData] = useState(undefined);
+  const findEmailRef = useRef();
 
   const validationSchema = useMemo(
     () =>
@@ -332,7 +333,7 @@ const AddTrekMates = forwardRef((props, ref) => {
     await dispatch(addOrUpdateState(sdata));
     add();
     setFindUserData(undefined);
-    document.getElementById("email").value = "";
+    document.getElementById("findemail").value = "";
   };
 
   const transFormVoucherPayload = vouchers => {
@@ -377,10 +378,10 @@ const AddTrekMates = forwardRef((props, ref) => {
   const findUser = e => {
     // console.log(fieldRef.current.value);
 
-    const userData = document.getElementById("email").value;
-    console.log("hello" + userData);
+    const userEmail = findEmailRef.current.value;//window.document.getElementById("findemail").value;
+    console.log("hello" + userEmail);
 
-    if (userData === undefined || userData === "" || userData === null) {
+    if (userEmail === undefined || userEmail === "" || userEmail === null) {
       toast.current.show({
         severity: "error",
         summary: `'Find Trekker email should not be empty'`,
@@ -388,27 +389,34 @@ const AddTrekMates = forwardRef((props, ref) => {
       });
       return;
     }
-    console.log(users);
-    const existUser = users?.find(
-      x => x.email.toLowerCase() === userData.toLowerCase()
-    );
 
-    console.log(existUser);
+    const existUser = users?.find( x => x.email.toLowerCase() === userEmail.toLowerCase());
 
     if (existUser !== undefined) {
       toast.current.show({
         severity: "error",
-        summary: `'Find Trekker ${userData} is already added'`,
+        summary: `'Find Trekker ${userEmail} is already added'`,
         detail: "Find Trekker"
       });
       return;
     }
 
-    if (userData.email === undefined) {
-      getUserByAutoSearch("CUSTOMER", userData.toLowerCase()).then(data => {
+    if (userEmail !==undefined) {
+      getUserByAutoSearch("CUSTOMER", userEmail.toLowerCase()).then(data => {
         if (data.length > 0) {
-          console.log(data[0]);
-          setFindUserData(data[0]);
+          //console.log(data[0]);
+          const existUser = data?.find(
+            x => x.email.toLowerCase() === userEmail.toLowerCase()
+          );
+          if(existUser!==undefined)
+             setFindUserData(existUser);
+          else {
+          toast.current.show({
+            severity: "error",
+            summary: `'Find Trekker ${userEmail.toLowerCase()} is not registered in  India hikes, Create new account'`,
+            detail: "Find Trekker"
+          });
+        }
           /*confirmPopup({
             //target: e.currentTarget,
             message: `Are you sure you want to add trek mate ${data[0].email} ?'`,
@@ -421,7 +429,7 @@ const AddTrekMates = forwardRef((props, ref) => {
         } else {
           toast.current.show({
             severity: "error",
-            summary: `'Find Trekker ${userData.toLowerCase()} is not registered in  India hikes, Create new account'`,
+            summary: `'Find Trekker ${userEmail.toLowerCase()} is not registered in  India hikes, Create new account'`,
             detail: "Find Trekker"
           });
         }
@@ -520,7 +528,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                     <div className="login-form-box">
                       <FormGroup>
                         <div>
-                          <InputText id="email" name="email" placeholder="Email" style={{ textTransform: 'none' }} />
+                          <InputText id="findemail"  ref={findEmailRef} placeholder="Email" style={{ textTransform: 'none' }} />
                         </div>
                       </FormGroup>
                     </div>
