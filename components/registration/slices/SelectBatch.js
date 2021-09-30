@@ -32,10 +32,11 @@ import {
   getTrekOpenBatches
 } from "../../../services/queries";
 
+
 const localizer = momentLocalizer(moment);
 
 const SelectBatch = forwardRef((props, ref) => {
-  const [quickItinerary, setquickItinerary] = useState();
+  const [quickItinerary, setquickItinerary] = useState(undefined);
   const [bookingDate, setBookingDate] = useState(undefined);
   const toast = useRef(null);
   const stateData = useSelector(selectStateData);
@@ -49,9 +50,17 @@ const SelectBatch = forwardRef((props, ref) => {
   const [counter, setCounter] = React.useState(0);
 
   const [defaultActiveKey, setDefaultActiveKey] = useState([]);
+  const [itineraryDates, setItineraryDates] = useState([]);
+
+  
+  const [tripDaysIndexes, setTripDaysIndexes] = React.useState([]);
+  const [tripDayCounter, setTripDatCounter] = React.useState(0);
+  
 
   useEffect(() => {
-    findquickItinerary();
+
+    //findquickItinerary();
+
   }, []);
 
   function getBatchStartDate() {
@@ -64,30 +73,38 @@ const SelectBatch = forwardRef((props, ref) => {
     return pageUrl[3].split("=")[1];
   }
 
-  async function findquickItinerary() {
+  async function findquickItinerary(itrekName) {
+
     const client = Client();
-    const doc = await client
+    const trekName = itrekName.replaceAll(" ", "-").toLowerCase();
+    const result = await Client().getByUID("trek", trekName);
+    console.log(result);
+    const slice = result && result.data.body.find(x => x.slice_type === "quick_itinerary");
+    setquickItinerary(slice);
+    const arr = Array.from(new Array(slice.items.length), (x, i) => i);
+    setTripDaysIndexes(arr);
+    setTripDatCounter(arr.length);
+
+   /* const doc = await client
       .query([Prismic.Predicates.at("document.type", "trek")])
       .then(function(response) {
         const tt = response.results[0].data.body;
         const slice = tt && tt.find(x => x.slice_type === "quick_itinerary");
         setquickItinerary(slice);
-      });
+      });*/
+
   }
   const heading1 = quickItinerary && quickItinerary.primary.heading1;
-  const dayNumberTextArray = quickItinerary && quickItinerary.items;
+ // const dayNumberTextArray = quickItinerary && quickItinerary.items;
 
-  const dayNumberText = dayNumberTextArray?.map(function(data, i) {
+  const dayNumberText = tripDaysIndexes?.map(function(i) {
+    const data=quickItinerary?.items[i];
     return (
       <>
         <div className="d-flex align-items-start">
           <div className="col-lg-2 col-md-12">
             <p className="p-text-3 text-brown-shade">
-              {moment(bookingDate?.startDate).format("Do")}
-              <span className="mx-1">
-                {moment(bookingDate?.startDate).format("MMM")}
-              </span>
-              {/* Day {data?.day_number_text[0]?.text} */}
+              { itineraryDates[i]}
             </p>
           </div>
           <div className="col-lg-10 col-md-12">
@@ -109,7 +126,7 @@ const SelectBatch = forwardRef((props, ref) => {
     window.scrollTo(0, 0);
   };
 
-  const bookingSelect = async selectedBatch => {
+  const bookingSelect = async (selectedBatch) => {
     const sdata = JSON.parse(JSON.stringify(stateData.data));
 
     if (sdata.batchId !== selectedBatch.id) {
@@ -140,20 +157,22 @@ const SelectBatch = forwardRef((props, ref) => {
       batchId: selectedBatch.id,
       startDate: selectedBatch.startDate,
       endDate: selectedBatch.endDate,
-      trekName: selectedBatch.trek
+      trekName: selectedBatch.trek,
+      batchState:selectedBatch.batchState
     };
-
     setBookingDate(bookingDates);
-
     await dispatch(addOrUpdateState(sdata));
-
+    prepareDates(bookingDates);
+    const arr = Array.from(new Array(quickItinerary.items.length), (x, i) => i);
+    setTripDaysIndexes(arr);
+    setTripDatCounter(arr.length);
     props.batchDateChange();
 
     let index = location.href.indexOf("?");
     let url =
       location.href.substring(0, index) + "?batchId=" + selectedBatch.id;
-
     router.push(url, undefined, { shallow: true });
+
   };
 
   // The component instance will be extended
@@ -168,10 +187,14 @@ const SelectBatch = forwardRef((props, ref) => {
         batchId: data.batchId,
         startDate: data.startDate,
         endDate: data.endDate,
-        trekName: data.trekName
+        trekName: data.trekName,
+        batchState:data.batchState
       };
 
       setBookingDate(bookingDates);
+      prepareDates(bookingDates);
+      findquickItinerary(bookingDates.trekName);
+
       const currentDate = new Date().toISOString(); //new Date(new Date().getTime() + Math.abs((new Date().getTimezoneOffset() * 60000)));
       getTrekOpenBatches(data.trekId, currentDate).then(res => {
         const groupedBatches = transFormDataWithGrouping(
@@ -242,9 +265,48 @@ const SelectBatch = forwardRef((props, ref) => {
   };
 
   const onBatchSelect = batchSelected => {
-    console.log(batchSelected);
     bookingSelect(batchSelected);
   };
+
+
+  const prepareDates=(batchInfo)=>{
+    const days=[];
+    const noOfDays=daysBetween(batchInfo.startDate,batchInfo.endDate);
+    let dt=moment(batchInfo.startDate,'YYYY-MM-DD').toDate();
+    days.push(moment(dt).format("Do") + " " + moment(dt).format("MMMM"));
+      for(let i=1;i<=noOfDays;i++) {
+        dt=   addDays(dt,1);
+        days.push(moment(dt).format("Do") + " " + moment(dt).format("MMMM"));
+      }
+      setItineraryDates(days);
+      console.log(days);
+    }
+
+    function addDays(date, days) {
+      var result = new Date(date);
+      result.setDate(result.getDate() + days);
+      return result;
+    }
+
+function datediff(first, second) {
+    // Take the difference between the dates and divide by milliseconds per day.
+    // Round to nearest whole number to deal with DST.
+    console.log(first);
+    console.log(second);
+    return Math.round((second-first)/(1000*60*60*24));
+}
+
+function treatAsUTC(date) {
+  var result = new Date(date);
+  result.setMinutes(result.getMinutes() - result.getTimezoneOffset());
+  return result;
+}
+
+function daysBetween(startDate, endDate) {
+  var millisecondsPerDay = 24 * 60 * 60 * 1000;
+  return (treatAsUTC(endDate) - treatAsUTC(startDate)) / millisecondsPerDay;
+}
+
 
   return (
     <>
@@ -258,14 +320,6 @@ const SelectBatch = forwardRef((props, ref) => {
                   <div className="col-12 col-lg-12 col-md-12">
                     <div>
                       {typeof window !== "undefined" && renderControl && (
-                        // <div>
-                        //   <BookingCalender
-                        //     onBookingSelect={bookingSelect}
-                        //     mode={"inline_tab"}
-                        //     viewDt={viewDate}
-                        //     paramTrekName={bookingDate.trekName}
-                        //   />
-                        // </div>
                         <>
                           <div className="px-4 py-3 border-custom-green">
                             <p className="p-text-1-franklin text-center m-0">

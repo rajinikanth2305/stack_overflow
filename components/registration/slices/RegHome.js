@@ -75,6 +75,7 @@ const RegHome = ({ slice }) => {
     eligibilityCriteria && eligibilityCriteria.primary.complete_the_steps;
   const [userEmail, setUserEmail] = useState(undefined);
   const [disableOnAcceptTab, setDisableOnAcceptTab] = useState(false);
+  const [bookingState, setBookingState] = useState(false);
 
   const dataItems = [];
 
@@ -218,7 +219,7 @@ const RegHome = ({ slice }) => {
             } else {
               setDisableOnAcceptTab(true);
               setTermAccepted(true);
-              setKey("makepayment");
+              setKey("addtrekmates");
             }
           }
         })
@@ -303,7 +304,8 @@ const RegHome = ({ slice }) => {
       primaryUserEmail: userId,
       voucherDetails: vouchers,
       trekUsers: [],
-      isOwnerActing: isOwnerActing
+      isOwnerActing: isOwnerActing,
+      bookingState:data.state
     };
 
     const filteredUsers = data.participants.filter(
@@ -365,12 +367,16 @@ const RegHome = ({ slice }) => {
 
   const setStateStoreDataAndTriggerTabChangesState = async bookDetails => {
     //console.log(JSON.stringify(bookDetails));
+    setBookingState(bookDetails.bookingState);
+
     await dispatch(addOrUpdateState(bookDetails));
+
     childRef.current.changeState();
     childMobRef.current.changeState();
     trekMateChildRef.current.changeState();
     paymentChildRef.current.changeState();
     paymentChildMobRef.current.changeState();
+
   };
 
   const transFormVoucherPayload = vouchers => {
@@ -398,7 +404,14 @@ const RegHome = ({ slice }) => {
     return voucherlist;
   };
   const setTabActive = value => {
-    setKey(value);
+    if(value==='makepayment') {
+      if(bookingState!=='WAITING_LIST'){
+        setKey(value);
+      }
+    }
+    else {
+      setKey(value);
+    }
   };
 
   const setBatchDateChange = () => {
@@ -418,6 +431,15 @@ const RegHome = ({ slice }) => {
     batchDateChange: setBatchDateChange,
     trekUsersChange: setTrekUsersChange
   };
+
+  const computeMakePaymentTabStatus = ()=> {
+    if(bookingState==='WAITING_LIST') {
+      return true;
+    }
+     else {
+      return !termAccepted ;
+     }  
+  }
 
   return (
     <>
@@ -464,7 +486,7 @@ const RegHome = ({ slice }) => {
                   <Tab
                     eventKey="makepayment"
                     title="Make payment"
-                    disabled={!termAccepted}
+                    disabled={computeMakePaymentTabStatus}
                   >
                     <MakePayment ref={paymentChildRef} />
                   </Tab>
@@ -531,7 +553,7 @@ const RegHome = ({ slice }) => {
                         >
                           2
                         </div>
-                        <p className="mt-1">Add Trekmates</p>
+                        <p className="mt-1">Select Batch</p>
                       </div>
                     </NavLink>
                   </NavItem>
@@ -551,7 +573,7 @@ const RegHome = ({ slice }) => {
                         >
                           3
                         </div>
-                        <p className="mt-1">Select Batch</p>
+                        <p className="mt-1">Add Trekmates</p>
                       </div>
                     </NavLink>
                   </NavItem>
