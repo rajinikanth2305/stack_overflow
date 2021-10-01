@@ -145,12 +145,25 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
      // console.log(batchDates[key]);
       const sDate = batchDates[key].startDate;
       const eEdate = batchDates[key].endDate;
+      const status=batchDates[key].status
       return (
         <div className="d-flex align-items-center">
           <div>
-            <p className="m-0 ad-highlight">
+            {status==='WAITING_LIST' ? (
+            <p className="m-0 ad-highlight-waiting-list">
               <span>{date.day}</span>
-            </p>
+            </p>)
+            :
+            status==='ACTIVE' ? 
+            <p className="m-0 ad-highlight">
+            <span>{date.day}</span>
+          </p>
+          :
+          <p className="m-0 ad-highlight-full-list">
+          <span>{date.day}</span>
+        </p>
+            }
+
             <p className="ad-d m-0 d-m-none">
               {moment(sDate).format("MM/DD")} - {moment(eEdate).format("MM/DD")}
             </p>
@@ -215,14 +228,14 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     ///console.log(e.getDate());
     const key= String(e.getDate()).padStart(2, "0");
 
-   /* if(e.status==='ÇLOSED'){
+    if(batchDates[key].status==='CLOSED'){
       toast.current.show({
         severity: "error",
         summary: "Sorry! Selected  Trek Booking date - seats are filled, Please try other available booking slots",
         detail: "No Seats available"
       });
       return;
-    }*/
+    }
 
     if (batchDates !== undefined && batchDates[key] !== undefined) {
       setOnceSelectClicked(true);

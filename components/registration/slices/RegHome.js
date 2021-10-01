@@ -585,7 +585,7 @@ const RegHome = ({ slice }) => {
                       onClick={() => {
                         toggle("4");
                       }}
-                      disabled={!termAccepted}
+                      disabled={computeMakePaymentTabStatus}
                     >
                       <div>
                         <div

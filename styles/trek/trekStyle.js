@@ -1022,6 +1022,29 @@ export const trekStyle = css.global`
     display: inline-block;
   }
 
+  .ad-highlight-waiting-list {
+    text-align: center;
+  }
+  .ad-highlight-waiting-list > span {
+    background: rgba(255,193,0,1);
+    border-radius: 50%;
+    color: #ffffff;
+    width: 1.9rem;
+    height: 1.8rem;
+    display: inline-block;
+  }
+  .ad-highlight-full-list {
+    text-align: center;
+  }
+  .ad-highlight-full-list > span {
+    background: rgb(255, 0, 0);
+    border-radius: 50%;
+    color: #ffffff;
+    width: 1.9rem;
+    height: 1.8rem;
+    display: inline-block;
+  }
+
   .p-datepicker td > span {
     overflow: unset;
   }

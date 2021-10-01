@@ -224,6 +224,7 @@ const AddTrekMates = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     changeState() {
       const data = stateData.data;
+      
       const bookingDates = {
         trekId: data.trekId,
         batchId: data.batchId,
@@ -488,7 +489,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                 <p className="p-text-4 text-center mb-0">
                   You are adding participants for the {bookingDate?.trekName}
                   <span>
-                    on {moment(bookingDate?.startDate).format("Do")} to{" "}
+                  {" "} on {moment(bookingDate?.startDate).format("Do")} to {" "}
                     {moment(bookingDate?.endDate).format("Do MMMM")}
                   </span>
                 </p>
