@@ -228,7 +228,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     ///console.log(e.getDate());
     const key= String(e.getDate()).padStart(2, "0");
 
-    if(batchDates[key].status==='CLOSED'){
+    if(batchDates[key].status==='FULL'){
       toast.current.show({
         severity: "error",
         summary: "Sorry! Selected  Trek Booking date - seats are filled, Please try other available booking slots",
