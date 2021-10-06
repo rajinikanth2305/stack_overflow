@@ -67,6 +67,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
       date.year
     );
 
+    setBatchDates(undefined);
     if(data.length>0){
     var withoutDuplicates = removeDuplicatesBy(x => x.startDate, data);
     //console.log(withoutDuplicates); 
@@ -87,7 +88,9 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
   const prepareDateDisableList = (date, data) => {
     const batchDateNumInMonth = [];
     const invalidDatesList = [];
+
     var dict = {};
+   
     //console.log(data);
     if (data !== undefined && data.length > 0) {
       data.forEach(x => {
@@ -98,7 +101,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     }
 
     setBatchDates(dict);
-   // console.log(JSON.stringify(dict));
+    console.log(JSON.stringify(dict));
    // console.log(JSON.stringify(batchDateNumInMonth));
 
     for (var i = 1; i < 32; i++) {
