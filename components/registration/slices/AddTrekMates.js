@@ -61,6 +61,7 @@ const AddTrekMates = forwardRef((props, ref) => {
   const [findUserData, setFindUserData] = useState(undefined);
   const findEmailRef = useRef();
 
+
   const validationSchema = useMemo(
     () =>
       Yup.object({
@@ -122,19 +123,46 @@ const AddTrekMates = forwardRef((props, ref) => {
       return;
     }
 
-    setUsers([
-      ...users,
-      {
-        email: data.email,
-        firstName: data.firstName,
-        lastName: ""
-      }
-    ]);
+   
 
     //// new user first store into server then local store persistence
     const newUserData = await createNewUser(data);
     //console.log(newUserData);
     //console.log(JSON.stringify(newUserData));
+
+    const tsdata = JSON.parse(JSON.stringify(stateData.data));
+    tsdata.trekUsers.push({
+      id: newUserData.id,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      primaryUser: false,
+      trekFee: 0,
+      voucherId: "",
+      voucherAmount: 0,
+      userId: 0,
+      participantsId: 0,
+      height: data.height,
+      weight: data.weight,
+      gender: data.gender,
+      dob: data.dob,
+      vouchers: [],
+      optedVoucherId: 0,
+      trekFeeForTheUser: 0
+    });
+
+    let responseData;
+    try {
+      responseData= await saveDraft(tsdata);
+    }
+    catch(err) {
+      toast.current.show({
+        severity: "error",
+        summary: `'Batch is full, Sorry! You no more allowed to add the TrekMates'`,
+        detail: "Add Trekker- Batch is full"
+      });
+     return;
+    }
 
     const sdata = JSON.parse(JSON.stringify(stateData.data));
     sdata.trekUsers.push({
@@ -158,7 +186,15 @@ const AddTrekMates = forwardRef((props, ref) => {
     });
 
     await dispatch(addOrUpdateState(sdata));
-    saveDraft(sdata);
+    setUsers([
+      ...users,
+      {
+        email: data.email,
+        firstName: data.firstName,
+        lastName: ""
+      }
+    ]);
+
     add();
 
     reset(
@@ -191,6 +227,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       .catch(res => {
         if (res.response?.data?.message) {
           console.log("Draft Save error occurred ");
+          throw false;
         }
       });
   };
@@ -269,14 +306,7 @@ const AddTrekMates = forwardRef((props, ref) => {
 
   const addFindUsers = async udata => {
     console.log(users);
-    setUsers([
-      ...users,
-      {
-        email: udata.email,
-        firstName: udata.firstName,
-        lastName: udata.lastName
-      }
-    ]);
+  
 
     let vouchers = []; //await getVoucher(udata.email); Vouchers os only for main owner user
     console.log(JSON.stringify(stateData.data));
@@ -299,8 +329,28 @@ const AddTrekMates = forwardRef((props, ref) => {
       trekFeeForTheUser: 0
     });
 
-    const responseData = await saveDraft(stdata);
-    console.log(responseData);
+
+    let responseData;
+    try {
+      responseData= await saveDraft(stdata);
+    }
+    catch(err) {
+      toast.current.show({
+        severity: "error",
+        summary: `'Batch is full, Sorry! You no more allowed to add the TrekMates'`,
+        detail: "Add Trekker- Batch is full"
+      });
+     return;
+    }
+  
+    setUsers([
+      ...users,
+      {
+        email: udata.email,
+        firstName: udata.firstName,
+        lastName: udata.lastName
+      }
+    ]);
 
     const participantData = responseData?.trekMates.find(
       x => x.userId === udata.id
