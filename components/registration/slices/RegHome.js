@@ -28,7 +28,8 @@ import {
   getBatchInfoByUserAndBatchId,
   getUserVoucher,
   findUserByEmail,
-  getUsersVoucherByBookingId
+  getUsersVoucherByBookingId,
+  getBatchInfo
 } from "../../../services/queries";
 import {
   TabContent,
@@ -87,12 +88,13 @@ const RegHome = ({ slice }) => {
 
   useEffect(() => {
     //console.log("use-effect-called");
-    findEligibilityCriteria();
+  
 
     auth.keycloak().then(([userTokenObject, userEmail]) => {
       setUserServiceObject(userTokenObject);
       setUserEmail(userEmail);
       DoBindIfBookingExists(userEmail);
+      findEligibilityCriteria();
     });
 
     return () => {
@@ -125,6 +127,7 @@ const RegHome = ({ slice }) => {
   function getTrekNameFromUrlQueryPath() {
     /// Get the trekName from QueryString
     let url = location.href.replace(location.origin, "");
+   
     //console.log(url);
     let pageUrl = url.split("&");
     let pageUrl3 = pageUrl[1]; //trekName
@@ -134,6 +137,15 @@ const RegHome = ({ slice }) => {
 
   async function findEligibilityCriteria() {
     const client = Client();
+
+    /// sample url to parse andget the batchid /registration?batchId=6049#state=f2bgfhgfh
+    let url = location.href.replace(location.origin, "");
+    console.log(url);
+    let urlWithParams=url.split("#")[0];
+    let batchKeyVal=urlWithParams.split("?")[1].split("&")[0];
+    let batchId=batchKeyVal.split("=")[1];
+    console.log(batchId);
+  
     // const prismicPageName=getTrekNameFromUrlQueryPath().replace("%20","_").toLocaleLowerCase();
     // console.log(prismicPageName);
     // const response = await Client().getByUID("trek", prismicPageName) || {};
@@ -141,14 +153,18 @@ const RegHome = ({ slice }) => {
     // const tt = response.data.body;///response.results.data.body;
     // const slice = tt && tt.find(x => x.slice_type === "book_your_trek");
     // setEligibilityCriteria(slice);
+    getBatchInfo(batchId).then(res=>{
+      const trekName = res.trekName.replaceAll(" ", "-").toLowerCase();
+      getTrekContentsFromPrismic(trekName);
+    });
 
-    const doc = await client
-      .query([Prismic.Predicates.at("document.type", "trek")])
-      .then(function(response) {
-        const tt = response.results[0].data.body;
-        const slice = tt && tt.find(x => x.slice_type === "book_your_trek");
-        setEligibilityCriteria(slice);
-      });
+  }
+
+  const getTrekContentsFromPrismic = async (trekName) =>{
+    const response =    await Client().getByUID("trek", trekName);
+    const tt = response.data.body;
+    const slice = tt && tt.find(x => x.slice_type === "book_your_trek");
+    setEligibilityCriteria(slice);
   }
 
   const showToken = () => {
@@ -182,7 +198,7 @@ const RegHome = ({ slice }) => {
     console.log(userId);
 
     if (callMode === "Button_Click") {
-      if (disableOnAcceptTab == true) {
+      if (disableOnAcceptTab === true) {
         /// it means terms is already accepted
         setKey("selectbatch");
       } else {

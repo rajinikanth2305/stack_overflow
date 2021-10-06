@@ -109,6 +109,14 @@ const getTokenHeader=async () => {
   return {Accept: 'application/json',Authorization: `Bearer ${token}`};
 }
 
+export const getBatchInfo =  async (batchId)  => {
+  const header=await getTokenHeader();
+                const api = `${REACT_APP_TMS_BACKEND_URL}`;
+                let url = `${api}/batches/${batchId}`;
+                return axios.get(url,{ headers:  header })
+                       .then((res) => res.data);
+         
+};
   export const findUserByEmail =  async (email)  => {
     const header=await getTokenHeader();
                   const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
