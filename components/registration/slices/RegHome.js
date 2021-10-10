@@ -64,6 +64,9 @@ const RegHome = ({ slice }) => {
   const paymentChildRef = useRef();
   const paymentChildMobRef = useRef();
   const [batchBookingData, setBatchBookingData] = useState(undefined);
+  const [inclusions, setInclusions] = useState();
+  const [exclusions, setExclusions] = useState();
+  const [whyIndiaHikes, setWhyIndiaHikes] = useState();
 
   const router = useRouter();
 
@@ -161,10 +164,18 @@ const RegHome = ({ slice }) => {
   }
 
   const getTrekContentsFromPrismic = async (trekName) =>{
+    console.log(trekName);
     const response =    await Client().getByUID("trek", trekName);
     const tt = response.data.body;
+    console.log(tt);
     const slice = tt && tt.find(x => x.slice_type === "book_your_trek");
     setEligibilityCriteria(slice);
+    const inclusionsSlice = tt && tt.find(x => x.slice_type === "trek_inclusions");
+    setInclusions(inclusionsSlice);
+    const exclusionsSlice = tt && tt.find(x => x.slice_type === "trek_exclusions");
+    setExclusions(exclusionsSlice);
+    const whyhikesSlice = tt && tt.find(x => x.slice_type === "why_india_hikes");
+    setWhyIndiaHikes(whyhikesSlice);
   }
 
   const showToken = () => {
@@ -479,6 +490,9 @@ const RegHome = ({ slice }) => {
                       data={eligibilityCriteria}
                       props={bookDetails}
                       onTermAccept={onTermAccept}
+                      inclusionsData={inclusions}
+                      exclusionsData={exclusions}
+                      whyIndiaHikesData={whyIndiaHikes}
                     />
                   </Tab>
 

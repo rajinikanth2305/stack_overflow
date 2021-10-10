@@ -9,8 +9,17 @@ import { useRouter } from "next/router";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
+import { Client } from "utils/prismicHelpers";
+import Prismic from "@prismicio/client";
 
-const AcceptTC = ({ data, props, onTermAccept }) => {
+const AcceptTC = ({
+  data,
+  props,
+  onTermAccept,
+  inclusionsData,
+  exclusionsData,
+  whyIndiaHikesData
+}) => {
   const eligibilityCriteria = data;
   const stateData = useSelector(selectStateData);
   const dispatch = useDispatch();
@@ -26,6 +35,8 @@ const AcceptTC = ({ data, props, onTermAccept }) => {
     eligibilityCriteria.primary.eligibility_criteria_desc;
   const heading2 = eligibilityCriteria && eligibilityCriteria.primary.heading2;
   const ecArray = eligibilityCriteria && eligibilityCriteria.items;
+
+  console.log(whyIndiaHikesData);
 
   useEffect(() => {
     let url = location.href.replace(location.origin, "");
@@ -48,6 +59,38 @@ const AcceptTC = ({ data, props, onTermAccept }) => {
       setShowButton(true);
     }, 2000);
   }, []);
+
+  const inclusionsHeading = inclusionsData && inclusionsData?.primary?.heading1;
+  const knowAboutYourTrekTitle =
+    inclusionsData && inclusionsData?.primary?.know_about_your_trek_title;
+  const inclusionArray = inclusionsData && inclusionsData.items;
+  const exclusionsHeading = exclusionsData && exclusionsData?.primary?.heading1;
+  const exclusionsArray = exclusionsData && exclusionsData.items;
+  const whyIndiaHikesHeading =
+    whyIndiaHikesData && whyIndiaHikesData?.primary?.heading1;
+  const whyIndiaHikesArray = whyIndiaHikesData && whyIndiaHikesData.items;
+
+  const inclusionData = inclusionArray?.map(function(data, i) {
+    return (
+      <div className="pb-1" key={i}>
+        <p className="p-text-3-1-fg mb-1">
+          {i + 1} {data?.inclusion_title[0]?.text}
+        </p>
+        <p className="p-text-3">{data?.inclusion_desc[0]?.text}</p>
+      </div>
+    );
+  });
+
+  const exclusionssData = exclusionsArray?.map(function(data, i) {
+    return (
+      <div className="pb-1" key={i}>
+        <p className="p-text-3-1-fg mb-1">
+          {i + 1} {data?.trek_exclusion_title[0]?.text}
+        </p>
+        <p className="p-text-3">{data?.trek_exclusion_desc[0]?.text}</p>
+      </div>
+    );
+  });
 
   const ecList = ecArray?.map(function(data, i) {
     return (
@@ -194,6 +237,7 @@ const AcceptTC = ({ data, props, onTermAccept }) => {
           <div className="col-lg-5 col-md-12">
             <div className="p-3 bg-light-yellow-shade mb-4">
               <p className="p-text-1-franklin border-bottom-custom-1 pb-2">
+                {/* {RichText.asText(whyIndiaHikesHeading)} */}
                 Why Indiahikes?
               </p>
               <div className="d-flex align-items-start">
@@ -276,92 +320,19 @@ const AcceptTC = ({ data, props, onTermAccept }) => {
 
             <div className="p-3 bg-light-gray-shade">
               <p className="p-text-1-franklin border-bottom-custom-1 pb-2">
-                What You Need To Know About your hampta pass Trek Fee
+                {RichText.asText(knowAboutYourTrekTitle)}
               </p>
-              <p className="text-green mb-2">Trek Fee Inclusions</p>
-              <div className="pb-1">
-                <p className="p-text-3-1-fg mb-1">1. Accommodation</p>
-                <p className="p-text-3">
-                  Accommodation – Stay is included from Day 1 to Day 5 (Jobra to
-                  Chhatru). You will be camping on all days of the trek (3 per
-                  tent).
-                </p>
-              </div>
-              <div className="pb-1">
-                <p className="p-text-3-1-fg mb-1">2. Meals</p>
-                <p className="p-text-3">
-                  All meals from lunch at Prini on day 1 to breakfast at Chhatru
-                  on Day 6 are included. We provide simple, nutritious
-                  vegetarian food on all days of the trek.
-                </p>
-              </div>
-              <div className="pb-1">
-                <p className="p-text-3-1-fg mb-1">3. Camping charges</p>
-                <p className="p-text-3">
-                  All meals from lunch at Prini on day 1 to breakfast at Chhatru
-                  on Day 6 are included. We provide simple, nutritious
-                  vegetarian food on all days of the trek.
-                </p>
-              </div>
-              <div className="pb-1">
-                <p className="p-text-3-1-fg mb-1">4. Trekking equipment</p>
-                <p className="p-text-3">
-                  You will stay in high-quality tents and sleeping bags in all
-                  the camps. Our high altitude sleeping bags can withstand
-                  temperatures as low as -10 ºC. We provide ice axes, roped,
-                  microspikes, gaiters etc. as required.
-                </p>
-              </div>
-              <div className="pb-1">
-                <p className="p-text-3-1-fg mb-1">5. safety equipment</p>
-                <p className="p-text-3">
-                  First aid, medical kit, oxygen cylinders, stretchers etc. will
-                  be available at all campsites to deal with emergencies.
-                </p>
-              </div>
+              <p className="text-green mb-2">
+                Trek Fee {RichText.asText(inclusionsHeading)}
+              </p>
+
+              <div>{inclusionData}</div>
 
               <div className="mt-4">
-                <p className="text-maroon mb-2">Trek Fee Exclusions</p>
-                <div className="pb-1">
-                  <p className="p-text-3-1-fg mb-1">1. Accommodation</p>
-                  <p className="p-text-3">
-                    Accommodation – Stay is included from Day 1 to Day 5 (Jobra
-                    to Chhatru). You will be camping on all days of the trek (3
-                    per tent).
-                  </p>
-                </div>
-                <div className="pb-1">
-                  <p className="p-text-3-1-fg mb-1">2. Meals</p>
-                  <p className="p-text-3">
-                    All meals from lunch at Prini on day 1 to breakfast at
-                    Chhatru on Day 6 are included. We provide simple, nutritious
-                    vegetarian food on all days of the trek.
-                  </p>
-                </div>
-                <div className="pb-1">
-                  <p className="p-text-3-1-fg mb-1">3. Camping charges</p>
-                  <p className="p-text-3">
-                    All meals from lunch at Prini on day 1 to breakfast at
-                    Chhatru on Day 6 are included. We provide simple, nutritious
-                    vegetarian food on all days of the trek.
-                  </p>
-                </div>
-                <div className="pb-1">
-                  <p className="p-text-3-1-fg mb-1">4. Trekking equipment</p>
-                  <p className="p-text-3">
-                    You will stay in high-quality tents and sleeping bags in all
-                    the camps. Our high altitude sleeping bags can withstand
-                    temperatures as low as -10 ºC. We provide ice axes, roped,
-                    microspikes, gaiters etc. as required.
-                  </p>
-                </div>
-                <div className="pb-1">
-                  <p className="p-text-3-1-fg mb-1">5. safety equipment</p>
-                  <p className="p-text-3">
-                    First aid, medical kit, oxygen cylinders, stretchers etc.
-                    will be available at all campsites to deal with emergencies.
-                  </p>
-                </div>
+                <p className="text-maroon mb-2">
+                  Trek Fee {RichText.asText(exclusionsHeading)}
+                </p>
+                <div>{exclusionssData}</div>
               </div>
             </div>
           </div>
