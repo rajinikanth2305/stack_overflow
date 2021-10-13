@@ -68,7 +68,7 @@ const BestPostTreks = ({ slice }) => {
                     <div className="d-flex align-items-end justify-content-center w-100 h-100 px-4 py-3">
                       <div className="w-100">
                         <p className="p-text-1-main m-0">
-                          {data.title[0].text}
+                          {data?.title[0]?.text}
                         </p>
                       </div>
                     </div>

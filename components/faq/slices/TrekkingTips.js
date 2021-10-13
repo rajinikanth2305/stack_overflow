@@ -46,7 +46,7 @@ const TrekkingTips = ({ slice }) => {
             </div>
             <div className="col-9 col-lg-9 col-md-12">
               <p className="p-text-3">
-                <b>{data.title[0].text}</b>
+                <b>{data?.title[0]?.text}</b>
               </p>
               <div>
                 <p className="p-text-small m-0">By {data.name[0].text}</p>

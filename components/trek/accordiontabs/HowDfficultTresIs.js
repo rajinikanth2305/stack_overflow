@@ -131,8 +131,8 @@ const HowDifficultTrekIs = () => {
       );
     });
     return (
-      <Tab eventKey={`tab` + data.title[0].text} title={data.title[0].text}>
-        {data.title[0].text === "Safety – Altitude Wise" ? (
+      <Tab eventKey={`tab` + data?.title[0]?.text} title={data?.title[0]?.text}>
+        {data?.title[0]?.text === "Safety – Altitude Wise" ? (
           <div className="hd-tab2-iamge mb-4">
             <Image
               src={data.heading1_image.url}
@@ -145,7 +145,7 @@ const HowDifficultTrekIs = () => {
           ""
         )}
         {description}
-        {data.title[0].text === "Exit Points & Emergency Details" ? (
+        {data?.title[0]?.text === "Exit Points & Emergency Details" ? (
           <div className="hd-tab4-iamge mb-4">
             <Image
               src={data.heading1_image.url}
@@ -157,7 +157,7 @@ const HowDifficultTrekIs = () => {
         ) : (
           ""
         )}
-        {data.title[0].text === "Safety - Terrain Wise" ? (
+        {data?.title[0]?.text === "Safety - Terrain Wise" ? (
           <>
             <div className="hd-tab2-iamge mv mb-4 d-m-block">
               <Image
@@ -212,7 +212,7 @@ const HowDifficultTrekIs = () => {
             {content2_data}
           </>
         )}
-        {/* {data.title[0].text === "Safety - Terrain Wise" ? (
+        {/* {data?.title[0]?.text === "Safety - Terrain Wise" ? (
           <div className="hd-tab2-iamge mb-4">
             <Image
               src={data.heading1_image.url}
