@@ -80,7 +80,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 60px;
     color: rgba(255, 255, 255, 1);
-    letter-spacing: 0.1px;
+    letter-spacing: 2px;
     filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.749));
   }
 
@@ -93,6 +93,7 @@ export const customStyles = css.global`
     font-size: 24px;
     color: rgba(255, 255, 255, 1);
     text-transform: capitalize;
+    letter-spacing: 0.5px;
   }
 
   .banner-text-3 {

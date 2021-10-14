@@ -32,10 +32,11 @@ export const bannerStyle = css.global`
     font-family: Lora;
     font-style: normal;
     font-weight: bold;
-    font-size: 58px;
+    font-size: 60px;
     color: rgba(255, 255, 255, 1);
     text-transform: uppercase;
     filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.749));
+    letter-spacing: 2px;
   }
 
   .banner-text-2 {
@@ -48,10 +49,11 @@ export const bannerStyle = css.global`
     font-size: 24px;
     color: rgba(255, 255, 255, 1);
     filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 1));
+    letter-spacing: 0.5px;
   }
 
   .short-info-sec {
-    background: rgba(255, 245, 210, 1);
+    background: rgb(255, 193, 0);
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
   }
 
@@ -65,6 +67,10 @@ export const bannerStyle = css.global`
     color: rgba(0, 0, 0, 1);
     // text-transform: capitalize;
     padding: 7px 0;
+  }
+
+  .short-info-text > b {
+    letter-spacing: 0.5px;
   }
 
   @media only screen and (max-width: 660px) {

@@ -52,6 +52,7 @@ export const diyStyles = css.global`
     filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.749));
     color: rgba(255, 255, 255, 1);
     text-transform: capitalize;
+    letter-spacing: 2px;
   }
 
   .banner-text-2 {
@@ -64,6 +65,7 @@ export const diyStyles = css.global`
     filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 1));
     color: rgba(255, 255, 255, 1);
     text-transform: capitalize;
+    letter-spacing: 0.5px;
   }
 
   .title-h1 {

@@ -41,36 +41,92 @@ const TrekBannerWithCaption = ({ slice }) => {
             <div className="d-m-none">
               <div className="row">
                 <div className="col-6 col-lg-3 col-md-6">
-                  <p className="short-info-text m-0">
-                    <b>Difficulty</b>{" "}
-                    <span className="mx-2 mmx-0 md-b">
-                      {RichText.asText(difficulty)}
-                    </span>
-                  </p>
+                  <div className="d-flex align-items-center">
+                    <div>
+                      <img
+                        src="/Icons_Outline_Hourglass.png"
+                        style={{ width: "33px", paddingRight: "5px" }}
+                      />
+                    </div>
+                    <div>
+                      <p className="short-info-text m-0">
+                        <b>Difficulty</b>
+                      </p>
+                    </div>
+                    <div>
+                      <p className="short-info-text m-0">
+                        <span className="mx-2 mmx-0 md-b">
+                          {RichText.asText(difficulty)}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div className="col-6 col-lg-3 col-md-6">
-                  <p className="short-info-text m-0">
-                    <b>Duration</b>{" "}
-                    <span className="mx-2 mmx-0 md-b">
-                      {RichText.asText(duration)}
-                    </span>
-                  </p>
+                  <div className="d-flex align-items-center">
+                    <div>
+                      <img
+                        src="/Icons_Outline_Calendar.png"
+                        style={{ width: "35px", paddingRight: "5px" }}
+                      />
+                    </div>
+                    <div>
+                      <p className="short-info-text m-0">
+                        <b>Duration</b>
+                      </p>
+                    </div>
+                    <div>
+                      <p className="short-info-text m-0">
+                        <span className="mx-2 mmx-0 md-b">
+                          {RichText.asText(duration)}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div className="col-6 col-lg-3 col-md-6">
-                  <p className="short-info-text m-0">
-                    <b>Highest Altitude</b>{" "}
-                    <span className="mx-2 mmx-0 md-b">
-                      {RichText.asText(altitude)}
-                    </span>
-                  </p>
+                  <div className="d-flex align-items-center">
+                    <div>
+                      <img
+                        src="/Icons_Outline_Mountain.png"
+                        style={{ width: "35px", paddingRight: "5px" }}
+                      />
+                    </div>
+                    <div>
+                      <p className="short-info-text m-0">
+                        <b>Highest Altitude</b>
+                      </p>
+                    </div>
+                    <div>
+                      <p className="short-info-text m-0">
+                        <span className="mx-2 mmx-0 md-b">
+                          {RichText.asText(altitude)}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div className="col-6 col-lg-3 col-md-6">
-                  <p className="short-info-text m-0">
-                    <b>Age</b>{" "}
-                    <span className="mx-2 mmx-0 md-b">
-                      {RichText.asText(age)}
-                    </span>
-                  </p>
+                  <div className="d-flex align-items-center">
+                    <div>
+                      <img
+                        src="/Icons_Outline_Backpack.png"
+                        style={{ width: "33px", paddingRight: "5px" }}
+                      />
+                    </div>
+                    <div>
+                      <p className="short-info-text m-0">
+                        <b>Age</b>
+                      </p>
+                    </div>
+                    <div>
+                      <p className="short-info-text m-0">
+                        <span className="mx-2 mmx-0 md-b">
+                          {RichText.asText(age)}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

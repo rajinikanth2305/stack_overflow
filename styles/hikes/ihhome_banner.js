@@ -53,9 +53,9 @@ export const ihhomeBannerStyles = css.global`
     font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
-    font-size: 48px;
+    font-size: 60px;
     color: rgba(255, 255, 255, 1);
-    letter-spacing: 0.1px;
+    letter-spacing: 2px;
     margin-bottom: 50px;
   }
 
@@ -68,6 +68,7 @@ export const ihhomeBannerStyles = css.global`
     font-size: 24px;
     color: rgba(255, 255, 255, 1);
     text-transform: capitalize;
+    letter-spacing: 0.5px;
   }
 
   .banner-text-3 {
