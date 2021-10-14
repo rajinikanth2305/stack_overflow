@@ -113,7 +113,7 @@ const TrekkersStoriesCommon = () => {
         <div className="container">
           <div className="d-flex align-items-center flex-wrap border-bottom-4 mb-3">
             <div className="col-md-12">
-              <h2 className="title-display-2">{RichText.asText(heading1)}</h2>
+              <h2 className="title-display-2 pb-08 mb-3">{RichText.asText(heading1)}</h2>
             </div>
           </div>
           <div className="row">

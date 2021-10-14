@@ -42,7 +42,7 @@ const SustainableTrekking = ({ slice }) => {
                   <div className="col-md-8">
                     <div>
                       <div className="sustainable_box">
-                        <h2 className="title-h2 text-white text-center-custom">
+                        <h2 className="title-h2 text-white text-center-custom pb-08 mb-3">
                           {RichText.asText(heading1)}
                         </h2>
                         <p className="p-text-4 text-white mb-0 text-center-custom">

@@ -186,7 +186,7 @@ export const diyStyles = css.global`
   }
 
   .p-text-4 {
-    line-height: 24px;
+    line-height: 21px;
     text-align: left;
     font-family: Lora;
     font-style: normal;

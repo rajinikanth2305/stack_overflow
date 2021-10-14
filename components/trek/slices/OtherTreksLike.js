@@ -84,7 +84,7 @@ const OtherTreksLike = ({ slice }) => {
                   </div>
                 </div>
                 <div>
-                  <p className="p-text-1">
+                  <p className="p-text-1-frg">
                     <b>{data.heading1[0].text}</b>
                   </p>
                   <p className="p-text-4">
@@ -135,7 +135,7 @@ const OtherTreksLike = ({ slice }) => {
         <div className="container">
           <div className="d-flex flex-wrap align-items-center mb-3">
             <div className="col-lg-9 col-md-12">
-              <h2 className="title-h2 th-2m">{RichText.asText(heading1)}</h2>
+              <h2 className="title-h2 th-2m pb-08 mb-0">{RichText.asText(heading1)}</h2>
             </div>
           </div>
           <div>

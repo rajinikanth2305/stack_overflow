@@ -84,7 +84,7 @@ const TrekOverView = ({ slice, data }) => {
             </div>
             <div className="col-12 col-lg-7 col-md-12">
               <div>
-                <h1 className="title-h1 border-bottom-custom m-bbc pb-3 mb-3">
+                <h1 className="title-h1 border-bottom-custom m-bbc pb-08 mb-3">
                   {RichText.asText(heading1)}
                 </h1>
                 <p className="p-text-1 mt-3 mb-2">

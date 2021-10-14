@@ -38,6 +38,8 @@ export const trekStyle = css.global`
     font-size: 56px;
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
+    line-height: 50px;
+    padding-bottom: 15px;
   }
 
   .title-h2 {
@@ -78,6 +80,16 @@ export const trekStyle = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .p-text-1-frg {
+    line-height: 30px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    color: rgba(0, 0, 0, 1);
+  }
+
   .b-left {
     border-left: 4px solid rgb(255, 193, 0);
     padding-left: 15px;
@@ -102,6 +114,7 @@ export const trekStyle = css.global`
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
     text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
   .p-text-3 {
@@ -368,7 +381,7 @@ export const trekStyle = css.global`
     font-family: Lora;
     font-style: normal;
     font-weight: normal;
-    text-transform: capitalize;
+    text-transform: none;
     color: rgba(112, 112, 112, 1);
   }
 
@@ -434,6 +447,12 @@ export const trekStyle = css.global`
     border-left: 1px soild rgba(255, 193, 0, 1);
   }
 
+  .author-text.f-c {
+    font-family: Franklin Gothic;
+    padding-top: 3px;
+    line-height: 14px;
+  }
+
   .author_img {
     float: none;
   }
@@ -463,7 +482,8 @@ export const trekStyle = css.global`
     height: 700px;
   }
 
-  .slick-prev, .slick-next {
+  .slick-prev,
+  .slick-next {
     top: 38%;
   }
 
@@ -530,6 +550,8 @@ export const trekStyle = css.global`
 
   .btn-btn-yellow-new {
     background: rgba(255, 193, 0, 1);
+    border-radius: 2px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.353);
     border: 0;
     padding: 10px 30px;
     border-radius: 0;
@@ -1131,7 +1153,7 @@ export const trekStyle = css.global`
     font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 14px;
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
   }
@@ -1141,6 +1163,11 @@ export const trekStyle = css.global`
     font-family: Lora;
     font-style: normal;
     font-weight: bold;
+  }
+
+  .expert_speak_box > p.p-text-2 {
+    font-size: 18px;
+    margin-bottom: 5px;
   }
 
   .bg-transparent-text-effect-tes {
@@ -1280,6 +1307,10 @@ export const trekStyle = css.global`
 
   .bg-gray {
     background: rgba(0, 0, 0, 0.051);
+  }
+
+  .pb-08 {
+    padding-bottom: 0.8rem;
   }
 
   @media only screen and (max-width: 660px) {

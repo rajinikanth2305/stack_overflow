@@ -99,7 +99,7 @@ const TrekExpertSpeak = ({ slice }) => {
                     </h2>
                     {/* <p clas="m-0 d-m-none">with</p> */}
                     <p className="m-0 p-text-2">{RichText.asText(author)}</p>
-                    <p className="p-text-3 font-weigth-normal">
+                    <p className="p-text-3 font-weigth-normal mb-0">
                       {RichText.asText(position)}
                     </p>
                   </div>
@@ -144,7 +144,7 @@ const TrekExpertSpeak = ({ slice }) => {
                 <div className="mt-5 pt-4 mpt-0">
                   <div className="row">
                     <div className="col-md-12 col-lg-7 col-md-12">
-                      <h2 className="title-h2 th-2m mmb-1 pb-3">
+                      <h2 className="title-h2 th-2m mmb-1 pb-08 mb-3">
                         {RichText.asText(contentHeading)}
                       </h2>
                       <p className="p-text-1">
@@ -166,7 +166,7 @@ const TrekExpertSpeak = ({ slice }) => {
                               <p className="m-0 author-info-text">
                                 {RichText.asText(author)}
                               </p>
-                              <p className="m-0 author-text">
+                              <p className="m-0 author-text f-c">
                                 {RichText.asText(position)}
                               </p>
                             </div>

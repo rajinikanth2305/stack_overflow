@@ -17,7 +17,7 @@ const QuickItineraryComponent = ({ slice }) => {
 
   const importantNoteListdata = importantNoteList.map((data, i) => {
     return (
-      <p className="m-0" key={i}>
+      <p className="p-text-4 m-0" key={i}>
         {data.text}
       </p>
     );
@@ -58,7 +58,7 @@ const QuickItineraryComponent = ({ slice }) => {
             <p className="p-text-2 mb-0">
               <b>{data.heading1[0].text}</b>
             </p>
-            <p className="p-text-small text-dark">
+            <p className="p-text-small text-dark font-italic mb-2">
               {data?.sub_heading2[0]?.text}
             </p>
             <p className="p-text-4">{data?.heading2[0]?.text}</p>
@@ -74,7 +74,7 @@ const QuickItineraryComponent = ({ slice }) => {
         <div className="container">
           <div className="row">
             <div className="col-lg-7 col-md-12">
-              <h2 className="title-h2 th-2m pb-3 mb-3 mmb-0">
+              <h2 className="title-h2 th-2m pb-08 mb-3 mmb-0">
                 {RichText.asText(heading1)}
               </h2>
               <div className="d-m-block">
@@ -128,7 +128,7 @@ const QuickItineraryComponent = ({ slice }) => {
 
                 <div className="pro_tips_box">
                   <p className="pro_tips">
-                    <span className="p-text-2-franklin">PRO-TIPS</span>
+                    <span className="p-text-2-franklin"><b>PRO-TIPS</b></span>
                   </p>
                   {/* {proTipsListData} */}
                   <p className="p-text-4 m-0">{RichText.render(proTipsList)}</p>
@@ -151,7 +151,7 @@ const QuickItineraryComponent = ({ slice }) => {
                   </div>
                   <div className="pro_tips_box">
                     <p className="pro_tips">
-                      <span className="p-text-2-franklin">PRO-TIPS</span>
+                      <span className="p-text-2-franklin"><b>PRO-TIPS</b></span>
                     </p>
                     {/* {proTipsListData} */}
                     <p className="p-text-4">{RichText.render(proTipsList)}</p>

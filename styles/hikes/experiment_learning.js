@@ -159,7 +159,7 @@ export const experimentStyles = css.global`
     border-radius: 3px;
     color: black;
     font-size: 18px;
-    text-transform: uppercase;
+    text-transform: none;
     font-family: Franklin Gothic Medium;
   }
   @media only screen and (max-width: 600px) {

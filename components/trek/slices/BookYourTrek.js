@@ -83,9 +83,7 @@ const BookYourTrek = ({ slice }) => {
                 <div className="col-12 col-lg-6 col-md-12">
                   <div>
                     <h2
-                      className="title-h2 th-2m pb-3"
-                      style={{ marginBottom: "0 !important" }}
-                    >
+                      className="title-h2 th-2m pb-08 mb-0">
                       {RichText.asText(heading1)}
                     </h2>
                     <div className="slots-bg mb-4 mmb-0">

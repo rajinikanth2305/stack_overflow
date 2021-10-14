@@ -58,7 +58,7 @@ const KnowYourTrek = ({ slice, data }) => {
                     <p className="p-text-1 m-0">
                       <b>{data.accordion_tab_title[0].text}</b>
                     </p>
-                    <p className="mb-1 p-text-3-1">
+                    <p className="mb-2 p-text-3-2">
                       {data.accordion_tab_desc[0].text}
                     </p>
                   </div>
@@ -132,11 +132,11 @@ const KnowYourTrek = ({ slice, data }) => {
                 </div>
               </div>
             </div> */}
-            <div className="col-12 col-lg-8 col-md-12">
+            <div className="col-12 col-lg-7 col-md-12">
               <div className="row">
                 <div className="col-12 col-lg-12 col-md-12">
                   <div>
-                    <h2 className="title-h2 th-2m pb-3">
+                    <h2 className="title-h2 th-2m pb-08">
                       {RichText.asText(heading1)}
                     </h2>
                     {heading2data}
