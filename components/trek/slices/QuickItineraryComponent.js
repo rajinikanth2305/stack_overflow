@@ -74,7 +74,7 @@ const QuickItineraryComponent = ({ slice }) => {
         <div className="container">
           <div className="row">
             <div className="col-lg-7 col-md-12">
-              <h2 className="title-h2 th-2m pb-3 mb-4 mmb-0">
+              <h2 className="title-h2 th-2m pb-3 mb-3 mmb-0">
                 {RichText.asText(heading1)}
               </h2>
               <div className="d-m-block">

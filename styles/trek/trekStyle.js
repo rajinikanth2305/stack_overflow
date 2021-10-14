@@ -145,7 +145,7 @@ export const trekStyle = css.global`
   }
 
   .p-text-4 {
-    line-height: 24px;
+    line-height: 21px;
     text-align: left;
     font-family: Lora;
     font-style: normal;
@@ -195,7 +195,7 @@ export const trekStyle = css.global`
     text-align: left;
     font-family: Franklin Gothic;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 600;
     font-size: 24px;
     color: rgba(0, 0, 0, 1);
   }
@@ -205,7 +205,7 @@ export const trekStyle = css.global`
     text-align: left;
     font-family: Franklin Gothic;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 600;
     font-size: 36px;
     color: rgba(0, 0, 0, 1);
   }
@@ -463,10 +463,22 @@ export const trekStyle = css.global`
     height: 700px;
   }
 
+  .slick-prev, .slick-next {
+    top: 38%;
+  }
+
   .slick-prev::before,
   .slick-next::before {
     color: #ffc100;
     font-size: 26px;
+  }
+
+  .slick-dots li {
+    width: 10px;
+  }
+
+  .slick-dots {
+    bottom: -40px;
   }
 
   .text-green-shade {
@@ -679,7 +691,8 @@ export const trekStyle = css.global`
   .quick-info-bage-outline {
     background: #ffc100;
     // filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
-    border-radius: 5px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.353) !important;
+    border-radius: 2px;
     padding: 5px 20px;
     line-height: 24px;
     text-align: left;
@@ -688,7 +701,8 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    margin-right: 8px;
+    margin-bottom: 12px !important;
+    margin-right: 10px;
   }
 
   .quick-info-bage-outline.know_your {
@@ -738,6 +752,7 @@ export const trekStyle = css.global`
     color: rgba(157, 58, 11, 1);
     font-family: Franklin Gothic;
     text-transform: uppercase;
+    font-weight: 600;
   }
 
   .itinerary_map_image {
@@ -1026,7 +1041,7 @@ export const trekStyle = css.global`
     text-align: center;
   }
   .ad-highlight-waiting-list > span {
-    background: rgba(255,193,0,1);
+    background: rgba(255, 193, 0, 1);
     border-radius: 50%;
     color: #ffffff;
     width: 1.9rem;

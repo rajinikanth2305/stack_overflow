@@ -75,7 +75,7 @@ const TrekVideosComponent = ({ slice }) => {
     return (
       <>
         <div className="mx-2 mb-3" key={i}>
-          <div className="card card-box-shadow">
+          <div className="card card-box-shadow border-0">
             <div className="trek_video_image_array">
               <div className="d-flex align-items-center justify-content-center w-100 h-100">
                 <div className="text-center">
@@ -120,7 +120,7 @@ const TrekVideosComponent = ({ slice }) => {
             </div>
             <div className="col-12 col-lg-7 col-md-12 mpy-0">
               <div className="d-m-none">
-                <div className="card card-box-shadow">
+                <div className="card card-box-shadow border-0">
                   <div className="terk-videos-promary-image">
                     <div className="d-flex align-items-center justify-content-center w-100 h-100">
                       <div className="text-center">
@@ -146,7 +146,7 @@ const TrekVideosComponent = ({ slice }) => {
             <div className="col-12 col-lg-1 col-md-12"></div>
             <div className="col-12 col-lg-4 col-md-12">
               <div>
-                <div className="card card-box-shadow">
+                <div className="card card-box-shadow border-0">
                   <div className="terk-videos-secondary-image">
                     <div className="d-flex align-items-center justify-content-center w-100 h-100">
                       <div className="text-center">
