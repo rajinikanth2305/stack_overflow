@@ -10,7 +10,8 @@ import "primeicons/primeicons.css";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.css";
 import "primeflex/primeflex.css";
-
+import { confirmPopup } from "primereact/confirmpopup"; // To use confirmPopup method
+import { confirmDialog  } from 'primereact/confirmdialog'; // To use <ConfirmDialog> tag
 // Project components & functions
 import { getBatches } from "services/queries";
 import { batch } from "react-redux";
@@ -126,6 +127,20 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     setInvalidDates(invalidDatesList);
   };
 
+  const activeOrFillingTemplate =(fillingFast,date) => {
+      if(fillingFast) {
+        return (<p className="m-0 ad-highlight">
+        <span>Last 2 SLOTS {date.day}</span>
+         </p>)
+      }
+      else {
+       
+       return (<p className="m-0 ad-highlight">
+        <span>Available {date.day}</span>
+         </p>)
+      }
+  }
+
   const dateTemplate = date => {
     // console.log(date.day);
     if (date.day === 1) {
@@ -148,22 +163,21 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
      // console.log(batchDates[key]);
       const sDate = batchDates[key].startDate;
       const eEdate = batchDates[key].endDate;
-      const status=batchDates[key].status
+      const status=batchDates[key].status;
+      const fillingFast= (batchDates[key].availableSlots >0 && batchDates[key].availableSlots <=2 );
       return (
         <div className="d-flex align-items-center">
           <div>
             {status==='WAITING_LIST' ? (
             <p className="m-0 ad-highlight-waiting-list">
-              <span>{date.day}</span>
+              <span> Waitlist {date.day}</span>
             </p>)
             :
             status==='ACTIVE' ? 
-            <p className="m-0 ad-highlight">
-            <span>{date.day}</span>
-          </p>
+            activeOrFillingTemplate(fillingFast,date)
           :
           <p className="m-0 ad-highlight-full-list">
-          <span>{date.day}</span>
+          <span> FULL {date.day}</span>
         </p>
             }
 
@@ -232,17 +246,50 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     const key= String(e.getDate()).padStart(2, "0");
 
     if(batchDates[key].status==='FULL'){
-      toast.current.show({
+      /*toast.current.show({
         severity: "error",
         summary: "Sorry! Selected  Trek Booking date - seats are filled, Please try other available booking slots",
         detail: "No Seats available"
-      });
+      });*/
       return;
     }
 
-    if (batchDates !== undefined && batchDates[key] !== undefined) {
-      setOnceSelectClicked(true);
-      onBookingSelect(batchDates[key]);
+
+     
+    if(batchDates[key].status==='WAITING_LIST'){
+      confirmDialog ({
+            //target: e.currentTarget,
+            message: `
+            Would you like to be on our waitlist?
+            You're choosing to go on the waitlist. This comes with a few benefits.
+            
+            You'll be given preference over all others who get on the waitlist after you
+            We'll immediately write to you when a slot opens up so you can register the same day
+            There are a few points you must note though.
+            
+            Considering this is a high altitude trek, a lot of physical and mental preparation goes into it. You need a minimum of 20-30 days to prepare for a trek. So 15 days before the starting date of this trek, we will drop the waitlist. We will not be confirming anyone on the waitlist after that even if there are cancellations.
+            Even though you don't have a confirmed slot, you must start working on your fitness at least a month before the start date of the trek. That way, even if you get confirmed 20 days before the trek, you will be fit enough to do the trek.
+            You will be required to send us a fitness proof when you do get confirmed.'`,
+            icon: "pi pi-exclamation-triangle",
+            acceptLabel:'Proceed',
+            rejectLabel:'Go Back',
+            breakpoints:{'960px': '75vw', '640px': '100vw'},
+            style:{width: '50vw'},
+            accept: () => {
+              if (batchDates !== undefined && batchDates[key] !== undefined) {
+                setOnceSelectClicked(true);
+                onBookingSelect(batchDates[key]);
+                router.push(`/registration?batchId=${batchDates[key].batchId}`);
+              }
+            },
+            reject: e => {}
+          });
+    }
+    else {
+      if (batchDates !== undefined && batchDates[key] !== undefined) {
+        setOnceSelectClicked(true);
+        onBookingSelect(batchDates[key]);
+      }
     }
   };
 
