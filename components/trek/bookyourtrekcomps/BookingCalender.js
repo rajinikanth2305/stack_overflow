@@ -254,8 +254,6 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
       return;
     }
 
-
-     
     if(batchDates[key].status==='WAITING_LIST'){
       confirmDialog ({
             //target: e.currentTarget,
