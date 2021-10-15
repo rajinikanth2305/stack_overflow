@@ -70,6 +70,19 @@ const AcceptTC = ({
     whyIndiaHikesData && whyIndiaHikesData?.primary?.heading1;
   const whyIndiaHikesArray = whyIndiaHikesData && whyIndiaHikesData.items;
 
+  const whyIndiaHikesDetailsData = whyIndiaHikesArray?.map(function(data, i) {
+    return (
+      <div className="d-flex align-items-start" key={i}>
+        <div>
+          <span className="list-style-circle"></span>
+        </div>
+        <div>
+          <p className="p-text-3">{data?.detail[0]?.text}</p>
+        </div>
+      </div>
+    );
+  });
+
   const inclusionData = inclusionArray?.map(function(data, i) {
     return (
       <div className="pb-1" key={i}>
@@ -237,85 +250,9 @@ const AcceptTC = ({
           <div className="col-lg-5 col-md-12">
             <div className="p-3 bg-light-yellow-shade mb-4">
               <p className="p-text-1-franklin border-bottom-custom-1 pb-2">
-                {/* {RichText.asText(whyIndiaHikesHeading)} */}
-                Why Indiahikes?
+                {RichText.asText(whyIndiaHikesHeading)}
               </p>
-              <div className="d-flex align-items-start">
-                <div>
-                  <span className="list-style-circle"></span>
-                </div>
-                <div>
-                  <p className="p-text-3">
-                    Indiahikes is the largest trekking organization in India.
-                    More trekkers trek with Indiahikes than with any other
-                    organization. 20,000 plus in 2019.
-                  </p>
-                </div>
-              </div>
-              <div className="d-flex align-items-start">
-                <div>
-                  <span className="list-style-circle"></span>
-                </div>
-                <div>
-                  <p className="p-text-3">
-                    Indiahikes is not only the safest trekking organization in
-                    India but also sets the safety standards for the entire
-                    trekking industry.
-                  </p>
-                </div>
-              </div>
-              <div className="d-flex align-items-start">
-                <div>
-                  <span className="list-style-circle"></span>
-                </div>
-                <div>
-                  <p className="p-text-3">
-                    Indiahikes is the pioneer in trekking in India. Most
-                    trekking routes, trekking systems, and trekking equipment
-                    have been brought to Indian trekking by Indiahikes.
-                  </p>
-                </div>
-              </div>
-              <div className="d-flex align-items-start">
-                <div>
-                  <span className="list-style-circle"></span>
-                </div>
-                <div>
-                  <p className="p-text-3">
-                    Trekkers love the Indiahikes’ Green Trails program. Trails,
-                    where Indiahikes runs treks, are pristine because of our
-                    Green Trails program. Trekkers also love to participate in
-                    the Green Trails mission to leave our mountains better than
-                    how we find them.
-                  </p>
-                </div>
-              </div>
-              <div className="d-flex align-items-start">
-                <div>
-                  <span className="list-style-circle"></span>
-                </div>
-                <div>
-                  <p className="p-text-3">
-                    People trek with Indiahikes for the unique Indiahikes trek
-                    experience. These are carefully designed transformative
-                    experiences that leave a lasting effect on a trekker. They
-                    have been in making for 12 years. These are very unique to
-                    Indiahikes.
-                  </p>
-                </div>
-              </div>
-              <div className="d-flex align-items-start">
-                <div>
-                  <span className="list-style-circle"></span>
-                </div>
-                <div>
-                  <p className="p-text-3">
-                    Still why Indiahikes? These personal observations by Chief
-                    Editor of Indiahikes Swathi Chattrapathy give a better idea.
-                    <a className="text-decoration-underline">Read more here</a>
-                  </p>
-                </div>
-              </div>
+              {whyIndiaHikesDetailsData}
             </div>
 
             <div className="p-3 bg-light-gray-shade">
