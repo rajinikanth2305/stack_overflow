@@ -83,12 +83,25 @@ export const bannerStyle = css.global`
     }
 
     .bg_overlay {
-      height: 360px;
+      height: 530px;
+      display: flex;
+      align-items: center;
     }
 
-    .banner-text-1,
     .banner-text-2 {
       display: none;
+    }
+
+    .banner-text-1 {
+      font-size: 36px;
+      white-space: normal;
+    }
+
+    .banner-text-sec {
+      top: 0;
+      position: relative;
+      width: 100%;
+      padding: 0;
     }
 
     .short-info-sec {
@@ -96,6 +109,7 @@ export const bannerStyle = css.global`
       margin-top: -68px;
       position: relative;
       padding: 10px 0;
+      margin-bottom: 20px;
     }
 
     .short-info-text {

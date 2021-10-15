@@ -81,7 +81,7 @@ const FeeDetails = ({ data }) => {
   return (
     <>
       <div>
-        <div className="card border-0 d-m-none">
+        <div className="card border-0 d-m-none-vis">
           <div className="card-body trek_fee_outer_bg pb-0">
             <div className="trek_fee_bg">
               <p className="trek_fee_title m-0">{RichText.asText(heading)}</p>
@@ -134,7 +134,7 @@ const FeeDetails = ({ data }) => {
             <div className="col-5 p-0">
               <div className="d-flex align-items-center">
                 <div>
-                  <p className="p-xs-text m-0">Know your trek</p>
+                  <p className="p-xs-text m-0">Trek fee</p>
                   <p className="p-text-20size m-0">
                     ₹ {RichText.asText(price)}
                   </p>

@@ -70,7 +70,7 @@ const QuickItineraryComponent = ({ slice }) => {
 
   return (
     <>
-      <div className="mb-5">
+      <div className="mb-5 mmt-2">
         <div className="container">
           <div className="row">
             <div className="col-lg-7 col-md-12">

@@ -417,7 +417,7 @@ export const trekStyle = css.global`
 
   .expert_speak_box {
     background: rgba(255, 193, 0, 1);
-    padding: 15px 30px;
+    padding: 12px 10px;
     position: relative;
     top: -25px;
     width: 250px;
@@ -1136,11 +1136,11 @@ export const trekStyle = css.global`
   .m-fee-details-card {
     box-shadow: 3px 0px 6px rgba(112, 112, 112, 0.502);
     padding: 5px;
-    position: sticky;
-    top: 0;
+    // position: sticky;
+    // top: 0;
     background: white;
     z-index: 999;
-    margin-bottom: 15px;
+    // margin-bottom: 15px;
   }
 
   .author-sec-border {
@@ -1397,6 +1397,11 @@ export const trekStyle = css.global`
       display: none;
     }
 
+    .d-m-none-vis {
+      visibility: hidden;
+      height: 0;
+    }
+
     .d-m-block {
       display: block;
     }
@@ -1406,7 +1411,7 @@ export const trekStyle = css.global`
     }
 
     .expert_speak_box {
-      top: -25px;
+      top: -12px;
       width: 132px;
       left: -12px;
     }
@@ -1416,6 +1421,24 @@ export const trekStyle = css.global`
       font-family: Lora;
       font-style: normal;
       font-weight: bold;
+    }
+
+    .expert_speak_box > p.p-text-2 {
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    .expert_speak_box > p.p-text-3 {
+      line-height: 12px;
+    }
+
+    .text-center.author-sec-border {
+      text-align: left !important;
+    }
+
+    .author-info-text {
+      font-size: 10px;
+      line-height: 12px;
     }
 
     .banner-image-expert-speak {
@@ -1458,7 +1481,7 @@ export const trekStyle = css.global`
       font-family: Franklin Gothic Book;
       font-style: normal;
       font-weight: normal;
-      font-size: 12px;
+      font-size: 14px;
     }
 
     .mt-custom-top {
@@ -1501,7 +1524,7 @@ export const trekStyle = css.global`
 
     .border-bottom-custom.m-bbc {
       border-bottom: 2px solid rgb(255, 193, 0);
-      padding-bottom: 10px !important;
+      // padding-bottom: 10px !important;
     }
 
     .terk-videos-secondary-image {
@@ -1549,6 +1572,7 @@ export const trekStyle = css.global`
 
     .title-h1-v {
       font-size: 24px;
+      line-height: 24px;
     }
 
     .bg-transparent-text-effect-tes {
@@ -1673,6 +1697,16 @@ export const trekStyle = css.global`
 
     .pro_tips_box {
       margin-top: 35px;
+    }
+
+    .m-fee-details-card {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .slick-dots {
+      bottom: -20px;
     }
   }
 `;
