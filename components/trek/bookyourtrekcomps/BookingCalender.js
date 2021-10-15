@@ -257,8 +257,8 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     if(batchDates[key].status==='WAITING_LIST'){
       confirmDialog ({
             //target: e.currentTarget,
-            message: `
-            Would you like to be on our waitlist?
+            header:'Would you like to be on our waitlist?',
+            message:`
             You're choosing to go on the waitlist. This comes with a few benefits.
             
             You'll be given preference over all others who get on the waitlist after you
