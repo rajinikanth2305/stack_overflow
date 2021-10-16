@@ -1537,15 +1537,13 @@ export const trekStyle = css.global`
     }
 
     .p-datepicker table td > span {
-      width: 2.8rem;
-      height: 3.5rem;
+      width: 3rem;
+      height: 4rem;
       border-radius: 0;
     }
 
-    .p-datepicker table td {
-      border-bottom: 0;
-      border-left: 0;
-      border-right: 0;
+    .cal-highlight-red {
+      margin-top: -15px !important;
     }
 
     .btn-ih-green-trek-fee {
@@ -1763,6 +1761,10 @@ export const trekStyle = css.global`
 
     .imgaview-view {
       height: 202px;
+    }
+
+    .p-dropdown-label {
+      font-size: 12px;
     }
   }
 `;
