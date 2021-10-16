@@ -563,7 +563,7 @@ export const customStyles = css.global`
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
   }
-  
+
   .table.table-dashboard-profile-style-3 > thead > tr > th {
     line-height: 10px;
     text-align: left;
@@ -573,7 +573,7 @@ export const customStyles = css.global`
     font-size: 10px;
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
-    background: rgba(255,193,0,1);
+    background: rgba(255, 193, 0, 1);
   }
 
   .table.table-dashboard-profile-style-3 > tbody > tr > td {
@@ -880,7 +880,7 @@ export const customStyles = css.global`
   }
 
   .b-left-maroon-3px {
-    border-left: 3px solid rgba(157,58,11,1);
+    border-left: 3px solid rgba(157, 58, 11, 1);
     padding-left: 8px;
   }
 
@@ -1120,6 +1120,10 @@ export const customStyles = css.global`
     border-left: 2px solid rgb(255, 224, 127);
   }
 
+  .m-d-block {
+    display: block;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -1192,6 +1196,55 @@ export const customStyles = css.global`
 
     .title-h2 {
       font-szie: 24px !important;
+    }
+
+    .trekimg {
+      height: 160px;
+    }
+
+    .m-col-12 {
+      -moz-box-flex: 0;
+      flex: 0 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .m-col-3 {
+      width: 25%;
+    }
+
+    .m-col-3.p-text-small-fg {
+      font-size: 10px;
+      line-height: 10px;
+    }
+
+    .trek-card-inner-box {
+      padding: 10px;
+    }
+
+    .m-col-12 > .title-h3 {
+      font-size: 24px;
+    }
+
+    .m-d-none {
+      display: none;
+    }
+
+    .table-btn-green,
+    .table-btn-maroon {
+      font-size: 14px;
+      padding: 0 10px;
+    }
+
+    .p-text-1 {
+      line-height: 22px;
+      font-size: 18px;
+    }
+
+    .user-dashboard-tab > .nav-tabs .nav-link {
+      padding: 5px 10px;
+      line-height: 15px;
     }
   }
 
