@@ -123,8 +123,8 @@ const IHTrekWithSwathi = () => {
     <div className="form-group">
     <input className="infusion-field-input form-control" id="inf_field_Email" name="inf_field_Email" placeholder="Email *" type="text" />
     </div>
-    <div className="form-group-wrap text-center,">
-    <Button type="submit"  value="Stay updated">Subscribe</Button>
+    <div className="form-group-wrap text-center">
+    <Button type="submit"  value="Stay updated" className="btn btn-lg btn-ih-primary">Subscribe</Button>
     </div>
     </form>
     <script async defer  type="text/javascript" src="https://dh315.infusionsoft.app/app/webTracking/getTrackingCode"></script>

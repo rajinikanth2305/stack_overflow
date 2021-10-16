@@ -1313,6 +1313,10 @@ export const trekStyle = css.global`
     padding-bottom: 0.8rem;
   }
 
+  .o-hidden {
+    overflow: hidden;
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 36px;
@@ -1581,13 +1585,17 @@ export const trekStyle = css.global`
 
     .bg-dark.p-3,
     .bg-dark.py-4 {
-      box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.161);
+      // box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.161);
       background: transparent !important;
-      padding: 8px 8px 0 !important;
+      padding: 0 !important;
+    }
+
+    .bg-dark.p-3 > .container {
+      padding: 0 !important;
     }
 
     .bg-dark.py-4 > .container {
-      padding: 8px 8px 0 !important;
+      padding: 8px 0px 0 !important;
     }
 
     .title-h2.gallery-title {
@@ -1707,6 +1715,19 @@ export const trekStyle = css.global`
 
     .slick-dots {
       bottom: -20px;
+    }
+
+    .pb-08-mobile {
+      padding: 0 !important;
+    }
+
+    .p-text-1-frg.frg-mob {
+      font-size: 20px;
+      margin-top: 15px;
+    }
+
+    .imgaview-view {
+      height: 202px;
     }
   }
 `;

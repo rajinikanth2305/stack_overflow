@@ -53,7 +53,7 @@ const OtherTreksLike = ({ slice }) => {
         <div className="mx-4 m-mx-0" key={i}>
           <div className="card_sec">
             <div className="card trek_card">
-              <div alt="imgs" className="image-view">
+              <div alt="imgs" className="image-view imgaview-view">
                 <Image
                   src={data.image.url}
                   layout="fill"
@@ -84,7 +84,7 @@ const OtherTreksLike = ({ slice }) => {
                   </div>
                 </div>
                 <div>
-                  <p className="p-text-1-frg">
+                  <p className="p-text-1-frg frg-mob">
                     <b>{data.heading1[0].text}</b>
                   </p>
                   <p className="p-text-4">

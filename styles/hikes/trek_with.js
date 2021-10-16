@@ -53,7 +53,7 @@ export const trekWithStyles = css.global`
   }
 
   .btn.btn-secondary {
-    border-radius: 2px;
+    border-radius: 3px !important;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
     font-family: Franklin Gothic Medium;
     margin-top: 25px;

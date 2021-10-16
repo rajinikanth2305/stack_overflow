@@ -39,7 +39,8 @@ const CrossTrekCommon = () => {
   return (
     <>
       <div>
-        <div className="container container-custom mb-5 mmt-0 mmb-0">
+        {/* <div className="container container-custom mb-5 mmt-0 mmb-0"> */}
+        <div className="mb-5 mmt-0 mmb-0 o-hidden">
           <div className="cross-trek-image-bg" style={crossTrekImagebg}>
             <div className="cross-trek-section">
               <div className="cross_bg_overlay">
