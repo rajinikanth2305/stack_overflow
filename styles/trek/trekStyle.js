@@ -1024,16 +1024,20 @@ export const trekStyle = css.global`
   .p-datepicker table td {
     border: 1px solid #d3d3d3;
     font-weight: 600;
+    padding: 0;
   }
 
   .p-datepicker table td > span {
-    width: auto;
-    height: auto;
+    width: 5.5rem;
+    height: 5rem;
     border-radius: 0;
+    display: flex;
+    align-items: start;
+    justify-content: end;
   }
 
   .p-datepicker table td.p-datepicker-today > span {
-    background: transprant;
+    background: #fcf8e3 !important;
   }
 
   .ad-highlight {
@@ -1048,6 +1052,37 @@ export const trekStyle = css.global`
     color: rgba(0, 0, 0, 1);
     font-weight: bold;
     text-decoration: underline;
+  }
+
+  .cal-highlight-green {
+    background: rgba(91, 133, 70, 1);
+    color: #ffffff;
+    font-size: 12px;
+    font-family: Franklin Gothic;
+    font-weight: normal;
+  }
+
+  .cal-highlight-red {
+    background: rgba(230, 109, 29, 1);
+    color: #ffffff;
+    font-size: 12px;
+    font-family: Franklin Gothic;
+    font-weight: normal;
+  }
+
+  .cal-highlight-yellow {
+    background: rgba(255,193,0,1);
+    color: #000000;
+    font-size: 12px;
+    font-family: Franklin Gothic;
+    font-weight: normal;
+  }
+
+  .cal-highlight-red-full {
+    color: rgba(230,109,29,1);
+    font-size: 14px;
+    font-family: Franklin Gothic;
+    font-weight: 600;
   }
 
   .ad-highlight > span {
