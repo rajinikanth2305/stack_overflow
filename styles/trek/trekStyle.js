@@ -1071,7 +1071,7 @@ export const trekStyle = css.global`
   }
 
   .cal-highlight-yellow {
-    background: rgba(255,193,0,1);
+    background: rgba(255, 193, 0, 1);
     color: #000000;
     font-size: 12px;
     font-family: Franklin Gothic;
@@ -1079,7 +1079,7 @@ export const trekStyle = css.global`
   }
 
   .cal-highlight-red-full {
-    color: rgba(230,109,29,1);
+    color: rgba(230, 109, 29, 1);
     font-size: 14px;
     font-family: Franklin Gothic;
     font-weight: 600;
@@ -1537,13 +1537,9 @@ export const trekStyle = css.global`
     }
 
     .p-datepicker table td > span {
-      width: 3rem;
-      height: 4rem;
+      width: 2.8rem;
+      height: 3.5rem;
       border-radius: 0;
-    }
-
-    .cal-highlight-red {
-      margin-top: -15px !important;
     }
 
     .btn-ih-green-trek-fee {
@@ -1765,6 +1761,21 @@ export const trekStyle = css.global`
 
     .p-dropdown-label {
       font-size: 12px;
+    }
+
+    .p-datepicker table td {
+      font-size: 12px;
+    }
+
+    .cal-highlight-green,
+    cal-highlight-res-full,
+    .cal-highlight-yellow {
+      font-size: 10px;
+    }
+
+    .cal-highlight-red {
+      margin-top: -12px !important;
+      font-size: 10px;
     }
   }
 `;
