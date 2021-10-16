@@ -61,6 +61,7 @@ const RegHome = ({ slice }) => {
   const childRef = useRef();
   const childMobRef = useRef();
   const trekMateChildRef = useRef();
+  const trekMateChilMobdRef = useRef();
   const paymentChildRef = useRef();
   const paymentChildMobRef = useRef();
   const [batchBookingData, setBatchBookingData] = useState(undefined);
@@ -401,6 +402,7 @@ const RegHome = ({ slice }) => {
     childRef.current.changeState();
     childMobRef.current.changeState();
     trekMateChildRef.current.changeState();
+    trekMateChilMobdRef.current.changeState();
     paymentChildRef.current.changeState();
     paymentChildMobRef.current.changeState();
 
@@ -443,6 +445,7 @@ const RegHome = ({ slice }) => {
 
   const setBatchDateChange = () => {
     trekMateChildRef.current.changeState();
+    trekMateChilMobdRef.current.changeState();
     paymentChildRef.current.changeState();
     paymentChildMobRef.current.changeState();
   };
@@ -642,7 +645,7 @@ const RegHome = ({ slice }) => {
                   <TabPane tabId="3">
                     <AddTrekMates
                       {...selectBatchProps}
-                      ref={trekMateChildRef}
+                      ref={trekMateChilMobdRef}
                     />
                   </TabPane>
                   <TabPane tabId="4">

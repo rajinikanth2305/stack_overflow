@@ -61,7 +61,6 @@ const AddTrekMates = forwardRef((props, ref) => {
   const [findUserData, setFindUserData] = useState(undefined);
   const findEmailRef = useRef();
 
-
   const validationSchema = useMemo(
     () =>
       Yup.object({
@@ -123,8 +122,6 @@ const AddTrekMates = forwardRef((props, ref) => {
       return;
     }
 
-   
-
     //// new user first store into server then local store persistence
     const newUserData = await createNewUser(data);
     //console.log(newUserData);
@@ -153,15 +150,14 @@ const AddTrekMates = forwardRef((props, ref) => {
 
     let responseData;
     try {
-      responseData= await saveDraft(tsdata);
-    }
-    catch(err) {
+      responseData = await saveDraft(tsdata);
+    } catch (err) {
       toast.current.show({
         severity: "error",
         summary: `'Batch is full, Sorry! You no more allowed to add the TrekMates'`,
         detail: "Add Trekker- Batch is full"
       });
-     return;
+      return;
     }
 
     const sdata = JSON.parse(JSON.stringify(stateData.data));
@@ -261,7 +257,7 @@ const AddTrekMates = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     changeState() {
       const data = stateData.data;
-      
+
       const bookingDates = {
         trekId: data.trekId,
         batchId: data.batchId,
@@ -306,7 +302,6 @@ const AddTrekMates = forwardRef((props, ref) => {
 
   const addFindUsers = async udata => {
     console.log(users);
-  
 
     let vouchers = []; //await getVoucher(udata.email); Vouchers os only for main owner user
     console.log(JSON.stringify(stateData.data));
@@ -329,20 +324,18 @@ const AddTrekMates = forwardRef((props, ref) => {
       trekFeeForTheUser: 0
     });
 
-
     let responseData;
     try {
-      responseData= await saveDraft(stdata);
-    }
-    catch(err) {
+      responseData = await saveDraft(stdata);
+    } catch (err) {
       toast.current.show({
         severity: "error",
         summary: `'Batch is full, Sorry! You no more allowed to add the TrekMates'`,
         detail: "Add Trekker- Batch is full"
       });
-     return;
+      return;
     }
-  
+
     setUsers([
       ...users,
       {
@@ -429,7 +422,7 @@ const AddTrekMates = forwardRef((props, ref) => {
   const findUser = e => {
     // console.log(fieldRef.current.value);
 
-    const userEmail = findEmailRef.current.value;//window.document.getElementById("findemail").value;
+    const userEmail = findEmailRef.current.value; //window.document.getElementById("findemail").value;
     console.log("hello" + userEmail);
 
     if (userEmail === undefined || userEmail === "" || userEmail === null) {
@@ -441,7 +434,9 @@ const AddTrekMates = forwardRef((props, ref) => {
       return;
     }
 
-    const existUser = users?.find( x => x.email.toLowerCase() === userEmail.toLowerCase());
+    const existUser = users?.find(
+      x => x.email.toLowerCase() === userEmail.toLowerCase()
+    );
 
     if (existUser !== undefined) {
       toast.current.show({
@@ -452,22 +447,21 @@ const AddTrekMates = forwardRef((props, ref) => {
       return;
     }
 
-    if (userEmail !==undefined) {
+    if (userEmail !== undefined) {
       getUserByAutoSearch("CUSTOMER", userEmail.toLowerCase()).then(data => {
         if (data.length > 0) {
           //console.log(data[0]);
           const existUser = data?.find(
             x => x.email.toLowerCase() === userEmail.toLowerCase()
           );
-          if(existUser!==undefined)
-             setFindUserData(existUser);
+          if (existUser !== undefined) setFindUserData(existUser);
           else {
-          toast.current.show({
-            severity: "error",
-            summary: `'Find Trekker ${userEmail.toLowerCase()} is not registered in  India hikes, Create new account'`,
-            detail: "Find Trekker"
-          });
-        }
+            toast.current.show({
+              severity: "error",
+              summary: `'Find Trekker ${userEmail.toLowerCase()} is not registered in  India hikes, Create new account'`,
+              detail: "Find Trekker"
+            });
+          }
           /*confirmPopup({
             //target: e.currentTarget,
             message: `Are you sure you want to add trek mate ${data[0].email} ?'`,
@@ -539,7 +533,8 @@ const AddTrekMates = forwardRef((props, ref) => {
                 <p className="p-text-4 text-center mb-0">
                   You are adding participants for the {bookingDate?.trekName}
                   <span>
-                  {" "} on {moment(bookingDate?.startDate).format("Do")} to {" "}
+                    {" "}
+                    on {moment(bookingDate?.startDate).format("Do")} to{" "}
                     {moment(bookingDate?.endDate).format("Do MMMM")}
                   </span>
                 </p>
@@ -579,7 +574,12 @@ const AddTrekMates = forwardRef((props, ref) => {
                     <div className="login-form-box">
                       <FormGroup>
                         <div>
-                          <InputText id="findemail"  ref={findEmailRef} placeholder="Email" style={{ textTransform: 'none' }} />
+                          <InputText
+                            id="findemail"
+                            ref={findEmailRef}
+                            placeholder="Email"
+                            style={{ textTransform: "none" }}
+                          />
                         </div>
                       </FormGroup>
                     </div>
@@ -593,6 +593,11 @@ const AddTrekMates = forwardRef((props, ref) => {
                       >
                         Find Trekker
                       </button>
+                      {/* <div>
+                        <div class="spinner-grow text-warning" role="status">
+                          <span class="sr-only">Loading...</span>
+                        </div>
+                      </div> */}
 
                       {findUserData && (
                         <p
@@ -601,6 +606,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                         >
                           <span>{findUserData?.firstName}</span>
                           <span className="px-2">{findUserData?.lastName}</span>
+                          <span className="text-decoration-underline pull-right">Add</span>
                         </p>
                       )}
                     </div>
