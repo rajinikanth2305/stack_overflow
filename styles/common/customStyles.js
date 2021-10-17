@@ -1249,6 +1249,7 @@ export const customStyles = css.global`
     }
 
     .user-dashboard-tab > .nav-tabs .nav-link {
+      font-size: 10px;
       padding: 5px 10px;
       line-height: 15px;
     }
