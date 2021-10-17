@@ -1220,7 +1220,7 @@ export const customStyles = css.global`
     }
 
     .trek-card-inner-box {
-      padding: 10px;
+      padding: 10px 10px 30px 10px;
     }
 
     .m-col-12 > .title-h3 {
@@ -1232,7 +1232,9 @@ export const customStyles = css.global`
     }
 
     .table-btn-green,
-    .table-btn-maroon {
+    .table-btn-maroon,
+    .table-btn-blue,
+    .table-btn-green-lg {
       font-size: 14px;
       padding: 0 10px;
     }
@@ -1240,6 +1242,10 @@ export const customStyles = css.global`
     .p-text-1 {
       line-height: 22px;
       font-size: 18px;
+    }
+
+    .user-dashboard-tab > .nav {
+      flex-wrap: nowrap;
     }
 
     .user-dashboard-tab > .nav-tabs .nav-link {

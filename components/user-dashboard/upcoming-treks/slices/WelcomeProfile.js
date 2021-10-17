@@ -489,16 +489,16 @@ const WelcomeProfile = () => {
                                             Experience Coordinator
                                           </p>
                                           <div>
-                                          <p className="m-0 p-text-2-fg text-decoration-underline">
-                                            {
-                                              upComingTrek?.trekCoordinator
-                                                ?.firstName
-                                            }{" "}
-                                            {
-                                              upComingTrek?.trekCoordinator
-                                                ?.lastName
-                                            }
-                                          </p>
+                                            <p className="m-0 p-text-2-fg text-decoration-underline">
+                                              {
+                                                upComingTrek?.trekCoordinator
+                                                  ?.firstName
+                                              }{" "}
+                                              {
+                                                upComingTrek?.trekCoordinator
+                                                  ?.lastName
+                                              }
+                                            </p>
                                           </div>
                                         </div>
                                       </div>
@@ -570,7 +570,12 @@ const WelcomeProfile = () => {
                                 unmountOnExit={false}
                               >
                                 <Tab eventKey="mytrek" title="My trek">
-                                  <MyTreks ref={myTrekRef} {...callBackProps} />
+                                  <div className="m-d-none">
+                                    <MyTreks
+                                      ref={myTrekRef}
+                                      {...callBackProps}
+                                    />
+                                  </div>
                                 </Tab>
                                 <Tab eventKey="rentgear" title="Rent gear">
                                   <RentGear />
@@ -625,8 +630,8 @@ const WelcomeProfile = () => {
                                       </div>
                                       <div className="col-lg-8 col-md-12">
                                         <div className="trek-card-inner-box">
-                                          <div className="d-flex justify-content-between align-items-end">
-                                            <div>
+                                          <div className="d-flex justify-content-between align-items-end flex-wrap">
+                                            <div className="m-col-12">
                                               <h3 className="title-h3">
                                                 <a
                                                   href="javascript:;"
@@ -676,8 +681,8 @@ const WelcomeProfile = () => {
                                           )}
 
                                           <div className="d-flex flex-wrap align-items-center justify-content-between py-4 mb-2">
-                                            <div>
-                                              <p className="m-0 p-text-small-fg">
+                                            <div className="m-col-12">
+                                              <p className="m-0 p-text-small-fg m-col-3">
                                                 batch dates
                                               </p>
                                               <p className="m-0 p-text-2-fg">
@@ -692,8 +697,8 @@ const WelcomeProfile = () => {
                                                 </b>
                                               </p>
                                             </div>
-                                            <div>
-                                              <p className="m-0 p-text-small-fg">
+                                            <div className="m-col-12">
+                                              <p className="m-0 p-text-small-fg m-col-3">
                                                 participants
                                               </p>
                                               <p className="m-0 p-text-2-fg">
@@ -701,8 +706,8 @@ const WelcomeProfile = () => {
                                                 trekkers
                                               </p>
                                             </div>
-                                            <div>
-                                              <p className="m-0 p-text-small-fg">
+                                            <div className="m-col-12">
+                                              <p className="m-0 p-text-small-fg m-col-3 m-d-none">
                                                 Experience Coordinator{" "}
                                                 <span className="exp-co-icons">
                                                   <i
@@ -723,6 +728,9 @@ const WelcomeProfile = () => {
                                                   ></i>
                                                 </span>
                                               </p>
+                                              <p className="m-0 p-text-small-fg m-col-3 m-d-block">
+                                                Experience Coordinator
+                                              </p>
                                               <p className="m-0 p-text-2-fg text-decoration-underline">
                                                 {
                                                   trekData?.trekCoordinator
@@ -735,7 +743,7 @@ const WelcomeProfile = () => {
                                               </p>
                                             </div>
                                           </div>
-                                          <div className="d-flex align-items-center">
+                                          <div className="d-flex align-items-center flex-wrap">
                                             <div className="flex-grow-1">
                                               <p className="m-0 text-decoration-underline p-text-small-fg">
                                                 <a
@@ -751,7 +759,7 @@ const WelcomeProfile = () => {
                                                 </a>
                                               </p>
                                             </div>
-                                            <div>
+                                            <div class="d-flex justify-content-end w-100">
                                               {trekData?.bookingState ===
                                                 "PAYMENT" && (
                                                 <>
