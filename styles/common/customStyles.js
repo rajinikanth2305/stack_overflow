@@ -228,6 +228,16 @@ export const customStyles = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .p-text-3-fgc {
+    line-height: 16px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+  }
+
   .p-text-3-blue {
     line-height: 16px;
     text-align: left;
@@ -1132,6 +1142,24 @@ export const customStyles = css.global`
 
   .m-d-block {
     display: none;
+  }
+
+  .grey-bg {
+    background: rgba(242,242,242,1);
+    padding: 10px 15px;
+    margin-top: 15px;
+  }
+
+  .c-p-5-2 {
+    padding: 0 50px 0 20px;
+  }
+
+  .border-top-rear-2 {
+    border-top: 2px solid rgba(112,112,112,1);
+  }
+
+  .border-bottom-rear-2 {
+    border-bottom: 2px solid rgba(112,112,112,1);
   }
 
   @media only screen and (max-width: 660px) {
