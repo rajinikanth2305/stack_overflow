@@ -29,6 +29,7 @@ import { Toast } from "primereact/toast";
 import BoPayment from "../../bo-payment/slices/BoPayment";
 import { useForm, Controller } from "react-hook-form";
 import { Checkbox } from "primereact/checkbox";
+import MyTrekMobileView from "./MyTrekMobileView";
 
 const WelcomeProfile = () => {
   const [show, setShow] = useState(false);
@@ -50,6 +51,7 @@ const WelcomeProfile = () => {
 
   const router = useRouter();
   const myTrekRef = useRef();
+  const myTrekMobileRef = useRef();
   const offLoadingRef = useRef();
   const fitnessRef = useRef();
 
@@ -134,6 +136,7 @@ const WelcomeProfile = () => {
     setNextComingTreks(nextTreks);
     setRender(true);
     myTrekRef.current?.changeState(bookTrekContents[0]);
+    myTrekMobileRef.current?.changeState(bookTrekContents[0]);
     offLoadingRef.current?.changeState(bookTrekContents[0]);
     fitnessRef.current?.changeState(bookTrekContents[0]);
     setCancelDialogueData(bookTrekContents[0].bookingId, bookTrekContents[0]);
@@ -209,6 +212,7 @@ const WelcomeProfile = () => {
     setUpComingTrek(activeBooking); /// setting the toggled bookingid trek has upcoming trek
     deriveAndSetOffLoadingTabVisible(activeBooking);
     myTrekRef.current?.changeState(activeBooking);
+    myTrekMobileRef.current?.changeState(activeBooking);
     fitnessRef.current?.changeState(activeBooking);
 
     offLoadingRef.current?.changeState(activeBooking);
@@ -573,6 +577,12 @@ const WelcomeProfile = () => {
                                   <div className="m-d-none">
                                     <MyTreks
                                       ref={myTrekRef}
+                                      {...callBackProps}
+                                    />
+                                  </div>
+                                  <div className="m-d-block">
+                                    <MyTrekMobileView
+                                      ref={myTrekMobileRef}
                                       {...callBackProps}
                                     />
                                   </div>

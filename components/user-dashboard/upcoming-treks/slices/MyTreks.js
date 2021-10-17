@@ -173,7 +173,7 @@ const MyTreks = forwardRef((props, ref) => {
                                   onChange={e => {
                                     onChange(e.value);
                                   }}
-                                  placeholder="Select a Pickup locations "
+                                  placeholder="Select a Pickup locations"
                                 />
                               )}
                             />

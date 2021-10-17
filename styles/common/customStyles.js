@@ -228,6 +228,16 @@ export const customStyles = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .p-text-3-blue {
+    line-height: 16px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0,40,148,1);
+  }
+
   .p-text-4 {
     line-height: 21px;
     text-align: left;
@@ -1121,7 +1131,7 @@ export const customStyles = css.global`
   }
 
   .m-d-block {
-    display: block;
+    display: none;
   }
 
   @media only screen and (max-width: 660px) {
@@ -1274,6 +1284,10 @@ export const customStyles = css.global`
 
     .m-m-t-10 {
       margin-top: 10px;
+    }
+
+    .m-d-block {
+      display: block;
     }
   }
 
