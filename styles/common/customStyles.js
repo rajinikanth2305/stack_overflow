@@ -1343,7 +1343,7 @@ export const customStyles = css.global`
     }
 
     .p-button {
-      padding: 0.2rem 0.7rem !important;
+      padding: 0.2rem 0.4rem !important;
       font-size: 10px;
     }
   }
