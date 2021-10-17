@@ -60,119 +60,118 @@ const HikeHeader = ({ auth = false }) => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            {router.pathname !== "/user-dashboard/user-upcoming-treks" ||
-              (router.pathname !== "/user-dashboard/user-trekvouchers" ||
-                (router.pathname !== "/user-dashboard/user-myprofile" ||
-                  (router.pathname !==
-                    "/user-dashboard/user-previous-treks" && (
-                    <NavItem>
-                      <NavLink
-                        href="/"
-                        className={
-                          router.pathname == "/" ? "active-custom" : ""
-                        }
-                      >
-                        Home
-                      </NavLink>
-                    </NavItem>
-                  ))))}
+            {router.pathname === "/user-dashboard/user-upcoming-treks" ||
+            router.pathname === "/user-dashboard/user-trekvouchers" ||
+            router.pathname === "/user-dashboard/user-myprofile" ||
+            router.pathname === "/user-dashboard/user-previous-treks" ? (
+              ""
+            ) : (
+              <NavItem>
+                <NavLink
+                  href="/"
+                  className={router.pathname == "/" ? "active-custom" : ""}
+                >
+                  Home
+                </NavLink>
+              </NavItem>
+            )}
             <NavItem>
-              {router.pathname !== "/user-dashboard/user-upcoming-treks" ||
-                (router.pathname !== "/user-dashboard/user-trekvouchers" ||
-                  (router.pathname !== "/user-dashboard/user-myprofile" ||
-                    (router.pathname !==
-                      "/user-dashboard/user-previous-treks" && (
-                      <NavLink
-                        href="../../../upcoming"
-                        className={
-                          router.pathname == "/upcoming" ? "active-custom" : ""
-                        }
-                      >
-                        Upcoming Treks
-                      </NavLink>
-                    ))))}
+              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
+              router.pathname === "/user-dashboard/user-trekvouchers" ||
+              router.pathname === "/user-dashboard/user-myprofile" ||
+              router.pathname === "/user-dashboard/user-previous-treks" ? (
+                ""
+              ) : (
+                <NavLink
+                  href="../../../upcoming"
+                  className={
+                    router.pathname == "/upcoming" ? "active-custom" : ""
+                  }
+                >
+                  Upcoming Treks
+                </NavLink>
+              )}
             </NavItem>
             <NavItem>
-              {router.pathname !== "/user-dashboard/user-upcoming-treks" ||
-                (router.pathname !== "/user-dashboard/user-trekvouchers" ||
-                  (router.pathname !== "/user-dashboard/user-myprofile" ||
-                    (router.pathname !==
-                      "/user-dashboard/user-previous-treks" && (
-                      <NavLink
-                        href="../../../familytrek"
-                        className={
-                          router.pathname == "/familytrek"
-                            ? "active-custom"
-                            : ""
-                        }
-                      >
-                        Experiential Learning
-                      </NavLink>
-                    ))))}
+              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
+              router.pathname === "/user-dashboard/user-trekvouchers" ||
+              router.pathname === "/user-dashboard/user-myprofile" ||
+              router.pathname === "/user-dashboard/user-previous-treks" ? (
+                ""
+              ) : (
+                <NavLink
+                  href="../../../familytrek"
+                  className={
+                    router.pathname == "/familytrek" ? "active-custom" : ""
+                  }
+                >
+                  Experiential Learning
+                </NavLink>
+              )}
             </NavItem>
             <NavItem>
-              {router.pathname !== "/user-dashboard/user-upcoming-treks" ||
-                (router.pathname !== "/user-dashboard/user-trekvouchers" ||
-                  (router.pathname !== "/user-dashboard/user-myprofile" ||
-                    (router.pathname !==
-                      "/user-dashboard/user-previous-treks" && (
-                      <NavLink
-                        href="../../../diy"
-                        className={
-                          router.pathname == "/diy" ? "active-custom" : ""
-                        }
-                      >
-                        DIY treks
-                      </NavLink>
-                    ))))}
+              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
+              router.pathname === "/user-dashboard/user-trekvouchers" ||
+              router.pathname === "/user-dashboard/user-myprofile" ||
+              router.pathname === "/user-dashboard/user-previous-treks" ? (
+                ""
+              ) : (
+                <NavLink
+                  href="../../../diy"
+                  className={router.pathname == "/diy" ? "active-custom" : ""}
+                >
+                  DIY treks
+                </NavLink>
+              )}
             </NavItem>
             <NavItem>
-              {router.pathname !== "/user-dashboard/user-upcoming-treks" ||
-                (router.pathname !== "/user-dashboard/user-trekvouchers" ||
-                  (router.pathname !== "/user-dashboard/user-myprofile" ||
-                    (router.pathname !==
-                      "/user-dashboard/user-previous-treks" && (
-                      <NavLink
-                        href="../../../faq"
-                        className={
-                          router.pathname == "/faq" ? "active-custom" : ""
-                        }
-                      >
-                        FAQs
-                      </NavLink>
-                    ))))}
+              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
+              router.pathname === "/user-dashboard/user-trekvouchers" ||
+              router.pathname === "/user-dashboard/user-myprofile" ||
+              router.pathname === "/user-dashboard/user-previous-treks" ? (
+                ""
+              ) : (
+                <NavLink
+                  href="../../../faq"
+                  className={router.pathname == "/faq" ? "active-custom" : ""}
+                >
+                  FAQs
+                </NavLink>
+              )}
             </NavItem>
             <NavItem>
-              {router.pathname !== "/user-dashboard/user-upcoming-treks" ||
-                (router.pathname !== "/user-dashboard/user-trekvouchers" ||
-                  (router.pathname !== "/user-dashboard/user-myprofile" ||
-                    (router.pathname !==
-                      "/user-dashboard/user-previous-treks" && (
-                      <NavLink
-                        href="../../../aboutus"
-                        className={
-                          router.pathname == "/aboutus" ? "active-custom" : ""
-                        }
-                      >
-                        Our Story
-                      </NavLink>
-                    ))))}
+              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
+              router.pathname === "/user-dashboard/user-trekvouchers" ||
+              router.pathname === "/user-dashboard/user-myprofile" ||
+              router.pathname === "/user-dashboard/user-previous-treks" ? (
+                ""
+              ) : (
+                <NavLink
+                  href="../../../aboutus"
+                  className={
+                    router.pathname == "/aboutus" ? "active-custom" : ""
+                  }
+                >
+                  Our Story
+                </NavLink>
+              )}
             </NavItem>
             <NavItem>
-              {router.pathname !== "/user-dashboard/user-upcoming-treks" ||
-                (router.pathname !== "/user-dashboard/user-trekvouchers" ||
-                  (router.pathname !== "/user-dashboard/user-myprofile" ||
-                    (router.pathname !==
-                      "/user-dashboard/user-previous-treks" && (
-                      <NavLink
-                        href="../../../careers"
-                        className={
-                          router.pathname == "/careers" ? "active-custom" : ""
-                        }
-                      >
-                        careers
-                      </NavLink>
-                    ))))}
+              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
+              router.pathname === "/user-dashboard/user-trekvouchers" ||
+              router.pathname === "/user-dashboard/user-myprofile" ||
+              router.pathname === "/user-dashboard/user-previous-treks" ? (
+                ""
+              ) : (
+                <NavLink
+                  href="../../../careers"
+                  className={
+                    router.pathname == "/careers" ? "active-custom" : ""
+                  }
+                >
+                  careers
+                </NavLink>
+              )}
             </NavItem>
             <NavItem className="m-d-block">
               {router.pathname === "/user-dashboard/user-upcoming-treks" ||
@@ -251,12 +250,19 @@ const HikeHeader = ({ auth = false }) => {
               )}
             </NavItem>
             <NavItem>
-              <NavLink
-                href="/"
-                className={router.pathname == "/" ? "active-custom" : ""}
-              >
-                Visit Indiahikes Website
-              </NavLink>
+              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
+              router.pathname === "/user-dashboard/user-trekvouchers" ||
+              router.pathname === "/user-dashboard/user-myprofile" ||
+              router.pathname === "/user-dashboard/user-previous-treks" ? (
+                <NavLink
+                  href="/"
+                  className={router.pathname == "/" ? "active-custom" : ""}
+                >
+                  Visit Indiahikes Website
+                </NavLink>
+              ) : (
+                ""
+              )}
             </NavItem>
             <NavItem>
               <NavLink>
