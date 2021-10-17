@@ -4,7 +4,7 @@ import { customStyles } from "styles";
 
 const TrekFAQS = () => {
     return (
-        <><p>Hi</p></>
+        <><p className="p-text-4 mb-0">Coming soon..!!</p></>
     );
 };
 

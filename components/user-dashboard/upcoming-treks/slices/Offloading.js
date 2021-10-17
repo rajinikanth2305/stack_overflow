@@ -377,7 +377,7 @@ const Offloading = forwardRef((props, ref) => {
           </div>
         </div>
       </div>
-       : <div> Backpack offloading fee action will enable after the trek-payment</div>
+       : <p className="p-text-4 mb-0">Backpack offloading fee action will enable after the trek-payment</p>
        }
     </>
   );

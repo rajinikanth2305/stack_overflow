@@ -245,7 +245,7 @@ export const customStyles = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    color: rgba(0,40,148,1);
+    color: rgba(0, 40, 148, 1);
   }
 
   .p-text-4 {
@@ -1145,7 +1145,7 @@ export const customStyles = css.global`
   }
 
   .grey-bg {
-    background: rgba(242,242,242,1);
+    background: rgba(242, 242, 242, 1);
     padding: 10px 15px;
     margin-top: 15px;
   }
@@ -1155,11 +1155,31 @@ export const customStyles = css.global`
   }
 
   .border-top-rear-2 {
-    border-top: 2px solid rgba(112,112,112,1);
+    border-top: 2px solid rgba(112, 112, 112, 1);
   }
 
   .border-bottom-rear-2 {
-    border-bottom: 2px solid rgba(112,112,112,1);
+    border-bottom: 2px solid rgba(112, 112, 112, 1);
+  }
+
+  .p-button {
+    padding: 0.1rem 1rem;
+    font-family: Franklin Gothic;
+  }
+
+  .p-fileupload-choose {
+    background: rgb(35,76,187);
+    border: 1px solid rgb(35,76,187);
+  }
+
+  .p-button-success {
+    background: rgba(13,193,67,1);
+    border: 1px solid rgba(13,193,67,1);
+  }
+
+  .p-button-danger {
+    background: rgba(157,58,11,1);
+    border: 1px solid rgba(157,58,11,1);
   }
 
   @media only screen and (max-width: 660px) {
@@ -1316,6 +1336,10 @@ export const customStyles = css.global`
 
     .m-d-block {
       display: block;
+    }
+
+    .p-text-3-fgc {
+      font-size: 12px;
     }
   }
 
