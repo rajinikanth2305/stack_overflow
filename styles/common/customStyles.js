@@ -1168,18 +1168,18 @@ export const customStyles = css.global`
   }
 
   .p-fileupload-choose {
-    background: rgb(35,76,187);
-    border: 1px solid rgb(35,76,187);
+    background: rgb(35, 76, 187);
+    border: 1px solid rgb(35, 76, 187);
   }
 
   .p-button-success {
-    background: rgba(13,193,67,1);
-    border: 1px solid rgba(13,193,67,1);
+    background: rgba(13, 193, 67, 1);
+    border: 1px solid rgba(13, 193, 67, 1);
   }
 
   .p-button-danger {
-    background: rgba(157,58,11,1);
-    border: 1px solid rgba(157,58,11,1);
+    background: rgba(157, 58, 11, 1);
+    border: 1px solid rgba(157, 58, 11, 1);
   }
 
   @media only screen and (max-width: 660px) {
@@ -1340,6 +1340,11 @@ export const customStyles = css.global`
 
     .p-text-3-fgc {
       font-size: 12px;
+    }
+
+    .p-button {
+      padding: 0.2rem 0.7rem !important;
+      font-size: 10px;
     }
   }
 
