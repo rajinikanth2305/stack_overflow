@@ -759,7 +759,7 @@ const WelcomeProfile = () => {
                                                 </a>
                                               </p>
                                             </div>
-                                            <div class="d-flex justify-content-end w-100">
+                                            <div class="d-flex justify-content-end w-100 m-m-t-10">
                                               {trekData?.bookingState ===
                                                 "PAYMENT" && (
                                                 <>

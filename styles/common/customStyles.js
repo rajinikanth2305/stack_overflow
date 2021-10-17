@@ -1210,6 +1210,23 @@ export const customStyles = css.global`
       align-items: center;
     }
 
+    .m-col-12 > .p-text-2-fg,
+    .p-text-2-fg {
+      font-size: 16px;
+    }
+
+    .m-col-12 > .p-text-10-fgb {
+      margin-top: -15px !important;
+      position: relative;
+      top: 20px;
+    }
+
+    .trek-card-inner-box > div > div > p.p-text-10-fgb {
+      margin-top: -15px !important;
+      position: relative;
+      top: 20px;
+    }
+
     .m-col-3 {
       width: 25%;
     }
@@ -1225,6 +1242,7 @@ export const customStyles = css.global`
 
     .m-col-12 > .title-h3 {
       font-size: 24px;
+      margin-bottom: 2px;
     }
 
     .m-d-none {
@@ -1251,7 +1269,11 @@ export const customStyles = css.global`
     .user-dashboard-tab > .nav-tabs .nav-link {
       font-size: 10px;
       padding: 5px 10px;
-      line-height: 15px;
+      line-height: 12px;
+    }
+
+    .m-m-t-10 {
+      margin-top: 10px;
     }
   }
 
