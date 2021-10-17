@@ -1346,6 +1346,14 @@ export const customStyles = css.global`
       padding: 0.2rem 0.4rem !important;
       font-size: 10px;
     }
+
+    .col-lg-2.col-md-12.bg-white.p-0 {
+      display: none;
+    }
+
+    .b-right-2px {
+      border: 0;
+    }
   }
 
   @keyframes ui-progress-spinner-color {

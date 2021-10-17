@@ -90,6 +90,20 @@ export const ihheaderStyles = css.global`
     width: 136px;
   }
 
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  .m-d-block {
+    display: none;
+  }
+
+  @media only screen and (max-width: 660px) {
+    .m-d-block {
+      display: block;
+    }
+  }
+
   @media only screen and (max-width: 900px) {
     .navbar-expand-lg .navbar-nav .nav-link {
       padding-left: 0;
