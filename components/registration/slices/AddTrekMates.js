@@ -513,7 +513,7 @@ const AddTrekMates = forwardRef((props, ref) => {
 
   const genderOptions = [
     { name: "Male", code: "Male" },
-    { name: "FeMale", code: "Female" },
+    { name: "Female", code: "Female" },
     { name: "Other", code: "Other" }
   ];
   return (
@@ -633,7 +633,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                             rules={{ required: true }}
                             render={({ onChange, value }) => (
                               <InputText
-                                placeholder="First Name"
+                                placeholder="First name"
                                 value={value}
                                 onChange={onChange}
                               />
@@ -653,7 +653,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                             rules={{ required: true }}
                             render={({ onChange, value }) => (
                               <InputText
-                                placeholder="Last Name"
+                                placeholder="Last name"
                                 value={value}
                                 onChange={onChange}
                               />
@@ -719,7 +719,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                                 onChange={e => {
                                   onChange(e.value);
                                 }}
-                                placeholder="Select a Gender  "
+                                placeholder="Select a Gender"
                               />
                             )}
                           />
@@ -779,7 +779,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                             control={control}
                             render={({ onChange, value }) => (
                               <InputNumber
-                                placeholder="height (In Ft)"
+                                placeholder="Height (In Ft)"
                                 value={value}
                                 mode="decimal"
                                 useGrouping={false}

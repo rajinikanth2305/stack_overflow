@@ -331,7 +331,7 @@ const MakePayment = forwardRef((props, ref) => {
                   <thead>
                     <tr className="header-bg">
                       <th>trek name</th>
-                      <th>batch dates</th>
+                      <th>Date</th>
                       <th>difficulty</th>
                       <th>trekkers</th>
                     </tr>
@@ -393,7 +393,7 @@ const MakePayment = forwardRef((props, ref) => {
               <div className="table-responsive my-4 pt-2 m-d-none">
                 <p className="p-text-1-franklin text-capitalize mb-4 pb-1">
                   <span className="border-bottom-custom-1 pb-2">
-                    trekkers [{bookingInformation?.trekkersCount}]
+                    No. of participants [{bookingInformation?.trekkersCount}]
                   </span>
                 </p>
                 <table className="table table-secondar-main">

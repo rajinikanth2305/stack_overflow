@@ -711,7 +711,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 12px;
     color: rgba(112, 112, 112, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-inputtext:enabled:focus {
