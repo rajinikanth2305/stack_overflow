@@ -803,7 +803,7 @@ export const regStyle = css.global`
     -moz-box-flex: 1 !important;
     flex: 1 1 auto !important;
   }
-
+ 
   .nav.nav-tabs.reg-tabs > .nav-item .nav-link {
     padding: 0.1rem;
     line-height: 10px;
