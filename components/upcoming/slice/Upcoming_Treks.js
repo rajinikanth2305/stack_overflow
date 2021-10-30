@@ -13,11 +13,12 @@ const UpComingTreks = ({ slice }) => {
   const season = useRef(null);
   const difficulty = useRef(null);
   const [filterResult, setFilterResult] = useState(false);
+  const [showLoading, setShowLoading] = useState();
   const [results, setResults] = useState([]);
   const [pageCount, setPageCount] = useState(1);
   const [isLoaded, setisLoaded] = useState(false);
   const [currentPage, setcurrentPage] = useState(0);
-  const pageSize = 10;
+  const pageSize = 11;
   const pagination = useRef();
   const [criteria, setCriteria] = useState({
     all: false,
@@ -28,6 +29,7 @@ const UpComingTreks = ({ slice }) => {
 
   const find = () => {
     findDocs(1, pageSize, false, false);
+    setShowLoading(true);
   };
   const findFamilyTreks = () => {
     findDocs(1, pageSize, false, true);
@@ -38,6 +40,7 @@ const UpComingTreks = ({ slice }) => {
   const clearAll = () => {
     setFilterResult(false);
     setResults([]);
+    setShowLoading(false);
   };
 
   const handlePageChange = ({ selected }) => {
@@ -298,10 +301,7 @@ const UpComingTreks = ({ slice }) => {
                         </p>
                       </div>
                       <div>
-                        <button
-                          className="btn btn-ih-green-filter"
-                          onClick={find}
-                        >
+                        <button className="btn btn-ih-green" onClick={find}>
                           FIND TREKS
                         </button>
                       </div>
@@ -311,42 +311,40 @@ const UpComingTreks = ({ slice }) => {
               </div>
             </div>
             {filterResult === true ? (
-              <div className="col-lg-8 col-md-12 col-12 m-d-none">
-                <div className="row d-flex align-items-center justify-content-between">
-                  {results.map(function(result, i) {
-                    const slice = result.data.body.find(
-                      x => x.slice_type === "trek_banner"
-                    );
-                    console.log(slice);
-                    const bannerImage = slice.primary.trek_banner_image.url;
-                    const trekCaptions = slice.primary.trek_caption;
-                    return (
-                      <div className="col-lg-6 col-md-12" key={i}>
-                        <div className="mb-4">
-                          <div alt="imgs" className="uc_fliter_treks_images">
-                            <Image
-                              src={bannerImage}
-                              layout="fill"
-                              objectFit="cover"
-                              objectPosition="50% 50%"
-                            />
-                            <div className="image_overlay_text_area_layout4">
-                              <div className="p-absolute">
-                                <p className="image_overlay_text_title mb-1">
-                                  {trekCaptions}
-                                </p>
-                                <p className="image_overlay_text_desc">
-                                  {trekCaptions}
-                                </p>
-                              </div>
+              <>
+                {results.map(function(result, i) {
+                  const slice = result.data.body.find(
+                    x => x.slice_type === "trek_banner"
+                  );
+                  console.log(slice);
+                  const bannerImage = slice.primary.trek_banner_image.url;
+                  const trekCaptions = slice.primary.trek_caption;
+                  return (
+                    <div className="col-lg-4 col-md-12" key={i}>
+                      <div className="mb-4">
+                        <div alt="imgs" className="uc_fliter_treks_images">
+                          <Image
+                            src={bannerImage}
+                            layout="fill"
+                            objectFit="cover"
+                            objectPosition="50% 50%"
+                          />
+                          <div className="image_overlay_text_area_layout4">
+                            <div className="p-absolute">
+                              <p className="image_overlay_text_title mb-1">
+                                {trekCaptions}
+                              </p>
+                              <p className="image_overlay_text_desc">
+                                {trekCaptions}
+                              </p>
                             </div>
                           </div>
                         </div>
                       </div>
-                    );
-                  })}
-                </div>
-                <div className="d-flex justify-content-end my-3 mx-4">
+                    </div>
+                  );
+                })}
+                <div className="d-flex justify-content-end my-3">
                   <ReactPaginate
                     ref={pagination}
                     pageCount={pageCount}
@@ -367,9 +365,28 @@ const UpComingTreks = ({ slice }) => {
                     nextLabel={<>&raquo;</>}
                   />
                 </div>
-              </div>
+              </>
             ) : (
-              ""
+              <>
+                {showLoading === true && (
+                  <>
+                    <div className="d-flex col-lg-8 col-md-12 align-items-center justify-content-center mt-5 mb-3">
+                      <div className="spinner-grow text-warning" role="status">
+                        <span className="sr-only">Loading...</span>
+                      </div>
+                      <div
+                        className="spinner-grow text-warning mx-2"
+                        role="status"
+                      >
+                        <span className="sr-only">Loading...</span>
+                      </div>
+                      <div className="spinner-grow text-warning" role="status">
+                        <span className="sr-only">Loading...</span>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </>
             )}
           </div>
 

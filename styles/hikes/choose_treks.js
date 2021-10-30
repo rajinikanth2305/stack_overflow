@@ -40,6 +40,7 @@ export const ChooseTreks = css.global`
     position: relative;
     width: 100%;
     height: 222px;
+    border-bottom: 2px solid rgb(255,193,0);
   }
 
   .trek_badge {

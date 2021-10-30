@@ -116,7 +116,7 @@ export const upcomingTrekPageStyle = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     margin: 0;
     padding: 10px 0;
   }
@@ -127,8 +127,9 @@ export const upcomingTrekPageStyle = css.global`
     font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
-    color: rgba(112, 112, 112, 1);
+    font-size: 16px;
+    color: #000000;
+    padding-top: 5px;
   }
 
   .p-display-3 {
@@ -191,9 +192,9 @@ export const upcomingTrekPageStyle = css.global`
   }
 
   .btn-ih-green {
-    background: rgb(91, 133, 70);
+    background: rgb(57,114,41) none repeat scroll 0% 0%;
     border: 0;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.659);
+    box-shadow: rgba(0,0,0,0.66) 2px 2px 2px;
     border-radius: 2px;
     padding: 3px 30px;
     border-radius: 0;
@@ -386,6 +387,10 @@ export const upcomingTrekPageStyle = css.global`
     display: none;
   }
 
+  .slick-dots li {
+    width: 10px;
+  }
+
   .slick-prev::before,
   .slick-next::before {
     color: #707070;
@@ -408,6 +413,10 @@ export const upcomingTrekPageStyle = css.global`
   .slick-dots li.slick-active button::before {
     opacity: 1;
     color: rgb(255, 193, 0);
+  }
+
+  .slick-dots {
+    bottom: -40px;
   }
 
   .uc_family_treks_image {
@@ -527,6 +536,13 @@ export const upcomingTrekPageStyle = css.global`
     padding: 3px;
     width: 300px;
   }
+
+  .page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #ffc100;
+    border-color: #ffc100;
+}
 
   @media only screen and (max-width: 660px) {
     .section-padd {
