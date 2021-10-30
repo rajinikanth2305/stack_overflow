@@ -189,10 +189,7 @@ export const createNewUser =  async (data)  => {
        }
 };
 
-export const saveDraftBooking =  async (data,stepName='Default')  => {
-
-   console.log(data);
-
+export const saveDraftBooking =  async (bookingStage,data,stepName='Default')  => {
    const header=await getTokenHeader();
    const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
    const primaryUserEmail=data.primaryUserEmail;
@@ -203,7 +200,8 @@ export const saveDraftBooking =  async (data,stepName='Default')  => {
    const payload={
     "bookingId": data.bookingId,
     "batchId": data.batchId,
-    "trekMates": buildTrekMates(data,primaryUserEmail,stepName)
+    "trekMates": buildTrekMates(data,primaryUserEmail,stepName),
+    "bookingStage": bookingStage
   }
    console.log(JSON.stringify(payload));
    return axios.put(url,payload,{ headers:  header })

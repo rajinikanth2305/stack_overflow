@@ -216,7 +216,7 @@ const AddTrekMates = forwardRef((props, ref) => {
   };
 
   const saveDraft = async sdata => {
-    await saveDraftBooking(sdata)
+    await saveDraftBooking("ADD_TREK_MATES", sdata)
       .then(data => {
         return data;
       })

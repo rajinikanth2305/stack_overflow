@@ -52,10 +52,10 @@ const SelectBatch = forwardRef((props, ref) => {
   const [defaultActiveKey, setDefaultActiveKey] = useState([]);
   const [itineraryDates, setItineraryDates] = useState([]);
 
-  
+
   const [tripDaysIndexes, setTripDaysIndexes] = React.useState([]);
   const [tripDayCounter, setTripDatCounter] = React.useState(0);
-  
+
 
   useEffect(() => {
 
@@ -134,7 +134,7 @@ const SelectBatch = forwardRef((props, ref) => {
       sdata.endDate = selectedBatch.endDate;
       sdata.batchId = selectedBatch.id;
 
-      saveDraftBooking(sdata)
+      saveDraftBooking("BATCH_SELECTION", sdata)
         .then(res => {
           postBatchChange(res, sdata, selectedBatch);
         })
@@ -395,7 +395,7 @@ function daysBetween(startDate, endDate) {
 
                                               <div className="col-lg-3 col-md-12 col-3">
                                                 <p className="p-text-3-1-fg mb-2 pb-1">
-                                                  {/* {item.batchState==='ACTIVE' ? 
+                                                  {/* {item.batchState==='ACTIVE' ?
                                                 <span className="text-green-clr">Available</span> ? item.batchState==='FULL' ?
                                                 <span className="text-maroon-clr">Full</span> : <span className="text-maroon-clr">Waitlist</span>
                                               } */}
