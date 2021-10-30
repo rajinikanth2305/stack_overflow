@@ -30,7 +30,7 @@ export const aboutUsStyles = css.global`
     font-family: Lora;
     font-style: normal;
     font-weight: bold;
-    font-size: 60px;
+    font-size: 52px;
     filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.749));
     color: rgba(255, 255, 255, 1);
     text-transform: capitalize;

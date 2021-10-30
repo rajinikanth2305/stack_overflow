@@ -95,6 +95,14 @@ export const founderStyles = css.global`
     display: none;
   }
 
+  .pr-5p {
+    padding-right: 5%;
+  }
+
+  .pb-08 {
+    padding-bottom: 0.8rem;
+  }
+
   @media only screen and (max-width: 600px) {
     .title-h2 {
       line-height: 40px;

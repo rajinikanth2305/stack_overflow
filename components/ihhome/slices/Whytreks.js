@@ -40,7 +40,7 @@ const WhyTrek = ({ slice }) => {
                 </div>
               </div>
               <div>{pillarDesc}</div>
-              <div className="float-right pt-2 pb-4">
+              <div className="text-center pt-2 pb-3">
                 <button className="btn btn-ih-green">Read more</button>
               </div>
             </div>
@@ -92,7 +92,7 @@ const WhyTrek = ({ slice }) => {
           <div className="why_trek_sec">
             <div className="row">
               <div className="col-md-12">
-                <h2 className="title-h2 mb-4">{RichText.asText(heading)}</h2>
+                <h2 className="title-h2 mb-4 pb-08">{RichText.asText(heading)}</h2>
               </div>
               <div>
                 <Slider {...settings}>{pillarImages}</Slider>

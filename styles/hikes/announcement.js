@@ -37,6 +37,7 @@ export const annoumentStyles = css.global`
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
+    letter-spacing: 0.5px;
   }
 
   .p-text-2-an {
@@ -51,6 +52,7 @@ export const annoumentStyles = css.global`
   @media only screen and (max-width: 600px) {
     .p-text-1-an {
       font-size: 18px;
+      padding: 7px 0;
     }
     .p-text-2-an {
       font-style: italic;

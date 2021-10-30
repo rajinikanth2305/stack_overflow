@@ -104,7 +104,7 @@ const ChooseTheseTreks = ({ slice }) => {
                     <p className="title-diplay-3-18px text-uppercase">
                       {data.choose_trek_title[0].text}
                     </p>
-                    <p className="p-display-2">
+                    <p className="p-text-4">
                       {data.choose_trek_desc[0].text.length > 125
                         ? `${data.choose_trek_desc[0].text.substring(
                             0,

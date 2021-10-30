@@ -53,7 +53,7 @@ export const ihhomeBannerStyles = css.global`
     font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
-    font-size: 60px;
+    font-size: 52px;
     color: rgba(255, 255, 255, 1);
     letter-spacing: 2px;
     margin-bottom: 50px;
@@ -89,7 +89,7 @@ export const ihhomeBannerStyles = css.global`
     border-radius: 3px;
     color: black;
     font-size: 18px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-family: Franklin Gothic Medium;
     padding: 5px 30px;
   }

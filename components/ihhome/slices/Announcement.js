@@ -14,7 +14,7 @@ const Announcement = ({ slice }) => {
         <div>
           <div className="announcement_sec">
             <div className="container">
-              <div className="row">
+              <div className="row d-flex align-items-center">
                 <div className="col-lg-6 col-md-12">
                   <p className="p-text-1-an text-white m-0">{RichText.asText(heading1)}</p>
                 </div>

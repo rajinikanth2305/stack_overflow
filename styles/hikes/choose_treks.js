@@ -113,7 +113,7 @@ export const ChooseTreks = css.global`
   }
 
   .title-diplay-3-ltw {
-    line-height: 24px;
+    line-height: 30px;
     text-align: left;
     font-family: Lora-Medium;
     font-style: normal;
@@ -128,7 +128,7 @@ export const ChooseTreks = css.global`
     font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 24px;
     color: rgba(0, 0, 0, 1);
   }
 
@@ -162,9 +162,9 @@ export const ChooseTreks = css.global`
   }
 
   .btn-ih-green {
-    background: rgb(91, 133, 70);
+    background: rgb(57, 114, 41) none repeat scroll 0% 0%;
     border: 0;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.659);
+    box-shadow: rgba(0, 0, 0, 0.66) 2px 2px 2px;
     border-radius: 2px;
     padding: 3px 30px;
     border-radius: 0;
@@ -282,6 +282,10 @@ export const ChooseTreks = css.global`
     content: "\f100" !important;
   }
 
+  .slick-dots li {
+    width: 10px;
+  }
+
   .slick-dots li button::before {
     font-size: 10px;
   }
@@ -289,6 +293,10 @@ export const ChooseTreks = css.global`
   .slick-dots li.slick-active button::before {
     opacity: 1;
     color: rgb(255, 193, 0);
+  }
+
+  .slick-dots {
+    bottom: -40px;
   }
 
   .p-text-5-tv {
@@ -300,6 +308,10 @@ export const ChooseTreks = css.global`
     font-size: 14px;
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
+  }
+
+  .pb-08 {
+    padding-bottom: 0.8rem;
   }
 
   @media only screen and (max-width: 600px) {
@@ -362,7 +374,9 @@ export const ChooseTreks = css.global`
     }
 
     .title-diplay-3-18px {
-      font-weight: normal;
+      // font-weight: normal;
+      font-size: 20px;
+      margin-top: 15px;
     }
 
     .title-diplay-3 {

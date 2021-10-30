@@ -80,6 +80,10 @@ export const whyTrekWithStyles = css.global`
     cursor: pointer;
   }
 
+  .pb-08 {
+    padding-bottom: 0.8rem;
+  }
+
   @media only screen and (max-width: 600px) {
     .why_trek_sec {
       padding: 5px 0px 40px;

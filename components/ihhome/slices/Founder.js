@@ -40,12 +40,12 @@ const Founder = ({ slice }) => {
             <div className="row">
               <div className="col-lg-6 col-md-12"></div>
               <div className="col-lg-6 col-md-12">
-                <h2 className="title-h2 m-0">{RichText.asText(title)}</h2>
+                <h2 className="title-h2 m-0 pb-08">{RichText.asText(title)}</h2>
                 <p className="p-text-1">{RichText.asText(sub_title)}</p>
               </div>
             </div>
             <div className="row">
-              <div className="col-lg-6 col-md-12">
+              <div className="col-lg-6 col-md-12 pr-5p">
                 {/* <div className="img-margin">
                 <Image
                   src={imageUrl}

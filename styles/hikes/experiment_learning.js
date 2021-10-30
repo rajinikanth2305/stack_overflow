@@ -90,6 +90,7 @@ export const experimentStyles = css.global`
   .expirimentMainImage {
     position: relative;
     height: 480px;
+    border-bottom: 2px solid rgb(255,193,0);
   }
   .p-text-3 {
     line-height: 30px;
@@ -112,6 +113,7 @@ export const experimentStyles = css.global`
   .expImage {
     position: relative;
     height: 240px;
+    border-bottom: 2px solid rgb(255,193,0);
   }
   .cross-trek-details {
     padding: 100px 50px;
@@ -161,6 +163,9 @@ export const experimentStyles = css.global`
     font-size: 18px;
     text-transform: none;
     font-family: Franklin Gothic Medium;
+  }
+  .pb-08 {
+    padding-bottom: 0.8rem;
   }
   @media only screen and (max-width: 600px) {
     .exprriment-bg {

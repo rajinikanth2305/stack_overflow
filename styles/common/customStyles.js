@@ -78,7 +78,7 @@ export const customStyles = css.global`
     font-family: Lora;
     font-style: bold;
     font-weight: normal;
-    font-size: 60px;
+    font-size: 52px;
     color: rgba(255, 255, 255, 1);
     letter-spacing: 2px;
     filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.749));
@@ -114,7 +114,7 @@ export const customStyles = css.global`
     border-radius: 3px;
     color: black;
     font-size: 18px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-family: Franklin Gothic;
   }
 

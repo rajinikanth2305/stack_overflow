@@ -60,7 +60,7 @@ const Experiment = ({ slice }) => {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <h2 className="exp_title">
+                <h2 className="exp_title pb-08">
                   {RichText.asText(experimentHeading)}
                 </h2>
               </div>

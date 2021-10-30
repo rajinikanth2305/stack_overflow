@@ -57,6 +57,8 @@ export const latestUpdatesTrekkingsStyles = css.global`
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
+    font-weight: 600;
+    letter-spacing: 0.5px;
   }
 
   .day_talk_title > span {
@@ -112,6 +114,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
     font-weight: bold;
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
+    letter-spacing: 0.5px;
   }
 
   .tw_trek_card {
@@ -145,6 +148,10 @@ export const latestUpdatesTrekkingsStyles = css.global`
     position: relative;
     height: 300px;
     width: 100%;
+  }
+
+  .pb-08 {
+    padding-bottom: 0.8rem;
   }
 
   @media only screen and (max-width: 660px) {

@@ -74,7 +74,7 @@ const LatestUpdatesTrekkings = ({ slice }) => {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <p className="lut_section_title m-0 pt-4">
+              <p className="lut_section_title m-0 pt-4 pb-08">
                 {RichText.asText(Sectiontitle)}
               </p>
             </div>
@@ -105,10 +105,8 @@ const LatestUpdatesTrekkings = ({ slice }) => {
                         {RichText.asText(dayTrekTalkDesc)}
                       </p>
                       <p className="name_editor m-0">
-                        By{" "}
-                        <span>
-                          <b>{RichText.asText(nameEditor)}</b>
-                        </span>
+                        <i>By&nbsp;
+                        {RichText.asText(nameEditor)}</i>
                       </p>
                       <p className="name_editor">
                         <span>{dateTrek} | </span>

@@ -52,7 +52,7 @@ export const doItStyles = css.global`
   .doit_img_caption {
     line-height: 45px;
     text-align: left;
-    font-family: Lora-Medium;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 30px;
@@ -68,7 +68,7 @@ export const doItStyles = css.global`
     border-radius: 3px;
     color: black;
     font-size: 18px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-family: Franklin Gothic Medium;
   }
 
