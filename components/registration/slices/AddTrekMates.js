@@ -249,7 +249,7 @@ const AddTrekMates = forwardRef((props, ref) => {
   const usersData = [];
 
   React.useEffect(() => {
-    // setUsers(usersData);
+
     //const arr = Array.from(new Array(usersData.length), (x, i) => i);
     // setIndexes(arr);
     // setCounter(arr.length);
@@ -306,6 +306,22 @@ const AddTrekMates = forwardRef((props, ref) => {
     }
     props.onNextTabEvent("makepayment");
     window.scrollTo(0, 0);
+  };
+
+  const waitingListConfirmation = async () => {
+
+    let responseData;
+    try {
+      responseData = await saveDraft(stateData.data);
+    } catch (err) {
+      toast.current.show({
+        severity: "error",
+        summary: `'Batch is full, Sorry! You no more allowed to add the TrekMates'`,
+        detail: "Add Trekker- Batch is full"
+      });
+      return;
+    }
+    alert("Your waiting list booking is confirmed");
   };
 
   const addSearchUser = () => {
@@ -824,7 +840,7 @@ const AddTrekMates = forwardRef((props, ref) => {
           </div>
           <div className="col-lg-2 col-md-12"></div>
         </div>
-        <div className="d-flex justify-content-center">
+        { stateData?.data?.batchState !== 'WAITING_LIST' && (<div className="d-flex justify-content-center">
           <div>
             <div className="mt-5 mb-3">
               <button
@@ -836,7 +852,20 @@ const AddTrekMates = forwardRef((props, ref) => {
               </button>
             </div>
           </div>
-        </div>
+        </div>)}
+        { stateData?.data?.batchState === 'WAITING_LIST' && (<div className="d-flex justify-content-center">
+          <div>
+            <div className="mt-5 mb-3">
+              <button
+                  type="button"
+                  className="btn btn-ih-green py-2"
+                  onClick={waitingListConfirmation}
+              >
+                proceed to waiting list registration
+              </button>
+            </div>
+          </div>
+        </div>)}
       </div>
     </>
   );

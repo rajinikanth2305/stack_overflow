@@ -333,7 +333,8 @@ const RegHome = ({ slice }) => {
       voucherDetails: vouchers,
       trekUsers: [],
       isOwnerActing: isOwnerActing,
-      bookingState:data.state
+      bookingState:data.state,
+      batchState: data.batchState
     };
 
     const filteredUsers = data.participants.filter(
