@@ -129,7 +129,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     setInvalidDates(invalidDatesList);
   };
 
-  const activeOrFillingTemplate = (fillingFast, date) => {
+  const activeOrFillingTemplate = (fillingFast, date, availableSlot) => {
     if (fillingFast) {
       // return (<p className="m-0 ad-highlight">
       // <span>Last 2 SLOTS {date.day}</span>
@@ -139,7 +139,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
           <p style={{ textAlign: "right" }}>
             <span>{date.day}</span>
           </p>
-          <p className="m-0 cal-highlight-red text-center">Last 2 slots</p>
+          <p className="m-0 cal-highlight-red text-center">Last {availableSlot} slots</p>
         </>
       );
     } else {
@@ -179,7 +179,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
       const status = batchDates[key].status;
       const fillingFast =
         batchDates[key].availableSlots > 0 &&
-        batchDates[key].availableSlots <= 2;
+        batchDates[key].availableSlots <= 5;
       return (
         <div className="w-100">
           <div className="w-100">
@@ -191,7 +191,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
                 <p className="m-0 cal-highlight-yellow text-center">Waitlist</p>
               </>
             ) : status === "ACTIVE" ? (
-              activeOrFillingTemplate(fillingFast, date)
+              activeOrFillingTemplate(fillingFast, date, batchDates[key].availableSlots)
             ) : (
               // <p className="m-0 ad-highlight-full-list">
               //   <span> FULL {date.day}</span>
