@@ -111,7 +111,7 @@ const HowDoesEachDayLooks = () => {
                         </div>
                       </div>
                     )}
-                    {daysIt?.image3?.url && (
+                    {daysIt?.image4?.url && (
                       <div>
                         <div className="accordio-sec-images">
                           <Image src={daysIt?.image4?.url} layout="fill" />

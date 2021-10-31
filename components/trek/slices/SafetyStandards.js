@@ -24,12 +24,14 @@ const SafetyStandards = ({ slice }) => {
             <div className="col-12 col-lg-12 col-md-12 p-0">
               <div className="bg_overlay_sustainable">
                 <div className="sustainable_img">
-                  <Image
-                    src={bannerImage}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="center bottom"
-                  />
+                  {bannerImage && (
+                    <Image
+                      src={bannerImage}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="center bottom"
+                    />
+                  )}
                 </div>
               </div>
             </div>

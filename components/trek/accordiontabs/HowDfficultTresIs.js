@@ -134,12 +134,14 @@ const HowDifficultTrekIs = () => {
       <Tab eventKey={`tab` + data?.title[0]?.text} title={data?.title[0]?.text}>
         {data?.title[0]?.text === "Safety – Altitude Wise" ? (
           <div className="hd-tab2-iamge mb-4">
-            <Image
-              src={data.heading1_image.url}
-              layout="fill"
-              objectFit="cover"
-              objectPosition="50% 50%"
-            />
+            {data.heading1_image.url && (
+              <Image
+                src={data.heading1_image.url}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="50% 50%"
+              />
+            )}
           </div>
         ) : (
           ""
@@ -147,12 +149,13 @@ const HowDifficultTrekIs = () => {
         {description}
         {data?.title[0]?.text === "Exit Points & Emergency Details" ? (
           <div className="hd-tab4-iamge mb-4">
+          {data.heading1_image.url &&
             <Image
               src={data.heading1_image.url}
               layout="fill"
               objectFit="contain"
               objectPosition="bottom"
-            />
+          /> }
           </div>
         ) : (
           ""
@@ -160,12 +163,13 @@ const HowDifficultTrekIs = () => {
         {data?.title[0]?.text === "Safety - Terrain Wise" ? (
           <>
             <div className="hd-tab2-iamge mv mb-4 d-m-block">
+            {data.heading1_image.url &&
               <Image
                 src={data.heading1_image.url}
                 layout="fill"
                 objectFit="cover"
                 objectPosition="50% 50%"
-              />
+              />}
             </div>
             <div className="d-flex">
               <div className="flex-fill">
@@ -176,12 +180,13 @@ const HowDifficultTrekIs = () => {
               </div>
               <div className="w-100 d-m-none">
                 <div className="hd-tab2-iamge position-change mb-4">
+                {data.heading1_image.url && 
                   <Image
                     src={data.heading1_image.url}
                     layout="fill"
                     objectFit="cover"
                     objectPosition="50% 50%"
-                  />
+                /> }
                 </div>
               </div>
             </div>
@@ -230,7 +235,7 @@ const HowDifficultTrekIs = () => {
 
   return (
     <>
-      {/* <div>
+      <div>
         <div className="">
           <div className="row d-flex align-items-center my-4">
             <div className="col-lg-3 col-md-12">
@@ -280,7 +285,7 @@ const HowDifficultTrekIs = () => {
         <style jsx global>
           {experimentStyles}
         </style>
-      </div> */}
+      </div>
     </>
   );
 };

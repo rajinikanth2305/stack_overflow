@@ -37,10 +37,11 @@ const KnowYourTrek = ({ slice, data }) => {
 
   const accordionTabImg = accordionTabImgArray.map((data, i) => {
     const inner_content_slice_id = data.inner_content_slice_id[0].text;
+    console.log(data.inner_content_slice_id[0].text);
     const sliceType = slice_zone.find(
       x => x.slice_type === data.inner_content_slice_id[0].text
     );
-    // console.log(sliceType);
+    console.log(sliceType);
     return (
       <>
         <Accordion>

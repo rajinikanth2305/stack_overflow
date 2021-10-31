@@ -50,12 +50,14 @@ const TrekGallery = ({ slice }) => {
     return (
       <>
         <div className="discovery_trek_gallery">
-          <Image
-            src={data.discovery_trek_gallery.url}
-            layout="fill"
-            objectFit="cover"
-            objectPosition="bottom left"
-          />
+          {data.discovery_trek_gallery.url && (
+            <Image
+              src={data.discovery_trek_gallery.url}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="bottom left"
+            />
+          )}
         </div>
         <div className="bg-dark py-4">
           <div className="container">

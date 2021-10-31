@@ -79,12 +79,14 @@ const QuickItineraryComponent = ({ slice }) => {
               </h2>
               <div className="d-m-block">
                 <div className="itinerary_map_image">
-                  <Image
-                    src={itineraryMapImage}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="bottom"
-                  />
+                  {itineraryMapImage && (
+                    <Image
+                      src={itineraryMapImage}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="bottom"
+                    />
+                  )}
                 </div>
                 <p className="p-text-small font-italic">
                   {RichText.asText(imgDesc)}
@@ -114,12 +116,14 @@ const QuickItineraryComponent = ({ slice }) => {
               <div className="col-lg-4 col-md-12">
                 <div className="d-m-none">
                   <div className="itinerary_map_image">
-                    <Image
-                      src={itineraryMapImage}
-                      layout="fill"
-                      objectFit="cover"
-                      objectPosition="bottom"
-                    />
+                    {itineraryMapImage && (
+                      <Image
+                        src={itineraryMapImage}
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="bottom"
+                      />
+                    )}
                   </div>
                   <p className="p-text-small font-italic">
                     {RichText.asText(imgDesc)}
@@ -128,7 +132,9 @@ const QuickItineraryComponent = ({ slice }) => {
 
                 <div className="pro_tips_box">
                   <p className="pro_tips">
-                    <span className="p-text-2-franklin"><b>PRO-TIPS</b></span>
+                    <span className="p-text-2-franklin">
+                      <b>PRO-TIPS</b>
+                    </span>
                   </p>
                   {/* {proTipsListData} */}
                   <p className="p-text-4 m-0">{RichText.render(proTipsList)}</p>
@@ -151,7 +157,9 @@ const QuickItineraryComponent = ({ slice }) => {
                   </div>
                   <div className="pro_tips_box">
                     <p className="pro_tips">
-                      <span className="p-text-2-franklin"><b>PRO-TIPS</b></span>
+                      <span className="p-text-2-franklin">
+                        <b>PRO-TIPS</b>
+                      </span>
                     </p>
                     {/* {proTipsListData} */}
                     <p className="p-text-4">{RichText.render(proTipsList)}</p>

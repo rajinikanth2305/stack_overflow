@@ -90,16 +90,18 @@ const TrekVideosComponent = ({ slice }) => {
                   />
                 </div>
               </div>
-              <Image
-                src={data.image.url}
-                layout="fill"
-                // objectFit="cover"
-                // objectPosition="bottom"
-                onClick={() => {
-                  setTrekVideoUrl(data.video_url.url);
-                  setShow(true);
-                }}
-              />
+              {data.image.url && (
+                <Image
+                  src={data.image.url}
+                  layout="fill"
+                  // objectFit="cover"
+                  // objectPosition="bottom"
+                  onClick={() => {
+                    setTrekVideoUrl(data.video_url.url);
+                    setShow(true);
+                  }}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -113,7 +115,9 @@ const TrekVideosComponent = ({ slice }) => {
         <div className="container">
           <div className="row mt-5 mb-3 mmt-0">
             <div className="col-12 col-lg-7 col-md-12">
-              <h2 className="title-h2 th-2m pb-08">{RichText.asText(heading1)}</h2>
+              <h2 className="title-h2 th-2m pb-08">
+                {RichText.asText(heading1)}
+              </h2>
             </div>
             <div className="col-12 col-lg-7 col-md-12 d-m-none">
               <p className="mb-4 pb-2 p-text-4">{RichText.asText(heading2)}</p>
@@ -132,13 +136,15 @@ const TrekVideosComponent = ({ slice }) => {
                         />
                       </div>
                     </div>
-                    <Image
-                      src={primaryImage}
-                      layout="fill"
-                      // objectFit="cover"
-                      // objectPosition="bottom"
-                      onClick={handlePrimary}
-                    />
+                    {primaryImage && (
+                      <Image
+                        src={primaryImage}
+                        layout="fill"
+                        // objectFit="cover"
+                        // objectPosition="bottom"
+                        onClick={handlePrimary}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -158,13 +164,15 @@ const TrekVideosComponent = ({ slice }) => {
                         />
                       </div>
                     </div>
-                    <Image
-                      src={primaryImage}
-                      layout="fill"
-                      // objectFit="cover"
-                      // objectPosition="bottom"
-                      onClick={handleSecondary}
-                    />
+                    {primaryImage && (
+                      <Image
+                        src={primaryImage}
+                        layout="fill"
+                        // objectFit="cover"
+                        // objectPosition="bottom"
+                        onClick={handleSecondary}
+                      />
+                    )}
                   </div>
                 </div>
               </div>

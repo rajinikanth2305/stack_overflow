@@ -56,12 +56,14 @@ const TrekOverView = ({ slice, data }) => {
       <>
         <div className="mt-2 mb-4">
           <div className="trek_summary_icon">
-            <Image
-              src={data.trek_summary_icon.url}
-              layout="fill"
-              objectFit="contain"
-              objectPosition="left left"
-            />
+            {data.trek_summary_icon.url && (
+              <Image
+                src={data.trek_summary_icon.url}
+                layout="fill"
+                objectFit="contain"
+                objectPosition="left left"
+              />
+            )}
           </div>
           <p className="m-0 trek_summary_title">
             {data.trek_summary_title[0].text}
@@ -115,7 +117,9 @@ const TrekOverView = ({ slice, data }) => {
                     </p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">FAQs</p>
+                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                      FAQs
+                    </p>
                   </div>
                   <div>
                     <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
@@ -123,10 +127,14 @@ const TrekOverView = ({ slice, data }) => {
                     </p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">Trek Safety</p>
+                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                      Trek Safety
+                    </p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">Trek Gear</p>
+                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                      Trek Gear
+                    </p>
                   </div>
                   <div>
                     <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
@@ -134,7 +142,9 @@ const TrekOverView = ({ slice, data }) => {
                     </p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">Best Time</p>
+                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                      Best Time
+                    </p>
                   </div>
                   <div>
                     <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
@@ -142,16 +152,25 @@ const TrekOverView = ({ slice, data }) => {
                     </p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">Trek Trivia</p>
+                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                      Trek Trivia
+                    </p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">Campsites</p>
+                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                      Campsites
+                    </p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right"> Difficulty </p>
+                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                      {" "}
+                      Difficulty{" "}
+                    </p>
                   </div>
                   <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">Weather</p>
+                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                      Weather
+                    </p>
                   </div>
                 </div>
               </div>

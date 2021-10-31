@@ -69,7 +69,10 @@ const TrekExpertSpeak = ({ slice }) => {
             {data.what_i_like_image_desc.map((img_desc, index) => {
               return (
                 <>
-                  <p key={index} className="trek_summary_desc font-italic py-3 mpb-0">
+                  <p
+                    key={index}
+                    className="trek_summary_desc font-italic py-3 mpb-0"
+                  >
                     {img_desc.text}
                   </p>
                 </>
@@ -115,12 +118,14 @@ const TrekExpertSpeak = ({ slice }) => {
                 <div className="row">
                   <div className="col-4">
                     <div className="text-center author-sec-border">
-                      <Image
-                        src={authorImage}
-                        width={90}
-                        height={90}
-                        className="author_img"
-                      />
+                      {authorImage && (
+                        <Image
+                          src={authorImage}
+                          width={90}
+                          height={90}
+                          className="author_img"
+                        />
+                      )}
                       <p className="m-0 author-info-text">
                         {RichText.asText(author)}
                       </p>
@@ -157,12 +162,14 @@ const TrekExpertSpeak = ({ slice }) => {
                         <div className="row">
                           <div className="col-4">
                             <div className="author-sec-border">
-                              <Image
-                                src={authorImage}
-                                width={90}
-                                height={90}
-                                className="author_img"
-                              />
+                              {authorImage && (
+                                <Image
+                                  src={authorImage}
+                                  width={90}
+                                  height={90}
+                                  className="author_img"
+                                />
+                              )}
                               <p className="m-0 author-info-text">
                                 {RichText.asText(author)}
                               </p>
@@ -183,7 +190,11 @@ const TrekExpertSpeak = ({ slice }) => {
                     </div>
                   </div>
                   <div
-                    style={{ minHeight: '300px', height: trekExpertSecHeight, overflow: "hidden" }}
+                    style={{
+                      minHeight: "300px",
+                      height: trekExpertSecHeight,
+                      overflow: "hidden"
+                    }}
                   >
                     {/* {whatILikeImage} */}
                     <div className="row">
@@ -192,7 +203,9 @@ const TrekExpertSpeak = ({ slice }) => {
                       </div>
                       <div className="col-12 col-lg-1 col-md-12"></div>
                       <div className="col-12 col-lg-4 col-md-12">
-                        <div className="m-t-expert-image">{whatILikeImage1}</div>
+                        <div className="m-t-expert-image">
+                          {whatILikeImage1}
+                        </div>
                       </div>
                     </div>
                   </div>

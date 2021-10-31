@@ -50,12 +50,14 @@ const TrekWhatSays = ({ slice }) => {
       <>
         <div className="mx-2">
           <div className="trekker_photos">
-            <Image
-              src={data.trekker_photos.url}
-              layout="fill"
-              objectFit="contain"
-              objectPosition="left left"
-            />
+            {data.trekker_photos.url && (
+              <Image
+                src={data.trekker_photos.url}
+                layout="fill"
+                objectFit="contain"
+                objectPosition="left left"
+              />
+            )}
           </div>
         </div>
       </>
@@ -152,7 +154,9 @@ const TrekWhatSays = ({ slice }) => {
               <div className="col-12 col-lg-6 col-md-12">
                 <div>
                   <div className="my-5 mmb-0">
-                  <p className="p-text-1"><b>Trekker Photos</b></p>
+                    <p className="p-text-1">
+                      <b>Trekker Photos</b>
+                    </p>
                     <Slider {...settings}>{trekkerPhotos}</Slider>
                   </div>
                 </div>

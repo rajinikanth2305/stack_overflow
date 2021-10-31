@@ -41,13 +41,15 @@ const WhatSoDifferent = ({ slice }) => {
                         />
                       </div>
                     </div>
-                    <Image
-                      src={videoImage}
-                      layout="fill"
-                      // objectFit="cover"
-                      // objectPosition="bottom"
-                      onClick={handleShow}
-                    />
+                    {videoImage && (
+                      <Image
+                        src={videoImage}
+                        layout="fill"
+                        // objectFit="cover"
+                        // objectPosition="bottom"
+                        onClick={handleShow}
+                      />
+                    )}
                   </div>
                 </div>
               </div>

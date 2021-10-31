@@ -54,12 +54,14 @@ const OtherTreksLike = ({ slice }) => {
           <div className="card_sec">
             <div className="card trek_card">
               <div alt="imgs" className="image-view imgaview-view">
-                <Image
-                  src={data.image.url}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                />
+                {data.image.url && (
+                  <Image
+                    src={data.image.url}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                  />
+                )}
               </div>
               <div className="px-3 py-2">
                 <div className="d-flex align-items-center card-info-text">
@@ -135,11 +137,15 @@ const OtherTreksLike = ({ slice }) => {
         <div className="container">
           <div className="d-flex flex-wrap align-items-center mb-3">
             <div className="col-lg-9 col-md-12">
-              <h2 className="title-h2 th-2m pb-08 mb-0">{RichText.asText(heading1)}</h2>
+              <h2 className="title-h2 th-2m pb-08 mb-0">
+                {RichText.asText(heading1)}
+              </h2>
             </div>
           </div>
           <div>
-            <Slider className="home-choose-treks" {...settings}>{imageView}</Slider>
+            <Slider className="home-choose-treks" {...settings}>
+              {imageView}
+            </Slider>
           </div>
         </div>
         <style jsx global>
