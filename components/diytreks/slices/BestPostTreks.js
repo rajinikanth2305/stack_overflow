@@ -51,7 +51,7 @@ const BestPostTreks = ({ slice }) => {
   const bestPostTreks = bestPostTreksArray.map(function(data, i) {
     return (
       <>
-        <div className="mx-2" key={i}>
+        <div className="mx-4 m-mx-0" key={i}>
           <div className="card_sec">
             <div className="card trek_card">
               <div alt="imgs" className="best_treks_images">
@@ -105,18 +105,13 @@ const BestPostTreks = ({ slice }) => {
                 </div>
 
                 <div>
-                  <p className="p-display-2">
+                  <p className="p-text-4">
                     {data.desc[0].text.length > 125
                       ? `${data.desc[0].text.substring(0, 125)}...`
                       : data.desc[0].text}
                   </p>
-                  <div className="float-right pt-2 pb-4">
-                    <button className="btn btn-bihtn-yellow">
-                      View Trek
-                    </button>
-                  </div>
                 </div>
-                <div className="d-flex align-items-center">
+                <div className="d-flex align-items-center mb-3">
                   <div>
                     <div className="doc_image">
                       <Image
@@ -127,13 +122,16 @@ const BestPostTreks = ({ slice }) => {
                       />
                     </div>
                   </div>
-                  <div className="mx-2">
-                    <p className="p-display-2 m-0">
-                      {data.documentor_name[0].text}
+                  <div className="mx-2 flex-grow-1">
+                    <p className="p-text-3-fgg m-0">
+                      <b>{data.documentor_name[0].text}</b>
                     </p>
-                    <p className="p-display-2 m-0">
+                    <p className="p-text-3-fgg m-0">
                       {data.documentor_title[0].text}
                     </p>
+                  </div>
+                  <div>
+                    <button className="btn btn-bihtn-yellow">View Trek</button>
                   </div>
                 </div>
               </div>
@@ -148,7 +146,7 @@ const BestPostTreks = ({ slice }) => {
     <>
       <div className="my-5 pt-4 m-pt-0">
         <div className="container">
-          <div className="row d-flex align-items-center mt-4 mb-4 border-bottom-custom">
+          <div className="d-flex align-items-center mt-4 mb-4 border-bottom-custom">
             <div className="col-lg-6 col-md-12">
               <h2 className="title-h2 border-0">
                 <b>{RichText.asText(heading1)}</b>
@@ -163,7 +161,7 @@ const BestPostTreks = ({ slice }) => {
           </div>
         </div>
         <div className="m-mt-5">
-        <TrekkersVideoCommon />
+          <TrekkersVideoCommon />
         </div>
         <style jsx global>
           {diyStyles}

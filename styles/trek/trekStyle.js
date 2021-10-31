@@ -487,11 +487,11 @@ export const trekStyle = css.global`
     top: 38%;
   }
 
-  .slick-prev::before,
-  .slick-next::before {
-    color: #ffc100;
-    font-size: 26px;
-  }
+  // .slick-prev::before,
+  // .slick-next::before {
+  //   color: #ffc100;
+  //   font-size: 26px;
+  // }
 
   .slick-dots li {
     width: 10px;

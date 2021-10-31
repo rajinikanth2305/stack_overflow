@@ -10,7 +10,7 @@ const ExploreTreks = ({ slice }) => {
 
   return (
     <>
-      <div>
+      <div className="mb-5">
           <div className="container">
             <div className="row d-flex align-items-center mt-4">
                 <div className="col-lg-6 col-md-12">

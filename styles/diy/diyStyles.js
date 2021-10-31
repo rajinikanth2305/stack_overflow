@@ -1,6 +1,24 @@
 import css from "styled-jsx/css";
 
 export const diyStyles = css.global`
+  @font-face {
+    font-family: Franklin Gothic Medium;
+    src: url("/font/FRANKLINGOTHIC/framd.ttf");
+    src: url("/font/FRANKLINGOTHIC/framd.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: Franklin Gothic Book;
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf");
+    src: url("/font/FRANKLINGOTHIC/FRABK.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: Lora-Medium;
+    src: url("/font/LORA/Lora-Medium.ttf");
+    src: url("/font/LORA/Lora-Medium.ttf") format("truetype");
+  }
+
   .container.container-custom {
     max-width: 1600px;
     padding: 0 25px;
@@ -174,6 +192,16 @@ export const diyStyles = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .p-text-3-2-lora-gr {
+    line-height: 16px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(112,112,112,1);
+  }
+
   .p-text-3-popins {
     line-height: 17.5px;
     text-align: center;
@@ -183,6 +211,15 @@ export const diyStyles = css.global`
     font-size: 14px;
     color: rgba(0, 0, 0, 1);
     text-transform: uppercase;
+  }
+
+  .p-text-3-fgg {
+    line-height: 17.5px;
+    font-family: Franklin Gothic Medium;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(112,112,112,1);
   }
 
   .p-text-4 {
@@ -296,8 +333,34 @@ export const diyStyles = css.global`
 
   .slick-prev::before,
   .slick-next::before {
-    color: #ffc100;
-    font-size: 26px;
+    color: #707070;
+    font-family: "FontAwesome" !important;
+    font-size: 36px;
+  }
+
+  .slick-next::before {
+    content: "\f101" !important;
+  }
+
+  .slick-prev::before {
+    content: "\f100" !important;
+  }
+
+  .slick-dots li {
+    width: 10px;
+  }
+
+  .slick-dots li button::before {
+    font-size: 10px;
+  }
+
+  .slick-dots li.slick-active button::before {
+    opacity: 1;
+    color: rgb(255, 193, 0);
+  }
+
+  .slick-dots {
+    bottom: -40px;
   }
 
   .diyres_img_bg {
@@ -399,7 +462,46 @@ export const diyStyles = css.global`
   }
 
   .bg-ihgreen {
-    background: rgba(91,133,70,1);
+    background: rgba(91, 133, 70, 1);
+  }
+
+  .card-info-text > div > p {
+    line-height: 18px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 12px;
+    color: rgba(112, 112, 112, 1);
+    text-transform: capitalize;
+    margin-bottom: 7px;
+  }
+
+  .list-dot-style > span {
+    color: rgb(255, 193, 0) !important;
+    font-size: 50px;
+    position: relative;
+    top: -7px;
+  }
+
+  .trek_video_badge {
+    position: relative;
+    z-index: 99;
+    margin-top: -40px;
+  }
+
+  .trek_video_badge > span {
+    line-height: 18px;
+    text-align: left;
+    font-family: Franklin Gothic Medium;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
+    position: absolute;
+    left: 10px;
+    top: 5px;
   }
 
   @media only screen and (max-width: 660px) {

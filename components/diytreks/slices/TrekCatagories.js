@@ -50,7 +50,7 @@ const TrekCatagories = ({ slice }) => {
   const trekImages = trekImagesArray.map(function(data, i) {
     return (
       <>
-        <div key={i} className="mx-2">
+        <div key={i} className="mx-4 m-mx-0">
           <div className="trek_image_bg">
             <div className="bg_overlay_trek_image_bg h-100">
               <div className="h-100">
@@ -80,7 +80,7 @@ const TrekCatagories = ({ slice }) => {
     <>
       <div>
         <div className="container">
-          <div className="row d-flex align-items-center mt-4 mb-4 border-bottom-custom">
+          <div className="d-flex align-items-center mt-4 mb-4 border-bottom-custom">
             <div className="col-lg-6 col-md-12">
               <h2 className="title-h2 border-0">
                 <b>{RichText.asText(heading1)}</b>
