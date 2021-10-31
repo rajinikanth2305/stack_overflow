@@ -525,8 +525,8 @@ const WelcomeProfile = () => {
                                           </div>
                                         )}
 
-                                        {upComingTrek?.bookingState !==
-                                          "IN_ACTIVE" && (
+                                        {upComingTrek?.bookingState ===
+                                          "COMPLETED" && (
                                           <>
                                             <button className="btn table-btn-green mx-3">
                                               <i
@@ -537,6 +537,11 @@ const WelcomeProfile = () => {
                                                 Join whatsapp group
                                               </span>
                                             </button>
+                                            </>
+                                            )}
+                                            {upComingTrek?.bookingState !==
+                                            "IN_ACTIVE" && (
+                                                <>
                                             <button
                                               className="btn table-btn-maroon"
                                               // onClick={e =>
