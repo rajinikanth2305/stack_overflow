@@ -16,12 +16,12 @@ const DIYTreksGuide = ({ slice }) => {
               <p
                 class={
                   data.trek_difficulty[0].text === "easy"
-                    ? "badge-green"
+                    ? "badge-green-diy"
                     : data.trek_difficulty[0].text === "moderate"
-                    ? "badge-yellow"
+                    ? "badge-yellow-diy"
                     : data.trek_difficulty[0].text === "difficult"
-                    ? "badge-red"
-                    : "badge-blue"
+                    ? "badge-red-diy"
+                    : "badge-blue-diy"
                 }
               ></p>
             </div>

@@ -26,9 +26,13 @@ const DIYResources = ({ slice }) => {
                 <b>{data.title[0].text}</b>
               </p>
               <div>
-                <p className="p-text-small m-0">By {data.name[0].text}</p>
                 <p className="p-text-small m-0">
-                  {data.date[0].text} | {data.date[0].text} min read
+                  <em>By {data.name[0].text}</em>
+                </p>
+                <p className="p-text-small m-0 pt-0">
+                  <em>
+                    {data.date[0].text} | {data.date[0].text} min read
+                  </em>
                 </p>
               </div>
             </div>

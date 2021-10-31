@@ -323,7 +323,7 @@ export const diyStyles = css.global`
     border-radius: 0;
     line-height: 24px;
     text-align: center;
-    font-family: Poppins;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -433,28 +433,28 @@ export const diyStyles = css.global`
     border: 2px solid rgb(255, 193, 0) !important;
   }
 
-  .badge-green {
+  .badge-green-diy {
     border-radius: 50%;
     background: rgba(91, 133, 70, 1);
     height: 10px;
     width: 10px;
   }
 
-  .badge-red {
+  .badge-red-diy {
     border-radius: 50%;
     background: rgba(230, 109, 29, 1);
     height: 10px;
     width: 10px;
   }
 
-  .badge-yellow {
+  .badge-yellow-diy {
     border-radius: 50%;
     background: rgba(255, 193, 0, 1);
     height: 10px;
     width: 10px;
   }
 
-  .badge-blue {
+  .badge-blue-diy {
     border-radius: 50%;
     background: rgba(0, 66, 141, 1);
     height: 10px;
@@ -502,6 +502,33 @@ export const diyStyles = css.global`
     position: absolute;
     left: 10px;
     top: 5px;
+  }
+
+  .ih_trekker_videos_image {
+    position: relative;
+    width: 100%;
+    height: 126px;
+    cursor: pointer;
+  }
+
+  .p-text-5-tv {
+    line-height: 17.5px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .video_views {
+    line-height: 16px;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    color: rgba(112, 112, 112, 1);
   }
 
   @media only screen and (max-width: 660px) {

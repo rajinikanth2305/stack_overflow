@@ -13,7 +13,7 @@ const CommunityContentPitch = ({ slice }) => {
   const detail1 = detail1List.map(function(data, i) {
     return (
       <>
-        <p key={i} className="">
+        <p key={i} className="p-text-4">
           {data.text}
         </p>
       </>
@@ -23,7 +23,7 @@ const CommunityContentPitch = ({ slice }) => {
   const detail2 = detail2List.map(function(data, j) {
     return (
       <>
-        <p key={j} className="">
+        <p key={j} className="p-text-4">
           {data.text}
         </p>
       </>
@@ -42,7 +42,7 @@ const CommunityContentPitch = ({ slice }) => {
               objectPosition="bottom"
             />
           </div>
-          <p className="p-text-3-popins mt-2 mb-0">{data.name[0].text}</p>
+          <p className="p-text-4 mt-2 mb-0">{data.name[0].text}</p>
         </div>
       </>
     );
