@@ -216,6 +216,7 @@ const AddTrekMates = forwardRef((props, ref) => {
   };
 
   const saveDraft = async sdata => {
+    console.log("sdsd")
     await saveDraftBooking("ADD_TREK_MATES", sdata)
       .then(data => {
         return data;
@@ -290,7 +291,19 @@ const AddTrekMates = forwardRef((props, ref) => {
     }
   }));
 
-  const nextTabNav = () => {
+  const nextTabNav = async () => {
+
+    let responseData;
+    try {
+      responseData = await saveDraft(stateData.data);
+    } catch (err) {
+      toast.current.show({
+        severity: "error",
+        summary: `'Batch is full, Sorry! You no more allowed to add the TrekMates'`,
+        detail: "Add Trekker- Batch is full"
+      });
+      return;
+    }
     props.onNextTabEvent("makepayment");
     window.scrollTo(0, 0);
   };
@@ -324,17 +337,17 @@ const AddTrekMates = forwardRef((props, ref) => {
       trekFeeForTheUser: 0
     });
 
-    let responseData;
-    try {
-      responseData = await saveDraft(stdata);
-    } catch (err) {
-      toast.current.show({
-        severity: "error",
-        summary: `'Batch is full, Sorry! You no more allowed to add the TrekMates'`,
-        detail: "Add Trekker- Batch is full"
-      });
-      return;
-    }
+    // let responseData;
+    // try {
+    //   responseData = await saveDraft(stdata);
+    // } catch (err) {
+    //   toast.current.show({
+    //     severity: "error",
+    //     summary: `'Batch is full, Sorry! You no more allowed to add the TrekMates'`,
+    //     detail: "Add Trekker- Batch is full"
+    //   });
+    //   return;
+    // }
 
     setUsers([
       ...users,
@@ -345,9 +358,9 @@ const AddTrekMates = forwardRef((props, ref) => {
       }
     ]);
 
-    const participantData = responseData?.trekMates.find(
-      x => x.userId === udata.id
-    );
+    // const participantData = responseData?.trekMates.find(
+    //   x => x.userId === udata.id
+    // );
 
     const sdata = JSON.parse(JSON.stringify(stateData.data));
     sdata.trekUsers.push({
@@ -355,7 +368,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       lastName: udata.lastName,
       email: udata.email,
       id: udata.id,
-      participantsId: participantData?.id,
+      participantsId: udata.id,
       primaryUser: false,
       trekFee: 0,
       voucherId: "",
