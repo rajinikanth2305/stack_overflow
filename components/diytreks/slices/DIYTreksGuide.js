@@ -46,7 +46,68 @@ const DIYTreksGuide = ({ slice }) => {
                 </h2>
               </div>
               <div className="col-lg-6 col-md-12">
-                <p className="p-text-2 text-white m-0">{RichText.asText(heading2)}</p>
+                <p className="p-text-2 text-white m-0">
+                  {RichText.asText(heading2)}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="p-3 bg-grey-filter">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-10 col-md-12">
+                <div className="row d-flex align-items-center">
+                  <div className="col-md-4 col-4 px-4">
+                    <select className="diy-filter" placeholder="test">
+                      <option selected value="test">
+                        Filter by Region
+                      </option>
+                      <option value="easyModerateTreks">
+                        Easy Moderate trek
+                      </option>
+                      <option value="moderateTrek">Moderate trek</option>
+                      <option value="difficultTrek">Difficult trek</option>
+                      <option value="familyTrek">Family Trek</option>
+                      <option value="DIYTrek">DIY Trek</option>
+                    </select>
+                  </div>
+                  <div className="col-md-4 col-4 px-4">
+                    <select className="diy-filter" placeholder="test">
+                      <option selected value="test">
+                        Filter by Difficulty
+                      </option>
+                      <option value="easyModerateTreks">
+                        Easy Moderate trek
+                      </option>
+                      <option value="moderateTrek">Moderate trek</option>
+                      <option value="difficultTrek">Difficult trek</option>
+                      <option value="familyTrek">Family Trek</option>
+                      <option value="DIYTrek">DIY Trek</option>
+                    </select>
+                  </div>
+                  <div className="col-md-4 col-4 px-4">
+                    <select className="diy-filter" placeholder="test">
+                      <option selected value="test">
+                        Filter by Days
+                      </option>
+                      <option value="easyModerateTreks">
+                        Easy Moderate trek
+                      </option>
+                      <option value="moderateTrek">Moderate trek</option>
+                      <option value="difficultTrek">Difficult trek</option>
+                      <option value="familyTrek">Family Trek</option>
+                      <option value="DIYTrek">DIY Trek</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-2 col-md-2">
+                <div className="d-flex justify-content-end">
+                  <button type="button" class="btn btn-bihtn-yellow">
+                    Filter
+                  </button>
+                </div>
               </div>
             </div>
           </div>

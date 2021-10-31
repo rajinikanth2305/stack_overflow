@@ -199,7 +199,7 @@ export const diyStyles = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    color: rgba(112,112,112,1);
+    color: rgba(112, 112, 112, 1);
   }
 
   .p-text-3-popins {
@@ -219,7 +219,7 @@ export const diyStyles = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    color: rgba(112,112,112,1);
+    color: rgba(112, 112, 112, 1);
   }
 
   .p-text-4 {
@@ -319,7 +319,7 @@ export const diyStyles = css.global`
   .btn-bihtn-yellow {
     background: rgba(255, 193, 0, 1);
     border: 0;
-    padding: 3px 30px;
+    padding: 3px 30px !important;
     border-radius: 0;
     line-height: 24px;
     text-align: center;
@@ -529,6 +529,19 @@ export const diyStyles = css.global`
     font-weight: normal;
     font-size: 11px;
     color: rgba(112, 112, 112, 1);
+  }
+
+  .bg-grey-filter {
+    background: #eef3ec;
+  }
+
+  .diy-filter {
+    background: #5b8546;
+    border: 0;
+    padding: 5px;
+    color: white;
+    font-family: Lora-Medium;
+    width: 100%;
   }
 
   @media only screen and (max-width: 660px) {
