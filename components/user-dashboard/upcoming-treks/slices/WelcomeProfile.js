@@ -410,7 +410,7 @@ const WelcomeProfile = () => {
                                         <div className="m-col-12">
                                           {upComingTrek?.bookingState ===
                                           "PAYMENT" || upComingTrek?.bookingState ===
-                                          "ADD_TREKMATES" ? (
+                                          "ADD_PARTICIPANTS" ? (
                                             <p className="m-0 p-text-10-fgb">
                                               50% of booking process completed -{" "}
                                               {upComingTrek?.bookingState}
@@ -432,7 +432,7 @@ const WelcomeProfile = () => {
                                       </div>
                                       {upComingTrek?.bookingState ===
                                       "PAYMENT" || upComingTrek?.bookingState ===
-                                      "ADD_TREKMATES" ? (
+                                      "ADD_PARTICIPANTS" ? (
                                         <Progress value="50" />
                                       ) : upComingTrek?.bookingState ===
                                         "COMPLETED" ? (
@@ -511,7 +511,7 @@ const WelcomeProfile = () => {
                                       <div className="d-flex justify-content-end">
                                         {upComingTrek?.bookingState ===
                                           "PAYMENT" || upComingTrek?.bookingState ===
-                                        "ADD_TREKMATES" && (
+                                        "ADD_PARTICIPANTS" && (
                                           <div>
                                             <button
                                               className="table-btn-green-lg"
@@ -667,7 +667,7 @@ const WelcomeProfile = () => {
                                             <div>
                                               {trekData.bookingState ===
                                               "PAYMENT" || trekData.bookingState ===
-                                              "ADD_TREKMATES" ? (
+                                              "ADD_PARTICIPANTS" ? (
                                                 <p className="m-0 p-text-10-fgb">
                                                   50% of booking process
                                                   completed -{" "}
@@ -691,7 +691,7 @@ const WelcomeProfile = () => {
                                           </div>
                                           {trekData.bookingState ===
                                           "PAYMENT" || trekData.bookingState ===
-                                          "ADD_TREKMATES" ? (
+                                          "ADD_PARTICIPANTS" ? (
                                             <Progress value="50" />
                                           ) : trekData.bookingState ===
                                             "COMPLETED" ? (
@@ -782,7 +782,7 @@ const WelcomeProfile = () => {
                                             <div class="d-flex justify-content-end w-100 m-m-t-10">
                                               {trekData?.bookingState ===
                                                 "PAYMENT" || trekData?.bookingState ===
-                                              "ADD_TREKMATES" && (
+                                              "ADD_PARTICIPANTS" && (
                                                 <>
                                                   <button
                                                     className="btn table-btn-blue mx-3"
