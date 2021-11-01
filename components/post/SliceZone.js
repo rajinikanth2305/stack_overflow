@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Quote, ImageWithCaption,IFrameTag } from './slices'
+import { Text, Quote, ImageWithCaption,IframeTag } from './slices'
 /**
  * Post slice zone component
  */
@@ -15,7 +15,7 @@ const SliceZone = ({ sliceZone }) => (
         case ('HomeBannerWithCaptions  '):
           return <Text slice={slice} key={`slice-${index}`} />
           case ('embed_iframe'):
-            return <IFrameTag slice={slice} key={`slice-${index}`} />
+            return <IframeTag slice={slice} key={`slice-${index}`} />
       default:
         return null
     }
