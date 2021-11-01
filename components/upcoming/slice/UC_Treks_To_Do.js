@@ -122,7 +122,7 @@ const UCTreksToDo = ({ slice }) => {
                       View Details
                     </button>
                   </div> */}
-                  <div className="d-flex align-items-center pt-2 pb-2">
+                  <div className="d-flex align-items-center flex-wrap pt-2 pb-2">
                     <div className="flex-grow-1">
                       {data.uc_treks_to_do_family_trek === true ? (
                         <p className="m-0 fam_trek">

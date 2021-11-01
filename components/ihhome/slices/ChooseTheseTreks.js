@@ -104,18 +104,18 @@ const ChooseTheseTreks = ({ slice }) => {
                     <p className="title-diplay-3-18px text-uppercase">
                       {data.choose_trek_title[0].text}
                     </p>
-                    <p className="p-text-4">
-                      {data.choose_trek_desc[0].text.length > 125
+                    <p className="p-text-4 pm-t-4">
+                      {data.choose_trek_desc[0].text.length > 122
                         ? `${data.choose_trek_desc[0].text.substring(
                             0,
-                            125
+                            122
                           )}...`
                         : data.choose_trek_desc[0].text}
                     </p>
                     {/* <div className="float-right pt-2 pb-4">
                       <button className="btn btn-ih-green">View Details</button>
                     </div> */}
-                    <div className="d-flex align-items-center pt-2 pb-2">
+                    <div className="d-flex align-items-center flex-wrap pt-2 pb-2">
                       <div className="flex-grow-1">
                         {data.choose_trek_familytrek === true ? (
                           <p className="m-0 fam_trek"><span>*</span> Family trek</p>

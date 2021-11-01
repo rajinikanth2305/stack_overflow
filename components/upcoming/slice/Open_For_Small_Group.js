@@ -2,7 +2,7 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { upcomingTrekPageStyle } from "styles";
 import Image from "next/image";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -20,6 +20,9 @@ const UCOpenForSmallGroup = ({ slice }) => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    // centerMode: true,
+  //   centerMode: true,
+  // centerPadding: '60px',
     responsive: [
       {
         breakpoint: 1024,
@@ -44,13 +47,14 @@ const UCOpenForSmallGroup = ({ slice }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          centerMode: true
+          centerMode: true,
+          // centerPadding: "20px"
         }
       }
     ]
   };
 
-  const goToTrekPage = (data) => {
+  const goToTrekPage = data => {
     // e.preventDefault()
     // router.push('/trek/hampta_pass');
     const slugUrl = data?.target_url.slug;
@@ -61,7 +65,7 @@ const UCOpenForSmallGroup = ({ slice }) => {
       router.push(`/trek/${data.target_url.uid}`);
     }
   };
-  
+
   const ucOpenForSmallGroupImages = ucOpenForSmallGroupImagesArray.map(function(
     data,
     i
@@ -137,7 +141,7 @@ const UCOpenForSmallGroup = ({ slice }) => {
                     <div>
                       <button
                         className="btn btn-ih-green px-2"
-                        onClick={ () => goToTrekPage(data)}
+                        onClick={() => goToTrekPage(data)}
                       >
                         View Details
                       </button>
@@ -168,7 +172,11 @@ const UCOpenForSmallGroup = ({ slice }) => {
               </p>
             </div>
           </div>
-          <div><Slider className="treks-carosule" {...settings}>{ucOpenForSmallGroupImages}</Slider></div>
+          <div>
+            <Slider className="treks-carosule" {...settings}>
+              {ucOpenForSmallGroupImages}
+            </Slider>
+          </div>
         </div>
         <style jsx global>
           {upcomingTrekPageStyle}

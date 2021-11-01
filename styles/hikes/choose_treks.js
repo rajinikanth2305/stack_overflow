@@ -393,9 +393,15 @@ export const ChooseTreks = css.global`
     }
 
     .title-diplay-3-18px {
-      // font-weight: normal;
+      font-weight: normal !important;
       font-size: 20px;
       margin-top: 15px;
+      line-height: 20px;
+    }
+
+    .p-text-4.pm-t-4 {
+      font-size: 12px;
+      line-height: 16px;
     }
 
     .title-diplay-3 {
@@ -413,17 +419,17 @@ export const ChooseTreks = css.global`
     }
 
     .mx-4.m-mx-0 {
-      margin: 0px !important;
+      margin: 10px !important;
     }
 
-    .slick-slider.home-choose-treks
-      > .slick-list
-      > .slick-track
-      > .slick-slide.slick-active.slick-center.slick-current {
-      width: 290px !important;
-      margin: 0px 5px 0 -60px;
-      padding: 0 10px;
-    }
+    // .slick-slider.home-choose-treks
+    //   > .slick-list
+    //   > .slick-track
+    //   > .slick-slide.slick-active.slick-center.slick-current {
+    //   width: 290px !important;
+    //   margin: 0px 5px 0 -60px;
+    //   padding: 0 10px;
+    // }
 
     .slick-slider.trekvideos-carosule
       > .slick-list
