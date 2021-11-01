@@ -35,12 +35,12 @@ export const homeFooterStyles = css.global`
     white-space: nowrap;
     line-height: 30px;
     text-align: left;
-    font-family: Franklin Gothic Medium;
+    font-family: Lora-Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
-    color: rgba(255, 255, 255, 1);
-    margin-bottom: 30px;
+    color: rgba(255,193,0,1);
+    // margin-bottom: 30px;
   }
 
   .footer_nav_links {
@@ -56,7 +56,7 @@ export const homeFooterStyles = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
-    color: rgba(255, 193, 0, 1);
+    color: rgba(255, 255, 255, 1);
   }
 
   .footer_text {
@@ -66,11 +66,12 @@ export const homeFooterStyles = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
-    color: rgba(255, 193, 0, 1);
+    color: #ffffff;
   }
 
   .contact_number {
     margin-bottom: 30px;
+    color: #ffffff !important;
   }
 
   .footer_h5 {
@@ -94,6 +95,14 @@ export const homeFooterStyles = css.global`
 
   .copy_rights_section {
     margin-top: -65px;
+  }
+
+  .foot_link_color {
+    color: rgba(255, 255, 255, 1);
+  }
+
+  .foot_link_color:hover {
+    color: rgba(255, 255, 255, 1);
   }
 
   @media only screen and (max-width: 600px) {
