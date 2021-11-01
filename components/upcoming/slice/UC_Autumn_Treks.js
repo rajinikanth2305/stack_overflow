@@ -63,14 +63,14 @@ const UCAutnumTreks = ({ slice }) => {
           <div className="card_sec">
             <div className="card trek_card">
               <div alt="imgs" className="uc_open_for_small_group_images">
-                {data.uc_autumn_treks_family_trek === true ? (
+                {/* {data.uc_autumn_treks_family_trek === true ? (
                   <div className="trek_badge">
                     <img src="./trek-badge.png" />
                     <span>Family Trek</span>
                   </div>
                 ) : (
                   ""
-                )}
+                )} */}
                 <Image
                   src={data.uc_autumn_treks_images.url}
                   layout="fill"
@@ -103,24 +103,45 @@ const UCAutnumTreks = ({ slice }) => {
 
                 <div>
                   <h3 className="title-diplay-3 text-uppercase">
-                    {data.uc_autumn_treks_image_caption[0].text}
+                    {data.uc_autumn_treks_image_caption[0].text.length > 20
+                      ? `${data.uc_open_desc[0].text.substring(0, 20)}...`
+                      : data.uc_autumn_treks_image_caption[0].text}
                   </h3>
                   <p className="p-display-2">
                     {data.uc_autumn_treks_image_caption_desc[0].text.length >
-                    125
+                    122
                       ? `${data.uc_autumn_treks_image_caption_desc[0].text.substring(
                           0,
-                          125
+                          122
                         )}...`
                       : data.uc_autumn_treks_image_caption_desc[0].text}
                   </p>
-                  <div className="float-right pt-2 pb-4">
+                  {/* <div className="float-right pt-2 pb-4">
                     <button
                       className="btn btn-ih-green"
                       onClick={() => goToTrekPage(data)}
                     >
                       View Details
                     </button>
+                  </div> */}
+                  <div className="d-flex align-items-center pt-2 pb-2">
+                    <div className="flex-grow-1">
+                      {data.uc_autumn_treks_family_trek === true ? (
+                        <p className="m-0 fam_trek">
+                          <span>*</span> Family trek
+                        </p>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div>
+                      <button
+                        className="btn btn-ih-green"
+                        onClick={() => goToTrekPage(data)}
+                      >
+                        View Dates
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -173,9 +194,9 @@ const UCAutnumTreks = ({ slice }) => {
                     </p>
                   </div>
                 </div>
-                <div className="d-flex align-items-center mt-3">
+                <div className="mt-3">
                 {data.uc_autumn_treks_family_trek === true ? ( <div>
-                    <p className="m-card-info-text m-0"><span className="color-yellow">*</span> family friendly</p>
+                    <p className="m-card-info-text m-0"><span className="color-yellow">*</span> family trek</p>
                   </div>
                   // <div className="mx-1"></div>
                   // <div>

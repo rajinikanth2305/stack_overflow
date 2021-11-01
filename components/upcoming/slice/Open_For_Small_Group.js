@@ -72,14 +72,14 @@ const UCOpenForSmallGroup = ({ slice }) => {
           <div className="card_sec">
             <div className="card trek_card opn-trek">
               <div alt="imgs" className="uc_open_for_small_group_images">
-                {data.uc_open_familytrek === true ? (
+                {/* {data.uc_open_familytrek === true ? (
                   <div className="trek_badge">
                     <img src="./trek-badge.png" />
                     <span>Family Trek</span>
                   </div>
                 ) : (
                   ""
-                )}
+                )} */}
                 <Image
                   src={data.uc_open_for_small_group_images.url}
                   layout="fill"
@@ -112,15 +112,36 @@ const UCOpenForSmallGroup = ({ slice }) => {
 
                 <div>
                   <h3 className="title-diplay-3 m-d-3 text-uppercase">
-                    {data.uc_open_title[0].text}
+                    {data.uc_open_title[0].text.length > 20
+                      ? `${data.uc_open_desc[0].text.substring(0, 20)}...`
+                      : data.uc_open_title[0].text}
                   </h3>
                   <p className="p-display-2 md-2">
-                    {data.uc_open_desc[0].text.length > 125
-                      ? `${data.uc_open_desc[0].text.substring(0, 125)}...`
+                    {data.uc_open_desc[0].text.length > 122
+                      ? `${data.uc_open_desc[0].text.substring(0, 122)}...`
                       : data.uc_open_desc[0].text}
                   </p>
-                  <div className="float-right pt-2 pb-4">
+                  {/* <div className="float-right pt-2 pb-4">
                     <button className="btn btn-ih-green" onClick={ () => goToTrekPage(data)}>View Details</button>
+                  </div> */}
+                  <div className="d-flex align-items-center flex-wrap pt-2 pb-2">
+                    <div className="flex-grow-1">
+                      {data.uc_open_familytrek === true ? (
+                        <p className="m-0 fam_trek">
+                          <span>*</span> Family trek
+                        </p>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div>
+                      <button
+                        className="btn btn-ih-green px-2"
+                        onClick={ () => goToTrekPage(data)}
+                      >
+                        View Details
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

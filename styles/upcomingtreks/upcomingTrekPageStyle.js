@@ -192,9 +192,9 @@ export const upcomingTrekPageStyle = css.global`
   }
 
   .btn-ih-green {
-    background: rgb(57,114,41) none repeat scroll 0% 0%;
+    background: rgb(57, 114, 41) none repeat scroll 0% 0%;
     border: 0;
-    box-shadow: rgba(0,0,0,0.66) 2px 2px 2px;
+    box-shadow: rgba(0, 0, 0, 0.66) 2px 2px 2px;
     border-radius: 2px;
     padding: 3px 30px;
     border-radius: 0;
@@ -542,9 +542,23 @@ export const upcomingTrekPageStyle = css.global`
     color: #fff;
     background-color: #ffc100;
     border-color: #ffc100;
-}
+  }
+
+  .fam_trek {
+    color: rgba(112, 112, 112, 1);
+    font-family: Lora-Medium;
+    font-size: 14px;
+  }
+
+  .fam_trek > span {
+    color: rgb(255, 193, 0);
+  }
 
   @media only screen and (max-width: 660px) {
+    .fam_trek {
+      font-size: 12px;
+      margin-top: -15px !important;
+    }
     .section-padd {
       padding: 15px 0;
     }
@@ -736,7 +750,9 @@ export const upcomingTrekPageStyle = css.global`
 
     .title-diplay-3.m-d-3 {
       font-weight: normal;
-      font-size: 18px;
+      font-size: 20px;
+      margin-top: 15px;
+      line-height: 20px;
     }
 
     .p-display-2.md-2 {
@@ -782,7 +798,7 @@ export const upcomingTrekPageStyle = css.global`
 
     .allindia-mob-accordion > .card > .card-header {
       background: transparent;
-      padding: 0
+      padding: 0;
     }
 
     .allindia-mob-accordion > .card > .card-header > button {
@@ -800,7 +816,16 @@ export const upcomingTrekPageStyle = css.global`
 
     .p-display-3.p-display-3-md {
       font-size: 12px;
-      line-height: 10px;  
+      line-height: 10px;
+    }
+
+    .trek_card.opn-trek {
+      min-height: 440px;
+    }
+
+    .btn-ih-green {
+      font-size: 14px;
+      padding: 3px 30px !important;
     }
   }
 `;

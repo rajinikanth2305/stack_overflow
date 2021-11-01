@@ -5,7 +5,7 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 const BestTrekToDo = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -63,14 +63,14 @@ const BestTrekToDo = ({ slice }) => {
           <div className="card_sec ">
             <div className="card trek_card">
               <div alt="imgs" className="uc_open_for_small_group_images">
-                {data.trek_familytrek === true ? (
+                {/* {data.trek_familytrek === true ? (
                   <div className="trek_badge">
                     <img src="./trek-badge.png" />
                     <span>Family Trek</span>
                   </div>
                 ) : (
                   ""
-                )}
+                )} */}
                 <Image
                   src={data.trek_to_do_image.url}
                   layout="fill"
@@ -103,20 +103,41 @@ const BestTrekToDo = ({ slice }) => {
 
                 <div>
                   <h3 className="title-diplay-3 text-uppercase">
-                    {data.trek_title[0].text}
+                    {data.trek_title[0].text.length > 20
+                      ? `${data.uc_open_desc[0].text.substring(0, 20)}...`
+                      : data.trek_title[0].text}
                   </h3>
                   <p className="p-display-2">
                     {data.trek_desc[0].text.length > 125
                       ? `${data.trek_desc[0].text.substring(0, 125)}...`
                       : data.trek_desc[0].text}
                   </p>
-                  <div className="float-right pt-2 pb-4">
+                  {/* <div className="float-right pt-2 pb-4">
                     <button
                       className="btn btn-ih-green"
                       onClick={() => goToTrekPage(data)}
                     >
                       View Details
                     </button>
+                  </div> */}
+                  <div className="d-flex align-items-center pt-2 pb-2">
+                    <div className="flex-grow-1">
+                      {data.trek_familytrek === true ? (
+                        <p className="m-0 fam_trek">
+                          <span>*</span> Family trek
+                        </p>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div>
+                      <button
+                        className="btn btn-ih-green"
+                        onClick={() => goToTrekPage(data)}
+                      >
+                        View Dates
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -134,14 +155,14 @@ const BestTrekToDo = ({ slice }) => {
           <div className="card_sec">
             <div className="card trek_card">
               <div alt="imgs" className="m-uc_open_for_small_group_images">
-                {data.trek_familytrek === true ? (
+                {/* {data.trek_familytrek === true ? (
                   <div className="trek_badge">
                     <img src="./trek-badge.png" />
                     <span>Family Trek</span>
                   </div>
                 ) : (
                   ""
-                )}
+                )} */}
                 <Image
                   src={data.trek_to_do_image.url}
                   layout="fill"
@@ -152,7 +173,9 @@ const BestTrekToDo = ({ slice }) => {
               <div className="px-3 py-2">
                 <div>
                   <h3 className="m-title-3 text-uppercase">
-                    {data.trek_title[0].text}
+                    {data.trek_title[0].text.length > 20
+                      ? `${data.uc_open_desc[0].text.substring(0, 20)}...`
+                      : data.trek_title[0].text}
                   </h3>
                   <p className="m-display-2">
                     {data.trek_desc[0].text.length > 125
@@ -160,13 +183,31 @@ const BestTrekToDo = ({ slice }) => {
                       : data.trek_desc[0].text}
                   </p>
                   <p className="m-card-info-text m-0">
+                    <span className="list-dot-style-mob"></span>{" "}
                     {data.trek_days[0].text} Days
                   </p>
-                  <p className="m-card-info-text">{data.trek_guide[0].text}</p>
-                  <div className="t-2 pb-4">
-                    <button className="btn m-btn-ih-green">
-                      View Dates / Register
-                    </button>
+                  <p className="m-card-info-text">
+                    <span className="list-dot-style-mob"></span>{" "}
+                    {data.trek_guide[0].text}
+                  </p>
+                  <div className="d-flex align-items-center flex-wrap pt-2 pb-2">
+                    <div className="flex-grow-1">
+                      {data.trek_familytrek === true ? (
+                        <p className="m-0 fam_trek">
+                          <span>*</span> Family trek
+                        </p>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div>
+                      <button
+                        className="btn m-btn-ih-green px-2"
+                        onClick={() => goToTrekPage(data)}
+                      >
+                        View Dates / Register
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
