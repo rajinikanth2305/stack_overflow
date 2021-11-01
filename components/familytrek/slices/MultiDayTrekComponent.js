@@ -95,7 +95,7 @@ const MultiDayTrekComponent = ({ slice }) => {
                   <h3 className="title-diplay-3 text-uppercase">
                     {data.trek_title[0].text}
                   </h3>
-                  <p className="p-display-2">
+                  <p className="p-text-4">
                     {data.trek_desc[0].text.length > 125
                       ? `${data.trek_desc[0].text.substring(0, 125)}...`
                       : data.trek_desc[0].text}
@@ -175,7 +175,7 @@ const MultiDayTrekComponent = ({ slice }) => {
     <>
       <div className="my-5 pt-4 mmy-2">
         <div className="container">
-          <div className="d-flex row flex-wrap align-items-center border-bottom-custom mb-4">
+          <div className="d-flex row flex-wrap align-items-center border-bottom-custom mb-4 pb-08">
             <div className="col-lg-7 col-md-12">
               <h2 className="title-h2 border-0 mb-0">
                 {RichText.asText(heading1)}

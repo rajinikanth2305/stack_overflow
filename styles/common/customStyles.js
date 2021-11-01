@@ -334,7 +334,7 @@ export const customStyles = css.global`
     border-radius: 0;
     line-height: 24px;
     text-align: center;
-    font-family: Poppins;
+    font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -475,7 +475,7 @@ export const customStyles = css.global`
   .title-diplay-3 {
     line-height: 30px;
     text-align: left;
-    font-family: Poppins;
+    font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -509,8 +509,34 @@ export const customStyles = css.global`
 
   .slick-prev::before,
   .slick-next::before {
-    color: #ffc100;
-    font-size: 26px;
+    color: #707070;
+    font-family: "FontAwesome" !important;
+    font-size: 36px;
+  }
+
+  .slick-next::before {
+    content: "\f101" !important;
+  }
+
+  .slick-prev::before {
+    content: "\f100" !important;
+  }
+
+  .slick-dots li {
+    width: 10px;
+  }
+
+  .slick-dots li button::before {
+    font-size: 10px;
+  }
+
+  .slick-dots li.slick-active button::before {
+    opacity: 1;
+    color: rgb(255, 193, 0);
+  }
+
+  .slick-dots {
+    bottom: -40px;
   }
 
   .font-weight-bold {
@@ -1181,6 +1207,27 @@ export const customStyles = css.global`
     background: rgba(157, 58, 11, 1);
     border: 1px solid rgba(157, 58, 11, 1);
   }
+
+  .pr-5p {
+    padding-right: 5%;
+  }
+
+  .pb-08 {
+    padding-bottom: 0.8rem;
+  }
+
+  .p-display-1 {
+    line-height: 24px;
+    text-align: left;
+    font-family: Lora-Medium;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    text-transform: none;
+    margin: 0px;
+    padding: 10px 0px;
+}
 
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
