@@ -527,9 +527,9 @@ const AddTrekMates = forwardRef((props, ref) => {
     var tindex = sdata.trekUsers.findIndex(x => x.email === user.email);
     //console.log(tindex);
     sdata.trekUsers.splice(tindex, 1);
-    //console.log(JSON.stringify(data));
+    // console.log(JSON.stringify(data));
     await dispatch(addOrUpdateState(sdata));
-    await saveDraft(sdata);
+    // await saveDraft(sdata);
     props.trekUsersChange();
   };
 
