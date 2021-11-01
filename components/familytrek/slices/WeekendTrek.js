@@ -191,7 +191,7 @@ const WeekendTrek = ({ slice }) => {
             <Slider {...settings}>{trekToDoImage}</Slider>
           </div>
           {/* <div className="m-view-d-block">
-            <div className="row">{trekToDoImageMobileView}</div>
+            <div className="row m-0">{trekToDoImageMobileView}</div>
           </div> */}
         </div>
         <style jsx global>
