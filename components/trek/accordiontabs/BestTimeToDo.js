@@ -10,7 +10,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const BestTimeToDo = () => {
+const BestTimeToDo = ({ data }) => {
   const [bestTimeToDo, setBestTimeToDo] = useState();
 
   const settings = {
@@ -57,15 +57,8 @@ const BestTimeToDo = () => {
   }, []);
 
   async function findTrekStories() {
-    const client = Client();
-    const doc = await client
-      .query([Prismic.Predicates.at("document.type", "trek")])
-      .then(function(response) {
-        const tt = response.results[0].data.body;
-        const slice =
-          tt && tt.find(x => x.slice_type === "best_time_to_do_trek");
-        setBestTimeToDo(slice);
-      });
+    const slice = data && data.find(x => x.slice_type === "best_time_to_do_trek");
+    setBestTimeToDo(slice);
   }
 
   const content1Title = bestTimeToDo && bestTimeToDo.primary.content1_title;
@@ -212,38 +205,22 @@ const BestTimeToDo = () => {
             <Slider className="home-choose-treks" {...settings}>
               <div>
                 <div className="accordio-sec-images">
-                  {btImage1 ? (
-                    <Image src={btImage1} layout="fill" />
-                  ) : (
-                    ""
-                  )}
+                  {btImage1 ? <Image src={btImage1} layout="fill" /> : ""}
                 </div>
               </div>
               <div>
                 <div className="accordio-sec-images">
-                  {btImage2 ? (
-                    <Image src={btImage2} layout="fill" />
-                  ) : (
-                    ""
-                  )}
+                  {btImage2 ? <Image src={btImage2} layout="fill" /> : ""}
                 </div>
               </div>
               <div>
                 <div className="accordio-sec-images">
-                  {btImage3 ? (
-                    <Image src={btImage3} layout="fill" />
-                  ) : (
-                    ""
-                  )}
+                  {btImage3 ? <Image src={btImage3} layout="fill" /> : ""}
                 </div>
               </div>
               <div>
                 <div className="accordio-sec-images">
-                  {btImage4 ? (
-                    <Image src={btImage4} layout="fill" />
-                  ) : (
-                    ""
-                  )}
+                  {btImage4 ? <Image src={btImage4} layout="fill" /> : ""}
                 </div>
               </div>
             </Slider>

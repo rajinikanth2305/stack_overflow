@@ -1352,6 +1352,11 @@ export const trekStyle = css.global`
     overflow: hidden;
   }
 
+  .reach-img {
+    position: relative;
+    height: 220px;
+  }
+
   @media only screen and (max-width: 660px) {
     .title-h1 {
       font-size: 36px;

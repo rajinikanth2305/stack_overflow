@@ -10,7 +10,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const HowDoesEachDayLooks = () => {
+const HowDoesEachDayLooks = ({ data }) => {
   const [dayWise, setDayWise] = useState();
   const [readMoreHeight, setReadMoreHeight] = useState(200);
 
@@ -58,16 +58,8 @@ const HowDoesEachDayLooks = () => {
   }, []);
 
   async function findTrekStories() {
-    const client = Client();
-    const dayWise = await client
-      .query([Prismic.Predicates.at("document.type", "trek")])
-      .then(function(response) {
-        const tt = response.results[0]?.data.body;
-        const slice =
-          tt && tt.filter(x => x.slice_type === "day_wise_itinerary");
-        setDayWise(slice);
-        // console.log(slice);
-      });
+    const slice = data && data.filter(x => x.slice_type === "day_wise_itinerary");
+    setDayWise(slice);
   }
 
   const dayNum =

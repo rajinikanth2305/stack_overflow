@@ -8,7 +8,8 @@ import Prismic from "@prismicio/client";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 
-const HowDifficultTrekIs = () => {
+const HowDifficultTrekIs = ({ data }) => {
+  console.log(data);
   const [howDiff, setHowDiff] = useState();
 
   useEffect(() => {
@@ -19,15 +20,17 @@ const HowDifficultTrekIs = () => {
   }, []);
 
   async function findTrekStories() {
-    const client = Client();
-    const doc = await client
-      .query([Prismic.Predicates.at("document.type", "trek")])
-      .then(function(response) {
-        const tt = response.results[0].data.body;
-        const slice =
-          tt && tt.find(x => x.slice_type === "how_difficult_is_trek");
-        setHowDiff(slice);
-      });
+    // const client = Client();
+    // const doc = await client
+    //   .query([Prismic.Predicates.at("document.type", "trek")])
+    //   .then(function(response) {
+    //     const tt = response.results[0].data.body;
+    //     const slice =
+    //       tt && tt.find(x => x.slice_type === "how_difficult_is_trek");
+    //     setHowDiff(slice);
+    //   });
+    const slice = data && data.find(x => x.slice_type === "how_difficult_is_trek");
+    setHowDiff(slice);
   }
 
   const headingImage = howDiff && howDiff.primary.heading_image.url;
