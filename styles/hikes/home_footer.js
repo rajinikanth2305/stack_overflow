@@ -151,5 +151,13 @@ export const homeFooterStyles = css.global`
     .copy_rights_text {
       font-size: 12px;
     }
+
+    .mx-4.mmx-4-1 {
+      margin: 0 15px !important;
+    }
+
+    .contact_number {
+      margin-top: -8px !important;
+    }
   }
 `;

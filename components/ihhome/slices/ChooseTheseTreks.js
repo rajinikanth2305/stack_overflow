@@ -102,7 +102,10 @@ const ChooseTheseTreks = ({ slice }) => {
 
                   <div>
                     <p className="title-diplay-3-18px text-uppercase">
-                      {data.choose_trek_title[0].text}
+                      {/* {data.choose_trek_title[0].text} */}
+                      {data.choose_trek_title[0].text.length > 20
+                      ? `${data.uc_open_desc[0].text.substring(0, 20)}...`
+                      : data.choose_trek_title[0].text}
                     </p>
                     <p className="p-text-4 pm-t-4">
                       {data.choose_trek_desc[0].text.length > 122

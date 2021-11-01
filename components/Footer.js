@@ -25,7 +25,7 @@ const IHFooter = () => {
                   <div>
                     <h4 className="footer_title">Follow Us</h4>
                   </div>
-                  <div className="mx-4">
+                  <div className="mx-4 mmx-4-1">
                     <a
                       className="foot_link_color"
                       href="https://www.instagram.com/indiahikes/"
@@ -36,7 +36,7 @@ const IHFooter = () => {
                       </h4>
                     </a>
                   </div>
-                  <div className="mx-4">
+                  <div className="mx-4 mmx-4-1">
                     <a
                       className="foot_link_color"
                       href="https://www.youtube.com/user/indiahikes"
@@ -47,7 +47,7 @@ const IHFooter = () => {
                       </h4>
                     </a>
                   </div>
-                  <div className="mx-4">
+                  <div className="mx-4 mmx-4-1">
                     <a
                       className="foot_link_color"
                       href="https://www.facebook.com/indiahikes/"
@@ -58,7 +58,7 @@ const IHFooter = () => {
                       </h4>
                     </a>
                   </div>
-                  <div className="mx-4">
+                  <div className="mx-4 mmx-4-1">
                     <a
                       className="foot_link_color"
                       href="https://twitter.com/Indiahikes"
@@ -86,7 +86,7 @@ const IHFooter = () => {
                       <li>Careers</li>
                       <li>Contact Us</li>
                       <li>Safety at Indiahikes</li>
-                      <li>Green Trails</li>
+                      {/* <li>Green Trails</li> */}
                     </ul>
                   </div>
                 </div>

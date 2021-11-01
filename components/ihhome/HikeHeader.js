@@ -156,7 +156,7 @@ const HikeHeader = ({ auth = false }) => {
                 </NavLink>
               )}
             </NavItem>
-            <NavItem>
+            {/* <NavItem>
               {router.pathname === "/user-dashboard/user-upcoming-treks" ||
               router.pathname === "/user-dashboard/user-trekvouchers" ||
               router.pathname === "/user-dashboard/user-myprofile" ||
@@ -172,7 +172,7 @@ const HikeHeader = ({ auth = false }) => {
                   careers
                 </NavLink>
               )}
-            </NavItem>
+            </NavItem> */}
             <NavItem className="m-d-block">
               {router.pathname === "/user-dashboard/user-upcoming-treks" ||
               router.pathname === "/user-dashboard/user-trekvouchers" ||
