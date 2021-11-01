@@ -29,7 +29,7 @@ export const ChooseTreks = css.global`
 
   .trek_card {
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
-    min-height: 475px;
+    min-height: 465px;
   }
 
   .video_trek_card {
@@ -315,7 +315,25 @@ export const ChooseTreks = css.global`
     padding-bottom: 0.8rem;
   }
 
+  .fam_trek {
+    color: rgba(112,112,112,1);
+    font-family: Lora-Medium;
+    font-size: 14px;
+  }
+
+  .fam_trek > span {
+    color: rgb(255,193,0);
+  }
+
   @media only screen and (max-width: 600px) {
+    .btn-ih-green {
+      font-size: 14px;
+    }
+
+    .fam_trek {
+      font-size: 12px;
+    }
+
     .card_sec {
       margin: 5px 0;
     }

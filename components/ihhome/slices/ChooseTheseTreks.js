@@ -62,14 +62,14 @@ const ChooseTheseTreks = ({ slice }) => {
             <div className="card_sec">
               <div className="card trek_card">
                 <div alt="imgs" className="choose_trek_image">
-                  {data.choose_trek_familytrek === true ? (
+                  {/* {data.choose_trek_familytrek === true ? (
                     <div className="trek_badge">
                       <img src="/trek-badge.png" />
                       <span>Family Trek</span>
                     </div>
                   ) : (
                     ""
-                  )}
+                  )} */}
                   <Image
                     src={data.choose_trek_image.url}
                     layout="fill"
@@ -112,8 +112,22 @@ const ChooseTheseTreks = ({ slice }) => {
                           )}...`
                         : data.choose_trek_desc[0].text}
                     </p>
-                    <div className="float-right pt-2 pb-4">
+                    {/* <div className="float-right pt-2 pb-4">
                       <button className="btn btn-ih-green">View Details</button>
+                    </div> */}
+                    <div className="d-flex align-items-center pt-2 pb-2">
+                      <div className="flex-grow-1">
+                        {data.choose_trek_familytrek === true ? (
+                          <p className="m-0 fam_trek"><span>*</span> Family trek</p>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div>
+                        <button className="btn btn-ih-green">
+                          View Details
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -135,7 +149,9 @@ const ChooseTheseTreks = ({ slice }) => {
             </div>
           </div>
           <div>
-            <Slider className="home-choose-treks" {...settings}>{chooseTrekImage}</Slider>
+            <Slider className="home-choose-treks" {...settings}>
+              {chooseTrekImage}
+            </Slider>
           </div>
         </div>
         <style jsx global>
