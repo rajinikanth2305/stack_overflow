@@ -140,7 +140,7 @@ const UCOpenForSmallGroup = ({ slice }) => {
                     </div>
                     <div>
                       <button
-                        className="btn btn-ih-green px-2"
+                        className="btn btn-ih-green"
                         onClick={() => goToTrekPage(data)}
                       >
                         View Details
