@@ -54,6 +54,7 @@ export const founderStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
+    line-height: 21px;
   }
 
   .founder_message > span {
@@ -101,6 +102,11 @@ export const founderStyles = css.global`
 
   .pb-08 {
     padding-bottom: 0.8rem;
+  }
+
+  .fl-style:nth-child(1)::first-letter {
+    font-size: 230%;
+    font-weight: bold;
   }
 
   @media only screen and (max-width: 600px) {

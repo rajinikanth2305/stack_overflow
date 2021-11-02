@@ -1254,6 +1254,11 @@ export const customStyles = css.global`
     margin-bottom: 10px;
   }
 
+  .fl-style:nth-child(1)::first-letter {
+    font-size: 230%;
+    font-weight: bold;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

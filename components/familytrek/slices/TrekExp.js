@@ -12,9 +12,9 @@ const TrekExp = ({ slice }) => {
 
   const details = detailsList.map((data, i) => {
     return (
-      <>
-        <p key={`ft-${i}`}>{data.text}</p>
-      </>
+      <p className="p-text-4 fl-style" key={`ft-${i}`}>
+        {data.text}
+      </p>
     );
   });
 
@@ -37,7 +37,7 @@ const TrekExp = ({ slice }) => {
                 </div>
                 <div className="col-lg-6 col-md-12">
                   <h2 className="mt-h2 pb-08">{RichText.asText(heading1)}</h2>
-                  <p className="p-text-4">{details}</p>
+                  <div>{details}</div>
                 </div>
               </div>
             </div>

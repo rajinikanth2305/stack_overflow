@@ -26,7 +26,7 @@ const Founder = ({ slice }) => {
 
   const founder_Message = founder_Message_List.map((data, i) => {
     return (
-      <p className="p-text-2" key={i}>
+      <p className="p-text-2 fl-style" key={i}>
         {data.text}
       </p>
     );
