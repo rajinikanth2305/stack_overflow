@@ -18,7 +18,8 @@ const AcceptTC = ({
   onTermAccept,
   inclusionsData,
   exclusionsData,
-  whyIndiaHikesData
+  whyIndiaHikesData,
+  tac
 }) => {
   const eligibilityCriteria = data;
   const stateData = useSelector(selectStateData);
@@ -35,8 +36,6 @@ const AcceptTC = ({
     eligibilityCriteria.primary.eligibility_criteria_desc;
   const heading2 = eligibilityCriteria && eligibilityCriteria.primary.heading2;
   const ecArray = eligibilityCriteria && eligibilityCriteria.items;
-
-  console.log(whyIndiaHikesData);
 
   useEffect(() => {
     let url = location.href.replace(location.origin, "");
@@ -69,6 +68,8 @@ const AcceptTC = ({
   const whyIndiaHikesHeading =
     whyIndiaHikesData && whyIndiaHikesData?.primary?.heading1;
   const whyIndiaHikesArray = whyIndiaHikesData && whyIndiaHikesData.items;
+  const tacHeading = tac && tac?.primary?.title;
+  const tacArray = tac && tac?.items;
 
   const whyIndiaHikesDetailsData = whyIndiaHikesArray?.map(function(data, i) {
     return (
@@ -143,6 +144,34 @@ const AcceptTC = ({
     window.scrollTo(0, 0);
   };
 
+  const tacArrayData = tacArray?.map(function(data, k) {
+    return (
+      <div className="col-md-12" key={k}>
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle variant="link" eventKey={k + 1}>
+              <div className="d-flex align-items-center">
+                <div className="flex-grow-1">
+                  {data.heading1[0].text}
+                </div>
+                <div>
+                  <div>
+                    <h2 className="m-0 expand_plus">+</h2>
+                  </div>
+                </div>
+              </div>
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey={k + 1}>
+            <Card.Body>
+              <p className="p-text-4">{data.details[0].text}</p>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </div>
+    );
+  });
+
   return (
     <>
       <div className="my-5 m-mt-1">
@@ -164,85 +193,12 @@ const AcceptTC = ({
 
             <div>
               <h2 className="title-h3-fg font-weight-normal border-bottom-custom reg-t-2-m pb-2 m-pb-1">
-                Terms and Conditions
+                {RichText.asText(tacHeading)}
               </h2>
 
               <div className="mt-4 pt-2">
                 <Accordion defaultActiveKey="0" className="reg-acc-tabs">
-                  <Card>
-                    <Card.Header>
-                      <Accordion.Toggle variant="link" eventKey="0">
-                        <div className="d-flex align-items-center">
-                          <div className="flex-grow-1">Assumption of Risk</div>
-                          <div>
-                            <div>
-                              <h2 className="m-0 expand_plus">+</h2>
-                            </div>
-                          </div>
-                        </div>
-                      </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                      <Card.Body>
-                        <p className="p-text-3 m-0">
-                          We go to great lengths to keep you safe on your trek.
-                          However, trekking with the safest organisation in
-                          India comes with certain commitments from your end.
-                          Here are our eligibility criteria
-                        </p>
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                  <Card>
-                    <Card.Header>
-                      <Accordion.Toggle variant="link" eventKey="1">
-                        <div className="d-flex align-items-center">
-                          <div className="flex-grow-1">Preparation</div>
-                          <div>
-                            <div>
-                              <h2 className="m-0 expand_plus">+</h2>
-                            </div>
-                          </div>
-                        </div>
-                      </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="1">
-                      <Card.Body>
-                        <p className="p-text-3 m-0">
-                          We go to great lengths to keep you safe on your trek.
-                          However, trekking with the safest organisation in
-                          India comes with certain commitments from your end.
-                          Here are our eligibility criteria
-                        </p>
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                  <Card>
-                    <Card.Header>
-                      <Accordion.Toggle variant="link" eventKey="2">
-                        <div className="d-flex align-items-center">
-                          <div className="flex-grow-1">
-                            Representation of good health
-                          </div>
-                          <div>
-                            <div>
-                              <h2 className="m-0 expand_plus">+</h2>
-                            </div>
-                          </div>
-                        </div>
-                      </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="2">
-                      <Card.Body>
-                        <p className="p-text-3 m-0">
-                          We go to great lengths to keep you safe on your trek.
-                          However, trekking with the safest organisation in
-                          India comes with certain commitments from your end.
-                          Here are our eligibility criteria
-                        </p>
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
+                  {tacArrayData}
                 </Accordion>
               </div>
             </div>

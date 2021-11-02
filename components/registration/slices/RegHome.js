@@ -68,6 +68,7 @@ const RegHome = ({ slice }) => {
   const [inclusions, setInclusions] = useState();
   const [exclusions, setExclusions] = useState();
   const [whyIndiaHikes, setWhyIndiaHikes] = useState();
+  const [tac, setTac] = useState();
 
   const router = useRouter();
 
@@ -177,6 +178,9 @@ const RegHome = ({ slice }) => {
     setExclusions(exclusionsSlice);
     const whyhikesSlice = tt && tt.find(x => x.slice_type === "why_india_hikes");
     setWhyIndiaHikes(whyhikesSlice);
+    const tac = tt && tt.find(x => x.slice_type === "terams_and_condition");
+    setTac(tac);
+    console.log(tac);
   }
 
   const showToken = () => {
@@ -479,8 +483,8 @@ const RegHome = ({ slice }) => {
           <div className="container">
             <div className="col-md-12">
               <p className="p-text-2-reg-title mb-4 m-m-custom-my">
-                {/*<b>{RichText.asText(completeTheSteps)}</b>*/}
-                Complete the below step for your {bookDetails?.trekName}
+                <b>{RichText.asText(completeTheSteps)}</b>
+                {/* Complete the below step for your {bookDetails?.trekName} */}
               </p>
               <div className="stepper-tabs m-d-none">
                 <p className="tabs-behind-border-bg"></p>
@@ -497,6 +501,7 @@ const RegHome = ({ slice }) => {
                       inclusionsData={inclusions}
                       exclusionsData={exclusions}
                       whyIndiaHikesData={whyIndiaHikes}
+                      tac={tac}
                     />
                   </Tab>
 
@@ -638,6 +643,10 @@ const RegHome = ({ slice }) => {
                       data={eligibilityCriteria}
                       props={bookDetails}
                       onTermAccept={onTermAccept}
+                      inclusionsData={inclusions}
+                      exclusionsData={exclusions}
+                      whyIndiaHikesData={whyIndiaHikes}
+                      tac={tac}
                     />
                   </TabPane>
                   <TabPane tabId="2">
