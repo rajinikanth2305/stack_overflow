@@ -31,6 +31,20 @@ const MyTreks = forwardRef((props, ref) => {
     getValues
   } = useForm();
   const [saveState, setSaveState] = useState(false);
+  const trekPageData = props.data.data.body.find(
+    x => x.slice_type === "essentials_downloads"
+  );
+  const essentialsHeading = trekPageData && trekPageData?.primary?.heading1;
+  const essentialsArray = trekPageData && trekPageData?.items;
+
+  const essentialsArraydetails = essentialsArray?.map(function(data, i) {
+    return (
+      <div className="col-lg-3 col-md-6 col-12">
+        <p className="m-0 text-decoration-underline"><a className="p-text-3-blue-lora" href={data?.documen_link.url} target="_blank">{data?.document_name[0].text}</a></p>
+        <p className="p-text-10-fgb text-left-custom">Click link To Download</p>
+      </div>
+    );
+  });
 
   React.useEffect(() => {}, [indexes, setIndexes]);
 
@@ -38,13 +52,13 @@ const MyTreks = forwardRef((props, ref) => {
   // with whatever you return from the callback passed
   // as the second argument
   useImperativeHandle(ref, () => ({
-   async changeState(data) {
+    async changeState(data) {
       //// Get Trek locations
       const trekId = data.trekId;
       getTrekLocations(trekId).then(res => {
         setLocations(res);
         setParticipantData(data);
-         
+
         /*const myTrekData = {
           participantData:data,
           locations:res
@@ -64,12 +78,9 @@ const MyTreks = forwardRef((props, ref) => {
   }));
 
   const onSubmit = formData => {
-    console.log(formData);
-
     const userLocations = [];
 
     participantData?.userTrekBookingParticipants?.map((user, index) => {
-
       const locid1 = formData.locs[index]?.pickupLocation;
       const locid2 = formData.locs[index]?.dropLocation;
 
@@ -126,7 +137,8 @@ const MyTreks = forwardRef((props, ref) => {
                     const name =
                       pdata?.userDetailsForDisplay?.email ===
                       participantData.email
-                        ? " * " + pdata?.userDetailsForDisplay?.firstName +
+                        ? " * " +
+                          pdata?.userDetailsForDisplay?.firstName +
                           pdata?.userDetailsForDisplay?.lastName +
                           " (You) "
                         : pdata?.userDetailsForDisplay?.firstName +
@@ -148,7 +160,8 @@ const MyTreks = forwardRef((props, ref) => {
                         ? pdata.dropOffLocationId
                         : null;
 
-                        const state= pdata?.bookingParticipantState==="CANCELLED";
+                    const state =
+                      pdata?.bookingParticipantState === "CANCELLED";
                     // console.log(currentPickupLocation + name);
                     // console.log(currentDropLocation +  name);
 
@@ -158,50 +171,50 @@ const MyTreks = forwardRef((props, ref) => {
                         <td>{pdata?.userDetailsForDisplay?.phone}</td>
                         <td>{pdata?.userDetailsForDisplay?.email}</td>
                         <td>
-                        {state==false && (
-                          <FormGroup className="ud-dropwon-1">
-                            <Controller
-                              name={`${fieldName}.pickupLocation`}
-                              control={control}
-                              defaultValue={currentPickupLocation}
-                              render={({ onChange, value }) => (
-                                <Dropdown
-                                  optionLabel="name"
-                                  optionValue="locationId"
-                                  options={pickupLocations}
-                                  value={value}
-                                  onChange={e => {
-                                    onChange(e.value);
-                                  }}
-                                  placeholder="Select a Pickup locations"
-                                />
-                              )}
-                            />
-                          </FormGroup>
-                        )}
+                          {state == false && (
+                            <FormGroup className="ud-dropwon-1">
+                              <Controller
+                                name={`${fieldName}.pickupLocation`}
+                                control={control}
+                                defaultValue={currentPickupLocation}
+                                render={({ onChange, value }) => (
+                                  <Dropdown
+                                    optionLabel="name"
+                                    optionValue="locationId"
+                                    options={pickupLocations}
+                                    value={value}
+                                    onChange={e => {
+                                      onChange(e.value);
+                                    }}
+                                    placeholder="Select a Pickup locations"
+                                  />
+                                )}
+                              />
+                            </FormGroup>
+                          )}
                         </td>
                         <td>
-                        {state==false && (
-                          <FormGroup className="ud-dropwon-1">
-                            <Controller
-                              name={`${fieldName}.dropLocation`}
-                              control={control}
-                              defaultValue={currentDropLocation}
-                              render={({ onChange, value }) => (
-                                <Dropdown
-                                  optionLabel="name"
-                                  optionValue="locationId"
-                                  value={value}
-                                  options={dropLocations}
-                                  onChange={e => {
-                                    onChange(e.value);
-                                  }}
-                                  placeholder="Select a Pickup locations "
-                                />
-                              )}
-                            />
-                          </FormGroup>
-                        )}
+                          {state == false && (
+                            <FormGroup className="ud-dropwon-1">
+                              <Controller
+                                name={`${fieldName}.dropLocation`}
+                                control={control}
+                                defaultValue={currentDropLocation}
+                                render={({ onChange, value }) => (
+                                  <Dropdown
+                                    optionLabel="name"
+                                    optionValue="locationId"
+                                    value={value}
+                                    options={dropLocations}
+                                    onChange={e => {
+                                      onChange(e.value);
+                                    }}
+                                    placeholder="Select a Pickup locations "
+                                  />
+                                )}
+                              />
+                            </FormGroup>
+                          )}
                         </td>
                         <td>{pdata?.bookingParticipantState}</td>
                       </tr>
@@ -228,6 +241,18 @@ const MyTreks = forwardRef((props, ref) => {
                 </div>
               </div>
             </form>
+          </div>
+
+          <div className="my-5">
+            <div>
+              <h5 className="p-text-3-fg b-left-blue-3px">
+                {RichText.asText(essentialsHeading)}
+              </h5>
+
+              <div className="row mt-3">
+                {essentialsArraydetails}
+              </div>
+            </div>
           </div>
         </div>
       )}

@@ -248,6 +248,16 @@ export const customStyles = css.global`
     color: rgba(0, 40, 148, 1);
   }
 
+  .p-text-3-blue-lora {
+    line-height: 16px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 40, 148, 1);
+  }
+
   .p-text-4 {
     line-height: 21px;
     text-align: left;
@@ -1257,6 +1267,10 @@ export const customStyles = css.global`
   .fl-style:nth-child(1)::first-letter {
     font-size: 230%;
     font-weight: bold;
+  }
+
+  .text-left-custom {
+    text-align: left !important;
   }
 
   @media only screen and (max-width: 660px) {

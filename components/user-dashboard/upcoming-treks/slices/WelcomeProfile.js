@@ -45,6 +45,7 @@ const WelcomeProfile = () => {
   const [nextComingTreks, setNextComingTreks] = useState([]);
   const [render, setRender] = useState(false);
   const [userName, setUserName] = useState();
+  const [trekPageData, setTrekPageData] = useState();
 
   const [indexes, setIndexes] = React.useState([]);
   const [counter, setCounter] = React.useState(0);
@@ -155,6 +156,7 @@ const WelcomeProfile = () => {
       );
       if (findContents === undefined) {
         result = await Client().getByUID("trek", trekName);
+        setTrekPageData(result);
         prismicTrekContents.push({
           trekName: trekName,
           result: result
@@ -586,6 +588,7 @@ const WelcomeProfile = () => {
                                     <MyTreks
                                       ref={myTrekRef}
                                       {...callBackProps}
+                                      data={trekPageData}
                                     />
                                   </div>
                                   <div className="m-d-block">
