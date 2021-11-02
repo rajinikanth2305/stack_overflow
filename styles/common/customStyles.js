@@ -271,6 +271,10 @@ export const customStyles = css.global`
     border-bottom: 4px solid rgb(255, 193, 0);
   }
 
+  .activeDiv > .card-faq {
+    border-bottom: 4px solid rgb(255, 193, 0);
+  }
+
   .faq_nav > .nav-link {
     box-shadow: 0px 1px 4px rgb(112, 112, 112) !important;
     border-radius: 0;
@@ -1243,6 +1247,13 @@ export const customStyles = css.global`
     margin-bottom: 20px;
   }
 
+  .card-faq {
+    box-shadow: 0px 1px 4px rgb(112, 112, 112) !important;
+    border-radius: 0;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -1252,7 +1263,11 @@ export const customStyles = css.global`
 
     .help_support_bg {
       position: relative;
-      height: 350px;
+      height: auto;
+    }
+
+    .card-header > button {
+      font-size: 14px;
     }
 
     .btn-ih-green {
@@ -1493,6 +1508,12 @@ export const customStyles = css.global`
 
     .b-right-2px {
       border: 0;
+    }
+
+    .faq_icon_image {
+      position: relative;
+      width: 22px;
+      height: 22px;
     }
   }
 

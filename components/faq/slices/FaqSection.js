@@ -67,6 +67,62 @@ const FaqSection = () => {
       );
     });
 
+  const faqArrayListMobile =
+    faqDetails &&
+    faqDetails.map(function(data, i) {
+      return (
+        // <>
+        //   <NavItem className="faq_nav" key={i}>
+        //     <NavLink
+        //       className={classnames({ active: activeTab === i + 1 })}
+        //       onClick={() => {
+        //         toggle(i + 1);
+        //       }}
+        //     >
+        //       <div className="faq_icon_image">
+        //         <Image
+        //           src={data.primary.icon_image.url}
+        //           layout="fill"
+        //           objectFit="contain"
+        //           objectPosition="top"
+        //         />
+        //       </div>
+        //       <p className="p-text-1 my-2">
+        //         <b>{data.primary.tab_heading[0].text}</b>
+        //       </p>
+        //       <p className="p-text-4 m-0">{data.primary.tab_desc[0].text}</p>
+        //     </NavLink>
+        //   </NavItem>
+        // </>
+        <div className="col-6" key={i}>
+          <div
+            className={classnames({ activeDiv: activeTab === i + 1 })}
+            onClick={() => {
+              toggle(i + 1);
+            }}
+          >
+            <div className="card-faq px-2 py-1">
+              <div className="d-flex align-items-center">
+                <div className="faq_icon_image">
+                  <Image
+                    src={data.primary.icon_image.url}
+                    layout="fill"
+                    objectFit="contain"
+                    objectPosition="top"
+                  />
+                </div>
+                <div className="mx-2">
+                  <p className="p-text-3 my-2">
+                    <b>{data.primary.tab_heading[0].text}</b>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    });
+
   const faqAccordionArrayList =
     faqDetails &&
     faqDetails.map(function(data, i) {
@@ -77,23 +133,25 @@ const FaqSection = () => {
             <div className="col-lg-6 col-md-12">
               {/* <h4>{faq.accordion_heading[0].text}</h4> */}
               {/* <Accordion flush> */}
-                <Card>
-                  <Card.Header>
-                    <Accordion.Toggle variant="link" eventKey={j + 1}>
-                      <div className="d-flex align-items-center">
-                        <div className="flex-grow-1">{faq.accordion_heading[0].text}</div>
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle variant="link" eventKey={j + 1}>
+                    <div className="d-flex align-items-center">
+                      <div className="flex-grow-1">
+                        {faq.accordion_heading[0].text}
+                      </div>
+                      <div>
                         <div>
-                          <div>
-                            <h2 className="m-0 expand_plus">+</h2>
-                          </div>
+                          <h2 className="m-0 expand_plus">+</h2>
                         </div>
                       </div>
-                    </Accordion.Toggle>
-                  </Card.Header>
-                  <Accordion.Collapse eventKey={j + 1}>
-                    <Card.Body>{faq.accordion_details[0].text}</Card.Body>
-                  </Accordion.Collapse>
-                </Card>
+                    </div>
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey={j + 1}>
+                  <Card.Body><p className="p-text-4">{faq.accordion_details[0].text}</p></Card.Body>
+                </Accordion.Collapse>
+              </Card>
               {/* </Accordion> */}
             </div>
           </>
@@ -102,7 +160,9 @@ const FaqSection = () => {
       return (
         <>
           <TabPane key={i} tabId={i + 1}>
-            <Accordion flush><div className="row my-5">{faqAccordionList}</div></Accordion>
+            <Accordion flush>
+              <div className="row my-5">{faqAccordionList}</div>
+            </Accordion>
           </TabPane>
         </>
       );
@@ -114,15 +174,20 @@ const FaqSection = () => {
         <div className="container">
           <div className="row d-flex align-items-center mt-4 mb-4">
             <div className="col-md-12">
-              <h2 className="title-h2 pb-3">
+              <h2 className="title-h2 pb-08 mmb-0">
                 <b>{RichText.asText(heading1)}</b>
               </h2>
             </div>
           </div>
           <div>
-            <Nav className="faq_navbar" tabs>
+            <Nav className="faq_navbar m-d-none" tabs>
               {faqArrayList && faqArrayList}
             </Nav>
+            <div className="m-d-block">
+              <div className="row">
+                {faqArrayListMobile && faqArrayListMobile}
+              </div>
+            </div>
             <TabContent activeTab={activeTab}>
               {faqAccordionArrayList}
             </TabContent>
