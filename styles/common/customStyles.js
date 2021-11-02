@@ -456,7 +456,7 @@ export const customStyles = css.global`
   .card-info-text > div > p {
     line-height: 18px;
     text-align: left;
-    font-family: Poppins;
+    font-family: Franklin Gothic Book;
     font-style: normal;
     font-weight: lighter;
     font-size: 12px;
@@ -1227,7 +1227,21 @@ export const customStyles = css.global`
     text-transform: none;
     margin: 0px;
     padding: 10px 0px;
-}
+  }
+
+  .mt-h2 {
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    margin-bottom: 15px;
+    border-bottom: 4px solid rgb(255, 193, 0);
+    padding-bottom: 3px;
+    margin-bottom: 20px;
+  }
 
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
@@ -1239,6 +1253,63 @@ export const customStyles = css.global`
     .help_support_bg {
       position: relative;
       height: 350px;
+    }
+
+    .btn-ih-green {
+      font-size: 14px;
+      padding: 3px 30px !important;
+      width: 100%;
+    }
+
+    .btn-bihtn-yellow {
+      font-size: 14px;
+      padding: 3px 30px !important;
+      text-transform: none !important;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .carousel_trek_image {
+      height: 200px;
+    }
+
+    .mw-100 {
+      width: 100%;
+    }
+
+    .mpt-0 {
+      padding-top: 0 !important;
+    }
+
+    .mpb-2 {
+      padding-bottom: 30px !important;
+    }
+
+    .card-info-text > div > p {
+      font-size: 11px;
+      line-height: 10px;
+    }
+
+    .title-diplay-3.m-d-3 {
+      font-weight: normal;
+      font-size: 20px;
+      margin-top: 15px;
+      line-height: 20px;
+    }
+
+    .ft-image {
+      border-top: 2px solid #ffc100;
+      height: 200px;
+    }
+
+    .banner-image-desktop-ft {
+      height: 550px;
+    }
+
+    .p-text-4.mt2 {
+      font-size: 12px;
+      color: rgb(0, 0, 0);
+      text-transform: capitalize;
     }
 
     // .banner-image-mobile {
@@ -1269,7 +1340,6 @@ export const customStyles = css.global`
       line-height: 22px;
       text-align: left;
       font-size: 16px;
-      font-family: Poppins;
     }
 
     .banner-text-3 {
@@ -1300,7 +1370,30 @@ export const customStyles = css.global`
     }
 
     .title-h2 {
-      font-szie: 24px !important;
+      font-size: 24px !important;
+    }
+
+    .mmy-2 {
+      margin-top: 10px !important;
+      margin-bottom: 10px !important;
+    }
+
+    .mmb-0 {
+      margin-bottom: 0 !important;
+    }
+
+    .mx-4.m-mx-0 {
+      margin: 0 10px !important;
+    }
+
+    .p-display-1.m-d-1 {
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    .mt-h2 {
+      font-size: 24px !important;
+      border-bottom: 0;
     }
 
     .trekimg {

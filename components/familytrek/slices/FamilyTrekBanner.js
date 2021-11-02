@@ -23,7 +23,7 @@ const FamilyTrekBanner = ({ slice }) => {
                     {RichText.asText(heading2)}
                   </p>
                   <div className="my-3">
-                    <button type="button" className="btn btn-bihtn-yellow">
+                    <button type="button" className="btn btn-ih-primary">
                       View trek and dates
                     </button>
                   </div>

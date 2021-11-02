@@ -20,22 +20,49 @@ const TrekExp = ({ slice }) => {
 
   return (
     <>
-      <div className="mb-5">
-        <div className="container">
-          <div className="row my-5 pt-4">
-            <div className="col-lg-6 col-md-12 pr-5p">
-              <div className="ft-image mt-5 pt-2">
-                <Image
-                  src={imageUrl}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="bottom"
-                />
+      <div>
+        <div className="m-d-none">
+          <div className="mb-5">
+            <div className="container">
+              <div className="row my-5 pt-4">
+                <div className="col-lg-6 col-md-12 pr-5p">
+                  <div className="ft-image mt-5 pt-2">
+                    <Image
+                      src={imageUrl}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="bottom"
+                    />
+                  </div>
+                </div>
+                <div className="col-lg-6 col-md-12">
+                  <h2 className="mt-h2 pb-08">{RichText.asText(heading1)}</h2>
+                  <p className="p-text-4">{details}</p>
+                </div>
               </div>
             </div>
-            <div className="col-lg-6 col-md-12">
-              <h2 className="title-h2 pb-08">{RichText.asText(heading1)}</h2>
-              <p className="p-text-4">{details}</p>
+          </div>
+        </div>
+
+        <div className="m-d-block">
+          <div className="mb-5">
+            <div className="container">
+              <div className="row pt-4">
+                <div className="col-lg-6 col-md-12">
+                  <h2 className="mt-h2 pb-08">{RichText.asText(heading1)}</h2>
+                </div>
+                <div className="col-lg-6 col-md-12 pr-5p">
+                  <div className="ft-image mb-4">
+                    <Image
+                      src={imageUrl}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="bottom"
+                    />
+                  </div>
+                  <p className="p-text-4">{details}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

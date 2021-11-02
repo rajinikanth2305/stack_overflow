@@ -33,7 +33,7 @@ const HomeFooter = ({ slice }) => {
                   <div>
                     <h4 className="footer_title">Follow Us</h4>
                   </div>
-                  <div className="mx-4">
+                  <div className="mx-4 mmx-4-1">
                     <a
                       className="foot_link_color"
                       href="https://www.instagram.com/indiahikes/"
@@ -44,7 +44,7 @@ const HomeFooter = ({ slice }) => {
                       </h4>
                     </a>
                   </div>
-                  <div className="mx-4">
+                  <div className="mx-4 mmx-4-1">
                     <a
                       className="foot_link_color"
                       href="https://www.youtube.com/user/indiahikes"
@@ -55,7 +55,7 @@ const HomeFooter = ({ slice }) => {
                       </h4>
                     </a>
                   </div>
-                  <div className="mx-4">
+                  <div className="mx-4 mmx-4-1">
                     <a
                       className="foot_link_color"
                       href="https://www.facebook.com/indiahikes/"
@@ -66,7 +66,7 @@ const HomeFooter = ({ slice }) => {
                       </h4>
                     </a>
                   </div>
-                  <div className="mx-4">
+                  <div className="mx-4 mmx-4-1">
                     <a
                       className="foot_link_color"
                       href="https://twitter.com/Indiahikes"

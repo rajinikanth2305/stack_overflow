@@ -40,7 +40,8 @@ const MultiDayTrekComponent = ({ slice }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
+          arrows: false,
+          centerMode: true
         }
       }
     ]
@@ -49,7 +50,7 @@ const MultiDayTrekComponent = ({ slice }) => {
   const trekToDoImage = trekToDoImageArray.map(function(data, i) {
     return (
       <>
-        <div className="mx-2" key={i}>
+        <div className="mx-4 m-mx-0" key={i}>
           <div className="card_sec ">
             <div className="card trek_card">
               <div alt="imgs" className="carousel_trek_image">
@@ -92,21 +93,23 @@ const MultiDayTrekComponent = ({ slice }) => {
                 </div>
 
                 <div>
-                  <h3 className="title-diplay-3 text-uppercase">
-                    {data.trek_title[0].text}
+                  <h3 className="title-diplay-3 m-d-3 text-uppercase">
+                    {data.trek_title[0].text.length > 20
+                      ? `${data.uc_open_desc[0].text.substring(0, 20)}...`
+                      : data.trek_title[0].text}
                   </h3>
-                  <p className="p-text-4">
-                    {data.trek_desc[0].text.length > 125
-                      ? `${data.trek_desc[0].text.substring(0, 125)}...`
+                  <p className="p-text-4 mt2">
+                    {data.trek_desc[0].text.length > 122
+                      ? `${data.trek_desc[0].text.substring(0, 122)}...`
                       : data.trek_desc[0].text}
                   </p>
-                  <div className="d-flex alifn-items-center justify-content-between pt-2 pb-4">
-                    <div>
+                  <div className="d-flex alifn-items-center justify-content-between pt-2 pb-4 flex-wrap">
+                    <div className="mw-100">
                       <button className="btn btn-bihtn-yellow">
                         View details
                       </button>
                     </div>
-                    <div>
+                    <div className="mw-100">
                       <button className="btn btn-ih-green">
                         Dates/Register
                       </button>
@@ -173,21 +176,21 @@ const MultiDayTrekComponent = ({ slice }) => {
 
   return (
     <>
-      <div className="my-5 pt-4 mmy-2">
+      <div className="my-5 pt-4 mmy-2 mpt-0 mpb-2">
         <div className="container">
-          <div className="d-flex row flex-wrap align-items-center border-bottom-custom mb-4 pb-08">
+          <div className="d-flex flex-wrap align-items-center border-bottom-custom mb-4 pb-08">
             <div className="col-lg-7 col-md-12">
               <h2 className="title-h2 border-0 mb-0">
                 {RichText.asText(heading1)}
               </h2>
             </div>
             <div className="col-lg-5 col-md-12">
-              <p className="p-display-1 m-d-1 mb-4">
+              <p className="p-display-1 m-d-1 mmb-0 mb-4">
                 {RichText.asText(heading2)}
               </p>
             </div>
           </div>
-          <div className="m-d-none">
+          <div>
             <Slider {...settings}>{trekToDoImage}</Slider>
           </div>
           {/* <div className="m-view-d-block">
