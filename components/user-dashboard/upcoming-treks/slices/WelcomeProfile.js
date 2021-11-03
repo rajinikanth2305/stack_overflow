@@ -610,13 +610,13 @@ const WelcomeProfile = () => {
                                 </Tab>
 
                                 <Tab eventKey="trekfaqs" title="Trek Faqs">
-                                  <TrekFAQS />
+                                  <TrekFAQS data={trekPageData} />
                                 </Tab>
                                 <Tab
                                   eventKey="fitnessapproval"
                                   title="Fitness approval"
                                 >
-                                  <FitnessApproval ref={fitnessRef} />
+                                  <FitnessApproval ref={fitnessRef} data={trekPageData} />
                                 </Tab>
                               </Tabs>
                             )}

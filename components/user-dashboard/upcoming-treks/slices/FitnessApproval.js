@@ -1,4 +1,3 @@
-
 import React, {
   useState,
   forwardRef,
@@ -11,8 +10,44 @@ import { FileUpload } from "primereact/fileupload";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
 
 const FitnessApproval = forwardRef((props, ref) => {
+  const faqData = props.data.data.body.find(
+    x => x.slice_type === "faq_about_trek"
+  );
+
+  const faqHeading = faqData && faqData?.primary?.heading1;
+  const faqArray = faqData && faqData?.items;
+
+  const faqArrayDetails = faqArray?.map(function(data, k) {
+    return (
+      <div className="col-md-6" key={k}>
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle variant="link" eventKey={k + 1}>
+              <div className="d-flex align-items-center">
+                <div className="flex-grow-1">
+                  {data.question_heading[0].text}
+                </div>
+                <div>
+                  <div>
+                    <h2 className="m-0 expand_plus">+</h2>
+                  </div>
+                </div>
+              </div>
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey={k + 1}>
+            <Card.Body>
+              <p className="p-text-4">{data.answer_content[0].text}</p>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </div>
+    );
+  });
 
   const chooseOptions = { label: "Choose", icon: "pi pi-fw pi-plus" };
 
@@ -41,18 +76,18 @@ const FitnessApproval = forwardRef((props, ref) => {
   // as the second argument
   useImperativeHandle(ref, () => ({
     async changeState(data) {
-       //// Get Trek locations
-       const trekId = data.trekId;
-       const arr = Array.from(
+      //// Get Trek locations
+      const trekId = data.trekId;
+      const arr = Array.from(
         new Array(data?.userTrekBookingParticipants?.length),
         (x, i) => i
       );
       setParticipantData(data);
-         setIndexes(arr);
-         setCounter(arr.length);
-         setRender(true);
-         }
-   }));
+      setIndexes(arr);
+      setCounter(arr.length);
+      setRender(true);
+    }
+  }));
 
   return (
     <>
@@ -71,13 +106,15 @@ const FitnessApproval = forwardRef((props, ref) => {
                   </tr>
                 </thead>
                 <tbody>
-                {indexes?.map(index => {
-                    const pdata =participantData?.userTrekBookingParticipants[index];
+                  {indexes?.map(index => {
+                    const pdata =
+                      participantData?.userTrekBookingParticipants[index];
                     const fieldName = `locs[${index}]`;
                     const name =
                       pdata?.userDetailsForDisplay?.email ===
                       participantData.email
-                        ? " * " + pdata?.userDetailsForDisplay?.firstName +
+                        ? " * " +
+                          pdata?.userDetailsForDisplay?.firstName +
                           pdata?.userDetailsForDisplay?.lastName +
                           " (You) "
                         : pdata?.userDetailsForDisplay?.firstName +
@@ -116,6 +153,15 @@ const FitnessApproval = forwardRef((props, ref) => {
             />
           </div>
         </div>
+      </div>
+
+      <div className="mt-4">
+        <h5 className="p-text-3-fg b-left-blue-3px mb-4">
+          {RichText.asText(faqHeading)}
+        </h5>
+        <Accordion defaultActiveKey="0" className="reg-acc-tabs">
+          <div className="row">{faqArrayDetails}</div>
+        </Accordion>
       </div>
     </>
   );

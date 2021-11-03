@@ -82,7 +82,8 @@ const MyTreks = forwardRef((props, ref) => {
 
   const trekPageData = props.data.data.body.find(
     x => x.slice_type === "essentials_downloads"
-  );
+  ); 
+  
   const essentialsHeading = trekPageData && trekPageData?.primary?.heading1;
   const essentialsArray = trekPageData && trekPageData?.items;
 
