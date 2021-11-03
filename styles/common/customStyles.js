@@ -1273,6 +1273,36 @@ export const customStyles = css.global`
     text-align: left !important;
   }
 
+  .paly-icon {
+    position: relative;
+    cursor: pointer;
+    z-index: 999;
+  }
+
+  .icon-size-50 {
+    width: 50px;
+  }
+
+  .trek_video_image_array {
+    position: relative;
+    height: 126px;
+  }
+
+  .modal-content {
+    background-color: transparent;
+    border: 0px none;
+  }
+
+  .modal-body {
+    padding: 0px;
+  }
+
+  .modal-header > button {
+    background: transparent none repeat scroll 0% 0%;
+    border: 0px none;
+    color: #ffffff;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -1444,7 +1474,7 @@ export const customStyles = css.global`
 
     .m-col-12 > .p-text-2-fg,
     .p-text-2-fg {
-      font-size: 16px;
+      font-size: 14px;
     }
 
     .m-col-12 > .p-text-10-fgb {

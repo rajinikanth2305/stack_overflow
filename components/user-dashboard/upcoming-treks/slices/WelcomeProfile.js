@@ -516,7 +516,7 @@ const WelcomeProfile = () => {
                                         "ADD_PARTICIPANTS" && (
                                           <div>
                                             <button
-                                              className="table-btn-green-lg"
+                                              className="btn table-btn-green-lg mx-3"
                                               onClick={e =>
                                                 makePayment(
                                                   upComingTrek?.batchId

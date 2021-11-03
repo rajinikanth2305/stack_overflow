@@ -151,9 +151,9 @@ const MyTrekMobileView = forwardRef((props, ref) => {
                             {pdata?.userDetailsForDisplay?.email}
                           </p>
                         </div>
-                        <div className="d-flex flex-wrap align-items-center">
+                        <div className="d-flex flex-wrap align-items-start">
                           <p
-                            className="m-0 p-text-small-fg m-col-3"
+                            className="p-text-small-fg m-col-3"
                             style={{ width: "22%" }}
                           >
                             pickup & Location:

@@ -257,7 +257,7 @@ export const ChooseTreks = css.global`
   .modal-header > button {
     background: transparent;
     border: 0;
-    color: white;
+    color: #ffffff;
   }
 
   .modal-header > button > span {
