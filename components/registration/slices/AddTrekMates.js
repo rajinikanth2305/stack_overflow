@@ -1,44 +1,28 @@
-import React, {
-  useEffect,
-  useState,
-  useRef,
-  useMemo,
-  forwardRef,
-  useImperativeHandle
-} from "react";
-import { useForm, Controller } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import React, {forwardRef, useImperativeHandle, useMemo, useRef, useState} from "react";
+import {Controller, useForm} from "react-hook-form";
+import {yupResolver} from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 //import { ConfirmPopup } from 'primereact/confirmpopup'; // To use <ConfirmPopup> tag
-import { confirmPopup } from "primereact/confirmpopup"; // To use confirmPopup method
-import { Toast } from "primereact/toast";
-import { RichText } from "prismic-reactjs";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { InputText } from "primereact/inputtext";
-import { InputNumber } from "primereact/inputnumber";
+import {Toast} from "primereact/toast";
+import {Button, FormGroup} from "reactstrap";
+import {InputText} from "primereact/inputtext";
+import {InputNumber} from "primereact/inputnumber";
 import {
-  findUserByEmail,
-  saveDraftBooking,
-  getUserByAutoSearch,
-  getUserVoucher,
   createNewUser,
-  getUsersVoucherByBookingId
+  getUserByAutoSearch,
+  getUsersVoucherByBookingId,
+  getUserVoucher,
+  saveDraftBooking
 } from "../../../services/queries";
-import { Dropdown } from "primereact/dropdown";
-import { Calendar } from "primereact/calendar";
+import {Dropdown} from "primereact/dropdown";
+import {Calendar} from "primereact/calendar";
 import moment from "moment";
-import { useSelector, useDispatch } from "react-redux";
-import { useRouter } from "next/router";
+import {useDispatch, useSelector} from "react-redux";
+import {useRouter} from "next/router";
 
-import {
-  addOrUpdateState,
-  selectStateData
-} from "../../reduxstate/counterSlice";
-
-import mySingleton from "../../../services/Authenticate";
-import { data } from "jquery";
-import { AutoComplete } from "primereact/autocomplete";
-import { Dialog } from 'primereact/dialog';
+import {addOrUpdateState, selectStateData} from "../../reduxstate/counterSlice";
+import {data} from "jquery";
+import {Dialog} from 'primereact/dialog';
 
 
 const AddTrekMates = forwardRef((props, ref) => {
@@ -238,17 +222,7 @@ const renderFooter = (name) => {
   };
 
   const saveDraft = async sdata => {
-    console.log("sdsd")
-    await saveDraftBooking("ADD_TREK_MATES", sdata)
-      .then(data => {
-        return data;
-      })
-      .catch(res => {
-        if (res.response?.data?.message) {
-          console.log("Draft Save error occurred ");
-          throw false;
-        }
-      });
+    return await saveDraftBooking("ADD_TREK_MATES", sdata);
   };
 
   const validationSummary = (
@@ -318,9 +292,11 @@ const renderFooter = (name) => {
     let responseData;
     try {
       responseData = await saveDraft(stateData.data);
-      if(response.data.state==="WAITING_LIST") {
+      console.log(responseData);
+      if(responseData.bookingState==="WAITING_LIST") {
         /// DISABLE THE PAYMENT TAB
-        props.onNextTabEvent("makepayment",WAITING_LIST);
+        // props.onNextTabEvent("makepayment",WAITING_LIST);
+        onDialogShow();
       }
       else {
         props.onNextTabEvent("makepayment");
@@ -874,7 +850,7 @@ const renderFooter = (name) => {
           </div>
           <div className="col-lg-2 col-md-12"></div>
         </div>
-        { (stateData?.data?.batchState !== 'WAITING_LIST' || (stateData?.data?.bookingState !== 'INITIATED' || stateData?.data?.bookingState !== 'WAITING_LIST')) && (<div className="d-flex justify-content-center">
+        { (stateData?.data?.batchState !== 'WAITING_LIST' || (stateData?.data?.bookingState !== 'INITIATED' && stateData?.data?.bookingState !== 'WAITING_LIST')) && (<div className="d-flex justify-content-center">
           <div>
             <div className="mt-5 mb-3">
               <button
