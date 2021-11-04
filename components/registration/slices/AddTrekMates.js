@@ -38,8 +38,11 @@ import {
 import mySingleton from "../../../services/Authenticate";
 import { data } from "jquery";
 import { AutoComplete } from "primereact/autocomplete";
+import { Dialog } from 'primereact/dialog';
+
 
 const AddTrekMates = forwardRef((props, ref) => {
+  const router = useRouter();
   const fieldRef = useRef();
   const toast = useRef(null);
   const [users, setUsers] = useState([]);
@@ -60,6 +63,25 @@ const AddTrekMates = forwardRef((props, ref) => {
 
   const [findUserData, setFindUserData] = useState(undefined);
   const findEmailRef = useRef();
+  const [displayBasic, setDisplayBasic] = useState(false);
+  const [position, setPosition] = useState('center');
+  const [displayPosition, setDisplayPosition] = useState(false);
+
+  const onDialogShow = () => {
+    setDisplayBasic(true);
+}
+
+const onHide = () => {
+  setDisplayBasic(false);
+  ///redirect to dashboard
+  router.push(`/user-dashboard/user-upcoming-treks`);
+}
+const renderFooter = (name) => {
+  return (
+          <Button label="Ok"   onClick={() => onHide()} autoFocus>OK</Button>
+  );
+}
+
 
   const validationSchema = useMemo(
     () =>
@@ -296,6 +318,14 @@ const AddTrekMates = forwardRef((props, ref) => {
     let responseData;
     try {
       responseData = await saveDraft(stateData.data);
+      if(response.data.state==="WAITING_LIST") {
+        /// DISABLE THE PAYMENT TAB
+        props.onNextTabEvent("makepayment",WAITING_LIST);
+      }
+      else {
+        props.onNextTabEvent("makepayment");
+      }
+
     } catch (err) {
       toast.current.show({
         severity: "error",
@@ -304,7 +334,8 @@ const AddTrekMates = forwardRef((props, ref) => {
       });
       return;
     }
-    props.onNextTabEvent("makepayment");
+
+   
     window.scrollTo(0, 0);
   };
 
@@ -321,7 +352,9 @@ const AddTrekMates = forwardRef((props, ref) => {
       });
       return;
     }
-    alert("Your waiting list booking is confirmed");
+
+    onDialogShow();
+
   };
 
   const addSearchUser = () => {
@@ -831,6 +864,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                         >
                           create account
                         </button>
+                       
                       </div>
                     </form>
                   </div>
@@ -867,6 +901,14 @@ const AddTrekMates = forwardRef((props, ref) => {
           </div>
         </div>)}
       </div>
+      <div className="dialog-demo">
+      <Dialog header="Waiting List Confirmed" visible={displayBasic} 
+      position={position} modal style={{ width: '40vw' }} 
+      footer={renderFooter('displayPosition')} onHide={() => onHide()}
+                    draggable={false} resizable={false}>
+                    <p className="p-m-0">Your waiting list booking is confirmed.</p>
+                </Dialog>
+                </div>
     </>
   );
 });

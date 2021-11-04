@@ -322,7 +322,7 @@ const RegHome = ({ slice }) => {
       user => user.userId === data.ownerUserId
     );
     const isOwnerActing =
-      ownnerInfo.userDetailsForDisplay.email.toLowerCase() ===
+      ownnerInfo?.userDetailsForDisplay?.email?.toLowerCase() ===
       userId.toLowerCase();
     // console.log(isOwnerActing);
 
@@ -437,10 +437,12 @@ const RegHome = ({ slice }) => {
     });
     return voucherlist;
   };
-  const setTabActive = value => {
+  const setTabActive = (value,bookingstate='NONE') => {
+    
     if(value==='makepayment') {
       if(bookingState!=='WAITING_LIST'){
-        setKey(value);
+        if(bookingstate==='NONE')
+           setKey(value);
       }
     }
     else {
