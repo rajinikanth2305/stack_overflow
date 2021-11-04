@@ -840,7 +840,7 @@ const AddTrekMates = forwardRef((props, ref) => {
           </div>
           <div className="col-lg-2 col-md-12"></div>
         </div>
-        { stateData?.data?.batchState !== 'WAITING_LIST' && (<div className="d-flex justify-content-center">
+        { (stateData?.data?.batchState !== 'WAITING_LIST' || (stateData?.data?.bookingState !== 'INITIATED' || stateData?.data?.bookingState !== 'WAITING_LIST')) && (<div className="d-flex justify-content-center">
           <div>
             <div className="mt-5 mb-3">
               <button
@@ -853,7 +853,7 @@ const AddTrekMates = forwardRef((props, ref) => {
             </div>
           </div>
         </div>)}
-        { stateData?.data?.batchState === 'WAITING_LIST' && (<div className="d-flex justify-content-center">
+        { (stateData?.data?.batchState === 'WAITING_LIST' && (stateData?.data?.bookingState === 'INITIATED' || stateData?.data?.bookingState === 'WAITING_LIST')) && (<div className="d-flex justify-content-center">
           <div>
             <div className="mt-5 mb-3">
               <button
