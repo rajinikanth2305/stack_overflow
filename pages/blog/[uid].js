@@ -37,8 +37,8 @@ const Post = ({ post }) => {
         <HikeHeader/>
         <div className="main">
           <div className="container">
-            <BackButton />
-            <h1>{title}</h1>
+            {/* <BackButton /> */}
+            {/* <h1>{title}</h1> */}
           </div>
           <SliceZone sliceZone={post.data.body} />
         </div>

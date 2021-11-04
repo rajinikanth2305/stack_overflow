@@ -379,6 +379,26 @@ export const customStyles = css.global`
     color: rgba(112, 112, 112, 1);
   }
 
+  .p-text-small-black {
+    line-height: 16px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: #000000;
+  }
+
+  .p-text-small-10-black {
+    line-height: 16px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    color: #000000;
+  }
+
   .p-text-small-fg {
     line-height: 17.5px;
     text-align: left;
@@ -1190,6 +1210,11 @@ export const customStyles = css.global`
     margin-top: 15px;
   }
 
+  .border-top-c {
+    border-top: 2px solid rgb(248, 217, 120);
+    margin: 10px 50px;
+  }
+
   .c-p-5-2 {
     padding: 0 50px 0 20px;
   }
@@ -1303,6 +1328,95 @@ export const customStyles = css.global`
     color: #ffffff;
   }
 
+  .article_banner_img {
+    height: 400px;
+    width: 100%;
+  }
+
+  .article_banner_img > img {
+    height: 400px;
+    width: 100%;
+  }
+
+  .auth_sec {
+    border-top: 2px solid rgb(255, 239, 191);
+    border-bottom: 2px solid rgb(255, 239, 191);
+    padding: 15px 0;
+  }
+
+  .social_bg {
+    color: #9d9d9d;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid;
+    text-align: center;
+  }
+
+  .auth_image > img {
+    height: 92px;
+    width: 92px;
+    border-radius: 50%;
+    border: 2px solid #ffc100;
+  }
+
+  .author-info-text {
+    line-height: 20px;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgb(0, 0, 0);
+    text-transform: capitalize;
+  }
+
+  .author-text.f-c {
+    font-family: Franklin Gothic;
+    padding-top: 3px;
+    line-height: 14px;
+  }
+
+  .text-center {
+    text-align: center !important;
+  }
+
+  .ar_menu_links > li {
+    margin-bottom: 5px;
+  }
+
+  .ar_menu_links > li > span {
+    border-bottom: 2px solid rgb(206, 156, 132);
+    line-height: 24px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    padding-bottom: 4px;
+  }
+
+  .border-l {
+    border-left: 4px solid rgba(255, 193, 0, 1);
+    padding-left: 10px;
+  }
+
+  .border-r {
+    border-right: 2px solid rgba(255, 193, 0, 1);
+  }
+
+  .p-text-4.mb-4.ar_p {
+    line-height: 24px;
+  }
+
+  .left-position-img {
+    position: absolute;
+    width: 35%;
+    left: 12%;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -1383,6 +1497,14 @@ export const customStyles = css.global`
     //   background-position: -183px;
     //   position: relative;
     // }
+
+    .article_banner_img {
+      height: 200px;
+    }
+
+    .article_banner_img > img {
+      height: 200px;
+    }
 
     .banner-text-sec {
       text-align: left;
