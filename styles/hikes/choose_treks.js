@@ -435,7 +435,7 @@ export const ChooseTreks = css.global`
       > .slick-list
       > .slick-track
       > .slick-slide.slick-active.slick-center.slick-current {
-      width: 290px !important;
+      // width: 290px !important;
       margin: 0px 5px 0 -60px;
       padding: 0 10px;
     }

@@ -1676,7 +1676,7 @@ export const trekStyle = css.global`
       > .slick-list
       > .slick-track
       > .slick-slide.slick-active.slick-center.slick-current {
-      width: 290px !important;
+      // width: 290px !important;
       margin: 0px 5px 0 0 !important;
       padding: 0 10px !important;
     }
