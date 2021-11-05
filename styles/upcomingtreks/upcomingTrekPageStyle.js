@@ -777,10 +777,10 @@ export const upcomingTrekPageStyle = css.global`
     }
 
     .list-dot-style-mob {
-      font-size: 14px;
+      font-size: 16px;
       display: inline-block;
-      width: 3px;
-      height: 3px;
+      width: 4px;
+      height: 4px;
       border-radius: 50%;
       background: rgb(255, 193, 0);
     }

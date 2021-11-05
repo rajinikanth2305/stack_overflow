@@ -399,6 +399,16 @@ export const customStyles = css.global`
     color: #000000;
   }
 
+  .p-text-small-10-gray {
+    line-height: 16px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    color: rgba(112, 112, 112, 1);
+  }
+
   .p-text-small-fg {
     line-height: 17.5px;
     text-align: left;
@@ -1212,7 +1222,14 @@ export const customStyles = css.global`
 
   .border-top-c {
     border-top: 2px solid rgb(248, 217, 120);
-    margin: 10px 50px;
+  }
+
+  .ml-100 {
+    margin-left: 100px;
+  }
+
+  .ml-130 {
+    margin-left: 130px;
   }
 
   .c-p-5-2 {
@@ -1415,6 +1432,34 @@ export const customStyles = css.global`
     position: absolute;
     width: 35%;
     left: 12%;
+  }
+
+  .ar_right_side_imgs {
+    height: 130px;
+    width: 100%;
+    position: relative;
+  }
+
+  .ar_right_side_imgs > img {
+    height: 130px;
+    width: 100%;
+  }
+
+  .note_sec {
+    border-left: 2px solid rgb(206, 156, 132);
+    padding-left: 15px;
+    margin-left: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .list-dot-style-mob {
+    font-size: 14px;
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgb(255, 193, 0);
   }
 
   @media only screen and (max-width: 660px) {

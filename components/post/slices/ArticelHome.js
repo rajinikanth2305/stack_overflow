@@ -161,28 +161,30 @@ const ArticelHome = ({ slice }) => (
               </div>
             </div>
             <div className="col-lg-4 col-md-12">
-              <div className="text-center">
-                <div className="auth_image">
-                  <img src="/p-icon.png" />
+              <div className="ml-100">
+                <div className="text-center">
+                  <div className="auth_image">
+                    <img src="/p-icon.png" />
+                  </div>
+                  <p class="m-0 p-text-3-fg text-center mt-1">Arjun Majumdar</p>
+                  <p class="m-0 p-text-small-black text-center">
+                    Founder, CEO, Indiahikes
+                  </p>
                 </div>
-                <p class="m-0 p-text-3-fg text-center mt-1">Arjun Majumdar</p>
-                <p class="m-0 p-text-small-black text-center">
-                  Founder, CEO, Indiahikes
-                </p>
-              </div>
 
-              <div className="grey-bg border-top-c">
-                <p className="p-text-4 mb-2">
-                  <strong>About the author</strong>
-                </p>
-                <p className="p-text-small-black">
-                  An entrepreneur by profession and a trekker by passion, Arjun
-                  started Indiahikes in 2008. With a vision to explore and
-                  document new trails, solve problems in the mountains and
-                  implement sustainable ways of trekking. Arjun leads
-                  Indiahikes, a community that has changed the face of trekking
-                  in India.
-                </p>
+                <div className="grey-bg border-top-c">
+                  <p className="p-text-4 mb-2">
+                    <strong>About the author</strong>
+                  </p>
+                  <p className="p-text-small-black">
+                    An entrepreneur by profession and a trekker by passion,
+                    Arjun started Indiahikes in 2008. With a vision to explore
+                    and document new trails, solve problems in the mountains and
+                    implement sustainable ways of trekking. Arjun leads
+                    Indiahikes, a community that has changed the face of
+                    trekking in India.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -325,7 +327,11 @@ const ArticelHome = ({ slice }) => (
                   <div className="col-lg-6 col-md-12">
                     <div className="card left-position-img">
                       <div className="ar_img">
-                        <img src="/Image_277.png" width="100%" height="310px" />
+                        <img
+                          src="/Rectangle_486.png"
+                          width="100%"
+                          height="310px"
+                        />
                       </div>
                       <p className="p-text-small m-0 px-3 my-2">
                         Your trekking pants will get wet while crossing a stream
@@ -385,7 +391,270 @@ const ArticelHome = ({ slice }) => (
                 </div>
               </div>
             </div>
-            <div className="col-lg-4 col-md-12"></div>
+            <div className="col-lg-4 col-md-12">
+              <div className="ml-130 mt-5">
+                <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
+                  Upcoming Treks
+                </p>
+
+                <div className="border-bottom mb-3">
+                  <div className="ar_right_side_imgs">
+                    <img src="/Rectangle_486.png" />
+                  </div>
+                  <p className="p-text-3-fgc text-uppercase mt-2 mb-1">
+                    PHULARA RIDGE TREK
+                  </p>
+                  <p className="p-text-small">
+                    The Best Ridge Trek In Our Country
+                  </p>
+                </div>
+                <div className="border-bottom mb-3">
+                  <div className="ar_right_side_imgs">
+                    <img src="/Rectangle_486.png" />
+                  </div>
+                  <p className="p-text-3-fgc text-uppercase mt-2 mb-1">
+                    DEORIATAL CHANDRASHILA TREK
+                  </p>
+                  <p className="p-text-small">The Best Trek For Summit Views</p>
+                </div>
+                <div className="border-bottom mb-3">
+                  <div className="ar_right_side_imgs">
+                    <img src="/Rectangle_486.png" />
+                  </div>
+                  <p className="p-text-3-fgc text-uppercase mt-2 mb-1">
+                    HAR KI DUN- RUINSARA TAL TREK
+                  </p>
+                  <p className="p-text-small">
+                    The Best Mix of Ancient Culture and Mountain Beauty on a
+                    Trek
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-lg-3 col-md-12"></div>
+        <div className="col-lg-9 col-md-12">
+          <div className="row">
+            <div className="col-lg-8 col-md-12">
+              <div className="grey-bg border-top-c">
+                <div className="p-2">
+                  <p className="p-text-2-fg text-uppercase mb-2">
+                    The problem with jeans
+                  </p>
+                  <div>
+                    <p className="p-text-4 mb-4 ar_p">
+                      While I love jeans for their versatility in the cities,
+                      it’s necessary to point out that jeans are catastrophic on
+                      a trek.
+                    </p>
+                    <p className="p-text-4 mb-4 ar_p">
+                      They are bulky and take an obscene amount of time to dry.
+                      Typical jeans weigh around 700 grams when dry, and a
+                      mind-boggling 2 kgs when wet!
+                    </p>
+                    <p className="p-text-4 mb-4 ar_p">
+                      The elasticity of its fibres also gets affected and it’s
+                      difficult to comfortably trek in wet jeans because they
+                      restrict your movement.
+                    </p>
+                    <p className="p-text-4 mb-4 ar_p">
+                      So, if you get drenched while wearing jeans on a trek, you
+                      will end up carrying all that uncomfortable extra wet
+                      weight. To top it, you will also spend days in damp
+                      bottoms that will expose you to the risk of catching a
+                      cold (or worse, hypothermia). So please, avoid jeans.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="my-4">
+                <p className="p-text-4 mb-4 ar_p">
+                  <strong>3. Easy to clean:</strong> Treks can get messy. Think
+                  dusty trails, horse dung, rolling in the meadows or sitting
+                  under a maple tree for lunch. All these will get dirt on your
+                  pants. And it’s wise to steer off materials that stain easily
+                  or absorb dirt. Like cotton.
+                </p>
+                <p className="p-text-4 mb-4 ar_p">
+                  To address this, good trek pants are made of stain and
+                  dirt-resistant fabrics. Again, polyamides are great at this.
+                  And Vishnu Benne, Head of FinOps at Indiahikes wears the Men’s
+                  Mountain Trekking Modular Trousers – TREK 100 on treks.
+                </p>
+              </div>
+              <div className="my-5">
+                <div className="border-top border-bottom quote-box py-3">
+                  <div className="row d-flex align-items-center">
+                    <div className="col-lg-3 col-md-12 border-r">
+                      <div className="text-center">
+                        <div className="auth_image">
+                          <img src="/p-icon.png" />
+                        </div>
+                        <p class="m-0 p-text-3-fg text-center mt-1">
+                          Vishnu Benne
+                        </p>
+                        <p class="m-0 p-text-small-10-black text-center">
+                          Head of Operations
+                        </p>
+                      </div>
+                    </div>
+                    <div className="col-lg-9 col-md-12">
+                      <p className="p-display-1 px-3">
+                        I like how the material of my trek pants is so
+                        super-easy to clean. Even when there is dirt, one splash
+                        of water, even without soap, the pants are cleaned.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p className="p-text-4 mb-4 ar_p">
+                  <strong>4. Breathable:</strong> Now, here’s something you must
+                  consider when you are buying clothes for your trek — you will
+                  sweat, and you won’t get to take a bath while on a trail.
+                </p>
+                <p className="p-text-4 mb-4 ar_p">
+                  This means you might stink if you wear clothes that don’t
+                  allow your skin to breathe or the sweat to evaporate.
+                </p>
+                <p className="p-text-4 mb-4 ar_p">
+                  While cotton is great for this purpose, it is a bad choice for
+                  treks.
+                </p>
+                <p className="p-text-4 mb-4 ar_p">
+                  The next best choice is trekking pants made of
+                  polyamide/polyesters. Contrary to the popular notion, they are
+                  breathable and let your sweat evaporate easily. That’s how
+                  they keep you cool as well.
+                </p>
+              </div>
+
+              <div className="note_sec">
+                <p className="p-text-4 mb-4 ar_p">
+                  <strong>Note:</strong> And I must state the obvious here —
+                  waterproof pants (like the ones made of raincoat material) are
+                  not breathable. You’ll suffocate and sweat in them. Do not
+                  ever wear them on treks.
+                </p>
+                <p className="p-text-4 mb-4 ar_p">
+                  The only time you can wear waterproof pants is when you slip
+                  them over your regular trekking pants on monsoon treks.
+                  Basically when there is a downpour on. But waterproof pants
+                  are extremely bulky and weigh a lot. Even on big monsoon
+                  treks, I would not recommend taking them on treks.
+                </p>
+              </div>
+
+              <div>
+                <div className="grey-bg border-top-c">
+                  <div className="p-2">
+                    <p className="p-text-2-fg text-uppercase mb-2">
+                      Trek Pants vs Track Pants
+                    </p>
+                    <div>
+                      <p className="p-text-4 mb-4 ar_p">
+                        It is a common misconception that it’s okay to wear
+                        track pants instead of trek pants. Truth: I have done
+                        that and regretted it. For two reasons:
+                      </p>
+                      <p className="p-text-4 mb-1 ar_p">
+                        1. Track pants are predominantly made of cotton. I am
+                        already on the wrong foot here. They are not warm, they
+                        take forever to dry and lose shape quickly.
+                      </p>
+                      <p className="p-text-4 mb-4 ar_p">
+                        2. They are not snag-free (does not slide over other
+                        material and gets stuck) which makes it difficult to use
+                        for layering.
+                      </p>
+                      <p className="p-text-4 mb-4 ar_p">
+                        {" "}
+                        <strong>But here’s a tip</strong> — if you have well-fitting track pants
+                        that are snag-free, use them as an inner layer on cold
+                        nights/days on a Himalayan trek. Nowadays you get good
+                        synthetic track pants. They really work well as inners.{" "}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-12">
+              <div className="ml-130">
+                <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
+                  Latest Articles
+                </p>
+
+                <div className="border-bottom mb-3">
+                  <div className="ar_right_side_imgs">
+                    <img src="/Rectangle_486.png" />
+                  </div>
+                  <p className="p-text-3-fgc text-uppercase mt-2 mb-2">
+                    How To Choose Trek Pants — The Ultimate Trekking Pants Guide
+                    2020
+                  </p>
+                  <p className="p-text-small-10-gray mb-0">
+                    By <strong>Arjun Majumdar</strong>
+                  </p>
+                  <p className="p-text-small-10-gray">
+                    24 Jan 2020 <span className="list-dot-style-mob"></span> 6
+                    min read
+                  </p>
+                </div>
+                <div className="border-bottom mb-3">
+                  <div className="ar_right_side_imgs">
+                    <img src="/Rectangle_486.png" />
+                  </div>
+                  <p className="p-text-3-fgc text-uppercase mt-2 mb-2">
+                    Indiahikes’ Experiential Learning Programs For Schools
+                  </p>
+                  <p className="p-text-small-10-gray mb-0">
+                    By <strong>Swathi Chatrapathy</strong>
+                  </p>
+                  <p className="p-text-small-10-gray">
+                    24 Jan 2020 <span className="list-dot-style-mob"></span> 6
+                    min read
+                  </p>
+                </div>
+                <div className="border-bottom mb-3">
+                  <div className="ar_right_side_imgs">
+                    <img src="/Rectangle_486.png" />
+                  </div>
+                  <p className="p-text-3-fgc text-uppercase mt-2 mb-1">
+                    How To Reach Rishikesh, Haridwar And Dehradun – A Guide To
+                    Air, Train And Road Travel (With 13 PRO TIPS)
+                  </p>
+                  <p className="p-text-small-10-gray mb-0">
+                    By <strong>Arjun Majumdar</strong>
+                  </p>
+                  <p className="p-text-small-10-gray">
+                    24 Jan 2020 <span className="list-dot-style-mob"></span> 6
+                    min read
+                  </p>
+                </div>
+                <div className="border-bottom mb-3">
+                  <div className="ar_right_side_imgs">
+                    <img src="/Rectangle_486.png" />
+                  </div>
+                  <p className="p-text-3-fgc text-uppercase mt-2 mb-1">
+                    How The Buran Ghati Trek Was Explored
+                  </p>
+                  <p className="p-text-small-10-gray mb-0">
+                    By <strong>Sandhya Chandrashekharaya</strong>
+                  </p>
+                  <p className="p-text-small-10-gray">
+                    24 Jan 2020 <span className="list-dot-style-mob"></span> 6
+                    min read
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
