@@ -410,9 +410,9 @@ const WelcomeProfile = () => {
                                         </div>
 
                                         <div className="m-col-12">
-                                          {upComingTrek?.bookingState ===
+                                          {(upComingTrek?.bookingState ===
                                           "PAYMENT" || upComingTrek?.bookingState ===
-                                          "ADD_PARTICIPANTS" ? (
+                                          "ADD_PARTICIPANTS") ? (
                                             <p className="m-0 p-text-10-fgb">
                                               50% of booking process completed -{" "}
                                               {upComingTrek?.bookingState}
@@ -432,9 +432,9 @@ const WelcomeProfile = () => {
                                           )}
                                         </div>
                                       </div>
-                                      {upComingTrek?.bookingState ===
+                                      {(upComingTrek?.bookingState ===
                                       "PAYMENT" || upComingTrek?.bookingState ===
-                                      "ADD_PARTICIPANTS" ? (
+                                      "ADD_PARTICIPANTS") ? (
                                         <Progress value="50" />
                                       ) : upComingTrek?.bookingState ===
                                         "COMPLETED" ? (
@@ -511,9 +511,9 @@ const WelcomeProfile = () => {
                                         </div>
                                       </div>
                                       <div className="d-flex justify-content-end">
-                                        {upComingTrek?.bookingState ===
+                                        {(upComingTrek?.bookingState ===
                                           "PAYMENT" || upComingTrek?.bookingState ===
-                                        "ADD_PARTICIPANTS" && (
+                                        "ADD_PARTICIPANTS") && (
                                           <div>
                                             <button
                                               className="btn table-btn-green-lg mx-3"
