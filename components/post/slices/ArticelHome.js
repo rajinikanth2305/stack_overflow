@@ -575,10 +575,11 @@ const ArticelHome = ({ slice }) => (
                       </p>
                       <p className="p-text-4 mb-4 ar_p">
                         {" "}
-                        <strong>But here’s a tip</strong> — if you have well-fitting track pants
-                        that are snag-free, use them as an inner layer on cold
-                        nights/days on a Himalayan trek. Nowadays you get good
-                        synthetic track pants. They really work well as inners.{" "}
+                        <strong>But here’s a tip</strong> — if you have
+                        well-fitting track pants that are snag-free, use them as
+                        an inner layer on cold nights/days on a Himalayan trek.
+                        Nowadays you get good synthetic track pants. They really
+                        work well as inners.
                       </p>
                     </div>
                   </div>
