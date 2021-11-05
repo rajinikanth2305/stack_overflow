@@ -585,6 +585,82 @@ const ArticelHome = ({ slice }) => (
                   </div>
                 </div>
               </div>
+
+              <div className="border-top my-5 pt-3">
+                <p className="p-text-4 mb-4 ar_p">
+                  <strong>B. Check For Fit</strong>
+                </p>
+                <p className="p-text-4 mb-4 ar_p">
+                  It’s a no-brainer that you will rough it out during a trek.
+                  And yet, we forget this crucial detail while choosing our trek
+                  clothes.
+                </p>
+                <p className="p-text-4 mb-4 ar_p">
+                  Remember, your trekking pants need to be 100% comfortable for
+                  a trek. There are no two ways about it.
+                </p>
+                <p className="p-text-4 mb-4 ar_p">
+                  The problem area usually is fitting at the crotch. So, do a
+                  full squat and see if it feels tight. If it does feel tight,
+                  don’t buy it.
+                </p>
+                <p className="p-text-4 mb-4 ar_p">
+                  Next, lift your knees to your chest. See how the material
+                  responds. Does it stretch easily? Are you comfortable with the
+                  stretch? Buy the pants only if the answer is a straight yes.
+                </p>
+              </div>
+
+              <div>
+                <div className="grey-bg border-top-c">
+                  <div className="p-2">
+                    <p className="p-text-2-fg text-uppercase mb-2">
+                      Finding The Right Fit Depends On When You Buy Trekking
+                      Pants
+                    </p>
+                    <div>
+                      <p className="p-text-4 mb-4 ar_p">
+                        Many will be surprised with this question — is there a
+                        right time to buy trekking pants? Well, if you want to
+                        get the fit right, then ‘yes’. Timing plays an important
+                        role.
+                      </p>
+                      <p className="p-text-4 mb-1 ar_p">
+                        So, what is the right time to buy a trekking pant? A
+                        straight answer: 10 days before you start on your trek,
+                        says Arjun Majumdar, Founder and CEO of Indiahikes.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="border-top border-bottom quote-box bg-white py-3 mb-2">
+                    <div className="row d-flex align-items-center">
+                      <div className="col-lg-3 col-md-12 border-r">
+                        <div className="text-center">
+                          <div className="auth_image">
+                            <img src="/p-icon.png" />
+                          </div>
+                          <p class="m-0 p-text-3-fg text-center mt-1">
+                            Arjun Majumdar
+                          </p>
+                          <p class="m-0 p-text-small-10-black text-center">
+                            Founder, CEO, Indiahikes
+                          </p>
+                        </div>
+                      </div>
+                      <div className="col-lg-9 col-md-12">
+                        <p className="p-display-1 px-3">
+                          I keep my trekking pants only for treks. I also use
+                          them for long-distance travels because they are so
+                          light. On my recent trip to Spain, my backpack for a
+                          10-day trip weighed less than 7 kgs with 5 changes of
+                          clothes. That’s what lightweight clothes do to you.
+                          You can take more for less.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="col-lg-4 col-md-12">
               <div className="ml-130">
@@ -653,6 +729,56 @@ const ArticelHome = ({ slice }) => (
                     24 Jan 2020 <span className="list-dot-style-mob"></span> 6
                     min read
                   </p>
+                </div>
+
+                <div className="my-5 py-5">
+                  <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
+                    Latest Videos
+                  </p>
+                  <div className="card border-bottom mb-3">
+                    <div className="ar_right_side_imgs">
+                      <img src="/Rectangle_486.png" />
+                    </div>
+                    <div className="p-2">
+                      <p className="p-text-3-fgc text-uppercase mt-2 mb-1">
+                        what is acute Mountains Sickness (AMS)?
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="my-5 py-5">
+                  <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
+                    Latest Updates
+                  </p>
+                  <div className="border-bottom mb-3 pb-3">
+                    <p className="p-text-3-fgc-yellow m-0">12th May 2021</p>
+                    <p className="p-text-3 text-uppercase mt-2 mb-1">
+                      IH Treks until June 15th Suspended
+                    </p>
+                  </div>
+                  <div className="border-bottom mb-3 pb-3">
+                    <p className="p-text-3-fgc-yellow m-0">21st April 2021</p>
+                    <p className="p-text-3 text-uppercase mt-2 mb-1">
+                      Due to the COVID-19 crisis, we are suspending all our
+                      treks until April 27th
+                    </p>
+                  </div>
+                  <div className="border-bottom mb-3 pb-3">
+                    <p className="p-text-3-fgc-yellow m-0">2nd April 2021</p>
+                    <p className="p-text-3 text-uppercase mt-2 mb-1">
+                      New dates opened for Gidara Bugyal Trek
+                    </p>
+                  </div>
+                  <div className="border-bottom mb-3 pb-3">
+                    <p className="p-text-3-fgc-yellow m-0">
+                      3rd September 2021
+                    </p>
+                    <p className="p-text-3 text-uppercase mt-2 mb-1">
+                      Indiahikes signs MOU with Department of Skill Development
+                      & Employment, Govt. of Uttarakhand
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
