@@ -14,7 +14,7 @@ import MakePayment from "./MakePayment";
 // import dynamic from 'next/dynamic';
 import { useRouter } from "next/router";
 //import { withRouter } from 'next/router'
-
+import {Dialog} from 'primereact/dialog';
 import { useSelector, useDispatch } from "react-redux";
 import {
   addOrUpdateState,
@@ -69,6 +69,11 @@ const RegHome = ({ slice }) => {
   const [exclusions, setExclusions] = useState();
   const [whyIndiaHikes, setWhyIndiaHikes] = useState();
   const [tac, setTac] = useState();
+  const defaultMessage="A technical issue might have occured at website,contact support team for any assist. re-try in few mins.";
+  const [dialogMessage, setDialogMessage] = useState(defaultMessage);
+  const [displayBasic, setDisplayBasic] = useState(false);
+  const [position, setPosition] = useState('center');
+  const [displayPosition, setDisplayPosition] = useState(false);
 
   const router = useRouter();
 
@@ -216,7 +221,7 @@ const RegHome = ({ slice }) => {
     if (callMode === "Button_Click") {
       if (disableOnAcceptTab === true) {
         /// it means terms is already accepted
-        setKey("selectbatch");
+        //setKey("selectbatch");
       } else {
         setTermAccepted(value);
       }
@@ -236,7 +241,8 @@ const RegHome = ({ slice }) => {
         .then(data => {
           console.log("Booking found for the batchid and useremailid");
           /// if state is cancelled or completed then block the flow
-
+          setTermAccepted(true);
+          setKey("selectbatch");
           setStateStoreData(data.data, userId);
 
           if (stepName !== undefined) {
@@ -261,7 +267,7 @@ const RegHome = ({ slice }) => {
           //  if(res?.status===500) {
           if (callMode === "Button_Click") {
             createNewBooking();
-            setKey("selectbatch");
+            //setKey("selectbatch");
             setDisableOnAcceptTab(true);
           }
           //}
@@ -274,9 +280,10 @@ const RegHome = ({ slice }) => {
     }
   };
 
-  const createNewBooking = () => {
+  const createNewBooking = ()  => {
     const batchId = router.query.batchId;
     const userId = userServiceObject.getUsername();
+   
     ///Batch not exits will create and then query
     console.log("Booking not found for the batchid and user emailid");
     /// get userid by email
@@ -286,20 +293,27 @@ const RegHome = ({ slice }) => {
         .then(response => {
           getBatchInfoByUserAndBatchId(userId, batchId)
             .then(bres => {
+              ///TODO Waiting_List then show the message
               setStateStoreData(bres.data, res.email);
+              setKey("selectbatch");
+
             })
             .catch(err => {
               console.log(err.response?.data?.message);
+              onDialogShow(res?.response?.data?.message)
             });
         })
         .catch(res => {
+          console.log(res);
           if (res.response?.data?.message) {
             console.log(res.response.data?.message);
+            onDialogShow(res?.response?.data?.message)
           }
         })
         .catch(res => {
           if (res.response?.data?.message) {
             console.log(res.response.data?.message);
+            onDialogShow(res?.response?.data?.message)
           }
         });
     });
@@ -477,6 +491,21 @@ const RegHome = ({ slice }) => {
       return !termAccepted ;
      }  
   }
+
+  const onDialogShow = (message) => {
+    setDialogMessage(message);
+    setDisplayBasic(true);
+}
+
+const onHide = () => {
+  setDisplayBasic(false);
+  setDialogMessage(defaultMessage);
+}
+const renderFooter = (name) => {
+  return (
+          <Button label="Ok"   onClick={() => onHide()} autoFocus>OK</Button>
+  );
+}
 
   return (
     <>
@@ -668,10 +697,19 @@ const RegHome = ({ slice }) => {
             </div>
           </div>
         </div>
+        <div className="dialog-demo">
+      <Dialog header="Registration-Page-Message" visible={displayBasic} 
+      position={position} modal style={{ width: '40vw' }} 
+      footer={renderFooter('displayPosition')} onHide={() => onHide()}
+                    draggable={false} resizable={false}>
+                    <p className="p-m-0">{dialogMessage}</p>
+                </Dialog>
+                </div>
         <style jsx global>
           {regStyle}
         </style>
       </div>
+      
     </>
   );
 };
