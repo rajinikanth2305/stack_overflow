@@ -336,6 +336,12 @@ const WelcomeProfile = () => {
     userServiceObject.doLogout();
   };
 
+  const onCancelButtonClick = () => {
+    console.log(upComingTrek);
+    const batchId=upComingTrek?.batchId;
+    router.push(`/user-dashboard/cancellation-trek?batchId=${batchId}`);
+  };
+
   return (
     <>
       {render && (
@@ -555,7 +561,7 @@ const WelcomeProfile = () => {
                                               //     upComingTrek
                                               //   )
                                               // }
-                                              onClick={handleShow}
+                                              onClick={onCancelButtonClick}
                                             >
                                               Cancel trek
                                             </button>

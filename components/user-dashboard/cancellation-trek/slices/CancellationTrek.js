@@ -1,10 +1,132 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { customStyles } from "styles";
 import { Checkbox } from "primereact/checkbox";
+import { RichText } from "prismic-reactjs";
+import Modal from "react-bootstrap/Modal";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Progress } from "reactstrap";
+import Link from "next/link";
+import auth from "../../../../services/Authenticate";
+import {
+  getBatchInfoByUserAndBatchId,
+  cancelUserBooking,
+  findUserByEmail,
+  cancelParticipantBooking
+} from "../../../../services/queries";
+import moment from "moment";
+import { useRouter } from "next/router";
+import Prismic from "@prismicio/client";
+import { Client } from "../../../../utils/prismicHelpers";
+import { confirmPopup } from "primereact/confirmpopup"; // To use confirmPopup method
+import Image from "next/image";
+import { Toast } from "primereact/toast";
+import BoPayment from "../../bo-payment/slices/BoPayment";
+import { useForm, Controller } from "react-hook-form";
+
 
 const CancellationTrek = () => {
+  const [userServiceObject, setUserServiceObject] = useState(undefined);
+  const [userEmail, setUserEmail] = useState(undefined);
+  const [bookings, setBookings] = useState(undefined);
+  const [indexes, setIndexes] = React.useState([]);
+  const [counter, setCounter] = React.useState(0);
+  const router = useRouter();
+  const [render, setRender] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    control,
+    errors,
+    formState,
+    getValues
+  } = useForm();
+
+  React.useEffect(() => {
+    //const res=await
+    auth.keycloak().then(([userTokenObject, userEmail]) => {
+      setUserEmail(userEmail);
+      setUserServiceObject(userTokenObject);
+      fetchAndBindUserBatchBooking(userEmail);
+      // return userEmail;
+    });
+    // console.log(res);
+    //fetchAndBindUserBookings(res);
+  }, []);
+
+  function fetchAndBindUserBatchBooking(email) {
+    let url = location.href.replace(location.origin, "");
+    let pageUrl = url.split("&");
+    let batchKeyVal = pageUrl[0]; //batchid
+    const batchId = batchKeyVal.split("=")[1];
+    const userId =userEmail == "" ? userServiceObject.getUsername() : userEmail;
+
+    console.log(batchId);
+    console.log(userId);
+
+    getBatchInfoByUserAndBatchId(userId, batchId)
+    .then(bookingsData => {
+      if (bookingsData) {
+        console.log(bookingsData.data);
+        setStates(bookingsData.data);
+      }
+    });
+  };
+
+  const setStates = (bookingData) => {
+    setBookings(bookingData);
+    const arr = Array.from(new Array(bookingData.participants.length), (x, i) => i);
+    console.log(arr.length);
+    setIndexes(arr);
+    setCounter(arr.length);
+    setRender(true);
+  };
+
+  const onCancelSubmit = formData => {
+    // console.log(formData);
+
+    const participantList = [];
+
+    Object.keys(formData).forEach(function(key) {
+      console.log("Key : " + key + ", Value : " + formData[key]);
+      if (formData[key] === true) {
+        participantList.push(key);
+      }
+    });
+
+    if (participantList.length > 0) {
+      console.log(participantList);
+      cancelParticipantBooking(upComingTrek.bookingId, participantList).then(
+        res => {
+          toast.current.show({
+            severity: "info",
+            summary: `'Cancelled successfully'`,
+            detail: "Cancel-Trek-Booking"
+          });
+          fetchAndBindUserBookings(upComingTrek.email);
+          handleClose();
+        }
+      );
+    } else {
+      toast.current.show({
+        severity: "error",
+        summary: `'None of the participant selected for cancellation'`,
+        detail: "Cancel-Trek-Booking"
+      });
+    }
+  };
+
+  const onChecked = (id, value) => {
+    // upComingTrek.userTrekBookingParticipants.find(u => u.id === id).cancelSelected = value;
+    // const selectedCount=upComingTrek.userTrekBookingParticipants.filter(u => u.selected === true).length;
+    //setShowSaveButton(selectedCount>0);
+  };
+
   return (
     <>
+     { render && (
       <div className="my-5">
         <div className="container">
           <div>
@@ -19,16 +141,18 @@ const CancellationTrek = () => {
                     <div className="d-flex align-items center p-cancel-text-fg">
                       <div className="col-3">
                         <p>trek fee per participant</p>
+                        <p>Trek Name</p>
                         <p>date of booking</p>
                         <p>date of cancellation</p>
                         <p>cancellation policy applicable</p>
                       </div>
                       <div className="mx-3 col-8 m-l-border px-3">
                         <p>
-                          Rs. 10,500 (incl. taxes and mandatory trek insurance)
+                          Rs. {bookings?.trekFee} (incl. taxes and mandatory trek insurance)
                         </p>
-                        <p>08 May 2021</p>
-                        <p>12 Aug 2021</p>
+                        <p>{bookings?.trekName}</p>
+                        <p>{moment(bookings?.startDate).format("DD MMM YYYY")}</p>
+                        <p>{moment(bookings?.endDate).format("DD MMM YYYY")}</p>
                         <p>
                           Cancellation 30 days before the starting date of the
                           trek — Get your full trek fee back in an Indiahikes
@@ -38,6 +162,11 @@ const CancellationTrek = () => {
                       </div>
                     </div>
 
+                    <div>
+                <form
+                  onSubmit={handleSubmit(onCancelSubmit)}
+                  onReset={() => reset}
+                >
                     <div className="my-4">
                       <table className="table table-dashboard-profile-style-3">
                         <thead>
@@ -52,28 +181,61 @@ const CancellationTrek = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>
-                              <Checkbox inputId="trekker" name="trekker" />
-                            </td>
-                            <td>Nayana Jambe (You)</td>
-                            <td>10,500</td>
-                            <td>0</td>
-                            <td>- 1,575</td>
-                            <td>0</td>
-                            <td>Rs. 8,925</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <Checkbox inputId="trekker" name="trekker" />
-                            </td>
-                            <td>Nayana Jambe (You)</td>
-                            <td>10,500</td>
-                            <td>0</td>
-                            <td>- 1,575</td>
-                            <td>0</td>
-                            <td>Rs. 8,925</td>
-                          </tr>
+                        {indexes.map(index => {
+                        const sdata =bookings?.participants[index];
+                        console.log(sdata);
+                        const fieldName = `${sdata?.participantId}`;
+                        const name =
+                          sdata?.userDetailsForDisplay?.email === userEmail
+                            ? " * " +
+                              sdata?.userDetailsForDisplay?.firstName +
+                              sdata?.userDetailsForDisplay?.lastName +
+                              " (You) "
+                            : sdata?.userDetailsForDisplay?.firstName +
+                              sdata?.userDetailsForDisplay?.lastName;
+
+                        const state =sdata?.bookingParticipantState === "CANCELLED";
+
+                        return (
+                          <>
+                            <tr key={sdata?.id}>
+                              <td>
+                                <div className="d-flex alifn-items-center">
+                                  <div>
+                                    {state == false && (
+                                      <FormGroup className="reg-dropdown mp-dropdown">
+                                        <Controller
+                                          name={`${fieldName}`}
+                                          control={control}
+                                          render={({ onChange, value }) => (
+                                            <Checkbox
+                                              inputId="category1"
+                                              name="category"
+                                              onChange={e => {
+                                                onChange(e.checked);
+                                                onChecked(sdata.id, e.checked);
+                                              }}
+                                              checked={value}
+                                            />
+                                          )}
+                                        />
+                                      </FormGroup>
+                                    )}
+                                  </div>
+                                </div>
+                              </td>
+                              <td>
+                                {index + 1}. {name}
+                              </td>
+                              <td>{0}</td>
+                              <td>{0}</td>
+                              <td>{0}</td>
+                              <td>{0}</td>
+                            </tr>
+                          </>
+                        );
+                      })}
+                          
                         </tbody>
                       </table>
                       <div className="d-flex justify-content-end align-items-center">
@@ -94,6 +256,9 @@ const CancellationTrek = () => {
                         </div>
                       </div>
                     </div>
+                </form>
+                </div>
+
 
                     <div className="my-5 pt-5">
                       <h5 className="p-text-2-fg b-left-maroon-3px mb-3">
@@ -213,6 +378,7 @@ const CancellationTrek = () => {
           {customStyles}
         </style>
       </div>
+     )}
     </>
   );
 };
