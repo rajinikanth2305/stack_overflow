@@ -27,6 +27,7 @@ const MyTreks = forwardRef((props, ref) => {
   const [locations, setLocations] = React.useState([]);
   const [show, setShow] = useState(false);
   const [trekVideoUrl, setTrekVideoUrl] = useState();
+  const [bookingState, setBookingState] = useState(false);
   const {
     register,
     handleSubmit,
@@ -156,18 +157,17 @@ const MyTreks = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     async changeState(data) {
       //// Get Trek locations
+     
+
       const trekId = data.trekId;
+      const bookState= data.bookingState==="COMPLETED";
+      console.log( data );
+      setBookingState(bookState);
+
+      if(bookState) {
       getTrekLocations(trekId).then(res => {
         setLocations(res);
         setParticipantData(data);
-
-        /*const myTrekData = {
-          participantData:data,
-          locations:res
-        }*/
-
-        //setParticipantData(myTrekData);
-        //console.log(data);
         const arr = Array.from(
           new Array(data?.userTrekBookingParticipants?.length),
           (x, i) => i
@@ -176,6 +176,17 @@ const MyTreks = forwardRef((props, ref) => {
         setCounter(arr.length);
         setRender(true);
       });
+    }
+    else {
+      setParticipantData(data);
+      const arr = Array.from(
+        new Array(data?.userTrekBookingParticipants?.length),
+        (x, i) => i
+      );
+      setIndexes(arr);
+      setCounter(arr.length);
+      setRender(true);
+    }
     }
   }));
 
@@ -273,8 +284,10 @@ const MyTreks = forwardRef((props, ref) => {
                         <td>{pdata?.userDetailsForDisplay?.phone}</td>
                         <td>{pdata?.userDetailsForDisplay?.email}</td>
                         <td>
+
                           {state == false && (
                             <FormGroup className="ud-dropwon-1">
+                              {bookingState && (
                               <Controller
                                 name={`${fieldName}.pickupLocation`}
                                 control={control}
@@ -292,12 +305,14 @@ const MyTreks = forwardRef((props, ref) => {
                                   />
                                 )}
                               />
+                              )}
                             </FormGroup>
                           )}
                         </td>
                         <td>
                           {state == false && (
                             <FormGroup className="ud-dropwon-1">
+                              {bookingState && (
                               <Controller
                                 name={`${fieldName}.dropLocation`}
                                 control={control}
@@ -315,6 +330,7 @@ const MyTreks = forwardRef((props, ref) => {
                                   />
                                 )}
                               />
+                              )}
                             </FormGroup>
                           )}
                         </td>
@@ -337,9 +353,11 @@ const MyTreks = forwardRef((props, ref) => {
                   )}
                 </div>
                 <div>
+                  {bookingState && (
                   <button type="submit" className="btn table-btn-blue-sm">
                     <span className="px-2">Save details</span>
                   </button>
+                  )}
                 </div>
               </div>
             </form>

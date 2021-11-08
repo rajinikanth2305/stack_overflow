@@ -197,7 +197,7 @@ const BoPayment = (offSelectedData) => {
 
 const doPayment = () => {
   const voucherList = buildVouchers( offSelectedData.data.participants);
-  //console.log(JSON.stringify(voucherList));
+  console.log(JSON.stringify(voucherList));
   
   if (computeFields.computations.youpay > 0) {
     /// call the paymentgateway
@@ -206,7 +206,7 @@ const doPayment = () => {
     doSaveOffloadingPayments(offSelectedData.data.header.bookingId, voucherList)
       .then(res => {
         /// redirect to booking confirmation page
-        router.push(`/bookingstatus`);
+        router.push(`/user-booking/thank-you?booking_id=${offSelectedData.data.header.bookingId}&status=SUCCESS`);
       })
       .catch(res => {
         if (res.response?.data?.message) {

@@ -1,10 +1,10 @@
 import React from 'react'
-import { Text, Quote, ImageWithCaption,IframeTag,EmbedHtml, ArticelHome } from './slices'
+import { Text, Quote, ImageWithCaption,IframeTag,EmbedHtml, PostRender } from './slices'
 /**
  * Post slice zone component
  */
-const SliceZone = ({ sliceZone }) => (
-  sliceZone.map((slice, index) => {
+const SliceZone = ({ data,authorData,updatesData,upComingData,relatedArticles }) => {
+  /*sliceZone.map((slice, index) => {
     switch (slice.slice_type) {
       // case ('image_with_caption'):
       //   return <ImageWithCaption slice={slice} key={`slice-${index}`} />
@@ -23,7 +23,12 @@ const SliceZone = ({ sliceZone }) => (
       default:
         return null
     }
-  })
-)
+  })*/
+  return <PostRender data={data}   authorData={authorData} 
+  updatesData={updatesData} 
+  upComingData={upComingData}
+  relatedArticles={relatedArticles} />
+};  
+
 
 export default SliceZone

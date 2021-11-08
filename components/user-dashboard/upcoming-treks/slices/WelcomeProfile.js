@@ -229,6 +229,7 @@ const WelcomeProfile = () => {
     setNextComingTreks(nextTreks);
     document.getElementById("detailView").focus();
     setCancelDialogueData(bookingId, activeBooking);
+    window.scrollTo(0, 0);
   };
 
   const setCancelDialogueData = (bookingId, activeBooking) => {

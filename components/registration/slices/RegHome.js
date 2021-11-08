@@ -98,8 +98,6 @@ const RegHome = ({ slice }) => {
 
   useEffect(() => {
     //console.log("use-effect-called");
-  
-
     auth.keycloak().then(([userTokenObject, userEmail]) => {
       setUserServiceObject(userTokenObject);
       setUserEmail(userEmail);

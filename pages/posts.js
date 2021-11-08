@@ -9,24 +9,19 @@ import { Header, PostList, SetupRepo,MyComponent } from "components/home";
 import { Client } from "utils/prismicHelpers";
 
 /**
- * Homepage component
+ * Posts list component
  */
 const Posts = ({ doc, posts }) => {
   const router = useRouter()
-
   useEffect(() => {
     // Prefetch the hikehome page
-    router.prefetch('/hikehome')
+    //router.prefetch('/hikehome')
   }, [])
-
 
   if (doc && doc.data) {
     return (
       <DefaultLayout>
         <MyComponent/>
-        <button type="button" onClick={() => router.push('/hikehome')}>
-      Click me
-    </button>
         <Head>
           <title>{RichText.asText(doc.data.headline)}</title>
         </Head>
@@ -40,7 +35,6 @@ const Posts = ({ doc, posts }) => {
       </DefaultLayout>
     );
   }
-
   // Message when repository has not been setup yet
   return <SetupRepo />;
 };
@@ -48,9 +42,7 @@ const Posts = ({ doc, posts }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const { ref } = previewData
-
   const client = Client()
-
   const doc = await client.getSingle("blog_home", ref ? { ref } : null) || {}
 
   const posts = await client.query(
