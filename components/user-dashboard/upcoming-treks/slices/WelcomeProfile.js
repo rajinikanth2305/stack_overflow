@@ -39,7 +39,7 @@ const WelcomeProfile = () => {
   const [userServiceObject, setUserServiceObject] = useState(undefined);
   const [userEmail, setUserEmail] = useState(undefined);
   const [hasMounted, setHasMounted] = useState(false);
-  const [bookings, setBookings] = useState(undefined);
+  const [bookings, setBookings] = useState(null);
   const [bookingOwner, setBookingOwner] = useState(undefined);
   const [upComingTrek, setUpComingTrek] = useState(undefined);
   const [nextComingTreks, setNextComingTreks] = useState([]);
@@ -148,23 +148,29 @@ const WelcomeProfile = () => {
     const client = Client();
 
     const prismicTrekContents = [];
+
+    const values=[];
+   
     for (const book of bookingsData) {
       const trekName = book.trekName.replaceAll(" ", "-").toLowerCase();
-      let result;
-      const findContents = prismicTrekContents.find(
-        x => x.trekName === trekName
-      );
-      if (findContents === undefined) {
-        result = await Client().getByUID("trek", trekName);
-        setTrekPageData(result);
-        prismicTrekContents.push({
-          trekName: trekName,
-          result: result
-        });
-      } else {
-        result = findContents.result;
-      }
+      if(values.find(x=>x===trekName)==undefined)
+       values.push(trekName);
+    }
 
+    let prismicResults=[];
+     prismicResults = await Client().query(Prismic.Predicates.in( "my.trek.uid", values ));
+     console.log(prismicResults);
+   
+     let index=0;
+    for (const book of bookingsData) {
+      index++;
+      const trekName = book.trekName.replaceAll(" ", "-").toLowerCase();
+      const result=prismicResults?.results?.find(x=>x.uid===trekName);
+
+      if(index==1)
+        setTrekPageData(result);
+
+     
       let bannerImage = "";
       let trekCaptions = book.trekName;
 
@@ -1111,6 +1117,24 @@ const WelcomeProfile = () => {
           <BoPayment data={offLoadingFeeSelectedData}></BoPayment>
         </div>
       )}
+       {bookings === null && (
+            <>
+              <div className="d-flex align-items-center justify-content-center mt-5 mb-3">
+                <div className="spinner-grow text-warning" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div>
+                <div className="spinner-grow text-warning mx-2" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div>
+                <div className="spinner-grow text-warning" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div>
+              </div>
+              <div className="text-center">
+                <p>Loading please wait...</p>
+              </div>
+            </>
+          )}
     </>
   );
 };

@@ -273,8 +273,8 @@ const Offloading = forwardRef((props, ref) => {
                           status=0;
                         }
                         else {
-                          if (sdata.offloadingStatus==="Not Required" 
-                          || sdata.offloadingStatus==="paid"){
+                          if (sdata?.offloadingStatus==="Not Required" 
+                          || sdata?.offloadingStatus==="paid"){
                             status= 0;
                           }
                           else {
@@ -283,7 +283,7 @@ const Offloading = forwardRef((props, ref) => {
                         }
                       return (
                         <>
-                          <tr key={sdata.id}>
+                          <tr key={sdata?.id}>
                           <td>
                               <div className="d-flex alifn-items-center">
                                 <div>
@@ -292,12 +292,12 @@ const Offloading = forwardRef((props, ref) => {
                                     <Controller
                                       name={`${fieldName}.checked`}
                                       control={control}
-                                      defaultValue={sdata.selected}
+                                      defaultValue={sdata?.selected}
                                       render={({ onChange, value }) => (
                                         <Checkbox  inputId="category1" name="category" 
                                         onChange={e => {
                                           onChange(e.checked);
-                                          onChecked(sdata.id,e.checked);
+                                          onChecked(sdata?.id,e.checked);
                                         }}
                                         checked={value} />
                                       )}
@@ -309,7 +309,7 @@ const Offloading = forwardRef((props, ref) => {
                             </td>
 
                             <td>
-                              {index + 1}. {sdata.name}
+                              {index + 1}. {sdata?.name}
                             </td>
                             <td>
                               <div className="d-flex alifn-items-center">
@@ -326,7 +326,7 @@ const Offloading = forwardRef((props, ref) => {
                                           options={lvouchers}
                                           onChange={e => {
                                             onChange(e.value);
-                                            onVoucherSelect(sdata.id, e.value);
+                                            onVoucherSelect(sdata?.id, e.value);
                                           }}
                                           placeholder="Select a Voucher "
                                         />
@@ -337,18 +337,18 @@ const Offloading = forwardRef((props, ref) => {
                                 <div className="mx-2">
                                   <button className="btn table-btn-yellow-sm"  
                                   onClick={e =>
-                                      onVoucherApply(sdata.id, index)
+                                      onVoucherApply(sdata?.id, index)
                                     }>
                                     <span className="px-2">Apply</span>
                                   </button>
                                 </div>
                               </div>
                             </td>
-                            <td>{sdata.offloadingFee}</td>
-                            <td>{sdata.youPay}</td>
+                            <td>{sdata?.offloadingFee}</td>
+                            <td>{sdata?.youPay}</td>
                             <td>
-                              <span>{sdata.offloadingStatus}</span>
-                              {sdata.offloadingStatus === "Paid" && (
+                              <span>{sdata?.offloadingStatus}</span>
+                              {sdata?.offloadingStatus === "Paid" && (
                                 <span className="mx-2 p-text-small-fg-red text-decoration-underline">
                                   Cancel
                                 </span>

@@ -1,11 +1,12 @@
 {
-  "name": "nextjs-blog",
-  "description": "Sample blog built with Next.js using Prismic headless CMS",
-  "author": "Prismic",
+  "name": "india-hikes-website",
+  "description": "India Hikes",
+  "author": "Aparimitha",
   "dependencies": {
     "@hookform/resolvers": "^1.3.5",
     "@popperjs/core": "^2.9.2",
     "@prismicio/client": "^4.0.0",
+    "@react-pdf/renderer": "^2.0.15",
     "@reduxjs/toolkit": "^1.6.0",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-less": "^1.0.1",
@@ -30,6 +31,7 @@
     "react-dom": "^16.12.0",
     "react-hook-form": "^6.15.4",
     "react-image-gallery": "^1.1.1",
+    "react-native-fs": "^2.18.0",
     "react-paginate": "^7.1.3",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.2.0",
@@ -37,8 +39,7 @@
     "reactstrap": "^8.9.0",
     "save": "^2.4.0",
     "slick-carousel": "^1.8.1",
-    "yup": "^0.32.9",
-    "@react-pdf/renderer": "^2.0.15"
+    "yup": "^0.32.9"
   },
   "scripts": {
     "dev": "next dev",
@@ -47,6 +48,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/prismicio/nextjs-blog"
+    "url": "https://IndiaHikes.com"
   }
 }

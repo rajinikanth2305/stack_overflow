@@ -12,14 +12,28 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
+import {
+  uploadUserFitness,
+  getUserFitnessDocuments
+} from "../../../../services/queries";
+import {Toast} from "primereact/toast";
 
 const FitnessApproval = forwardRef((props, ref) => {
+
+  const [participantId, setParticipantId] = useState();
+  const [documentType, setDocumentType] = useState("FITNESS_APPROVAL");
+  const [indexes, setIndexes] = React.useState([]);
+  const [counter, setCounter] = React.useState(0);
+  const [participantData, setParticipantData] = React.useState([]);
+  const [render, setRender] = useState(false);
+
   const faqData = props.data.data.body.find(
     x => x.slice_type === "faq_about_trek"
   );
 
   const faqHeading = faqData && faqData?.primary?.heading1;
   const faqArray = faqData && faqData?.items;
+  const toast = useRef(null);
 
   const faqArrayDetails = faqArray?.map(function(data, k) {
     return (
@@ -63,14 +77,22 @@ const FitnessApproval = forwardRef((props, ref) => {
     className: "p-button-danger"
   };
 
-  const myUploader = event => {
-    //event.files == files to upload
+  const myUploader = async (event) => {
+  
+   event.files.map(file=>{
+    var formData = new FormData();
+    formData.append("file",file);
+    uploadUserFitness(participantId,documentType,formData);
+   });
+
+   toast.current.show({
+    severity: "info",
+    summary: `'File uploaded successfull'`,
+    detail: "Fitness Approval"
+  });
   };
 
-  const [indexes, setIndexes] = React.useState([]);
-  const [counter, setCounter] = React.useState(0);
-  const [participantData, setParticipantData] = React.useState([]);
-  const [render, setRender] = useState(true);
+
   // The component instance will be extended
   // with whatever you return from the callback passed
   // as the second argument
@@ -85,12 +107,45 @@ const FitnessApproval = forwardRef((props, ref) => {
       setParticipantData(data);
       setIndexes(arr);
       setCounter(arr.length);
+      const participantId=data?.
+      userTrekBookingParticipants.find(x=>x?.userDetailsForDisplay?.email === data.email).participantId;
+      const documentType="FITNESS_APPROVAL";
+      setParticipantId(participantId);
+      setDocumentType("FITNESS_APPROVAL");
       setRender(true);
     }
   }));
 
+  const downloadFitnessDocument =  (participantId,documentName) => {
+    getUserFitnessDocuments(participantId,documentType,documentName)
+    .then(response=>{
+      // Create blob link to download
+     
+    const url = window.URL.createObjectURL(new Blob([response]));
+   
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute(
+      'download',
+      documentName,
+    );
+
+    // Append to html link element page
+    document.body.appendChild(link);
+
+    // Start download
+    link.click();
+
+    // Clean up and remove the link
+    link.parentNode.removeChild(link);
+    });
+  }
+
   return (
     <>
+     <Toast ref={toast} />
+    {render && (
+      <div>
       <div>
         <div>
           <h5 className="p-text-3-fg b-left-blue-3px">Fitness and approvals</h5>
@@ -110,21 +165,39 @@ const FitnessApproval = forwardRef((props, ref) => {
                     const pdata =
                       participantData?.userTrekBookingParticipants[index];
                     const fieldName = `locs[${index}]`;
+                    const loggedUser= (pdata?.userDetailsForDisplay?.email === participantData.email);
                     const name =
-                      pdata?.userDetailsForDisplay?.email ===
-                      participantData.email
+                      pdata?.userDetailsForDisplay?.email === participantData.email
                         ? " * " +
                           pdata?.userDetailsForDisplay?.firstName +
                           pdata?.userDetailsForDisplay?.lastName +
                           " (You) "
                         : pdata?.userDetailsForDisplay?.firstName +
                           pdata?.userDetailsForDisplay?.lastName;
+                        
+
                     return (
                       <tr>
                         <td>{name}</td>
                         {/* <td>{pdata?.userDetailsForDisplay?.phone}</td>
                         <td>{pdata?.userDetailsForDisplay?.email}</td> */}
-                        <td>-</td>
+                        <td>
+                          {
+                            loggedUser && pdata.participantDocuments.length>0 ? (
+                                 <div>
+                                 { 
+                                  pdata.participantDocuments.map(doc=> {
+                                      return(
+                                        <a href="javascript:;" onClick={e => downloadFitnessDocument(`${pdata.participantId}`,`${doc.fileName}`)}>{doc.fileName}</a>
+                                      )
+                                })
+                                }
+                                </div>
+                               ): pdata.participantDocuments.length>0 && (
+                                  "Fitness report uploaded"
+                               )
+                          }
+                        </td>
                       </tr>
                     );
                   })}
@@ -142,7 +215,7 @@ const FitnessApproval = forwardRef((props, ref) => {
           <div className="col-lg-7 col-md-12">
             <FileUpload
               name="demo[]"
-              url="https://localhost:44337/api/values/OnPostUploadAsync"
+              customUpload={true}
               chooseOptions={chooseOptions}
               uploadOptions={uploadOptions}
               cancelOptions={cancelOptions}
@@ -163,6 +236,8 @@ const FitnessApproval = forwardRef((props, ref) => {
           <div className="row">{faqArrayDetails}</div>
         </Accordion>
       </div>
+      </div>
+    )}
     </>
   );
 });

@@ -109,6 +109,39 @@ const getTokenHeader=async () => {
   return {Accept: 'application/json',Authorization: `Bearer ${token}`};
 }
 
+const getTokenHeaderWithMultiPartMimeType=async () => {
+
+  const obj=await auth.keycloak()
+            .then(([userTokenObject, userEmail])=>{ return userTokenObject});
+
+   const token= await obj.updateToken()
+                  .then(function() {
+                   return obj.getToken();
+          }).catch(function() {
+              console.log('Failed to refresh token');
+          });
+         // console.log('token' + token);
+  //return {Accept: 'application/json',Authorization: `Bearer ${obj.getToken()}`};
+  return {Authorization: `Bearer ${token}`};
+}
+
+const getTokenHeaderWithDocumentType=async (documentType) => {
+
+  const type=`'application/json'`;
+  const obj=await auth.keycloak()
+            .then(([userTokenObject, userEmail])=>{ return userTokenObject});
+
+   const token= await obj.updateToken()
+                  .then(function() {
+                   return obj.getToken();
+          }).catch(function() {
+              console.log('Failed to refresh token');
+          });
+         // console.log('token' + token);
+  //return {Accept: 'application/json',Authorization: `Bearer ${obj.getToken()}`};
+  return {Accept: {type},Authorization: `Bearer ${token}`};
+}
+
 export const getBatchInfo =  async (batchId)  => {
   const header=await getTokenHeader();
                 const api = `${REACT_APP_TMS_BACKEND_URL}`;
@@ -356,6 +389,25 @@ export const saveUserLocations =  async (bookingId,payload)  => {
   };
 
  
+  export const uploadUserFitness =  async (participantId,documentType,payload)  => {
+
+    const header=await getTokenHeaderWithMultiPartMimeType();
+    const api = `${REACT_APP_TMS_BACKEND_URL}`;
+    let url = `${api}/participants/${participantId}/documents/${documentType}`;
+    return axios.post(url,payload,{ headers:  header })
+           .then((res) => res.data);
+  };
+
+  export const getUserFitnessDocuments = async (participantId,documentType,documentName)  => {
+    const type=documentName.split(".");
+    console.log(type);
+    const header=await getTokenHeaderWithDocumentType("jpeg");
+    console.log(header);
+    const api = `${REACT_APP_TMS_BACKEND_URL}`;
+    let url = `${api}/participants/${participantId}/documents/${documentType}`;
+    return axios.get(url,{ headers:  header,     responseType: 'blob' }).then((res) => res.data);
+  };
+
 
 async function fetchDocs(page = 1, routes = []) {
   const response = await Client().query('', { pageSize: 100, lang: '*', page });

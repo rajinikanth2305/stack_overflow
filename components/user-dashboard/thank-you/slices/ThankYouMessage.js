@@ -21,7 +21,7 @@ const UserMP = () => {
     let statusKeyVal = pageUrl[1]; //booking-id
     const bookingStatus = statusKeyVal.split("=")[1];
     console.log(bookingStatus);
-    const valStatus=bookingStatus==='SUCCESS'? true:false
+    const valStatus=bookingStatus.toLowerCase()==='success'? true:false;
     setStatus(valStatus);
     setRender(true);
      //const res=await
