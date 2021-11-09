@@ -4,7 +4,7 @@ const REACT_APP_IAM_URL="https://tmsstaging.indiahikes.com";
 const initOptions = {
   url: `${REACT_APP_IAM_URL}/auth/`,
   realm: 'IndiaHikes',
-  clientId: 'tms-ui'
+  clientId: 'indiahikes-website'
 };
 
 const keycloakContext = new Keycloak(initOptions);

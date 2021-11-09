@@ -164,9 +164,9 @@ const UserTV = () => {
                           </Link>
                         </li>
                         <li>
-                          <Link href="../../../user-dashboard/user-myprofile">
-                            <span>my profile</span>
-                          </Link>
+                          <a href="https://tmsstaging.indiahikes.com/auth/realms/IndiaHikes/account/?referrer=indiahikes-website#" target="_blank">
+                            <span>My Profile</span>
+                          </a>
                         </li>
                         <li>
                           <Link href="../../../user-dashboard/user-trekvouchers">
