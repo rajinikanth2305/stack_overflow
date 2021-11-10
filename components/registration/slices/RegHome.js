@@ -239,6 +239,12 @@ const RegHome = ({ slice }) => {
         .then(data => {
           console.log("Booking found for the batchid and useremailid");
           /// if state is cancelled or completed then block the flow
+          //console.log(data);
+          if(data.data.state==="COMPLETED") {
+            onDialogShow("Your Booking is already completed for the selected batch");
+            ///Wait for 1 seconds
+            router.push(`/user-dashboard/user-upcoming-treks`);
+          }
           setTermAccepted(true);
           setKey("selectbatch");
           setStateStoreData(data.data, userId);
@@ -289,30 +295,30 @@ const RegHome = ({ slice }) => {
       const id = res.id;
       onAccept(userServiceObject.getUsername(), batchId, id)
         .then(response => {
-          getBatchInfoByUserAndBatchId(userId, batchId)
-            .then(bres => {
-              ///TODO Waiting_List then show the message
-              setStateStoreData(bres.data, res.email);
-              setKey("selectbatch");
+              getBatchInfoByUserAndBatchId(userId, batchId)
+                .then(bres => {
+                  ///TODO Waiting_List then show the message
+                  setStateStoreData(bres.data, res.email);
+                  setKey("selectbatch");
 
-            })
-            .catch(err => {
-              console.log(err.response?.data?.message);
-              onDialogShow(res?.response?.data?.message)
-            });
+                })
+                .catch(err => {
+                  console.log(err.response?.data?.message);
+                  onDialogShow(res?.response?.data?.message)
+                });
+        })
+            .catch(res => {
+              console.log(res);
+              if (res.response?.data?.message) {
+                console.log(res.response.data?.message);
+                onDialogShow(res?.response?.data?.message)
+              }
         })
         .catch(res => {
-          console.log(res);
-          if (res.response?.data?.message) {
-            console.log(res.response.data?.message);
-            onDialogShow(res?.response?.data?.message)
-          }
-        })
-        .catch(res => {
-          if (res.response?.data?.message) {
-            console.log(res.response.data?.message);
-            onDialogShow(res?.response?.data?.message)
-          }
+            if (res.response?.data?.message) {
+              console.log(res.response.data?.message);
+              onDialogShow(res?.response?.data?.message);
+            }
         });
     });
   };

@@ -160,8 +160,8 @@ const renderFooter = (name) => {
     } catch (err) {
       toast.current.show({
         severity: "error",
-        summary: `'Batch is full, Sorry! You no more allowed to add the TrekMates'`,
-        detail: "Add Trekker- Batch is full"
+        summary: `${err.response?.data?.message}`,
+        detail: "Add Trekker"
       });
       return;
     }
@@ -323,8 +323,8 @@ const renderFooter = (name) => {
     } catch (err) {
       toast.current.show({
         severity: "error",
-        summary: `'Batch is full, Sorry! You no more allowed to add the TrekMates'`,
-        detail: "Add Trekker- Batch is full"
+        summary: `${err.response?.data?.message}`,
+        detail: "Add Trekker"
       });
       return;
     }

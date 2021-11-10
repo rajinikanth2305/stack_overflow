@@ -90,6 +90,10 @@ const FitnessApproval = forwardRef((props, ref) => {
     summary: `'File uploaded successfull'`,
     detail: "Fitness Approval"
   });
+  props.onMyTrekSaveDetail(
+    participantData.bookingId,
+    participantData.email
+  );
   };
 
 

@@ -99,7 +99,7 @@ const WelcomeProfile = () => {
         });
 
         setBookingOwner(bookingOwner[0]);
-        getAndSetTrekContents(bookingsData, email);
+        getAndSetTrekContents(bookingsData, email,bookingsData[0].bookingId);
       } else {
         //setUserName(userServiceObject.getName());
         //console.log(userServiceObject.getName);
@@ -120,30 +120,31 @@ const WelcomeProfile = () => {
     });
   }
 
-  const setStates = bookTrekContents => {
+  const setStates = (bookTrekContents,bookingId) => {
     // console.log(bookTrekContents);
-
+    const booking=bookTrekContents.find(x => x.bookingId == bookingId);
     setBookings(bookTrekContents);
-    setUpComingTrek(bookTrekContents[0]); /// setting the first trek has upcoming trek
-    deriveAndSetOffLoadingTabVisible(bookTrekContents[0]);
+    setUpComingTrek(booking); /// setting the first trek has upcoming trek
+    deriveAndSetOffLoadingTabVisible(booking);
 
     const arr = Array.from(new Array(bookTrekContents.length - 1), (x, i) => i);
     setIndexes(arr);
     setCounter(arr.length);
 
     const nextTreks = bookTrekContents.filter(
-      x => x.bookingId !== bookTrekContents[0].bookingId
-    ); /// Excluding the first trek;
+      x => x.bookingId !== booking.bookingId
+    ); /// Excluding the selected trek;
+
     setNextComingTreks(nextTreks);
     setRender(true);
-    myTrekRef.current?.changeState(bookTrekContents[0]);
-    myTrekMobileRef.current?.changeState(bookTrekContents[0]);
-    offLoadingRef.current?.changeState(bookTrekContents[0]);
-    fitnessRef.current?.changeState(bookTrekContents[0]);
-    setCancelDialogueData(bookTrekContents[0].bookingId, bookTrekContents[0]);
+    myTrekRef.current?.changeState(booking);
+    myTrekMobileRef.current?.changeState(booking);
+    offLoadingRef.current?.changeState(booking);
+    fitnessRef.current?.changeState(booking);
+    setCancelDialogueData(booking.bookingId, booking);
   };
 
-  const getAndSetTrekContents = async (bookingsData, userEmail) => {
+  const getAndSetTrekContents = async (bookingsData, userEmail,bookingId) => {
     const bookTrekContents = [];
     const client = Client();
 
@@ -203,13 +204,13 @@ const WelcomeProfile = () => {
         backPackOffloadingTax: book.backPackOffloadingTax
       });
     }
-    setStates(bookTrekContents);
+    setStates(bookTrekContents,bookingId);
   };
 
   const deriveAndSetOffLoadingTabVisible = activeBooking => {
-    if (activeBooking.bookingState === "COMPLETED") {
+    if (activeBooking?.bookingState === "COMPLETED") {
       setShowOffLoadingTab(true);
-      console.log(activeBooking.bookingState);
+      console.log(activeBooking?.bookingState);
     } else {
       setShowOffLoadingTab(false);
     }
@@ -286,7 +287,12 @@ const WelcomeProfile = () => {
 
   const refresh = (bookingId, email) => {
     //fetchAndBindUserBookings(email);
-    //toggleTrekDisplay(bookingId);
+
+    getdashBoardUserBooking(email).then(bookingsData => {
+      if (bookingsData.length > 0) {
+        getAndSetTrekContents(bookingsData, email,bookingId);
+      }
+      });
   };
 
   const OffLoadingPayment = data => {
@@ -633,7 +639,7 @@ const WelcomeProfile = () => {
                                   title="Fitness approval"
                                 >
                                    { upComingTrek?.bookingState ==="COMPLETED" && (
-                                  <FitnessApproval ref={fitnessRef} data={trekPageData} />
+                                  <FitnessApproval ref={fitnessRef}  {...callBackProps} data={trekPageData} />
                                    )}
                                 </Tab>
                               </Tabs>

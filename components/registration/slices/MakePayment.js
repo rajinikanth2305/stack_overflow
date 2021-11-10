@@ -273,7 +273,7 @@ const MakePayment = forwardRef((props, ref) => {
       doSavePayments(stateData.data.bookingId, voucherList)
         .then(res => {
           /// redirect to booking confirmation page
-          router.push(`/user-booking/thank-you?booking_id=${stateData.data.bookingId}&status=SUCCESS`);
+          router.push(`/user-dashboard/thank-you?booking_id=${stateData.data.bookingId}&status=SUCCESS`);
         })
         .catch(res => {
           if (res.response?.data?.message) {
