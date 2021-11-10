@@ -101,9 +101,7 @@ const FitnessApproval = forwardRef((props, ref) => {
       //// Get Trek locations
       const trekId = data.trekId;
       const arr = Array.from(
-        new Array(data?.userTrekBookingParticipants?.length),
-        (x, i) => i
-      );
+        new Array(data?.userTrekBookingParticipants?.length),(x, i) => i);
       setParticipantData(data);
       setIndexes(arr);
       setCounter(arr.length);

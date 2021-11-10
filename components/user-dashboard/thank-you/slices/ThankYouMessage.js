@@ -19,7 +19,9 @@ const UserMP = () => {
     const bookingId = bookingIdKeyVal.split("=")[1];
 
     let statusKeyVal = pageUrl[1]; //booking-id
-    const bookingStatus = statusKeyVal.split("=")[1];
+    let bookingStatus = statusKeyVal.split("=")[1];
+    bookingStatus=bookingStatus.replace("#state","");
+
     console.log(bookingStatus);
     const valStatus=bookingStatus.toLowerCase()==='success'? true:false;
     setStatus(valStatus);
