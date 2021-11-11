@@ -623,12 +623,12 @@ const WelcomeProfile = () => {
                                 </Tab>
 
                                 <Tab eventKey="offloading" title="Offloading">
-                                { upComingTrek?.bookingState ==="COMPLETED" && (
+                               
                                   <Offloading
                                     ref={offLoadingRef}
                                     {...callBackProps}
                                   />
-                                )}
+                               
                                 </Tab>
 
                                 <Tab eventKey="trekfaqs" title="Trek Faqs">
@@ -638,9 +638,9 @@ const WelcomeProfile = () => {
                                   eventKey="fitnessapproval"
                                   title="Fitness approval"
                                 >
-                                   { upComingTrek?.bookingState ==="COMPLETED" && (
+                                
                                   <FitnessApproval ref={fitnessRef}  {...callBackProps} data={trekPageData} />
-                                   )}
+                                   
                                 </Tab>
                               </Tabs>
                             )}

@@ -64,10 +64,11 @@ const Offloading = forwardRef((props, ref) => {
   }
 
    const initData = (data) => {
-     //console.log(data);
-     if(!deriveBookingState(data))
-        return;
+     console.log(data);
 
+     if(deriveBookingState(data)==true) {
+
+        console.log("Called here");
      getUserVoucher(data.email).then(vouchers => {
          // console.log(data.email);
          // console.log(vouchers);
@@ -115,6 +116,11 @@ const Offloading = forwardRef((props, ref) => {
           setRender(true);
    
         });
+      }
+      else {
+        setIndexes([]);
+          setCounter(0);
+      }
    }
 
    const localgetVoucher = async userEmail => {

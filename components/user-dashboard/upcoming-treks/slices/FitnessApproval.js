@@ -26,7 +26,7 @@ const FitnessApproval = forwardRef((props, ref) => {
   const [counter, setCounter] = React.useState(0);
   const [participantData, setParticipantData] = React.useState([]);
   const [render, setRender] = useState(false);
-
+  const [showContents, setShowContents] = useState(false);
   const faqData = props.data.data.body.find(
     x => x.slice_type === "faq_about_trek"
   );
@@ -96,6 +96,17 @@ const FitnessApproval = forwardRef((props, ref) => {
   );
   };
 
+  const deriveBookingState=(activeBooking) => {
+    
+    if(activeBooking.bookingState==="COMPLETED") {
+      setShowContents(true);
+      return true;
+    }
+    else {
+      setShowContents(false);
+      return false;
+    }
+  }
 
   // The component instance will be extended
   // with whatever you return from the callback passed
@@ -103,6 +114,11 @@ const FitnessApproval = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     async changeState(data) {
       //// Get Trek locations
+
+      if(!deriveBookingState(data))
+        return;
+
+
       const trekId = data.trekId;
       const arr = Array.from(
         new Array(data?.userTrekBookingParticipants?.length),(x, i) => i);
@@ -146,7 +162,7 @@ const FitnessApproval = forwardRef((props, ref) => {
   return (
     <>
      <Toast ref={toast} />
-    {render && (
+     {showContents ===true ? 
       <div>
       <div>
         <div>
@@ -239,7 +255,9 @@ const FitnessApproval = forwardRef((props, ref) => {
         </Accordion>
       </div>
       </div>
-    )}
+    
+    : <p className="p-text-4 mb-0">Fitness approval action will enable after the trek-payment</p>
+  }
     </>
   );
 });
