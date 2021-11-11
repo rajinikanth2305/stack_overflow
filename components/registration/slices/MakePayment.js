@@ -411,14 +411,24 @@ const MakePayment = forwardRef((props, ref) => {
                       const sdata = JSON.parse(JSON.stringify(stateData.data));
                       const data = sdata?.trekUsers[index];
                       // console.log(JSON.stringify(sdata));
-                      const name =
-                        data?.email === bookingInformation.email
+                      const name = data?.email === bookingInformation.email
                           ? data?.firstName + " (You) "
                           : data?.firstName;
                       //const isPrimaryUser=(data.email===bookingDate.email);
-
                       const vouchers = [];
-                      if (sdata.isOwnerActing === true) {
+                      
+                      if (sdata?.voucherDetails?.length > 0) {
+                        sdata?.voucherDetails?.filter(x => x.userName === data?.email)
+                          .map(v => {
+                            vouchers.push({
+                              title: v.title + "-" + v.amountAvailable,
+                              id: v.id
+                            });
+                          });
+                      }
+
+                     
+                     /* if (sdata.isOwnerActing === true) {
                         if (sdata?.voucherDetails?.length > 0) {
                           sdata?.voucherDetails
                             .filter(x => x.userName === data?.email)
@@ -443,7 +453,8 @@ const MakePayment = forwardRef((props, ref) => {
                               });
                             });
                         }
-                      }
+                      }*/
+
                       return (
                         <tr>
                           <td className="text-capitalize">
