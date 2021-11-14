@@ -37,18 +37,18 @@ const styles = StyleSheet.create({
     width: '20%',
   },
   voucherTableLabel: {
-    fontSize: '12px',
+    fontSize: '10px',
     backgroundColor: '#f8c301',
     padding: '10px',
   },
   voucherTableValue: {
-    fontSize: '12px',
+    fontSize: '10px',
     padding: '10px',
     borderBottom: '1px solid #d3d3d3',
     borderLeft: '1px solid #d3d3d3',
   },
   voucherTableValueLast: {
-    fontSize: '12px',
+    fontSize: '10px',
     padding: '10px',
     borderLeft: '1px solid #d3d3d3',
     borderRight: '1px solid #d3d3d3',
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
      <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.section}>
-          <Image src="assets/layout/images/logo.png" style={{ width: '30%' }} />
+          <Image src="/IH_Logo_in_PNG@2x.png" style={{ width: '20%' }} />
           <Text style={styles.header1}>Gift Voucher for {voucher && voucher.voucher.title}</Text>
           <Text style={styles.header2}>Please find the Voucher details below.</Text>
         </View>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
               <Text style={styles.voucherTableLabel}>Voucher Code</Text>
             </View>
             <View>
-              <Text style={styles.voucherTableValue}>{voucher  && voucher.voucher.title}</Text>
+              <Text style={styles.voucherTableValue}>{voucher && voucher.voucher.title === null ? '-' : voucher.voucher.title}</Text>
             </View>
           </View>
           <View style={styles.voucherColAll}>

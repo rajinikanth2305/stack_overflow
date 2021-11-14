@@ -1472,6 +1472,10 @@ export const customStyles = css.global`
     background: rgb(255, 193, 0);
   }
 
+  .user-dashboard-tab > .nav {
+    flex-wrap: nowrap;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
