@@ -350,9 +350,13 @@ const WelcomeProfile = () => {
   };
 
   const onCancelButtonClick = () => {
-    console.log(upComingTrek);
+    setShow(true);
     const batchId=upComingTrek?.batchId;
-    router.push(`/user-dashboard/cancellation-trek?batchId=${batchId}`);
+    //router.push(`/user-dashboard/cancellation-trek?batchId=${batchId}`);
+  };
+
+  const modalStyles = {
+    overlay: {zIndex: 1000}
   };
 
   return (
@@ -1029,6 +1033,8 @@ const WelcomeProfile = () => {
             onHide={handleClose}
             animation={false}
             centered
+            style={modalStyles}
+
           >
             <Modal.Header closeButton>
               <Modal.Title>Cancel Trek Booking</Modal.Title>

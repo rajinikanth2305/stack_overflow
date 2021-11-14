@@ -204,14 +204,14 @@ const FitnessApproval = forwardRef((props, ref) => {
                             loggedUser && pdata.participantDocuments.length>0 ? (
                                  <div>
                                  { 
-                                  pdata.participantDocuments.map(doc=> {
+                                  pdata?.participantDocuments?.map(doc=> {
                                       return(
                                         <a href="javascript:;" onClick={e => downloadFitnessDocument(`${pdata.participantId}`,`${doc.fileName}`)}>{doc.fileName}</a>
                                       )
                                 })
                                 }
                                 </div>
-                               ): pdata.participantDocuments.length>0 && (
+                               ): pdata?.participantDocuments?.length>0 && (
                                   "Fitness report uploaded"
                                )
                           }
