@@ -237,8 +237,8 @@ export const saveDraftBooking =  async (bookingStage,data,stepName='Default')  =
     "bookingStage": bookingStage
   }
    console.log(JSON.stringify(payload));
-   return axios.put(url,payload,{ headers:  header })
-          .then((res) => res.data);
+   return axios.put(url,payload,{ headers:  header });
+        
 };
 
 export const makePayment =  async (data)  => {
