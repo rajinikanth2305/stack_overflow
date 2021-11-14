@@ -1034,7 +1034,7 @@ const WelcomeProfile = () => {
             animation={false}
             centered
             style={modalStyles}
-
+            className="c-modal"
           >
             <Modal.Header closeButton>
               <Modal.Title>Cancel Trek Booking</Modal.Title>

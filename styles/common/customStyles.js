@@ -1340,6 +1340,14 @@ export const customStyles = css.global`
     height: 126px;
   }
 
+  .c-modal > div > .modal-content {
+    background-color: #ffffff;
+  }
+
+  .c-modal > div > .modal-content > .modal-body {
+    padding: 15px;
+  }
+
   .modal-content {
     background-color: transparent;
     border: 0px none;
