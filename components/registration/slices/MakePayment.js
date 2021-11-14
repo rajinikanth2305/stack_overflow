@@ -268,7 +268,9 @@ const MakePayment = forwardRef((props, ref) => {
 
     if (computeFields.computations.youpay > 0) {
       /// call the paymentgateway
+      console.log("computeFields.computations.youpay > 0");
       processPayments(voucherList, stateData);
+
     } else {
       doSavePayments(stateData.data.bookingId, voucherList)
         .then(res => {
@@ -288,14 +290,19 @@ const MakePayment = forwardRef((props, ref) => {
   };
 
   const processPayments = (voucherList, stateData) => {
+   
     doSavePayments(stateData.data.bookingId, voucherList)
       .then(res => {
-        window.jQuery.pnCheckout(res);
-        if (res.features.enableNewWindowFlow) {
+        console.log(res.data);
+        console.log("After payment post respone" + res.data.features.enableNewWindowFlow);
+        window.jQuery.pnCheckout(res.data);
+
+        if (res.data.features.enableNewWindowFlow) {
           pnCheckoutShared.openNewWindow();
         }
       })
       .catch(res => {
+        console.log(res);
         if (res.response?.data?.message) {
           console.log(res.response.data?.message);
         }

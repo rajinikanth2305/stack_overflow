@@ -261,9 +261,8 @@ export const doSavePayments =  async (bookingId,data)  => {
   const header=await getTokenHeader();
   const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
   let url = `${userApi}/booking-payments/${bookingId}/do-payments`;  
-  return axios.post(url,data,{ headers:  header })
-         .then((res) => res.data);
-};
+  return axios.post(url,data,{ headers:  header });
+}
 
 export const doSaveOffloadingPayments =  async (bookingId,data)  => {
   console.log(JSON.stringify(bookingId));
