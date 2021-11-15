@@ -3,7 +3,6 @@ import { Document, Page, Text, View, StyleSheet, PDFViewer, PDFDownloadLink, Ima
 import moment from "moment";
 
 const VoucherTemplate = (voucher) => {
-console.log(voucher);
 
 const styles = StyleSheet.create({
   page: {
