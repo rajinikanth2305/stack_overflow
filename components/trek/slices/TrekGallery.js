@@ -50,9 +50,9 @@ const TrekGallery = ({ slice }) => {
     return (
       <>
         <div className="discovery_trek_gallery">
-          {data.discovery_trek_gallery.url && (
+          {data?.discovery_trek_gallery?.url && (
             <Image
-              src={data.discovery_trek_gallery.url}
+              src={data?.discovery_trek_gallery?.url}
               layout="fill"
               objectFit="cover"
               objectPosition="bottom left"
@@ -64,15 +64,15 @@ const TrekGallery = ({ slice }) => {
             <div className="row">
               <div className="col-12 col-lg-6 col-md-12">
                 <p className="text-white mtw p-text-2">
-                  Photo story: {data.discovery_trek_gallery_story[0].text}
+                  Photo story: {data?.discovery_trek_gallery_story[0]?.text}
                 </p>
                 <p className="text-white mtw p-text-2">
-                  Picture by: {data.discovery_trek_gallery_pictured_by[0].text}
+                  Picture by: {data?.discovery_trek_gallery_pictured_by[0]?.text}
                 </p>
               </div>
               <div className="col-12 col-lg-6 col-md-12 d-m-none">
                 <h2 className="text-white title-h2 border-0 px-5 mpy-0">
-                  {data.discovery_trek_gallery_title[0].text}
+                  {data?.discovery_trek_gallery_title[0]?.text}
                 </h2>
               </div>
             </div>

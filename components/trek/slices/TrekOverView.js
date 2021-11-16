@@ -56,9 +56,9 @@ const TrekOverView = ({ slice, data }) => {
       <>
         <div className="mt-2 mb-4">
           <div className="trek_summary_icon">
-            {data.trek_summary_icon.url && (
+            {data?.trek_summary_icon?.url && (
               <Image
-                src={data.trek_summary_icon.url}
+                src={data?.trek_summary_icon?.url}
                 layout="fill"
                 objectFit="contain"
                 objectPosition="left left"
@@ -66,10 +66,10 @@ const TrekOverView = ({ slice, data }) => {
             )}
           </div>
           <p className="m-0 trek_summary_title">
-            {data.trek_summary_title[0].text}
+            {data?.trek_summary_title[0]?.text}
           </p>
           <p className="m-0 trek_summary_desc">
-            {data.trek_summary_desc[0].text}
+            {data?.trek_summary_desc[0]?.text}
           </p>
         </div>
       </>
