@@ -6,7 +6,7 @@ import { quoteStyles } from 'styles'
  * Quote slice component
  */
 const Quote = ({ slice }) => (
-  <div className="post-part single container">
+  <div className="post-part single">
     <blockquote className="block-quotation">
       {RichText.asText(slice.primary.quote)}
     </blockquote>

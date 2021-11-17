@@ -10,7 +10,7 @@ const DefaultImage = ({ slice }) => {
   const caption = slice.primary.caption
 
   return (
-    <div className="post-part single container">
+    <div className="post-part single">
       <div className={`block-img ${slice.slice_label}`}>
         <img src={imageUrl} alt={imageAlt} />
         <Caption caption={caption} />
