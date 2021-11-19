@@ -218,6 +218,19 @@ export const customStyles = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .p-text-3-fg-book-gray {
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: capitalize;
+    line-height: 24px;
+    text-align: left;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(112,112,112,1);
+  }
+
   .p-text-3 {
     line-height: 16px;
     text-align: left;
@@ -1540,6 +1553,17 @@ export const customStyles = css.global`
   .bg_overlay_sustainable {
     height: 300px;
     background: rgb(0, 0, 0);
+  }
+
+  .testimonial-img {
+    position: relative;
+    height: 100px;
+    width: 100px;
+  }
+
+  .testimonial-img > div > img {
+    border-radius: 50%;
+    border: 3px solid #ffc100 !important;
   }
 
   @media only screen and (max-width: 660px) {

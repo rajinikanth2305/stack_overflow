@@ -6,7 +6,8 @@ import {
   WeekendTrek,
   HowDoWeDo,
   DefiningStandards,
-  FaqFamily
+  FaqFamily,
+  Testimonoials
 } from "./slices";
 
 /**
@@ -30,6 +31,8 @@ const FamilyTrekSliceZone = ({ sliceZone }) =>
         return <DefiningStandards slice={slice} key={`slice-${index}`} />;
       case "fam_faq":
         return <FaqFamily slice={slice} key={`slice-${index}`} />;
+      case "fam_testimonials":
+        return <Testimonoials slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }
