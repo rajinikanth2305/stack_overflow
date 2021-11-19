@@ -1509,7 +1509,7 @@ export const customStyles = css.global`
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
-    background: rgba(255,193,0,1);
+    background: rgba(255, 193, 0, 1);
     margin-right: 15px;
   }
 
@@ -1522,6 +1522,24 @@ export const customStyles = css.global`
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
+  }
+
+  .sustainable_img {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    opacity: 0.7;
+  }
+
+  .sustainable_box {
+    padding: 30px 50px;
+    position: relative;
+    margin-top: -290px;
+  }
+
+  .bg_overlay_sustainable {
+    height: 300px;
+    background: rgb(0, 0, 0);
   }
 
   @media only screen and (max-width: 660px) {

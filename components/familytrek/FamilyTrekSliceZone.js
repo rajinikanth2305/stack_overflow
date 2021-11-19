@@ -4,7 +4,9 @@ import {
   TrekExp,
   MultiDayTrekComponent,
   WeekendTrek,
-  HowDoWeDo
+  HowDoWeDo,
+  DefiningStandards,
+  FaqFamily
 } from "./slices";
 
 /**
@@ -22,8 +24,12 @@ const FamilyTrekSliceZone = ({ sliceZone }) =>
         return <MultiDayTrekComponent slice={slice} key={`slice-${index}`} />;
       case "weekend_treks":
         return <WeekendTrek slice={slice} key={`slice-${index}`} />;
-        case "how_do_we_do_it":
+      case "how_do_we_do_it":
         return <HowDoWeDo slice={slice} key={`slice-${index}`} />;
+      case "defining_safety":
+        return <DefiningStandards slice={slice} key={`slice-${index}`} />;
+      case "fam_faq":
+        return <FaqFamily slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }
