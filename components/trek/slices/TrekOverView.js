@@ -92,9 +92,10 @@ const TrekOverView = ({ slice, data }) => {
                 <p className="p-text-1 mt-3 mb-2">
                   <b>{RichText.asText(heading1Subtitle)}</b>
                 </p>
-                <p className="p-text-2 pb-4 mpt-0 mpb-0">
-                  {RichText.asText(heading2)}
-                </p>
+                {/* <p className="p-text-2 pb-4 mpt-0 mpb-0"> */}
+                  {/* {RichText.asText(heading2)} */}
+                  <div className="p-text-2">{RichText.render(heading2)}</div>
+                {/* </p> */}
               </div>
               {/* <div>
                 <Slider {...settings}>{trekSummaryIcon}</Slider>
