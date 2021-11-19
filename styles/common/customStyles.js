@@ -245,7 +245,7 @@ export const customStyles = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    color: rgba(255,193,0,1);
+    color: rgba(255, 193, 0, 1);
   }
 
   .p-text-3-blue {
@@ -1484,6 +1484,46 @@ export const customStyles = css.global`
     flex-wrap: nowrap;
   }
 
+  .bg-blue {
+    background: rgba(0, 40, 148, 1);
+  }
+
+  .tab-content {
+    background: #ffffff;
+    padding: 30px;
+  }
+
+  .fam-tab-img {
+    position: relative;
+    width: 450px;
+    height: 300px;
+    left: 12%;
+  }
+
+  .fam-tabs > .nav-item {
+    width: 185px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    background: rgba(255,193,0,1);
+    margin-right: 15px;
+  }
+
+  .fam-tabs > .nav-link.active {
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -1752,6 +1792,19 @@ export const customStyles = css.global`
       position: relative;
       width: 22px;
       height: 22px;
+    }
+
+    .ml-100 {
+      margin-left: 0;
+    }
+
+    .col-lg-3.col-md-12.pr-5p.pt-4 {
+      display: none;
+    }
+
+    .ar_right_side_imgs,
+    .ar_right_side_imgs > img {
+      height: 160px;
     }
   }
 

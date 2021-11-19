@@ -3,7 +3,8 @@ import {
   FamilyTrekBanner,
   TrekExp,
   MultiDayTrekComponent,
-  WeekendTrek
+  WeekendTrek,
+  HowDoWeDo
 } from "./slices";
 
 /**
@@ -21,6 +22,8 @@ const FamilyTrekSliceZone = ({ sliceZone }) =>
         return <MultiDayTrekComponent slice={slice} key={`slice-${index}`} />;
       case "weekend_treks":
         return <WeekendTrek slice={slice} key={`slice-${index}`} />;
+        case "how_do_we_do_it":
+        return <HowDoWeDo slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }
