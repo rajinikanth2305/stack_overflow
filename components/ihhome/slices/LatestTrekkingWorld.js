@@ -53,13 +53,6 @@ const LatestTrekkingWorld = ({ slice }) => {
   };
 
   const trekkingWorldImage = trekkingWorldImageArray.map(function(data, i) {
-    const trekking_world_desc = data.trekking_world_desc.map(function(desc, j) {
-      return (
-        <p className="p-text-4" key={j}>
-          {desc.text}
-        </p>
-      );
-    });
     return (
       <div key={`latesttrekking` + i} className="py-3 mx-2 mm-0 mp-0">
         <div className="row d-flex">
@@ -68,7 +61,7 @@ const LatestTrekkingWorld = ({ slice }) => {
               <h3 className="title-diplay-3-ltw mpt-3-ltw">
                 {data.trekking_world_heading[0].text}
               </h3>
-              {trekking_world_desc}
+              <div className="p-text-4 pr-cus-2">{RichText.render(data.trekking_world_desc)}</div>
             </div>
           </div>
           <div className="col-lg-6 col-md-12">

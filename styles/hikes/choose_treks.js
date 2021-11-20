@@ -325,6 +325,10 @@ export const ChooseTreks = css.global`
     color: rgb(255,193,0);
   }
 
+  .pr-cus-2 {
+    padding-right: 15px;
+  }
+
   @media only screen and (max-width: 600px) {
     .btn-ih-green {
       font-size: 14px;

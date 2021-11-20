@@ -109,6 +109,12 @@ export const founderStyles = css.global`
     font-weight: bold;
   }
 
+  .fl-style > p:nth-child(1)::first-letter {
+    font-size: 230% !important;
+    font-weight: bold;
+    padding-right: 3px;
+  }
+
   @media only screen and (max-width: 600px) {
     .title-h2 {
       line-height: 40px;

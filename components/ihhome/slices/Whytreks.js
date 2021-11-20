@@ -5,6 +5,8 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { linkResolver } from "prismic-configuration";
+import Link from "next/link";
 /**
  * WhyTrek Slice Components
  */
@@ -12,17 +14,15 @@ const WhyTrek = ({ slice }) => {
   const heading = slice.primary.heading;
   const pillarImagesArray = slice.items;
 
-  const pillarImages = pillarImagesArray.map((data, i) => {
-    const pillarDesc = data.pillar_desc.map((pd, j) => {
-      return (
-        <p className="p-text-3-wt" key={`pd-${j}`}>
-          {pd.text}
-        </p>
-      );
-    });
+  const pillarImages = pillarImagesArray?.map((data, i) => {
+    let url;
+    const slugUrl = data?.article_link?.slug;
+    if (slugUrl) {
+      url = linkResolver(data?.article_link);
+    }
     return (
       <div key={`pillar-${i}`}>
-        <div className="pillar-card card card-shadow cursor-pointer">
+        <div className="pillar-card card card-shadow">
           <div className="card-body">
             <div>
               <div className="d-flex align-items-center">
@@ -39,9 +39,15 @@ const WhyTrek = ({ slice }) => {
                   <p className="p-text-1">{data.pillar_title[0].text}</p>
                 </div>
               </div>
-              <div>{pillarDesc}</div>
+              <div>
+                <div className="p-text-3-wt">
+                  {RichText.render(data.pillar_desc)}
+                </div>
+              </div>
               <div className="text-center pt-2 pb-3">
-                <button className="btn btn-ih-green">Read more</button>
+                <Link href={url}>
+                  <button className="btn btn-ih-green">Read more</button>
+                </Link>
               </div>
             </div>
           </div>
@@ -92,7 +98,9 @@ const WhyTrek = ({ slice }) => {
           <div className="why_trek_sec">
             <div className="row">
               <div className="col-md-12">
-                <h2 className="title-h2 mb-4 pb-08">{RichText.asText(heading)}</h2>
+                <h2 className="title-h2 mb-4 pb-08">
+                  {RichText.asText(heading)}
+                </h2>
               </div>
               <div>
                 <Slider {...settings}>{pillarImages}</Slider>
