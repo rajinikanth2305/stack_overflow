@@ -80,4 +80,7 @@ export const postStyles = css.global`
   .post-part ol li {
     list-style-type: decimal;
   }
+  .img-ctrl > .block-img > img {
+    width: 100% !important;
+  }
 `;

@@ -99,6 +99,9 @@ export const imageCaptionStyles = css.global`
     font-size: 14px;
     color: #949494;
   }
+  .img-ctrl > .block-img > img {
+    width: 100% !important;
+  }
 
   /* Media Queries */
   @media (max-width: 767px) {

@@ -7,7 +7,7 @@ import { customLink } from 'utils/prismicHelpers'
  * Text slice component
  */
 const Text = ({ slice }) => (
-  <div className="post-part single">
+  <div className="post-part single img-ctrl">
     <RichText
       render={slice.primary.text}
       linkResolver={linkResolver}
