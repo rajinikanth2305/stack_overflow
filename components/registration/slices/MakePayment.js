@@ -325,7 +325,7 @@ const MakePayment = forwardRef((props, ref) => {
       ///if (u.voucherAmount > 0) {
         vouchers.push({
           participantId: u.participantsId,
-          voucherId: u.voucherId,
+          voucherId: (u.voucherId=="" ? null : u.voucherId) ,
           voucherAmount: u.voucherAmount
         });
       //}
