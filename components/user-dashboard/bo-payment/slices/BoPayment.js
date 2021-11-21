@@ -246,7 +246,7 @@ const buildVouchers = data => {
    // if (u.voucherAmount > 0) {
       vouchers.push({
         participantId:u.id,
-        voucherId: (u.voucherId=="" ? null : u.voucherId) ,
+        voucherId: (u.voucherId==="" ? null : u.voucherId) ,
         voucherAmount: u.voucherAmount
       });
    // }
