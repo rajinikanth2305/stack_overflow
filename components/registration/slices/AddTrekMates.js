@@ -293,7 +293,7 @@ const renderFooter = (name) => {
     try {
       responseData = await saveDraft(stateData.data);
       console.log(responseData);
-      if(responseData.bookingState==="WAITING_LIST") {
+      if(responseData.data.bookingState==="WAITING_LIST") {
         /// DISABLE THE PAYMENT TAB
         // props.onNextTabEvent("makepayment",WAITING_LIST);
         onDialogShow();
