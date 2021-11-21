@@ -65,6 +65,9 @@ const BoPayment = (offSelectedData) => {
   }, []);
 
   const initData = () => {
+
+    console.log(JSON.stringify(offSelectedData.data.participants));
+
         const sdata = offSelectedData.data.participants;
          const arr = Array.from(
            new Array(sdata?.length),
@@ -83,10 +86,11 @@ const BoPayment = (offSelectedData) => {
 
    const sdata =  offSelectedData.data.participants;
    const user = sdata.find(u => u.id === id);
+    console.log(user?.optedVoucherId);
 
-    if (user.optedVoucherId > 0) {
-     const selectedVoucher = user.voucher.find(vid => vid.id == user.optedVoucherId);
-     const youPay = computeTotal(sdata);//computeWithExcludedVoucherId(user.optedVoucherId,sdata);
+    if (user?.optedVoucherId > 0) {
+     const selectedVoucher = offSelectedData?.data?.userVouchers?.find(vid => vid.id === user.optedVoucherId);
+     const youPay = user.youPay;//computeTotal(sdata);//computeWithExcludedVoucherId(user.optedVoucherId,sdata);
      //console.log(youPay);
      if (youPay > 0) {
        const currentAvailableAmount = selectedVoucher.amountAvailable;
@@ -98,7 +102,7 @@ const BoPayment = (offSelectedData) => {
         // const actRowPay=rowPay-amountToDeductInVocuher;
          sdata.find(u => u.id === id).voucherId =user.optedVoucherId;
          sdata.find(u => u.id === id).voucherAmount = amountToDeductInVocuher;
-
+         sdata.find(u => u.id === id).youPay = Number(youPay-amountToDeductInVocuher);
          console.log(amountToDeductInVocuher);
         // sdata.find(u => u.id === id).youPay = 
                         // Math.abs(Number(actRowPay));
@@ -106,7 +110,7 @@ const BoPayment = (offSelectedData) => {
      }
      console.log(sdata);
      
-     //computeTotal(sdata);
+     computeTotal(sdata);
      const arr = Array.from(
        new Array(sdata.length),
        (x, i) => i
@@ -115,7 +119,7 @@ const BoPayment = (offSelectedData) => {
      setIndexes(arr);
      setCounter(arr.length);
      setRender(true);
-    // await dispatch(addOrUpdateState(sdata));
+     //await dispatch(addOrUpdateState(sdata));
      //computeTotal(sdata.trekUsers);
    }
  };
@@ -133,6 +137,7 @@ const BoPayment = (offSelectedData) => {
        summary: `'The selected Voucher is already applied'`,
        detail: "Make payment"
      });
+
      /// Resetting the old selected voucher values;
      sdata.find(u => u.id === id).optedVoucherId = "";
      sdata.find(u => u.id === id).voucherAmount = 0;
@@ -196,7 +201,7 @@ const BoPayment = (offSelectedData) => {
 };
 
 const doPayment = () => {
-  const voucherList = buildVouchers( offSelectedData.data.participants);
+  const voucherList =  buildVouchers( offSelectedData.data.participants);
   console.log(JSON.stringify(voucherList));
   
   if (computeFields.computations.youpay > 0) {
@@ -299,15 +304,18 @@ const buildVouchers = data => {
                        
                       const fieldName = `voucher[${index}]`;
                       const sdata = offSelectedData.data.participants[index];
+                    
                       const lvouchers = [];
-                      if (sdata?.voucher?.length > 0) {
-                        sdata?.voucher.map(v => {
-                          lvouchers.push({
-                            title: v.title + "-" + v.amountAvailable,
-                            id: v.id
+                      if (offSelectedData?.data.userVouchers.length > 0) {
+                        offSelectedData?.data.userVouchers?.filter(x => x.userName?.toLowerCase() === sdata?.email?.toLowerCase())
+                          .map(v => {
+                            lvouchers.push({
+                              title: v.title + "-" + v.amountAvailable,
+                              id: v.id
+                            });
                           });
-                        });
                       }
+
                       return (
                         <>
                           <tr key={sdata.id}>

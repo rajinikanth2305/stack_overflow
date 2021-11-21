@@ -1,10 +1,58 @@
-import React from "react";
 import { RichText } from "prismic-reactjs";
+import React, {
+  useState,
+  forwardRef,
+  useImperativeHandle,
+  useRef
+} from "react";
 import { customStyles } from "styles";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import {
+  getUserVoucher
+} from "../../../../services/queries";
+import { Dropdown } from "primereact/dropdown";
+import { useForm, Controller } from "react-hook-form";
+import Link from "next/link";
+import { Toast } from "primereact/toast";
+import { Checkbox  } from 'primereact/checkbox';
 
-const RentGear = () => {
+const RentGear  = forwardRef((props, ref) => {
+
+  const [showOffRentContents, setShowRentContents] = useState(false);
+
+  // The component instance will be extended
+  // with whatever you return from the callback passed
+  // as the second argument
+  useImperativeHandle(ref, () => ({
+     changeState(data) {
+      initData(data);
+     }
+   }));
+
+
+   const initData = (data) => {
+    console.log(data);
+    if(deriveBookingState(data)==true) {
+       console.log("Called here");
+  }
+}
+
+   const deriveBookingState=(activeBooking) => {
+    
+    if(activeBooking.bookingState==="COMPLETED") {
+      setShowRentContents(true);
+      return true;
+    }
+    else {
+      setShowRentContents(false);
+      return false;
+    }
+  }
+
   return (
     <>
+       {showOffRentContents ===true ? 
+       <div>
       <div>
         <h5 className="p-text-3-fg b-left-blue-3px mb-3">rent gear</h5>
         <p className="col-md-8 p-text-4">
@@ -102,8 +150,11 @@ const RentGear = () => {
           </div>
         </div>
       </div>
+      </div>
+      : <p className="p-text-4 mb-0">Rent a Gear action will enable after the trek-payment</p>
+       }
     </>
   );
-};
+});
 
 export default RentGear;

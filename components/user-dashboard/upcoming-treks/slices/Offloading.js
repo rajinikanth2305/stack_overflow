@@ -8,7 +8,7 @@ import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import {
-  getUserVoucher
+  getUserVoucher,getUsersVoucherByBookingId
 } from "../../../../services/queries";
 import { Dropdown } from "primereact/dropdown";
 import { useForm, Controller } from "react-hook-form";
@@ -63,17 +63,21 @@ const Offloading = forwardRef((props, ref) => {
     }
   }
 
-   const initData = (data) => {
+   const initData = async (data) => {
      console.log(data);
 
      if(deriveBookingState(data)==true) {
 
         console.log("Called here");
-     getUserVoucher(data.email).then(vouchers => {
-         // console.log(data.email);
-         // console.log(vouchers);
-          setVouchers(vouchers);
-          setHeaderData(data);
+
+    let vouchers = [];
+    vouchers = await getUsersVoucherByBookingId(data.bookingId);
+    if (vouchers?.length > 0) {
+      vouchers = transFormVoucherPayload(vouchers);
+      setVouchers(vouchers);
+    }
+
+    setHeaderData(data);
 
           const fee=data.backPackOffloadingDays*data.backPackOffloadingCostPerDay;
           const tax=fee * (data.backPackOffloadingCostPerDay/100);//backPackOffloadingTax
@@ -91,14 +95,15 @@ const Offloading = forwardRef((props, ref) => {
                    " (You) "
                  : pdata?.userDetailsForDisplay.firstName +
                    pdata?.userDetailsForDisplay.lastName,
-               voucher: vouchers,
+               //voucher: vouchers,
                offloadingFee:offLoadingFee ,
                youPay: offLoadingFee,
                offloadingStatus: "",
                optedVoucherId:'',
                voucherAmount:0,
                voucherId:'',
-               selected:false
+               selected:false,
+               email:pdata?.userDetailsForDisplay.email
              }
           );
          });
@@ -114,8 +119,6 @@ const Offloading = forwardRef((props, ref) => {
           setIndexes(arr);
           setCounter(arr.length);
           setRender(true);
-   
-        });
       }
       else {
         setIndexes([]);
@@ -123,6 +126,30 @@ const Offloading = forwardRef((props, ref) => {
       }
    }
 
+   const transFormVoucherPayload = vouchers => {
+    const voucherlist = [];
+    vouchers.map(v => {
+      voucherlist.push({
+        id: v.id,
+        userId: v.userId,
+        title: v.title,
+        amount: v.amount,
+        validTill: v.validTill,
+        message: v.message,
+        amountAvailed: v.amountAvailed,
+        voucherTypeId: v.voucherTypeId,
+        sendMailer: v.sendMailer,
+        voucherStatus: v.voucherStatus,
+        voucherType: v.voucherType,
+        userName: v.userName,
+        userEmail: v.userEmail,
+        amountAvailable: v.amountAvailable,
+        usedVocuherAmount: 0,
+        appliedDetails: []
+      });
+    });
+    return voucherlist;
+  };
    const localgetVoucher = async userEmail => {
     let dt = [];
     const data1 = await getUserVoucher(userEmail)
@@ -138,10 +165,10 @@ const Offloading = forwardRef((props, ref) => {
   };
 
   const onVoucherApply =  (id, index) => {
-    const sdata = offLoadings
+    const sdata = offLoadings;
     const user = sdata.find(u => u.id === id);
      if (user.optedVoucherId > 0) {
-      const selectedVoucher = user.voucher.find(vid => vid.id == user.optedVoucherId);
+      const selectedVoucher = vouchers.find(vid => vid.id == user.optedVoucherId);
       const youPay = user.youPay;//computeTotal(sdata.trekUsers);
       //console.log(youPay);
       if (youPay > 0) {
@@ -154,6 +181,8 @@ const Offloading = forwardRef((props, ref) => {
           sdata.find(u => u.id === id).voucherId =user.optedVoucherId;
           sdata.find(u => u.id === id).voucherAmount = amountToDeductInVocuher;
           sdata.find(u => u.id === id).youPay = Number(youPay-amountToDeductInVocuher);
+
+          console.log(amountToDeductInVocuher);
         }
       }
      // console.log(JSON.stringify(sdata.find(u => u.id === id)));
@@ -208,12 +237,13 @@ const Offloading = forwardRef((props, ref) => {
     const selectedList=offLoadings.filter(u => u.selected === true);
     selectedList.map(p=> {
      // p.optedVoucherId='',
-      p.voucherId='',
-      p.voucherAmount=0
+     // p.voucherId='',
+     // p.voucherAmount=0
     })
     const dt= {
          header:headerData,
-         participants:selectedList
+         participants:selectedList,
+         userVouchers:vouchers
       };
     props.onOffLoadingPayment(dt);
   };
@@ -264,14 +294,17 @@ const Offloading = forwardRef((props, ref) => {
                       const fieldName = `voucher[${index}]`;
                       const sdata = offLoadings[index];
                       const lvouchers = [];
-                      if (sdata?.voucher?.length > 0) {
-                        sdata?.voucher.map(v => {
-                          lvouchers.push({
-                            title: v.title + "-" + v.amountAvailable,
-                            id: v.id
+
+                      if (vouchers?.length > 0) {
+                        vouchers?.filter(x => x.userName?.toLowerCase() === sdata?.email?.toLowerCase())
+                          .map(v => {
+                            lvouchers.push({
+                              title: v.title + "-" + v.amountAvailable,
+                              id: v.id
+                            });
                           });
-                        });
                       }
+
 
                         let status =0;
                         const state= sdata?.bookingParticipantState==="CANCELLED";

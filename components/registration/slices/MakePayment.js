@@ -220,11 +220,10 @@ const MakePayment = forwardRef((props, ref) => {
           const amountToDeductInVocuher =
             youPay > currentAvailableAmount ? currentAvailableAmount : youPay;
           console.log(amountToDeductInVocuher);
-          sdata.trekUsers.find(u => u.id === id).voucherId =
-            user.optedVoucherId;
-          sdata.trekUsers.find(
-            u => u.id === id
-          ).voucherAmount = amountToDeductInVocuher;
+          sdata.trekUsers.find(u => u.id === id).voucherId =user.optedVoucherId;
+          sdata.trekUsers.find(u => u.id === id).voucherAmount = amountToDeductInVocuher;
+         // const availableAmt= sdata.voucherDetails.find(vid => vid.id == user.optedVoucherId).amountAvailable;
+         // sdata.voucherDetails.find(vid => vid.id == user.optedVoucherId).amountAvailable= availableAmt - amountToDeductInVocuher;
           // sdata.trekUsers.find(u => u.id === id).youPay = (youPay-amountToDeductInVocuher);
         }
       }
@@ -240,6 +239,17 @@ const MakePayment = forwardRef((props, ref) => {
     //// check if already it is selected:
     const optedId = sdata.trekUsers.find(u => u.optedVoucherId === value);
     console.log(optedId);
+
+    /*const selectedVoucher = sdata.voucherDetails.find(vid => vid.id == value);
+     if(selectedVoucher!==undefined) {
+        if(!selectedVoucher.amountAvailable > 0){
+          toast.current.show({
+            severity: "error",
+            summary: `'The selected Voucher available amount is  already used'`,
+            detail: "Make payment"
+          });
+        }
+     }*/
 
     if (optedId !== undefined) {
       toast.current.show({
@@ -438,7 +448,7 @@ const MakePayment = forwardRef((props, ref) => {
                      /* if (sdata.isOwnerActing === true) {
                         if (sdata?.voucherDetails?.length > 0) {
                           sdata?.voucherDetails
-                            .filter(x => x.userName === data?.email)
+                            .filter(x => x.userName === bookingInformation.email)
                             .map(v => {
                               vouchers.push({
                                 title: v.title + "-" + v.amountAvailable,
@@ -446,7 +456,9 @@ const MakePayment = forwardRef((props, ref) => {
                               });
                             });
                         }
-                      } else {
+                      }*/
+                      
+                      /*else {
                         if (
                           sdata?.voucherDetails?.length > 0 &&
                           data?.email === bookingInformation.email
