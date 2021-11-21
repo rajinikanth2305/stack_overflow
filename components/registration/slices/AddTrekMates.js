@@ -291,14 +291,27 @@ const renderFooter = (name) => {
 
     let responseData;
     try {
+
       responseData = await saveDraft(stateData.data);
       console.log(responseData);
+
       if(responseData.data.bookingState==="WAITING_LIST") {
         /// DISABLE THE PAYMENT TAB
         // props.onNextTabEvent("makepayment",WAITING_LIST);
         onDialogShow();
       }
       else {
+     
+        const stdata = JSON.parse(JSON.stringify(stateData.data));
+       
+        let vouchers = await getUsersVoucherByBookingId(stdata.bookingId);
+        if (vouchers.length > 0) {
+          vouchers = transFormVoucherPayload(vouchers);
+        }
+        console.log(vouchers);
+        stdata.voucherDetails = vouchers;
+        await dispatch(addOrUpdateState(stdata));
+        props.trekUsersChange();
         props.onNextTabEvent("makepayment");
       }
 
@@ -339,7 +352,7 @@ const renderFooter = (name) => {
   const addFindUsers = async udata => {
     console.log(users);
 
-    let vouchers = []; //await getVoucher(udata.email); Vouchers os only for main owner user
+    let vouchers = [] ; //await getVoucher(udata.email); //Vouchers os only for main owner user
     console.log(JSON.stringify(stateData.data));
     const stdata = JSON.parse(JSON.stringify(stateData.data));
     stdata.trekUsers.push({
@@ -414,6 +427,7 @@ const renderFooter = (name) => {
     add();
     setFindUserData(undefined);
     document.getElementById("findemail").value = "";
+    console.log(sdata.voucherDetails);
   };
 
   const transFormVoucherPayload = vouchers => {
@@ -521,7 +535,7 @@ const renderFooter = (name) => {
   const add = () => {
     setIndexes([...indexes, counter]);
     setCounter(prevCounter => prevCounter + 1);
-    props.trekUsersChange();
+    //props.trekUsersChange();
   };
 
   const remove = async index => {

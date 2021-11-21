@@ -224,7 +224,7 @@ const MakePayment = forwardRef((props, ref) => {
           sdata.trekUsers.find(u => u.id === id).voucherAmount = amountToDeductInVocuher;
          // const availableAmt= sdata.voucherDetails.find(vid => vid.id == user.optedVoucherId).amountAvailable;
          // sdata.voucherDetails.find(vid => vid.id == user.optedVoucherId).amountAvailable= availableAmt - amountToDeductInVocuher;
-          // sdata.trekUsers.find(u => u.id === id).youPay = (youPay-amountToDeductInVocuher);
+           sdata.trekUsers.find(u => u.id === id).youPay = (youPay-amountToDeductInVocuher);
         }
       }
       //console.log(JSON.stringify(sdata));
@@ -425,9 +425,11 @@ const MakePayment = forwardRef((props, ref) => {
                   <tbody>
                     {indexes.map(index => {
                       const fieldName = `voucher[${index}]`;
+
                       const sdata = JSON.parse(JSON.stringify(stateData.data));
                       const data = sdata?.trekUsers[index];
-                      // console.log(JSON.stringify(sdata));
+                      console.log(JSON.stringify(JSON.stringify(stateData.data)));
+
                       const name = data?.email === bookingInformation.email
                           ? data?.firstName + " (You) "
                           : data?.firstName;
