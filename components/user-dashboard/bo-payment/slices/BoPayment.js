@@ -202,7 +202,7 @@ const BoPayment = (offSelectedData) => {
 
 const doPayment = () => {
   const voucherList =  buildVouchers( offSelectedData.data.participants);
-  console.log(JSON.stringify(voucherList));
+  //console.log(JSON.stringify(voucherList));
   
   if (computeFields.computations.youpay > 0) {
     /// call the paymentgateway
@@ -243,13 +243,13 @@ const processPayments = (voucherList) => {
 const buildVouchers = data => {
   const vouchers = [];
   data?.map(u => {
-    if (u.voucherAmount > 0) {
+   // if (u.voucherAmount > 0) {
       vouchers.push({
         participantId:u.id,
         voucherId: u.voucherId,
         voucherAmount: u.voucherAmount
       });
-    }
+   // }
   });
   return vouchers;
 };
