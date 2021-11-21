@@ -322,13 +322,13 @@ const MakePayment = forwardRef((props, ref) => {
   const buildVouchers = data => {
     const vouchers = [];
     data?.trekUsers?.map(u => {
-      if (u.voucherAmount > 0) {
+      ///if (u.voucherAmount > 0) {
         vouchers.push({
           participantId: u.participantsId,
           voucherId: u.voucherId,
           voucherAmount: u.voucherAmount
         });
-      }
+      //}
     });
     return vouchers;
   };
