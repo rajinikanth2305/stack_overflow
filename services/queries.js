@@ -265,14 +265,14 @@ export const doSavePayments =  async (bookingId,data)  => {
 }
 
 export const doSaveOffloadingPayments =  async (bookingId,data)  => {
-  console.log(JSON.stringify(bookingId));
-  console.log(JSON.stringify(data));
+ // console.log(JSON.stringify(bookingId));
+ // console.log(JSON.stringify(data));
 
   const header=await getTokenHeader();
   const api = `${REACT_APP_TMS_BACKEND_URL}`;
   let url = `${api}/participants/bookings/${bookingId}/backpack-offloads`;  
-  return axios.post(url,data,{ headers:  header })
-         .then((res) => res.data);
+  return axios.post(url,data,{ headers:  header });
+        
 };
 
 const computeTotal=(usersData)=>{

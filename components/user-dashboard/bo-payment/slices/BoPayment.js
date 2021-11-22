@@ -16,6 +16,7 @@ import Link from "next/link";
 import { Toast } from "primereact/toast";
 import { Checkbox  } from 'primereact/checkbox';
 import moment from "moment";
+import { useRouter } from "next/router";
 
 const BoPayment = (offSelectedData) => {
   const [show, setShow] = useState(false);
@@ -27,7 +28,7 @@ const BoPayment = (offSelectedData) => {
   const [render, setRender] = useState(false);
   const [offLoadings, setOffLoadings] = React.useState([]);
   const toast = useRef(null);
-
+  const router = useRouter();
  
   const {
     register,
@@ -66,6 +67,7 @@ const BoPayment = (offSelectedData) => {
 
   const initData = () => {
 
+    console.log("called-once");
     console.log(JSON.stringify(offSelectedData.data.participants));
 
         const sdata = offSelectedData.data.participants;
@@ -206,12 +208,16 @@ const doPayment = () => {
   
   if (computeFields.computations.youpay > 0) {
     /// call the paymentgateway
+    console.log("Process Payments called");
     processPayments(voucherList);
   } else {
+    console.log("other called");
+    console.log(computeFields.computations.youpay);
     doSaveOffloadingPayments(offSelectedData.data.header.bookingId, voucherList)
       .then(res => {
         /// redirect to booking confirmation page
-        router.push(`/user-booking/thank-you?booking_id=${offSelectedData.data.header.bookingId}&status=SUCCESS`);
+        console.log("redirect called");
+        router.push(`/user-dashboard/thank-you?booking_id=${offSelectedData.data.header.bookingId}&status=SUCCESS`);
       })
       .catch(res => {
         if (res.response?.data?.message) {
@@ -228,8 +234,13 @@ const doPayment = () => {
 const processPayments = (voucherList) => {
   doSaveOffloadingPayments(offSelectedData.data.header.bookingId, voucherList)
     .then(res => {
-      window.jQuery.pnCheckout(res);
-      if (res.features.enableNewWindowFlow) {
+     // console.log(res.data);
+     // console.log(res.data.features.enableNewWindowFlow);
+     // console.log( window.jQuery===undefined);
+      window.jQuery.pnCheckout(res.data);
+      console.log(res.data.features.enableNewWindowFlow);
+      if (res.data.features.enableNewWindowFlow) {
+        console.log(res.data.features.enableNewWindowFlow);
         pnCheckoutShared.openNewWindow();
       }
     })

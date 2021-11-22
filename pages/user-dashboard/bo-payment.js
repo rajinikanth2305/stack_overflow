@@ -27,7 +27,7 @@ const BoPayment = ({ doc }) => {
             content="width=device-width, initial-scale=1.0"
           />
           <title>Profile</title>
-        </Head>
+              </Head>
         <HikeHeader />
         <BoPaymentSliceZone sliceZone={doc.data.body} />
       </HomeLayout>
