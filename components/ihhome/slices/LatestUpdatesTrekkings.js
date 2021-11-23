@@ -35,13 +35,13 @@ const LatestUpdatesTrekkings = ({ slice }) => {
 
   const latestTrekWorld = latestTrekking_world_array.map(function(data, index) {
     let url;
-    const slugUrl = data.link_url.slug;
+    const slugUrl = data?.link_url.slug;
     if (slugUrl) {
-      url = linkResolver(data.link_url);
+      url = linkResolver(data?.link_url);
     }
     return (
       <div className="col-lg-6 col-md-12" key={index}>
-        <Link href={url}>
+        <Link href={url ? url : '#'}>
           <div className="card exp-card-blog mx-0 cursor-pointer">
             <div alt="img" className="latestTrekWorld_bg">
               <Image
@@ -80,7 +80,7 @@ const LatestUpdatesTrekkings = ({ slice }) => {
             </div>
           </div>
           <div className="card tw_trek_card mx-0 my-4 m-mt-0 cursor-pointer">
-            <Link href={primary_url}>
+            <Link href={primary_url ? primary_url: '#'}>
               <div className="row">
                 <div className="col-lg-6 col-md-12">
                   <div className="latestLrekImage_bg">

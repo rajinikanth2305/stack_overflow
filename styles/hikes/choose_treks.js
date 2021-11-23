@@ -29,7 +29,7 @@ export const ChooseTreks = css.global`
 
   .trek_card {
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
-    min-height: 465px;
+    min-height: 440px;
   }
 
   .video_trek_card {
@@ -327,6 +327,12 @@ export const ChooseTreks = css.global`
 
   .pr-cus-2 {
     padding-right: 15px;
+  }
+
+  .p-btn-btm {
+    position: absolute;
+    bottom: 20px;
+    width: 90%;
   }
 
   @media only screen and (max-width: 600px) {

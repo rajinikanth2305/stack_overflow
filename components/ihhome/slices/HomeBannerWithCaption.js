@@ -76,7 +76,7 @@ const HomeBannerWithCaption = ({ slice }) => {
                 <p className="banner-text-3">defining the future of trekking</p>
                 <div className="mt-3 m-text-center">
                   <button className="btn btn-lg btn-ih-primary">
-                    <Link href={url}>
+                    <Link href={url ? url : '#'}>
                       <a> {linkButtonText}</a>
                     </Link>
                   </button>

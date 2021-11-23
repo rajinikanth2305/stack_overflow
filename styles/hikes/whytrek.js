@@ -63,6 +63,8 @@ export const whyTrekWithStyles = css.global`
   .pillar-card.card {
     margin: 0 10px;
     border-radius: 0;
+    max-height: 310px;
+    min-height: 310px;
   }
 
   .card-shadow {
@@ -113,6 +115,11 @@ export const whyTrekWithStyles = css.global`
 
     .m-view-d-block {
       display: block;
+    }
+
+    .pillar-card.card {
+      max-height: 310px;
+      min-height: 270px;
     }
   }
 `;

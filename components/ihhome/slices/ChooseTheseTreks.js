@@ -58,7 +58,7 @@ const ChooseTheseTreks = ({ slice }) => {
     return (
       <div key={`choosetrek` + i}>
         <div className="mx-4 m-mx-0 cursor-pointer">
-          <Link href={url}>
+          <Link href={url ? url : '#'}>
             <div className="card_sec">
               <div className="card trek_card">
                 <div alt="imgs" className="choose_trek_image">
@@ -102,10 +102,10 @@ const ChooseTheseTreks = ({ slice }) => {
 
                   <div>
                     <p className="title-diplay-3-18px text-uppercase">
-                      {data?.choose_trek_title[0].text}
-                      {/* {data?.choose_trek_title[0]?.text?.length > 20
+                      {/* {data?.choose_trek_title[0].text} */}
+                      {data?.choose_trek_title[0]?.text?.length > 20
                       ? `${data?.choose_trek_title[0]?.text.substring(0, 20)}...`
-                      : data?.choose_trek_title[0]?.text} */}
+                      : data?.choose_trek_title[0]?.text}
                     </p>
                     <p className="p-text-4 pm-t-4">
                       {data?.choose_trek_desc[0]?.text?.length > 122
@@ -118,7 +118,7 @@ const ChooseTheseTreks = ({ slice }) => {
                     {/* <div className="float-right pt-2 pb-4">
                       <button className="btn btn-ih-green">View Details</button>
                     </div> */}
-                    <div className="d-flex align-items-center flex-wrap pt-2 pb-2">
+                    <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
                       <div className="flex-grow-1">
                         {data?.choose_trek_familytrek === true ? (
                           <p className="m-0 fam_trek"><span>*</span> Family trek</p>
