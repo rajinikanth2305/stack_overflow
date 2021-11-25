@@ -57,7 +57,8 @@ const BestTimeToDo = ({ data }) => {
   }, []);
 
   async function findTrekStories() {
-    const slice = data && data.find(x => x.slice_type === "best_time_to_do_trek");
+    const slice =
+      data && data.find(x => x.slice_type === "best_time_to_do_trek");
     setBestTimeToDo(slice);
   }
 
@@ -181,22 +182,30 @@ const BestTimeToDo = ({ data }) => {
                 <p className="p-text-1">
                   <b>{RichText.asText(content1Title)}</b>
                 </p>
-                <p className="p-text-3-1 mb-2">
-                  <img src="/Duration.png" alt="img" />{" "}
-                  <span className="px-2">
-                    {RichText.asText(content1Temprature)}
-                  </span>
-                </p>
-                <p className="p-text-3-1 mb-2">
-                  <img src="/shoes.png" alt="img" />{" "}
-                  <span className="px-2">{RichText.asText(content1Snow)}</span>
-                </p>
-                <p className="p-text-3-1">
-                  <img src="/Offloading.png" alt="img" />{" "}
-                  <span className="px-2">
-                    {RichText.asText(content1WarmLayers)}
-                  </span>
-                </p>
+                {content1Temprature.text && (
+                  <p className="p-text-3-1 mb-2">
+                    <img src="/Duration.png" alt="img" />{" "}
+                    <span className="px-2">
+                      {RichText.asText(content1Temprature)} ss
+                    </span>
+                  </p>
+                )}
+                {content1Snow.text && (
+                  <p className="p-text-3-1 mb-2">
+                    <img src="/shoes.png" alt="img" />{" "}
+                    <span className="px-2">
+                      {RichText.asText(content1Snow)}
+                    </span>
+                  </p>
+                )}
+                {content1WarmLayers.text && (
+                  <p className="p-text-3-1">
+                    <img src="/Offloading.png" alt="img" />{" "}
+                    <span className="px-2">
+                      {RichText.asText(content1WarmLayers)}
+                    </span>
+                  </p>
+                )}
                 {content1}
               </div>
             </div>
