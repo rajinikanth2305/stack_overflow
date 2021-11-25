@@ -23,7 +23,7 @@ const CampSite = ({ slice }) => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     responsive: [
       {
@@ -54,13 +54,13 @@ const CampSite = ({ slice }) => {
     ]
   };
 
-  const campsitesImages = campsitesImagesArray.map(function(data, i) {
+  const campsitesImages = campsitesImagesArray?.map(function(data, i) {
     return (
       <>
         <div className="mx-4 mmx-0" key={i}>
           <div alt="imgs" className="campsites_images">
-            {data.campsites_images.url && (
-              <Image src={data.campsites_images.url} layout="fill" />
+            {data?.campsites_images?.url && (
+              <Image src={data?.campsites_images?.url} layout="fill" />
             )}
           </div>
           <p className="p-text-small font-italic">{data.image_desc[0].text}</p>
