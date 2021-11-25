@@ -41,7 +41,7 @@ const TrekExpertSpeak = ({ slice }) => {
             })}
           </div>
           <div>
-            {data.what_i_like_content_desc.map((paragraph, index) => {
+            {/* {data.what_i_like_content_desc.map((paragraph, index) => {
               return (
                 <>
                   <p key={index} className="p-text-4">
@@ -49,7 +49,8 @@ const TrekExpertSpeak = ({ slice }) => {
                   </p>
                 </>
               );
-            })}
+            })} */}
+            <div className="p-text-4">{RichText.render(data.what_i_like_content_desc)}</div>
           </div>
         </div>
       </>

@@ -409,6 +409,7 @@ export const trekStyle = css.global`
   }
 
   .banner-image-expert-speak {
+    background-color: #f1f3f4;
     background-size: cover;
     position: relative;
     width: 100%;

@@ -59,8 +59,10 @@ const CampSite = ({ slice }) => {
       <>
         <div className="mx-4 mmx-0" key={i}>
           <div alt="imgs" className="campsites_images">
-            {data?.campsites_images?.url && (
+            {data?.campsites_images?.url ? (
               <Image src={data?.campsites_images?.url} layout="fill" />
+            ) : (
+              <img src="/ip.png" className="campsites_images" />
             )}
           </div>
           <p className="p-text-small font-italic">{data.image_desc[0].text}</p>
