@@ -211,7 +211,7 @@ export const ChooseTreks = css.global`
   .trekking_world_image_desktop {
     position: relative;
     width: 100%;
-    height: 345px;
+    height: 420px;
   }
 
   .trekking_world_image_mobile {
@@ -394,7 +394,7 @@ export const ChooseTreks = css.global`
     .trekking_world_image_mobile {
       position: relative;
       display: block;
-      height: 200px;
+      height: 240px;
     }
 
     .card-info-text > div > p {
