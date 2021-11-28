@@ -164,9 +164,9 @@ const TrekVideosComponent = ({ slice }) => {
                         />
                       </div>
                     </div>
-                    {primaryImage && (
+                    {secondaryImage && (
                       <Image
-                        src={primaryImage}
+                        src={secondaryImage}
                         layout="fill"
                         // objectFit="cover"
                         // objectPosition="bottom"
@@ -238,7 +238,7 @@ const TrekVideosComponent = ({ slice }) => {
           <iframe
             width="100%"
             height="500"
-            src={primaryVideoLink}
+            src={secondaryVideoLink}
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
