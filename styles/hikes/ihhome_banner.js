@@ -98,7 +98,7 @@ export const ihhomeBannerStyles = css.global`
     .banner-image-desktop {
       position: relative;
       height: 550px;
-      background-position: -760px 0;
+      background-position: -425px 0;
     }
 
     .btn-ih-primary {

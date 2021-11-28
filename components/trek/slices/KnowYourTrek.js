@@ -35,10 +35,10 @@ const KnowYourTrek = ({ slice, data }) => {
   });
 
   const accordionTabImg = accordionTabImgArray.map((data, i) => {
-    const inner_content_slice_id = data.inner_content_slice_id[0].text;
-    console.log(data.inner_content_slice_id[0].text);
+    const inner_content_slice_id = data?.inner_content_slice_id[0]?.text;
+    // console.log(data.inner_content_slice_id[0].text);
     const sliceType = slice_zone.find(
-      x => x.slice_type === data.inner_content_slice_id[0].text
+      x => x.slice_type === data?.inner_content_slice_id[0]?.text
     );
     console.log(sliceType);
     return (
@@ -50,16 +50,16 @@ const KnowYourTrek = ({ slice, data }) => {
                 <div className="d-flex align-items-center border-bottom-custom-2x">
                   <div className="px-3 mpx-1">
                     <img
-                      src={data.accordion_tab_img.url}
+                      src={data?.accordion_tab_img?.url}
                       className="accordion_tab_img"
                     />
                   </div>
                   <div className="mx-2 flex-grow-1">
                     <p className="p-text-1 m-0">
-                      <b>{data.accordion_tab_title[0].text}</b>
+                      <b>{data?.accordion_tab_title[0]?.text}</b>
                     </p>
                     <p className="mb-2 p-text-3-2">
-                      {data.accordion_tab_desc[0].text}
+                      {data?.accordion_tab_desc[0]?.text}
                     </p>
                   </div>
                   <div className="mx-2">
