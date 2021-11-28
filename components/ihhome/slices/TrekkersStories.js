@@ -63,6 +63,8 @@ const TrekkersStories = ({ slice }) => {
     const slugUrl = data?.link_article_url?.slug;
     if (slugUrl) {
       url = linkResolver(data?.link_article_url);
+    } else {
+      url = data?.link_article_url?.url;
     }
     return (
       <div key={`trekkstory` + i}>
