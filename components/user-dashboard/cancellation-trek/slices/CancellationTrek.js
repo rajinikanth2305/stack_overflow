@@ -238,7 +238,7 @@ const CancellationTrek = () => {
                           
                         </tbody>
                       </table>
-                      <div className="d-flex justify-content-end align-items-center">
+                      {/* <div className="d-flex justify-content-end align-items-center">
                         <div className="mx-4 mt-2">
                           <p className="m-0 p-text-10-fgb text-center text-decoration-underline">
                             Clear Selection
@@ -253,6 +253,20 @@ const CancellationTrek = () => {
                               Confirm Cancel
                             </button>
                           </div>
+                        </div>
+                      </div> */}
+                      <div className="d-flex align-items-center">
+                        <div className="mt-2 flex-grow-1">
+                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline">
+                            Clear Selection
+                          </p>
+                        </div>
+                        <div>
+                        <div className="mt-2 flex-grow-1">
+                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline">
+                            I want refund
+                          </p>
+                        </div>
                         </div>
                       </div>
                     </div>
