@@ -410,6 +410,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 12px;
     color: #000000;
+    word-wrap: break-word;
   }
 
   .p-text-small-10-black {
@@ -1384,7 +1385,7 @@ export const customStyles = css.global`
   .article_banner_img > img {
     height: 400px;
     width: 100%;
-    object-bit: cover;
+    object-fit: cover;
   }
 
   .auth_sec {
