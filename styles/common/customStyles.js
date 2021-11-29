@@ -1384,6 +1384,7 @@ export const customStyles = css.global`
   .article_banner_img > img {
     height: 400px;
     width: 100%;
+    object-bit: cover;
   }
 
   .auth_sec {
