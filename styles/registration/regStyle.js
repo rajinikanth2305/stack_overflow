@@ -963,7 +963,7 @@ export const regStyle = css.global`
   }
 
   .pr-custom-9 {
-    padding: 0 9rem;
+    padding: 0 7.5rem;
   }
 
   .cursor-pointer {

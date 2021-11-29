@@ -219,7 +219,7 @@ export const trekStyle = css.global`
     font-family: Franklin Gothic;
     font-style: normal;
     font-weight: 600;
-    font-size: 36px;
+    font-size: 32px;
     color: rgba(0, 0, 0, 1);
   }
 
