@@ -106,7 +106,7 @@ const QuickItineraryComponent = ({ slice }) => {
                     </div>
                     <div className="d-flex justify-content-end mt-3">
                       <button className="btn btn-ptr">
-                        read Detailed Itinerary
+                      <a href="#KYT">read Detailed Itinerary</a>
                       </button>
                     </div>
                   </div>

@@ -95,7 +95,7 @@ const KnowYourTrek = ({ slice, data }) => {
 
   return (
     <>
-      <div>
+      <div id="KYT">
         <div className="container">
           <div className="row d-flex justify-content-center mt-5 mb-4 pt-4 mmb-0">
             {/* <div className="col-12 col-lg-3 col-md-12 d-m-none">

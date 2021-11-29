@@ -320,6 +320,11 @@ export const trekStyle = css.global`
     text-transform: capitalize;
   }
 
+  .btn-ptr > a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
   .btn-ih-green-trek-fee {
     background: rgba(59, 118, 42, 1);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.353);
