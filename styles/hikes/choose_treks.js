@@ -214,6 +214,12 @@ export const ChooseTreks = css.global`
     height: 420px;
   }
 
+  .trekking_world_image_desktop_popup {
+    position: relative;
+    width: 100%;
+    height: 750px;
+  }
+
   .trekking_world_image_mobile {
     display: none;
   }

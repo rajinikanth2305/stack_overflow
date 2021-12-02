@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -8,10 +8,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { hrefResolver, linkResolver } from "prismic-configuration";
 import Link from "next/link";
+import Modal from "react-bootstrap/Modal";
 
 const LatestTrekkingWorld = ({ slice }) => {
   const heading1 = slice.primary.heading1;
   const trekkingWorldImageArray = slice.items;
+  const [imgUrl, setImgUrl] = useState();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   //   const router = useRouter();
 
   //   const goToTrekPage = (e) => {
@@ -74,10 +79,10 @@ const LatestTrekkingWorld = ({ slice }) => {
                 {RichText.render(data.trekking_world_desc)}
               </div>
               <div className="text-center mt-4">
-              <Link href={url ? url : '#'}>
-                <button class="btn btn-lg btn-ih-primary text-capitalized">
-                  {data.button_name[0].text}
-                </button>
+                <Link href={url ? url : "#"}>
+                  <button class="btn btn-lg btn-ih-primary text-capitalized">
+                    {data.button_name[0].text}
+                  </button>
                 </Link>
               </div>
             </div>
@@ -89,6 +94,10 @@ const LatestTrekkingWorld = ({ slice }) => {
                 layout="fill"
                 objectFit="cover"
                 objectPosition="50% 50%"
+                onClick={() => {
+                  setImgUrl(data.trekking_world_image.url);
+                  setShow(true);
+                }}
               />
             </div>
             <div alt="imgs" className="trekking_world_image_mobile">
@@ -124,6 +133,21 @@ const LatestTrekkingWorld = ({ slice }) => {
           {ChooseTreks}
         </style>
       </div>
+      <Modal size="xl" show={show} onHide={handleClose} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div alt="imgs" className="trekking_world_image_desktop_popup">
+            <Image
+              src={imgUrl && imgUrl}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="bottom"
+            />
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

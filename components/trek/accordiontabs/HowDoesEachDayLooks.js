@@ -235,7 +235,10 @@ const HowDoesEachDayLooks = ({ data }) => {
                 <div
                   className={daysIt?.image4?.url ? "my-5 d-m-none" : "d-m-none"}
                 >
-                  <p className="p-text-4">{place_description_editor}</p>
+                  {/* <p className="p-text-4">{place_description_editor}</p> */}
+                  <div className="p-text-4">
+                    {RichText.render(daysIt?.place_description_editor)}
+                  </div>
                 </div>
               </div>
             </div>
