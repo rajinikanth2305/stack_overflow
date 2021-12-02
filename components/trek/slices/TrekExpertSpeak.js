@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { trekStyle } from "styles";
 import Image from "next/image";
+import Modal from "react-bootstrap/Modal";
 
 const TrekExpertSpeak = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -14,14 +15,16 @@ const TrekExpertSpeak = ({ slice }) => {
   const contentHeadingDesc = slice.primary.content_heading_desc;
   const whatILikeImageArray = slice.items;
   const [trekExpertSecHeight, setTrekExpertSecHeight] = useState(375);
+  const [imgUrl, setImgUrl] = useState();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const bannerImageExpertSpeak = {
     backgroundImage: `url('${bannerImage}')`,
     width: "100%",
     backgroundRepeat: "no-repeat"
   };
-
-  console.log(position);
 
   const whatILikeImage = whatILikeImageArray.map((data, i) => {
     return (
@@ -50,7 +53,9 @@ const TrekExpertSpeak = ({ slice }) => {
                 </>
               );
             })} */}
-            <div className="p-text-4">{RichText.render(data.what_i_like_content_desc)}</div>
+            <div className="p-text-4">
+              {RichText.render(data.what_i_like_content_desc)}
+            </div>
           </div>
         </div>
       </>
@@ -61,9 +66,16 @@ const TrekExpertSpeak = ({ slice }) => {
     return (
       <>
         <div className="mb-4">
-          <div className="what_i_like_image">
+          <div className="what_i_like_image cursor-pointer">
             {data.what_i_like_image.url !== undefined && (
-              <Image src={data.what_i_like_image.url} layout="fill" />
+              <Image
+                src={data.what_i_like_image.url}
+                layout="fill"
+                onClick={() => {
+                  setImgUrl(data?.what_i_like_image?.url);
+                  setShow(true);
+                }}
+              />
             )}
           </div>
           <div>
@@ -242,6 +254,21 @@ const TrekExpertSpeak = ({ slice }) => {
           {trekStyle}
         </style>
       </div>
+      <Modal size="xl" show={show} onHide={handleClose} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div alt="imgs" className="trekking_world_image_desktop_popup">
+            <Image
+              src={imgUrl && imgUrl}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="bottom"
+            />
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

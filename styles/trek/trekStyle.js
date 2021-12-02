@@ -1005,16 +1005,19 @@ export const trekStyle = css.global`
   }
 
   .trek_video_image_array {
+    background-color: #f1f3f4;
     position: relative;
     height: 112px;
   }
 
   .terk-videos-promary-image {
+    background-color: #f1f3f4;
     position: relative;
     height: 375px;
   }
 
   .terk-videos-secondary-image {
+    background-color: #f1f3f4;
     position: relative;
     height: 230px;
   }

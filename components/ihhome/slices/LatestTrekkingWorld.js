@@ -88,7 +88,7 @@ const LatestTrekkingWorld = ({ slice }) => {
             </div>
           </div>
           <div className="col-lg-6 col-md-12">
-            <div alt="imgs" className="trekking_world_image_desktop">
+            <div alt="imgs" className="trekking_world_image_desktop cursor-pointer">
               <Image
                 src={data.trekking_world_image.url}
                 layout="fill"

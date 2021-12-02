@@ -9,9 +9,26 @@ import Tab from "react-bootstrap/Tab";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Modal from "react-bootstrap/Modal";
 
 const BestTimeToDo = ({ data }) => {
   const [bestTimeToDo, setBestTimeToDo] = useState();
+  const [imgUrl1, setImgUrl1] = useState();
+  const [show1, setShow1] = useState(false);
+  const handle1Close = () => setShow1(false);
+  const handle1Show = () => setShow1(true);
+  const [imgUrl2, setImgUrl2] = useState();
+  const [show2, setShow2] = useState(false);
+  const handle2Close = () => setShow2(false);
+  const handle2Show = () => setShow2(true);
+  const [imgUrl3, setImgUrl3] = useState();
+  const [show3, setShow3] = useState(false);
+  const handle3Close = () => setShow3(false);
+  const handle3Show = () => setShow3(true);
+  const [imgUrl4, setImgUrl4] = useState();
+  const [show4, setShow4] = useState(false);
+  const handle4Close = () => setShow4(false);
+  const handle4Show = () => setShow4(true);
 
   const settings = {
     dots: true,
@@ -236,13 +253,17 @@ const BestTimeToDo = ({ data }) => {
           </div>
           <div className="row my-4 d-m-none">
             <div className="col-lg-7 col-md-12">
-              <div className="day1-image-1">
+              <div className="day1-image-1 cursor-pointer">
                 {btImage1 ? (
                   <Image
                     src={btImage1}
                     layout="fill"
                     objectFit="cover"
                     objectPosition="50% 50%"
+                    onClick={() => {
+                      setImgUrl1(btImage1);
+                      setShow1(true);
+                    }}
                   />
                 ) : (
                   ""
@@ -250,13 +271,17 @@ const BestTimeToDo = ({ data }) => {
               </div>
             </div>
             <div className="col-lg-5 col-md-12">
-              <div className="day1-image-2">
+              <div className="day1-image-2 cursor-pointer">
                 {btImage2 ? (
                   <Image
                     src={btImage2}
                     layout="fill"
                     objectFit="cover"
                     objectPosition="50% 50%"
+                    onClick={() => {
+                      setImgUrl2(btImage2);
+                      setShow2(true);
+                    }}
                   />
                 ) : (
                   ""
@@ -264,13 +289,17 @@ const BestTimeToDo = ({ data }) => {
               </div>
               <div className="row mt-4">
                 <div className="col-lg-6 col-md-12">
-                  <div className="day1-image-3">
+                  <div className="day1-image-3 cursor-pointer">
                     {btImage3 ? (
                       <Image
                         src={btImage3}
                         layout="fill"
                         objectFit="cover"
                         objectPosition="50% 50%"
+                        onClick={() => {
+                          setImgUrl3(btImage3);
+                          setShow3(true);
+                        }}
                       />
                     ) : (
                       ""
@@ -278,13 +307,17 @@ const BestTimeToDo = ({ data }) => {
                   </div>
                 </div>
                 <div className="col-lg-6 col-md-12">
-                  <div className="day1-image-3">
+                  <div className="day1-image-3 cursor-pointer">
                     {btImage4 ? (
                       <Image
                         src={btImage4}
                         layout="fill"
                         objectFit="cover"
                         objectPosition="50% 50%"
+                        onClick={() => {
+                          setImgUrl4(btImage4);
+                          setShow4(true);
+                        }}
                       />
                     ) : (
                       ""
@@ -340,17 +373,81 @@ const BestTimeToDo = ({ data }) => {
             {content3}
           </div>
 
-          <div className="important_notice_box">
-            <p className="p-text-2-franklin">
-              {RichText.asText(importantNoteTitle)}
-            </p>
-            <p className="p-text-4">{RichText.asText(importantNoteContent)}</p>
-          </div>
+          {importantNoteContent.length !== 0 && (
+            <div className="important_notice_box">
+              <p className="p-text-2-franklin">
+                {RichText.asText(importantNoteTitle)}
+              </p>
+              <p className="p-text-4">
+                {RichText.asText(importantNoteContent)}
+              </p>
+            </div>
+          )}
         </div>
         <style jsx global>
           {experimentStyles}
         </style>
       </div>
+      <Modal size="xl" show={show1} onHide={handle1Close} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div alt="imgs" className="trekking_world_image_desktop_popup">
+            <Image
+              src={imgUrl1 && imgUrl1}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="bottom"
+            />
+          </div>
+        </Modal.Body>
+      </Modal>
+      <Modal size="xl" show={show2} onHide={handle2Close} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div alt="imgs" className="trekking_world_image_desktop_popup">
+            <Image
+              src={imgUrl2 && imgUrl2}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="bottom"
+            />
+          </div>
+        </Modal.Body>
+      </Modal>
+      <Modal size="xl" show={show3} onHide={handle3Close} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div alt="imgs" className="trekking_world_image_desktop_popup">
+            <Image
+              src={imgUrl3 && imgUrl3}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="bottom"
+            />
+          </div>
+        </Modal.Body>
+      </Modal>
+      <Modal size="xl" show={show4} onHide={handle4Close} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div alt="imgs" className="trekking_world_image_desktop_popup">
+            <Image
+              src={imgUrl4 && imgUrl4}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="bottom"
+            />
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { trekStyle } from "styles";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
+import Modal from "react-bootstrap/Modal";
 
 const QuickItineraryComponent = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -13,6 +14,10 @@ const QuickItineraryComponent = ({ slice }) => {
   const importantNoteList = slice.primary.important_note;
   const proTipsList = slice.primary.pro_tips;
   const [qiHeight, setQiHeight] = useState(480);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   // console.log(slice);
 
   const importantNoteListdata = importantNoteList.map((data, i) => {
@@ -77,21 +82,21 @@ const QuickItineraryComponent = ({ slice }) => {
               <h2 className="title-h2 th-2m pb-08 mb-3 mmb-0">
                 {RichText.asText(heading1)}
               </h2>
-              <div className="d-m-block">
-                <div className="itinerary_map_image">
-                  {itineraryMapImage && (
+              {itineraryMapImage && (
+                <div className="d-m-block">
+                  <div className="itinerary_map_image">
                     <Image
                       src={itineraryMapImage}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="bottom"
                     />
-                  )}
+                  </div>
+                  <p className="p-text-small font-italic">
+                    {RichText.asText(imgDesc)}
+                  </p>
                 </div>
-                <p className="p-text-small font-italic">
-                  {RichText.asText(imgDesc)}
-                </p>
-              </div>
+              )}
             </div>
           </div>
           <div className="d-m-none">
@@ -106,7 +111,7 @@ const QuickItineraryComponent = ({ slice }) => {
                     </div>
                     <div className="d-flex justify-content-end mt-3">
                       <button className="btn btn-ptr">
-                      <a href="#KYT">read Detailed Itinerary</a>
+                        <a href="#KYT">read Detailed Itinerary</a>
                       </button>
                     </div>
                   </div>
@@ -114,21 +119,24 @@ const QuickItineraryComponent = ({ slice }) => {
               </div>
               <div className="col-12 col-lg-1 col-md-12"></div>
               <div className="col-lg-4 col-md-12">
-                <div className="d-m-none">
-                  <div className="itinerary_map_image">
-                    {itineraryMapImage && (
+                {itineraryMapImage && (
+                  <div className="d-m-none">
+                    <div className="itinerary_map_image cursor-pointer">
                       <Image
                         src={itineraryMapImage}
                         layout="fill"
                         objectFit="cover"
                         objectPosition="bottom"
+                        onClick={() => {
+                          setShow(true);
+                        }}
                       />
-                    )}
+                    </div>
+                    <p className="p-text-small font-italic">
+                      {RichText.asText(imgDesc)}
+                    </p>
                   </div>
-                  <p className="p-text-small font-italic">
-                    {RichText.asText(imgDesc)}
-                  </p>
-                </div>
+                )}
 
                 <div className="pro_tips_box">
                   <p className="pro_tips">
@@ -192,6 +200,21 @@ const QuickItineraryComponent = ({ slice }) => {
           {trekStyle}
         </style>
       </div>
+      <Modal size="xl" show={show} onHide={handleClose} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div alt="imgs" className="trekking_world_image_desktop_popup">
+            <Image
+              src={itineraryMapImage && itineraryMapImage}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="bottom"
+            />
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
