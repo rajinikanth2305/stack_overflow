@@ -373,7 +373,7 @@ const BestTimeToDo = ({ data }) => {
             {content3}
           </div>
 
-          {importantNoteContent.length !== 0 && (
+          {importantNoteContent && importantNoteContent?.length !== 0 && (
             <div className="important_notice_box">
               <p className="p-text-2-franklin">
                 {RichText.asText(importantNoteTitle)}
