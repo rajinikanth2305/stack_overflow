@@ -29,6 +29,7 @@ const BestTimeToDo = ({ data }) => {
   const [show4, setShow4] = useState(false);
   const handle4Close = () => setShow4(false);
   const handle4Show = () => setShow4(true);
+  const [hiText, setHiText] = useState();
 
   const settings = {
     dots: true,
@@ -112,6 +113,7 @@ const BestTimeToDo = ({ data }) => {
     bestTimeToDo && bestTimeToDo.primary.important_note_title;
   const importantNoteContent =
     bestTimeToDo && bestTimeToDo.primary.important_note_content;
+    const highlightMonths = bestTimeToDo && bestTimeToDo.primary.highlight_months;
 
   const content1 = content1List?.map(function(data, i) {
     return (
@@ -143,6 +145,31 @@ const BestTimeToDo = ({ data }) => {
     );
   });
 
+  const htext = highlightMonths?.map(function(data, i) {
+    return (
+      <>
+        <p className="p-text-4" key={i}>
+          {data.text}
+        </p>
+      </>
+    );
+  });
+
+  const highlightTextFilter1 = htext && htext?.find(x => x.props?.children?.props?.children === "1");
+  const highlightTextFilter2 = htext && htext?.find(x => x.props?.children?.props?.children === "2");
+  const highlightTextFilter3 = htext && htext?.find(x => x.props?.children?.props?.children === "3");
+  const highlightTextFilter4 = htext && htext?.find(x => x.props?.children?.props?.children === "4");
+  const highlightTextFilter5 = htext && htext?.find(x => x.props?.children?.props?.children === "5");
+
+  const highlightTextFilter6 = htext && htext?.find(x => x.props?.children?.props?.children === "6");
+  const highlightTextFilter7 = htext && htext?.find(x => x.props?.children?.props?.children === "7");
+  const highlightTextFilter8 = htext && htext?.find(x => x.props?.children?.props?.children === "8");
+  const highlightTextFilter9 = htext && htext?.find(x => x.props?.children?.props?.children === "9");
+  const highlightTextFilter10 = htext && htext?.find(x => x.props?.children?.props?.children === "10");
+
+  const highlightTextFilter11 = htext && htext?.find(x => x.props?.children?.props?.children === "11");
+  const highlightTextFilter12 = htext && htext?.find(x => x.props?.children?.props?.children === "12");
+
   return (
     <>
       <div>
@@ -151,48 +178,48 @@ const BestTimeToDo = ({ data }) => {
             <div className="col-md-12 mp-0">
               <div className="d-flex mb-4">
                 <div>
-                  <span className="bt-year-tabs">Jan</span>
+                  <span className={highlightTextFilter1 && highlightTextFilter1.props?.children?.props?.children === "1" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>Jan</span>
                 </div>
                 <div>
-                  <span className="bt-year-tabs">Feb</span>
+                  <span className={highlightTextFilter2 && highlightTextFilter2.props?.children?.props?.children === "2" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>Feb</span>
                 </div>
                 <div>
-                  <span className="bt-year-tabs">Mar</span>
+                  <span className={highlightTextFilter3 && highlightTextFilter3.props?.children?.props?.children === "3" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>Mar</span>
                 </div>
                 <div>
-                  <span className="bt-year-tabs">Apr</span>
+                  <span className={highlightTextFilter4 && highlightTextFilter4.props?.children?.props?.children === "4" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>Apr</span>
                 </div>
                 <div>
-                  <span className="bt-year-tabs">May</span>
+                  <span className={highlightTextFilter5 && highlightTextFilter5.props?.children?.props?.children === "5" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>May</span>
                 </div>
                 <div>
-                  <span className="bt-year-tabs bt-highlight-year-tabs">
+                  <span className={highlightTextFilter6 && highlightTextFilter6.props?.children?.props?.children === "6" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>
                     Jun
                   </span>
                 </div>
                 <div>
-                  <span className="bt-year-tabs bt-highlight-year-tabs">
+                  <span className={highlightTextFilter7 && highlightTextFilter7.props?.children?.props?.children === "7" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>
                     Jul
                   </span>
                 </div>
                 <div>
-                  <span className="bt-year-tabs bt-highlight-year-tabs">
+                  <span className={highlightTextFilter8 && highlightTextFilter8.props?.children?.props?.children === "8" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>
                     Aug
                   </span>
                 </div>
                 <div>
-                  <span className="bt-year-tabs bt-highlight-year-tabs">
+                  <span className={highlightTextFilter9 && highlightTextFilter9.props?.children?.props?.children === "9" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>
                     Sep
                   </span>
                 </div>
                 <div>
-                  <span className="bt-year-tabs">Oct</span>
+                  <span className={highlightTextFilter10 && highlightTextFilter10.props?.children?.props?.children === "10" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>Oct</span>
                 </div>
                 <div>
-                  <span className="bt-year-tabs">Nov</span>
+                  <span className={highlightTextFilter11 && highlightTextFilter11.props?.children?.props?.children === "11" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>Nov</span>
                 </div>
                 <div>
-                  <span className="bt-year-tabs">Dec</span>
+                  <span className={highlightTextFilter12 && highlightTextFilter12.props?.children?.props?.children === "12" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>Dec</span>
                 </div>
               </div>
               <div>
