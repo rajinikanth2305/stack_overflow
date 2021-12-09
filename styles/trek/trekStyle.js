@@ -1007,7 +1007,7 @@ export const trekStyle = css.global`
   .trek_video_image_array {
     background-color: #f1f3f4;
     position: relative;
-    height: 112px;
+    height: 125px;
   }
 
   .terk-videos-promary-image {
@@ -1367,6 +1367,12 @@ export const trekStyle = css.global`
   }
 
   @media only screen and (max-width: 660px) {
+    .icon-size-70 {
+      width: 50px;
+    }
+    .icon-size-50 {
+      width: 30px;
+    }
     .title-h1 {
       font-size: 36px;
     }

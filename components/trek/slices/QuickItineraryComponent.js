@@ -126,7 +126,7 @@ const QuickItineraryComponent = ({ slice }) => {
                         src={itineraryMapImage}
                         layout="fill"
                         objectFit="cover"
-                        objectPosition="bottom"
+                        objectPosition="50% 50%"
                         onClick={() => {
                           setShow(true);
                         }}
