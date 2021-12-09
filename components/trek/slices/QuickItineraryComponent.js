@@ -63,10 +63,11 @@ const QuickItineraryComponent = ({ slice }) => {
             <p className="p-text-2 mb-0">
               <b>{data.heading1[0].text}</b>
             </p>
-            <p className="p-text-small text-dark font-italic mb-2">
-              {data?.sub_heading2[0]?.text}
-            </p>
-            <p className="p-text-4">{data?.heading2[0]?.text}</p>
+            <div className="p-text-small text-dark mb-2">
+              {/* {data?.sub_heading2[0]?.text} */}
+              {RichText.render(data?.sub_heading2)}
+            </div>
+            <div className="p-text-4">{RichText.render(data?.heading2)}</div>
           </div>
         </div>
       </>
@@ -107,7 +108,10 @@ const QuickItineraryComponent = ({ slice }) => {
                   <div>
                     <div className="important_notice_box">
                       <p className="p-text-2-franklin">IMPORTANT POINTS</p>
-                      <div>{importantNoteListdata}</div>
+                      {/* <div>{importantNoteListdata}</div> */}
+                      <div className="p-text-4 m-0">
+                        {RichText.render(importantNoteList)}
+                      </div>
                     </div>
                     <div className="d-flex justify-content-end mt-3">
                       <button className="btn btn-ptr">
