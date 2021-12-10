@@ -54,10 +54,10 @@ const AddTrekMates = forwardRef((props, ref) => {
 
   const onDialogShow = (status) => {
     if(status === "DIFFICULT_TREK") {
-      setDisplayBasic(true);
+      setDisplayDifficultTrek(true);
     }
     else{
-      setDisplayDifficultTrek(true);
+      setDisplayBasic(true);
     }
 }
 
@@ -299,10 +299,10 @@ const renderFooter = (name) => {
     try {
       responseData = await saveDraft(stateData.data);
       console.log(responseData);
-      if(responseData.data.bookingState==="WAITING_LIST") {
+      if(responseData.data.bookingState==="WAITING_LIST" || responseData.data.bookingState==="DIFFICULT_TREK") {
         /// DISABLE THE PAYMENT TAB
         // props.onNextTabEvent("makepayment",WAITING_LIST);
-        onDialogShow();
+        onDialogShow(responseData.data.bookingState);
       }
       else {
         props.onNextTabEvent("makepayment");
@@ -334,7 +334,7 @@ const renderFooter = (name) => {
       });
       return;
     }
-    onDialogShow();
+    onDialogShow("WAITING_LIST");
   };
 
   const addSearchUser = () => {
