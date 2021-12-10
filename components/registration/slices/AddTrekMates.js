@@ -48,11 +48,17 @@ const AddTrekMates = forwardRef((props, ref) => {
   const [findUserData, setFindUserData] = useState(undefined);
   const findEmailRef = useRef();
   const [displayBasic, setDisplayBasic] = useState(false);
+  const [displayDifficultTrek, setDisplayDifficultTrek] = useState(false);
   const [position, setPosition] = useState('center');
   const [displayPosition, setDisplayPosition] = useState(false);
 
-  const onDialogShow = () => {
-    setDisplayBasic(true);
+  const onDialogShow = (status) => {
+    if(status === "DIFFICULT_TREK") {
+      setDisplayBasic(true);
+    }
+    else{
+      setDisplayDifficultTrek(true);
+    }
 }
 
 const onHide = () => {
@@ -292,11 +298,8 @@ const renderFooter = (name) => {
     let responseData;
     try {
       responseData = await saveDraft(stateData.data);
-      console.log(responseData);
-      if(responseData.data.bookingState==="WAITING_LIST") {
-        /// DISABLE THE PAYMENT TAB
-        // props.onNextTabEvent("makepayment",WAITING_LIST);
-        onDialogShow();
+      if(responseData.data.bookingState==="WAITING_LIST" || responseData.data.bookingState==="DIFFICULT_TREK") {
+        onDialogShow(responseData.data.bookingState);
       }
       else {
         props.onNextTabEvent("makepayment");
@@ -328,7 +331,7 @@ const renderFooter = (name) => {
       });
       return;
     }
-    onDialogShow();
+    onDialogShow("WAITING_LIST");
   };
 
   const addSearchUser = () => {
@@ -883,6 +886,20 @@ const renderFooter = (name) => {
                     <p className="p-m-0">Your waiting list booking is confirmed.</p>
                 </Dialog>
                 </div>
+      <div className="dialog-demo">
+        <Dialog header="Difficult Trek Confirmed" visible={displayDifficultTrek}
+                position={position} modal style={{ width: '40vw' }}
+                footer={renderFooter('displayPosition')} onHide={() => onHide()}
+                draggable={false} resizable={false}>
+          <p className="p-m-0">You’re trying to register for the trek, which we classify as a difficult trek.
+
+            Before you go ahead with the payment, we need some crucial information from you. This is with regard to your past high altitude experience and fitness.
+
+            We have sent you a mail with a few questions. Please respond to those and we’ll take this further.
+
+            .</p>
+        </Dialog>
+      </div>
     </>
   );
 });
