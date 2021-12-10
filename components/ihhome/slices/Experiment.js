@@ -23,14 +23,14 @@ const Experiment = ({ slice }) => {
 
   const expImage = expImageArray.map((data, i) => {
     let url;
-    const slugUrl = data.link_url.slug;
+    const slugUrl = data?.link_url?.slug;
     if (slugUrl) {
-      url = linkResolver(data.link_url);
+      url = linkResolver(data?.link_url);
     }
     return (
       <div key={i}>
         <div className="card exp-card mb-4 pb-1 mmx-0 cursor-pointer">
-          <Link href={url}>
+          <Link href={url ? url : '#'}>
             <div>
               <div className="expImage">
                 <Image
@@ -71,7 +71,7 @@ const Experiment = ({ slice }) => {
           <div className="row">
             <div className="col-lg-8 col-md-12">
               <p className="exp_desc pb-4 mpb-0">{RichText.asText(heading2)}</p>
-              <Link href={primary_url}>
+              <Link href={primary_url ? primary_url : '#'}>
                 <div className="card exp-card mt-5 mx-0 mmt-0 mb-4 cursor-pointer">
                   <div className="expirimentMainImage">
                     <Image

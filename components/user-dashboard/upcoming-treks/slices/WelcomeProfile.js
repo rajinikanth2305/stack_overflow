@@ -55,6 +55,7 @@ const WelcomeProfile = () => {
   const myTrekMobileRef = useRef();
   const offLoadingRef = useRef();
   const fitnessRef = useRef();
+  const rentGearRef = useRef();
 
   const toast = useRef(null);
   const [showOffLoadingPayment, setShowOffLoadingPayment] = useState(false);
@@ -141,6 +142,7 @@ const WelcomeProfile = () => {
     myTrekMobileRef.current?.changeState(booking);
     offLoadingRef.current?.changeState(booking);
     fitnessRef.current?.changeState(booking);
+    rentGearRef.current?.changeState(booking);
     setCancelDialogueData(booking.bookingId, booking);
   };
 
@@ -225,7 +227,7 @@ const WelcomeProfile = () => {
     fitnessRef.current?.changeState(activeBooking);
 
     offLoadingRef.current?.changeState(activeBooking);
-
+    rentGearRef.current?.changeState(activeBooking);
     const arr = Array.from(new Array(bookings.length - 1), (x, i) => i);
     setIndexes(arr);
     setCounter(arr.length);
@@ -553,8 +555,8 @@ const WelcomeProfile = () => {
                                           </div>
                                         )}
 
-                                        {upComingTrek?.bookingState ===
-                                          "COMPLETED" && (
+                                        {(upComingTrek?.bookingState ===
+                                          "COMPLETED" && upComingTrek?.trekWhatsappLink!=="") && (
                                           <>
                                             <button className="btn table-btn-green mx-3">
                                               <i
@@ -562,7 +564,7 @@ const WelcomeProfile = () => {
                                                 aria-hidden="true"
                                               ></i>{" "}
                                               <span className="px-2">
-                                                Join whatsapp group
+                                               <a href={upComingTrek?.trekWhatsappLink} >Join whatsapp group</a> 
                                               </span>
                                             </button>
                                             </>
@@ -622,8 +624,7 @@ const WelcomeProfile = () => {
                                   </div>
                                 </Tab>
                                 <Tab eventKey="rentgear" title="Rent gear">
-                                   { upComingTrek?.bookingState ==="COMPLETED" && (
-                                  <RentGear />)}
+                                  <RentGear  ref={rentGearRef}  />
                                 </Tab>
 
                                 <Tab eventKey="offloading" title="Offloading">

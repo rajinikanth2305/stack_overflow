@@ -219,7 +219,7 @@ export const trekStyle = css.global`
     font-family: Franklin Gothic;
     font-style: normal;
     font-weight: 600;
-    font-size: 36px;
+    font-size: 32px;
     color: rgba(0, 0, 0, 1);
   }
 
@@ -320,6 +320,11 @@ export const trekStyle = css.global`
     text-transform: capitalize;
   }
 
+  .btn-ptr > a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
   .btn-ih-green-trek-fee {
     background: rgba(59, 118, 42, 1);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.353);
@@ -409,6 +414,7 @@ export const trekStyle = css.global`
   }
 
   .banner-image-expert-speak {
+    background-color: #f1f3f4;
     background-size: cover;
     position: relative;
     width: 100%;
@@ -999,16 +1005,19 @@ export const trekStyle = css.global`
   }
 
   .trek_video_image_array {
+    background-color: #f1f3f4;
     position: relative;
-    height: 112px;
+    height: 125px;
   }
 
   .terk-videos-promary-image {
+    background-color: #f1f3f4;
     position: relative;
     height: 375px;
   }
 
   .terk-videos-secondary-image {
+    background-color: #f1f3f4;
     position: relative;
     height: 230px;
   }
@@ -1358,6 +1367,12 @@ export const trekStyle = css.global`
   }
 
   @media only screen and (max-width: 660px) {
+    .icon-size-70 {
+      width: 50px;
+    }
+    .icon-size-50 {
+      width: 30px;
+    }
     .title-h1 {
       font-size: 36px;
     }

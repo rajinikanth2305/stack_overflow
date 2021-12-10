@@ -220,5 +220,11 @@ export const latestUpdatesTrekkingsStyles = css.global`
     .m-pb-2 {
       padding-bottom: 20px !important;
     }
+    .icon-size-70 {
+      width: 50px;
+    }
+    .icon-size-50 {
+      width: 30px;
+    }
   }
 `;

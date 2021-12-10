@@ -480,7 +480,7 @@ const PostRender = ({
                   </div>
                 </div>
                 <div className="col-lg-4 col-md-12">
-                  <div className="my-5 py-5">{renderAuthorSlice()}</div>
+                  <div className="my-5 py-5 mmy-2 mpy-0">{renderAuthorSlice()}</div>
                   {renderUpComingTreks()}
                   {renderRelatedArticles()}
                   {renderLatestVideos()}

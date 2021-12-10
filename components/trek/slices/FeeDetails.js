@@ -87,9 +87,19 @@ const FeeDetails = ({ data }) => {
               <p className="trek_fee_title m-0">{RichText.asText(heading)}</p>
 
               <div className="d-flex">
-                <div>
+                {/* <div>
                   <p className="trek_fee">₹ {RichText.asText(price)}</p>
-                </div>
+                </div> */}
+                <div className="d-flex align-items-center">
+                    <div>
+                      <p className="trek_fee">₹</p>
+                    </div>
+                    <div className="mx-2">
+                      <p className="trek_fee">
+                        {RichText.asText(price)}
+                      </p>
+                    </div>
+                  </div>
                 <div className="mx-3">
                   <p className="trek-info-detail m-0">
                     + {RichText.asText(tax)}% gst
@@ -135,9 +145,16 @@ const FeeDetails = ({ data }) => {
               <div className="d-flex align-items-center">
                 <div>
                   <p className="p-xs-text m-0">Trek fee</p>
-                  <p className="p-text-20size m-0">
-                    ₹ {RichText.asText(price)}
-                  </p>
+                  <div className="d-flex align-items-center">
+                    <div>
+                      <p className="p-text-20size m-0">₹</p>
+                    </div>
+                    <div>
+                      <p className="p-text-20size m-0">
+                        {RichText.asText(price)}
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div className="mx-2">
                   <p className="p-xxs-text mb-2">

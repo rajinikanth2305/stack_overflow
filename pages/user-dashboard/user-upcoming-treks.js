@@ -27,6 +27,7 @@ const UserUpcomingTreks = ({ doc }) => {
             content="width=device-width, initial-scale=1.0"
           />
           <title>Profile</title>
+          <script src="https://www.paynimo.com/paynimocheckout/client/lib/jquery.min.js" type="text/javascript"></script>
         </Head>
         <HikeHeader />
         <UserUpcomingTreksSliceZone sliceZone={doc.data.body} />

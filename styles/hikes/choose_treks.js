@@ -29,7 +29,7 @@ export const ChooseTreks = css.global`
 
   .trek_card {
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
-    min-height: 465px;
+    min-height: 440px;
   }
 
   .video_trek_card {
@@ -211,7 +211,13 @@ export const ChooseTreks = css.global`
   .trekking_world_image_desktop {
     position: relative;
     width: 100%;
-    height: 345px;
+    height: 420px;
+  }
+
+  .trekking_world_image_desktop_popup {
+    position: relative;
+    width: 100%;
+    height: 750px;
   }
 
   .trekking_world_image_mobile {
@@ -329,6 +335,12 @@ export const ChooseTreks = css.global`
     padding-right: 15px;
   }
 
+  .p-btn-btm {
+    position: absolute;
+    bottom: 20px;
+    width: 90%;
+  }
+
   @media only screen and (max-width: 600px) {
     .btn-ih-green {
       font-size: 14px;
@@ -388,7 +400,7 @@ export const ChooseTreks = css.global`
     .trekking_world_image_mobile {
       position: relative;
       display: block;
-      height: 200px;
+      height: 240px;
     }
 
     .card-info-text > div > p {

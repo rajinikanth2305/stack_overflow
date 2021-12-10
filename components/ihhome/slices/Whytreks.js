@@ -44,7 +44,7 @@ const WhyTrek = ({ slice }) => {
                   {RichText.render(data.pillar_desc)}
                 </div>
               </div>
-              <div className="text-center pt-2 pb-3">
+              <div className="text-center pt-2 pb-3 p-btn-btm">
                 <Link href={url}>
                   <button className="btn btn-ih-green">Read more</button>
                 </Link>

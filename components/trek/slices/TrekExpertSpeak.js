@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { trekStyle } from "styles";
 import Image from "next/image";
+import Modal from "react-bootstrap/Modal";
 
 const TrekExpertSpeak = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -12,8 +13,13 @@ const TrekExpertSpeak = ({ slice }) => {
   const authorImage = slice.primary.author_image.url;
   const contentHeading = slice.primary.content_heading;
   const contentHeadingDesc = slice.primary.content_heading_desc;
+  const contentHeadingDesc1 = slice.primary.what_i_dont_like_title;
   const whatILikeImageArray = slice.items;
   const [trekExpertSecHeight, setTrekExpertSecHeight] = useState(375);
+  const [imgUrl, setImgUrl] = useState();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const bannerImageExpertSpeak = {
     backgroundImage: `url('${bannerImage}')`,
@@ -21,66 +27,126 @@ const TrekExpertSpeak = ({ slice }) => {
     backgroundRepeat: "no-repeat"
   };
 
-  console.log(position);
-
-  const whatILikeImage = whatILikeImageArray.map((data, i) => {
+  const whatILikeImageView = whatILikeImageArray.map((data, i) => {
     return (
-      <>
-        <div className="mb-5 pb-3">
-          <div>
-            {data.what_i_like_content_title.map((tit, index) => {
-              return (
-                <>
-                  <h5 key={index} className="p-text-2 mb-3">
-                    <b>
-                      {i + 1}. {tit.text}
-                    </b>
-                  </h5>
-                </>
-              );
-            })}
+      <div key={i}>
+        <div className="row d-flex align-items-center">
+          <div className="col-lg-7 col-md-12 mb-2 pb-3">
+            <div>
+              {data.what_i_like_content_title.map((tit, index) => {
+                return (
+                  <>
+                    <h5 key={index} className="p-text-2 mb-3">
+                      <b>
+                        {i + 1}. {tit.text}
+                      </b>
+                    </h5>
+                  </>
+                );
+              })}
+            </div>
+            <div>
+              <div className="p-text-4">
+                {RichText.render(data.what_i_like_content_desc)}
+              </div>
+            </div>
           </div>
-          <div>
-            {data.what_i_like_content_desc.map((paragraph, index) => {
-              return (
-                <>
-                  <p key={index} className="p-text-4">
-                    {paragraph.text}
-                  </p>
-                </>
-              );
-            })}
+          <div className="col-lg-1 col-md-12"></div>
+          <div className="col-lg-4 col-md-12 mb-4">
+            <div className="what_i_like_image cursor-pointer">
+              {data.what_i_like_image.url !== undefined && (
+                <Image
+                  src={data.what_i_like_image.url}
+                  layout="fill"
+                  onClick={() => {
+                    setImgUrl(data?.what_i_like_image?.url);
+                    setShow(true);
+                  }}
+                />
+              )}
+            </div>
+            <div>
+              {data.what_i_like_image_desc.map((img_desc, index) => {
+                return (
+                  <>
+                    <p
+                      key={index}
+                      className="trek_summary_desc font-italic py-3 mpb-0"
+                    >
+                      {img_desc.text}
+                    </p>
+                  </>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </>
+      </div>
     );
   });
 
-  const whatILikeImage1 = whatILikeImageArray.map((data, i) => {
+  const whatIdontLikeImageView = whatILikeImageArray.map((data, i) => {
+    console.log(data);
     return (
-      <>
-        <div className="mb-4">
-          <div className="what_i_like_image">
-            {data.what_i_like_image.url !== undefined && (
-              <Image src={data.what_i_like_image.url} layout="fill" />
-            )}
-          </div>
-          <div>
-            {data.what_i_like_image_desc.map((img_desc, index) => {
-              return (
-                <>
-                  <p
-                    key={index}
-                    className="trek_summary_desc font-italic py-3 mpb-0"
-                  >
-                    {img_desc.text}
-                  </p>
-                </>
-              );
-            })}
-          </div>
+      <div key={i}>
+        <div className="row d-flex align-items-center">
+          {data?.what_i_dont_like_content_desc?.length !== 0 && (
+            <div className="col-lg-7 col-md-12 mb-2 pb-3">
+              <div>
+                {data?.what_i_dont_like_content_title?.map((tit, index) => {
+                  return (
+                    <>
+                      <h5 key={index} className="p-text-2 mb-3">
+                        <b>
+                          {i + 1}. {tit.text}
+                        </b>
+                      </h5>
+                    </>
+                  );
+                })}
+              </div>
+              <div>
+                <div className="p-text-4">
+                  {RichText.render(data?.what_i_dont_like_content_desc)}
+                </div>
+              </div>
+            </div>
+          )}
+          {data?.what_i_dont_like_content_desc?.length !== 0 && (
+            <div className="col-lg-1 col-md-12"></div>
+          )}
+          {data?.what_i_dont_like_content_desc?.length !== 0 && (
+            <div className="col-lg-4 col-md-12 mb-4">
+              <div className="what_i_like_image cursor-pointer">
+                {data?.what_i_dontlike_image?.url !== undefined && (
+                  <Image
+                    src={data?.what_i_dontlike_image?.url}
+                    layout="fill"
+                    onClick={() => {
+                      setImgUrl(data?.what_i_dontlike_image?.url);
+                      setShow(true);
+                    }}
+                  />
+                )}
+              </div>
+              <div>
+                {data?.what_i_dont_like_image_desc?.map((img_desc, index) => {
+                  return (
+                    <>
+                      <p
+                        key={index}
+                        className="trek_summary_desc font-italic py-3 mpb-0"
+                      >
+                        {img_desc.text}
+                      </p>
+                    </>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
-      </>
+      </div>
     );
   });
 
@@ -196,17 +262,14 @@ const TrekExpertSpeak = ({ slice }) => {
                       overflow: "hidden"
                     }}
                   >
-                    {/* {whatILikeImage} */}
-                    <div className="row">
-                      <div className="col-12 col-lg-7 col-md-12">
-                        {whatILikeImage}
-                      </div>
-                      <div className="col-12 col-lg-1 col-md-12"></div>
-                      <div className="col-12 col-lg-4 col-md-12">
-                        <div className="m-t-expert-image">
-                          {whatILikeImage1}
-                        </div>
-                      </div>
+                    <div>{whatILikeImageView}</div>
+                    <div>
+                      {contentHeadingDesc1 && (
+                        <p className="p-text-1">
+                          <b>{RichText.asText(contentHeadingDesc1)}</b>
+                        </p>
+                      )}
+                      {whatIdontLikeImageView}
                     </div>
                   </div>
                   <div className="row mt-custom-top">
@@ -241,6 +304,21 @@ const TrekExpertSpeak = ({ slice }) => {
           {trekStyle}
         </style>
       </div>
+      <Modal size="xl" show={show} onHide={handleClose} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div alt="imgs" className="trekking_world_image_desktop_popup">
+            <Image
+              src={imgUrl && imgUrl}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="bottom"
+            />
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

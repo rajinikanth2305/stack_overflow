@@ -63,6 +63,7 @@ export async function getStaticProps({ params, preview = null, previewData = {} 
   const post = await Client().getByUID("post", params.uid, ref ? { ref } : null) || {}
   //console.log(post);
 const author=post.data.author_first_name + "-" + post.data.author_last_name;
+const author_lnk_id=post?.data?.author_link?.id;
 /// Fetch related articles
 const relatedArticles=[];
  const slice=post.data?.body?.find(x=>x.slice_type==="related_articles");
@@ -77,8 +78,8 @@ const relatedArticles=[];
   }
  });
 }
-
-  let authorData  =  await Client().getByUID("author_type", author.toLowerCase());
+console.log('authorlink' + author_lnk_id);
+  let authorData  =  await Client().getByID(author_lnk_id);
   console.log(authorData);
   if(authorData===undefined)
   authorData=null;

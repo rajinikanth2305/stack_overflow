@@ -220,12 +220,11 @@ const MakePayment = forwardRef((props, ref) => {
           const amountToDeductInVocuher =
             youPay > currentAvailableAmount ? currentAvailableAmount : youPay;
           console.log(amountToDeductInVocuher);
-          sdata.trekUsers.find(u => u.id === id).voucherId =
-            user.optedVoucherId;
-          sdata.trekUsers.find(
-            u => u.id === id
-          ).voucherAmount = amountToDeductInVocuher;
-          // sdata.trekUsers.find(u => u.id === id).youPay = (youPay-amountToDeductInVocuher);
+          sdata.trekUsers.find(u => u.id === id).voucherId =user.optedVoucherId;
+          sdata.trekUsers.find(u => u.id === id).voucherAmount = amountToDeductInVocuher;
+         // const availableAmt= sdata.voucherDetails.find(vid => vid.id == user.optedVoucherId).amountAvailable;
+         // sdata.voucherDetails.find(vid => vid.id == user.optedVoucherId).amountAvailable= availableAmt - amountToDeductInVocuher;
+           sdata.trekUsers.find(u => u.id === id).youPay = (youPay-amountToDeductInVocuher);
         }
       }
       //console.log(JSON.stringify(sdata));
@@ -240,6 +239,17 @@ const MakePayment = forwardRef((props, ref) => {
     //// check if already it is selected:
     const optedId = sdata.trekUsers.find(u => u.optedVoucherId === value);
     console.log(optedId);
+
+    /*const selectedVoucher = sdata.voucherDetails.find(vid => vid.id == value);
+     if(selectedVoucher!==undefined) {
+        if(!selectedVoucher.amountAvailable > 0){
+          toast.current.show({
+            severity: "error",
+            summary: `'The selected Voucher available amount is  already used'`,
+            detail: "Make payment"
+          });
+        }
+     }*/
 
     if (optedId !== undefined) {
       toast.current.show({
@@ -312,13 +322,13 @@ const MakePayment = forwardRef((props, ref) => {
   const buildVouchers = data => {
     const vouchers = [];
     data?.trekUsers?.map(u => {
-      if (u.voucherAmount > 0) {
+      ///if (u.voucherAmount > 0) {
         vouchers.push({
           participantId: u.participantsId,
-          voucherId: u.voucherId,
+          voucherId: (u.voucherId==="" ? null : u.voucherId) ,
           voucherAmount: u.voucherAmount
         });
-      }
+      //}
     });
     return vouchers;
   };
@@ -415,9 +425,11 @@ const MakePayment = forwardRef((props, ref) => {
                   <tbody>
                     {indexes.map(index => {
                       const fieldName = `voucher[${index}]`;
+
                       const sdata = JSON.parse(JSON.stringify(stateData.data));
                       const data = sdata?.trekUsers[index];
-                      // console.log(JSON.stringify(sdata));
+                      console.log(JSON.stringify(JSON.stringify(stateData.data)));
+
                       const name = data?.email === bookingInformation.email
                           ? data?.firstName + " (You) "
                           : data?.firstName;
@@ -438,7 +450,7 @@ const MakePayment = forwardRef((props, ref) => {
                      /* if (sdata.isOwnerActing === true) {
                         if (sdata?.voucherDetails?.length > 0) {
                           sdata?.voucherDetails
-                            .filter(x => x.userName === data?.email)
+                            .filter(x => x.userName === bookingInformation.email)
                             .map(v => {
                               vouchers.push({
                                 title: v.title + "-" + v.amountAvailable,
@@ -446,7 +458,9 @@ const MakePayment = forwardRef((props, ref) => {
                               });
                             });
                         }
-                      } else {
+                      }*/
+                      
+                      /*else {
                         if (
                           sdata?.voucherDetails?.length > 0 &&
                           data?.email === bookingInformation.email

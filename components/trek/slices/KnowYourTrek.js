@@ -17,6 +17,7 @@ import HowDifficultTrekIs from "../accordiontabs/HowDfficultTresIs";
 import BestTimeToDo from "../accordiontabs/BestTimeToDo";
 import HowToReach from "../accordiontabs/HowToReach";
 import InclusionsAndExclusions from "../accordiontabs/InclusionsAndExclusions";
+import WhatToPack from "../accordiontabs/WhatToPack";
 
 const KnowYourTrek = ({ slice, data }) => {
   const heading1 = slice.primary.heading1;
@@ -35,10 +36,10 @@ const KnowYourTrek = ({ slice, data }) => {
   });
 
   const accordionTabImg = accordionTabImgArray.map((data, i) => {
-    const inner_content_slice_id = data.inner_content_slice_id[0].text;
-    console.log(data.inner_content_slice_id[0].text);
+    const inner_content_slice_id = data?.inner_content_slice_id[0]?.text;
+    // console.log(data.inner_content_slice_id[0].text);
     const sliceType = slice_zone.find(
-      x => x.slice_type === data.inner_content_slice_id[0].text
+      x => x.slice_type === data?.inner_content_slice_id[0]?.text
     );
     console.log(sliceType);
     return (
@@ -50,16 +51,16 @@ const KnowYourTrek = ({ slice, data }) => {
                 <div className="d-flex align-items-center border-bottom-custom-2x">
                   <div className="px-3 mpx-1">
                     <img
-                      src={data.accordion_tab_img.url}
+                      src={data?.accordion_tab_img?.url}
                       className="accordion_tab_img"
                     />
                   </div>
                   <div className="mx-2 flex-grow-1">
                     <p className="p-text-1 m-0">
-                      <b>{data.accordion_tab_title[0].text}</b>
+                      <b>{data?.accordion_tab_title[0]?.text}</b>
                     </p>
                     <p className="mb-2 p-text-3-2">
-                      {data.accordion_tab_desc[0].text}
+                      {data?.accordion_tab_desc[0]?.text}
                     </p>
                   </div>
                   <div className="mx-2">
@@ -82,9 +83,9 @@ const KnowYourTrek = ({ slice, data }) => {
                   <HowToReach data={slice_zone} />
                 ) : sliceType?.slice_type === "trek_inclusions" ? (
                   <InclusionsAndExclusions data={slice_zone}/>
-                ) : (
+                ) : sliceType?.slice_type === "how_difficult_is_trek" ? (
                   <HowDifficultTrekIs data={slice_zone} />
-                )}
+                ) : <WhatToPack data={slice_zone} />}
               </Card.Body>
             </Accordion.Collapse>
           </Card>
@@ -95,7 +96,7 @@ const KnowYourTrek = ({ slice, data }) => {
 
   return (
     <>
-      <div>
+      <div id="KYT">
         <div className="container">
           <div className="row d-flex justify-content-center mt-5 mb-4 pt-4 mmb-0">
             {/* <div className="col-12 col-lg-3 col-md-12 d-m-none">

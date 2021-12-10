@@ -60,14 +60,16 @@ const TrekkersStories = ({ slice }) => {
       return <p key={j}>{desc.text}</p>;
     });
     let url;
-    const slugUrl = data?.link_article_url.slug;
+    const slugUrl = data?.link_article_url?.slug;
     if (slugUrl) {
       url = linkResolver(data?.link_article_url);
+    } else {
+      url = data?.link_article_url?.url;
     }
     return (
       <div key={`trekkstory` + i}>
         <div className="mx-4 m-mx-0 cursor-pointer">
-          <Link href={url}>
+          <Link href={url ? url : '#'}>
             <div className="card_sec">
               <div className="card trek_card">
                 <div alt="imgs" className="choose_trek_image">

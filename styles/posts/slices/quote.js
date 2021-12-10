@@ -56,6 +56,14 @@ export const quoteStyles = css.global`
     font-family: Lora-Medium;
   }
 
+  .img-ctrl > .block-img > img {
+    width: 100% !important;
+  }
+
+  img {
+    width: 100%;
+  }
+
   @media screen and (min-width: 920px) {
     .post-part.single .block-quotation,
     .blog-main.single .block-quotation {

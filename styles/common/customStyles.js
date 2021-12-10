@@ -410,6 +410,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 12px;
     color: #000000;
+    word-wrap: break-word;
   }
 
   .p-text-small-10-black {
@@ -1384,6 +1385,7 @@ export const customStyles = css.global`
   .article_banner_img > img {
     height: 400px;
     width: 100%;
+    object-fit: cover;
   }
 
   .auth_sec {
@@ -1566,6 +1568,14 @@ export const customStyles = css.global`
     border: 3px solid #ffc100 !important;
   }
 
+  .img-ctrl > .block-img > img {
+    width: 100% !important;
+  }
+
+  .post-part.single {
+    font-family: Lora;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -1715,6 +1725,10 @@ export const customStyles = css.global`
 
     .mmb-0 {
       margin-bottom: 0 !important;
+    }
+
+    .mpy-0 {
+      padding: 0 !important;
     }
 
     .mx-4.m-mx-0 {

@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { trekStyle } from "styles";
 import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Modal from "react-bootstrap/Modal";
 
 const CampSite = ({ slice }) => {
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
   const campsitesImagesArray = slice.items;
+  const [imgUrl, setImgUrl] = useState();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const heading2data = heading2.map((data, i) => {
     return (
@@ -23,7 +28,7 @@ const CampSite = ({ slice }) => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     responsive: [
       {
@@ -54,16 +59,34 @@ const CampSite = ({ slice }) => {
     ]
   };
 
-  const campsitesImages = campsitesImagesArray.map(function(data, i) {
+  const campsitesImages = campsitesImagesArray?.map(function(data, i) {
     return (
       <>
         <div className="mx-4 mmx-0" key={i}>
-          <div alt="imgs" className="campsites_images">
-            {data.campsites_images.url && (
-              <Image src={data.campsites_images.url} layout="fill" />
+          <div alt="imgs" className="campsites_images cursor-pointer">
+            {data?.campsites_images?.url ? (
+              <Image
+                src={data?.campsites_images?.url}
+                layout="fill"
+                onClick={() => {
+                  setImgUrl(data?.campsites_images?.url);
+                  setShow(true);
+                }}
+              />
+            ) : (
+              <img
+                src="/ip.png"
+                className="campsites_images cursor-pointer"
+                onClick={() => {
+                  setImgUrl("/ip.png");
+                  setShow(true);
+                }}
+              />
             )}
           </div>
-          <p className="p-text-small font-italic">{data.image_desc[0].text}</p>
+          <p className="p-text-small font-italic">
+            {data?.image_desc[0]?.text}
+          </p>
         </div>
       </>
     );
@@ -89,6 +112,21 @@ const CampSite = ({ slice }) => {
           {trekStyle}
         </style>
       </div>
+      <Modal size="xl" show={show} onHide={handleClose} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div alt="imgs" className="trekking_world_image_desktop_popup">
+            <Image
+              src={imgUrl && imgUrl}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="bottom"
+            />
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

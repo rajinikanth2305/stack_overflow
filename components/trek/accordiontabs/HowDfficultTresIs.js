@@ -271,7 +271,10 @@ const HowDifficultTrekIs = ({ data }) => {
                 </p>
               </div>
             </div>
-            <div className="col-md-12">{hdText ? hdText : ""}</div>
+            <div className="col-md-12">
+            {/* {hdText ? hdText : ""} */}
+            <div className="p-text-4">{RichText.render(hdTextList)}</div>
+            </div>
             <div className="col-md-12">
               <div className="my-5 mmt-2">
                 <p className="p-text-1 border-bottom-green">

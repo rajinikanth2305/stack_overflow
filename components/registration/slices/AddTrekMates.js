@@ -298,8 +298,11 @@ const renderFooter = (name) => {
     let responseData;
     try {
       responseData = await saveDraft(stateData.data);
-      if(responseData.data.bookingState==="WAITING_LIST" || responseData.data.bookingState==="DIFFICULT_TREK") {
-        onDialogShow(responseData.data.bookingState);
+      console.log(responseData);
+      if(responseData.data.bookingState==="WAITING_LIST") {
+        /// DISABLE THE PAYMENT TAB
+        // props.onNextTabEvent("makepayment",WAITING_LIST);
+        onDialogShow();
       }
       else {
         props.onNextTabEvent("makepayment");
@@ -331,7 +334,7 @@ const renderFooter = (name) => {
       });
       return;
     }
-    onDialogShow("WAITING_LIST");
+    onDialogShow();
   };
 
   const addSearchUser = () => {
