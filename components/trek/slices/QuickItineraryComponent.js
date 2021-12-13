@@ -64,7 +64,6 @@ const QuickItineraryComponent = ({ slice }) => {
               <b>{data.heading1[0].text}</b>
             </p>
             <div className="p-text-small text-dark mb-2">
-              {/* {data?.sub_heading2[0]?.text} */}
               {RichText.render(data?.sub_heading2)}
             </div>
             <div className="p-text-4">{RichText.render(data?.heading2)}</div>
