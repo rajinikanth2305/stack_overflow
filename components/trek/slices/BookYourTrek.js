@@ -64,14 +64,6 @@ const BookYourTrek = ({ slice }) => {
     router.push(`/registration?batchId=${bookingDate.batchId}`);
   };
 
-  const cancelInfodetails = cancelInfodetailsList.map((data, i) => {
-    return (
-      <>
-        <p>{data.text}</p>
-      </>
-    );
-  });
-
   return (
     <>
       <div id="goToBookTicket">
@@ -148,7 +140,7 @@ const BookYourTrek = ({ slice }) => {
                     <p className="p-text-1 b-left">
                       <b>{RichText.asText(cancelInfoHeading)}</b>
                     </p>
-                    <p className="p-text-4">{cancelInfodetails}</p>
+                    <div className="p-text-4">{RichText.render(cancelInfodetailsList)}</div>
                     <div className="mt-5 pt-3 d-m-none">
                       {showSelectedLabel && (
                         <div>

@@ -47,9 +47,7 @@ const SustainableTrekking = ({ slice }) => {
                         <h2 className="title-h2 text-white text-center-custom pb-08 mb-3">
                           {RichText.asText(heading1)}
                         </h2>
-                        <p className="p-text-4 text-white mb-0 text-center-custom">
-                          {heading2}
-                        </p>
+                        <div className="p-text-4 text-white mb-0 text-center-custom">{RichText.render(heading2List)}</div>
                         <div className="d-m-block">
                           <div className="d-flex justify-content-end m-j-c-c mt-5">
                             <button className="btn btn-bihtn-yellow">

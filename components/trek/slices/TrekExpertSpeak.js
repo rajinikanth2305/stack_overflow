@@ -66,18 +66,7 @@ const TrekExpertSpeak = ({ slice }) => {
               )}
             </div>
             <div>
-              {data.what_i_like_image_desc.map((img_desc, index) => {
-                return (
-                  <>
-                    <p
-                      key={index}
-                      className="trek_summary_desc font-italic py-3 mpb-0"
-                    >
-                      {img_desc.text}
-                    </p>
-                  </>
-                );
-              })}
+              <div className="trek_summary_desc font-italic py-3 mpb-0">{RichText.render(data.what_i_like_image_desc)}</div>
             </div>
           </div>
         </div>
@@ -86,7 +75,6 @@ const TrekExpertSpeak = ({ slice }) => {
   });
 
   const whatIdontLikeImageView = whatILikeImageArray.map((data, i) => {
-    console.log(data);
     return (
       <div key={i}>
         <div className="row d-flex align-items-center">
@@ -129,20 +117,7 @@ const TrekExpertSpeak = ({ slice }) => {
                   />
                 )}
               </div>
-              <div>
-                {data?.what_i_dont_like_image_desc?.map((img_desc, index) => {
-                  return (
-                    <>
-                      <p
-                        key={index}
-                        className="trek_summary_desc font-italic py-3 mpb-0"
-                      >
-                        {img_desc.text}
-                      </p>
-                    </>
-                  );
-                })}
-              </div>
+              <div className="trek_summary_desc font-italic py-3 mpb-0">{RichText.render(data?.what_i_dont_like_image_desc)}</div>
             </div>
           )}
         </div>
@@ -202,9 +177,10 @@ const TrekExpertSpeak = ({ slice }) => {
                   </div>
                   <div className="col-8">
                     <div>
-                      <p className="author-text font-italic">
-                        {RichText.asText(aboutAuthor)}
-                      </p>
+                      {/* <p className="author-text font-italic"> */}
+                        {/* {RichText.asText(aboutAuthor)} */}
+                        <div className="author-text font-italic">{RichText.render(aboutAuthor)}</div>
+                      {/* </p> */}
                     </div>
                   </div>
                 </div>

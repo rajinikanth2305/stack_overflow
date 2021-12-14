@@ -101,7 +101,7 @@ const CampSite = ({ slice }) => {
               <h2 className="title-h2 th-2m pb-08 mb-3">
                 {RichText.asText(heading1)}
               </h2>
-              <p className="p-text-4 mmb-0">{heading2data}</p>
+              <div className="p-text-4 mmb-0">{RichText.render(heading2)}</div>
             </div>
           </div>
           <div className="mt-4 mb-5 pb-5 mmt-0 mmb-0">

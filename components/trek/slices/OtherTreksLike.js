@@ -89,11 +89,12 @@ const OtherTreksLike = ({ slice }) => {
                   <p className="p-text-1-frg frg-mob">
                     <b>{data.heading1[0].text}</b>
                   </p>
-                  <p className="p-text-4">
+                  {/* <p className="p-text-4">
                     {data.heading2[0].text.length > 125
                       ? `${data.heading2[0].text.substring(0, 125)}...`
                       : data.heading2[0].text}
-                  </p>
+                  </p> */}
+                  <div className="p-text-4">{RichText.render(data.heading2)}</div>
                   {/* <div>
                     <div className="row">
                       <div className="col-6 col-lg-6 col-md-6">

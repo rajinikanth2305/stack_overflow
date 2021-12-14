@@ -120,7 +120,7 @@ const TrekVideosComponent = ({ slice }) => {
               </h2>
             </div>
             <div className="col-12 col-lg-7 col-md-12 d-m-none">
-              <p className="mb-4 pb-2 p-text-4">{RichText.asText(heading2)}</p>
+              <p className="mb-4 pb-2 p-text-4">{RichText.render(heading2)}</p>
             </div>
             <div className="col-12 col-lg-7 col-md-12 mpy-0">
               <div className="d-m-none">

@@ -25,23 +25,12 @@ const KnowYourTrek = ({ slice, data }) => {
   const accordionTabImgArray = slice.items;
 
   const slice_zone = data;
-  console.log(slice_zone);
-
-  const heading2data = heading2.map((data, i) => {
-    return (
-      <p className="p-text-4 mpt4 pt-3" key={i}>
-        {data.text}
-      </p>
-    );
-  });
 
   const accordionTabImg = accordionTabImgArray.map((data, i) => {
     const inner_content_slice_id = data?.inner_content_slice_id[0]?.text;
-    // console.log(data.inner_content_slice_id[0].text);
     const sliceType = slice_zone.find(
       x => x.slice_type === data?.inner_content_slice_id[0]?.text
     );
-    console.log(sliceType);
     return (
       <>
         <Accordion>
@@ -64,7 +53,6 @@ const KnowYourTrek = ({ slice, data }) => {
                     </p>
                   </div>
                   <div className="mx-2">
-                    {/* <img src="/arrow-down.png" /> */}
                     <i
                       className="fa fa-angle-double-down accordion_arrow_icon"
                       aria-hidden="true"
@@ -140,7 +128,7 @@ const KnowYourTrek = ({ slice, data }) => {
                     <h2 className="title-h2 th-2m pb-08">
                       {RichText.asText(heading1)}
                     </h2>
-                    {heading2data}
+                    <div className="p-text-4 mpt4 pt-3">{RichText.render(heading2)}</div>
                     <div className="my-5 mmt-2">{accordionTabImg}</div>
                   </div>
                 </div>

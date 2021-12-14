@@ -70,9 +70,6 @@ const TrekkersStoriesCommon = () => {
   };
 
   const trekkersStoriesImage = trekkersStoriesImageArray?.map(function(data, i) {
-    const trekkers_stories_desc = data.trekkers_stories_desc.map((desc, j) => {
-      return <p>{desc.text}</p>;
-    });
     return (
       <>
         <div className="mx-4 m-mx-0" key={`trekkstory` + i}>
@@ -93,11 +90,12 @@ const TrekkersStoriesCommon = () => {
                   <h3 className="title-diplay-3 ts-lable">
                     {data.trekkers_stories_title[0].text}
                   </h3>
-                  <p className="p-display-2">
+                  {/* <p className="p-display-2">
                     {trekkers_stories_desc.length > 125
                       ? `${trekkers_stories_desc.substring(0, 125)}...`
                       : trekkers_stories_desc}
-                  </p>
+                  </p> */}
+                  <div className="p-display-2">{RichText.render(data.trekkers_stories_desc)}</div>
                 </div>
               </div>
             </div>
@@ -118,7 +116,7 @@ const TrekkersStoriesCommon = () => {
           </div>
           <div className="row">
             <div className="col-lg-6 col-md-12">
-              <p className="p-text-4">{RichText.asText(heading2)}</p>
+              <div className="p-text-4">{RichText.render(heading2)}</div>
             </div>
           </div>
           <div>
