@@ -17,6 +17,7 @@ const TrekGallery = ({ slice }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
+    adaptiveHeight: true,
     responsive: [
       {
         breakpoint: 1024,
