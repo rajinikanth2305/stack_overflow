@@ -304,7 +304,7 @@ const HowDoesEachDayLooks = ({ data }) => {
         </style>
       </div>
       <Modal size="xl" show={show1} onHide={handle1Close} animation={false}>
-        <Modal.Header closeButton>
+        <Modal.Header className="img-header-popup" closeButton>
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -312,14 +312,14 @@ const HowDoesEachDayLooks = ({ data }) => {
             <Image
               src={imgUrl1 && imgUrl1}
               layout="fill"
-              objectFit="cover"
-              objectPosition="bottom"
+              objectFit="contain"
+              objectPosition="top"
             />
           </div>
         </Modal.Body>
       </Modal>
       <Modal size="xl" show={show2} onHide={handle2Close} animation={false}>
-        <Modal.Header closeButton>
+        <Modal.Header className="img-header-popup" closeButton>
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -327,14 +327,14 @@ const HowDoesEachDayLooks = ({ data }) => {
             <Image
               src={imgUrl2 && imgUrl2}
               layout="fill"
-              objectFit="cover"
-              objectPosition="bottom"
+              objectFit="contain"
+              objectPosition="top"
             />
           </div>
         </Modal.Body>
       </Modal>
       <Modal size="xl" show={show3} onHide={handle3Close} animation={false}>
-        <Modal.Header closeButton>
+        <Modal.Header className="img-header-popup" closeButton>
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -342,14 +342,14 @@ const HowDoesEachDayLooks = ({ data }) => {
             <Image
               src={imgUrl3 && imgUrl3}
               layout="fill"
-              objectFit="cover"
-              objectPosition="bottom"
+              objectFit="contain"
+              objectPosition="top"
             />
           </div>
         </Modal.Body>
       </Modal>
       <Modal size="xl" show={show4} onHide={handle4Close} animation={false}>
-        <Modal.Header closeButton>
+        <Modal.Header className="img-header-popup" closeButton>
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -357,8 +357,8 @@ const HowDoesEachDayLooks = ({ data }) => {
             <Image
               src={imgUrl4 && imgUrl4}
               layout="fill"
-              objectFit="cover"
-              objectPosition="bottom"
+              objectFit="contain"
+              objectPosition="top"
             />
           </div>
         </Modal.Body>

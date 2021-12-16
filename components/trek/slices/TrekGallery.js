@@ -16,7 +16,7 @@ const TrekGallery = ({ slice }) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: false,
+    arrows: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -54,8 +54,8 @@ const TrekGallery = ({ slice }) => {
             <Image
               src={data?.discovery_trek_gallery?.url}
               layout="fill"
-              objectFit="cover"
-              objectPosition="bottom left"
+                        objectFit="contain"
+                        objectPosition="top"
             />
           )}
         </div>
@@ -84,7 +84,7 @@ const TrekGallery = ({ slice }) => {
 
   return (
     <>
-      <div>
+      <div id="goToPG">
         <div className="container container-custom">
           <div className="bg-dark p-3 border-bottom-custom">
             <div className="container">

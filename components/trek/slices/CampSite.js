@@ -68,6 +68,8 @@ const CampSite = ({ slice }) => {
               <Image
                 src={data?.campsites_images?.url}
                 layout="fill"
+                objectFit="cover"
+                objectPosition="50% 50%"
                 onClick={() => {
                   setImgUrl(data?.campsites_images?.url);
                   setShow(true);
@@ -94,7 +96,7 @@ const CampSite = ({ slice }) => {
 
   return (
     <>
-      <div>
+      <div id="goToCampsite">
         <div className="container">
           <div className="row">
             <div className="col-12 col-lg-6 col-md-12 mb-4">
@@ -113,7 +115,7 @@ const CampSite = ({ slice }) => {
         </style>
       </div>
       <Modal size="xl" show={show} onHide={handleClose} animation={false}>
-        <Modal.Header closeButton>
+        <Modal.Header className="img-header-popup" closeButton>
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -121,8 +123,8 @@ const CampSite = ({ slice }) => {
             <Image
               src={imgUrl && imgUrl}
               layout="fill"
-              objectFit="cover"
-              objectPosition="bottom"
+              objectFit="contain"
+              objectPosition="top"
             />
           </div>
         </Modal.Body>

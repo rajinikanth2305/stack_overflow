@@ -9,18 +9,10 @@ const SustainableTrekking = ({ slice }) => {
   const heading1 = slice.primary.heading1;
   const bannerImage = slice.primary.banner_image.url;
   const heading2List = slice.primary.heading2;
-
-  const heading2 = heading2List.map((data, i) => {
-    return (
-      <>
-        <p>{data.text}</p>
-      </>
-    );
-  });
-
+  
   return (
     <>
-      <div className="mt-5 pt-5 mpt-0 mpb-0 mmt-0">
+      <div className="mt-5 pt-5 mpt-0 mpb-0 mmt-0" id="goToSustainabilty">
         <div className="container container-custom">
           <div className="row">
             <div className="col-12 col-lg-12 col-md-12 p-0">

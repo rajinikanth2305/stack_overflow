@@ -58,6 +58,8 @@ const TrekExpertSpeak = ({ slice }) => {
                 <Image
                   src={data.what_i_like_image.url}
                   layout="fill"
+                        objectFit="contain"
+                        objectPosition="left"
                   onClick={() => {
                     setImgUrl(data?.what_i_like_image?.url);
                     setShow(true);
@@ -152,7 +154,7 @@ const TrekExpertSpeak = ({ slice }) => {
             </div>
           </div>
         </div>
-        <div className="container">
+        <div className="container" id="goToWIL">
           <div className="row">
             <div className="col-12 col-lg-4 col-md-12 d-m-block mt-3">
               <div>
@@ -281,7 +283,7 @@ const TrekExpertSpeak = ({ slice }) => {
         </style>
       </div>
       <Modal size="xl" show={show} onHide={handleClose} animation={false}>
-        <Modal.Header closeButton>
+        <Modal.Header className="img-header-popup" closeButton>
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -289,8 +291,8 @@ const TrekExpertSpeak = ({ slice }) => {
             <Image
               src={imgUrl && imgUrl}
               layout="fill"
-              objectFit="cover"
-              objectPosition="bottom"
+              objectFit="contain"
+              objectPosition="top"
             />
           </div>
         </Modal.Body>

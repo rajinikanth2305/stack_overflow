@@ -93,8 +93,8 @@ const TrekOverView = ({ slice, data }) => {
                   <b>{RichText.asText(heading1Subtitle)}</b>
                 </p>
                 {/* <p className="p-text-2 pb-4 mpt-0 mpb-0"> */}
-                  {/* {RichText.asText(heading2)} */}
-                  <div className="p-text-2">{RichText.render(heading2)}</div>
+                {/* {RichText.asText(heading2)} */}
+                <div className="p-text-2">{RichText.render(heading2)}</div>
                 {/* </p> */}
               </div>
               {/* <div>
@@ -102,77 +102,105 @@ const TrekOverView = ({ slice, data }) => {
               </div> */}
               <div className="mt-5">
                 <div className="d-flex align-items-center flex-wrap">
-                  <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
-                      Quick Itinerary
-                    </p>
-                  </div>
-                  <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
-                      What I Like About Hampta Pass Trek
-                    </p>
-                  </div>
-                  <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
-                      Photo Gallery
-                    </p>
-                  </div>
-                  <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
-                      FAQs
-                    </p>
-                  </div>
-                  <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
-                      Detailed Itinerary
-                    </p>
-                  </div>
-                  <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
-                      Trek Safety
-                    </p>
-                  </div>
-                  <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
-                      Trek Gear
-                    </p>
-                  </div>
-                  <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
-                      Sustainabilty
-                    </p>
-                  </div>
-                  <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
-                      Best Time
-                    </p>
-                  </div>
-                  <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
-                      Travel Pro Tips
-                    </p>
-                  </div>
-                  <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
-                      Trek Trivia
-                    </p>
-                  </div>
-                  <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
-                      Campsites
-                    </p>
-                  </div>
-                  <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
-                      {" "}
-                      Difficulty{" "}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
-                      Weather
-                    </p>
-                  </div>
+                  <a href="#goToQI">
+                    <div>
+                      <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                        Quick Itinerary
+                      </p>
+                    </div>
+                  </a>
+                  <a href="#goToWIL">
+                    <div>
+                      <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                        What I Like About {RichText.asText(heading1)}
+                      </p>
+                    </div>
+                  </a>
+                  <a href="#goToPG">
+                    <div>
+                      <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                        Photo Gallery
+                      </p>
+                    </div>
+                  </a>
+                  <a href="#">
+                    <div>
+                      <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                        FAQs
+                      </p>
+                    </div>
+                  </a>
+                  <a href="#KYT">
+                    <div>
+                      <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                        Detailed Itinerary
+                      </p>
+                    </div>
+                  </a>
+                  <a href="#goToTS">
+                    <div>
+                      <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                        Trek Safety
+                      </p>
+                    </div>
+                  </a>
+                  <a href="#">
+                    <div>
+                      <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                        Trek Gear
+                      </p>
+                    </div>
+                  </a>
+                  <a href="#goToSustainabilty">
+                    <div>
+                      <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                        Sustainabilty
+                      </p>
+                    </div>
+                  </a>
+                  <a href="#KYT">
+                    <div>
+                      <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                        Best Time
+                      </p>
+                    </div>
+                  </a>
+                  <a href="#GoToPT">
+                    <div>
+                      <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                        Travel Pro Tips
+                      </p>
+                    </div>
+                  </a>
+                  <a href="#">
+                    <div>
+                      <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                        Trek Trivia
+                      </p>
+                    </div>
+                  </a>
+                  <a href="#goToCampsite">
+                    <div>
+                      <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                        Campsites
+                      </p>
+                    </div>
+                  </a>
+                  <a href="#">
+                    <div>
+                      <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                        {" "}
+                        Difficulty{" "}
+                      </p>
+                    </div>
+                  </a>
+                  <a href="#">
+                    <div>
+                      <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
+                        Weather
+                      </p>
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>

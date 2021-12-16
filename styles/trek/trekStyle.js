@@ -483,6 +483,7 @@ export const trekStyle = css.global`
   }
 
   .discovery_trek_gallery {
+    background: #212529;
     position: relative;
     width: 100%;
     height: 700px;
@@ -1364,6 +1365,10 @@ export const trekStyle = css.global`
   .reach-img {
     position: relative;
     height: 220px;
+  }
+
+  .img-header-popup {
+    border: 0;
   }
 
   @media only screen and (max-width: 660px) {

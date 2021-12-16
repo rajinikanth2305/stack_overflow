@@ -75,7 +75,7 @@ const QuickItineraryComponent = ({ slice }) => {
 
   return (
     <>
-      <div className="mb-5 mmt-2">
+      <div id="goToQI" className="mb-5 mmt-2">
         <div className="container">
           <div className="row">
             <div className="col-lg-7 col-md-12">
@@ -128,7 +128,7 @@ const QuickItineraryComponent = ({ slice }) => {
                       <Image
                         src={itineraryMapImage}
                         layout="fill"
-                        objectFit="cover"
+                        objectFit="contain"
                         objectPosition="50% 50%"
                         onClick={() => {
                           setShow(true);
@@ -141,7 +141,7 @@ const QuickItineraryComponent = ({ slice }) => {
                   </div>
                 )}
 
-                <div className="pro_tips_box">
+                <div className="pro_tips_box" id="GoToPT">
                   <p className="pro_tips">
                     <span className="p-text-2-franklin">
                       <b>PRO-TIPS</b>
@@ -204,7 +204,7 @@ const QuickItineraryComponent = ({ slice }) => {
         </style>
       </div>
       <Modal size="xl" show={show} onHide={handleClose} animation={false}>
-        <Modal.Header closeButton>
+        <Modal.Header className="img-header-popup" closeButton>
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -212,8 +212,8 @@ const QuickItineraryComponent = ({ slice }) => {
             <Image
               src={itineraryMapImage && itineraryMapImage}
               layout="fill"
-              objectFit="cover"
-              objectPosition="bottom"
+              objectFit="contain"
+              objectPosition="top"
             />
           </div>
         </Modal.Body>

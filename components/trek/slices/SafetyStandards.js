@@ -10,7 +10,7 @@ const SafetyStandards = ({ slice }) => {
 
   return (
     <>
-      <div className="mt-5 pt-5 mpt-0 mpb-0 mmt-0">
+      <div className="mt-5 pt-5 mpt-0 mpb-0 mmt-0" id="goToTS">
         <div className="container container-custom">
           <div className="row">
             <div className="col-12 col-lg-12 col-md-12 p-0">
