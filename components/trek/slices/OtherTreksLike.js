@@ -48,6 +48,16 @@ const OtherTreksLike = ({ slice }) => {
   };
 
   const imageView = imageViewArray.map(function(data, i) {
+    // const slugUrl = data?.other_trek?.slug;
+    // if (slugUrl !== undefined) {
+    //   Client().getByUID("trek", slugUrl).then(function(response) {
+    //     const trek_details = response?.data?.body?.find(
+    //       x => x.slice_type === "trek_banner"
+    //     );
+    //     console.log(trek_details);
+    //     setTrekDetails(trek_details);
+    //   });
+    // }
     return (
       <>
         <div className="mx-4 m-mx-0" key={i}>

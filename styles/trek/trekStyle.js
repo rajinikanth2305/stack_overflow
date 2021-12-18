@@ -123,7 +123,7 @@ export const trekStyle = css.global`
     font-family: Lora;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 14px !important;
     color: rgba(0, 0, 0, 1);
   }
 
@@ -189,6 +189,11 @@ export const trekStyle = css.global`
 
   .border-line-right {
     border-right: 2px solid rgb(255, 193, 0);
+  }
+
+  .border-line-left {
+    border-left: 2px solid rgb(255, 193, 0);
+    padding-left: 10px;
   }
 
   .trek_fee_outer_bg {
@@ -861,6 +866,7 @@ export const trekStyle = css.global`
   }
 
   .hd-tabs > div.tab-content {
+    background: #ffffff;
     padding: 30px 75px;
     box-shadow: 1px 1px 3px rgb(157, 58, 11);
     margin-left: -5px;
@@ -892,6 +898,11 @@ export const trekStyle = css.global`
     margin: 0px 3px;
     width: 170px;
   }
+
+.hd-tabs.trek-tr > .nav > .nav-item.nav-link {
+  padding: 15px 30px !important;
+  width: auto;
+}
 
   .accordion_tab_img {
     position: relative;
@@ -939,6 +950,12 @@ export const trekStyle = css.global`
     position: absolute;
     left: 75%;
     width: 45%;
+  }
+
+  .position-change1 {
+    position: absolute;
+    left: 65%;
+    width: 25%;
   }
 
   .hd-tab4-iamge {
@@ -1369,6 +1386,21 @@ export const trekStyle = css.global`
 
   .img-header-popup {
     border: 0;
+  }
+
+  .trek-trevia-bg {
+    background: rgba(0,0,0,0.051);
+    padding: 50px 0;
+  }
+
+  .tt-content {
+    line-height: 18px;
+text-align: left;
+font-family: Lora;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+color: rgba(0,0,0,1);
   }
 
   @media only screen and (max-width: 660px) {
