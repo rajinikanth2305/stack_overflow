@@ -899,10 +899,10 @@ export const trekStyle = css.global`
     width: 170px;
   }
 
-.hd-tabs.trek-tr > .nav > .nav-item.nav-link {
-  padding: 15px 30px !important;
-  width: auto;
-}
+  .hd-tabs.trek-tr > .nav > .nav-item.nav-link {
+    padding: 15px 30px !important;
+    width: auto;
+  }
 
   .accordion_tab_img {
     position: relative;
@@ -1389,21 +1389,40 @@ export const trekStyle = css.global`
   }
 
   .trek-trevia-bg {
-    background: rgba(0,0,0,0.051);
+    background: rgba(0, 0, 0, 0.051);
     padding: 50px 0;
   }
 
   .tt-content {
     line-height: 18px;
-text-align: left;
-font-family: Lora;
-font-style: normal;
-font-weight: normal;
-font-size: 14px;
-color: rgba(0,0,0,1);
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .text-adj {
+    text-align: right !important;
+    padding: 30px 30px 0 30px;
+  }
+
+  .q-des {
+    font-size: 135px;
+    position: absolute;
+    top: -10px;
+    left: -15px;
+    color: #ffc100;
+    font-weight: bold;
   }
 
   @media only screen and (max-width: 660px) {
+    .q-des {
+      font-size: 40px;
+      left: 0px;
+      top: 15px;
+    }
     .icon-size-70 {
       width: 50px;
     }
