@@ -45,6 +45,10 @@ const UserPT = () => {
 
   const toast = useRef(null);
 
+  const [multiCheckItems, setMultiCheckItems] = useState([]);
+
+
+
   const {
     register,
     handleSubmit,
@@ -73,6 +77,26 @@ const UserPT = () => {
     // console.log(res);
     //fetchAndBindUserBookings(res);
   }, []);
+
+
+  const onMultiChekBoxChange = (e) => {
+    let _selectedCategories = [...multiCheckItems];
+      console.log(e);
+    if (e.checked) {
+        _selectedCategories.push(e.value);
+    }
+    else {
+        for (let i = 0; i < _selectedCategories.length; i++) {
+            const selectedCategory = _selectedCategories[i];
+
+            if (selectedCategory === e.value) {
+                _selectedCategories.splice(i, 1);
+                break;
+            }
+        }
+    }
+    setMultiCheckItems(_selectedCategories);
+}
 
   const fetchTrekReview = () => {
     getTrekReview(bookings.trekId, bookings.batchId).then(data => {
@@ -363,6 +387,8 @@ const UserPT = () => {
                                     {multiple && (
                                       <div className="d-flex align-items-center">
                                         {item.answers.map((ch, mindex) => {
+                                         
+                                         console.log("Rerendering");
                                           return (
                                             <div className="mr-3">
                                               {/* <p></p> */}
@@ -376,9 +402,15 @@ const UserPT = () => {
                                                       value
                                                     }) => (
                                                       <Checkbox
-                                                        checked={value}
+                                                      checked={value}
+                                                      value={`${item.questionId}-${mindex}`}
                                                         onChange={e => {
+                                                          //onMultiChekBoxChange(e);
                                                           onChange(e.checked);
+                                                         // addItineraries();
+                                                           // document.getElementByName(`"${item.questionId}-${mindex}"`).checked=e.checked;
+                                                          
+                                                         
                                                         }}
                                                       />
                                                     )}

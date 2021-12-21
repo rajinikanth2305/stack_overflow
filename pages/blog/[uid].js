@@ -67,22 +67,40 @@ const author_lnk_id=post?.data?.author_link?.id;
 /// Fetch related articles
 const relatedArticles=[];
  const slice=post.data?.body?.find(x=>x.slice_type==="related_articles");
-
+ console.log(slice);
  if(slice!==null && slice!==undefined) {
- slice?.items?.map(async function(data, i) {
+   if(slice?.items.length>0) {
+      for (var i = 0; i < slice?.items?.length; i++) {
+        const data=slice?.items[i];
+        const slug=data?.article_uid;
+        console.log(slug);
+        const related_article  =  await Client().getByUID("post", slug);
+        console.log(related_article);
+        if(related_article!==null && related_article!==undefined ){
+          relatedArticles.push(related_article);
+        }
+        else {
+          console.log(slug + " --- uid not found in the article");
+        }
+      }
+}
+ /* slice?.items?.map(async function(data, i) {
   const slug=data?.related_article_link?.slug;
   const related_article  =  await Client().getByUID("post", slug);
- // console.log(related_article);
+  console.log(related_article);
+  console.log("ooaS");
   if(related_article!==null && related_article!==undefined ){
     relatedArticles.push(related_article);
   }
- });
+ });*/
 }
-console.log('authorlink' + author_lnk_id);
+
+console.log('authorlink---' + author_lnk_id);
+
   let authorData  =  await Client().getByID(author_lnk_id);
-  console.log(authorData);
+ // console.log(authorData);
   if(authorData===undefined)
-  authorData=null;
+     authorData=null;
   //console.log(authorData);
   const updatesData =  await Client().getSingle("updates");
   //console.log(updatesData);
@@ -90,7 +108,7 @@ console.log('authorlink' + author_lnk_id);
  // console.log(upComingData);
 
 
-
+  console.log("return is going to call now");
   return {
     props: {
       preview,
