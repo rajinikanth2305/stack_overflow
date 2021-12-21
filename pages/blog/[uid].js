@@ -72,8 +72,11 @@ const relatedArticles=[];
    if(slice?.items.length>0) {
       for (var i = 0; i < slice?.items?.length; i++) {
         const data=slice?.items[i];
-        const slug=data?.article_uid;
+        let slug=data?.article_uid;
         console.log(slug);
+        if(slug==null){
+          slug=data?.article_title.replace(" ","-").toLowerCase();
+        }
         const related_article  =  await Client().getByUID("post", slug);
         console.log(related_article);
         if(related_article!==null && related_article!==undefined ){
