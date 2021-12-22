@@ -24,7 +24,8 @@ const PostRender = ({
   authorData,
   updatesData,
   upComingData,
-  relatedArticles
+  relatedArticles,
+  related_authors
 }) => {
   const [show, setShow] = useState(false);
   const [trekVideoUrl, setTrekVideoUrl] = useState();
@@ -39,6 +40,8 @@ const PostRender = ({
   if (featureSlice != null) {
     featureImageUrl = featureSlice.primary.feature_image.url;
   }
+
+  
 
   const renderAuthorSlice = () => {
     return (
@@ -299,7 +302,8 @@ const PostRender = ({
         <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
           Latest Articles
         </p>
-        {relatedArticles?.map(function(article, i) {
+        {
+        relatedArticles?.map(function(article, i) {
           let featureImageUrl = "";
           const featureSlice = article?.data?.body?.find(
             x => x.slice_type == "feature_image"
@@ -309,11 +313,7 @@ const PostRender = ({
           }
           const title = RichText.asText(article?.data.title);
           const date = article?.data.date;
-          const author =
-            article?.data?.author_first_name +
-            " " +
-            article?.data?.author_last_name;
-
+          let author =related_authors[i];
           return (
             <div className="border-bottom mb-3">
               <div className="ar_right_side_imgs">

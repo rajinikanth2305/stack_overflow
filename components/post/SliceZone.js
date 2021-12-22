@@ -3,7 +3,7 @@ import { Text, Quote, ImageWithCaption,IframeTag,EmbedHtml, PostRender } from '.
 /**
  * Post slice zone component
  */
-const SliceZone = ({ data,authorData,updatesData,upComingData,relatedArticles }) => {
+const SliceZone = ({ data,authorData,updatesData,upComingData,relatedArticles,related_authors }) => {
   /*sliceZone.map((slice, index) => {
     switch (slice.slice_type) {
       // case ('image_with_caption'):
@@ -27,7 +27,8 @@ const SliceZone = ({ data,authorData,updatesData,upComingData,relatedArticles })
   return <PostRender data={data}   authorData={authorData} 
   updatesData={updatesData} 
   upComingData={upComingData}
-  relatedArticles={relatedArticles} />
+  relatedArticles={relatedArticles}
+  related_authors={related_authors} />
 };  
 
 

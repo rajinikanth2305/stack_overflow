@@ -18,7 +18,7 @@ import IHTrekWithSwathi from "components/Trek_With_Swathi";
 /**
  * Post page component
  */
-const Post = ({ post, authorData,updatesData,upComingData,relatedArticles }) => {
+const Post = ({ post, authorData,updatesData,upComingData,relatedArticles,related_authors }) => {
   if (post && post.data) {
     const hasTitle = RichText.asText(post.data.title).length !== 0;
     const title = hasTitle ? RichText.asText(post.data.title) : "Untitled";
@@ -44,7 +44,8 @@ const Post = ({ post, authorData,updatesData,upComingData,relatedArticles }) => 
           authorData={authorData} 
           updatesData={updatesData} 
           upComingData={upComingData}
-          relatedArticles={relatedArticles} />
+          relatedArticles={relatedArticles}
+          related_authors={related_authors} />
         </div>
         {/* <style jsx global>
           {postStyles}
@@ -60,57 +61,95 @@ const Post = ({ post, authorData,updatesData,upComingData,relatedArticles }) => 
 
 export async function getStaticProps({ params, preview = null, previewData = {} }) {
   const { ref } = previewData
-  const post = await Client().getByUID("post", params.uid, ref ? { ref } : null) || {}
+  const post = await Client().getByUID("post", params.uid, ref ? { ref } : null) || {};
   //console.log(post);
-const author=post.data.author_first_name + "-" + post.data.author_last_name;
+//const author=post.data.author_first_name + "-" + post.data.author_last_name;
 const author_lnk_id=post?.data?.author_link?.id;
 /// Fetch related articles
 const relatedArticles=[];
  const slice=post.data?.body?.find(x=>x.slice_type==="related_articles");
- console.log(slice);
+ //console.log(slice);
+ 
  if(slice!==null && slice!==undefined) {
    if(slice?.items.length>0) {
       for (var i = 0; i < slice?.items?.length; i++) {
-        const data=slice?.items[i];
-        let slug=data?.article_uid;
-        console.log(slug);
-        if(slug==null){
-          slug=data?.article_title.replace(" ","-").toLowerCase();
+            let slug=null;
+            let uid=false;
+            const data=slice?.items[i];
+            let related_link=data?.related_article_link;
+
+            if(related_link===null) {
+              slug=data?.article_uid;
+              console.log(slug);
+              if(slug===null){
+                if(data?.article_title!==null) {
+                  slug=data?.article_title.replace(" ","-").toLowerCase();
+                }
+              }
+          }
+          else {
+            slug=data?.related_article_link?.id;
+            console.log("id" + slug);
+            uid=true;
+          }
+         console.log(slug);
+         if(slug!==null &&  slug!==undefined) {
+
+          let related_article=null;
+            if(uid===false) {
+               related_article  =  await Client().getByUID("post", slug);
+            }
+            else {
+              related_article  =  await Client().getByID(slug);
+            }
+
+            console.log(related_article);
+             if(related_article!==null && related_article!==undefined ){
+                relatedArticles.push(related_article);
+             }
+             else {
+               console.log(slug + " --- uid not found in the article");
+            }
+          }
         }
-        const related_article  =  await Client().getByUID("post", slug);
-        console.log(related_article);
-        if(related_article!==null && related_article!==undefined ){
-          relatedArticles.push(related_article);
-        }
-        else {
-          console.log(slug + " --- uid not found in the article");
-        }
-      }
-}
- /* slice?.items?.map(async function(data, i) {
-  const slug=data?.related_article_link?.slug;
-  const related_article  =  await Client().getByUID("post", slug);
-  console.log(related_article);
-  console.log("ooaS");
-  if(related_article!==null && related_article!==undefined ){
-    relatedArticles.push(related_article);
-  }
- });*/
-}
+    }
+ }
+
 
 console.log('authorlink---' + author_lnk_id);
+let authorData =undefined;
 
-  let authorData  =  await Client().getByID(author_lnk_id);
+if(author_lnk_id !== undefined) {
+   authorData  =  await Client().getByID(author_lnk_id);
+}
  // console.log(authorData);
-  if(authorData===undefined)
+  if(authorData===undefined) {
      authorData=null;
+  }
   //console.log(authorData);
   const updatesData =  await Client().getSingle("updates");
   //console.log(updatesData);
   const upComingData = await Client().getSingle("hike_upcoming_treks_ctype");
  // console.log(upComingData);
 
-
+ let related_authors=[];
+  for(var i = 0; i < relatedArticles.length; i++) {
+    const article=relatedArticles[i];
+    const author_lnk_id=article?.data?.author_link?.id;
+    //console.log("139" + article?.data?.author_link?.id);
+    if(author_lnk_id !== undefined) {
+      const rel_article_auth_data  =  await Client().getByID(author_lnk_id);
+     
+      if(rel_article_auth_data !== undefined) {
+          const author = rel_article_auth_data?.data?.author_first_name + " " + rel_article_auth_data?.data?.author_last_name;
+          related_authors.push(author);
+      }
+      else {
+        related_authors.push[undefined];
+      }
+    }
+  }
+ // console.log(JSON.stringify(related_authors));
   console.log("return is going to call now");
   return {
     props: {
@@ -119,7 +158,8 @@ console.log('authorlink---' + author_lnk_id);
       authorData,
       updatesData,
       upComingData,
-      relatedArticles
+      relatedArticles,
+      related_authors
     }
   }
 }
