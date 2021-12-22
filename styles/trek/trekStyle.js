@@ -1417,6 +1417,19 @@ export const trekStyle = css.global`
     font-weight: bold;
   }
 
+  .t-pro-tips-box {
+    background: rgba(255,193,0,0.122);
+    border-top: 2px solid rgba(255,193,0,1);
+    padding: 30px;
+    margin: 35px 0;
+  }
+
+  .t-picture-img {
+    position: relative;
+    height: 350px;
+    width: 100%;
+  }
+
   @media only screen and (max-width: 660px) {
     .q-des {
       font-size: 40px;
