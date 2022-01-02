@@ -9,9 +9,10 @@ import "slick-carousel/slick/slick-theme.css";
 import { hrefResolver, linkResolver } from "prismic-configuration";
 import Link from "next/link";
 
-const ChooseTheseTreks = ({ slice }) => {
+const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
   const heading1 = slice.primary.heading1;
   const chooseTrekImageArray = slice.items;
+  console.log(trekPageData1);
 
   const settings = {
     dots: true,
@@ -49,98 +50,155 @@ const ChooseTheseTreks = ({ slice }) => {
     ]
   };
 
-  const chooseTrekImage = chooseTrekImageArray.map(function(data, i) {
+  // const chooseTrekImage = chooseTrekImageArray.map(function(data, i) {
+  //   let url;
+  //   const slugUrl = data?.link_url?.slug;
+  //   if (slugUrl) {
+  //     url = `/trek/${data?.link_url?.uid}`;
+  //   }
+  //   return (
+  //     <div key={`choosetrek` + i}>
+  //       <div className="mx-4 m-mx-0 cursor-pointer">
+  //         <Link href={url ? url : '#'}>
+  //           <div className="card_sec">
+  //             <div className="card trek_card">
+  //               <div alt="imgs" className="choose_trek_image">
+  //                 <Image
+  //                   src={data?.choose_trek_image?.url}
+  //                   layout="fill"
+  //                   objectFit="cover"
+  //                   objectPosition="50% 50%"
+  //                 />
+  //               </div>
+  //               <div className="px-3 py-2">
+  //                 <div className="d-flex align-items-center card-info-text">
+  //                   <div>
+  //                     <p>{data?.choose_trek_days[0]?.text} Days</p>
+  //                   </div>
+  //                   <div>
+  //                     <p className="list-dot-style px-1">
+  //                       <span>.</span>
+  //                     </p>
+  //                   </div>
+  //                   <div>
+  //                     <p>{data?.choose_trek_seasons[0]?.text}</p>
+  //                   </div>
+  //                   <div>
+  //                     <p className="list-dot-style px-1">
+  //                       <span>.</span>
+  //                     </p>
+  //                   </div>
+  //                   <div>
+  //                     <p>{data?.choose_trek_guide[0]?.text}</p>
+  //                   </div>
+  //                 </div>
+
+  //                 <div>
+  //                   <p className="title-diplay-3-18px text-uppercase">
+  //                     {data?.choose_trek_title[0]?.text?.length > 20
+  //                     ? `${data?.choose_trek_title[0]?.text.substring(0, 20)}...`
+  //                     : data?.choose_trek_title[0]?.text}
+  //                   </p>
+  //                   <p className="p-text-4 pm-t-4">
+  //                     {data?.choose_trek_desc[0]?.text?.length > 122
+  //                       ? `${data?.choose_trek_desc[0]?.text.substring(
+  //                           0,
+  //                           122
+  //                         )}...`
+  //                       : data?.choose_trek_desc[0]?.text}
+  //                   </p>
+  //                   <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
+  //                     <div className="flex-grow-1">
+  //                       {data?.choose_trek_familytrek === true ? (
+  //                         <p className="m-0 fam_trek"><span>*</span> Family trek</p>
+  //                       ) : (
+  //                         ""
+  //                       )}
+  //                     </div>
+  //                     <div>
+  //                       <button className="btn btn-ih-green">
+  //                         View Details
+  //                       </button>
+  //                     </div>
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             </div>
+  //           </div>
+  //         </Link>
+  //       </div>
+  //     </div>
+  //   );
+  // });
+
+  const chooseTrekImage = trekPageData1.map(function(data, i) {
+    const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
     let url;
-    const slugUrl = data?.link_url?.slug;
+    const slugUrl = data?.uid;
     if (slugUrl) {
-      url = `/trek/${data?.link_url?.uid}`;
+      url = `/trek/${slugUrl}`;
     }
     return (
-      <div key={`choosetrek` + i}>
-        <div className="mx-4 m-mx-0 cursor-pointer">
-          <Link href={url ? url : '#'}>
-            <div className="card_sec">
-              <div className="card trek_card">
-                <div alt="imgs" className="choose_trek_image">
-                  {/* {data?.choose_trek_familytrek === true ? (
-                    <div className="trek_badge">
-                      <img src="/trek-badge.png" />
-                      <span>Family Trek</span>
-                    </div>
-                  ) : (
-                    ""
-                  )} */}
+      <>
+        <div className="mx-4 m-mx-0" key={i}>
+          <div className="card_sec">
+            <div className="card trek_card">
+              <div alt="imgs" className="choose_trek_image">
+                {tData.primary.trek_banner_image.url && (
                   <Image
-                    src={data?.choose_trek_image?.url}
+                    src={tData.primary.trek_banner_image.url}
                     layout="fill"
                     objectFit="cover"
                     objectPosition="50% 50%"
                   />
-                </div>
-                <div className="px-3 py-2">
-                  <div className="d-flex align-items-center card-info-text">
-                    <div>
-                      <p>{data?.choose_trek_days[0]?.text} Days</p>
-                    </div>
-                    <div>
-                      <p className="list-dot-style px-1">
-                        <span>.</span>
-                      </p>
-                    </div>
-                    <div>
-                      <p>{data?.choose_trek_seasons[0]?.text}</p>
-                    </div>
-                    <div>
-                      <p className="list-dot-style px-1">
-                        <span>.</span>
-                      </p>
-                    </div>
-                    <div>
-                      <p>{data?.choose_trek_guide[0]?.text}</p>
-                    </div>
-                  </div>
-
+                )}
+              </div>
+              <div className="px-3 py-2">
+                <div className="d-flex align-items-center card-info-text">
                   <div>
-                    <p className="title-diplay-3-18px text-uppercase">
-                      {/* {data?.choose_trek_title[0].text} */}
-                      {data?.choose_trek_title[0]?.text?.length > 20
-                      ? `${data?.choose_trek_title[0]?.text.substring(0, 20)}...`
-                      : data?.choose_trek_title[0]?.text}
+                    <p>{tData.primary.duration[0].text}</p>
+                  </div>
+                  {/* <div>
+                    <p className="list-dot-style px-1">
+                      <span>.</span>
                     </p>
-                    <p className="p-text-4 pm-t-4">
-                      {data?.choose_trek_desc[0]?.text?.length > 122
-                        ? `${data?.choose_trek_desc[0]?.text.substring(
-                            0,
-                            122
-                          )}...`
-                        : data?.choose_trek_desc[0]?.text}
+                  </div>
+                  <div>
+                    <p>{tData.primary.altitude[0].text}</p>
+                  </div> */}
+                  <div>
+                    <p className="list-dot-style px-1">
+                      <span>.</span>
                     </p>
-                    {/* <div className="float-right pt-2 pb-4">
-                      <button className="btn btn-ih-green">View Details</button>
-                    </div> */}
-                    <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
-                      <div className="flex-grow-1">
-                        {data?.choose_trek_familytrek === true ? (
-                          <p className="m-0 fam_trek"><span>*</span> Family trek</p>
-                        ) : (
-                          ""
-                        )}
-                      </div>
-                      <div>
-                        <button className="btn btn-ih-green">
-                          View Details
-                        </button>
-                      </div>
+                  </div>
+                  <div>
+                    <p>{tData.primary.difficulty[0].text}</p>
+                  </div>
+                </div>
+
+                <div>
+                  <p className="title-diplay-3-18px text-uppercase frg-mob">
+                    <b>{tData.primary.trek_caption}</b>
+                  </p>
+                  <div className="p-text-4">
+                    {RichText.asText(tData.primary.sub_heading)}
+                  </div>
+                  <div className="pt-2 pb-2 p-btn-btm">
+                    <div className="float-right">
+                      <Link href={url ? url : "#"}>
+                        <button className="btn btn-ih-green">View Dates</button>
+                      </Link>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
         </div>
-      </div>
+      </>
     );
   });
+
 
   return (
     <>

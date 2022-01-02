@@ -14,7 +14,7 @@ import { ihbodyStyles } from 'styles'
 /**
  * Homepage component
  */
-const HikeHome = ({ doc }) => {
+const HikeHome = ({ doc, trekPageData1 }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -22,7 +22,7 @@ const HikeHome = ({ doc }) => {
          <title>India Hikes</title>
         </Head>
         <HikeHeader/>
-        <SliceZone sliceZone={doc.data.body} />
+        <SliceZone sliceZone={doc.data.body} trekPageData1={trekPageData1}/>
       </HomeLayout>
     );
   }
@@ -39,17 +39,30 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const doc = await client.getSingle("hike_home_ctype", ref ? { ref } : null) || {}
 
-  /*const doc = await client.query(
-    Prismic.Predicates.at("document.type", "hike_home_ctype"), {
-      ...(ref ? { ref } : null)
-    },
-  )*/
-  
-  //console.log( JSON.stringify(doc.results[0]));
+  const trekPageData1 = [];
+
+  const slice = doc.data?.body?.find(
+    x => x.slice_type === "choose_these_treks"
+  );
+  const trekPageData = slice.items;
+  if (trekPageData.length > 0) {
+    for (var i = 0; i < trekPageData.length; i++) {
+      const data = trekPageData[i];
+      const slugUrl = data && data?.link_url?.id;
+      if (slugUrl !== undefined) {
+        const trek_details = await Client().getByID(slugUrl);
+        trekPageData1.push(trek_details);
+      }
+    }
+  } else {
+    return false;
+  }
+
   return {
     props: {
       doc,
-      preview
+      preview,
+      trekPageData1
     }
   }
 }

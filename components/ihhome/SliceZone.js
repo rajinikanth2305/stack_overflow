@@ -23,7 +23,7 @@ import {
 /**
  * Post slice zone component
  */
-const SliceZone = ({ sliceZone }) =>
+const SliceZone = ({ sliceZone, trekPageData1 }) =>
   sliceZone.map((slice, index) => {
     switch (slice.slice_type) {
       case "homebannerwithcaptions":
@@ -37,7 +37,7 @@ const SliceZone = ({ sliceZone }) =>
       case "why_trek":
         return <WhyTrek slice={slice} key={`slice-${index}`} />;
       case "choose_these_treks":
-        return <ChooseTheseTreks slice={slice} key={`slice-${index}`} />;
+        return <ChooseTheseTreks slice={slice} key={`slice-${index}`} trekPageData1={trekPageData1} />;
       case "latest_trekking_world":
         return <LatestTrekkingWorld slice={slice} key={`slice-${index}`} />;
       case "trekker_stories":

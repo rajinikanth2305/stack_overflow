@@ -9,7 +9,6 @@ import Link from "next/link";
 
 const OtherTreksLike = ({ slice, trekPageData1 }) => {
   const heading1 = slice.primary.heading1;
-  console.log(trekPageData1);
 
   const settings = {
     dots: true,
@@ -75,14 +74,14 @@ const OtherTreksLike = ({ slice, trekPageData1 }) => {
                   <div>
                     <p>{tData.primary.duration[0].text}</p>
                   </div>
-                  <div>
+                  {/* <div>
                     <p className="list-dot-style px-1">
                       <span>.</span>
                     </p>
                   </div>
                   <div>
                     <p>{tData.primary.altitude[0].text}</p>
-                  </div>
+                  </div> */}
                   <div>
                     <p className="list-dot-style px-1">
                       <span>.</span>
@@ -94,7 +93,7 @@ const OtherTreksLike = ({ slice, trekPageData1 }) => {
                 </div>
 
                 <div>
-                  <p className="p-text-1-frg frg-mob">
+                  <p className="title-diplay-3-18px text-uppercase frg-mob">
                     <b>{tData.primary.trek_caption}</b>
                   </p>
                   <div className="p-text-4">
