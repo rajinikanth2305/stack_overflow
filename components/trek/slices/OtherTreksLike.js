@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { trekStyle } from "styles";
 import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Link from "next/link";
 
-const OtherTreksLike = ({ slice }) => {
+const OtherTreksLike = ({ slice, trekPageData1 }) => {
   const heading1 = slice.primary.heading1;
-  const imageViewArray = slice.items;
+  console.log(trekPageData1);
 
   const settings = {
     dots: true,
@@ -47,26 +48,22 @@ const OtherTreksLike = ({ slice }) => {
     ]
   };
 
-  const imageView = imageViewArray.map(function(data, i) {
-    // const slugUrl = data?.other_trek?.slug;
-    // if (slugUrl !== undefined) {
-    //   Client().getByUID("trek", slugUrl).then(function(response) {
-    //     const trek_details = response?.data?.body?.find(
-    //       x => x.slice_type === "trek_banner"
-    //     );
-    //     console.log(trek_details);
-    //     setTrekDetails(trek_details);
-    //   });
-    // }
+  const imageView = trekPageData1.map(function(data, i) {
+    const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
+    let url;
+    const slugUrl = data?.uid;
+    if (slugUrl) {
+      url = `/trek/${slugUrl}`;
+    }
     return (
       <>
         <div className="mx-4 m-mx-0" key={i}>
           <div className="card_sec">
             <div className="card trek_card">
               <div alt="imgs" className="image-view imgaview-view">
-                {data.image.url && (
+                {tData.primary.trek_banner_image.url && (
                   <Image
-                    src={data.image.url}
+                    src={tData.primary.trek_banner_image.url}
                     layout="fill"
                     objectFit="cover"
                     objectPosition="50% 50%"
@@ -76,7 +73,7 @@ const OtherTreksLike = ({ slice }) => {
               <div className="px-3 py-2">
                 <div className="d-flex align-items-center card-info-text">
                   <div>
-                    <p>{data.days[0].text} Days</p>
+                    <p>{tData.primary.duration[0].text}</p>
                   </div>
                   <div>
                     <p className="list-dot-style px-1">
@@ -84,7 +81,7 @@ const OtherTreksLike = ({ slice }) => {
                     </p>
                   </div>
                   <div>
-                    <p>{data.season[0].text}</p>
+                    <p>{tData.primary.altitude[0].text}</p>
                   </div>
                   <div>
                     <p className="list-dot-style px-1">
@@ -92,46 +89,23 @@ const OtherTreksLike = ({ slice }) => {
                     </p>
                   </div>
                   <div>
-                    <p>{data.level[0].text}</p>
+                    <p>{tData.primary.difficulty[0].text}</p>
                   </div>
                 </div>
+
                 <div>
                   <p className="p-text-1-frg frg-mob">
-                    <b>{data.heading1[0].text}</b>
+                    <b>{tData.primary.trek_caption}</b>
                   </p>
-                  {/* <p className="p-text-4">
-                    {data.heading2[0].text.length > 125
-                      ? `${data.heading2[0].text.substring(0, 125)}...`
-                      : data.heading2[0].text}
-                  </p> */}
-                  <div className="p-text-4">{RichText.render(data.heading2)}</div>
-                  {/* <div>
-                    <div className="row">
-                      <div className="col-6 col-lg-6 col-md-6">
-                        <p className="p-text-3 mb-2">
-                          <span className="badge-white mx-2"></span> 6 days
-                        </p>
-                        <p className="p-text-3 mb-2">
-                          <span className="badge-white mx-2"></span> Uttarakhand
-                        </p>
-                        <p className="p-text-3 mb-2">
-                          <span className="badge-white mx-2"></span>{" "}
-                          Summer-Autumn
-                        </p>
-                      </div>
-                      <div className="col-6 col-lg-6 col-md-6">
-                        <p className="mb-1">
-                          <img src="/mountain-icon.png" />
-                        </p>
-                        <p className="p-text-3 mb-1">
-                          <b>Easy - Moderate</b>
-                        </p>
-                        <p className="p-text-3 mb-1">Suitable fit beginners; Child friendly</p>
-                      </div>
+                  <div className="p-text-4">
+                    {RichText.asText(tData.primary.sub_heading)}
+                  </div>
+                  <div className="pt-2 pb-2 p-btn-btm">
+                    <div className="float-right">
+                      <Link href={url ? url : "#"}>
+                        <button className="btn btn-ih-green">View Dates</button>
+                      </Link>
                     </div>
-                  </div> */}
-                  <div className="float-right pt-2 pb-4">
-                    <button className="btn btn-ih-green">View Dates</button>
                   </div>
                 </div>
               </div>

@@ -689,7 +689,7 @@ export const trekStyle = css.global`
 
   .image-view {
     width: 100%;
-    height: 275px;
+    height: 222px;
     position: relative;
     border-bottom: 2px solid rgb(255, 193, 0);
   }

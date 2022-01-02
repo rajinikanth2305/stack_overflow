@@ -24,7 +24,7 @@ import {
  *  slice zone component
  */
 
-const TrekSliceZone = ({ sliceZone }) =>
+const TrekSliceZone = ({ sliceZone, trekPageData1 }) =>
   sliceZone.map((slice, index) => {
     switch (slice.slice_type) {
       case "trek_banner":
@@ -54,7 +54,7 @@ const TrekSliceZone = ({ sliceZone }) =>
       case "safety_standards":
         return <SafetyStandards slice={slice} key={`slice-${index}`} />;
       case "others_treks_like":
-        return <OtherTreksLike slice={slice} key={`slice-${index}`} />;
+        return <OtherTreksLike slice={slice} key={`slice-${index}`} trekPageData1={trekPageData1} />;
       case "camp_sites":
         return <CampSite slice={slice} key={`slice-${index}`} />;
       case "trek_qa":
