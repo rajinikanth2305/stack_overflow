@@ -250,6 +250,20 @@ const PostRender = ({
     );
   };
 
+  const getVideoId= (url) =>{
+    const result = url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  const videoIdWithParams = result[2];
+
+  if (videoIdWithParams !== undefined) {
+    const cleanVideoId = videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+
+    return cleanVideoId;
+  }
+  else {
+    return null;
+  }
+  }
+
   const renderLatestVideos = () => {
     const slice = data?.body?.find(x => x.slice_type === "youtube_video_lists");
 
@@ -259,9 +273,12 @@ const PostRender = ({
           Latest Videos
         </p>
         {slice?.items?.map(function(data, i) {
-          console.log(data.video_image.url);
+          //console.log(data.video_image.url);
+          const videoId =data?.video_id?.replace("\"","");
           const videoUrl =
             "https://www.youtube.com/embed/" + data.video_id + "?autoplay=1";
+            const imageURL = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+           console.log(imageURL);
           return (
             <div
               className="card border-bottom mb-3"
@@ -271,9 +288,9 @@ const PostRender = ({
               }}
             >
               <div className="ar_right_side_imgs">
-                {data?.video_image?.url && (
+                {imageURL && (
                   <Image
-                    src={data.video_image.url}
+                    src={imageURL}
                     layout="fill"
                     objectFit="cover"
                     objectPosition="50% 50%"
