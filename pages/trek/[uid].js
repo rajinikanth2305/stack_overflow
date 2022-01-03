@@ -61,24 +61,26 @@ export async function getStaticProps({
     (await Client().getByUID("trek", params.uid, ref ? { ref } : null)) || {};
 
   // const trekPageData = [];
-  const trekPageData1 = [];
+  let trekPageData1 = [];
 
   const slice = trekData.data?.body?.find(
     x => x.slice_type === "others_treks_like"
   );
+  console.log( "items");
+  console.log( JSON.stringify(slice.items));
   // trekPageData.push(slice.items);
   const trekPageData = slice.items;
-  if (trekPageData.length > 0) {
-    for (var i = 0; i < trekPageData.length; i++) {
-      const data = trekPageData[i];
-      const slugUrl = data && data?.other_trek?.id;
+
+  if (slice.items.length > 0) {
+    for (var i = 0; i < slice.items.length; i++) {
+      const data = slice.items[i];
+      const slugUrl =  data?.other_trek?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
-        trekPageData1.push(trek_details);
+        if(trek_details!==undefined && trek_details!==null ) 
+           trekPageData1.push(trek_details);
       }
     }
-  } else {
-    return false;
   }
   return {
     props: {
