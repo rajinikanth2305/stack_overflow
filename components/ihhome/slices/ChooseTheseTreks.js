@@ -138,6 +138,7 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
     if (slugUrl) {
       url = `/trek/${slugUrl}`;
     }
+    const getFamiltTrek = data?.tags?.find(x => x === "FamilyTrek");
     return (
       <>
         <div className="mx-4 m-mx-0" key={i}>
@@ -183,10 +184,21 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
                   <div className="p-text-4">
                     {RichText.asText(tData.primary.sub_heading)}
                   </div>
-                  <div className="pt-2 pb-2 p-btn-btm">
-                    <div className="float-right">
+                  <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
+                    <div className="flex-grow-1">
+                      {getFamiltTrek !== undefined ? (
+                        <p className="m-0 fam_trek">
+                          <span>*</span> Family trek
+                        </p>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div>
                       <Link href={url ? url : "#"}>
-                        <button className="btn btn-ih-green">View Dates</button>
+                        <button className="btn btn-ih-green">
+                          View Details
+                        </button>
                       </Link>
                     </div>
                   </div>
@@ -198,7 +210,6 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
       </>
     );
   });
-
 
   return (
     <>
