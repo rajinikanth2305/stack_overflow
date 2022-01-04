@@ -8,8 +8,7 @@ module.exports = {
     
   },
   images: {
-    domains: ['images.prismic.io'],
-    domains: ['img.youtube.com'],
+    domains: ['images.prismic.io','img.youtube.com']
   },
   prismic: {
     preview: true

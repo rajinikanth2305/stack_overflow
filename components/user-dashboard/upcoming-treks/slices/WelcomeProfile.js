@@ -351,10 +351,16 @@ const WelcomeProfile = () => {
     userServiceObject.doLogout();
   };
 
-  const onCancelButtonClick = () => {
-    setShow(true);
-    const batchId=upComingTrek?.batchId;
-    //router.push(`/user-dashboard/cancellation-trek?batchId=${batchId}`);
+  const onCancelButtonClick = (bookingStatus) => {
+   
+    console.log(bookingStatus)
+    if(bookingStatus==="COMPLETED") {
+      const batchId=upComingTrek?.batchId;
+      router.push(`/user-dashboard/cancellation-trek?batchId=${batchId}`);
+    }
+    else {
+      setShow(true);
+    }
   };
 
   const modalStyles = {
@@ -580,7 +586,7 @@ const WelcomeProfile = () => {
                                               //     upComingTrek
                                               //   )
                                               // }
-                                              onClick={onCancelButtonClick}
+                                              onClick={e => onCancelButtonClick(upComingTrek?.bookingState)}
                                             >
                                               Cancel trek
                                             </button>
