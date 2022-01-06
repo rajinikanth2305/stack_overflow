@@ -204,7 +204,7 @@ const BestTimeToDo = ({ data }) => {
                 <p className="p-text-1">
                   <b>{RichText.asText(content1Title)}</b>
                 </p>
-                {content1Temprature && content1Temprature && (
+                {content1Temprature && content1Temprature.length > 0 && (
                   <p className="p-text-3-1 mb-2">
                     <img src="/Duration.png" alt="img" />{" "}
                     <span className="px-2">
@@ -212,7 +212,7 @@ const BestTimeToDo = ({ data }) => {
                     </span>
                   </p>
                 )}
-                {content1Snow && content1Snow && (
+                {content1Snow && content1Snow.length > 0 && (
                   <p className="p-text-3-1 mb-2">
                     <img src="/shoes.png" alt="img" />{" "}
                     <span className="px-2">
@@ -220,7 +220,7 @@ const BestTimeToDo = ({ data }) => {
                     </span>
                   </p>
                 )}
-                {content1WarmLayers && content1WarmLayers && (
+                {content1WarmLayers && content1WarmLayers.length > 0 && (
                   <p className="p-text-3-1">
                     <img src="/Offloading.png" alt="img" />{" "}
                     <span className="px-2">
