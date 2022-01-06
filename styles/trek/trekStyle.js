@@ -1430,6 +1430,10 @@ export const trekStyle = css.global`
     width: 100%;
   }
 
+  .block-img > img {
+    width: 50%;
+  }
+
   @media only screen and (max-width: 660px) {
     .q-des {
       font-size: 40px;
