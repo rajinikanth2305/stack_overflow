@@ -1431,7 +1431,15 @@ export const trekStyle = css.global`
   }
 
   .block-img > img {
-    width: 50%;
+    width: 100%;
+  }
+
+  .c-images > p {
+    margin-bottom: 12px;
+  }
+
+  .c-images > p:nth-child(1) {
+    display: none;
   }
 
   @media only screen and (max-width: 660px) {

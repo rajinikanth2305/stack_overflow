@@ -87,6 +87,7 @@ const BestTimeToDo = ({ data }) => {
   const content1WarmLayers =
     bestTimeToDo && bestTimeToDo.primary.content1_warm_layers;
   const content1List = bestTimeToDo && bestTimeToDo.primary.content1;
+  const content1Images = bestTimeToDo && bestTimeToDo.primary.content1_images;
 
   const content2Title = bestTimeToDo && bestTimeToDo.primary.content2_title;
   const content2Temprature =
@@ -95,6 +96,7 @@ const BestTimeToDo = ({ data }) => {
   const content2WarmLayers =
     bestTimeToDo && bestTimeToDo.primary.content2_warm_layers;
   const content2List = bestTimeToDo && bestTimeToDo.primary.content2;
+  const content2Images = bestTimeToDo && bestTimeToDo.primary.content2_images;
 
   const content3Title = bestTimeToDo && bestTimeToDo.primary.content3_title;
   const content3Temprature =
@@ -103,6 +105,7 @@ const BestTimeToDo = ({ data }) => {
   const content3WarmLayers =
     bestTimeToDo && bestTimeToDo.primary.content3_warm_layers;
   const content3List = bestTimeToDo && bestTimeToDo.primary.content3;
+  const content3Images = bestTimeToDo && bestTimeToDo.primary.content3_images;
 
   const content4Title = bestTimeToDo && bestTimeToDo.primary.content4_title;
   const content4Temprature =
@@ -111,6 +114,16 @@ const BestTimeToDo = ({ data }) => {
   const content4WarmLayers =
     bestTimeToDo && bestTimeToDo.primary.content4_warm_layers;
   const content4List = bestTimeToDo && bestTimeToDo.primary.content4;
+  const content4Images = bestTimeToDo && bestTimeToDo.primary.content4_images;
+
+  const content5Title = bestTimeToDo && bestTimeToDo.primary.content5_title;
+  const content5Temprature =
+    bestTimeToDo && bestTimeToDo.primary.content5_temprature;
+  const content5Snow = bestTimeToDo && bestTimeToDo.primary.content5_snow;
+  const content5WarmLayers =
+    bestTimeToDo && bestTimeToDo.primary.content5_warm_layers;
+  const content5List = bestTimeToDo && bestTimeToDo.primary.content5;
+  const content5Images = bestTimeToDo && bestTimeToDo.primary.content5_images;
 
   const btImage1 = bestTimeToDo && bestTimeToDo.primary.btimage1.url;
   const btImage2 = bestTimeToDo && bestTimeToDo.primary.btimage2.url;
@@ -230,8 +243,11 @@ const BestTimeToDo = ({ data }) => {
                 )}
                 {/* {content1} */}
                 <div className="p-text-4">
-            {RichText.render(content1List)}
-            </div>
+                  {RichText.render(content1List)}
+                </div>
+                <div className="row c-images d-flex flex-wrap">
+                  {RichText.render(content1Images)}
+                </div>
               </div>
             </div>
           </div>
@@ -357,7 +373,10 @@ const BestTimeToDo = ({ data }) => {
             </p> )}
             {/* {content2} */}
             <div className="p-text-4">
-            {RichText.render(content2List)}
+              {RichText.render(content2List)}
+            </div>
+            <div className="c-images d-flex flex-wrap mb-3">
+              {RichText.render(content2Images)}
             </div>
           </div>
 
@@ -382,7 +401,10 @@ const BestTimeToDo = ({ data }) => {
               </span>
             </p> )}
             <div className="p-text-4">
-            {RichText.render(content3List)}
+              {RichText.render(content3List)}
+            </div>
+            <div className="c-images d-flex flex-wrap mb-3">
+              {RichText.render(content3Images)}
             </div>
           </div>
 
@@ -406,7 +428,40 @@ const BestTimeToDo = ({ data }) => {
                 {RichText.asText(content4WarmLayers)}
               </span>
             </p> )}
-            {RichText.render(content4List)}
+            <div className="p-text-4">
+              {RichText.render(content4List)}
+            </div>
+            <div className="c-images d-flex flex-wrap mb-3">
+              {RichText.render(content4Images)}
+            </div>
+          </div>
+
+          <div>
+            <p className="p-text-1">
+              <b>{RichText.asText(content5Title)}</b>
+            </p>
+            {content5Temprature && content5Temprature.length > 0 && ( <p className="p-text-3-1 mb-2">
+              <img src="/Duration.png" alt="img" />{" "}
+              <span className="px-2">
+                {RichText.asText(content5Temprature)}
+              </span>
+            </p> )}
+            {content5Snow && content5Snow.length > 0 && (<p className="p-text-3-1 mb-2">
+              <img src="/shoes.png" alt="img" />{" "}
+              <span className="px-2">{RichText.asText(content5Snow)}</span>
+            </p> )}
+            {content5WarmLayers && content5WarmLayers.length > 0 && (<p className="p-text-3-1">
+              <img src="/Offloading.png" alt="img" />{" "}
+              <span className="px-2">
+                {RichText.asText(content5WarmLayers)}
+              </span>
+            </p> )}
+            <div className="p-text-4">
+              {RichText.render(content5List)}
+            </div>
+            <div className="c-images d-flex flex-wrap mb-3">
+              {RichText.render(content5Images)}
+            </div>
           </div>
 
           {importantNoteContent && importantNoteContent?.length > 0 && (
