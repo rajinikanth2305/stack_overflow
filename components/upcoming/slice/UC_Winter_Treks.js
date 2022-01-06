@@ -217,89 +217,76 @@ const UCWinterTreks = ({ slice, winterData }) => {
     );
   });
 
-  const ucWinterWreksImagesMobileView = ucWinterWreksImagesArray.map(function(
-    data,
-    j
-  ) {
-    return (
-      <>
-        <div className="col-6" key={j}>
-          <div className="card_sec">
-            <div className="card trek_card">
-              <div alt="imgs" className="m-uc_open_for_small_group_images">
-                {/* {data.uc_winter_treks_family_trek === true ? (
-                  <div className="trek_badge">
-                    <img src="./trek-badge.png" />
-                    <span>Family Trek</span>
-                  </div>
-                ) : (
-                  ""
-                )} */}
-                <Image
-                  src={data.uc_winter_treks_images.url}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                />
-              </div>
-              <div className="px-3 py-2">
-                <div>
-                  <h3 className="m-title-3 text-uppercase">
-                    {data.uc_winter_treks_image_caption[0].text}
-                  </h3>
-                  <p className="m-display-2">
-                    {data.uc_winter_treks_image_caption_desc[0].text.length >
-                    122
-                      ? `${data.uc_winter_treks_image_caption_desc[0].text.substring(
-                          0,
-                          122
-                        )}...`
-                      : data.uc_winter_treks_image_caption_desc[0].text}
-                  </p>
-                  <p className="m-card-info-text m-0">
-                    <span className="list-dot-style-mob"></span>{" "}
-                    {data.uc_winter_treks_days[0].text} Days
-                  </p>
-                  <p className="m-card-info-text m-0">
-                    <span className="list-dot-style-mob"></span>{" "}
-                    {data.uc_winter_treks_seasons[0].text}
-                  </p>
-                  <p className="m-card-info-text">
-                    <span className="list-dot-style-mob"></span>{" "}
-                    {data.uc_winter_treks_guide[0].text}
-                  </p>
-                  {/* <div className="t-2 pb-4">
-                    <button className="btn m-btn-ih-green">
-                      View Dates / Register
-                    </button>
-                  </div> */}
-                  <div className="d-flex align-items-center flex-wrap pt-2 pb-2">
-                    <div className="flex-grow-1">
-                      {data.uc_winter_treks_family_trek === true ? (
-                        <p className="m-0 fam_trek">
-                          <span>*</span> Family trek
-                        </p>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                    <div>
-                      <button
-                        className="btn m-btn-ih-green px-2"
-                        onClick={() => goToTrekPage(data)}
-                      >
-                        View Dates / Register
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  });
+  // const ucWinterWreksImagesMobileView = ucWinterWreksImagesArray.map(function(
+  //   data,
+  //   j
+  // ) {
+  //   return (
+  //     <>
+  //       <div className="col-6" key={j}>
+  //         <div className="card_sec">
+  //           <div className="card trek_card">
+  //             <div alt="imgs" className="m-uc_open_for_small_group_images">
+  //               <Image
+  //                 src={data.uc_winter_treks_images.url}
+  //                 layout="fill"
+  //                 objectFit="cover"
+  //                 objectPosition="50% 50%"
+  //               />
+  //             </div>
+  //             <div className="px-3 py-2">
+  //               <div>
+  //                 <h3 className="m-title-3 text-uppercase">
+  //                   {data.uc_winter_treks_image_caption[0].text}
+  //                 </h3>
+  //                 <p className="m-display-2">
+  //                   {data.uc_winter_treks_image_caption_desc[0].text.length >
+  //                   122
+  //                     ? `${data.uc_winter_treks_image_caption_desc[0].text.substring(
+  //                         0,
+  //                         122
+  //                       )}...`
+  //                     : data.uc_winter_treks_image_caption_desc[0].text}
+  //                 </p>
+  //                 <p className="m-card-info-text m-0">
+  //                   <span className="list-dot-style-mob"></span>{" "}
+  //                   {data.uc_winter_treks_days[0].text} Days
+  //                 </p>
+  //                 <p className="m-card-info-text m-0">
+  //                   <span className="list-dot-style-mob"></span>{" "}
+  //                   {data.uc_winter_treks_seasons[0].text}
+  //                 </p>
+  //                 <p className="m-card-info-text">
+  //                   <span className="list-dot-style-mob"></span>{" "}
+  //                   {data.uc_winter_treks_guide[0].text}
+  //                 </p>
+  //                 <div className="d-flex align-items-center flex-wrap pt-2 pb-2">
+  //                   <div className="flex-grow-1">
+  //                     {data.uc_winter_treks_family_trek === true ? (
+  //                       <p className="m-0 fam_trek">
+  //                         <span>*</span> Family trek
+  //                       </p>
+  //                     ) : (
+  //                       ""
+  //                     )}
+  //                   </div>
+  //                   <div>
+  //                     <button
+  //                       className="btn m-btn-ih-green px-2"
+  //                       onClick={() => goToTrekPage(data)}
+  //                     >
+  //                       View Dates / Register
+  //                     </button>
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             </div>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </>
+  //   );
+  // });
 
   return (
     <>
@@ -320,9 +307,9 @@ const UCWinterTreks = ({ slice, winterData }) => {
           <div className="m-d-none">
             <Slider {...settings}>{ucWinterWreksImages}</Slider>
           </div>
-          <div className="m-view-d-block">
+          {/* <div className="m-view-d-block">
             <div className="row">{ucWinterWreksImagesMobileView}</div>
-          </div>
+          </div> */}
         </div>
         <style jsx global>
           {upcomingTrekPageStyle}

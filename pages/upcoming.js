@@ -86,7 +86,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   if (ucOpen_slice.items.length > 0) {
     for (var i = 0; i < ucOpen_slice.items.length; i++) {
       const data = ucOpen_slice.items[i];
-      const slugUrl = data && data?.target_url?.id;
+      const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
@@ -102,7 +102,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   if (autumn_slice.items.length > 0) {
     for (var i = 0; i < autumn_slice.items.length; i++) {
       const data = autumn_slice.items[i];
-      const slugUrl = data && data?.target_url?.id;
+      const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
@@ -118,7 +118,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   if (winter_slice.items.length > 0) {
     for (var i = 0; i < winter_slice.items.length; i++) {
       const data = winter_slice.items[i];
-      const slugUrl = data && data?.target_url?.id;
+      const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
@@ -134,7 +134,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   if (treksToDo_slice.items.length > 0) {
     for (var i = 0; i < treksToDo_slice.items.length; i++) {
       const data = treksToDo_slice.items[i];
-      const slugUrl = data && data?.target_url?.id;
+      const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
