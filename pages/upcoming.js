@@ -70,7 +70,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   if (slice.items.length > 0) {
     for (var i = 0; i < slice.items.length; i++) {
       const data = slice.items[i];
-      const slugUrl = data && data?.target_url?.id;
+      const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
