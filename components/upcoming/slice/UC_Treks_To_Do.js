@@ -6,8 +6,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
-const UCTreksToDo = ({ slice }) => {
+const UCTreksToDo = ({ slice, treksToDoData }) => {
   const ucTreksToDoTitle = slice.primary.uc_treks_to_do_title;
   const ucTreksToDoDesc = slice.primary.uc_treks_to_do_desc;
   const ucTreksToDoImagesArray = slice.items;
@@ -57,74 +58,62 @@ const UCTreksToDo = ({ slice }) => {
     }
   };
 
-  const ucTreksToDoImages = ucTreksToDoImagesArray.map(function(data, i) {
+  const ucTreksToDoImages = treksToDoData.map(function(data, i) {
+    const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
+    let url;
+    const slugUrl = data?.uid;
+    if (slugUrl) {
+      url = `/trek/${slugUrl}`;
+    }
+    const getFamiltTrek = data?.tags?.find(x => x === "FamilyTrek");
     return (
       <>
         <div className="mx-4 m-mx-0" key={i}>
           <div className="card_sec">
-            <div className="card trek_card opn-trek">
+            <div className="card trek_card">
               <div alt="imgs" className="uc_open_for_small_group_images">
-                {/* {data.uc_treks_to_do_family_trek === true ? (
-                  <div className="trek_badge">
-                    <img src="./trek-badge.png" />
-                    <span>Family Trek</span>
-                  </div>
-                ) : (
-                  ""
-                )} */}
-                <Image
-                  src={data.uc_treks_to_do_images.url}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                />
+                {tData.primary.trek_banner_image.url && (
+                  <Image
+                    src={tData.primary.trek_banner_image.url}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                  />
+                )}
               </div>
               <div className="px-3 py-2">
                 <div className="d-flex align-items-center card-info-text">
                   <div>
-                    <p>{data.uc_treks_to_do_days[0].text} Days</p>
+                    <p>{tData.primary.duration[0].text}</p>
                   </div>
+                  {/* <div>
+                    <p className="list-dot-style px-1">
+                      <span>.</span>
+                    </p>
+                  </div>
+                  <div>
+                    <p>{tData.primary.altitude[0].text}</p>
+                  </div> */}
                   <div>
                     <p className="list-dot-style px-1">
                       <span>.</span>
                     </p>
                   </div>
                   <div>
-                    <p>{data.uc_treks_to_do_seasons[0].text}</p>
-                  </div>
-                  <div>
-                    <p className="list-dot-style px-1">
-                      <span>.</span>
-                    </p>
-                  </div>
-                  <div>
-                    <p>{data.uc_treks_to_do_guide[0].text}</p>
+                    <p>{tData.primary.difficulty[0].text}</p>
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="title-diplay-3 m-d-3 text-uppercase">
-                    {data.uc_treks_to_do_image_caption[0].text}
-                  </h3>
-                  <p className="p-display-2 md-2">
-                    {data.uc_treks_to_do_image_caption_desc[0].text.length > 122
-                      ? `${data.uc_treks_to_do_image_caption_desc[0].text.substring(
-                          0,
-                          122
-                        )}...`
-                      : data.uc_treks_to_do_image_caption_desc[0].text}
+                  <p className="title-diplay-3 text-uppercase">
+                    <b>{tData.primary.trek_caption}</b>
                   </p>
-                  {/* <div className="float-right pt-2 pb-4">
-                    <button
-                      className="btn btn-ih-green"
-                      onClick={() => goToTrekPage(data)}
-                    >
-                      View Details
-                    </button>
-                  </div> */}
-                  <div className="d-flex align-items-center flex-wrap pt-2 pb-2">
+                  <div className="p-display-2">
+                    {RichText.asText(tData.primary.sub_heading)}
+                  </div>
+                  <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
                     <div className="flex-grow-1">
-                      {data.uc_treks_to_do_family_trek === true ? (
+                      {getFamiltTrek !== undefined ? (
                         <p className="m-0 fam_trek">
                           <span>*</span> Family trek
                         </p>
@@ -133,12 +122,11 @@ const UCTreksToDo = ({ slice }) => {
                       )}
                     </div>
                     <div>
-                      <button
-                        className="btn btn-ih-green"
-                        onClick={() => goToTrekPage(data)}
-                      >
-                        View Dates
-                      </button>
+                      <Link href={url ? url : "#"}>
+                        <button className="btn btn-ih-green">
+                          View Details
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>

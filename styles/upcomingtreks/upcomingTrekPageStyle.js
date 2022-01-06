@@ -249,6 +249,13 @@ export const upcomingTrekPageStyle = css.global`
 
   .trek_card {
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    min-height: 440px;
+  }
+
+  .p-btn-btm {
+    position: absolute;
+    bottom: 20px;
+    width: 90%;
   }
 
   .card_sec {
@@ -307,7 +314,7 @@ export const upcomingTrekPageStyle = css.global`
 
   .uc_open_for_small_group_images {
     width: 100%;
-    height: 275px;
+    height: 222px;
     position: relative;
     border-bottom: 2px solid rgb(255, 193, 0);
   }
