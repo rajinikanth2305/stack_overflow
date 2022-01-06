@@ -215,6 +215,7 @@ const UserPT = () => {
 
   
   const prevTrekData = bookings?.map(function(data, i) {
+    console.log(data);
     return (
       <>
         <div key={data.id}>

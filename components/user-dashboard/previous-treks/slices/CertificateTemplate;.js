@@ -23,18 +23,54 @@ const CertificateTemplate = certificateData => {
       backgroundColor: "#ffffff"
     },
     section: {
-      margin: 10,
-      padding: 10,
+      // margin: 10,
+      // padding: 10,
       width: "100%"
     },
     header1: {
-      fontSize: "14px",
+      color: "#2c2e35",
+      fontSize: "16px",
       marginBottom: "10px",
-      marginTop: "20px"
+      textAlign: "center",
+      textTransform: "capitalize",
+      position: "absolute",
+      top: "45%",
+      borderBottom: "1px solid #333333",
+      left: "46%",
+      paddingBottom: "2px"
     },
     header2: {
+      color: "#2c2e35",
       fontSize: "12px",
-      marginBottom: "10px"
+      marginBottom: "10px",
+      position: "absolute",
+      top: "53%",
+      left: "39%",
+      width: "35%",
+      textAlign: "center",
+      lineHeight: "1.5px"
+    },
+    header22: {
+      color: "#2c2e35",
+      fontSize: "12px",
+      marginBottom: "10px",
+      position: "absolute",
+      top: "57%",
+      left: "39%",
+      width: "35%",
+      textAlign: "center",
+      lineHeight: "1.5px"
+    },
+    header23: {
+      color: "#2c2e35",
+      fontSize: "12px",
+      marginBottom: "10px",
+      position: "absolute",
+      top: "61%",
+      left: "39%",
+      width: "35%",
+      textAlign: "center",
+      lineHeight: "1.5px"
     },
     voucherRow: {
       flexDirection: "row",
@@ -73,9 +109,9 @@ const CertificateTemplate = certificateData => {
       <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.section}>
-            <Image src="/IH_Logo_in_PNG@2x.png" style={{ width: "20%" }} />
+            <Image src="/certificate.png" />
             <Text style={styles.header1}>
-              Receipt for Batch -{" "}
+              {/* Receipt for Batch -{" "}
               {certificateData.certificateData &&
                 certificateData.certificateData.trekName}{" "}
               {certificateData.certificateData &&
@@ -85,10 +121,51 @@ const CertificateTemplate = certificateData => {
               -{" "}
               {moment(certificateData.certificateData?.endDate).format(
                 "MM/DD/YYYY"
-              )}
+              )} */}
+              {
+                certificateData?.certificateData?.userTrekBookingParticipants[0]
+                  ?.userDetailsForDisplay?.firstName
+              }{" "}
+              &nbsp;
+              {
+                certificateData?.certificateData?.userTrekBookingParticipants[0]
+                  ?.userDetailsForDisplay?.lastName
+              }
+            </Text>
+            {/* <Text style={styles.header2}>
+              For successfully completing the{" "}
+              {certificateData.certificateData &&
+                certificateData.certificateData.trekName}{" "}
+              from{" "}
+              {certificateData.certificateData &&
+                moment(certificateData.certificateData.startDate).format(
+                  "MM/DD/YYYY"
+                )}{" "}
+              to{" "}
+              {certificateData.certificateData &&
+                moment(certificateData.certificateData.endDate).format(
+                  "MM/DD/YYYY"
+                )}
+            </Text> */}
+            <Text style={styles.header2}>For successfully completing the</Text>
+            <Text style={styles.header22}>
+                {certificateData.certificateData &&
+                  certificateData.certificateData.trekName}&nbsp;
+              from{" "}
+            </Text>
+            <Text style={styles.header23}>
+              {certificateData.certificateData &&
+                moment(certificateData.certificateData.startDate).format(
+                  "MM/DD/YYYY"
+                )}{" "}
+              to{" "}
+              {certificateData.certificateData &&
+                moment(certificateData.certificateData.endDate).format(
+                  "MM/DD/YYYY"
+                )}
             </Text>
           </View>
-          <View style={styles.voucherRow}>
+          {/* <View style={styles.voucherRow}>
             <View style={styles.voucherCol1}>
               <View>
                 <Text style={styles.voucherTableLabel}>Trek Name</Text>
@@ -135,7 +212,7 @@ const CertificateTemplate = certificateData => {
                 </Text>
               </View>
             </View>
-          </View>
+          </View> */}
         </Page>
       </Document>
     </>
