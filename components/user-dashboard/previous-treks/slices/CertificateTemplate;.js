@@ -27,6 +27,15 @@ const CertificateTemplate = certificateData => {
       // padding: 10,
       width: "100%"
     },
+    section1: {
+      backgroundColor: "#ffffff",
+      borderTop: "1px solid #ffcc36",
+      borderBottom: "1px solid #ffcc36",
+      width: "67%",
+      position: "absolute",
+      top: "34%",
+      left: "23%"
+    },
     header1: {
       color: "#2c2e35",
       fontSize: "16px",
@@ -38,6 +47,14 @@ const CertificateTemplate = certificateData => {
       borderBottom: "1px solid #333333",
       left: "46%",
       paddingBottom: "2px"
+    },
+    sectionText: {
+      color: "#2c2e35",
+      fontSize: "9px",
+      fontWeight: "extrabold",
+      paddingTop: "5px",
+      paddingBottom: "5px",
+      textAlign: "center",
     },
     header2: {
       color: "#2c2e35",
@@ -111,17 +128,6 @@ const CertificateTemplate = certificateData => {
           <View style={styles.section}>
             <Image src="/certificate.png" />
             <Text style={styles.header1}>
-              {/* Receipt for Batch -{" "}
-              {certificateData.certificateData &&
-                certificateData.certificateData.trekName}{" "}
-              {certificateData.certificateData &&
-                moment(certificateData.certificateData?.startDate).format(
-                  "MM/DD/YYYY"
-                )}{" "}
-              -{" "}
-              {moment(certificateData.certificateData?.endDate).format(
-                "MM/DD/YYYY"
-              )} */}
               {
                 certificateData?.certificateData?.userTrekBookingParticipants[0]
                   ?.userDetailsForDisplay?.firstName
@@ -132,26 +138,11 @@ const CertificateTemplate = certificateData => {
                   ?.userDetailsForDisplay?.lastName
               }
             </Text>
-            {/* <Text style={styles.header2}>
-              For successfully completing the{" "}
-              {certificateData.certificateData &&
-                certificateData.certificateData.trekName}{" "}
-              from{" "}
-              {certificateData.certificateData &&
-                moment(certificateData.certificateData.startDate).format(
-                  "MM/DD/YYYY"
-                )}{" "}
-              to{" "}
-              {certificateData.certificateData &&
-                moment(certificateData.certificateData.endDate).format(
-                  "MM/DD/YYYY"
-                )}
-            </Text> */}
             <Text style={styles.header2}>For successfully completing the</Text>
             <Text style={styles.header22}>
-                {certificateData.certificateData &&
-                  certificateData.certificateData.trekName}&nbsp;
-              from{" "}
+              {certificateData.certificateData &&
+                certificateData.certificateData.trekName}
+              &nbsp; from{" "}
             </Text>
             <Text style={styles.header23}>
               {certificateData.certificateData &&
@@ -165,54 +156,14 @@ const CertificateTemplate = certificateData => {
                 )}
             </Text>
           </View>
-          {/* <View style={styles.voucherRow}>
-            <View style={styles.voucherCol1}>
-              <View>
-                <Text style={styles.voucherTableLabel}>Trek Name</Text>
-              </View>
-              <View>
-                <Text style={styles.voucherTableValue}>
-                  {certificateData.certificateData &&
-                    certificateData.certificateData.trekName}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.voucherColAll}>
-              <View>
-                <Text style={styles.voucherTableLabel}>Date of Trek</Text>
-              </View>
-              <View>
-                <Text style={styles.voucherTableValue}>
-                  {certificateData.certificateData &&
-                    moment(certificateData.certificateData.startDate).format(
-                      "MM/DD/YYYY"
-                    )}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.voucherColAll}>
-              <View>
-                <Text style={styles.voucherTableLabel}>Participants</Text>
-              </View>
-              <View>
-                <Text style={styles.voucherTableValue}>
-                  {certificateData.certificateData &&
-                    certificateData.certificateData?.participantsCount}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.voucherColAll}>
-              <View>
-                <Text style={styles.voucherTableLabel}>Status</Text>
-              </View>
-              <View>
-                <Text style={styles.voucherTableValueLast}>
-                  {certificateData.certificateData &&
-                    certificateData.certificateData.trekStatus}
-                </Text>
-              </View>
-            </View>
-          </View> */}
+          <View style={styles.section1}>
+            <Text style={styles.sectionText}>
+              {certificateData.certificateData &&
+                certificateData.certificateData.trekName}{" "}
+              | Trek Grade: Difficult | Duration: 10 Days | Max Atitude: 10,000
+              ft
+            </Text>
+          </View>
         </Page>
       </Document>
     </>
