@@ -6,6 +6,7 @@ import { Client } from "utils/prismicHelpers";
 import Prismic from "@prismicio/client";
 import Image from "next/image";
 import ReactPaginate from "react-paginate";
+import Link from "next/link";
 
 const UpComingTreks = ({ slice }) => {
   const upcomingTreksTitle = slice.primary.upcoming_treks_title;
@@ -313,15 +314,26 @@ const UpComingTreks = ({ slice }) => {
             {filterResult === true ? (
               <>
                 {results.map(function(result, i) {
-                  const slice = result.data.body.find(
+                  // const slice = result.data.body.find(
+                  //   x => x.slice_type === "trek_banner"
+                  // );
+                  const tData = result?.data?.body.find(
                     x => x.slice_type === "trek_banner"
                   );
-                  console.log(slice);
-                  const bannerImage = slice.primary.trek_banner_image.url;
-                  const trekCaptions = slice.primary.trek_caption;
+                  let url;
+                  const slugUrl = result?.uid;
+                  if (slugUrl) {
+                    url = `/trek/${slugUrl}`;
+                  }
+                  const getFamiltTrek = result?.tags?.find(
+                    x => x === "FamilyTrek"
+                  );
+                  // console.log(slice);
+                  // const bannerImage = slice.primary.trek_banner_image.url;
+                  // const trekCaptions = slice.primary.trek_caption;
                   return (
                     <div className="col-lg-4 col-md-12" key={i}>
-                      <div className="mb-4">
+                      {/* <div className="mb-4">
                         <div alt="imgs" className="uc_fliter_treks_images">
                           <Image
                             src={bannerImage}
@@ -337,6 +349,73 @@ const UpComingTreks = ({ slice }) => {
                               <p className="image_overlay_text_desc">
                                 {trekCaptions}
                               </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div> */}
+                      <div className="card_sec mb-4 mt-0">
+                        <div className="card trek_card">
+                          <div
+                            alt="imgs"
+                            className="uc_open_for_small_group_images"
+                          >
+                            {tData.primary.trek_banner_image.url && (
+                              <Image
+                                src={tData.primary.trek_banner_image.url}
+                                layout="fill"
+                                objectFit="cover"
+                                objectPosition="50% 50%"
+                              />
+                            )}
+                          </div>
+                          <div className="px-3 py-2">
+                            <div className="d-flex align-items-center card-info-text">
+                              <div>
+                                <p>{tData.primary.duration[0].text}</p>
+                              </div>
+                              {/* <div>
+                    <p className="list-dot-style px-1">
+                      <span>.</span>
+                    </p>
+                  </div>
+                  <div>
+                    <p>{tData.primary.altitude[0].text}</p>
+                  </div> */}
+                              <div>
+                                <p className="list-dot-style px-1">
+                                  <span>.</span>
+                                </p>
+                              </div>
+                              <div>
+                                <p>{tData.primary.difficulty[0].text}</p>
+                              </div>
+                            </div>
+
+                            <div>
+                              <p className="title-diplay-3 text-uppercase">
+                                <b>{tData.primary.trek_caption}</b>
+                              </p>
+                              <div className="p-display-2">
+                                {RichText.asText(tData.primary.sub_heading)}
+                              </div>
+                              <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
+                                <div className="flex-grow-1">
+                                  {getFamiltTrek !== undefined ? (
+                                    <p className="m-0 fam_trek">
+                                      <span>*</span> Family trek
+                                    </p>
+                                  ) : (
+                                    ""
+                                  )}
+                                </div>
+                                <div>
+                                  <Link href={url ? url : "#"}>
+                                    <button className="btn btn-ih-green">
+                                      View Details
+                                    </button>
+                                  </Link>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
