@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 const WhatSoDifferent = ({ slice }) => {
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
-  const videoUrl = slice.primary.video_url.url;
+  const videoUrl = slice?.primary?.video_url?.url;
   // const videoImage = slice.primary.image.url;
   const [show, setShow] = useState(false);
 
@@ -109,7 +109,7 @@ const WhatSoDifferent = ({ slice }) => {
           <iframe
             width="100%"
             height="500"
-            src={ytvideoUrl}
+            src={ytvideoUrl && ytvideoUrl}
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
