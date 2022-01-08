@@ -8,7 +8,7 @@ import auth from "../../../../services/Authenticate";
 const UserMP = () => {
 
   const router = useRouter();
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState(undefined);
   const [render, setRender] = useState(false);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const UserMP = () => {
 
     const timer = setTimeout(() => {
       router.push(`/user-dashboard/user-upcoming-treks`);
-    }, 5000);
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -53,6 +53,10 @@ const UserMP = () => {
                }
                    { status==="failed" && (
                 <span className="border-bottom-custom-1 pb-1">  Payment Failed! </span>
+                 )
+               }
+                { status==="cancelled" && (
+                <span className="border-bottom-custom-1 pb-1"> Your payment action cancelled ! </span>
                  )
                }
               </p>
