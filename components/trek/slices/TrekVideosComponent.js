@@ -14,9 +14,9 @@ const TrekVideosComponent = ({ slice }) => {
   const heading2 = slice.primary.heading2;
   const videoArray = slice.items;
   const primaryImage = slice.primary.primary_image.url;
-  const primaryVideoLink = slice.primary.primary_video_link.url;
+  const primaryVideoLink = slice?.primary?.primary_video_link?.url;
   const secondaryImage = slice.primary.secondary_image.url;
-  const secondaryVideoLink = slice.primary.secondary_video_link.url;
+  const secondaryVideoLink = slice?.primary?.secondary_video_link?.url;
 
   const result = primaryVideoLink.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
   const videoIdWithParams = result[2];
