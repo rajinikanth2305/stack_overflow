@@ -17,6 +17,16 @@ const LatestUpdatesTrekkings = ({ slice }) => {
   const videoText = slice.primary.video_text;
   const primaryVideoImg = slice.primary.primary_video_img.url;
   const primaryVideoUrl = slice.primary.primary_video_url.url;
+  
+  const result = primaryVideoUrl.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  const videoIdWithParams = result[2];
+
+  const cleanVideoId =
+    videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+
+  const videoUrl =
+    "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
+  const youtube_imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
 
   const [show, setShow] = useState(false);
 
@@ -139,10 +149,10 @@ const LatestUpdatesTrekkings = ({ slice }) => {
                       </div>
                     </div>
                     <Image
-                      src={primaryVideoImg}
+                      src={youtube_imageURL && youtube_imageURL}
                       layout="fill"
                       objectFit="cover"
-                      objectPosition="bottom"
+                      objectPosition="center"
                       onClick={handleShow}
                     />
                   </div>
@@ -211,7 +221,7 @@ const LatestUpdatesTrekkings = ({ slice }) => {
           <iframe
             width="100%"
             height="500"
-            src={primaryVideoUrl}
+            src={videoUrl && videoUrl}
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

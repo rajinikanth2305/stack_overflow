@@ -17,7 +17,16 @@ const Founder = ({ slice }) => {
   const imageWidth = slice.primary.image.dimensions.width;
   const imageHeight = slice.primary.image.dimensions.height;
   const primaryVideoUrl = slice.primary.video_url.url;
-  //console.log(JSON.stringify(slice.primary));
+
+  const result = primaryVideoUrl.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  const videoIdWithParams = result[2];
+
+  const cleanVideoId =
+    videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+
+  const videoUrl =
+    "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
+  const youtube_imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
 
   const [show, setShow] = useState(false);
 
@@ -59,7 +68,7 @@ const Founder = ({ slice }) => {
                       </div>
                     </div>
                     <Image
-                      src={imageUrl}
+                      src={youtube_imageURL && youtube_imageURL}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="bottom"
@@ -106,7 +115,7 @@ const Founder = ({ slice }) => {
                   </div>
                 </div>
                 <Image
-                  src={imageUrl}
+                  src={youtube_imageURL}
                   layout="fill"
                   objectFit="cover"
                   objectPosition="bottom"
@@ -147,7 +156,7 @@ const Founder = ({ slice }) => {
           <iframe
             width="100%"
             height="500"
-            src={primaryVideoUrl}
+            src={videoUrl && videoUrl}
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
