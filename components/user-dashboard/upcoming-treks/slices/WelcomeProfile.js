@@ -57,6 +57,7 @@ const WelcomeProfile = () => {
   const fitnessRef = useRef();
   const rentGearRef = useRef();
   const offPLoadingRef = useRef();
+  const faqTrekRef = useRef();
 
   const toast = useRef(null);
   const [showOffLoadingPayment, setShowOffLoadingPayment] = useState(false);
@@ -68,6 +69,7 @@ const WelcomeProfile = () => {
   const [cancelIndexes, setCancelIndexes] = React.useState([]);
   const [cancelCounter, setCancelCounter] = React.useState(0);
   const [defaultTabKey,setDefaultTabKey]=React.useState("mytrek");
+  const [prismicResultState,setPrismicResultState]=React.useState([]);
   const {
     register,
     handleSubmit,
@@ -123,7 +125,7 @@ const WelcomeProfile = () => {
     });
   }
 
-  const setStates = (bookTrekContents,bookingId) => {
+  const setStates = (bookTrekContents,bookingId,prismicRes) => {
     // console.log(bookTrekContents);
     const booking=bookTrekContents.find(x => x.bookingId == bookingId);
     setBookings(bookTrekContents);
@@ -140,8 +142,15 @@ const WelcomeProfile = () => {
 
     setNextComingTreks(nextTreks);
     setRender(true);
-    myTrekRef.current?.changeState(booking);
-    myTrekMobileRef.current?.changeState(booking);
+
+   const mytrekRefData= {
+     data:booking,
+     prismicContents:prismicRes
+   }
+    myTrekRef.current?.changeState(mytrekRefData);
+    faqTrekRef.current?.changeState(mytrekRefData);
+
+    myTrekMobileRef.current?.changeState(mytrekRefData);
     offLoadingRef.current?.changeState(booking);
     fitnessRef.current?.changeState(booking);
     rentGearRef.current?.changeState(booking);
@@ -162,10 +171,10 @@ const WelcomeProfile = () => {
        values.push(trekName);
     }
 
-    let prismicResults=[];
-     prismicResults = await Client().query(Prismic.Predicates.in( "my.trek.uid", values ));
-     console.log(prismicResults);
-   
+     let prismicResults=[];
+     prismicResults = await Client().query(Prismic.Predicates.in("my.trek.uid", values ));
+    // console.log(prismicResults);
+    setPrismicResultState(prismicResults);
      let index=0;
     for (const book of bookingsData) {
       index++;
@@ -195,6 +204,7 @@ const WelcomeProfile = () => {
         email: userEmail,
         bannerImageUrl: bannerImage,
         trekName: trekCaptions,
+        backOfficeTrekLabel:book.trekName,
         startDate: book.batchStartDate,
         endDate: book.batchEndDate,
         trekCoordinator: book.trekCoordinator,
@@ -208,7 +218,7 @@ const WelcomeProfile = () => {
         backPackOffloadingTax: book.backPackOffloadingTax
       });
     }
-    setStates(bookTrekContents,bookingId);
+    setStates(bookTrekContents,bookingId,prismicResults);
   };
 
   const deriveAndSetOffLoadingTabVisible = activeBooking => {
@@ -227,9 +237,15 @@ const WelcomeProfile = () => {
     console.log("myTrekRef.current?.changeState(activeBooking)");
     console.log(myTrekRef.current);
 
-    myTrekRef.current?.changeState(activeBooking);
-    myTrekMobileRef.current?.changeState(activeBooking);
+    const mytrekRefData= {
+      data:activeBooking,
+      prismicContents:prismicResultState
+    }
+
+    myTrekRef.current?.changeState(mytrekRefData);
+    myTrekMobileRef.current?.changeState(mytrekRefData);
     fitnessRef.current?.changeState(activeBooking);
+    faqTrekRef.current?.changeState(mytrekRefData);
 
     offLoadingRef.current?.changeState(activeBooking);
     rentGearRef.current?.changeState(activeBooking);
@@ -668,7 +684,7 @@ const WelcomeProfile = () => {
                                 </Tab>
 
                                 <Tab eventKey="trekfaqs" title="Trek Faqs">
-                                  <TrekFAQS data={trekPageData} />
+                                  <TrekFAQS  ref={faqTrekRef}  {...callBackProps} />
                                 </Tab>
                                 <Tab
                                   eventKey="fitnessapproval"

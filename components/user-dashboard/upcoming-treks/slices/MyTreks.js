@@ -28,6 +28,18 @@ const MyTreks = forwardRef((props, ref) => {
   const [show, setShow] = useState(false);
   const [trekVideoUrl, setTrekVideoUrl] = useState();
   const [bookingState, setBookingState] = useState(false);
+
+  const [trekPageData, setTrekPageData] = useState(undefined);
+  
+  const [essentialData, setEssentialData] = useState(undefined);
+  const [videoData, setVideoData] = useState(undefined);
+
+  const [essentialIndexes, setEssentialIndexes] = React.useState([]);
+  const [essentialCounter, setEssentialCounter] = React.useState(0);
+
+  const [videoIndexes, setVideoIndexes] = React.useState([]);
+  const [videoCounter, setVideoCounter] = React.useState(0);
+
   const {
     register,
     handleSubmit,
@@ -38,6 +50,7 @@ const MyTreks = forwardRef((props, ref) => {
     formState,
     getValues
   } = useForm();
+
   const [saveState, setSaveState] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -81,20 +94,10 @@ const MyTreks = forwardRef((props, ref) => {
     ]
   };
 
-  const trekPageData = props.data.data.body.find(
-    x => x.slice_type === "essentials_downloads"
-  ); 
   
-  const essentialsHeading = trekPageData && trekPageData?.primary?.heading1;
-  const essentialsArray = trekPageData && trekPageData?.items;
 
-  const trekVideoData = props.data.data.body.find(
-    x => x.slice_type === "trek_videos"
-  );
-  const trekVideoHeading = trekVideoData && trekVideoData?.primary?.heading1;
-  const trekVideosArray = trekVideoData && trekVideoData?.items;
-
-  const essentialsArraydetails = essentialsArray?.map(function(data, i) {
+  const essentialsArraydetails = essentialIndexes?.map(function(i) {
+    const data=essentialData && essentialData[i];
     return (
       <div className="col-lg-3 col-md-6 col-12">
         <p className="m-0 text-decoration-underline">
@@ -111,7 +114,8 @@ const MyTreks = forwardRef((props, ref) => {
     );
   });
 
-  const trekVideosArrayDetails = trekVideosArray?.map(function(data, i) {
+  const trekVideosArrayDetails = videoIndexes?.map(function(i) {
+    const data=videoData && videoData[i];
     return (
       <div>
         <div className="mx-4 mb-3" key={i}>
@@ -155,14 +159,25 @@ const MyTreks = forwardRef((props, ref) => {
   // with whatever you return from the callback passed
   // as the second argument
   useImperativeHandle(ref, () => ({
-    async changeState(data) {
+    async changeState(trekData) {
       //// Get Trek locations
-       if(data===null) {
+       if(trekData===null) {
         setIndexes([]);
         setCounter(0);
           //setRender(false);
           return;
        }
+
+       console.log(trekData);
+       const data=trekData?.data;
+       /// Get the prismic trek contents
+      const trekName = data.backOfficeTrekLabel.replaceAll(" ", "-").toLowerCase();
+      console.log(trekName);
+      const result=trekData.prismicContents?.results?.find(x=>x.uid.toLowerCase()===trekName.toLowerCase());
+      console.log(result);
+      setTrekPageData(result);
+
+      fillPrismicContents(result);
 
       const trekId = data?.trekId;
       const bookState= data?.bookingState==="COMPLETED";
@@ -194,6 +209,51 @@ const MyTreks = forwardRef((props, ref) => {
     }
     }
   }));
+
+
+  const fillPrismicContents=(result)=> {
+    const essentialDownloads = result?.data?.body.find(x => x.slice_type === "essentials_downloads"); 
+     console.log(essentialDownloads);
+
+    if(essentialDownloads!==undefined) {
+    const essentialsArray = essentialDownloads && essentialDownloads?.items;
+    setEssentialData(essentialsArray);
+
+    const arr = Array.from(new Array(essentialsArray?.length),(x, i) => i);
+    setEssentialIndexes(arr);
+    setEssentialCounter(arr.length);
+    }
+    else {
+      setEssentialIndexes([]);
+      setEssentialCounter(0);
+    }
+
+    const trekVideoData = result.data.body.find( x => x.slice_type === "trek_videos");
+    if(trekVideoData!==undefined) {
+    const trekVideosArray = trekVideoData && trekVideoData?.items;
+    setVideoData(trekVideosArray);
+
+    const arr1 = Array.from(new Array(trekVideosArray.length),(x, i) => i);
+    setVideoIndexes(arr1);
+    setVideoCounter(arr1.length);
+    }
+    else {
+      setVideoIndexes([]);
+      setVideoCounter(0);
+    }
+  }
+
+
+  const getVideoHeading = () => {
+    let trekVideoData = trekPageData.data.body.find(x => x.slice_type === "trek_videos");
+    const trekVideoHeading = trekVideoData && trekVideoData?.primary?.heading1;
+    return trekVideoHeading;
+  }
+
+  const getEssentialHeading = () => {
+    const essentialsHeading = trekPageData && trekPageData?.primary?.heading1;
+    return essentialsHeading;
+  }
 
   const onSubmit = formData => {
     const userLocations = [];
@@ -371,7 +431,7 @@ const MyTreks = forwardRef((props, ref) => {
           <div className="my-5">
             <div>
               <h5 className="p-text-3-fg b-left-blue-3px">
-                {RichText.asText(essentialsHeading)}
+                {RichText.asText(getEssentialHeading)}
               </h5>
 
               <div className="row mt-3">{essentialsArraydetails}</div>
@@ -381,7 +441,8 @@ const MyTreks = forwardRef((props, ref) => {
           <div>
             <div>
               <h5 className="p-text-3-fg b-left-blue-3px">
-                {RichText.asText(trekVideoHeading)}
+                {
+                RichText.asText(getVideoHeading)}
               </h5>
               <div className="mt-4">
                 <Slider {...settings}>{trekVideosArrayDetails}</Slider>

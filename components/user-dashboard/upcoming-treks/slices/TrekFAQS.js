@@ -1,17 +1,67 @@
-import React from "react";
+import React, {
+  useState,
+  forwardRef,
+  useImperativeHandle,
+  useRef
+} from "react";
+
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-const TrekFAQS = ({ data }) => {
-  const faqData = data.data.body.find(x => x.slice_type === "faq_about_trek");
+const TrekFAQS = forwardRef((props, ref) => {
+  const [faqData, setFaqData] = useState(undefined);
+  const [trekPageData, setTrekPageData] = useState(undefined);
+  const [Indexes, setIndexes] = React.useState([]);
+  const [Counter, setCounter] = React.useState(0);
+  const router = useRouter();
+// The component instance will be extended
+  // with whatever you return from the callback passed
+  // as the second argument
+  useImperativeHandle(ref, () => ({
+    async changeState(trekData) {
+      //// Get Trek locations
+       if(trekData===null) {
+        setIndexes([]);
+        setCounter(0);
+          //setRender(false);
+          return;
+       }
+       const data=trekData?.data;
+      const trekName = data.backOfficeTrekLabel.replaceAll(" ", "-").toLowerCase();
+      const result=trekData.prismicContents?.results?.find(x=>x.uid.toLowerCase()===trekName.toLowerCase());
+      setTrekPageData(result);
+      fillPrismicContents(result);
+    }
+  }));
 
-  const faqHeading = faqData && faqData?.primary?.heading1;
-  const faqArray = faqData && faqData?.items;
+  const fillPrismicContents = (result) => {
+    const faqData = result?.data?.body.find(x => x.slice_type === "faq_about_trek");
 
-  const faqArrayDetails = faqArray?.map(function(data, k) {
+    if(faqData!==undefined) {
+      const faqArray = faqData && faqData?.items;
+      setFaqData(faqArray);
+  
+      const arr = Array.from(new Array(faqArray?.length),(x, i) => i);
+      setIndexes(arr);
+      setCounter(arr.length);
+      }
+      else {
+        setIndexes([]);
+        setCounter(0);
+      }
+
+  }
+  const getFaqHeading = () => {
+    const faqHeading = trekPageData && trekPageData?.primary?.heading1;
+    return faqHeading;
+  }
+
+  const faqArrayDetails = Indexes?.map(function( k) {
+    const data=faqData && faqData[k];
     return (
       <div className="col-md-6" key={k}>
         <Card>
@@ -39,25 +89,29 @@ const TrekFAQS = ({ data }) => {
     );
   });
 
+  const onTrekPageNavigate = (bookingStatus) => {
+      router.push(`/trek/${trekPageData.uid}`);
+  };
+
   return (
     <>
       <div>
         <h5 className="p-text-3-fg b-left-blue-3px mb-4">
-          {RichText.asText(faqHeading)}
+          {RichText.asText(getFaqHeading)}
         </h5>
         <Accordion defaultActiveKey="0" className="reg-acc-tabs">
           <div className="row">{faqArrayDetails}</div>
         </Accordion>
         <div className="text-center mt-4">
-          <Link href="../../../upcoming">
-            <button type="button" class="btn table-btn-yellow-sm">
+         
+            <button type="button" class="btn table-btn-yellow-sm"   onClick={e => onTrekPageNavigate()}>
               Go to the trek page
             </button>
-          </Link>
+         
         </div>
       </div>
     </>
   );
-};
+});
 
 export default TrekFAQS;

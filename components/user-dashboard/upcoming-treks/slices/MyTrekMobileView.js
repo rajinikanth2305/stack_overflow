@@ -21,6 +21,18 @@ const MyTrekMobileView = forwardRef((props, ref) => {
   const [render, setRender] = useState(true);
   const [locations, setLocations] = React.useState([]);
   const [bookingState, setBookingState] = useState(false);
+
+  const [trekPageData, setTrekPageData] = useState(undefined);
+  
+  const [essentialData, setEssentialData] = useState(undefined);
+  const [videoData, setVideoData] = useState(undefined);
+
+  const [essentialIndexes, setEssentialIndexes] = React.useState([]);
+  const [essentialCounter, setEssentialCounter] = React.useState(0);
+
+  const [videoIndexes, setVideoIndexes] = React.useState([]);
+  const [videoCounter, setVideoCounter] = React.useState(0);
+
   const {
     register,
     handleSubmit,
@@ -39,10 +51,27 @@ const MyTrekMobileView = forwardRef((props, ref) => {
   // with whatever you return from the callback passed
   // as the second argument
   useImperativeHandle(ref, () => ({
-    async changeState(data) {
+    async changeState(trekData) {
       //// Get Trek locations
      
+ //// Get Trek locations
+ if(trekData===null) {
+  setIndexes([]);
+  setCounter(0);
+    //setRender(false);
+    return;
+ }
 
+
+ const data=trekData?.data;
+ /// Get the prismic trek contents
+const trekName = data.backOfficeTrekLabel.replaceAll(" ", "-").toLowerCase();
+console.log(trekName);
+const result=trekData.prismicContents?.results?.find(x=>x.uid.toLowerCase()===trekName.toLowerCase());
+console.log(result);
+setTrekPageData(result);
+
+fillPrismicContents(result);
       const trekId = data.trekId;
       const bookState= data.bookingState==="COMPLETED";
       console.log( data );
@@ -73,6 +102,51 @@ const MyTrekMobileView = forwardRef((props, ref) => {
     }
     }
   }));
+
+  const fillPrismicContents=(result)=> {
+    const essentialDownloads = result?.data?.body.find(x => x.slice_type === "essentials_downloads"); 
+     console.log(essentialDownloads);
+
+    if(essentialDownloads!==undefined) {
+    const essentialsArray = essentialDownloads && essentialDownloads?.items;
+    setEssentialData(essentialsArray);
+
+    const arr = Array.from(new Array(essentialsArray?.length),(x, i) => i);
+    setEssentialIndexes(arr);
+    setEssentialCounter(arr.length);
+    }
+    else {
+      setEssentialIndexes([]);
+      setEssentialCounter(0);
+    }
+
+    const trekVideoData = result.data.body.find( x => x.slice_type === "trek_videos");
+    if(trekVideoData!==undefined) {
+    const trekVideosArray = trekVideoData && trekVideoData?.items;
+    setVideoData(trekVideosArray);
+
+    const arr1 = Array.from(new Array(trekVideosArray.length),(x, i) => i);
+    setVideoIndexes(arr1);
+    setVideoCounter(arr1.length);
+    }
+    else {
+      setVideoIndexes([]);
+      setVideoCounter(0);
+    }
+  }
+
+
+  const getVideoHeading = () => {
+    let trekVideoData = trekPageData.data.body.find(x => x.slice_type === "trek_videos");
+    const trekVideoHeading = trekVideoData && trekVideoData?.primary?.heading1;
+    return trekVideoHeading;
+  }
+
+  const getEssentialHeading = () => {
+    const essentialsHeading = trekPageData && trekPageData?.primary?.heading1;
+    return essentialsHeading;
+  }
+
 
   const onSubmit = formData => {
     console.log(formData);
