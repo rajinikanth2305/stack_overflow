@@ -157,10 +157,15 @@ const MyTreks = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     async changeState(data) {
       //// Get Trek locations
-     
+       if(data===null) {
+        setIndexes([]);
+        setCounter(0);
+          //setRender(false);
+          return;
+       }
 
-      const trekId = data.trekId;
-      const bookState= data.bookingState==="COMPLETED";
+      const trekId = data?.trekId;
+      const bookState= data?.bookingState==="COMPLETED";
       console.log( data );
       setBookingState(bookState);
 
@@ -245,7 +250,7 @@ const MyTreks = forwardRef((props, ref) => {
                     const pdata =
                       participantData?.userTrekBookingParticipants[index];
                     const fieldName = `locs[${index}]`;
-                    // console.log(JSON.stringify(pdata));
+                   //  console.log(JSON.stringify(pdata));
 
                     const name =
                       pdata?.userDetailsForDisplay?.email ===
@@ -280,7 +285,7 @@ const MyTreks = forwardRef((props, ref) => {
 
                     return (
                       <tr>
-                        <td>{name}</td>
+                        <td>{name} </td>
                         <td>{pdata?.userDetailsForDisplay?.phone}</td>
                         <td>{pdata?.userDetailsForDisplay?.email}</td>
                         <td>

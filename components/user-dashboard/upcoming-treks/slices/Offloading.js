@@ -248,11 +248,14 @@ const Offloading = forwardRef((props, ref) => {
     props.onOffLoadingPayment(dt);
   };
 
+
+
   return (
     <>
       <Toast ref={toast} />
        {showOffLoadingContents ===true ? 
       <div>
+        
         <h5 className="p-text-3-fg b-left-blue-3px mb-3">
           Backpack Offloading
         </h5>
@@ -282,7 +285,7 @@ const Offloading = forwardRef((props, ref) => {
               <tr className="header-bg">
                 <th className="w-20per">Select</th>
                 <th className="w-20per">participants</th>
-                <th className="w-20per">Applicable Voucher</th>
+                {/*<th className="w-20per">Applicable Voucher</th>*/}
                 <th className="w-15per">Offloading Fee</th>
                 <th className="w-15per">You Pay</th>
                 <th className="w-15per">offloading status</th>
@@ -350,6 +353,7 @@ const Offloading = forwardRef((props, ref) => {
                             <td>
                               {index + 1}. {sdata?.name}
                             </td>
+                            {/*
                             <td>
                               <div className="d-flex alifn-items-center">
                                 <div>
@@ -383,6 +387,7 @@ const Offloading = forwardRef((props, ref) => {
                                 </div>
                               </div>
                             </td>
+                                  */}
                             <td>{sdata?.offloadingFee}</td>
                             <td>{sdata?.youPay}</td>
                             <td>

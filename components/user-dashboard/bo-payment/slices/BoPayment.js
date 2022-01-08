@@ -18,7 +18,7 @@ import { Checkbox  } from 'primereact/checkbox';
 import moment from "moment";
 import { useRouter } from "next/router";
 
-const BoPayment = (offSelectedData) => {
+const BoPayment = forwardRef((props, ref) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -29,6 +29,7 @@ const BoPayment = (offSelectedData) => {
   const [offLoadings, setOffLoadings] = React.useState([]);
   const toast = useRef(null);
   const router = useRouter();
+  const [offSelectedData,setOffSelectedData]=useState(null);
  
   const {
     register,
@@ -62,15 +63,37 @@ const BoPayment = (offSelectedData) => {
       console.log(script + " loaded!");
     };
     document.body.appendChild(script);
-       initData();
+      // initData();
   }, []);
 
-  const initData = () => {
+// The component instance will be extended
+  // with whatever you return from the callback passed
+  // as the second argument
+  useImperativeHandle(ref, () => ({
+    changeState(data) {
+     initData(data);
+    }
+  }));
 
+  const deriveBookingState=(activeBooking) => {
+   
+   if(activeBooking.bookingState==="COMPLETED") {
+     setShowOffLoadingContents(true);
+     return true;
+   }
+   else {
+     setShowOffLoadingContents(false);
+     return false;
+   }
+ }
+
+  const initData = (offLoadData) => {
+    console.log(offLoadData);
+    setOffSelectedData(offLoadData);
     console.log("called-once");
-    console.log(JSON.stringify(offSelectedData.data.participants));
+    console.log(JSON.stringify(offLoadData.participants));
 
-        const sdata = offSelectedData.data.participants;
+        const sdata = offLoadData.participants;
          const arr = Array.from(
            new Array(sdata?.length),
            (x, i) => i
@@ -86,12 +109,12 @@ const BoPayment = (offSelectedData) => {
 
  const onVoucherApply =  (id, index) => {
 
-   const sdata =  offSelectedData.data.participants;
+   const sdata =  offSelectedData.participants;
    const user = sdata.find(u => u.id === id);
     console.log(user?.optedVoucherId);
 
     if (user?.optedVoucherId > 0) {
-     const selectedVoucher = offSelectedData?.data?.userVouchers?.find(vid => vid.id === user.optedVoucherId);
+     const selectedVoucher = offSelectedData?.userVouchers?.find(vid => vid.id === user.optedVoucherId);
      const youPay = user.youPay;//computeTotal(sdata);//computeWithExcludedVoucherId(user.optedVoucherId,sdata);
      //console.log(youPay);
      if (youPay > 0) {
@@ -128,7 +151,7 @@ const BoPayment = (offSelectedData) => {
 
  const onVoucherSelect = async (id, value) => {
    // console.log(JSON.stringify(value));
-   const sdata = offSelectedData.data.participants;
+   const sdata = offSelectedData.participants;
    //// check if already it is selected:
    const optedId = sdata.find(u => u.optedVoucherId === value);
    console.log(optedId);
@@ -203,7 +226,7 @@ const BoPayment = (offSelectedData) => {
 };
 
 const doPayment = () => {
-  const voucherList =  buildVouchers( offSelectedData.data.participants);
+  const voucherList =  buildVouchers( offSelectedData.participants);
   //console.log(JSON.stringify(voucherList));
   
   if (computeFields.computations.youpay > 0) {
@@ -213,11 +236,11 @@ const doPayment = () => {
   } else {
     console.log("other called");
     console.log(computeFields.computations.youpay);
-    doSaveOffloadingPayments(offSelectedData.data.header.bookingId, voucherList)
+    doSaveOffloadingPayments(offSelectedData.header.bookingId, voucherList)
       .then(res => {
         /// redirect to booking confirmation page
         console.log("redirect called");
-        router.push(`/user-dashboard/thank-you?booking_id=${offSelectedData.data.header.bookingId}&status=SUCCESS`);
+        router.push(`/user-dashboard/thank-you?booking_id=${offSelectedData.header.bookingId}&status=SUCCESS`);
       })
       .catch(res => {
         if (res.response?.data?.message) {
@@ -232,7 +255,7 @@ const doPayment = () => {
 };
 
 const processPayments = (voucherList) => {
-  doSaveOffloadingPayments(offSelectedData.data.header.bookingId, voucherList)
+  doSaveOffloadingPayments(offSelectedData.header.bookingId, voucherList)
     .then(res => {
      // console.log(res.data);
      // console.log(res.data.features.enableNewWindowFlow);
@@ -265,8 +288,14 @@ const buildVouchers = data => {
   return vouchers;
 };
 
+const goBack =() =>{
+  setRender(false);
+  props.onOffLoadingGoBack();
+ }
+
   return (
     <>
+    
      <Toast ref={toast} />
       {render==true && (
       <div className="my-5">
@@ -275,6 +304,11 @@ const buildVouchers = data => {
             <div className="row">
               <div className="col-lg-8 col-md-12">
                 <div>
+                <button className="btn table-btn-blue-sm"  onClick={e => goBack()}>
+                  <span className="px-2">Go Back</span>
+                </button>
+                   <br></br>
+
                   <h5 className="p-text-3-fg b-left-blue-3px mb-3">
                     * Backpack Offloading
                   </h5>
@@ -289,14 +323,14 @@ const buildVouchers = data => {
                   <div>
                     <p className="m-0">No. of offloading days: 4 days</p>
                     <p className="p-text-small-fg font-italic">
-                      { offSelectedData.data.header.trekName}
+                      { offSelectedData.header.trekName}
                     </p>
                   </div>
                   <div>
-                    <p>BO. cost per day: Rs. {offSelectedData.data.header?.backPackOffloadingCostPerDay}</p>
+                    <p>BO. cost per day: Rs. {offSelectedData.header?.backPackOffloadingCostPerDay}</p>
                   </div>
                   <div style={{ visibility: "hidden" }}>
-                    <p>Applicable tax: {offSelectedData.data.header?.backPackOffloadingTax}%</p>
+                    <p>Applicable tax: {offSelectedData.header?.backPackOffloadingTax}%</p>
                   </div>
                 </div>
                 <div className="mb-5">
@@ -314,11 +348,11 @@ const buildVouchers = data => {
                       indexes.map(index => {
                        
                       const fieldName = `voucher[${index}]`;
-                      const sdata = offSelectedData.data.participants[index];
+                      const sdata = offSelectedData.participants[index];
                     
                       const lvouchers = [];
-                      if (offSelectedData?.data.userVouchers.length > 0) {
-                        offSelectedData?.data.userVouchers?.filter(x => x.userName?.toLowerCase() === sdata?.email?.toLowerCase())
+                      if (offSelectedData?.userVouchers.length > 0) {
+                        offSelectedData?.userVouchers?.filter(x => x.userName?.toLowerCase() === sdata?.email?.toLowerCase())
                           .map(v => {
                             lvouchers.push({
                               title: v.title + "-" + v.amountAvailable,
@@ -400,19 +434,19 @@ const buildVouchers = data => {
                         offloading fee payable
                       </span>
                     </p>
-                    <p className="p-text-3-fg mb-1 mt-4"> { offSelectedData.data.header.trekName}</p>
+                    <p className="p-text-3-fg mb-1 mt-4"> { offSelectedData.header.trekName}</p>
                     <p className="p-text-3-fg mb-1">
                     <b>
                                               {moment(
-                                               offSelectedData.data.header?.startDate
+                                               offSelectedData.header?.startDate
                                               ).format("MM/DD/YYYY")}{" "}
                                               -{" "}
                                               {moment(
-                                                offSelectedData.data.header?.endDate
+                                                offSelectedData.header?.endDate
                                               ).format("MM/DD/YYYY")}
                                             </b>
                     </p>
-                    <p className="p-text-3-fg mb-2"> { offSelectedData.data.participants.count}</p>
+                    <p className="p-text-3-fg mb-2"> { offSelectedData.participants.count}</p>
 
                     <div className="d-flex justify-content-between mt-4 pt-2">
                       <div>
@@ -481,8 +515,9 @@ const buildVouchers = data => {
       </div>
     
     )}
+    
     </>
   );
-};
+});
 
 export default BoPayment;

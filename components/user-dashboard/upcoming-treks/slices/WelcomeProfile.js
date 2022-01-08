@@ -56,6 +56,7 @@ const WelcomeProfile = () => {
   const offLoadingRef = useRef();
   const fitnessRef = useRef();
   const rentGearRef = useRef();
+  const offPLoadingRef = useRef();
 
   const toast = useRef(null);
   const [showOffLoadingPayment, setShowOffLoadingPayment] = useState(false);
@@ -66,6 +67,7 @@ const WelcomeProfile = () => {
 
   const [cancelIndexes, setCancelIndexes] = React.useState([]);
   const [cancelCounter, setCancelCounter] = React.useState(0);
+  const [defaultTabKey,setDefaultTabKey]=React.useState("mytrek");
   const {
     register,
     handleSubmit,
@@ -222,6 +224,9 @@ const WelcomeProfile = () => {
     const activeBooking = bookings.find(x => x.bookingId === bookingId);
     setUpComingTrek(activeBooking); /// setting the toggled bookingid trek has upcoming trek
     deriveAndSetOffLoadingTabVisible(activeBooking);
+    console.log("myTrekRef.current?.changeState(activeBooking)");
+    console.log(myTrekRef.current);
+
     myTrekRef.current?.changeState(activeBooking);
     myTrekMobileRef.current?.changeState(activeBooking);
     fitnessRef.current?.changeState(activeBooking);
@@ -236,7 +241,10 @@ const WelcomeProfile = () => {
       x => x.bookingId !== activeBooking.bookingId
     ); /// Excluding the active display trek;
     setNextComingTreks(nextTreks);
-    document.getElementById("detailView").focus();
+
+    if(document.getElementById("detailView"))
+      document.getElementById("detailView").focus();
+
     setCancelDialogueData(bookingId, activeBooking);
     window.scrollTo(0, 0);
   };
@@ -298,15 +306,32 @@ const WelcomeProfile = () => {
   };
 
   const OffLoadingPayment = data => {
+    myTrekRef.current?.changeState(null);
     setRender(false);
-    setOffLoadingFeeSelectedData(data);
     setShowOffLoadingPayment(true);
+    offPLoadingRef.current?.changeState(data);
+    //setOffLoadingFeeSelectedData(data);
+  };
+
+  const OffLoadingGoBack = () => {
+    //setOffLoadingFeeSelectedData(data);
+    setShowOffLoadingPayment(false);
+    setDefaultTabKey("offloading");
+    setRender(true);
+    setTimeout(() => {
+      console.log('you can see me after 2 seconds');
+      toggleTrekDisplay(upComingTrek?.bookingId);
+  }, 200);
+    
   };
 
   let callBackProps = {
     onMyTrekSaveDetail: refresh,
-    onOffLoadingPayment: OffLoadingPayment
+    onOffLoadingPayment: OffLoadingPayment,
+    onOffLoadingGoBack:OffLoadingGoBack
   };
+
+
 
   const onCancelSubmit = formData => {
     // console.log(formData);
@@ -560,7 +585,6 @@ const WelcomeProfile = () => {
                                             </button>
                                           </div>
                                         )}
-
                                         {(upComingTrek?.bookingState ===
                                           "COMPLETED" && upComingTrek?.trekWhatsappLink!=="") && (
                                           <>
@@ -570,7 +594,8 @@ const WelcomeProfile = () => {
                                                 aria-hidden="true"
                                               ></i>{" "}
                                               <span className="px-2">
-                                               <a href={upComingTrek?.trekWhatsappLink} >Join whatsapp group</a> 
+                                             
+                                               <a href={upComingTrek?.trekWhatsappLink} target="new" >Join whatsapp group</a> 
                                               </span>
                                             </button>
                                             </>
@@ -609,7 +634,7 @@ const WelcomeProfile = () => {
                           <div className="user-dashboard-tab mb-3">
                             {bookings !== undefined && (
                               <Tabs
-                                defaultActiveKey="mytrek"
+                                defaultActiveKey={defaultTabKey}
                                 id="uncontrolled-tab-example"
                                 className="mb-3"
                                 unmountOnExit={false}
@@ -1131,9 +1156,9 @@ const WelcomeProfile = () => {
           </Modal>
         </div>
       )}
-      {showOffLoadingPayment && (
+      {  (
         <div>
-          <BoPayment data={offLoadingFeeSelectedData}></BoPayment>
+          <BoPayment    ref={offPLoadingRef} {...callBackProps} ></BoPayment>
         </div>
       )}
        {bookings === null && (
