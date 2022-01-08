@@ -79,6 +79,15 @@ const TrekkersVideoCommon = () => {
     data,
     i
   ) {
+  const result = data?.ih_trekker_video_link?.url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  const videoIdWithParams = result[2];
+
+  const cleanVideoId =
+  videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+
+  const videoUrl =
+    "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
+  const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
     return (
       <>
         <div key={`choosetrek` + i}>
@@ -87,12 +96,12 @@ const TrekkersVideoCommon = () => {
               <div className="card video_trek_card">
                 <div alt="imgs" className="ih_trekker_videos_image">
                   <Image
-                    src={data.ih_trekker_videos_image.url}
+                    src={imageURL}
                     layout="fill"
                     objectFit="cover"
                     objectPosition="50% 50%"
                     onClick={() => {
-                      setTrekVideoUrl(data.ih_trekker_video_link.url);
+                      setTrekVideoUrl(videoUrl);
                       setShow(true);
                     }}
                   />

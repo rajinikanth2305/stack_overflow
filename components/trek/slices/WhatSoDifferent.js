@@ -9,11 +9,21 @@ const WhatSoDifferent = ({ slice }) => {
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
   const videoUrl = slice.primary.video_url.url;
-  const videoImage = slice.primary.image.url;
+  // const videoImage = slice.primary.image.url;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const result = videoUrl.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  const videoIdWithParams = result[2];
+
+  const cleanVideoId =
+    videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+
+  const ytvideoUrl =
+    "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
+  const youtube_imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
 
   const heading2data = heading2.map((data, i) => {
     return <p key={i}>{data.text}</p>;
@@ -41,12 +51,12 @@ const WhatSoDifferent = ({ slice }) => {
                         />
                       </div>
                     </div>
-                    {videoImage && (
+                    {youtube_imageURL && (
                       <Image
-                        src={videoImage}
+                        src={youtube_imageURL}
                         layout="fill"
-                        // objectFit="cover"
-                        // objectPosition="bottom"
+                        objectFit="cover"
+                        objectPosition="center"
                         onClick={handleShow}
                       />
                     )}
@@ -75,10 +85,10 @@ const WhatSoDifferent = ({ slice }) => {
                       </div>
                     </div>
                     <Image
-                      src={videoImage}
+                      src={youtube_imageURL}
                       layout="fill"
-                      // objectFit="cover"
-                      // objectPosition="bottom"
+                      objectFit="cover"
+                      objectPosition="center"
                       onClick={handleShow}
                     />
                   </div>
@@ -99,7 +109,7 @@ const WhatSoDifferent = ({ slice }) => {
           <iframe
             width="100%"
             height="500"
-            src={videoUrl}
+            src={ytvideoUrl}
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

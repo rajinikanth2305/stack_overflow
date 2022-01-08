@@ -18,7 +18,26 @@ const TrekVideosComponent = ({ slice }) => {
   const secondaryImage = slice.primary.secondary_image.url;
   const secondaryVideoLink = slice.primary.secondary_video_link.url;
 
-  console.log(primaryVideoLink);
+  const result = primaryVideoLink.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  const videoIdWithParams = result[2];
+
+  const cleanVideoId =
+    videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+
+  const videoUrl =
+    "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
+  const youtube_imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
+
+  const secondaryVideoresult = secondaryVideoLink.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  const secondaryvideoIdWithParams = secondaryVideoresult[2];
+
+  const secondaryVideocleanVideoId =
+  secondaryvideoIdWithParams && secondaryvideoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+
+  const secondaryvideoUrl =
+    "https://www.youtube.com/embed/" + secondaryVideocleanVideoId + "?autoplay=1";
+  const secondaryyoutube_imageURL = `https://img.youtube.com/vi/${secondaryVideocleanVideoId}/hqdefault.jpg`;
+
 
   const [show, setShow] = useState(false);
   const [primaryShow, setPrimaryShow] = useState(false);
@@ -72,6 +91,16 @@ const TrekVideosComponent = ({ slice }) => {
   };
 
   const videosList = videoArray.map(function(data, i) {
+  const result = data?.video_url?.url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  const videoIdWithParams = result[2];
+
+  const cleanVideoId =
+  videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+
+  const videoUrl =
+    "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
+  const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
+
     return (
       <>
         <div className="mx-2 mb-3" key={i}>
@@ -84,20 +113,20 @@ const TrekVideosComponent = ({ slice }) => {
                     alt="playicon'"
                     className="paly-icon icon-size-50"
                     onClick={() => {
-                      setTrekVideoUrl(data.video_url.url);
+                      setTrekVideoUrl(videoUrl);
                       setShow(true);
                     }}
                   />
                 </div>
               </div>
-              {data.image.url && (
+              {imageURL && (
                 <Image
-                  src={data.image.url}
+                  src={imageURL}
                   layout="fill"
-                  // objectFit="cover"
-                  // objectPosition="bottom"
+                  objectFit="cover"
+                  objectPosition="center"
                   onClick={() => {
-                    setTrekVideoUrl(data.video_url.url);
+                    setTrekVideoUrl(videoUrl);
                     setShow(true);
                   }}
                 />
@@ -136,12 +165,12 @@ const TrekVideosComponent = ({ slice }) => {
                         />
                       </div>
                     </div>
-                    {primaryImage && (
+                    {youtube_imageURL && (
                       <Image
-                        src={primaryImage}
+                        src={youtube_imageURL}
                         layout="fill"
-                        // objectFit="cover"
-                        // objectPosition="bottom"
+                        objectFit="cover"
+                        objectPosition="center"
                         onClick={handlePrimary}
                       />
                     )}
@@ -164,12 +193,12 @@ const TrekVideosComponent = ({ slice }) => {
                         />
                       </div>
                     </div>
-                    {secondaryImage && (
+                    {secondaryyoutube_imageURL && (
                       <Image
-                        src={secondaryImage}
+                        src={secondaryyoutube_imageURL}
                         layout="fill"
-                        // objectFit="cover"
-                        // objectPosition="bottom"
+                        objectFit="cover"
+                        objectPosition="center"
                         onClick={handleSecondary}
                       />
                     )}
@@ -216,7 +245,7 @@ const TrekVideosComponent = ({ slice }) => {
           <iframe
             width="100%"
             height="500"
-            src={primaryVideoLink}
+            src={videoUrl && videoUrl}
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -238,7 +267,7 @@ const TrekVideosComponent = ({ slice }) => {
           <iframe
             width="100%"
             height="500"
-            src={secondaryVideoLink}
+            src={secondaryvideoUrl && secondaryvideoUrl}
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
