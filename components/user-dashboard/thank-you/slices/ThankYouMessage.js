@@ -23,8 +23,8 @@ const UserMP = () => {
     bookingStatus=bookingStatus.replace("#state","");
 
     console.log(bookingStatus);
-    const valStatus=bookingStatus.toLowerCase()==='success'? true:false;
-    setStatus(valStatus);
+    const valStatus=bookingStatus.toLowerCase();
+    setStatus(valStatus.toLowerCase());
     setRender(true);
      //const res=await
      auth.keycloak()
@@ -47,12 +47,14 @@ const UserMP = () => {
           <div className="d-flex justify-content-center">
             <div className="col-md-6 col-12">
               <p className="p-text-1-fgt mb-4">
-              
-               { status ? (
+               { status==="success" && (
                 <span className="border-bottom-custom-1 pb-1">  Payment received! </span>
-                ): 
-                   <span className="border-bottom-custom-1 pb-1">  Payment Failed! </span>
-                }
+                 )
+               }
+                   { status==="failed" && (
+                <span className="border-bottom-custom-1 pb-1">  Payment Failed! </span>
+                 )
+               }
               </p>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

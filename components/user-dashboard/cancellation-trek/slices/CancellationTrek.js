@@ -32,6 +32,7 @@ const CancellationTrek = () => {
   const [counter, setCounter] = React.useState(0);
   const router = useRouter();
   const [render, setRender] = useState(false);
+  const [participants, setParticipants] = useState([]);
 
   const {
     register,
@@ -77,12 +78,43 @@ const CancellationTrek = () => {
 
   const setStates = (bookingData) => {
     setBookings(bookingData);
-    const arr = Array.from(new Array(bookingData.participants.length), (x, i) => i);
+
+    let lparticipants=[];
+
+    bookingData.participants.map(x=> {
+      const tpartcipant= buildParticipants(x);
+      lparticipants.push(tpartcipant);
+    });
+
+    setParticipants(lparticipants);
+
+    const arr = Array.from(new Array(lparticipants.length), (x, i) => i);
     console.log(arr.length);
     setIndexes(arr);
     setCounter(arr.length);
     setRender(true);
   };
+
+  const buildParticipants = async userData => {
+    const participants = {
+      firstName: userData.userDetailsForDisplay?.firstName,
+      lastName: userData.userDetailsForDisplay?.lastName,
+      email: userData.userDetailsForDisplay?.email,
+      amountPaid: 2,
+      voucherUsed: 0,
+      id: userData.userId,
+      participantsId: userData.id,
+      trekFeeForTheUser: userData.trekFeeForTheUser,
+      taxPercentage: userData.taxPercentage,
+      insuranceAmount: userData.insuranceAmount,
+      bookingParticipantState:userData.bookingParticipantState,
+      cancellationCharge: (userData.trekFeeForTheUser * 0.15),
+      voucherCredited:(userData.trekFeeForTheUser * 0.85),
+      moneyCredited:(userData.trekFeeForTheUser * 0.85),
+    };
+    return participants;
+  };
+
 
   const onCancelSubmit = formData => {
     // console.log(formData);
@@ -182,17 +214,17 @@ const CancellationTrek = () => {
                         </thead>
                         <tbody>
                         {indexes.map(index => {
-                        const sdata =bookings?.participants[index];
+                        const sdata =participants[index];
                         console.log(sdata);
                         const fieldName = `${sdata?.participantId}`;
                         const name =
-                          sdata?.userDetailsForDisplay?.email === userEmail
+                          sdata?.email === userEmail
                             ? " * " +
-                              sdata?.userDetailsForDisplay?.firstName +
-                              sdata?.userDetailsForDisplay?.lastName +
+                              sdata?.firstName +
+                              sdata?.lastName +
                               " (You) "
-                            : sdata?.userDetailsForDisplay?.firstName +
-                              sdata?.userDetailsForDisplay?.lastName;
+                            : sdata?.firstName +
+                              sdata?.lastName;
 
                         const state =sdata?.bookingParticipantState === "CANCELLED";
 
@@ -227,10 +259,12 @@ const CancellationTrek = () => {
                               <td>
                                 {index + 1}. {name}
                               </td>
-                              <td>{0}</td>
-                              <td>{0}</td>
-                              <td>{0}</td>
-                              <td>{0}</td>
+                              <td>{sdata.trekFeeForTheUser}</td>
+                              <td>{sdata.amountPaid}</td>
+                              <td>{sdata.voucherUsed}</td>
+                              <td>{sdata.cancellationCharge}</td>
+                              <td>{sdata.voucherCredited}</td>
+                              <td>{sdata.moneyCredited}</td>
                             </tr>
                           </>
                         );
