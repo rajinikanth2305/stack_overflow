@@ -15,8 +15,8 @@ const WhatSoDifferent = ({ slice }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const result = videoUrl.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-  const videoIdWithParams = result[2];
+  const result = videoUrl?.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  const videoIdWithParams = result && result[2];
 
   const cleanVideoId =
     videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];

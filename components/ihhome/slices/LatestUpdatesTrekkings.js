@@ -18,7 +18,7 @@ const LatestUpdatesTrekkings = ({ slice }) => {
   const primaryVideoImg = slice.primary.primary_video_img.url;
   const primaryVideoUrl = slice.primary.primary_video_url.url;
   
-  const result = primaryVideoUrl.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  const result = primaryVideoUrl?.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
   const videoIdWithParams = result[2];
 
   const cleanVideoId =

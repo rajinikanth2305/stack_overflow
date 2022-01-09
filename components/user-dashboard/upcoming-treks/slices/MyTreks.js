@@ -117,7 +117,7 @@ const MyTreks = forwardRef((props, ref) => {
   const trekVideosArrayDetails = videoIndexes?.map(function(i) {
     const data=videoData && videoData[i];
     const result = data?.video_url?.url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-    const videoIdWithParams = result[2];
+    const videoIdWithParams = result && result[2];
   
     const cleanVideoId =
     videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];

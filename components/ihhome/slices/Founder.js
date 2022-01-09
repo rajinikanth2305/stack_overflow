@@ -17,8 +17,8 @@ const Founder = ({ slice }) => {
   const imageHeight = slice.primary.image.dimensions.height;
   const primaryVideoUrl = slice.primary.video_url.url;
 
-  const result = primaryVideoUrl.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-  const videoIdWithParams = result[2];
+  const result = primaryVideoUrl?.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  const videoIdWithParams = result && result[2];
 
   const cleanVideoId =
     videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];

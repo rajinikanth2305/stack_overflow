@@ -80,7 +80,7 @@ const TrekkersVideoCommon = () => {
     i
   ) {
   const result = data?.ih_trekker_video_link?.url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-  const videoIdWithParams = result[2];
+  const videoIdWithParams = result && result[2];
 
   const cleanVideoId =
   videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
