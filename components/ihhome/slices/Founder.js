@@ -13,8 +13,8 @@ const Founder = ({ slice }) => {
   const authors = slice.primary.authors;
   const author_position = slice.primary.author_position;
   const founder_Message_List = slice.primary.founder_message;
-  const imageWidth = slice.primary.image.dimensions.width;
-  const imageHeight = slice.primary.image.dimensions.height;
+  // const imageWidth = slice.primary.image.dimensions.width;
+  // const imageHeight = slice.primary.image.dimensions.height;
   const primaryVideoUrl = slice.primary.video_url.url;
 
   const result = primaryVideoUrl?.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
