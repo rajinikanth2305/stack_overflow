@@ -17,7 +17,7 @@ import { FamilyTrekSliceZone } from "../components/familytrek";
 /**
  * UpComing component
  */
-const FamilyTrek = ({ doc }) => {
+const FamilyTrek = ({ doc, multiTrekData, weekendTrekData }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -31,7 +31,7 @@ const FamilyTrek = ({ doc }) => {
           <title>Family Trek</title>
         </Head>
         <HikeHeader />
-        <FamilyTrekSliceZone sliceZone={doc.data.body} />
+        <FamilyTrekSliceZone sliceZone={doc.data.body} multiTrekData={multiTrekData} weekendTrekData={weekendTrekData} />
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
@@ -48,15 +48,49 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = Client();
 
   const doc =
-    (await client.getSingle(
-      "family_trek",
-      ref ? { ref } : null
-    )) || {};
+    (await client.getSingle("family_trek", ref ? { ref } : null)) || {};
+
+  const multiTrekData = [];
+  const weekendTrekData = [];
+
+  const multitrek_slice = doc.data?.body?.find(
+    x => x.slice_type === "multi_day_trek_list"
+  );
+
+  if (multitrek_slice.items.length > 0) {
+    for (var i = 0; i < multitrek_slice.items.length; i++) {
+      const data = multitrek_slice.items[i];
+      const slugUrl = data && data?.trek_link?.id;
+      if (slugUrl !== undefined) {
+        const trek_details = await Client().getByID(slugUrl);
+        if (trek_details !== undefined && trek_details !== null)
+        multiTrekData.push(trek_details);
+      }
+    }
+  }
+
+  const weekendtrek_slice = doc.data?.body?.find(
+    x => x.slice_type === "weekend_treks"
+  );
+
+  if (weekendtrek_slice.items.length > 0) {
+    for (var i = 0; i < weekendtrek_slice.items.length; i++) {
+      const data = weekendtrek_slice.items[i];
+      const slugUrl = data && data?.trek_link?.id;
+      if (slugUrl !== undefined) {
+        const trek_details = await Client().getByID(slugUrl);
+        if (trek_details !== undefined && trek_details !== null)
+        weekendTrekData.push(trek_details);
+      }
+    }
+  }
 
   return {
     props: {
       doc,
-      preview
+      preview,
+      multiTrekData,
+      weekendTrekData
     }
   };
 }

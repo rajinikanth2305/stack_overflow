@@ -5,8 +5,9 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Link from "next/link";
 
-const MultiDayTrekComponent = ({ slice }) => {
+const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
   const trekToDoImageArray = slice.items;
@@ -47,67 +48,71 @@ const MultiDayTrekComponent = ({ slice }) => {
     ]
   };
 
-  const trekToDoImage = trekToDoImageArray.map(function(data, i) {
+  const trekToDoImage = multiTrekData.map(function(data, i) {
+    const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
+    let url;
+    const slugUrl = data?.uid;
+    if (slugUrl) {
+      url = `/trek/${slugUrl}`;
+    }
     return (
       <>
         <div className="mx-4 m-mx-0" key={i}>
           <div className="card_sec ">
             <div className="card trek_card">
               <div alt="imgs" className="carousel_trek_image">
-                {data.trek_familytrek === true ? (
-                  <div className="trek_badge">
-                    <img src="./trek-badge.png" />
-                    <span>Family Trek</span>
-                  </div>
-                ) : (
-                  ""
+                {tData.primary.trek_banner_image.url && (
+                  <Image
+                    src={tData.primary.trek_banner_image.url}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                  />
                 )}
-                <Image
-                  src={data.trek_to_do_image.url}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                />
               </div>
               <div className="px-3 py-2">
                 <div className="d-flex align-items-center card-info-text">
                   <div>
-                    <p>{data.trek_days[0].text} Days</p>
+                    <p>{tData.primary.duration[0].text}</p>
                   </div>
-                  <div>
+                  {/* <div>
                     <p className="list-dot-style px-1">
                       <span>.</span>
                     </p>
                   </div>
                   <div>
                     <p>{data.trek_seasons[0].text}</p>
-                  </div>
+                  </div> */}
                   <div>
                     <p className="list-dot-style px-1">
                       <span>.</span>
                     </p>
                   </div>
                   <div>
-                    <p>{data.trek_guide[0].text}</p>
+                    <p>{tData.primary.difficulty[0].text}</p>
                   </div>
                 </div>
 
                 <div>
                   <h3 className="title-diplay-3 m-d-3 text-uppercase">
-                    {data.trek_title[0].text.length > 20
+                    {/* {data.trek_title[0].text.length > 20
                       ? `${data.uc_open_desc[0].text.substring(0, 20)}...`
-                      : data.trek_title[0].text}
+                      : data.trek_title[0].text} */}
+                    {tData.primary.trek_caption}
                   </h3>
                   <p className="p-text-4 mt2">
-                    {data.trek_desc[0].text.length > 122
+                    {/* {data.trek_desc[0].text.length > 122
                       ? `${data.trek_desc[0].text.substring(0, 122)}...`
-                      : data.trek_desc[0].text}
+                      : data.trek_desc[0].text} */}
+                    {RichText.asText(tData.primary.sub_heading)}
                   </p>
-                  <div className="d-flex alifn-items-center justify-content-between pt-2 pb-4 flex-wrap">
+                  <div className="d-flex alifn-items-center justify-content-between pt-2 pb-4 flex-wrap p-btn-btm ">
                     <div className="mw-100">
-                      <button className="btn btn-bihtn-yellow">
-                        View details
-                      </button>
+                      <Link href={url ? url : "#"}>
+                        <button className="btn btn-bihtn-yellow">
+                          View details
+                        </button>
+                      </Link>
                     </div>
                     <div className="mw-100">
                       <button className="btn btn-ih-green">

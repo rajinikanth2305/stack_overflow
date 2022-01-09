@@ -17,7 +17,7 @@ import { DIYSliceZone } from "../components/diytreks";
 /**
  * UpComing component
  */
-const DIY = ({ doc }) => {
+const DIY = ({ doc, trekData }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -31,7 +31,7 @@ const DIY = ({ doc }) => {
           <title>DIY</title>
         </Head>
         <HikeHeader />
-        <DIYSliceZone sliceZone={doc.data.body} />
+        <DIYSliceZone sliceZone={doc.data.body} trekData={trekData} />
         {/* <div className="mt-5 py-5 text-center">
           <h3>DIY</h3>
           <h4>Under development.!!</h4>
@@ -50,14 +50,32 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const { ref } = previewData
 
-  const client = Client()
+  const client = Client();
 
   const doc = await client.getSingle("diy_trek", ref ? { ref } : null) || {}
+  const trekData = [];
+
+  const slice = doc.data?.body?.find(
+    x => x.slice_type === "best_post_treks"
+  );
+
+  if (slice.items.length > 0) {
+    for (var i = 0; i < slice.items.length; i++) {
+      const data = slice.items[i];
+      const slugUrl = data && data?.trek_link?.id;
+      if (slugUrl !== undefined) {
+        const trek_details = await Client().getByID(slugUrl);
+        if (trek_details !== undefined && trek_details !== null)
+        trekData.push(trek_details);
+      }
+    }
+  }
 
   return {
     props: {
       doc,
-      preview
+      preview,
+      trekData
     }
   }
 }

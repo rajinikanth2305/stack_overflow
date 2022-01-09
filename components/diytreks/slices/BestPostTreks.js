@@ -6,8 +6,9 @@ import TrekkersVideoCommon from "../../TrekkersVidoeCommon";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Link from "next/link";
 
-const BestPostTreks = ({ slice }) => {
+const BestPostTreks = ({ slice, trekData }) => {
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
   const bestPostTreksArray = slice.items;
@@ -48,71 +49,72 @@ const BestPostTreks = ({ slice }) => {
     ]
   };
 
-  const bestPostTreks = bestPostTreksArray.map(function(data, i) {
+  const bestPostTreks = trekData.map(function(data, i) {
+    const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
+    let url;
+    const slugUrl = data?.uid;
+    if (slugUrl) {
+      url = `/trek/${slugUrl}`;
+    }
     return (
       <>
         <div className="mx-4 m-mx-0" key={i}>
           <div className="card_sec">
             <div className="card trek_card">
               <div alt="imgs" className="best_treks_images">
-                {/* {data.uc_autumn_treks_family_trek === true ? (
-                  <div className="trek_badge">
-                    <img src="./trek-badge.png" />
-                    <span>Family Trek</span>
-                  </div>
-                ) : (
-                  ""
-                )} */}
                 <div className="bg_overlay_trek_image_bg h-100">
                   <div className="h-100">
                     <div className="d-flex align-items-end justify-content-center w-100 h-100 px-4 py-3">
                       <div className="w-100">
                         <p className="p-text-1-main m-0">
-                          {data?.title[0]?.text}
+                          {tData.primary.trek_caption}
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <Image
-                  src={data.image.url}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                />
+                {tData.primary.trek_banner_image.url && (
+                  <Image
+                    src={tData.primary.trek_banner_image.url}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                  />
+                )}
               </div>
               <div className="px-3 py-2">
                 <div className="d-flex align-items-center card-info-text">
                   <div>
-                    <p>{data.days[0].text} Days</p>
+                    <p>{tData.primary.duration[0].text}</p>
                   </div>
-                  <div>
+                  {/* <div>
                     <p className="list-dot-style px-1">
                       <span>.</span>
                     </p>
                   </div>
                   <div>
                     <p>{data.seasons[0].text}</p>
-                  </div>
+                  </div> */}
                   <div>
                     <p className="list-dot-style px-1">
                       <span>.</span>
                     </p>
                   </div>
                   <div>
-                    <p>{data.trek_type[0].text}</p>
+                    <p>tData.primary.difficulty[0].text}</p>
                   </div>
                 </div>
 
                 <div>
                   <p className="p-text-4">
-                    {data.desc[0].text.length > 125
+                    {/* {data.desc[0].text.length > 125
                       ? `${data.desc[0].text.substring(0, 125)}...`
-                      : data.desc[0].text}
+                      : data.desc[0].text} */}
+                    {RichText.asText(tData.primary.sub_heading)}
                   </p>
                 </div>
-                <div className="d-flex align-items-center mb-3">
-                  <div>
+                <div className="d-flex align-items-center mb-3 p-btn-btm">
+                  {/* <div>
                     <div className="doc_image">
                       <Image
                         src={data.trek_documentor_img.url}
@@ -129,9 +131,13 @@ const BestPostTreks = ({ slice }) => {
                     <p className="p-text-3-fgg m-0">
                       {data.documentor_title[0].text}
                     </p>
-                  </div>
+                  </div> */}
                   <div>
-                    <button className="btn btn-bihtn-yellow">View Trek</button>
+                    <Link href={url ? url : "#"}>
+                      <button className="btn btn-bihtn-yellow">
+                        View Trek
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>

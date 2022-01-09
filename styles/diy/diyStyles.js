@@ -402,6 +402,13 @@ export const diyStyles = css.global`
 
   .trek_card {
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    min-height: 450px;
+  }
+
+  .p-btn-btm {
+    position: absolute;
+    bottom: 20px;
+    width: 90%;
   }
 
   .list-dot-style > span {

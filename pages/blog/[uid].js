@@ -172,7 +172,7 @@ export async function getStaticPaths() {
   //documents.push(doc);
 
   return {
-    paths: documents.map(doc => `/blog/${doc.uid}`),
+    paths: documents.map(doc => `/blog/${doc?.uid}`),
     fallback: true,
   }
 }

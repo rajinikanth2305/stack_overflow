@@ -516,7 +516,7 @@ export const customStyles = css.global`
 
   .carousel_trek_image {
     width: 100%;
-    height: 275px;
+    height: 222px;
     position: relative;
     border-bottom: 2px solid rgb(255, 193, 0);
   }
@@ -1574,6 +1574,17 @@ export const customStyles = css.global`
 
   .post-part.single {
     font-family: Lora;
+  }
+
+  .trek_card {
+    filter: drop-shadow(0px 3px 6px rgba(0,0,0,0.161));
+    min-height: 440px;
+  }
+
+  .p-btn-btm {
+    position: absolute;
+    bottom: 20px;
+    width: 90%;
   }
 
   @media only screen and (max-width: 660px) {
