@@ -6,11 +6,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
+const MultiDayTrekComponent = ({ slice }) => {
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
   const trekToDoImageArray = slice.items;
-  console.log(multiTrekData);
 
   const settings = {
     dots: true,
