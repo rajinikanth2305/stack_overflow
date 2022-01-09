@@ -50,23 +50,23 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const doc =
     (await client.getSingle("family_trek", ref ? { ref } : null)) || {};
 
-  const multiTrekData = [];
+  const multiTrekData = [1,2,3,4,5];
 
   const multitrek_slice = doc.data?.body?.find(
     x => x.slice_type === "multi_day_trek_list"
   );
 
-  if (multitrek_slice.items.length > 0) {
-    for (var i = 0; i < multitrek_slice.items.length; i++) {
-      const data = multitrek_slice.items[i];
-      const slugUrl = data && data?.trek_link?.id;
-      if (slugUrl !== undefined) {
-        const trek_details = await Client().getByID(slugUrl);
-        if (trek_details !== undefined && trek_details !== null)
-        multiTrekData.push(trek_details);
-      }
-    }
-  }
+  // if (multitrek_slice.items.length > 0) {
+  //   for (var i = 0; i < multitrek_slice.items.length; i++) {
+  //     const data = multitrek_slice.items[i];
+  //     const slugUrl = data && data?.trek_link?.id;
+  //     if (slugUrl !== undefined) {
+  //       const trek_details = await Client().getByID(slugUrl);
+  //       if (trek_details !== undefined && trek_details !== null)
+  //       multiTrekData.push(trek_details);
+  //     }
+  //   }
+  // }
 
   return {
     props: {
