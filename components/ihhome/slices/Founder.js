@@ -13,13 +13,12 @@ const Founder = ({ slice }) => {
   const authors = slice.primary.authors;
   const author_position = slice.primary.author_position;
   const founder_Message_List = slice.primary.founder_message;
-  const imageUrl = slice.primary.image.url;
   const imageWidth = slice.primary.image.dimensions.width;
   const imageHeight = slice.primary.image.dimensions.height;
   const primaryVideoUrl = slice.primary.video_url.url;
 
-  const result = primaryVideoUrl.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-  const videoIdWithParams = result[2];
+  const result = primaryVideoUrl?.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  const videoIdWithParams = result && result[2];
 
   const cleanVideoId =
     videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];

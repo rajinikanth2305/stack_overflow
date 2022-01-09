@@ -116,6 +116,15 @@ const MyTreks = forwardRef((props, ref) => {
 
   const trekVideosArrayDetails = videoIndexes?.map(function(i) {
     const data=videoData && videoData[i];
+    const result = data?.video_url?.url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+    const videoIdWithParams = result && result[2];
+  
+    const cleanVideoId =
+    videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+  
+    const videoUrl =
+      "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
+    const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
     return (
       <div>
         <div className="mx-4 mb-3" key={i}>
@@ -128,20 +137,20 @@ const MyTreks = forwardRef((props, ref) => {
                     alt="playicon'"
                     className="paly-icon icon-size-50"
                     onClick={() => {
-                      setTrekVideoUrl(data.video_url.url);
+                      setTrekVideoUrl(videoUrl);
                       setShow(true);
                     }}
                   />
                 </div>
               </div>
-              {data.image.url && (
+              {imageURL && (
                 <Image
-                  src={data.image.url}
+                  src={imageURL}
                   layout="fill"
-                  // objectFit="cover"
-                  // objectPosition="bottom"
+                  objectFit="cover"
+                  objectPosition="center"
                   onClick={() => {
-                    setTrekVideoUrl(data.video_url.url);
+                    setTrekVideoUrl(videoUrl);
                     setShow(true);
                   }}
                 />
