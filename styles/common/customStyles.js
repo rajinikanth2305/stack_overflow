@@ -1894,7 +1894,7 @@ export const customStyles = css.global`
     // }
   }
   .p-rating .p-rating-icon {
-    color: #495057;
+    color: ##FFC107;
     margin-left: 0.5rem;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s,
       box-shadow 0.2s;
@@ -1925,4 +1925,22 @@ export const customStyles = css.global`
   .p-highlight .p-rating .p-rating-icon {
     color: #000000;
   }
+
+  .pi {
+    font-family: aerial;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    -moz-font-feature-settings: normal;
+    font-feature-settings: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.pi-ban:before{content:"\e935"}
+.pi-star-fill:before{content:"\e936"}
+.pi-star:before{content:"\e937"}
 `;

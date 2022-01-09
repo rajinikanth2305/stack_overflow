@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { RichText } from "prismic-reactjs";
-import { customStyles } from "styles";
+import { customStyles,regStyle } from "styles"; 
 import { ratingStyles } from "styles";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { Progress } from "reactstrap";
@@ -9,7 +9,8 @@ import Link from "next/link";
 import auth from "../../../../services/Authenticate";
 import {
   getdashBoardUserBooking,
-  getTrekReview
+  getTrekReview,
+  saveUserReviews
 } from "../../../../services/queries";
 import moment from "moment";
 import { useRouter } from "next/router";
@@ -25,6 +26,8 @@ import { Rating } from "primereact/rating";
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
+import ReactStars from "react-rating-stars-component";
+import { Toast } from "primereact/toast";
 
 const UserPT = () => {
   const [activeTab, setActiveTab] = useState(null);
@@ -47,8 +50,6 @@ const UserPT = () => {
 
   const [multiCheckItems, setMultiCheckItems] = useState([]);
 
-
-
   const {
     register,
     handleSubmit,
@@ -63,7 +64,7 @@ const UserPT = () => {
   const [reviewIndexes, setReviewIndexes] = React.useState([]);
   const [reviewcounter, setReviewCounter] = React.useState(0);
   const [reviewData, setReviewData] = React.useState();
-
+  const [currentBookingData, setCurrentBookingData] = React.useState();
   React.useEffect(() => {
     //const res=await
     auth.keycloak().then(([userTokenObject, userEmail]) => {
@@ -98,10 +99,13 @@ const UserPT = () => {
     setMultiCheckItems(_selectedCategories);
 }
 
-  const fetchTrekReview = () => {
-    getTrekReview(bookings.trekId, bookings.batchId).then(data => {
-      setReviewData(data);
-      const arr = Array.from(new Array(data.length), (x, i) => i);
+  const fetchTrekReview = (bookingData) => {
+    //console.log(data);
+    getTrekReview(bookingData.bookingId).then(resData => {
+      console.log(resData);
+      setReviewData(resData);
+      setCurrentBookingData(bookingData);
+      const arr = Array.from(new Array(resData.length), (x, i) => i);
       setReviewIndexes(arr);
       setReviewCounter(1);
     });
@@ -201,7 +205,91 @@ const UserPT = () => {
 
   const onSubmit = formData => {
     console.log(JSON.stringify(formData));
-  };
+    console.log(reviewData);
+    console.log(currentBookingData);
+
+    var map = new Map();
+    let ratingStar=0;
+    let ratingQuestionId;
+
+    Object.keys(formData).map((key) => {
+
+      if(key.startsWith("rating")) {
+        ratingStar= formData[key];
+        ratingQuestionId=key.replace("rating-","");
+      }
+      else {
+      const ind=key.indexOf("-");
+      let k=key;
+      if(ind>0){
+         k=key.substring(0,ind);
+      }
+      const value=formData[key];
+      if(value!==undefined) {
+      const values=[];
+      values.push(value);
+      if(map.has(k)) {
+            map.get(k).push(value);
+      }
+      else {
+        map.set(k,values);
+      }
+    }
+  }
+  // console.log(key, formData[key]);
+  });
+ // console.log(map);
+
+  const user=currentBookingData?.userTrekBookingParticipants?.find(x=>x.userDetailsForDisplay.email.toLowerCase()===userEmail.toLowerCase());
+ // console.log(user);
+  const userId=user?.userId;
+ // console.log(userId);
+
+  const saveObject= 
+  {
+    "reviewId": reviewData.id,
+    "batchId": currentBookingData.batchId,
+    "userId": userId,
+    "reviewAnswers": buildAnswers(map,ratingQuestionId,ratingStar)
+  }
+  console.log(saveObject);
+
+  saveUserReviews(saveObject).then(res=> {
+    console.log("review saved successfully")
+    toast?.current?.show({
+      severity: "info",
+      summary: `' Thanks for your review submission'`,
+      detail: "Review Submission"
+    })
+  })
+  .catch(res => {
+      toast.current.show({
+        severity: "error",
+        summary: `'Error occurred in your review submission - Error ${ res?.response?.data?.message}'`,
+        detail: "Review Submission"
+      });
+  });
+};
+
+  const buildAnswers=(ans,ratingQuestionId,ratingValue)=> {
+    const answers=[];
+    for (let [key, value] of ans) {
+      const qa= {
+        "questionId": key,
+         "answers":value,
+         "rating":0
+      }
+      answers.push(qa);
+    }
+    if(ratingValue > 0) {
+    answers.push({
+      "questionId": ratingQuestionId,
+      "answers": [],
+      "rating": ratingValue
+    });
+  }
+    return answers;
+  }
 
   const addItineraries = () => {
     setReviewIndexes([...indexes, counter]);
@@ -215,7 +303,7 @@ const UserPT = () => {
 
   
   const prevTrekData = bookings?.map(function(data, i) {
-    console.log(data);
+    //console.log(data);
     return (
       <>
         <div key={data.id}>
@@ -319,7 +407,7 @@ const UserPT = () => {
                           className="btn table-btn-yellow ml-custom-3"
                           onClick={() => {
                             toggle(i);
-                            fetchTrekReview();
+                            fetchTrekReview(data);
                           }}
                         >
                           Write About Your Experience
@@ -341,11 +429,11 @@ const UserPT = () => {
               <div className="row mb-3">
                 <div className="col-lg-1 col-md-12"></div>
                 <div className="col-lg-10 col-md-12">
-                  <form onSubmit={handleSubmit(onSubmit)} onReset={() => reset}>
+                  <form onSubmit={handleSubmit(onSubmit)} onReset={() => reset} id={data.bookingId}>
                     <div className="card">
                       <div className="py-4 px-5 mx-5">
                         <h5 className="p-text-2-fg b-left-3px">
-                          your thoughts on the miyar valley trek expereience
+                          your thoughts on the {data.trekName}  expereience
                         </h5>
                         <p className="p-text-3">
                           At Indiahikes, we take your feedback very seriously.
@@ -402,18 +490,17 @@ const UserPT = () => {
                                                       onChange,
                                                       value
                                                     }) => (
-                                                      <Checkbox
-                                                      checked={value}
-                                                      value={`${item.questionId}-${mindex}`}
-                                                        onChange={e => {
-                                                          //onMultiChekBoxChange(e);
-                                                          onChange(e.checked);
-                                                         // addItineraries();
-                                                           // document.getElementByName(`"${item.questionId}-${mindex}"`).checked=e.checked;
-                                                          
-                                                         
-                                                        }}
-                                                      />
+
+                                                      <input
+                                                      type="checkbox"
+                                                      
+                                                      onClick={(e) => {
+                                                        onChange(e.target.value==="on"?ch:undefined);
+                                                        addItineraries();
+                                                      }}
+                                                  />
+
+                                                   
                                                     )}
                                                   />
                                                 </div>
@@ -495,18 +582,20 @@ const UserPT = () => {
                                     {rating && (
                                       <div className="p-rating">
                                         <p></p>
+                                        {/*https://www.npmjs.com/package/react-rating-stars-component*/}
                                         <Controller
-                                          name={`${item.questionId}`}
+                                          name={`rating-${item.questionId}`}
                                           control={control}
                                           render={({ onChange, value }) => (
-                                            <Rating
-                                              stars={5}
-                                              className="p-rating-star"
-                                              value={value}
-                                              onChange={e => {
-                                                onChange(e.value);
-                                              }}
-                                            />
+                                            <ReactStars
+                                            count={5}
+                                            onChange={ (newRating) => {
+                                              console.log(newRating);
+                                              onChange(newRating);
+                                            }}
+                                            size={44}
+                                            activeColor="#ffd700"
+                                          />
                                           )}
                                         />
                                       </div>
@@ -541,6 +630,7 @@ const UserPT = () => {
 
   return (
     <>
+      <Toast ref={toast} />   
       <div>
         <div className="container container-custom p-0">
           <div className="bg-gray-shade">

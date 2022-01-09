@@ -368,11 +368,10 @@ export const saveUserLocations =  async (bookingId,payload)  => {
     return axios.get(url,{ headers:  header }).then((res) => res.data);
   };
 
-  export const getTrekReview = async (trekId,batchId)  => {
+  export const getTrekReview = async (bookingId)  => {
     const header=await getTokenHeader();
-    const reviewId=15;
     const api = `${REACT_APP_TMS_BACKEND_URL}`;
-    let url = `${api}/reviews/${reviewId}`;
+    let url = `${api}/bookings/${bookingId}/reviews`;
     return axios.get(url,{ headers:  header }).then((res) => res.data);
   };
 
@@ -394,6 +393,14 @@ export const saveUserLocations =  async (bookingId,payload)  => {
     const api = `${REACT_APP_TMS_BACKEND_URL}`;
     let url = `${api}/participants/${participantId}/documents/${documentType}`;
     return axios.post(url,payload,{ headers:  header })
+           .then((res) => res.data);
+  };
+
+  export const saveUserReviews =  async (reviewData)  => {
+    const header=await getTokenHeaderWithMultiPartMimeType();
+    const api = `${REACT_APP_TMS_BACKEND_URL}`;
+    let url = `${api}/users/my-review`;
+    return axios.post(url,reviewData,{ headers:  header })
            .then((res) => res.data);
   };
 
