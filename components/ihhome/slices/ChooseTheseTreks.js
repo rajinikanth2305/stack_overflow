@@ -179,7 +179,10 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
 
                 <div>
                   <p className="title-diplay-3-18px text-uppercase frg-mob">
-                    <b>{tData.primary.trek_caption}</b>
+                    {/* <b>{tData.primary.trek_caption}</b> */}
+                    <b>{tData?.primary?.trek_caption?.length > 25
+                      ? `${tData?.primary?.trek_caption?.substring(0, 25)}...`
+                      : tData?.primary?.trek_caption}</b>
                   </p>
                   <div className="p-text-4">
                     {RichText.asText(tData.primary.sub_heading)}

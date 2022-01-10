@@ -95,7 +95,10 @@ const WeekendTrek = ({ slice, weekendTrekData }) => {
 
                 <div>
                   <h3 className="title-diplay-3 m-d-3 text-uppercase">
-                    {tData.primary.trek_caption}
+                    {/* {tData.primary.trek_caption} */}
+                    <b>{tData.primary.trek_caption.length > 25
+                      ? `${tData.primary.trek_caption.substring(0, 25)}...`
+                      : tData.primary.trek_caption}</b>
                   </h3>
                   <p className="p-text-4 mt2">
                     {RichText.asText(tData.primary.sub_heading)}

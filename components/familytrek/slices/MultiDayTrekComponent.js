@@ -98,7 +98,9 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
                     {/* {data.trek_title[0].text.length > 20
                       ? `${data.uc_open_desc[0].text.substring(0, 20)}...`
                       : data.trek_title[0].text} */}
-                    {tData.primary.trek_caption}
+                    <b>{tData.primary.trek_caption.length > 25
+                      ? `${tData.primary.trek_caption.substring(0, 25)}...`
+                      : tData.primary.trek_caption}</b>
                   </h3>
                   <p className="p-text-4 mt2">
                     {/* {data.trek_desc[0].text.length > 122

@@ -97,7 +97,10 @@ const UCAutnumTreks = ({ slice, autumnData }) => {
 
                 <div>
                   <p className="title-diplay-3 text-uppercase">
-                    <b>{tData.primary.trek_caption}</b>
+                    {/* <b>{tData.primary.trek_caption}</b> */}
+                    <b>{tData.primary.trek_caption.length > 25
+                      ? `${tData.primary.trek_caption.substring(0, 25)}...`
+                      : tData.primary.trek_caption}</b>
                   </p>
                   <div className="p-display-2">
                     {RichText.asText(tData.primary.sub_heading)}
