@@ -439,3 +439,16 @@ export const homePageQuery = async () => {
   const allRoutes = await fetchDocs()
   return allRoutes.filter(doc => doc.type === 'post').slice(0, 5)
 }
+
+/* woo commerce api calls */
+export const getWooCustomerId = async (email)  => {
+  const url = `https://store.indiahikes.com/wp-json/wc/v3/customers?email=${email}&consumer_key=ck_a5f0a15c256c497484a707606f14e9988d3a004f&consumer_secret=cs_b3501e9fff201ac76c5d395b9ccbd597f97f1b58`;
+  return axios.get(url).then((res) => res.data);
+};
+
+/* woo commerce api calls */
+export const getWooCustomerOrders = async (customerId)  => {
+  const url = `https://store.indiahikes.com/wp-json/wc/v3/orders?filter[customer_id]=${customerId}&consumer_key=ck_a5f0a15c256c497484a707606f14e9988d3a004f&consumer_secret=cs_b3501e9fff201ac76c5d395b9ccbd597f97f1b58`;
+  return axios.get(url).then((res) => res.data);
+};
+
