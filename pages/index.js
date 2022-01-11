@@ -48,7 +48,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   if (trekPageData.length > 0) {
     for (var i = 0; i < trekPageData.length; i++) {
       const data = trekPageData[i];
-      const slugUrl = data && data?.link_url?.id;
+      const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
         trekPageData1.push(trek_details);
