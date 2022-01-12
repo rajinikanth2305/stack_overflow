@@ -114,6 +114,7 @@ export const experimentStyles = css.global`
     position: relative;
     height: 240px;
     border-bottom: 2px solid rgb(255,193,0);
+    width: 100%;
   }
   .cross-trek-details {
     padding: 100px 50px;

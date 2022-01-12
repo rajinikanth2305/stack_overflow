@@ -7,7 +7,7 @@ import Link from "next/link";
 /**
  * Home Banner Slice Components
  */
-const Experiment = ({ slice }) => {
+const Experiment = ({ slice, articleData }) => {
   const experimentHeading = slice.primary.experiment_heading;
   const heading2 = slice.primary.experiment_paragraph;
   const expirimentMainImage = slice.primary.expiriment_main_image.url;
@@ -21,29 +21,44 @@ const Experiment = ({ slice }) => {
     primary_url = linkResolver(slice.primary.link_url_primary);
   }
 
-  const expImage = expImageArray.map((data, i) => {
+  const artData = articleData.map(function(data, i) {
     let url;
-    const slugUrl = data?.link_url?.slug;
+    const slugUrl = data?.uid;
     if (slugUrl) {
-      url = linkResolver(data?.link_url);
+      url = `/blog/${slugUrl}`;
     }
+    console.log(url);
+    const getArticleImage = data?.data?.body?.find(
+      x => x.slice_type === "feature_image"
+    );
+    const getArticleHeadingText = data?.data?.body?.find(
+      x => x.slice_type === "text"
+    );
     return (
       <div key={i}>
         <div className="card exp-card mb-4 pb-1 mmx-0 cursor-pointer">
-          <Link href={url ? url : '#'}>
+          <Link href={url ? url : "#"}>
             <div>
               <div className="expImage">
-                <Image
-                  src={data.image.url}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
+                <img
+                  src={getArticleImage?.primary?.feature_image.url}
+                  alt="articleImage"
+                  className="expImage"
                 />
               </div>
               <div className="p-3">
                 <div className="">
-                  <p className="p-text-3 m-0">{data.image_caption[0].text}</p>
-                  <p className="p-text-5 m-0">{data.image_subtitle[0].text}</p>
+                  <p className="p-text-3 m-0">
+                    {RichText.asText(data?.data?.title)}
+                  </p>
+                  <p className="p-text-5 m-0">
+                    {RichText.asText(getArticleHeadingText?.primary?.text)
+                      .length > 25
+                      ? `${RichText.asText(
+                          getArticleHeadingText?.primary?.text
+                        ).substring(0, 100)}...`
+                      : RichText.asText(getArticleHeadingText?.primary?.text)}
+                  </p>
                 </div>
               </div>
             </div>
@@ -52,6 +67,38 @@ const Experiment = ({ slice }) => {
       </div>
     );
   });
+
+  // const expImage = expImageArray.map((data, i) => {
+  //   let url;
+  //   const slugUrl = data?.link_url?.slug;
+  //   if (slugUrl) {
+  //     url = linkResolver(data?.link_url);
+  //   }
+  //   return (
+  //     <div key={i}>
+  //       <div className="card exp-card mb-4 pb-1 mmx-0 cursor-pointer">
+  //         <Link href={url ? url : "#"}>
+  //           <div>
+  //             <div className="expImage">
+  //               <Image
+  //                 src={data.image.url}
+  //                 layout="fill"
+  //                 objectFit="cover"
+  //                 objectPosition="50% 50%"
+  //               />
+  //             </div>
+  //             <div className="p-3">
+  //               <div className="">
+  //                 <p className="p-text-3 m-0">{data.image_caption[0].text}</p>
+  //                 <p className="p-text-5 m-0">{data.image_subtitle[0].text}</p>
+  //               </div>
+  //             </div>
+  //           </div>
+  //         </Link>
+  //       </div>
+  //     </div>
+  //   );
+  // });
 
   return (
     <>
@@ -71,7 +118,7 @@ const Experiment = ({ slice }) => {
           <div className="row">
             <div className="col-lg-8 col-md-12">
               <p className="exp_desc pb-4 mpb-0">{RichText.asText(heading2)}</p>
-              <Link href={primary_url ? primary_url : '#'}>
+              <Link href={primary_url ? primary_url : "#"}>
                 <div className="card exp-card mt-5 mx-0 mmt-0 mb-4 cursor-pointer">
                   <div className="expirimentMainImage">
                     <Image
@@ -94,7 +141,9 @@ const Experiment = ({ slice }) => {
                 </div>
               </Link>
             </div>
-            <div className="col-lg-4 col-md-6">{expImage}</div>
+            <div className="col-lg-4 col-md-6">
+              {artData}
+            </div>
           </div>
         </div>
         <style jsx global>

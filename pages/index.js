@@ -14,7 +14,7 @@ import { ihbodyStyles } from 'styles'
 /**
  * Homepage component
  */
-const HikeHome = ({ doc, trekPageData1 }) => {
+const HikeHome = ({ doc, trekPageData1, articleData }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -22,7 +22,7 @@ const HikeHome = ({ doc, trekPageData1 }) => {
          <title>India Hikes</title>
         </Head>
         <HikeHeader/>
-        <SliceZone sliceZone={doc.data.body} trekPageData1={trekPageData1}/>
+        <SliceZone sliceZone={doc.data.body} trekPageData1={trekPageData1} articleData={articleData}/>
       </HomeLayout>
     );
   }
@@ -40,6 +40,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const doc = await client.getSingle("hike_home_ctype", ref ? { ref } : null) || {}
 
   const trekPageData1 = [];
+  const articleData = [];
 
   const slice = doc.data?.body?.find(
     x => x.slice_type === "choose_these_treks"
@@ -58,11 +59,29 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     return false;
   }
 
+  const experiment_slice = doc.data?.body?.find(
+    x => x.slice_type === "experiment_learning"
+  );
+  if (experiment_slice.items.length > 0) {
+    for (var i = 0; i < experiment_slice.items.length; i++) {
+      const data = experiment_slice.items[i];
+      const slugUrl = data && data?.link_url?.id;
+      if (slugUrl !== undefined) {
+        const article_details = await Client().getByID(slugUrl);
+        articleData.push(article_details);
+      }
+    }
+  } else {
+    return false;
+  }
+  // articleData.push(experiment_slice);
+
   return {
     props: {
       doc,
       preview,
-      trekPageData1
+      trekPageData1,
+      articleData
     }
   }
 }
