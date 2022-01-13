@@ -12,14 +12,9 @@ const LatestUpdatesTrekkings = ({
   latestUpdateAarticlePrimaryArticleData
 }) => {
   const Sectiontitle = slice.primary.section_header;
-  // const latestLrekImage = slice.primary.latest_trek_image.url;
   const dayTalkTitle = slice.primary.day_talk_title;
-  // const dayTrekTalkTitle = slice.primary.day_trek_talk_title;
-  // const dayTrekTalkDesc = slice.primary.day_trek_talk_desc;
-  const nameEditor = slice.primary.name_editor;
 
   const videoText = slice.primary.video_text;
-  const primaryVideoImg = slice.primary.primary_video_img.url;
   const primaryVideoUrl = slice.primary.primary_video_url.url;
 
   const result = primaryVideoUrl?.split(
