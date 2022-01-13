@@ -61,39 +61,47 @@ const TrekkerVideos = ({ slice }) => {
   };
 
   const ihTrekkerVideosImage = ihTrekkerVideosImageArray.map(function(data, i) {
+    const result = data?.ih_trekker_video_link?.url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  const videoIdWithParams = result && result[2];
+
+  const cleanVideoId =
+  videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+
+  const videoUrl =
+    "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
+  const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
     return (
       <div key={`choosetrek` + i}>
-        <div className="mx-2 m-mx-0">
-          <div className="card_sec">
-            <div className="card video_trek_card">
-              <div alt="imgs" className="ih_trekker_videos_image">
-                <Image
-                  src={data.ih_trekker_videos_image.url}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                  onClick={() => {
-                    setTrekVideoUrl(data.ih_trekker_video_link.url);
-                    setShow(true);
-                  }}
-                />
-              </div>
-              <div className="px-3 py-2">
-                <div>
-                  <p className="p-text-5-tv mb-1">
-                    {data.ih_trekker_videos_title[0].text}
-                  </p>
-                  <div className="d-flex alifn-center justify-content-between video_views">
-                    <div>
-                      <p className="m-0">
-                        {data.ih_trekker_videos_views[0].text} views
-                      </p>
-                    </div>
-                    <div>
-                      <p className="m-0">
-                        {data.ih_trekker_videos_date[0].text} views
-                      </p>
-                    </div>
+      <div className="mx-2 m-mx-0">
+        <div className="card_sec">
+          <div className="card video_trek_card">
+            <div alt="imgs" className="ih_trekker_videos_image">
+              <Image
+                src={imageURL}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="50% 50%"
+                onClick={() => {
+                  setTrekVideoUrl(videoUrl);
+                  setShow(true);
+                }}
+              />
+            </div>
+            <div className="px-3 py-2">
+              <div>
+                <p className="p-text-5-tv mb-1">
+                  {data.ih_trekker_videos_title[0].text}
+                </p>
+                <div className="d-flex alifn-center justify-content-between video_views">
+                  <div>
+                    <p className="m-0">
+                      {data.ih_trekker_videos_views[0].text} views
+                    </p>
+                  </div>
+                  <div>
+                    <p className="m-0">
+                      {data.ih_trekker_videos_date[0].text} views
+                    </p>
                   </div>
                 </div>
               </div>
@@ -101,6 +109,7 @@ const TrekkerVideos = ({ slice }) => {
           </div>
         </div>
       </div>
+    </div>
     );
   });
 

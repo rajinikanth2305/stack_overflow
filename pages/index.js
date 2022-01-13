@@ -35,7 +35,9 @@ const HikeHome = ({
           articleData={articleData}
           expLearningPrimaryArticleData={expLearningPrimaryArticleData}
           latestUpdateAarticleData={latestUpdateAarticleData}
-          latestUpdateAarticlePrimaryArticleData={latestUpdateAarticlePrimaryArticleData}
+          latestUpdateAarticlePrimaryArticleData={
+            latestUpdateAarticlePrimaryArticleData
+          }
         />
       </HomeLayout>
     );
@@ -116,7 +118,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   }
 
   const paLatestArticleLink =
-    experiment_slice && experiment_slice?.primary?.link_url_primary?.id;
+    latestUpdate_slice && latestUpdate_slice?.primary?.link_url_primary?.id;
   if (paLatestArticleLink !== undefined) {
     const article_details = await Client().getByID(paLatestArticleLink);
     latestUpdateAarticlePrimaryArticleData.push(article_details);
