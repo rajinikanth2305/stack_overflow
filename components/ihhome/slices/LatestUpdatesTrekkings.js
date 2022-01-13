@@ -46,7 +46,6 @@ const LatestUpdatesTrekkings = ({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const dateTrek = Date(slice.primary.date_trek).toString();
   const durationTrekRead = slice.primary.duration_trek_read;
 
   let primary_url;
