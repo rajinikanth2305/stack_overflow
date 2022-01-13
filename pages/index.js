@@ -1,28 +1,42 @@
 import React from "react";
 import Head from "next/head";
-import Prismic from '@prismicio/client'
+import Prismic from "@prismicio/client";
 import { RichText } from "prismic-reactjs";
-import Document, { NextScript } from 'next/document';
+import Document, { NextScript } from "next/document";
 // Project components & functions
-import {  SliceZone } from "components/ihhome";
+import { SliceZone } from "components/ihhome";
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
 import { Client } from "utils/prismicHelpers";
-import { ihbodyStyles } from 'styles'
+import { ihbodyStyles } from "styles";
 
 /**
  * Homepage component
  */
-const HikeHome = ({ doc, trekPageData1, articleData, expLearningPrimaryArticleData }) => {
+const HikeHome = ({
+  doc,
+  trekPageData1,
+  articleData,
+  expLearningPrimaryArticleData,
+  latestUpdateAarticleData,
+  latestUpdateAarticlePrimaryArticleData
+}) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
         <Head>
-         <title>India Hikes</title>
+          <title>India Hikes</title>
         </Head>
-        <HikeHeader/>
-        <SliceZone sliceZone={doc.data.body} trekPageData1={trekPageData1} articleData={articleData} expLearningPrimaryArticleData={expLearningPrimaryArticleData}/>
+        <HikeHeader />
+        <SliceZone
+          sliceZone={doc.data.body}
+          trekPageData1={trekPageData1}
+          articleData={articleData}
+          expLearningPrimaryArticleData={expLearningPrimaryArticleData}
+          latestUpdateAarticleData={latestUpdateAarticleData}
+          latestUpdateAarticlePrimaryArticleData={latestUpdateAarticlePrimaryArticleData}
+        />
       </HomeLayout>
     );
   }
@@ -32,16 +46,18 @@ const HikeHome = ({ doc, trekPageData1, articleData, expLearningPrimaryArticleDa
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
+  const { ref } = previewData;
 
-  const { ref } = previewData
+  const client = Client();
 
-  const client = Client()
-
-  const doc = await client.getSingle("hike_home_ctype", ref ? { ref } : null) || {}
+  const doc =
+    (await client.getSingle("hike_home_ctype", ref ? { ref } : null)) || {};
 
   const trekPageData1 = [];
   const articleData = [];
   const expLearningPrimaryArticleData = [];
+  const latestUpdateAarticleData = [];
+  const latestUpdateAarticlePrimaryArticleData = [];
 
   const slice = doc.data?.body?.find(
     x => x.slice_type === "choose_these_treks"
@@ -75,12 +91,35 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   } else {
     return false;
   }
-  // articleData.push(experiment_slice);
-  
-  const paArticleLink = experiment_slice && experiment_slice?.primary?.link_url_primary?.id;
+
+  const paArticleLink =
+    experiment_slice && experiment_slice?.primary?.link_url_primary?.id;
   if (paArticleLink !== undefined) {
     const article_details = await Client().getByID(paArticleLink);
     expLearningPrimaryArticleData.push(article_details);
+  }
+
+  const latestUpdate_slice = doc.data?.body?.find(
+    x => x.slice_type === "experiment_learning"
+  );
+  if (latestUpdate_slice.items.length > 0) {
+    for (var i = 0; i < latestUpdate_slice.items.length; i++) {
+      const data = latestUpdate_slice.items[i];
+      const slugUrl = data && data?.link_url?.id;
+      if (slugUrl !== undefined) {
+        const article_details = await Client().getByID(slugUrl);
+        latestUpdateAarticleData.push(article_details);
+      }
+    }
+  } else {
+    return false;
+  }
+
+  const paLatestArticleLink =
+    experiment_slice && experiment_slice?.primary?.link_url_primary?.id;
+  if (paLatestArticleLink !== undefined) {
+    const article_details = await Client().getByID(paLatestArticleLink);
+    latestUpdateAarticlePrimaryArticleData.push(article_details);
   }
 
   return {
@@ -89,9 +128,11 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       preview,
       trekPageData1,
       articleData,
-      expLearningPrimaryArticleData
+      expLearningPrimaryArticleData,
+      latestUpdateAarticleData,
+      latestUpdateAarticlePrimaryArticleData
     }
-  }
+  };
 }
 
 export default HikeHome;

@@ -11,13 +11,17 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
   const experimentHeading = slice.primary.experiment_heading;
   const heading2 = slice.primary.experiment_paragraph;
 
-  const expirimentMainImage = expLearningPrimaryArticleData && expLearningPrimaryArticleData[0]?.data?.body?.find(
-    x => x.slice_type === "feature_image"
-  );
+  const expirimentMainImage =
+    expLearningPrimaryArticleData &&
+    expLearningPrimaryArticleData[0]?.data?.body?.find(
+      x => x.slice_type === "feature_image"
+    );
 
-  const cardTitle = expLearningPrimaryArticleData && expLearningPrimaryArticleData[0]?.data?.body?.find(
-    x => x.slice_type === "text"
-  );
+  const cardTitle =
+    expLearningPrimaryArticleData &&
+    expLearningPrimaryArticleData[0]?.data?.body?.find(
+      x => x.slice_type === "text"
+    );
 
   let primary_url;
   const slugUrl = slice.primary.link_url_primary.slug;
@@ -71,7 +75,7 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
     );
   });
 
-    return (
+  return (
     <>
       <div className="mt-5">
         <div>
@@ -93,32 +97,34 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
                 <div className="card exp-card mt-5 mx-0 mmt-0 mb-4 cursor-pointer">
                   <div className="expirimentMainImage">
                     <img
-                  src={expirimentMainImage && expirimentMainImage?.primary?.feature_image.url}
-                  alt="articleImage"
-                  className="expirimentMainImage"
-                />
+                      src={
+                        expirimentMainImage &&
+                        expirimentMainImage?.primary?.feature_image.url
+                      }
+                      alt="articleImage"
+                      className="expirimentMainImage"
+                    />
                   </div>
                   <div className="p-3">
                     <div className="">
                       <p className="p-text-3 m-0">
-                        {RichText.asText(expLearningPrimaryArticleData[0]?.data?.title)}
+                        {RichText.asText(
+                          expLearningPrimaryArticleData[0]?.data?.title
+                        )}
                       </p>
                       <p className="p-text-5 m-0">
-                        {RichText.asText(cardTitle?.primary?.text)
-                      .length > 25
-                      ? `${RichText.asText(
-                        cardTitle?.primary?.text
-                        ).substring(0, 110)}...`
-                      : RichText.asText(cardTitle?.primary?.text)}
+                        {RichText.asText(cardTitle?.primary?.text).length > 25
+                          ? `${RichText.asText(
+                              cardTitle?.primary?.text
+                            ).substring(0, 110)}...`
+                          : RichText.asText(cardTitle?.primary?.text)}
                       </p>
                     </div>
                   </div>
                 </div>
               </Link>
             </div>
-            <div className="col-lg-4 col-md-6">
-              {artData}
-            </div>
+            <div className="col-lg-4 col-md-6">{artData}</div>
           </div>
         </div>
         <style jsx global>

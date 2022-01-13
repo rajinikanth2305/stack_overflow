@@ -23,7 +23,14 @@ import {
 /**
  * Post slice zone component
  */
-const SliceZone = ({ sliceZone, trekPageData1, articleData, expLearningPrimaryArticleData }) =>
+const SliceZone = ({
+  sliceZone,
+  trekPageData1,
+  articleData,
+  expLearningPrimaryArticleData,
+  latestUpdateAarticleData,
+  latestUpdateAarticlePrimaryArticleData
+}) =>
   sliceZone.map((slice, index) => {
     switch (slice.slice_type) {
       case "homebannerwithcaptions":
@@ -37,24 +44,46 @@ const SliceZone = ({ sliceZone, trekPageData1, articleData, expLearningPrimaryAr
       case "why_trek":
         return <WhyTrek slice={slice} key={`slice-${index}`} />;
       case "choose_these_treks":
-        return <ChooseTheseTreks slice={slice} key={`slice-${index}`} trekPageData1={trekPageData1} />;
+        return (
+          <ChooseTheseTreks
+            slice={slice}
+            key={`slice-${index}`}
+            trekPageData1={trekPageData1}
+          />
+        );
       case "latest_trekking_world":
         return <LatestTrekkingWorld slice={slice} key={`slice-${index}`} />;
       case "trekker_stories":
         return <TrekkersStories slice={slice} key={`slice-${index}`} />;
-        case "ih_trekker_videos":
+      case "ih_trekker_videos":
         return <TrekkerVideos slice={slice} key={`slice-${index}`} />;
       case "faq_home":
         return <FaqHome slice={slice} key={`slice-${index}`} />;
       case "experiment_learning":
-        return <Experiment slice={slice} key={`slice-${index}`} articleData={articleData} expLearningPrimaryArticleData={expLearningPrimaryArticleData} />;
+        return (
+          <Experiment
+            slice={slice}
+            key={`slice-${index}`}
+            articleData={articleData}
+            expLearningPrimaryArticleData={expLearningPrimaryArticleData}
+          />
+        );
       case "latest_update_trekkings":
-        return <LatestUpdatesTrekkings slice={slice} key={`slice-${index}`} />;
+        return (
+          <LatestUpdatesTrekkings
+            slice={slice}
+            key={`slice-${index}`}
+            latestUpdateAarticleData={latestUpdateAarticleData}
+            latestUpdateAarticlePrimaryArticleData={
+              latestUpdateAarticlePrimaryArticleData
+            }
+          />
+        );
       case "trek_with_swathi":
         return <TrekWithSwathi slice={slice} key={`slice-${index}`} />;
       case "doit_yourself_trek":
         return <DoItYourself slice={slice} key={`slice-${index}`} />;
-        case "cross_trek":
+      case "cross_trek":
         return <CrossTrek slice={slice} key={`slice-${index}`} />;
       // case "home_photo_gallery":
       //   return <Gallery slice={slice} key={`slice-${index}`} />;

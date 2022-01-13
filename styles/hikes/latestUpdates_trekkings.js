@@ -41,6 +41,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
     height: 400px;
     // margin-top: 30px;
     background-size: cover;
+    object-fit: cover;
   }
 
   .latest_trek_details {
@@ -104,6 +105,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
     width: 100%;
     height: 300px;
     background-size: cover;
+    object-fit: cover;
   }
 
   .latestTrekWorld_caption {
@@ -166,6 +168,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
       margin: 0;
       background-size: cover;
       background-position: bottom;
+      object-fit: cover;
     }
 
     .day_trek_talk_title {

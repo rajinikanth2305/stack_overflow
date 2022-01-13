@@ -6,19 +6,25 @@ import { hrefResolver, linkResolver } from "prismic-configuration";
 import Link from "next/link";
 import Modal from "react-bootstrap/Modal";
 
-const LatestUpdatesTrekkings = ({ slice }) => {
+const LatestUpdatesTrekkings = ({
+  slice,
+  latestUpdateAarticleData,
+  latestUpdateAarticlePrimaryArticleData
+}) => {
   const Sectiontitle = slice.primary.section_header;
-  const latestLrekImage = slice.primary.latest_trek_image.url;
+  // const latestLrekImage = slice.primary.latest_trek_image.url;
   const dayTalkTitle = slice.primary.day_talk_title;
-  const dayTrekTalkTitle = slice.primary.day_trek_talk_title;
-  const dayTrekTalkDesc = slice.primary.day_trek_talk_desc;
+  // const dayTrekTalkTitle = slice.primary.day_trek_talk_title;
+  // const dayTrekTalkDesc = slice.primary.day_trek_talk_desc;
   const nameEditor = slice.primary.name_editor;
 
   const videoText = slice.primary.video_text;
   const primaryVideoImg = slice.primary.primary_video_img.url;
   const primaryVideoUrl = slice.primary.primary_video_url.url;
-  
-  const result = primaryVideoUrl?.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+
+  const result = primaryVideoUrl?.split(
+    /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
+  );
   const videoIdWithParams = result[2];
 
   const cleanVideoId =
@@ -28,6 +34,18 @@ const LatestUpdatesTrekkings = ({ slice }) => {
     "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
   const youtube_imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
 
+  const latestLrekImage =
+    latestUpdateAarticlePrimaryArticleData &&
+    latestUpdateAarticlePrimaryArticleData[0]?.data?.body?.find(
+      x => x.slice_type === "feature_image"
+    );
+
+  const dayTrekTalkDesc =
+    latestUpdateAarticlePrimaryArticleData &&
+    latestUpdateAarticlePrimaryArticleData[0]?.data?.body?.find(
+      x => x.slice_type === "text"
+    );
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -35,7 +53,6 @@ const LatestUpdatesTrekkings = ({ slice }) => {
 
   const dateTrek = Date(slice.primary.date_trek).toString();
   const durationTrekRead = slice.primary.duration_trek_read;
-  const latestTrekking_world_array = slice.items;
 
   let primary_url;
   const slugUrl = slice.primary.primary_link_url.slug;
@@ -43,27 +60,38 @@ const LatestUpdatesTrekkings = ({ slice }) => {
     primary_url = linkResolver(slice.primary.primary_link_url);
   }
 
-  const latestTrekWorld = latestTrekking_world_array.map(function(data, index) {
+  const latestTrekWorld = latestUpdateAarticleData?.map(function(data, index) {
     let url;
-    const slugUrl = data?.link_url.slug;
+    const slugUrl = data?.uid;
     if (slugUrl) {
-      url = linkResolver(data?.link_url);
+      url = `/blog/${slugUrl}`;
     }
+    const getArticleImage = data?.data?.body?.find(
+      x => x.slice_type === "feature_image"
+    );
+    const getArticleHeadingText = data?.data?.body?.find(
+      x => x.slice_type === "text"
+    );
     return (
       <div className="col-lg-6 col-md-12" key={index}>
-        <Link href={url ? url : '#'}>
+        <Link href={url ? url : "#"}>
           <div className="card exp-card-blog mx-0 cursor-pointer">
             <div alt="img" className="latestTrekWorld_bg">
-              <Image
+              {/* <Image
                 src={data.latest_trekking_world_img.url}
                 layout="fill"
                 objectFit="cover"
                 objectPosition="50% 50%"
+              /> */}
+              <img
+                src={getArticleImage?.primary?.feature_image.url}
+                alt="articleImage"
+                className="latestTrekWorld_bg"
               />
             </div>
             <div className="p-3">
               <p className="latestTrekWorld_caption">
-                {data.latest_trekking_world_img_caption[0].text}
+                {RichText.asText(data?.data?.title)}
               </p>
             </div>
           </div>
@@ -71,12 +99,6 @@ const LatestUpdatesTrekkings = ({ slice }) => {
       </div>
     );
   });
-
-  const latestLrekImageBg = {
-    backgroundImage: `url('${latestLrekImage}')`,
-    width: "100%",
-    backgroundRepeat: "no-repeat"
-  };
 
   return (
     <>
@@ -90,15 +112,17 @@ const LatestUpdatesTrekkings = ({ slice }) => {
             </div>
           </div>
           <div className="card tw_trek_card mx-0 my-4 m-mt-0 cursor-pointer">
-            <Link href={primary_url ? primary_url: '#'}>
+            <Link href={primary_url ? primary_url : "#"}>
               <div className="row">
                 <div className="col-lg-6 col-md-12">
                   <div className="latestLrekImage_bg">
-                    <Image
-                      src={latestLrekImage}
-                      layout="fill"
-                      objectFit="cover"
-                      objectPosition="50% 50%"
+                    <img
+                      src={
+                        latestLrekImage &&
+                        latestLrekImage?.primary?.feature_image.url
+                      }
+                      alt="articleImage"
+                      className="latestLrekImage_bg"
                     />
                   </div>
                 </div>
@@ -109,17 +133,35 @@ const LatestUpdatesTrekkings = ({ slice }) => {
                         <span>{RichText.asText(dayTalkTitle)}</span>
                       </p>
                       <p className="day_trek_talk_title">
-                        {RichText.asText(dayTrekTalkTitle)}
+                        {RichText.asText(
+                          latestUpdateAarticlePrimaryArticleData[0]?.data?.title
+                        )}
                       </p>
                       <p className="day_trek_talk_desc">
-                        {RichText.asText(dayTrekTalkDesc)}
+                        {RichText.asText(dayTrekTalkDesc?.primary?.text)
+                          .length > 25
+                          ? `${RichText.asText(
+                              dayTrekTalkDesc?.primary?.text
+                            ).substring(0, 200)}...`
+                          : RichText.asText(dayTrekTalkDesc?.primary?.text)}
                       </p>
-                      <p className="name_editor m-0">
-                        <i>By&nbsp;
-                        {RichText.asText(nameEditor)}</i>
+                      <p className="name_editor m-0 text-capitalize">
+                        <i>
+                          By&nbsp;
+                          {/* {RichText.asText(nameEditor)} */}
+                          {
+                          latestUpdateAarticlePrimaryArticleData[0]?.data?.author_link?.uid
+                        }
+                        </i>
                       </p>
                       <p className="name_editor">
-                        <span>{dateTrek} | </span>
+                        <span>
+                          {
+                            latestUpdateAarticlePrimaryArticleData[0]?.data
+                              ?.date
+                          }{" "}
+                          |{" "}
+                        </span>
                         <span>
                           {RichText.asText(durationTrekRead)} min read
                         </span>
