@@ -7,13 +7,17 @@ import Link from "next/link";
 /**
  * Home Banner Slice Components
  */
-const Experiment = ({ slice, articleData }) => {
+const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
   const experimentHeading = slice.primary.experiment_heading;
   const heading2 = slice.primary.experiment_paragraph;
-  const expirimentMainImage = slice.primary.expiriment_main_image.url;
-  const cardTitle = slice.primary.card_title;
-  const cardDesc = slice.primary.card_desc;
-  const expImageArray = slice.items;
+
+  const expirimentMainImage = expLearningPrimaryArticleData && expLearningPrimaryArticleData[0]?.data?.body?.find(
+    x => x.slice_type === "feature_image"
+  );
+
+  const cardTitle = expLearningPrimaryArticleData && expLearningPrimaryArticleData[0]?.data?.body?.find(
+    x => x.slice_type === "text"
+  );
 
   let primary_url;
   const slugUrl = slice.primary.link_url_primary.slug;
@@ -27,7 +31,6 @@ const Experiment = ({ slice, articleData }) => {
     if (slugUrl) {
       url = `/blog/${slugUrl}`;
     }
-    console.log(url);
     const getArticleImage = data?.data?.body?.find(
       x => x.slice_type === "feature_image"
     );
@@ -68,39 +71,7 @@ const Experiment = ({ slice, articleData }) => {
     );
   });
 
-  // const expImage = expImageArray.map((data, i) => {
-  //   let url;
-  //   const slugUrl = data?.link_url?.slug;
-  //   if (slugUrl) {
-  //     url = linkResolver(data?.link_url);
-  //   }
-  //   return (
-  //     <div key={i}>
-  //       <div className="card exp-card mb-4 pb-1 mmx-0 cursor-pointer">
-  //         <Link href={url ? url : "#"}>
-  //           <div>
-  //             <div className="expImage">
-  //               <Image
-  //                 src={data.image.url}
-  //                 layout="fill"
-  //                 objectFit="cover"
-  //                 objectPosition="50% 50%"
-  //               />
-  //             </div>
-  //             <div className="p-3">
-  //               <div className="">
-  //                 <p className="p-text-3 m-0">{data.image_caption[0].text}</p>
-  //                 <p className="p-text-5 m-0">{data.image_subtitle[0].text}</p>
-  //               </div>
-  //             </div>
-  //           </div>
-  //         </Link>
-  //       </div>
-  //     </div>
-  //   );
-  // });
-
-  return (
+    return (
     <>
       <div className="mt-5">
         <div>
@@ -121,20 +92,24 @@ const Experiment = ({ slice, articleData }) => {
               <Link href={primary_url ? primary_url : "#"}>
                 <div className="card exp-card mt-5 mx-0 mmt-0 mb-4 cursor-pointer">
                   <div className="expirimentMainImage">
-                    <Image
-                      src={expirimentMainImage}
-                      layout="fill"
-                      objectFit="cover"
-                      objectPosition="50% 50%"
-                    />
+                    <img
+                  src={expirimentMainImage && expirimentMainImage?.primary?.feature_image.url}
+                  alt="articleImage"
+                  className="expirimentMainImage"
+                />
                   </div>
                   <div className="p-3">
                     <div className="">
                       <p className="p-text-3 m-0">
-                        {RichText.asText(cardTitle)}
+                        {RichText.asText(expLearningPrimaryArticleData[0]?.data?.title)}
                       </p>
                       <p className="p-text-5 m-0">
-                        {RichText.asText(cardDesc)}
+                        {RichText.asText(cardTitle?.primary?.text)
+                      .length > 25
+                      ? `${RichText.asText(
+                        cardTitle?.primary?.text
+                        ).substring(0, 110)}...`
+                      : RichText.asText(cardTitle?.primary?.text)}
                       </p>
                     </div>
                   </div>

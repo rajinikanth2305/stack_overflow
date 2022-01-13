@@ -91,6 +91,7 @@ export const experimentStyles = css.global`
     position: relative;
     height: 480px;
     border-bottom: 2px solid rgb(255,193,0);
+    width: 100%;
   }
   .p-text-3 {
     line-height: 30px;

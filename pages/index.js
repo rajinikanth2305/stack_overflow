@@ -14,7 +14,7 @@ import { ihbodyStyles } from 'styles'
 /**
  * Homepage component
  */
-const HikeHome = ({ doc, trekPageData1, articleData }) => {
+const HikeHome = ({ doc, trekPageData1, articleData, expLearningPrimaryArticleData }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -22,7 +22,7 @@ const HikeHome = ({ doc, trekPageData1, articleData }) => {
          <title>India Hikes</title>
         </Head>
         <HikeHeader/>
-        <SliceZone sliceZone={doc.data.body} trekPageData1={trekPageData1} articleData={articleData}/>
+        <SliceZone sliceZone={doc.data.body} trekPageData1={trekPageData1} articleData={articleData} expLearningPrimaryArticleData={expLearningPrimaryArticleData}/>
       </HomeLayout>
     );
   }
@@ -41,6 +41,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const trekPageData1 = [];
   const articleData = [];
+  const expLearningPrimaryArticleData = [];
 
   const slice = doc.data?.body?.find(
     x => x.slice_type === "choose_these_treks"
@@ -75,13 +76,20 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     return false;
   }
   // articleData.push(experiment_slice);
+  
+  const paArticleLink = experiment_slice && experiment_slice?.primary?.link_url_primary?.id;
+  if (paArticleLink !== undefined) {
+    const article_details = await Client().getByID(paArticleLink);
+    expLearningPrimaryArticleData.push(article_details);
+  }
 
   return {
     props: {
       doc,
       preview,
       trekPageData1,
-      articleData
+      articleData,
+      expLearningPrimaryArticleData
     }
   }
 }
