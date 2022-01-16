@@ -102,7 +102,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   }
 
   const latestUpdate_slice = doc.data?.body?.find(
-    x => x.slice_type === "experiment_learning"
+    x => x.slice_type === "latest_update_trekkings"
   );
   if (latestUpdate_slice.items.length > 0) {
     for (var i = 0; i < latestUpdate_slice.items.length; i++) {
@@ -118,7 +118,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   }
 
   const paLatestArticleLink =
-    latestUpdate_slice && latestUpdate_slice?.primary?.link_url_primary?.id;
+    latestUpdate_slice && latestUpdate_slice?.primary?.primary_link_url?.id;
   if (paLatestArticleLink !== undefined) {
     const article_details = await Client().getByID(paLatestArticleLink);
     latestUpdateAarticlePrimaryArticleData.push(article_details);

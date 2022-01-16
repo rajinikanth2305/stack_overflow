@@ -87,7 +87,7 @@ const TrekkerVideos = ({ slice }) => {
                 }}
               />
             </div>
-            <div className="px-3 py-2">
+            {/* <div className="px-3 py-2">
               <div>
                 <p className="p-text-5-tv mb-1">
                   {data.ih_trekker_videos_title[0].text}
@@ -105,7 +105,7 @@ const TrekkerVideos = ({ slice }) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

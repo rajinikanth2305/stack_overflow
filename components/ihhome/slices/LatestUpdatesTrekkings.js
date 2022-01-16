@@ -35,12 +35,13 @@ const LatestUpdatesTrekkings = ({
       x => x.slice_type === "feature_image"
     );
 
-  const dayTrekTalkDesc =
-    latestUpdateAarticlePrimaryArticleData &&
-    latestUpdateAarticlePrimaryArticleData[0]?.data?.body?.find(
-      x => x.slice_type === "text"
-    );
+  // const dayTrekTalkDesc =
+  //   latestUpdateAarticlePrimaryArticleData &&
+  //   latestUpdateAarticlePrimaryArticleData[0]?.data?.body?.find(
+  //     x => x.slice_type === "text"
+  //   );
 
+  console.log(latestUpdateAarticlePrimaryArticleData);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -132,12 +133,12 @@ const LatestUpdatesTrekkings = ({
                         )}
                       </p>
                       <p className="day_trek_talk_desc">
-                        {RichText.asText(dayTrekTalkDesc?.primary?.text)
+                        {/* {RichText.asText(dayTrekTalkDesc?.primary?.text)
                           .length > 25
                           ? `${RichText.asText(
                               dayTrekTalkDesc?.primary?.text
                             ).substring(0, 200)}...`
-                          : RichText.asText(dayTrekTalkDesc?.primary?.text)}
+                          : RichText.asText(dayTrekTalkDesc?.primary?.text)} */}
                       </p>
                       <p className="name_editor m-0 text-capitalize">
                         <i>
