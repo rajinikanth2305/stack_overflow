@@ -62,7 +62,9 @@ const Post = ({ post, authorData,updatesData,upComingData,relatedArticles,relate
 export async function getStaticProps({ params, preview = null, previewData = {} }) {
   const { ref } = previewData
   const post = await Client().getByUID("post", params.uid, ref ? { ref } : null) || {};
-  //console.log(post);
+
+  //console.log(JSON.stringify(post));
+
 //const author=post.data.author_first_name + "-" + post.data.author_last_name;
 const author_lnk_id=post?.data?.author_link?.id;
 /// Fetch related articles

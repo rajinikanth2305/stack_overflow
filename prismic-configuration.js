@@ -32,3 +32,13 @@ export const hrefResolver = (doc) => {
   }
   return '/'
 }
+
+export const blogLinkResolver =(doc)=>{
+  return doc;
+  
+}
+
+// Additional helper function for Next/Link components
+export const blogHrefResolver = (doc) => {
+   return doc;
+}

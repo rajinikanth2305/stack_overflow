@@ -1954,4 +1954,18 @@ export const customStyles = css.global`
 .pi-ban:before{content:"\e935"}
 .pi-star-fill:before{content:"\e936"}
 .pi-star:before{content:"\e937"}
+
+
+.dropquote {
+  float: left;
+  padding: 0.25em 0.05em 0.25em 0;
+  font-size: 5em;
+  line-height: 0.4em;
+  color: #0a0000;
+}
+
+#postbody a {
+  text-decoration: none;
+  border-bottom: 1px solid #0a0000;
+}
 `;

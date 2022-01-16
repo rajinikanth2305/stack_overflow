@@ -263,6 +263,40 @@ const PostRender = ({
     return null;
   }
   }
+ 
+  const renderEmbedVideo =(slice) => {
+     //console.log(data.video_image.url);
+     const videoId =slice?.primary?.youtube_id?.replace("\"","");
+     const videoUrl ="https://www.youtube.com/embed/" + data.video_id + "?autoplay=1";
+     const imageURL = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+     
+    return (
+      <div className="">
+            <div
+              onClick={() => {
+                setTrekVideoUrl(videoUrl);
+                setShow(true);
+              }}
+            >
+              <div>
+                {imageURL && (
+                  <Image
+                    src={imageURL}
+                    objectFit="cover"
+                    width="1920"
+                    height="1080"
+                    alt="Click on the image to view the Video"
+                    onClick={() => {
+                      setTrekVideoUrl(videoUrl);
+                      setShow(true);
+                    }}
+                  />
+                )}
+              </div>
+            </div>
+      </div>
+    );
+  };
 
   const renderLatestVideos = () => {
     const slice = data?.body?.find(x => x.slice_type === "youtube_video_lists");
@@ -352,7 +386,7 @@ const PostRender = ({
 
   return (
     <>
-      <div>
+      <div >
         <div className="article_banner_img">
           <img src={featureImageUrl} />
         </div>
@@ -393,7 +427,7 @@ const PostRender = ({
                 </div>
               </div>
             </div>
-            <div className="col-lg-9 col-md-12">
+            <div  className="col-lg-9 col-md-12">
               <div className="row">
                 <div className="col-lg-8 col-md-12">
                   <div>
@@ -457,7 +491,7 @@ const PostRender = ({
                       </div>
                     </div>
                   </div>
-                  <div className="border-bottom mb-4 pb-3">
+                  <div id="postbody" className="border-bottom mb-4 pb-3">
                     {data.body.map((slice, index) => {
                       switch (slice.slice_type) {
                         case "image_with_caption":
@@ -489,6 +523,8 @@ const PostRender = ({
                           return greyBgWithGrey(slice);
                         case "user_says_with_gray_panel":
                           return greyBgWithTextAuthorSays(slice);
+                          case "embed_youtube_video":
+                            return renderEmbedVideo(slice);
 
                         default:
                           return null;
