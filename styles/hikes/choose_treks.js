@@ -182,7 +182,7 @@ export const ChooseTreks = css.global`
 
   .choose_trek_sec {
     background: rgba(255, 247, 225, 1);
-    padding: 35px 0 70px;
+    padding: 35px 0 20px;
     margin-top: 80px;
   }
 
@@ -340,6 +340,10 @@ export const ChooseTreks = css.global`
     position: absolute;
     bottom: 20px;
     width: 90%;
+  }
+
+  .trekvideos-carosule  >  div > .slick-track {
+    width: auto !important;
   }
 
   @media only screen and (max-width: 600px) {

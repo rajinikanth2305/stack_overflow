@@ -28,7 +28,7 @@ const TrekkerVideos = ({ slice }) => {
     infinite: true,
     speed: 500,
     slidesToShow: 6,
-    slidesToScroll: 1,
+    slidesToScroll: 6,
     arrows: false,
     responsive: [
       {
