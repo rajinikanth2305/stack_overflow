@@ -41,13 +41,13 @@ const DefiningStandards = ({ slice }) => {
                         <div className="p-text-4 text-white text-center">
                           {RichText.render(heading2List)}
                         </div>
-                        <div className="m-d-block">
+                        {/* <div className="m-d-block">
                           <div className="d-flex justify-content-end m-j-c-c mt-5">
                             <button className="btn btn-bihtn-yellow">
                               Read more
                             </button>
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>

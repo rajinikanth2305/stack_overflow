@@ -228,7 +228,7 @@ export const customStyles = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
-    color: rgba(112,112,112,1);
+    color: rgba(112, 112, 112, 1);
   }
 
   .p-text-3 {
@@ -1577,13 +1577,13 @@ export const customStyles = css.global`
   }
 
   .trek_card {
-    filter: drop-shadow(0px 3px 6px rgba(0,0,0,0.161));
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
     min-height: 440px;
   }
 
   .p-btn-btm {
     position: absolute;
-    bottom: 20px;
+    bottom: 0;
     width: 90%;
   }
 
@@ -1597,6 +1597,16 @@ export const customStyles = css.global`
     .help_support_bg {
       position: relative;
       height: auto;
+    }
+
+    .title-h2.border-0 {
+      border-bottom: 4px solid rgb(255, 193, 0) !important;
+      padding: 15px 0;
+      margin-bottom: 5px !important;
+    }
+
+    .border-bottom-custom.mb-4.pb-08 {
+      border: 0;
     }
 
     .card-header > button {
@@ -1640,9 +1650,34 @@ export const customStyles = css.global`
 
     .title-diplay-3.m-d-3 {
       font-weight: normal;
-      font-size: 20px;
-      margin-top: 15px;
-      line-height: 20px;
+      font-size: 16px;
+      // margin-top: 15px;
+      line-height: 18px;
+    }
+
+    .ft-how-do-tabs > .nav {
+      flex-wrap: nowrap;
+    }
+
+    .ft-how-do-tabs > .nav > .nav-link.active {
+      font-size: 14px;
+      line-height: 16px;
+    }
+
+    .ft-how-do-tabs > .nav > .nav-link {
+      font-size: 14px;
+      margin-right: 2px;
+      line-height: 16px;
+    }
+
+    .fam-tab-img {
+      width: 100%;
+      left: 0;
+      height: 215px;
+    }
+
+    .sustainable_box {
+      padding: 20px 0;
     }
 
     .ft-image {
@@ -1655,9 +1690,10 @@ export const customStyles = css.global`
     }
 
     .p-text-4.mt2 {
-      font-size: 12px;
+      font-size: 14px;
       color: rgb(0, 0, 0);
       text-transform: capitalize;
+      line-ight: 18px;
     }
 
     // .banner-image-mobile {
@@ -1905,7 +1941,7 @@ export const customStyles = css.global`
     // }
   }
   .p-rating .p-rating-icon {
-    color: ##FFC107;
+    color: ##ffc107;
     margin-left: 0.5rem;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s,
       box-shadow 0.2s;
@@ -1950,22 +1986,27 @@ export const customStyles = css.global`
     display: inline-block;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-.pi-ban:before{content:"\e935"}
-.pi-star-fill:before{content:"\e936"}
-.pi-star:before{content:"\e937"}
+  }
+  .pi-ban:before {
+    content: "\e935";
+  }
+  .pi-star-fill:before {
+    content: "\e936";
+  }
+  .pi-star:before {
+    content: "\e937";
+  }
 
+  .dropquote {
+    float: left;
+    padding: 0.25em 0.05em 0.25em 0;
+    font-size: 5em;
+    line-height: 0.4em;
+    color: #0a0000;
+  }
 
-.dropquote {
-  float: left;
-  padding: 0.25em 0.05em 0.25em 0;
-  font-size: 5em;
-  line-height: 0.4em;
-  color: #0a0000;
-}
-
-#postbody a {
-  text-decoration: none;
-  border-bottom: 1px solid #0a0000;
-}
+  #postbody a {
+    text-decoration: none;
+    border-bottom: 1px solid #0a0000;
+  }
 `;

@@ -19,18 +19,30 @@ const HowDoWeDo = ({ slice }) => {
         title={data?.tab_title[0]?.text}
       >
         <div>
+          <div className="fam-tab-img m-d-block mb-4">
+            {data.image.url && (
+              <Image
+                src={data.image.url}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="50% 50%"
+              />
+            )}
+          </div>
           <p className="p-text-1 border-l">
             <strong>{RichText.asText(data?.title)}</strong>
           </p>
           <div className="row">
             <div className="col-lg-6 col-md-12">
               <div className="p-text-3">{RichText.render(data.content)}</div>
-              <div className="mt-5 mb-4">
-              <button class="btn btn-bihtn-yellow text-capitalize">Read more</button>
+              <div className="mt-5 mb-4 mmb-0">
+                <button class="btn btn-bihtn-yellow text-capitalize">
+                  Read more
+                </button>
               </div>
             </div>
             <div className="col-lg-6 col-md-12">
-              <div className="fam-tab-img">
+              <div className="fam-tab-img m-d-none">
                 {data.image.url && (
                   <Image
                     src={data.image.url}
@@ -63,7 +75,7 @@ const HowDoWeDo = ({ slice }) => {
               </div>
             </div>
             <div className="col-lg-7 col-md-12">
-              <div>
+              <div className="ft-how-do-tabs">
                 <Tabs className="fam-tabs">{tabsData}</Tabs>
               </div>
             </div>
