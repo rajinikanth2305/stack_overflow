@@ -355,12 +355,20 @@ export const ChooseTreks = css.global`
       font-size: 12px;
     }
 
+    .trekvideos-carosule  >  div > .slick-track {
+      width: max-content !important;
+    }
+
+    .trek_card {
+      min-height: 400px;
+    }
+
     .card_sec {
       margin: 5px 0;
     }
 
     .choose_trek_image {
-      height: 200px;
+      height: 160px;
       margin-bottom: 10px;
     }
 
@@ -415,8 +423,8 @@ export const ChooseTreks = css.global`
 
     .title-diplay-3-18px {
       font-weight: normal !important;
-      font-size: 20px;
-      margin-top: 15px;
+      font-size: 16px;
+      // margin-top: 15px;
       line-height: 20px;
     }
 

@@ -569,7 +569,20 @@ export const upcomingTrekPageStyle = css.global`
     .section-padd {
       padding: 15px 0;
     }
-
+    .trek_card_mb {
+      min-height: 315px;
+    }
+    .trek_card {
+      min-height: 400px;
+    }
+    .title-diplay-3.m-t-d3 {
+      font-size: 16px;
+      line-height: 18px;
+    }
+    .p-abs-btn {
+      position: absolute;
+      bottom: 0;
+    }
     .title-display-1 {
       font-size: 36px;
       border: 0;
@@ -769,7 +782,7 @@ export const upcomingTrekPageStyle = css.global`
     }
 
     .uc_open_for_small_group_images {
-      height: 200px;
+      height: 160px;
       margin-bottom: 10px;
     }
 

@@ -108,7 +108,7 @@ export const ihhomeBannerStyles = css.global`
 
     .banner-text-sec {
       text-align: left;
-      padding: 80px 0;
+      padding: 35% 0;
     }
 
     .bg_overlay {
