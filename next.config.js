@@ -112,52 +112,52 @@ module.exports = {
         },
         {
             "source": "/regions/karnataka/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
             "source": "/regions/maharashtra/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
             "source": "/regions/tamil-nadu/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
             "source": "/regions/kerala/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
             "source": "/regions/uttarakhand/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
             "source": "/regions/himachal-pradesh/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
             "source": "/regions/jammu-kashmir/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
             "source": "/regions/west-bengal/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
             "source": "/regions/delhi/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
             "source": "/regions/sikkim/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
@@ -292,7 +292,7 @@ module.exports = {
         },
         {
             "source": "/category/contests/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
@@ -457,7 +457,7 @@ module.exports = {
         },
         {
             "source": "/tag/indiahikes/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
@@ -762,7 +762,7 @@ module.exports = {
         },
         {
             "source": "/category/latest-updates/page/2/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
@@ -1467,7 +1467,7 @@ module.exports = {
         },
         {
             "source": "/regions/himachal-pradesh/page/2/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
@@ -1612,7 +1612,7 @@ module.exports = {
         },
         {
             "source": "/tag/treks-in-uttarakhand/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
@@ -1702,7 +1702,7 @@ module.exports = {
         },
         {
             "source": "/tag/trek/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
@@ -1762,7 +1762,7 @@ module.exports = {
         },
         {
             "source": "/tag/trekking/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
@@ -1812,7 +1812,7 @@ module.exports = {
         },
         {
             "source": "/tag/treks-by-indiahikes/",
-            "destination": "",
+            "destination": "/",
             "permanent": true
         },
         {
