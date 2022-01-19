@@ -34,7 +34,7 @@ const PostRender = ({
 
   let featureImageUrl = "";
   const caption = "";
-  console.log(relatedArticles);
+  //console.log(relatedArticles);
 
   const featureSlice = data.body.find(x => x.slice_type == "feature_image");
   if (featureSlice != null) {
@@ -360,11 +360,11 @@ const PostRender = ({
             x => x.slice_type == "feature_image"
           );
           if (featureSlice != null) {
-            featureImageUrl = featureSlice.primary.feature_image.url;
+            featureImageUrl = featureSlice?.primary?.feature_image?.url;
           }
-          const title = RichText.asText(article?.data.title);
-          const date = article?.data.date;
-          let author =related_authors[i];
+          const title = RichText.asText(article?.data?.title);
+          const date = article?.data?.date;
+          let author =related_authors && related_authors[i];
           return (
             <div className="border-bottom mb-3">
               <div className="ar_right_side_imgs">
@@ -434,11 +434,11 @@ const PostRender = ({
                     <div>
                       <p className="p-text-3-fg">
                         <span className="border-bottom-custom-1 pb-2">
-                          {data.sub_title}
+                          {data?.sub_title}
                         </span>
                       </p>
                       <h2 className="title-h2 border-0 mb-0 pb-0">
-                        {RichText.asText(data.title)}
+                        {RichText.asText(data?.title)}
                       </h2>
                       <div className="auth_sec">
                         <div className="d-flex align-items-center">
@@ -446,11 +446,11 @@ const PostRender = ({
                             <p className="m-0 p-text-small-black">
                               By{" "}
                               <b>
-                                {data.author_first_name} {data.author_last_name}
+                                {data?.author_first_name} {data?.author_last_name}
                               </b>
                             </p>
                             <p className="m-0 p-text-small-black">
-                              {data.date}
+                              {data?.date}
                             </p>
                           </div>
                           <div>
