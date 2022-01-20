@@ -128,11 +128,28 @@ if(author_lnk_id !== undefined) {
   if(authorData===undefined) {
      authorData=null;
   }
-  //console.log(authorData);
-  const updatesData =  await Client().getSingle("updates");
-  //console.log(updatesData);
-  const upComingData = await Client().getSingle("hike_upcoming_treks_ctype");
- // console.log(upComingData);
+  const homePageData =  await Client().getSingle("hike_home_ctype");
+ // console.log(homePageData);
+  let upComingData=[]
+  const upComingTreks=homePageData.data?.body?.find(x=>x.slice_type==="choose_these_treks");
+  if(upComingTreks!==null && upComingTreks!==undefined) {
+    if(upComingTreks?.items.length>0) {
+       for (var i = 0; i < upComingTreks?.items?.length; i++) {
+             if(i<=6) {
+             let slug=null;
+             let uid=false;
+             const data=upComingTreks?.items[i];
+             let trekId=data?.trek_link;
+             //console.log("trek_id" + JSON.stringify(data?.trek_link));
+             //console.log("trek_id" + trekId.id);
+             let trekData  =  await Client().getByID(trekId.id);
+             upComingData.push(trekData);
+             }
+       }
+      }
+    }
+
+    const updatesData =homePageData.data?.body?.find(x=>x.slice_type==="latest_trekking_world");
 
  let related_authors=[];
   for(var i = 0; i < relatedArticles.length; i++) {

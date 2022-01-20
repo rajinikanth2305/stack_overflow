@@ -34,7 +34,7 @@ const PostRender = ({
 
   let featureImageUrl = "";
   const caption = "";
-  //console.log(relatedArticles);
+  console.log(upComingData);
 
   const featureSlice = data.body.find(x => x.slice_type == "feature_image");
   if (featureSlice != null) {
@@ -153,7 +153,7 @@ const PostRender = ({
   };
 
   const renderLatestUpdates = () => {
-    var items = updatesData?.data?.updates;
+    var items = updatesData?.items;
     return (
       <div className="ml-100 my-5 py-5">
         <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
@@ -164,7 +164,7 @@ const PostRender = ({
             <div className="border-bottom mb-3 pb-3">
               <p className="p-text-3-fgc-yellow m-0">{data?.date}</p>
               <p className="p-text-3 text-uppercase mt-2 mb-1">
-                {data?.heading_1}
+                {data.trekking_world_heading[0].text}
               </p>
             </div>
           );
@@ -173,11 +173,6 @@ const PostRender = ({
     );
   };
   const renderUpComingTreks = () => {
-    //console.log(upComingData);
-    var slice = upComingData?.data?.body?.find(
-      x => x.slice_type === "best_treks_to_do"
-    );
-
     return (
       <div className="">
         <div className="">
@@ -185,19 +180,43 @@ const PostRender = ({
             <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
               Upcoming Treks
             </p>
-            {slice?.items?.map(function(data, i) {
+            {
+             upComingData?.map(function(data, i) {
+              const tData = data?.data?.body?.find(x => x.slice_type === "trek_banner");
+              let url;
+              const slugUrl = data?.uid;
+              if (slugUrl) {
+                url = `/trek/${slugUrl}`;
+              }
               return (
                 <div className="border-bottom mb-3">
                   <div className="ar_right_side_imgs">
-                    <img src={data?.trek_to_do_image?.url} />
-                  </div>
+                  {tData?.primary?.trek_banner_image?.url && (
+                  <Image
+                    src={tData?.primary?.trek_banner_image?.url}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                  />
+                )}
+                </div>
                   <p className="p-text-3-fgc text-uppercase mt-2 mb-1">
-                    {RichText.asText(data?.trek_title)}
+                    {RichText.asText(data?.primary?.heading1)}
                   </p>
                   <p className="p-text-small">
-                    {RichText.asText(data?.trek_desc)}
+                  <b>{tData?.primary?.trek_caption?.length > 25
+                      ? `${tData?.primary?.trek_caption?.substring(0, 25)}...`
+                      : tData?.primary?.trek_caption}</b>
                   </p>
+                  <div>
+                      <Link href={url ? url : "#"} target="new">
+                        <button className="btn btn-ih-green">
+                          View Details
+                        </button>
+                      </Link>
+                    </div>
                 </div>
+                
               );
             })}
           </div>
