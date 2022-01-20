@@ -397,8 +397,7 @@ const PostRender = ({
               <div className="position-sticky border-0">
                 <p className="p-text-3-fgc border-bottom-0 m-0">
                   <span>
-                    How To Choose Trek Pants — The Ultimate Trekking Pants Guide
-                    2020
+                   {RichText.asText(data?.title)}
                   </span>
                 </p>
                 <p className="border-bottom-custom-1 pb-2 mb-2"></p>
