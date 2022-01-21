@@ -46,7 +46,7 @@ const DIYResources = ({ slice }) => {
     <>
       <div className="my-5">
         <div className="container">
-          <div className="d-flex align-items-center mt-4 mb-4 border-bottom-custom">
+          <div className="d-flex align-items-center mt-4 mb-4 border-bottom-custom flex-wrap">
             <div className="col-lg-6 col-md-12">
               <h2 className="title-h2 border-0">
                 <b>{RichText.asText(heading1)}</b>

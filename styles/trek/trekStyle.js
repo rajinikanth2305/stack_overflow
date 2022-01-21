@@ -1247,7 +1247,7 @@ export const trekStyle = css.global`
 
   .choose_trek_sec-common {
     background: rgba(255, 247, 225, 1);
-    padding: 35px 0 70px;
+    padding: 35px 0 20px;
     margin-top: 80px;
   }
 
