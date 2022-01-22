@@ -888,6 +888,12 @@ const WelcomeProfile = () => {
                                                 </>
                                               )}
                                             </div>
+                                            <div>
+                                            {trekData?.bookingState === "WAITING_LIST" && (
+                                               <span> Waiting List # {trekData.waitListNumber} </span>
+                                               )
+                                            }
+                                            </div>
                                           </div>
                                         </div>
                                       </div>
