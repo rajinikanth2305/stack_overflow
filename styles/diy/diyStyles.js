@@ -551,11 +551,24 @@ export const diyStyles = css.global`
     width: 100%;
   }
 
+  .trekvideos-carosule-common  >  div > .slick-track {
+    width: auto !important;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
       height: 450px;
       background-position: -425px 0;
+    }
+
+    .trekvideos-carosule-common  >  div > .slick-track {
+      width: max-content !important;
+    }
+
+    .community_member_image {
+      width: 75px;
+      height: 75px;
     }
 
     .banner-text-sec {
@@ -613,7 +626,7 @@ export const diyStyles = css.global`
     }
 
     .title-h2 {
-      font-size: 24px;
+      font-size: 24px !important;
     }
 
     .m-d-none {

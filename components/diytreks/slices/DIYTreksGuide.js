@@ -39,7 +39,7 @@ const DIYTreksGuide = ({ slice }) => {
       <div className="my-5 pt-3">
         <div className="bg-ihgreen p-1">
           <div className="container">
-            <div className="d-flex align-items-center mt-4 mb-4">
+            <div className="d-flex align-items-center mt-4 mb-4 flex-wrap">
               <div className="col-lg-6 col-md-12">
                 <h2 className="title-h2 border-0 text-white m-0">
                   <b>{RichText.asText(heading1)}</b>
@@ -58,7 +58,7 @@ const DIYTreksGuide = ({ slice }) => {
             <div className="row">
               <div className="col-lg-10 col-md-12">
                 <div className="row d-flex align-items-center">
-                  <div className="col-md-4 col-4 px-4">
+                  <div className="col-md-4 col-12 px-4 mb-2">
                     <select className="diy-filter" placeholder="test">
                       <option selected value="test">
                         Filter by Region
@@ -72,7 +72,7 @@ const DIYTreksGuide = ({ slice }) => {
                       <option value="DIYTrek">DIY Trek</option>
                     </select>
                   </div>
-                  <div className="col-md-4 col-4 px-4">
+                  <div className="col-md-4 col-12 px-4 mb-2">
                     <select className="diy-filter" placeholder="test">
                       <option selected value="test">
                         Filter by Difficulty
@@ -86,7 +86,7 @@ const DIYTreksGuide = ({ slice }) => {
                       <option value="DIYTrek">DIY Trek</option>
                     </select>
                   </div>
-                  <div className="col-md-4 col-4 px-4">
+                  <div className="col-md-4 col-12 px-4 mb-2">
                     <select className="diy-filter" placeholder="test">
                       <option selected value="test">
                         Filter by Days
