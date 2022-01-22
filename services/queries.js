@@ -90,8 +90,10 @@ export const getBatchInfoByUserAndBatchId = async (userEmail, batchId)  => {
   let url = `${userApi}/users/my-bookings-for-batches/${batchId}`;
   const header=await getTokenHeader();
   return axios.get(url,{ headers: header}) ;
-  
 };
+
+
+
 
 const getTokenHeader=async () => {
 
@@ -331,11 +333,11 @@ export const cancelUserBooking =  async (userEmail,bookingId)  => {
          .then((res) => res.data);
 };
 
-export const cancelParticipantBooking =  async (bookingId,data)  => {
+export const cancelParticipantBooking =  async (bookingId,moneyRefund,backPackOffloading,data)  => {
 
   const header=await getTokenHeader();
   const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
-  let url = `${userApi}/users/my-bookings/${bookingId}/cancel-treks-for-the-participants`;
+  let url = `${userApi}/users/my-bookings/${bookingId}/cancel-treks-for-the-participants?refund=${moneyRefund}&backPackOffloading=${backPackOffloading}`;
   return axios.patch(url,data,{ headers:  header })
          .then((res) => res.data);
 };

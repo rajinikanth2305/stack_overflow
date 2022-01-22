@@ -33,7 +33,9 @@ const CancellationTrek = () => {
   const router = useRouter();
   const [render, setRender] = useState(false);
   const [participants, setParticipants] = useState([]);
-
+  const [moneytaryRefund,setMoneytaryRefund]=useState(false);
+  const [computedValue,setComputedValue]=useState(undefined);
+  const toast = useRef(null);
   const {
     register,
     handleSubmit,
@@ -80,27 +82,26 @@ const CancellationTrek = () => {
     setBookings(bookingData);
 
     let lparticipants=[];
-
     bookingData.participants.map(x=> {
-      const tpartcipant= buildParticipants(x);
+      let tpartcipant= buildParticipants(x);
       lparticipants.push(tpartcipant);
     });
 
     setParticipants(lparticipants);
 
     const arr = Array.from(new Array(lparticipants.length), (x, i) => i);
-    console.log(arr.length);
+   // console.log(arr.length);
     setIndexes(arr);
     setCounter(arr.length);
     setRender(true);
   };
 
-  const buildParticipants = async userData => {
+  const buildParticipants =  (userData) => {
     const participants = {
       firstName: userData.userDetailsForDisplay?.firstName,
       lastName: userData.userDetailsForDisplay?.lastName,
       email: userData.userDetailsForDisplay?.email,
-      amountPaid: 2,
+      amountPaid: userData?.amountPaid,
       voucherUsed: 0,
       id: userData.userId,
       participantsId: userData.id,
@@ -111,6 +112,7 @@ const CancellationTrek = () => {
       cancellationCharge: (userData.trekFeeForTheUser * 0.15),
       voucherCredited:(userData.trekFeeForTheUser * 0.85),
       moneyCredited:(userData.trekFeeForTheUser * 0.85),
+      cancelled:false
     };
     return participants;
   };
@@ -120,25 +122,29 @@ const CancellationTrek = () => {
     // console.log(formData);
 
     const participantList = [];
+    participants.filter(x=>x.cancelled===true).map(p=>{
+      participantList.push(p.id);
+    });
 
-    Object.keys(formData).forEach(function(key) {
+    /*Object.keys(formData).forEach(function(key) {
       console.log("Key : " + key + ", Value : " + formData[key]);
       if (formData[key] === true) {
         participantList.push(key);
       }
-    });
+    });*/
 
     if (participantList.length > 0) {
       console.log(participantList);
-      cancelParticipantBooking(upComingTrek.bookingId, participantList).then(
+      cancelParticipantBooking(bookings.id,moneytaryRefund,false, participantList).then(
         res => {
           toast.current.show({
             severity: "info",
             summary: `'Cancelled successfully'`,
             detail: "Cancel-Trek-Booking"
           });
-          fetchAndBindUserBookings(upComingTrek.email);
-          handleClose();
+          router.push(`/user-dashboard/user-upcoming-treks`);
+          //fetchAndBindUserBookings(upComingTrek.email);
+          //handleClose();
         }
       );
     } else {
@@ -151,13 +157,67 @@ const CancellationTrek = () => {
   };
 
   const onChecked = (id, value) => {
-    // upComingTrek.userTrekBookingParticipants.find(u => u.id === id).cancelSelected = value;
+     console.log(id);
+     console.log(value);
+
+     let totalPaid=0;
+      var p=participants.find(u => u.id === id);
+      if(p.cancelled==false) {
+        participants.find(u => u.id === id).cancelled=true;
+      }else if (p.cancelled==true) {
+        participants.find(u => u.id === id).cancelled=false;
+      }
+
+     participants.filter(x=>x.cancelled===true).map(p=>{
+       console.log("checked");
+      totalPaid = totalPaid + p.amountPaid;
+     })
+   
+     const refundValue = Math.round( (0.85 * totalPaid));
+     const compvalue={
+           totalAmountPaid:totalPaid,
+           credited:refundValue
+      }
+      setComputedValue(compvalue);
+
     // const selectedCount=upComingTrek.userTrekBookingParticipants.filter(u => u.selected === true).length;
     //setShowSaveButton(selectedCount>0);
   };
 
+  const ontoggle=()=> {
+    if(moneytaryRefund) {
+      setMoneytaryRefund(false);
+    }
+    else if (moneytaryRefund==false) {
+      setMoneytaryRefund(true);
+    }
+  }
+
+  const onClearSelection =()=> {
+   
+    let tparticipants=participants;
+    tparticipants.filter(x=>x.cancelled===true).map(p=>{
+      p.cancelled=false;
+      console.log(p.cancelled);
+    });
+
+    const compvalue={
+      totalAmountPaid:0,
+      credited:0
+    }
+
+ setParticipants(tparticipants);
+
+    const arr = Array.from(new Array(tparticipants.length), (x, i) => i);
+   // console.log(arr.length);
+    setIndexes(arr);
+    setCounter(arr.length);
+    setComputedValue(compvalue);
+  }
+
   return (
     <>
+     <Toast ref={toast} />
      { render && (
       <div className="my-5">
         <div className="container">
@@ -195,10 +255,7 @@ const CancellationTrek = () => {
                     </div>
 
                     <div>
-                <form
-                  onSubmit={handleSubmit(onCancelSubmit)}
-                  onReset={() => reset}
-                >
+                <form>
                     <div className="my-4">
                       <table className="table table-dashboard-profile-style-3">
                         <thead>
@@ -206,19 +263,23 @@ const CancellationTrek = () => {
                             <th style={{ width: "2%" }}>&nbsp;</th>
                             <th>trekker name</th>
                             <th>fee paid</th>
-                            <th>voucher used</th>
                             <th>cancellation (-15%)</th>
+                            {moneytaryRefund==false && (
                             <th>voucher credited (85%)</th>
+                            )}
+                              {moneytaryRefund && (
                             <th>monetary refund (85%)</th>
+                              )}
                           </tr>
                         </thead>
                         <tbody>
-                        {indexes.map(index => {
+                        {
+                        indexes.map(index => {
                         const sdata =participants[index];
-                        console.log(sdata);
+                        //console.log("Printing");
+                       // console.log(sdata);
                         const fieldName = `${sdata?.participantId}`;
-                        const name =
-                          sdata?.email === userEmail
+                        const name =sdata?.email === userEmail
                             ? " * " +
                               sdata?.firstName +
                               sdata?.lastName +
@@ -227,7 +288,7 @@ const CancellationTrek = () => {
                               sdata?.lastName;
 
                         const state =sdata?.bookingParticipantState === "CANCELLED";
-
+                        console.log(sdata.cancelled);
                         return (
                           <>
                             <tr key={sdata?.id}>
@@ -240,14 +301,14 @@ const CancellationTrek = () => {
                                           name={`${fieldName}`}
                                           control={control}
                                           render={({ onChange, value }) => (
-                                            <Checkbox
-                                              inputId="category1"
+                                            <input
+                                              type="checkbox"
                                               name="category"
-                                              onChange={e => {
+                                              onClick={e => {
                                                 onChange(e.checked);
-                                                onChecked(sdata.id, e.checked);
+                                                onChecked(sdata.id, e.target.value);
                                               }}
-                                              checked={value}
+                                              checked={sdata?.cancelled==false? false:true}
                                             />
                                           )}
                                         />
@@ -259,12 +320,16 @@ const CancellationTrek = () => {
                               <td>
                                 {index + 1}. {name}
                               </td>
-                              <td>{sdata.trekFeeForTheUser}</td>
                               <td>{sdata.amountPaid}</td>
-                              <td>{sdata.voucherUsed}</td>
                               <td>{sdata.cancellationCharge}</td>
+
+                              {moneytaryRefund==false && (
                               <td>{sdata.voucherCredited}</td>
+                              )}
+
+                              {moneytaryRefund==true && (
                               <td>{sdata.moneyCredited}</td>
+                              )}
                             </tr>
                           </>
                         );
@@ -291,14 +356,14 @@ const CancellationTrek = () => {
                       </div> */}
                       <div className="d-flex align-items-center">
                         <div className="mt-2 flex-grow-1">
-                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline">
+                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline" onClick={e => {onClearSelection()}}>
                             Clear Selection
                           </p>
                         </div>
                         <div>
                         <div className="mt-2 flex-grow-1">
-                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline">
-                            I want refund
+                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline" onClick={e => {ontoggle()}}>
+                            I want refund 
                           </p>
                         </div>
                         </div>
@@ -334,13 +399,13 @@ const CancellationTrek = () => {
                           </span>
                         </p>
                         <p className="p-text-3-fg mb-1 mt-4">
-                          Hampta Pass Trek
+                        {bookings?.trekName}
                         </p>
                         <p className="p-text-3-fg mb-1">
-                          16th Sep 2021 to 23rd Sep 2021
+                        {moment(bookings?.startDate).format("DD MMM YYYY")} -{moment(bookings?.endDate).format("DD MMM YYYY")}
                         </p>
                         <p className="p-text-3-fg mb-2">
-                          Cancellation for 4 of 5 participants
+                          Cancellation for {participants?.filter(x=>x.cancelled==true).length} of {participants?.length} participants
                         </p>
 
                         <div className="d-flex justify-content-between mt-4 pt-2">
@@ -348,9 +413,11 @@ const CancellationTrek = () => {
                             <p className="p-text-3-1-2 mb-3">Trek Fee Paid</p>
                           </div>
                           <div>
-                            <p className="p-text-3-1-2 mb-3">Rs. 4,000</p>
+                            <p className="p-text-3-1-2 mb-3">Rs. {computedValue?.totalAmountPaid}</p>
                           </div>
                         </div>
+
+                        {/*
                         <div className="d-flex justify-content-between">
                           <div>
                             <p className="p-text-3-1-2 mb-3">Voucher Used</p>
@@ -358,7 +425,8 @@ const CancellationTrek = () => {
                           <div>
                             <p className="p-text-3-1-2 mb-3">Rs. 200</p>
                           </div>
-                        </div>
+                        </div>*/}
+                         {moneytaryRefund==false && (
                         <div className="d-flex justify-content-between">
                           <div>
                             <p className="p-text-3-1-2 mb-3">
@@ -366,9 +434,12 @@ const CancellationTrek = () => {
                             </p>
                           </div>
                           <div>
-                            <p className="p-text-3-1-2 mb-3">Rs. 200</p>
+                            <p className="p-text-3-1-2 mb-3">Rs. {computedValue?.credited}</p>
                           </div>
                         </div>
+                         )}
+
+                    {moneytaryRefund==true && (
                         <div className="d-flex justify-content-between">
                           <div>
                             <p className="p-text-3-1-2 mb-3">
@@ -376,9 +447,11 @@ const CancellationTrek = () => {
                             </p>
                           </div>
                           <div>
-                            <p className="p-text-3-1-2 mb-3">Rs. 200</p>
+                            <p className="p-text-3-1-2 mb-3">Rs. {computedValue?.credited}</p>
                           </div>
                         </div>
+                    )}
+                          {moneytaryRefund==true && (
                         <div className="d-flex">
                           <div className="flex-grow-1 px-5">
                             <p className="p-text-3-1-2 text-align-right mb-2">
@@ -386,9 +459,11 @@ const CancellationTrek = () => {
                             </p>
                           </div>
                           <div>
-                            <p className="p-text-3-1-2 mb-2">Rs. 4,200</p>
+                            <p className="p-text-3-1-2 mb-2">Rs. {computedValue?.credited}</p>
                           </div>
                         </div>
+                          )}
+                    {moneytaryRefund==false && (
                         <div className="d-flex border-bottom-custom-1">
                           <div className="flex-grow-1 px-5">
                             <p className="p-text-3-1-2 text-align-right mb-3">
@@ -396,9 +471,11 @@ const CancellationTrek = () => {
                             </p>
                           </div>
                           <div>
-                            <p className="p-text-3-1-2 mb-3">- Rs. 1,230</p>
+                            <p className="p-text-3-1-2 mb-3">- Rs.{computedValue?.credited}</p>
                           </div>
                         </div>
+                    )}
+
                         <div className="d-flex mt-2">
                           <div className="flex-grow-1 px-5">
                             <p className="p-text-3-fg text-align-right mb-3">
@@ -406,15 +483,17 @@ const CancellationTrek = () => {
                             </p>
                           </div>
                           <div>
-                            <p className="p-text-3-fg mb-3">Rs. 2,930</p>
+                            <p className="p-text-3-fg mb-3">Rs.{computedValue?.credited}</p>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="d-flex justify-content-center my-4 pt-1">
-                      <button className="btn table-btn-maroon-lg">
+                      {computedValue?.credited>0 && (
+                      <button className="btn table-btn-maroon-lg" onClick={e => {onCancelSubmit()}}>
                         Cancel Booking
                       </button>
+                      )}
                     </div>
                   </div>
                 </div>
