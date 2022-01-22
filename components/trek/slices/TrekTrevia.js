@@ -4,6 +4,7 @@ import { trekStyle } from "styles";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Image from "next/image";
+import Link from "next/link";
 
 const TrekTrevia = ({ slice }) => {
   const heading1 = slice.primary.heading1;
@@ -11,6 +12,11 @@ const TrekTrevia = ({ slice }) => {
   const tabsDataArray = slice.items;
 
   const tabsData = tabsDataArray?.map(function(data, i) {
+    let url;
+    const slugUrl = data?.read_more_btn_lnk_url?.uid;
+    if (slugUrl) {
+      url = `/trek/${slugUrl}`;
+    }
     return (
       <Tab eventKey={`tab` + data?.content_type} title={data?.content_type}>
         <div>
@@ -20,9 +26,11 @@ const TrekTrevia = ({ slice }) => {
           <div className="d-flex">
             <div className="flex-fill">
               <div className="tt-content">{RichText.render(data?.content)}</div>
-              <button class="btn btn-btn-yellow-new mt-3 mb-2">
-                Read More
-              </button>
+              <Link href={url ? url : "#"}>
+                <button class="btn btn-btn-yellow-new mt-3 mb-2">
+                  Read More
+                </button>
+              </Link>
             </div>
             <div className="w-100 d-m-none mx-2">
               <div className="hd-tab2-iamge position-change1 mb-4">
@@ -48,7 +56,7 @@ const TrekTrevia = ({ slice }) => {
         <div className="row">
           <div className="col-lg-2 col-md-12">
             <div className="d-flex">
-              <div style={{ position: 'relative' }}>
+              <div style={{ position: "relative" }}>
                 <span className="q-des">?</span>
               </div>
               <div>

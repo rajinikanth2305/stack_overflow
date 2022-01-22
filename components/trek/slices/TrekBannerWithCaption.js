@@ -136,7 +136,7 @@ const TrekBannerWithCaption = ({ slice }) => {
                 <div className="col-6">
                   <div className="d-flex">
                     <div>
-                      <p className="short-info-text m-0">Duration</p>
+                      <p className="short-info-text m-tex m-0">Duration</p>
                     </div>
                     <div className="mx-3">
                       <p className="short-info-text m-0">
@@ -148,7 +148,7 @@ const TrekBannerWithCaption = ({ slice }) => {
                 <div className="col-6">
                   <div className="d-flex">
                     <div>
-                      <p className="short-info-text m-0">Age</p>
+                      <p className="short-info-text m-tex m-0">Age</p>
                     </div>
                     <div className="mx-3">
                       <p className="short-info-text m-0">
@@ -162,7 +162,7 @@ const TrekBannerWithCaption = ({ slice }) => {
                 <div className="col-6">
                   <div className="d-flex">
                     <div>
-                      <p className="short-info-text m-0">Difficulty</p>
+                      <p className="short-info-text m-tex m-0">Difficulty</p>
                     </div>
                     <div className="mx-3">
                       <p className="short-info-text m-0">
@@ -174,7 +174,7 @@ const TrekBannerWithCaption = ({ slice }) => {
                 <div className="col-6">
                   <div className="d-flex">
                     <div className="col-6">
-                      <p className="short-info-text m-0">Highest Altitude</p>
+                      <p className="short-info-text m-tex m-0">Highest Altitude</p>
                     </div>
                     <div className="mx-3">
                       <p className="short-info-text m-0">

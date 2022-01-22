@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { whyTrekWithStyles } from "styles";
 import Image from "next/image";
@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { linkResolver } from "prismic-configuration";
 import Link from "next/link";
+import Modal from "react-bootstrap/Modal";
 /**
  * WhyTrek Slice Components
  */
@@ -14,7 +15,23 @@ const WhyTrek = ({ slice }) => {
   const heading = slice.primary.heading;
   const pillarImagesArray = slice.items;
 
+  const [show, setShow] = useState(false);
+  const [trekVideoUrl, setTrekVideoUrl] = useState();
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const pillarImages = pillarImagesArray?.map((data, i) => {
+    const result = data?.yt_link?.url.split(
+      /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
+    );
+    const videoIdWithParams = result && result[2];
+
+    const cleanVideoId =
+      videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+
+    const videoUrl =
+      "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
     let url;
     const slugUrl = data?.article_link?.slug;
     if (slugUrl) {
@@ -45,9 +62,17 @@ const WhyTrek = ({ slice }) => {
                 </div>
               </div>
               <div className="text-center pt-2 pb-3 p-btn-btm">
-                <Link href={url}>
-                  <button className="btn btn-ih-green">Read more</button>
-                </Link>
+                {/* <Link href={url}> */}
+                <button
+                  className="btn btn-ih-green"
+                  onClick={() => {
+                    setTrekVideoUrl(videoUrl);
+                    setShow(true);
+                  }}
+                >
+                  Read more
+                </button>
+                {/* </Link> */}
               </div>
             </div>
           </div>
@@ -112,6 +137,22 @@ const WhyTrek = ({ slice }) => {
           {whyTrekWithStyles}
         </style>
       </div>
+      <Modal size="lg" show={show} onHide={handleClose} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <iframe
+            width="100%"
+            height="500"
+            src={trekVideoUrl && trekVideoUrl}
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

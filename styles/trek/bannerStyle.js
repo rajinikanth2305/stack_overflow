@@ -118,6 +118,10 @@ export const bannerStyle = css.global`
       padding: 0;
     }
 
+    .short-info-text.m-tex {
+      font-weight: bold;
+    }
+
     .mmx-0 {
       margin-left: 0px !important;
       margin-right: 0px !important;
