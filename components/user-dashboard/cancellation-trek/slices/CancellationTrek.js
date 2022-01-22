@@ -123,7 +123,7 @@ const CancellationTrek = () => {
 
     const participantList = [];
     participants.filter(x=>x.cancelled===true).map(p=>{
-      participantList.push(p.id);
+      participantList.push(p.participantsId);
     });
 
     /*Object.keys(formData).forEach(function(key) {
