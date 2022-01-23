@@ -35,6 +35,9 @@ const CancellationTrek = () => {
   const [participants, setParticipants] = useState([]);
   const [moneytaryRefund,setMoneytaryRefund]=useState(false);
   const [computedValue,setComputedValue]=useState(undefined);
+  const [cancelFlag,setCancelFlag]=useState(undefined);
+  const [cancelPercentage,setCancelPercentage]=useState(15);
+  const [flagValue,setFlagValue]=useState('trek-p-cancel');
   const toast = useRef(null);
   const {
     register,
@@ -64,28 +67,54 @@ const CancellationTrek = () => {
     let pageUrl = url.split("&");
     let batchKeyVal = pageUrl[0]; //batchid
     const batchId = batchKeyVal.split("=")[1];
+    const flag=pageUrl[1]; //flag
+    const flagValue = flag.split("=")[1];
     const userId =userEmail == "" ? userServiceObject.getUsername() : userEmail;
 
     console.log(batchId);
     console.log(userId);
+    console.log(flagValue);
 
     getBatchInfoByUserAndBatchId(userId, batchId)
     .then(bookingsData => {
       if (bookingsData) {
         console.log(bookingsData.data);
-        setStates(bookingsData.data);
+        setStates(bookingsData.data,flagValue);
       }
     });
   };
 
-  const setStates = (bookingData) => {
+  const setStates = (bookingData,flagValue) => {
     setBookings(bookingData);
+    setFlagValue(flagValue);
 
     let lparticipants=[];
-    bookingData.participants.map(x=> {
-      let tpartcipant= buildParticipants(x);
-      lparticipants.push(tpartcipant);
-    });
+    let cancelPercent=0;
+
+    if(flagValue==='trek-p-cancel') {
+        bookingData.participants.map(x=> {
+          let tpartcipant= buildParticipants(x,x?.cancellationPercentage,flagValue);
+          lparticipants.push(tpartcipant);
+          cancelPercent=x?.cancellationPercentage;
+        });
+
+        if(lparticipants.length > 0) {
+          setCancelPercentage(cancelPercent);
+          console.log(cancelPercent);
+        }
+  }
+  else {
+    bookingData.participants
+        .filter(y=>y.backpackOffloadingAmountPaid>0)
+        .map(x=> {
+          let tpartcipant= buildParticipants(x,x?.backpackOffloadingCancellationPercentage,flagValue);
+          lparticipants.push(tpartcipant);
+          cancelPercent=x?.backpackOffloadingCancellationPercentage;
+        });
+
+        if(lparticipants.length > 0)
+           setCancelPercentage(cancelPercent);
+      }
 
     setParticipants(lparticipants);
 
@@ -96,12 +125,35 @@ const CancellationTrek = () => {
     setRender(true);
   };
 
-  const buildParticipants =  (userData) => {
+  //"backpackOffloadingAmountPaid": 0,
+  //"cancellationPercentage": 0,
+  //"backpackOffloadingCancellationPercentage": 0
+
+  const buildParticipants =  (userData,tcancelCharge,tflagValue) => {
+    let totalPaid=0;
+    let amountPaid=0;
+
+    if(tflagValue==='trek-p-cancel') {
+      totalPaid = userData?.amountPaid;
+     }
+ else {
+  totalPaid = userData?.backpackOffloadingAmountPaid;
+ }
+ amountPaid=totalPaid;
+ console.log(totalPaid);
+
+const actualRefundPercentage=(100-tcancelCharge);
+const percentage=(actualRefundPercentage/100);
+// console.log(percentage);
+const refundValue = (percentage * totalPaid);
+const cancelCharge= ((tcancelCharge/100) * totalPaid);
+// console.log(refundValue);
+
     const participants = {
       firstName: userData.userDetailsForDisplay?.firstName,
       lastName: userData.userDetailsForDisplay?.lastName,
       email: userData.userDetailsForDisplay?.email,
-      amountPaid: userData?.amountPaid,
+      amountPaid: amountPaid,
       voucherUsed: 0,
       id: userData.userId,
       participantsId: userData.id,
@@ -109,10 +161,11 @@ const CancellationTrek = () => {
       taxPercentage: userData.taxPercentage,
       insuranceAmount: userData.insuranceAmount,
       bookingParticipantState:userData.bookingParticipantState,
-      cancellationCharge: (userData.trekFeeForTheUser * 0.15),
-      voucherCredited:(userData.trekFeeForTheUser * 0.85),
-      moneyCredited:(userData.trekFeeForTheUser * 0.85),
-      cancelled:false
+      cancellationCharge:cancelCharge,
+      voucherCredited:refundValue,
+      moneyCredited:refundValue,
+      cancelled:false,
+      backpackOffloadingAmountPaid:amountPaid
     };
     return participants;
   };
@@ -169,11 +222,18 @@ const CancellationTrek = () => {
       }
 
      participants.filter(x=>x.cancelled===true).map(p=>{
-       console.log("checked");
-      totalPaid = totalPaid + p.amountPaid;
-     })
-   
-     const refundValue = Math.round( (0.85 * totalPaid));
+       if(flagValue==='trek-p-cancel') {
+            totalPaid = totalPaid + p?.amountPaid;
+       }
+       else {
+        totalPaid = totalPaid + p?.backpackOffloadingAmountPaid;
+      }
+     });
+
+     const actualRefundPercentage=100-cancelPercentage;
+     const percentage=(actualRefundPercentage/100);
+
+     const refundValue = (percentage * totalPaid);
      const compvalue={
            totalAmountPaid:totalPaid,
            credited:refundValue
@@ -214,6 +274,8 @@ const CancellationTrek = () => {
     setCounter(arr.length);
     setComputedValue(compvalue);
   }
+
+
 
   return (
     <>
@@ -263,12 +325,12 @@ const CancellationTrek = () => {
                             <th style={{ width: "2%" }}>&nbsp;</th>
                             <th>trekker name</th>
                             <th>fee paid</th>
-                            <th>cancellation (-15%)</th>
+                            <th>cancellation (-{cancelPercentage}%)</th>
                             {moneytaryRefund==false && (
-                            <th>voucher credited (85%)</th>
+                            <th>voucher credited ({100-cancelPercentage}%)</th>
                             )}
                               {moneytaryRefund && (
-                            <th>monetary refund (85%)</th>
+                            <th>monetary refund ({100-cancelPercentage}%)</th>
                               )}
                           </tr>
                         </thead>
@@ -320,7 +382,11 @@ const CancellationTrek = () => {
                               <td>
                                 {index + 1}. {name}
                               </td>
-                              <td>{sdata.amountPaid}</td>
+                              <td>
+                                { flagValue==='trek-p-cancel' ?
+                                   sdata?.amountPaid : sdata?.backpackOffloadingAmountPaid
+                                }
+                                </td>
                               <td>{sdata.cancellationCharge}</td>
 
                               {moneytaryRefund==false && (
@@ -430,7 +496,7 @@ const CancellationTrek = () => {
                         <div className="d-flex justify-content-between">
                           <div>
                             <p className="p-text-3-1-2 mb-3">
-                              Voucher Credited (85%)
+                              Voucher Credited ({100-cancelPercentage}%)
                             </p>
                           </div>
                           <div>
@@ -443,7 +509,7 @@ const CancellationTrek = () => {
                         <div className="d-flex justify-content-between">
                           <div>
                             <p className="p-text-3-1-2 mb-3">
-                              Monetary Refund (85%)
+                              Monetary Refund ({100-cancelPercentage}%)
                             </p>
                           </div>
                           <div>

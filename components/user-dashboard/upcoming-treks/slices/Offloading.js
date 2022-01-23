@@ -16,6 +16,7 @@ import Link from "next/link";
 import { Toast } from "primereact/toast";
 import { Checkbox  } from 'primereact/checkbox';
 import { computeStyles } from "@popperjs/core";
+import { useRouter } from "next/router";
 
 const Offloading = forwardRef((props, ref) => {
 
@@ -39,7 +40,7 @@ const Offloading = forwardRef((props, ref) => {
   } = useForm();
   const [saveState, setSaveState] = useState(false);
   const toast = useRef(null);
-
+  const router = useRouter();
   React.useEffect(() => {}, [indexes, offLoadings]);
 
  // The component instance will be extended
@@ -248,7 +249,9 @@ const Offloading = forwardRef((props, ref) => {
     props.onOffLoadingPayment(dt);
   };
 
-
+  const onCancelButtonClick = () => {
+      router.push(`/user-dashboard/cancellation-trek?batchId=${headerData?.batchId}&flag=offloading-p-cancel`);
+  };
 
   return (
     <>
@@ -278,6 +281,17 @@ const Offloading = forwardRef((props, ref) => {
           <div>
             <p>Applicable tax: {headerData?.backPackOffloadingTax}%</p>
           </div>
+          {   
+          headerData?.userTrekBookingParticipants?.filter(x=>x?.backpackOffloadingAmountPaid!=null)
+          .length > 0 && (
+          <button
+              className="btn table-btn-maroon"
+              onClick={e => onCancelButtonClick()}
+          >
+              Cancel trek
+          </button>
+          )}
+
         </div>
         <div>
           <table className="table table-dashboard-profile-style-1">

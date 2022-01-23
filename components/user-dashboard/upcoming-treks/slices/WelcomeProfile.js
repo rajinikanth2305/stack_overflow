@@ -397,7 +397,7 @@ const WelcomeProfile = () => {
     console.log(bookingStatus)
     if(bookingStatus==="COMPLETED") {
       const batchId=upComingTrek?.batchId;
-      router.push(`/user-dashboard/cancellation-trek?batchId=${batchId}`);
+      router.push(`/user-dashboard/cancellation-trek?batchId=${batchId}&flag=trek-p-cancel`);
     }
     else {
       setShow(true);
