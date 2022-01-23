@@ -38,8 +38,8 @@ const MyAnchorButton = React.forwardRef(({ content, href }, ref) => {
 export const blogCustomLink = (type, element, content, children, index) => (
   <Link
     key={index}
-    href={blogHrefResolver(element.data.url)}
-    as={blogLinkResolver(element.data.url)}
+    href={blogHrefResolver(element.data)}
+    as={blogLinkResolver(element.data)}
     passHref
   >
     <MyAnchorButton content={content}></MyAnchorButton>

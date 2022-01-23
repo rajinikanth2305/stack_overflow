@@ -10,6 +10,7 @@ export const accessToken = 'MC5ZS0ljT2hJQUFDVUF5Tk5X.EGDvv70577-9Gu-_vX9Y77-9BhF
 // -- Link resolution rules
 // Manages the url links to internal Prismic documents
 export const linkResolver = (doc) => {
+  
   if (doc.type === 'post') {
     return `/blog/${doc.uid}`
   }
@@ -22,7 +23,7 @@ export const linkResolver = (doc) => {
   if (doc.type === 'trek') {
     return `/trek/${doc.uid}`
   }
-  return '/'
+  return doc.uid;
 }
 
 // Additional helper function for Next/Link components
@@ -34,11 +35,36 @@ export const hrefResolver = (doc) => {
 }
 
 export const blogLinkResolver =(doc)=>{
-  return doc;
+
+  //console.log(JSON.stringify(doc));
+
+  if(doc.link_type==="Document") {
+    if (doc.type === 'post') {
+      return '/blog/'+ doc.uid;
+    }
+    else if (doc.type === 'trek') {
+      return '/trek/'+ doc.uid;
+    }
+    return doc.uid;
+  }else {
+    return doc.url;
+  }
+ 
+ 
   
 }
 
 // Additional helper function for Next/Link components
 export const blogHrefResolver = (doc) => {
-   return doc;
+  if(doc.link_type==="Document") {
+    if (doc.type === 'post') {
+      return '/blog/'+ doc.uid;
+    }
+    else if (doc.type === 'trek') {
+      return '/trek/'+ doc.uid;
+    }
+    return doc.uid;
+  }else {
+    return doc.url;
+  }
 }
