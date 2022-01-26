@@ -105,18 +105,46 @@ const OurTeam = () => {
           {aboutUsStyles}
         </style>
       </div>
-      <Modal size="lg" show={show} onHide={handleClose} animation={false}>
-        <Modal.Header closeButton>
-          <Modal.Title>{memnerInfo && memnerInfo.name[0].text}</Modal.Title>
+      <Modal
+        size="lg"
+        show={show}
+        onHide={handleClose}
+        animation={false}
+        className="ab_modal"
+      >
+        <Modal.Header className="border-0 py-0" closeButton>
+          <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <div className="d-flex justify-content-center">
+            <div>
+              <div className="member_image pop_m_image">
+                <Image
+                  src={memnerInfo && memnerInfo.member_photo.url}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="top"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="text-center">
+            <p className="p-text-2-franklin text-center mb-0 pt-2">
+              {memnerInfo && memnerInfo.name[0].text}
+            </p>
+            <p className="p-text-3 m-text-3 text-center">
+              {memnerInfo && memnerInfo.position[0].text}
+            </p>
+          </div>
           <div className="p-text-4">
             {RichText.render(memnerInfo && memnerInfo?.short_info)}
           </div>
-          <p className="p-text-4">
-            <b>{RichText.asText(memnerInfo && memnerInfo?.email_id)}</b>
-          </p>
           <div className="d-flex align-items-center mb-2">
+            <div className="flex-grow-1">
+              <p className="p-text-4 m-0">
+                <b>{RichText.asText(memnerInfo && memnerInfo?.email_id)}</b>
+              </p>
+            </div>
             <div>
               <a
                 href={

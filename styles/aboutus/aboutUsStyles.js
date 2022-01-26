@@ -193,6 +193,12 @@ export const aboutUsStyles = css.global`
     width: 100%;
   }
 
+  .member_image.pop_m_image {
+    cursor: none;
+    width: 180px;
+    height: 235px;
+  }
+
   .nav-tabs {
     border-bottom: 0;
     background: #ffc100;
@@ -227,6 +233,11 @@ export const aboutUsStyles = css.global`
     font-size: 12px;
     color: rgba(0, 0, 0, 1);
     text-transform: uppercase;
+  }
+
+  .ab_modal > .modal-dialog > .modal-content {
+    border: 1px solid #ffc100;
+    border-radius: 0;
   }
 
   .close {
@@ -349,7 +360,7 @@ export const aboutUsStyles = css.global`
     }
 
     .m-border-bottom {
-      border-bottom: 2px solid rgb(255,193,0);
+      border-bottom: 2px solid rgb(255, 193, 0);
       padding-bottom: 15px;
     }
   }
