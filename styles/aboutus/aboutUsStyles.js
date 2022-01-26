@@ -187,6 +187,7 @@ export const aboutUsStyles = css.global`
   }
 
   .member_image {
+    cursor: pointer;
     position: relative;
     height: 233px;
     width: 100%;
@@ -226,6 +227,11 @@ export const aboutUsStyles = css.global`
     font-size: 12px;
     color: rgba(0, 0, 0, 1);
     text-transform: uppercase;
+  }
+
+  .close {
+    background: transparent;
+    border: 0;
   }
 
   @media only screen and (max-width: 660px) {

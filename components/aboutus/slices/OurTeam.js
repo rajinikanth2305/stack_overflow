@@ -7,9 +7,16 @@ import Image from "next/image";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import { Button, PopoverBody, UncontrolledPopover } from "reactstrap";
+import Modal from "react-bootstrap/Modal";
+import Link from "next/link";
 
 const OurTeam = () => {
   const [ourTeamMmbers, setOurTeamMmbers] = useState();
+  const [show, setShow] = useState(false);
+  const [memnerInfo, setMemnerInfo] = useState();
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     fintOurTeamMembers();
@@ -26,6 +33,7 @@ const OurTeam = () => {
         const tt = response.results[0].data.body;
         const slice = tt && tt.filter(x => x.slice_type === "our_team");
         setOurTeamMmbers(slice);
+        console.log(slice);
       });
   }
 
@@ -37,7 +45,13 @@ const OurTeam = () => {
         return (
           <>
             <div className="col-4 col-lg-2 col-md-6">
-              <div className="member_image">
+              <div
+                className="member_image"
+                onClick={() => {
+                  setMemnerInfo(mem);
+                  setShow(true);
+                }}
+              >
                 <Image
                   src={mem.member_photo.url}
                   layout="fill"
@@ -48,7 +62,9 @@ const OurTeam = () => {
               <p className="p-text-2-franklin text-center mb-0 pt-2">
                 {mem.name[0].text}
               </p>
-              <p className="p-text-3 m-text-3 text-center">{mem.position[0].text}</p>
+              <p className="p-text-3 m-text-3 text-center">
+                {mem.position[0].text}
+              </p>
             </div>
           </>
         );
@@ -89,6 +105,46 @@ const OurTeam = () => {
           {aboutUsStyles}
         </style>
       </div>
+      <Modal size="lg" show={show} onHide={handleClose} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title>{memnerInfo && memnerInfo.name[0].text}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="p-text-4">
+            {RichText.render(memnerInfo && memnerInfo?.short_info)}
+          </div>
+          <p className="p-text-4">
+            <b>{RichText.asText(memnerInfo && memnerInfo?.email_id)}</b>
+          </p>
+          <div className="d-flex align-items-center mb-2">
+            <div>
+              <a
+                href={
+                  memnerInfo && memnerInfo?.insta_link.url
+                    ? memnerInfo?.insta_link.url
+                    : "#"
+                }
+                target="_blank"
+              >
+                <img src="./insta_sm.png" />
+              </a>
+            </div>
+            <div className="mx-1"></div>
+            <div>
+              <a
+                href={
+                  memnerInfo && memnerInfo?.linkedin_link.url
+                    ? memnerInfo?.linkedin_link.url
+                    : "#"
+                }
+                target="_blank"
+              >
+                <img src="./in_sm.png" />
+              </a>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
