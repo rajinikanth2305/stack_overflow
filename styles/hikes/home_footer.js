@@ -59,6 +59,10 @@ export const homeFooterStyles = css.global`
     color: rgba(255, 255, 255, 1);
   }
 
+  .footer_nav_links > li > a {
+    color: rgba(255, 255, 255, 1);
+  }
+
   .footer_text {
     line-height: 24px;
     text-align: left;

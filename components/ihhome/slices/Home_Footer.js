@@ -90,11 +90,11 @@ const HomeFooter = ({ slice }) => {
                   </div> */}
                   <div>
                     <ul className="footer_nav_links">
-                      <li>About Us</li>
-                      <li>Careers</li>
-                      <li>Contact Us</li>
-                      <li>Safety at Indiahikes</li>
-                      <li>Green Trails</li>
+                      <li><a href="../../../aboutus">About Us</a></li>
+                      <li><a href="../../../careers">Careers</a></li>
+                      <li><a href="../../../contact-us">Contact Us</a></li>
+                      <li><a href="../../../safety">Safety at Indiahikes</a></li>
+                      <li><a href="../../../greentrails">Green Trails</a></li>
                     </ul>
                   </div>
                 </div>

@@ -16,7 +16,7 @@ import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 /**
  * UpComing component
  */
-const Careers = ({ doc }) => {
+const Safety = ({ doc }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -27,12 +27,12 @@ const Careers = ({ doc }) => {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <title>Careers</title>
+          <title>Safety</title>
         </Head>
-        <HikeHeader auth={true} />
+        <HikeHeader />
         {/* <UpComingTreksSliceZone sliceZone={doc.data.body} /> */}
         <div className="mt-5 py-5 text-center">
-          <h3>Careers</h3>
+          <h3>Safety at Indiahikes</h3>
           <h4>Under development.!!</h4>
         </div>
         <IHTrekWithSwathi />
@@ -52,7 +52,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const doc =
     (await client.getSingle(
-      "carriers_type",
+      "hike_upcoming_treks_ctype",
       ref ? { ref } : null
     )) || {};
 
@@ -62,6 +62,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     },
   )*/
 
+ 
 
   return {
     props: {
@@ -71,4 +72,4 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   };
 }
 
-export default Careers;
+export default Safety;
