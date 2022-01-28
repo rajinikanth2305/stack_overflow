@@ -5,7 +5,7 @@ import { RichText } from "prismic-reactjs";
 import Document, { NextScript } from "next/document";
 
 // Project components & functions
-import { UpComingTreksSliceZone } from "components/upcoming";
+import { CareersSliceZone } from "components/careers";
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
@@ -30,11 +30,7 @@ const Careers = ({ doc }) => {
           <title>Careers</title>
         </Head>
         <HikeHeader auth={true} />
-        {/* <UpComingTreksSliceZone sliceZone={doc.data.body} /> */}
-        <div className="mt-5 py-5 text-center">
-          <h3>Careers</h3>
-          <h4>Under development.!!</h4>
-        </div>
+        <CareersSliceZone sliceZone={doc.data.body} />
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>

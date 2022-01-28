@@ -1587,6 +1587,39 @@ export const customStyles = css.global`
     width: 90%;
   }
 
+  .banner-image-desktop {
+    width: 100%;
+    height: 700px;
+    background-size: cover;
+    position: relative;
+    background-position: bottom;
+  }
+
+  .bg_overlay {
+    background: rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 99;
+  }
+
+  .banner-image-mobile {
+    display: none;
+  }
+
+  .banner-text-sec {
+    line-height: 56px;
+    text-align: center;
+    margin-top: -30px;
+  }
+
+  .w-40 {
+    width: 42%;
+  }
+
+  .carrer_video_img {
+    position: relative;
+    height: 310px;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -1597,6 +1630,10 @@ export const customStyles = css.global`
     .help_support_bg {
       position: relative;
       height: auto;
+    }
+
+    .w-40 {
+      width: 100%;
     }
 
     .title-h2.border-0 {
