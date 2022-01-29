@@ -392,6 +392,12 @@ export const customStyles = css.global`
     position: relative;
   }
 
+  .diyres_img_bg_img {
+    height: 100px;
+    width: 95px;
+    position: relative;
+  }
+
   .p-text-small {
     line-height: 16px;
     text-align: left;
@@ -1620,6 +1626,72 @@ export const customStyles = css.global`
     height: 310px;
   }
 
+  .career_video_sec {
+    background: rgba(255, 247, 225, 1);
+    padding: 35px 0 20px;
+    margin-top: 80px;
+  }
+
+  .trek_video_badge {
+    position: relative;
+    z-index: 99;
+    margin-top: -40px;
+  }
+
+  .trek_video_badge > span {
+    line-height: 18px;
+    text-align: left;
+    font-family: Franklin Gothic Medium;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
+    position: absolute;
+    left: 10px;
+    top: 5px;
+  }
+
+  .trek_video_badge > img {
+    width: 325px;
+    height: 32px;
+  }
+
+  .careers_videos_image {
+    position: relative;
+    width: 100%;
+    height: 126px;
+    cursor: pointer;
+  }
+
+  .carrer_image_1 {
+    position: relative;
+    height: 475px;
+  }
+
+  .carrer_image_2 {
+    position: relative;
+    height: 313px;
+  }
+
+  .carrer_image_3 {
+    position: relative;
+    height: 151px;
+  }
+
+  .mb-2-cus {
+    margin-bottom: 11px;
+  }
+
+  .note_box {
+    background: rgba(255,193,0,0.078);
+    padding: 40px 0 30px;
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -1634,6 +1706,11 @@ export const customStyles = css.global`
 
     .w-40 {
       width: 100%;
+    }
+
+    .diyres_img_bg_img {
+      width: 85px;
+      height: 85px;
     }
 
     .title-h2.border-0 {

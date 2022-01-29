@@ -16,7 +16,7 @@ import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 /**
  * UpComing component
  */
-const Careers = ({ doc }) => {
+const Careers = ({ doc, articleData }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -30,7 +30,7 @@ const Careers = ({ doc }) => {
           <title>Careers</title>
         </Head>
         <HikeHeader auth={true} />
-        <CareersSliceZone sliceZone={doc.data.body} />
+        <CareersSliceZone sliceZone={doc.data.body} articleData={articleData} />
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
@@ -47,22 +47,31 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = Client();
 
   const doc =
-    (await client.getSingle(
-      "carriers_type",
-      ref ? { ref } : null
-    )) || {};
+    (await client.getSingle("carriers_type", ref ? { ref } : null)) || {};
 
-  /*const doc = await client.query(
-    Prismic.Predicates.at("document.type", "hike_home_ctype"), {
-      ...(ref ? { ref } : null)
-    },
-  )*/
+  const articleData = [];
+  const slice = doc.data?.body?.find(
+    x => x.slice_type === "learn_more_sec"
+  );
 
+  if (slice.items.length > 0) {
+    for (var i = 0; i < slice.items.length; i++) {
+      const data = slice.items[i];
+      const slugUrl = data && data?.article_link?.id;
+      if (slugUrl !== undefined) {
+        const article_details = await Client().getByID(slugUrl);
+        articleData.push(article_details);
+      }
+    }
+  } else {
+    return false;
+  }
 
   return {
     props: {
       doc,
-      preview
+      preview,
+      articleData,
     }
   };
 }
