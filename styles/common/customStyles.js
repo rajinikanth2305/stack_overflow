@@ -108,6 +108,17 @@ export const customStyles = css.global`
     margin-bottom: 40px;
   }
 
+  .p-ft-36 {
+    line-height: 45px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
   .btn-ih-primary {
     background: rgb(255, 193, 0);
     border-color: rgb(255, 193, 0);
@@ -1601,6 +1612,10 @@ export const customStyles = css.global`
     background-position: bottom;
   }
 
+  .banner-image-desktop.gt {
+    height: 600px;
+  }
+
   .bg_overlay {
     background: rgba(0, 0, 0, 0.2);
     position: relative;
@@ -1684,7 +1699,7 @@ export const customStyles = css.global`
   }
 
   .note_box {
-    background: rgba(255,193,0,0.078);
+    background: rgba(255, 193, 0, 0.078);
     padding: 40px 0 30px;
   }
 
@@ -1692,11 +1707,45 @@ export const customStyles = css.global`
     cursor: pointer;
   }
 
+  .gt_banner_box {
+    background: rgba(0, 0, 0, 0.051);
+    padding: 30px;
+  }
+
+  .gt_logo {
+    position: relative;
+    height: 65px;
+    width: 150px;
+  }
+
+  .color-matroon {
+    color: rgba(157,58,11,1);
+  }
+
+  .color-blue {
+    color: rgba(0,85,196,1);
+  }
+
+  .color-green {
+    color: rgba(57,114,41,1);
+  }
+
+  .img-margin {
+    margin-top: -30px;
+    height: 350px;
+    position: relative;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
       height: 360px;
       background-position: -425px 0;
+    }
+
+    .img-margin {
+      margin-top: 0;
+      height: 200px;
     }
 
     .help_support_bg {

@@ -23,7 +23,7 @@ export const linkResolver = (doc) => {
   if (doc.type === 'trek') {
     return `/trek/${doc.uid}`
   }
-  return doc.uid;
+  return `/${doc.uid}`;
 }
 
 // Additional helper function for Next/Link components
