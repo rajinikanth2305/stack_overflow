@@ -16,7 +16,7 @@ import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 /**
  * UpComing component
  */
-const GreenTrails = ({ doc }) => {
+const GreenTrails = ({ doc, latestUpdateAarticleData }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -30,7 +30,10 @@ const GreenTrails = ({ doc }) => {
           <title>Green Trails</title>
         </Head>
         <HikeHeader auth={true} />
-        <GreenTrailsSliceZone sliceZone={doc.data.body} />
+        <GreenTrailsSliceZone
+          sliceZone={doc.data.body}
+          latestUpdateAarticleData={latestUpdateAarticleData}
+        />
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
@@ -47,22 +50,31 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = Client();
 
   const doc =
-    (await client.getSingle(
-      "green_trails_type",
-      ref ? { ref } : null
-    )) || {};
+    (await client.getSingle("green_trails_type", ref ? { ref } : null)) || {};
 
-  /*const doc = await client.query(
-    Prismic.Predicates.at("document.type", "hike_home_ctype"), {
-      ...(ref ? { ref } : null)
-    },
-  )*/
+  const latestUpdateAarticleData = [];
 
+  const latestUpdate_slice = doc.data?.body?.find(
+    x => x.slice_type === "latest_gt_updates"
+  );
+  if (latestUpdate_slice.items.length > 0) {
+    for (var i = 0; i < latestUpdate_slice.items.length; i++) {
+      const data = latestUpdate_slice.items[i];
+      const slugUrl = data && data?.article_link?.id;
+      if (slugUrl !== undefined) {
+        const article_details = await Client().getByID(slugUrl);
+        latestUpdateAarticleData.push(article_details);
+      }
+    }
+  } else {
+    return false;
+  }
 
   return {
     props: {
       doc,
-      preview
+      preview,
+      latestUpdateAarticleData
     }
   };
 }

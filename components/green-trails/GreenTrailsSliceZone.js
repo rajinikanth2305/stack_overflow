@@ -10,7 +10,7 @@ import {
   GtStories
 } from "./slices";
 
-const GreenTrailsSliceZone = ({ sliceZone, articleData }) =>
+const GreenTrailsSliceZone = ({ sliceZone, latestUpdateAarticleData }) =>
   sliceZone.map((slice, index) => {
     switch (slice.slice_type) {
       case "banner_with_text":
@@ -20,7 +20,7 @@ const GreenTrailsSliceZone = ({ sliceZone, articleData }) =>
       case "how_dowe_doit":
         return <HowDoWeDoIt slice={slice} key={`slice-${index}`} />;
       case "latest_gt_updates":
-        return <LatestGt slice={slice} key={`slice-${index}`} />;
+        return <LatestGt slice={slice} key={`slice-${index}`} latestUpdateAarticleData={latestUpdateAarticleData} />;
       case "sus_treking_resources":
         return <SustainableGtTreking slice={slice} key={`slice-${index}`} />;
       case "latest_updates":

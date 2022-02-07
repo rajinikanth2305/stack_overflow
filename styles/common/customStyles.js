@@ -1520,6 +1520,10 @@ export const customStyles = css.global`
     background: rgba(0, 40, 148, 1);
   }
 
+  .bg-grey {
+    background: rgba(242,242,242,1);
+  }
+
   .tab-content {
     background: #ffffff;
     padding: 30px;
@@ -1545,6 +1549,11 @@ export const customStyles = css.global`
     margin-right: 15px;
   }
 
+  .fam-tabs-gt.fam-tabs > .nav-item {
+    background: rgba(57,114,41,1);
+    color: #ffffff;
+  }
+
   .fam-tabs > .nav-link.active {
     line-height: 20px;
     text-align: left;
@@ -1554,6 +1563,10 @@ export const customStyles = css.global`
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
+  }
+
+  .fam-tabs-gt.fam-tabs > .nav-link.active {
+    background: #ffffff;
   }
 
   .sustainable_img {
@@ -1734,6 +1747,12 @@ export const customStyles = css.global`
     margin-top: -30px;
     height: 350px;
     position: relative;
+  }
+
+  .gt_lt_img {
+    position: relative;
+    height: 220px;
+    width: 100%;
   }
 
   @media only screen and (max-width: 660px) {

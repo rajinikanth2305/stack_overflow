@@ -35,13 +35,6 @@ const LatestUpdatesTrekkings = ({
       x => x.slice_type === "feature_image"
     );
 
-  // const dayTrekTalkDesc =
-  //   latestUpdateAarticlePrimaryArticleData &&
-  //   latestUpdateAarticlePrimaryArticleData[0]?.data?.body?.find(
-  //     x => x.slice_type === "text"
-  //   );
-
-  console.log(latestUpdateAarticlePrimaryArticleData);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
