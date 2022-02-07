@@ -8,7 +8,7 @@ const GtOverview = ({ slice }) => {
   const heading1 = slice.primary.heading1;
   const content1 = slice.primary.content1;
 
-  const primaryVideoUrl = slice.primary.yt_link.url;
+  const primaryVideoUrl = slice?.primary?.yt_link?.url;
 
   const result = primaryVideoUrl?.split(
     /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
