@@ -16,7 +16,7 @@ import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 /**
  * UpComing component
  */
-const GreenTrails = ({ doc, latestUpdateAarticleData }) => {
+const GreenTrails = ({ doc, latestUpdateAarticleData, articleData, latestUpdateAarticleData1 }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -33,6 +33,8 @@ const GreenTrails = ({ doc, latestUpdateAarticleData }) => {
         <GreenTrailsSliceZone
           sliceZone={doc.data.body}
           latestUpdateAarticleData={latestUpdateAarticleData}
+          latestUpdateAarticleData1={latestUpdateAarticleData1}
+          articleData={articleData}
         />
         <IHTrekWithSwathi />
         <IHFooter />
@@ -53,6 +55,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     (await client.getSingle("green_trails_type", ref ? { ref } : null)) || {};
 
   const latestUpdateAarticleData = [];
+  const latestUpdateAarticleData1 = [];
+  const articleData = [];
 
   const latestUpdate_slice = doc.data?.body?.find(
     x => x.slice_type === "latest_gt_updates"
@@ -70,11 +74,46 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     return false;
   }
 
+  const latestUpdate_slice1 = doc.data?.body?.find(
+    x => x.slice_type === "gt_stories"
+  );
+  if (latestUpdate_slice1.items.length > 0) {
+    for (var i = 0; i < latestUpdate_slice1.items.length; i++) {
+      const data = latestUpdate_slice1.items[i];
+      const slugUrl = data && data?.link_url?.id;
+      if (slugUrl !== undefined) {
+        const article_details = await Client().getByID(slugUrl);
+        latestUpdateAarticleData1.push(article_details);
+      }
+    }
+  } else {
+    return false;
+  }
+
+  const slice = doc.data?.body?.find(
+    x => x.slice_type === "sus_treking_resources"
+  );
+
+  if (slice.items.length > 0) {
+    for (var i = 0; i < slice.items.length; i++) {
+      const data = slice.items[i];
+      const slugUrl = data && data?.article_link?.id;
+      if (slugUrl !== undefined) {
+        const article_details = await Client().getByID(slugUrl);
+        articleData.push(article_details);
+      }
+    }
+  } else {
+    return false;
+  }
+
   return {
     props: {
       doc,
       preview,
-      latestUpdateAarticleData
+      latestUpdateAarticleData,
+      latestUpdateAarticleData1,
+      articleData,
     }
   };
 }

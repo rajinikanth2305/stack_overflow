@@ -10,7 +10,6 @@ const LearnMore = ({ slice, articleData }) => {
   const articleArray = slice.items;
 
   const articleLearnMore = articleData?.map(function(data, i) {
-    console.log(data);
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {

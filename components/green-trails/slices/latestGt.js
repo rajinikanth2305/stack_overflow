@@ -48,7 +48,6 @@ const LatestGt = ({ slice, latestUpdateAarticleData }) => {
   };
 
   const latestTrekWorld = latestUpdateAarticleData?.map(function(data, index) {
-    console.log(data);
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {

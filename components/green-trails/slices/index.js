@@ -6,3 +6,4 @@ export { default as SustainableGtTreking } from "./sustainableGtTreking";
 export { default as LuTrekkingWorld } from "./luTrekkingWorld";
 export { default as GtTestimonoial } from "./gtTestimonoial";
 export { default as GtStories } from "./gtStories";
+export { default as GtVideos } from "./gtVideos";

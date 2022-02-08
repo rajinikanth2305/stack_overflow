@@ -1660,6 +1660,12 @@ export const customStyles = css.global`
     margin-top: 80px;
   }
 
+  .career_video_sec_grey {
+    background:rgba(242,242,242,1);
+    padding: 35px 0 20px;
+    margin-top: 80px;
+  }
+
   .trek_video_badge {
     position: relative;
     z-index: 99;
@@ -1755,11 +1761,57 @@ export const customStyles = css.global`
     width: 100%;
   }
 
+  .trekking_world_image_desktop {
+    position: relative;
+    width: 100%;
+    height: 420px;
+  }
+
+  .trekking_world_image_desktop_popup {
+    position: relative;
+    width: 100%;
+    height: 750px;
+  }
+
+  .trekking_world_image_mobile {
+    display: none;
+  }
+
+  .exp-card-blog {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    min-height: 450px;
+  }
+
+  .latestTrekWorld_bg {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    object-fit: cover;
+  }
+
+  .latestTrekWorld_caption {
+    line-height: 24px;
+    text-align: left;
+    font-family: Lora-Medium;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(0,0,0,1);
+    letter-spacing: 0.5px;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
       height: 360px;
       background-position: -425px 0;
+    }
+
+    .trekking_world_image_mobile {
+      position: relative;
+      display: block;
+      height: 240px;
     }
 
     .img-margin {
@@ -1774,6 +1826,10 @@ export const customStyles = css.global`
 
     .w-40 {
       width: 100%;
+    }
+
+    .trekking_world_image_desktop {
+      display: none;
     }
 
     .diyres_img_bg_img {
