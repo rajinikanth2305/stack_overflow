@@ -1801,6 +1801,12 @@ export const customStyles = css.global`
     letter-spacing: 0.5px;
   }
 
+  .latest_update_img {
+    position: relative;
+    height: 300px;
+    width: 100%;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

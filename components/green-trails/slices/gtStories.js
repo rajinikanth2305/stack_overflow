@@ -8,7 +8,7 @@ import Image from "next/image";
 const GtStories = ({ slice, latestUpdateAarticleData1 }) => {
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
-  const primaryVideoUrl = slice.primary.yt_link.url;
+  const primaryVideoUrl = slice?.primary?.yt_link?.url;
 
   const [show, setShow] = useState(false);
 
@@ -18,7 +18,7 @@ const GtStories = ({ slice, latestUpdateAarticleData1 }) => {
   const result = primaryVideoUrl?.split(
     /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
   );
-  const videoIdWithParams = result[2];
+  const videoIdWithParams = result && result[2];
 
   const cleanVideoId =
     videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
