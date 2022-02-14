@@ -602,7 +602,7 @@ const WelcomeProfile = () => {
                                           </div>
                                         )}
                                         {(upComingTrek?.bookingState ===
-                                          "COMPLETED" && upComingTrek?.trekWhatsappLink!=="") && (
+                                          "COMPLETED" && upComingTrek?.trekWhatsappLink!==null) && (
                                           <>
                                             <button className="btn table-btn-green mx-3">
                                               <i
