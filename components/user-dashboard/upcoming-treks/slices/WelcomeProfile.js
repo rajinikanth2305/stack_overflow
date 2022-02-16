@@ -604,6 +604,7 @@ const WelcomeProfile = () => {
                                         {(upComingTrek?.bookingState ===
                                           "COMPLETED" && upComingTrek?.trekWhatsappLink!==null) && (
                                           <>
+                                          <a href={upComingTrek?.trekWhatsappLink} target="new">
                                             <button className="btn table-btn-green mx-3">
                                               <i
                                                 className="fa fa-whatsapp"
@@ -611,9 +612,10 @@ const WelcomeProfile = () => {
                                               ></i>{" "}
                                               <span className="px-2">
                                              
-                                               <a href={upComingTrek?.trekWhatsappLink} target="new" >Join whatsapp group</a> 
+                                               Join whatsapp group
                                               </span>
                                             </button>
+                                            </a>
                                             </>
                                             )}
                                             {upComingTrek?.bookingState !==
