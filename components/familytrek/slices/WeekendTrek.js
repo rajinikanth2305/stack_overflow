@@ -57,25 +57,26 @@ const WeekendTrek = ({ slice, weekendTrekData }) => {
     }
     return (
       <>
-        <div className="mx-4 m-mx-0" key={i}>
-          <div className="card_sec ">
-            <div className="card trek_card">
-              <div alt="imgs" className="carousel_trek_image">
-                {tData.primary.trek_banner_image.url && (
-                  <Image
-                    src={tData.primary.trek_banner_image.url}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="50% 50%"
-                  />
-                )}
-              </div>
-              <div className="px-3 py-2">
-                <div className="d-flex align-items-center card-info-text">
-                  <div>
-                    <p>{tData.primary.duration[0].text}</p>
-                  </div>
-                  {/* <div>
+        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer" key={i}>
+          <Link href={url ? url : "#"}>
+            <div className="card_sec ">
+              <div className="card trek_card">
+                <div alt="imgs" className="carousel_trek_image">
+                  {tData.primary.trek_banner_image.url && (
+                    <Image
+                      src={tData.primary.trek_banner_image.url}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="50% 50%"
+                    />
+                  )}
+                </div>
+                <div className="px-3 py-2">
+                  <div className="d-flex align-items-center card-info-text">
+                    <div>
+                      <p>{tData.primary.duration[0].text}</p>
+                    </div>
+                    {/* <div>
                     <p className="list-dot-style px-1">
                       <span>.</span>
                     </p>
@@ -83,44 +84,45 @@ const WeekendTrek = ({ slice, weekendTrekData }) => {
                   <div>
                     <p>{data.trek_seasons[0].text}</p>
                   </div> */}
-                  <div>
-                    <p className="list-dot-style px-1">
-                      <span>.</span>
-                    </p>
+                    <div>
+                      <p className="list-dot-style px-1">
+                        <span>.</span>
+                      </p>
+                    </div>
+                    <div>
+                      <p>{tData.primary.difficulty[0].text}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p>{tData.primary.difficulty[0].text}</p>
-                  </div>
-                </div>
 
-                <div>
-                  <h3 className="title-diplay-3 m-d-3 text-uppercase">
-                    {/* {tData.primary.trek_caption} */}
-                    <b>{tData.primary.trek_caption.length > 25
-                      ? `${tData.primary.trek_caption.substring(0, 25)}...`
-                      : tData.primary.trek_caption}</b>
-                  </h3>
-                  <p className="p-text-4 mt2">
-                    {RichText.asText(tData.primary.sub_heading)}
-                  </p>
-                  <div className="d-flex alifn-items-center justify-content-between pt-2 pb-4 flex-wrap p-btn-btm ">
-                    <div className="mw-100">
-                      <Link href={url ? url : "#"}>
+                  <div>
+                    <h3 className="title-diplay-3 m-d-3 text-uppercase">
+                      {/* {tData.primary.trek_caption} */}
+                      <b>
+                        {tData.primary.trek_caption.length > 25
+                          ? `${tData.primary.trek_caption.substring(0, 25)}...`
+                          : tData.primary.trek_caption}
+                      </b>
+                    </h3>
+                    <p className="p-text-4 mt2">
+                      {RichText.asText(tData.primary.sub_heading)}
+                    </p>
+                    <div className="d-flex alifn-items-center justify-content-between pt-2 pb-4 flex-wrap p-btn-btm ">
+                      <div className="mw-100">
                         <button className="btn btn-bihtn-yellow">
                           View details
                         </button>
-                      </Link>
-                    </div>
-                    <div className="mw-100">
-                      <button className="btn btn-ih-green">
-                        Dates/Register
-                      </button>
+                      </div>
+                      <div className="mw-100">
+                        <button className="btn btn-ih-green">
+                          Dates/Register
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
       </>
     );

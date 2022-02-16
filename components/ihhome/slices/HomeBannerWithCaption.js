@@ -70,13 +70,14 @@ const HomeBannerWithCaption = ({ slice }) => {
             <div className="container">
               <div className="banner-text-sec">
                 <p className="banner-text-1">{RichText.asText(heading1)}</p>
-                <p className="banner-text-2 mb-0 m-w-50p">
+                {/* <p className="banner-text-2 mb-0 m-w-50p">
                   They trek because they want to be part of the team that is
                 </p>
-                <p className="banner-text-3">defining the future of trekking</p>
+                <p className="banner-text-3">defining the future of trekking</p> */}
+                <div className="banner-text-2">{RichText.render(heading2)}</div>
                 <div className="mt-3 m-text-center">
                   <button className="btn btn-lg btn-ih-primary">
-                    <Link href={url ? url : '#'}>
+                    <Link href={url ? url : "#"}>
                       <a> {linkButtonText}</a>
                     </Link>
                   </button>

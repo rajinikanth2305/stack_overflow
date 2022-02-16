@@ -70,7 +70,7 @@ const WhyTrek = ({ slice }) => {
                     setShow(true);
                   }}
                 >
-                  Read more
+                  {RichText.asText(data.button_name)}
                 </button>
                 {/* </Link> */}
               </div>

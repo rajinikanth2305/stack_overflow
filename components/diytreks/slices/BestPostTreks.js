@@ -58,36 +58,37 @@ const BestPostTreks = ({ slice, trekData }) => {
     }
     return (
       <>
-        <div className="mx-4 m-mx-0" key={i}>
-          <div className="card_sec">
-            <div className="card trek_card">
-              <div alt="imgs" className="best_treks_images">
-                <div className="bg_overlay_trek_image_bg h-100">
-                  <div className="h-100">
-                    <div className="d-flex align-items-end justify-content-center w-100 h-100 px-4 py-3">
-                      <div className="w-100">
-                        <p className="p-text-1-main m-0">
-                          {tData.primary.trek_caption}
-                        </p>
+        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer" key={i}>
+          <Link href={url ? url : "#"}>
+            <div className="card_sec">
+              <div className="card trek_card">
+                <div alt="imgs" className="best_treks_images">
+                  <div className="bg_overlay_trek_image_bg h-100">
+                    <div className="h-100">
+                      <div className="d-flex align-items-end justify-content-center w-100 h-100 px-4 py-3">
+                        <div className="w-100">
+                          <p className="p-text-1-main m-0">
+                            {tData.primary.trek_caption}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
+                  {tData.primary.trek_banner_image.url && (
+                    <Image
+                      src={tData.primary.trek_banner_image.url}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="50% 50%"
+                    />
+                  )}
                 </div>
-                {tData.primary.trek_banner_image.url && (
-                  <Image
-                    src={tData.primary.trek_banner_image.url}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="50% 50%"
-                  />
-                )}
-              </div>
-              <div className="px-3 py-2">
-                <div className="d-flex align-items-center card-info-text">
-                  <div>
-                    <p>{tData.primary.duration[0].text}</p>
-                  </div>
-                  {/* <div>
+                <div className="px-3 py-2">
+                  <div className="d-flex align-items-center card-info-text">
+                    <div>
+                      <p>{tData.primary.duration[0].text}</p>
+                    </div>
+                    {/* <div>
                     <p className="list-dot-style px-1">
                       <span>.</span>
                     </p>
@@ -95,26 +96,26 @@ const BestPostTreks = ({ slice, trekData }) => {
                   <div>
                     <p>{data.seasons[0].text}</p>
                   </div> */}
-                  <div>
-                    <p className="list-dot-style px-1">
-                      <span>.</span>
-                    </p>
+                    <div>
+                      <p className="list-dot-style px-1">
+                        <span>.</span>
+                      </p>
+                    </div>
+                    <div>
+                      <p>tData.primary.difficulty[0].text}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p>tData.primary.difficulty[0].text}</p>
-                  </div>
-                </div>
 
-                <div>
-                  <p className="p-text-4">
-                    {/* {data.desc[0].text.length > 125
+                  <div>
+                    <p className="p-text-4">
+                      {/* {data.desc[0].text.length > 125
                       ? `${data.desc[0].text.substring(0, 125)}...`
                       : data.desc[0].text} */}
-                    {RichText.asText(tData.primary.sub_heading)}
-                  </p>
-                </div>
-                <div className="d-flex align-items-center mb-3 p-btn-btm">
-                  {/* <div>
+                      {RichText.asText(tData.primary.sub_heading)}
+                    </p>
+                  </div>
+                  <div className="d-flex align-items-center mb-3 p-btn-btm">
+                    {/* <div>
                     <div className="doc_image">
                       <Image
                         src={data.trek_documentor_img.url}
@@ -132,17 +133,16 @@ const BestPostTreks = ({ slice, trekData }) => {
                       {data.documentor_title[0].text}
                     </p>
                   </div> */}
-                  <div>
-                    <Link href={url ? url : "#"}>
+                    <div>
                       <button className="btn btn-bihtn-yellow">
                         View Trek
                       </button>
-                    </Link>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
       </>
     );
