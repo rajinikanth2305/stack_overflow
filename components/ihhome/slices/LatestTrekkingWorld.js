@@ -67,6 +67,17 @@ const LatestTrekkingWorld = ({ slice }) => {
     } else {
       url = data?.button_link?.url;
     }
+    const result = data?.yt_link?.url.split(
+      /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
+    );
+    const videoIdWithParams = result && result[2];
+
+    const cleanVideoId =
+      videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+
+    const videoUrl =
+      "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
+    const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
     return (
       <div key={`latesttrekking` + i} className="py-3 mx-2 mm-0 mp-0">
         <div className="row d-flex">
@@ -79,11 +90,17 @@ const LatestTrekkingWorld = ({ slice }) => {
                 {RichText.render(data.trekking_world_desc)}
               </div>
               <div className="text-center mt-4">
-                <Link href={url ? url : "#"}>
-                  <button class="btn btn-lg btn-ih-primary text-capitalized">
-                    {data.button_name[0].text}
-                  </button>
-                </Link>
+                {/* <Link href={url ? url : "#"}> */}
+                <button
+                  class="btn btn-lg btn-ih-primary text-capitalized"
+                  onClick={() => {
+                    setImgUrl(videoUrl);
+                    setShow(true);
+                  }}
+                >
+                  {data.button_name[0].text}
+                </button>
+                {/* </Link> */}
               </div>
             </div>
           </div>
@@ -92,14 +109,14 @@ const LatestTrekkingWorld = ({ slice }) => {
               alt="imgs"
               className="trekking_world_image_desktop cursor-pointer"
             >
-              {data.trekking_world_image.url ? (
+              {imageURL ? (
                 <Image
-                  src={data.trekking_world_image.url}
+                  src={imageURL}
                   layout="fill"
                   objectFit="cover"
                   objectPosition="50% 50%"
                   onClick={() => {
-                    setImgUrl(data.trekking_world_image.url);
+                    setImgUrl(videoUrl);
                     setShow(true);
                   }}
                 />
@@ -108,12 +125,16 @@ const LatestTrekkingWorld = ({ slice }) => {
               )}
             </div>
             <div alt="imgs" className="trekking_world_image_mobile">
-              {data.trekking_world_image.url ? (
+              {imageURL ? (
                 <Image
-                  src={data.trekking_world_image.url}
+                  src={imageURL}
                   layout="fill"
                   objectFit="cover"
                   objectPosition="top"
+                  onClick={() => {
+                    setImgUrl(videoUrl);
+                    setShow(true);
+                  }}
                 />
               ) : (
                 <img src="./ip.png" />
@@ -144,19 +165,28 @@ const LatestTrekkingWorld = ({ slice }) => {
           {ChooseTreks}
         </style>
       </div>
-      <Modal size="xl" show={show} onHide={handleClose} animation={false}>
+      <Modal size="lg" show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div alt="imgs" className="trekking_world_image_desktop_popup">
+          {/* <div alt="imgs" className="trekking_world_image_desktop_popup">
             <Image
               src={imgUrl && imgUrl}
               layout="fill"
               objectFit="cover"
               objectPosition="bottom"
             />
-          </div>
+          </div> */}
+          <iframe
+            width="100%"
+            height="500"
+            src={imgUrl && imgUrl}
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </Modal.Body>
       </Modal>
     </>
