@@ -1822,6 +1822,14 @@ export const customStyles = css.global`
     width: 100%;
   }
 
+  .p-text-2-fg.t-c-p {
+    text-align: center !important;
+  }
+
+  .p-text-2-fg.t-c-p > p {
+    margin: 0 !important;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

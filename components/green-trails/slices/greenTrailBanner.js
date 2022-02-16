@@ -52,37 +52,37 @@ const GreenTrailBanner = ({ slice }) => {
                 </div>
               </div>
               <div>
-                <p className="p-ft-36 m-0">{RichText.asText(totalTreks)}</p>
-                <p className="p-text-2-fg">Treks</p>
+                <div className="p-text-2-fg t-c-p m-0">{RichText.render(totalTreks)}</div>
+                {/* <p className="p-text-2-fg">Treks</p> */}
               </div>
               <div>
-                <p className="p-ft-36 color-matroon m-0">
-                  {RichText.asText(kilosOfWaste)}
-                </p>
-                <p className="p-text-2-fg">
+                <div className="p-text-2-fg t-c-p color-matroon m-0">
+                  {RichText.render(kilosOfWaste)}
+                </div>
+                {/* <p className="p-text-2-fg">
                   Kilos of Waste{" "}
                   <span className="color-matroon">Collected</span>
-                </p>
+                </p> */}
               </div>
               <div>
-                <p className="p-ft-36 color-blue m-0">
-                  {RichText.asText(recycling)}
-                </p>
-                <p className="p-text-2-fg">
+                <div className="p-text-2-fg t-c-p color-blue m-0">
+                  {RichText.render(recycling)}
+                </div>
+                {/* <p className="p-text-2-fg">
                   {" "}
                   waste diverted from landfill, sent for{" "}
                   <span className="color-blue">Recycling</span>
-                </p>
+                </p> */}
               </div>
               <div>
-                <p className="p-ft-36 color-green m-0">
-                  {RichText.asText(wetWaste)}
-                </p>
-                <p className="p-text-2-fg">
+                <div className="p-text-2-fg t-c-p color-green m-0">
+                  {RichText.render(wetWaste)}
+                </div>
+                {/* <p className="p-text-2-fg">
                   {" "}
                   wet waste management{" "}
                   <span className="color-green">At source</span>
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
