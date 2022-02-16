@@ -404,8 +404,8 @@ export const customStyles = css.global`
   }
 
   .diyres_img_bg_img {
-    height: 100px;
-    width: 95px;
+    height: 95px;
+    width: 100%;
     position: relative;
   }
 
