@@ -1384,6 +1384,11 @@ export const trekStyle = css.global`
     height: 220px;
   }
 
+  .reach-map-img {
+    position: relative;
+    height: 420px;
+  }
+
   .img-header-popup {
     border: 0;
   }

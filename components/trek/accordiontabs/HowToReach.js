@@ -26,6 +26,16 @@ const HowToReach = ({ data }) => {
   const howTo = howToArray?.map(function(data, i) {
     return (
       <div>
+        {data?.note_image?.url && (
+          <div className="reach-map-img my-4">
+            <Image
+              src={data?.note_image?.url}
+              layout="fill"
+              objectFit="contain"
+              objectPosition="left"
+            />
+          </div>
+        )}
         <div>
           <p className="p-text-1">
             <b>{RichText.asText(data?.heading1)}</b>
@@ -46,7 +56,7 @@ const HowToReach = ({ data }) => {
               </div>
             )}
           </div>
-          <div className="w-100 d-m-none">
+          {/* <div className="w-100 d-m-none">
             <div className="position-change mb-4">
               {data?.note_image?.url && (
                 <div className="reach-img">
@@ -59,7 +69,7 @@ const HowToReach = ({ data }) => {
                 </div>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     );
@@ -68,7 +78,7 @@ const HowToReach = ({ data }) => {
   return (
     <>
       <div>
-        <div>
+        {/* <div>
           <iframe
             src={mapUrl}
             width="100%"
@@ -79,7 +89,7 @@ const HowToReach = ({ data }) => {
         </div>
         <div>
           <p className="p-text-3-gray">Pinch screen to zoom and use map</p>
-        </div>
+        </div> */}
         {howTo}
       </div>
     </>
