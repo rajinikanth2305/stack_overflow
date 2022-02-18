@@ -887,14 +887,25 @@ const WelcomeProfile = () => {
                                                   >
                                                     Make payment
                                                   </button>
+                                                  {trekData?.bookingState === "WAITING_LIST" && (
+                                                    <>
+                                                  <div className="mx-2" />
+                                                    <button
+                                                      className="btn table-btn-yellow"
+                                                    >
+                                                      Waiting List # {trekData.waitListNumber}
+                                                    </button>
+                                                  </>
+                                                  )
+                                                }
                                                 </>
                                               )}
                                             </div>
                                             <div>
-                                            {trekData?.bookingState === "WAITING_LIST" && (
+                                            {/* {trekData?.bookingState === "WAITING_LIST" && (
                                                <span> Waiting List # {trekData.waitListNumber} </span>
                                                )
-                                            }
+                                            } */}
                                             </div>
                                           </div>
                                         </div>

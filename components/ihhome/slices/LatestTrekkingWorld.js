@@ -109,6 +109,16 @@ const LatestTrekkingWorld = ({ slice }) => {
               alt="imgs"
               className="trekking_world_image_desktop cursor-pointer"
             >
+              <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                <div className="text-center">
+                  <img
+                    src="/v-icon.png"
+                    alt="playicon'"
+                    className="paly-icon icon-size-50"
+                    onClick={handleShow}
+                  />
+                </div>
+              </div>
               {imageURL ? (
                 <Image
                   src={imageURL}

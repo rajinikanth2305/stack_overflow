@@ -404,9 +404,10 @@ export const customStyles = css.global`
   }
 
   .diyres_img_bg_img {
-    height: 95px;
+    height: 100px;
     width: 100%;
     position: relative;
+    object-fit: cover;
   }
 
   .p-text-small {

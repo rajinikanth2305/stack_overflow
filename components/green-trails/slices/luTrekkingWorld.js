@@ -102,6 +102,16 @@ const LuTrekkingWorld = ({ slice }) => {
               alt="imgs"
               className="trekking_world_image_desktop cursor-pointer"
             >
+              <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                <div className="text-center">
+                  <img
+                    src="/v-icon.png"
+                    alt="playicon'"
+                    className="paly-icon icon-size-50"
+                    onClick={handleShow}
+                  />
+                </div>
+              </div>
               <Image
                 src={imageURL}
                 layout="fill"
@@ -155,7 +165,7 @@ const LuTrekkingWorld = ({ slice }) => {
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <iframe
+          <iframe
             width="100%"
             height="500"
             src={imgUrl && imgUrl}
