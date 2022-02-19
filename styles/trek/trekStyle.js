@@ -1427,8 +1427,8 @@ export const trekStyle = css.global`
   }
 
   .t-pro-tips-box {
-    background: rgba(255,193,0,0.122);
-    border-top: 2px solid rgba(255,193,0,1);
+    background: rgba(255, 193, 0, 0.122);
+    border-top: 2px solid rgba(255, 193, 0, 1);
     padding: 30px;
     margin: 35px 0;
   }
@@ -1453,6 +1453,54 @@ export const trekStyle = css.global`
 
   .review_modal > .modal-dialog > .modal-content > .modal-body {
     background: #ffffff;
+  }
+
+  .trekking_world_image_desktop_popup {
+    position: relative;
+    width: 100%;
+    height: 750px;
+  }
+
+  .trekking_world_image_mobile {
+    display: none;
+  }
+
+  .p-a-b {
+    position: absolute;
+    bottom: -40px;
+    width: 100%;
+  }
+
+  .trek_video_badge {
+    position: relative;
+    z-index: 99;
+    margin-top: -40px;
+  }
+
+  .trek_video_badge > span {
+    line-height: 18px;
+    text-align: left;
+    font-family: Franklin Gothic Medium;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
+    position: absolute;
+    left: 10px;
+    top: 5px;
+  }
+
+  .video_trek_card {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    max-height: 185px;
+  }
+
+  .ih_trekker_videos_image {
+    position: relative;
+    width: 100%;
+    height: 126px;
+    cursor: pointer;
   }
 
   @media only screen and (max-width: 660px) {

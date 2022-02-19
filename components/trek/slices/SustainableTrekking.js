@@ -57,7 +57,9 @@ const SustainableTrekking = ({ slice }) => {
           </div>
         </div>
         <div>
-          {/* <TrekkersStoriesCommon /> */}
+          <div style={{ 'display': 'none' }}>
+          <TrekkersStoriesCommon />
+          </div>
           <TrekkersVideoCommon />
         </div>
         <style jsx global>
