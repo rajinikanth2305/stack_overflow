@@ -1429,6 +1429,13 @@ export const customStyles = css.global`
     border: 2px solid #ffc100;
   }
 
+  .auth_image_1 > img {
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    border: 2px solid #ffc100;
+  }
+
   .author-info-text {
     line-height: 20px;
     font-family: Franklin Gothic;
@@ -1829,6 +1836,48 @@ export const customStyles = css.global`
 
   .p-text-2-fg.t-c-p > p {
     margin: 0 !important;
+  }
+
+  .btn-btn-yellow-new {
+    background: rgb(255, 193, 0) none repeat scroll 0% 0%;
+    box-shadow: rgba(0, 0, 0, 0.353) 3px 3px 3px;
+    border: 0px none;
+    padding: 10px 30px;
+    border-radius: 0px;
+    line-height: 24px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+    text-transform: capitalize;
+  }
+
+  .btn-btn-gray-new {
+    background: rgba(112,112,112,1);
+    box-shadow: rgba(0, 0, 0, 0.353) 3px 3px 3px;
+    border: 0px none;
+    padding: 10px 30px;
+    border-radius: 0px;
+    line-height: 24px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: #ffffff;
+    text-transform: capitalize;
+  }
+
+  .pl-l-cus-40 {
+    margin-left: 40px;
+    padding-left: 20px;
+  }
+
+  .pl-border-yel {
+    border-left: 2px solid #ffc100;
+    padding-left: 20px;
   }
 
   @media only screen and (max-width: 660px) {

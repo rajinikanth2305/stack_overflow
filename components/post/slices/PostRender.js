@@ -41,8 +41,6 @@ const PostRender = ({
     featureImageUrl = featureSlice.primary.feature_image.url;
   }
 
-  
-
   const renderAuthorSlice = () => {
     return (
       <div id="sidepanel_author_panel">
@@ -180,9 +178,10 @@ const PostRender = ({
             <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
               Upcoming Treks
             </p>
-            {
-             upComingData?.map(function(data, i) {
-              const tData = data?.data?.body?.find(x => x.slice_type === "trek_banner");
+            {upComingData?.map(function(data, i) {
+              const tData = data?.data?.body?.find(
+                x => x.slice_type === "trek_banner"
+              );
               let url;
               const slugUrl = data?.uid;
               if (slugUrl) {
@@ -190,33 +189,47 @@ const PostRender = ({
               }
               return (
                 <div className="border-bottom mb-3">
-                  <div className="ar_right_side_imgs">
-                  {tData?.primary?.trek_banner_image?.url && (
-                  <Image
-                    src={tData?.primary?.trek_banner_image?.url}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="50% 50%"
-                  />
-                )}
-                </div>
-                  <p className="p-text-3-fgc text-uppercase mt-2 mb-1">
-                    {RichText.asText(data?.primary?.heading1)}
-                  </p>
-                  <p className="p-text-small">
-                  <b>{tData?.primary?.trek_caption?.length > 25
-                      ? `${tData?.primary?.trek_caption?.substring(0, 25)}...`
-                      : tData?.primary?.trek_caption}</b>
-                  </p>
-                  <div>
-                      <Link href={url ? url : "#"} target="new">
-                        <button className="btn btn-ih-green">
-                          View Details
-                        </button>
-                      </Link>
+                  <a href={url ? url : "#"} target="new">
+                    <div className="ar_right_side_imgs">
+                      {/* {tData?.primary?.trek_banner_image?.url && (
+                        <Image
+                          src={tData?.primary?.trek_banner_image?.url}
+                          layout="fill"
+                          objectFit="cover"
+                          objectPosition="50% 50%"
+                        />
+                      )} */}
+                      {tData?.primary?.trek_banner_image?.url ? (
+                        <Image
+                          src={tData?.primary?.trek_banner_image?.url}
+                          layout="fill"
+                          objectFit="cover"
+                          objectPosition="50% 50%"
+                        />
+                      ) : (
+                        <img src="../ip.png" />
+                      )}
                     </div>
+                    <p className="p-text-3-fgc text-uppercase mt-2 mb-1">
+                      {RichText.asText(data?.primary?.heading1)}
+                    </p>
+                    <p className="p-text-small">
+                      <b>
+                        {tData?.primary?.trek_caption?.length > 25
+                          ? `${tData?.primary?.trek_caption?.substring(
+                              0,
+                              25
+                            )}...`
+                          : tData?.primary?.trek_caption}
+                      </b>
+                    </p>
+                    {/* <div>
+                    <Link href={url ? url : "#"} target="new">
+                      <button className="btn btn-ih-green">View Details</button>
+                    </Link>
+                  </div> */}
+                  </a>
                 </div>
-                
               );
             })}
           </div>
@@ -269,50 +282,50 @@ const PostRender = ({
     );
   };
 
-  const getVideoId= (url) =>{
+  const getVideoId = url => {
     const result = url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-  const videoIdWithParams = result[2];
+    const videoIdWithParams = result[2];
 
-  if (videoIdWithParams !== undefined) {
-    const cleanVideoId = videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+    if (videoIdWithParams !== undefined) {
+      const cleanVideoId = videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
 
-    return cleanVideoId;
-  }
-  else {
-    return null;
-  }
-  }
- 
-  const renderEmbedVideo =(slice) => {
-     //console.log(data.video_image.url);
-     const videoId =slice?.primary?.youtube_id?.replace("\"","");
-     const videoUrl ="https://www.youtube.com/embed/" + data.video_id + "?autoplay=1";
-     const imageURL = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-     
+      return cleanVideoId;
+    } else {
+      return null;
+    }
+  };
+
+  const renderEmbedVideo = slice => {
+    //console.log(data.video_image.url);
+    const videoId = slice?.primary?.youtube_id?.replace('"', "");
+    const videoUrl =
+      "https://www.youtube.com/embed/" + data.video_id + "?autoplay=1";
+    const imageURL = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+
     return (
       <div className="">
-            <div
-              onClick={() => {
-                setTrekVideoUrl(videoUrl);
-                setShow(true);
-              }}
-            >
-              <div>
-                {imageURL && (
-                  <Image
-                    src={imageURL}
-                    objectFit="cover"
-                    width="1920"
-                    height="1080"
-                    alt="Click on the image to view the Video"
-                    onClick={() => {
-                      setTrekVideoUrl(videoUrl);
-                      setShow(true);
-                    }}
-                  />
-                )}
-              </div>
-            </div>
+        <div
+          onClick={() => {
+            setTrekVideoUrl(videoUrl);
+            setShow(true);
+          }}
+        >
+          <div>
+            {imageURL && (
+              <Image
+                src={imageURL}
+                objectFit="cover"
+                width="1920"
+                height="1080"
+                alt="Click on the image to view the Video"
+                onClick={() => {
+                  setTrekVideoUrl(videoUrl);
+                  setShow(true);
+                }}
+              />
+            )}
+          </div>
+        </div>
       </div>
     );
   };
@@ -327,11 +340,11 @@ const PostRender = ({
         </p>
         {slice?.items?.map(function(data, i) {
           //console.log(data.video_image.url);
-          const videoId =data?.video_id?.replace("\"","");
+          const videoId = data?.video_id?.replace('"', "");
           const videoUrl =
             "https://www.youtube.com/embed/" + data.video_id + "?autoplay=1";
-            const imageURL = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-           console.log(imageURL);
+          const imageURL = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+          console.log(imageURL);
           return (
             <div
               className="card border-bottom mb-3"
@@ -372,8 +385,7 @@ const PostRender = ({
         <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
           Latest Articles
         </p>
-        {
-        relatedArticles?.map(function(article, i) {
+        {relatedArticles?.map(function(article, i) {
           let featureImageUrl = "";
           const featureSlice = article?.data?.body?.find(
             x => x.slice_type == "feature_image"
@@ -383,7 +395,7 @@ const PostRender = ({
           }
           const title = RichText.asText(article?.data?.title);
           const date = article?.data?.date;
-          let author =related_authors && related_authors[i];
+          let author = related_authors && related_authors[i];
           return (
             <div className="border-bottom mb-3">
               <div className="ar_right_side_imgs">
@@ -405,7 +417,7 @@ const PostRender = ({
 
   return (
     <>
-      <div >
+      <div>
         <div className="article_banner_img">
           <img src={featureImageUrl} />
         </div>
@@ -415,9 +427,7 @@ const PostRender = ({
             <div className="col-lg-3 col-md-12 pr-5p pt-4">
               <div className="position-sticky border-0">
                 <p className="p-text-3-fgc border-bottom-0 m-0">
-                  <span>
-                   {RichText.asText(data?.title)}
-                  </span>
+                  <span>{RichText.asText(data?.title)}</span>
                 </p>
                 <p className="border-bottom-custom-1 pb-2 mb-2"></p>
                 <p className="p-text-small mb-2">Share this story</p>
@@ -445,7 +455,7 @@ const PostRender = ({
                 </div>
               </div>
             </div>
-            <div  className="col-lg-9 col-md-12">
+            <div className="col-lg-9 col-md-12">
               <div className="row">
                 <div className="col-lg-8 col-md-12">
                   <div>
@@ -464,7 +474,8 @@ const PostRender = ({
                             <p className="m-0 p-text-small-black">
                               By{" "}
                               <b>
-                                {data?.author_first_name} {data?.author_last_name}
+                                {data?.author_first_name}{" "}
+                                {data?.author_last_name}
                               </b>
                             </p>
                             <p className="m-0 p-text-small-black">
@@ -541,17 +552,149 @@ const PostRender = ({
                           return greyBgWithGrey(slice);
                         case "user_says_with_gray_panel":
                           return greyBgWithTextAuthorSays(slice);
-                          case "embed_youtube_video":
-                            return renderEmbedVideo(slice);
+                        case "embed_youtube_video":
+                          return renderEmbedVideo(slice);
 
                         default:
                           return null;
                       }
                     })}
                   </div>
+                  <div>
+                    <h5 className="p-text-1">
+                      <b>LEAVE A REPLY</b>
+                    </h5>
+                    <p className="p-text-4">
+                      Your email address will not be published. Required fields
+                      are marked
+                    </p>
+                    <div>
+                      <textarea rows="3" className="w-100"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-end w-100">
+                      <button class="btn btn-btn-yellow-new mt-3 mb-2">
+                        Post reply
+                      </button>
+                    </div>
+
+                    <div className="my-5">
+                      <p className="p-text-1">
+                        <b>
+                          27 thoughts on{" "}
+                          <span>"{RichText.asText(data?.title)}"</span>
+                        </b>
+                      </p>
+                    </div>
+
+                    <div className="border-bottom pb-4 mb-4">
+                      <div className="d-flex align-items-center">
+                        <div>
+                          <div className="auth_image_1">
+                            <img src="../ip.png" />
+                          </div>
+                        </div>
+                        <div className="mx-2" />
+                        <div>
+                          <p className="mb-1 p-text-3">VAISHNAVI</p>
+                          <p className="m-0 p-text-small-black">
+                            13 August, 2020 at 3:27 pm
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="p-text-4 my-3">
+                        <p>
+                          On a tad tangential note, the behavior or rather the
+                          mindset of trekking needs to change.
+                        </p>
+                        <p>
+                          Trekking isn’t to show oneself “cool” as they are
+                          following the growing culture. It’s about respecting
+                          nature by not messing up with trash, not taking things
+                          for granted. I am no biggie when it comes to trekking
+                          as we have many experienced folks, but it’s more of a
+                          way of life than a 5 or 10 day camping/hiking.
+                        </p>
+                      </div>
+                      <div class="d-flex justify-content-end w-100">
+                        <button class="btn btn-btn-gray-new mt-3 mb-2">
+                          Reply
+                        </button>
+                      </div>
+
+                      <div className="pl-l-cus-40">
+                        <div className="pl-border-yel">
+                          <div className="d-flex align-items-center">
+                            <div>
+                              <div className="auth_image_1">
+                                <img src="../ip.png" />
+                              </div>
+                            </div>
+                            <div className="mx-2" />
+                            <div>
+                              <p className="mb-1 p-text-3">ARJUN</p>
+                              <p className="m-0 p-text-small-black">
+                                13 August, 2020 at 4:23 pm
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="p-text-4 my-3">
+                            <p>
+                              We have actually explored a lovely tail in the
+                              Sanjay Dubri National Park in Madhya Pradesh in
+                              association with the MP tourism board. The trail
+                              is awaiting clearance from the forest department.
+                            </p>
+                            <p>
+                              I’m hoping we’ll be able to open it up as soon as
+                              we see a reduction in the pandemic. This winter
+                              would be great!
+                            </p>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-end w-100">
+                          <button class="btn btn-btn-gray-new mt-3 mb-2">
+                            Reply
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="border-bottom pb-4 mb-4">
+                      <div className="d-flex align-items-center">
+                        <div>
+                          <div className="auth_image_1">
+                            <img src="../ip.png" />
+                          </div>
+                        </div>
+                        <div className="mx-2" />
+                        <div>
+                          <p className="mb-1 p-text-3">MEERA</p>
+                          <p className="m-0 p-text-small-black">
+                            August 13, 2020 at 3:36 pm
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="p-text-4 my-3">
+                        <p>
+                          Are there any easy but beautiful treks for ladies over
+                          60? My classmates would like to go
+                        </p>
+                      </div>
+                      <div class="d-flex justify-content-end w-100">
+                        <button class="btn btn-btn-gray-new mt-3 mb-2">
+                          Reply
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div className="col-lg-4 col-md-12">
-                  <div className="my-5 py-5 mmy-2 mpy-0">{renderAuthorSlice()}</div>
+                  <div className="my-5 py-5 mmy-2 mpy-0">
+                    {renderAuthorSlice()}
+                  </div>
                   {renderUpComingTreks()}
                   {renderRelatedArticles()}
                   {renderLatestVideos()}
