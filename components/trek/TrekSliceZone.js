@@ -17,7 +17,8 @@ import {
   CampSite,
   TrekQA,
   QuickItineraryComponent,
-  TrekTrevia
+  TrekTrevia,
+  TrekReviews,
 } from "./slices";
 
 /**
@@ -45,10 +46,10 @@ const TrekSliceZone = ({ sliceZone, trekPageData1 }) =>
         return <TrekTrevia slice={slice} key={`slice-${index}`} />;
       // case "trek_family_trek":
       //   return <GetReadyForTrek slice={slice} key={`slice-${index}`} />;
-      // case "trek_what_trekkers_say":
-      //   return <TrekWhatSays slice={slice} key={`slice-${index}`} />;
       case "sustainable_trekking":
         return <SustainableTrekking slice={slice} key={`slice-${index}`} />;
+        case "safety_standards":
+        return <TrekReviews slice={slice} key={`slice-${index}`} />;
       case "book_your_trek":
         return <BookYourTrek slice={slice} key={`slice-${index}`} />;
       case "safety_standards":

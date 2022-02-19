@@ -57,7 +57,7 @@ const SustainableTrekking = ({ slice }) => {
           </div>
         </div>
         <div>
-          <TrekkersStoriesCommon />
+          {/* <TrekkersStoriesCommon /> */}
           <TrekkersVideoCommon />
         </div>
         <style jsx global>

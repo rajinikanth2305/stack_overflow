@@ -7,7 +7,7 @@ export { default as TrekGallery } from "./TrekGallery";
 export { default as KnowYourTrek } from "./KnowYourTrek";
 export { default as TrekTrevia } from "./TrekTrevia";
 // export { default as GetReadyForTrek } from "./GetReadyForTrek";
-// export { default as TrekWhatSays } from "./TrekWhatSays";
+export { default as TrekReviews } from "./TrekReviews";
 export { default as SustainableTrekking } from "./SustainableTrekking";
 export { default as BookYourTrek } from "./BookYourTrek";
 export { default as SafetyStandards } from "./SafetyStandards";

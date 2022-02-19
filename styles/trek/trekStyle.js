@@ -698,6 +698,10 @@ export const trekStyle = css.global`
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
   }
 
+  .trek_card.review_card {
+    min-height: 345px;
+  }
+
   .card_sec {
     margin: 20px 0;
   }
@@ -1445,6 +1449,10 @@ export const trekStyle = css.global`
 
   .c-images > p:nth-child(1) {
     display: none;
+  }
+
+  .review_modal > .modal-dialog > .modal-content > .modal-body {
+    background: #ffffff;
   }
 
   @media only screen and (max-width: 660px) {
