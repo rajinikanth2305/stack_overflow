@@ -5,7 +5,7 @@ import { RichText } from "prismic-reactjs";
 import Document, { NextScript } from "next/document";
 
 // Project components & functions
-import { UpComingTreksSliceZone } from "components/upcoming";
+import { ContactUsSliceZone } from "components/contact-us";
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
@@ -30,11 +30,7 @@ const ContactUs = ({ doc }) => {
           <title>Contact Us</title>
         </Head>
         <HikeHeader />
-        {/* <UpComingTreksSliceZone sliceZone={doc.data.body} /> */}
-        <div className="mt-5 py-5 text-center">
-          <h3>Contact Us</h3>
-          <h4>Under development.!!</h4>
-        </div>
+        <ContactUsSliceZone sliceZone={doc.data.body} />
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
@@ -52,7 +48,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const doc =
     (await client.getSingle(
-      "hike_upcoming_treks_ctype",
+      "aboutus_type",
       ref ? { ref } : null
     )) || {};
 

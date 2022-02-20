@@ -31,6 +31,10 @@ export const customStyles = css.global`
     background-position: bottom;
   }
 
+  .banner-image-desktop.c-us-bg {
+    height: 360px;
+  }
+
   .help_support_bg {
     width: 100%;
     height: 350px;
@@ -1878,6 +1882,22 @@ export const customStyles = css.global`
   .pl-border-yel {
     border-left: 2px solid #ffc100;
     padding-left: 20px;
+  }
+
+  .border-bottom-4 {
+    border-bottom: 4px solid rgb(255, 193, 0);
+  }
+
+  .bg-peach {
+    background: rgba(255,193,0,0.102);
+  }
+
+  .gtimage {
+    height: 85px;
+  }
+
+  .card.faq-card {
+    box-shadow: 0px 1px 4px rgb(112,112,112) !important;
   }
 
   @media only screen and (max-width: 660px) {
