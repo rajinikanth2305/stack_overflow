@@ -2126,6 +2126,18 @@ export const customStyles = css.global`
     .mpy-0 {
       padding: 0 !important;
     }
+    
+    .mmt-10 {
+      margin-top: 20px !important;
+    }
+
+    .gtimage {
+      height: 50px;
+    }
+
+    .bg-peach.p-4 {
+      padding: 15px 0 0 0 !important;
+    }
 
     .mx-4.m-mx-0 {
       margin: 0 10px !important;
@@ -2244,6 +2256,19 @@ export const customStyles = css.global`
       position: relative;
       width: 22px;
       height: 22px;
+    }
+
+    .faq_icon_image.faq-mob-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .mmb-10 {
+      margin-bottom: 20px;
+    }
+
+    .card.faq-card.mt-4 {
+      margin-top: 5px !important;
     }
 
     .ml-100 {

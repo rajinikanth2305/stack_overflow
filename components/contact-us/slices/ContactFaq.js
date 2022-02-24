@@ -38,7 +38,7 @@ const ContactFaq = ({ slice }) => {
 
   return (
     <>
-      <div className="container my-5">
+      <div className="container my-5 mmt-10">
         <div className="row border-bottom-4 d-flex align-items-center mb-4">
           <div className="col-md-6">
             <h2 className="title-h2 border-bottom-0">

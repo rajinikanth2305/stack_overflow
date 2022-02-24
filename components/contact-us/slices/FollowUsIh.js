@@ -13,18 +13,29 @@ const FollowUsIh = ({ slice }) => {
     return (
       <div className="col-md-3" key={k}>
         <Link href={url ? url : "#"}>
-          <div className="card faq-card my-4 cursor-pointer">
+          <div className="card faq-card mt-4 cursor-pointer">
             <div className="p-3">
-              {data?.image?.url ? (
-                <img src={data?.image?.url} className="faq_icon_image mb-3" />
-              ) : (
-                <img src="./ip.png" className="faq_icon_image mb-3" />
-              )}
-              <div>
-                <p className="p-text-1">
-                  <b>{RichText.asText(data?.title)}</b>
-                </p>
-                <div className="p-text-4">{RichText.render(data?.details)}</div>
+              <div className="row">
+                <div className="col-3 col-md-12">
+                  {data?.image?.url ? (
+                    <img
+                      src={data?.image?.url}
+                      className="faq_icon_image faq-mob-icon mb-3"
+                    />
+                  ) : (
+                    <img src="./ip.png" className="faq_icon_image faq-mob-icon mb-3" />
+                  )}
+                </div>
+                <div className="col-9 col-md-12">
+                  <div>
+                    <p className="p-text-1">
+                      <b>{RichText.asText(data?.title)}</b>
+                    </p>
+                    <div className="p-text-4">
+                      {RichText.render(data?.details)}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -37,7 +48,7 @@ const FollowUsIh = ({ slice }) => {
     <>
       <div className="my-5">
         <div className="container">
-          <div className="row border-bottom-4 d-flex align-items-center">
+          <div className="row border-bottom-4 d-flex align-items-center mmb-10">
             <div className="col-md-6">
               <h2 className="title-h2 border-bottom-0">
                 {RichText.asText(heading1)}
