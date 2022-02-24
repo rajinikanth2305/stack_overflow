@@ -37,7 +37,7 @@ const WorkAtih = ({ slice }) => {
           </div>
           <div className="col-lg-1 col-md-1 col-12" />
           <div className="col-lg-5 col-md-5 col-12">
-            <div className="card exp-card-blog mx-0 mt-4 mb-5">
+            <div className="card exp-card-blog b1 mx-0 mt-4 mb-5">
               <div className="carrer_video_img">
                 <div className="d-flex align-items-center justify-content-center w-100 h-100">
                   <div className="text-center">

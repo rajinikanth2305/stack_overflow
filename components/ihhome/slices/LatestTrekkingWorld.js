@@ -67,7 +67,7 @@ const LatestTrekkingWorld = ({ slice }) => {
     } else {
       url = data?.button_link?.url;
     }
-    const result = data?.yt_link?.url.split(
+    const result = data?.yt_link?.url?.split(
       /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
     );
     const videoIdWithParams = result && result[2];

@@ -1809,6 +1809,10 @@ export const customStyles = css.global`
     min-height: 450px;
   }
 
+  .exp-card-blog.b1 {
+    min-height: auto;
+  }
+
   .latestTrekWorld_bg {
     position: relative;
     width: 100%;

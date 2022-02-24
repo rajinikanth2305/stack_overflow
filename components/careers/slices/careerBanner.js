@@ -21,10 +21,10 @@ const CareerBanner = ({ slice }) => {
           <div className="bg_overlay h-100">
             <div className="h-100">
               <div className="d-flex align-items-center w-100 h-100">
-                <div className="banner-text-sec">
+                <div className="banner-text-sec w-100">
                   <p className="banner-text-1">{RichText.asText(heading1)}</p>
                   <div className="d-flex align-items-center justify-content-center">
-                    <p className="p-text-2 mb-0 text-white w-40">
+                    <p className="p-text-2 mb-0 text-white w-40 text-center">
                       {RichText.asText(heading2)}
                     </p>
                   </div>
