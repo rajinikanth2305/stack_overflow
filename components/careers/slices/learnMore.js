@@ -57,10 +57,10 @@ const LearnMore = ({ slice, articleData }) => {
 
   return (
     <>
-      <div className="my-5 py-5">
+      <div className="my-5 py-5 mmy-2 mpy-0">
         <div className="container">
           <div className="d-flex flex-wrap align-items-end border-bottom-custom mb-4 pb-08">
-            <div className="col-lg-7 col-md-12">
+            <div className="col-lg-7 col-md-12 col-12">
               <h2 className="title-h2 border-0 mb-0">
                 {RichText.asText(heading1)}
               </h2>

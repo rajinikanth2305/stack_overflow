@@ -1911,6 +1911,14 @@ export const customStyles = css.global`
       background-position: -425px 0;
     }
 
+    .p-text-2.text-center {
+      text-align: left !important;
+    }
+
+    .banner-text-1.m-m-b-5 {
+      margin-bottom: 5px;
+    }
+
     .trekking_world_image_mobile {
       position: relative;
       display: block;
@@ -2249,6 +2257,12 @@ export const customStyles = css.global`
     .ar_right_side_imgs,
     .ar_right_side_imgs > img {
       height: 160px;
+    }
+
+    .c-gallery-img {
+      width: 100%;
+      height: 240px;
+      position: relative;
     }
   }
 
