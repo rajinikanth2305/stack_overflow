@@ -59,7 +59,7 @@ const TrekVideosComponent = ({ slice }) => {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     arrows: true,
     speed: 500,
     slidesToShow: 2,
@@ -70,7 +70,7 @@ const TrekVideosComponent = ({ slice }) => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          infinite: true,
+          infinite: false,
           dots: true
         }
       },

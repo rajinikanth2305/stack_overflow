@@ -18,7 +18,7 @@ const CareersVideos = ({ slice }) => {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 6,
@@ -29,7 +29,7 @@ const CareersVideos = ({ slice }) => {
         settings: {
           slidesToShow: 4,
           slidesToScroll: 2,
-          infinite: true,
+          infinite: false,
           dots: true
         }
       },
