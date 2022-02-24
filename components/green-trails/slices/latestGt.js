@@ -62,7 +62,7 @@ const LatestGt = ({ slice, latestUpdateAarticleData }) => {
     return (
       <div key={index}>
         <div className="card_sec mx-4 m-mx-0">
-          <div className="card trek_card">
+          <div className="card trek_card gt_lt_mob_trek">
             <Link href={url ? url : "#"}>
               <div className="cursor-pointer">
                 <div alt="img" className="gt_lt_img">
@@ -94,7 +94,12 @@ const LatestGt = ({ slice, latestUpdateAarticleData }) => {
                       : RichText.asText(
                           data?.data?.body?.primary?.text?.text
                         )} */}
-                    {data?.data?.body[0]?.primary?.text[0]?.text}
+                    {data?.data?.body[0]?.primary?.text[0]?.text.length > 25
+                      ? `${data?.data?.body[0]?.primary?.text[0]?.text.substring(
+                          0,
+                          100
+                        )}...`
+                      : data?.data?.body[0]?.primary?.text[0]?.text}
                   </p>
                 </div>
               </div>
@@ -109,7 +114,7 @@ const LatestGt = ({ slice, latestUpdateAarticleData }) => {
       <div className="my-5">
         <div className="container">
           <div className="d-flex flex-wrap align-items-end border-bottom-custom mb-4 pb-08">
-            <div className="col-lg-7 col-md-12">
+            <div className="col-lg-7 col-md-12 col-12">
               <h2 className="title-h2 border-0 mb-0">
                 {RichText.asText(heading1)}
               </h2>

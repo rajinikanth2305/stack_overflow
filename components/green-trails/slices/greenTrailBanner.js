@@ -21,7 +21,9 @@ const GreenTrailBanner = ({ slice }) => {
             <div className="h-100">
               <div className="d-flex align-items-center w-100 h-100">
                 <div className="banner-text-sec w-100">
-                  <p className="banner-text-1">{RichText.asText(heading1)}</p>
+                  <p className="banner-text-1 m-m-b-5">
+                    {RichText.asText(heading1)}
+                  </p>
                   <div className="d-flex align-items-center justify-content-center">
                     <p className="p-text-2 mb-0 text-white">
                       {RichText.asText(heading2)}
@@ -38,8 +40,8 @@ const GreenTrailBanner = ({ slice }) => {
             objectPosition="bottom"
           />
         </div>
-        <div className="gt_banner_box m-d-none">
-          <div className="container">
+        <div className="gt_banner_box">
+          <div className="container m-d-none">
             <div className="d-flex justify-content-between">
               <div>
                 <div className="gt_logo">
@@ -52,37 +54,52 @@ const GreenTrailBanner = ({ slice }) => {
                 </div>
               </div>
               <div>
-                <div className="p-text-2-fg t-c-p m-0">{RichText.render(totalTreks)}</div>
-                {/* <p className="p-text-2-fg">Treks</p> */}
+                <div className="p-text-2-fg t-c-p m-0">
+                  {RichText.render(totalTreks)}
+                </div>
               </div>
               <div>
                 <div className="p-text-2-fg t-c-p color-matroon m-0">
                   {RichText.render(kilosOfWaste)}
                 </div>
-                {/* <p className="p-text-2-fg">
-                  Kilos of Waste{" "}
-                  <span className="color-matroon">Collected</span>
-                </p> */}
               </div>
               <div>
                 <div className="p-text-2-fg t-c-p color-blue m-0">
                   {RichText.render(recycling)}
                 </div>
-                {/* <p className="p-text-2-fg">
-                  {" "}
-                  waste diverted from landfill, sent for{" "}
-                  <span className="color-blue">Recycling</span>
-                </p> */}
               </div>
               <div>
                 <div className="p-text-2-fg t-c-p color-green m-0">
                   {RichText.render(wetWaste)}
                 </div>
-                {/* <p className="p-text-2-fg">
-                  {" "}
-                  wet waste management{" "}
-                  <span className="color-green">At source</span>
-                </p> */}
+              </div>
+            </div>
+          </div>
+          <div className="m-d-block">
+            <div className="row">
+              <div className="col-6">
+                <div className="gt_logo">
+                  <Image
+                    src={gtLogo}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="bottom"
+                  />
+                </div>
+                <div className="p-text-2-fg my-4">
+                  {RichText.render(totalTreks)}
+                </div>
+                <div className="p-text-2-fg color-blue m-0">
+                  {RichText.render(recycling)}
+                </div>
+              </div>
+              <div className="col-6" style={{ paddingLeft: '15%' }}>
+                <div className="p-text-2-fg color-matroon m-0">
+                  {RichText.render(kilosOfWaste)}
+                </div>
+                <div className="p-text-2-fg color-green my-4">
+                  {RichText.render(wetWaste)}
+                </div>
               </div>
             </div>
           </div>

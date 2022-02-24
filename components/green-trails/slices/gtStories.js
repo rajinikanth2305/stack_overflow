@@ -42,19 +42,19 @@ const GtStories = ({ slice, latestUpdateAarticleData1 }) => {
     return (
       <div className="col-lg-6 col-md-12" key={index}>
         <Link href={url ? url : "#"}>
-          <div className="card exp-card-blog mx-0 cursor-pointer">
-            <div alt="img" className="latestTrekWorld_bg">
+          <div className="card exp-card-blog gt-blog mx-0 cursor-pointer">
+            <div alt="img" className="latestTrekWorld_bg ltw_img">
               {getArticleImage?.primary?.feature_image.url ? (
                 <img
                   src={getArticleImage?.primary?.feature_image.url}
                   alt="articleImage"
-                  className="latestTrekWorld_bg"
+                  className="latestTrekWorld_bg ltw_img"
                 />
               ) : (
                 <img
                   src="./ip.png"
                   alt="articleImage"
-                  className="latestTrekWorld_bg"
+                  className="latestTrekWorld_bg ltw_img"
                 />
               )}
             </div>
@@ -74,7 +74,7 @@ const GtStories = ({ slice, latestUpdateAarticleData1 }) => {
       <div className="my-5">
         <div className="container">
           <div className="d-flex flex-wrap align-items-end mb-4 pb-08">
-            <div className="col-lg-6 col-md-6">
+            <div className="col-lg-6 col-md-6 col-12">
               <h2 className="title-h2 mb-0">{RichText.asText(heading1)}</h2>
               <p className="p-display-1 m-d-1 mmb-0 mb-0">
                 {RichText.asText(heading2)}
@@ -87,7 +87,7 @@ const GtStories = ({ slice, latestUpdateAarticleData1 }) => {
               <div className="row">{latestTrekWorld}</div>
             </div>
             <div className="col-lg-6 col-md-12">
-              <div className="card exp-card-blog mx-0">
+              <div className="card exp-card-blog gt-blog mx-0">
                 <div className="latest_update_img">
                   <div className="d-flex align-items-center justify-content-center w-100 h-100">
                     <div className="text-center">

@@ -1918,6 +1918,10 @@ export const customStyles = css.global`
     .banner-text-1.m-m-b-5 {
       margin-bottom: 5px;
     }
+    
+    .exp-card-blog.gt-blog {
+      min-height: auto;
+    }
 
     .trekking_world_image_mobile {
       position: relative;
@@ -1933,6 +1937,20 @@ export const customStyles = css.global`
     .help_support_bg {
       position: relative;
       height: auto;
+    }
+
+    .latestTrekWorld_bg.ltw_img {
+      height: 170px;
+    }
+
+    .gt_lt_img {
+      position: relative;
+      height: 160px;
+      width: 100%;
+    }
+
+    .trek_card.gt_lt_mob_trek {
+      min-height: 410px;
     }
 
     .w-40 {
@@ -1960,6 +1978,10 @@ export const customStyles = css.global`
 
     .card-header > button {
       font-size: 14px;
+    }
+
+    .banner-image-desktop.gt {
+      height: 360px;
     }
 
     .btn-ih-green {

@@ -72,7 +72,7 @@ const LuTrekkingWorld = ({ slice }) => {
       "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
     const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
     return (
-      <div key={`latesttrekking` + i} className="py-3 mx-2 mm-0 mp-0">
+      <div key={`latesttrekking` + i} className="py-3 mx-2 mm-0 mp-0 mpy-0">
         <div className="row d-flex">
           <div className="col-lg-6 col-md-12 order-1">
             <div>
@@ -123,7 +123,17 @@ const LuTrekkingWorld = ({ slice }) => {
                 }}
               />
             </div>
-            <div alt="imgs" className="trekking_world_image_mobile">
+            <div alt="imgs" className="trekking_world_image_mobile mb-3">
+              <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                <div className="text-center">
+                  <img
+                    src="/v-icon.png"
+                    alt="playicon'"
+                    className="paly-icon icon-size-50"
+                    onClick={handleShow}
+                  />
+                </div>
+              </div>
               <Image
                 src={imageURL}
                 layout="fill"
@@ -145,7 +155,7 @@ const LuTrekkingWorld = ({ slice }) => {
     <>
       <div className="my-5">
         <div className="container">
-          <div className="d-flex flex-wrap align-items-end border-bottom-custom mb-4 pb-08">
+          <div className="d-flex flex-wrap align-items-end border-bottom-custom mb-4 pb-08 mmb-0 mpy-0">
             <div className="col-md-12">
               <h2 className="title-h2 border-0 mb-0">
                 {RichText.asText(heading1)}
