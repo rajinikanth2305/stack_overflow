@@ -17,14 +17,33 @@ const TrekTrevia = ({ slice }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [show1, setShow1] = useState(false);
+  const handle1Close = () => setShow1(false);
+  const handle1Show = () => setShow1(true);
+  const [trekVideoUrl, setTrekVideoUrl] = useState();
+
   const tabsData = tabsDataArray?.map(function(data, i) {
     let url;
     const slugUrl = data?.read_more_btn_lnk_url?.uid;
     if (slugUrl) {
       url = `/trek/${slugUrl}`;
     }
+    const result = data?.yt_link?.url?.split(
+      /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
+    );
+    const videoIdWithParams = result && result[2];
+
+    const cleanVideoId =
+      videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+
+    const videoUrl =
+      "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
+    const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
     return (
-      <Tab eventKey={i + `tab` + data?.tab_name[0]?.text} title={data?.tab_name[0]?.text}>
+      <Tab
+        eventKey={i + `tab` + data?.tab_name[0]?.text}
+        title={data?.tab_name[0]?.text}
+      >
         <div>
           <p className="p-text-1 border-line-left">
             {RichText.asText(data?.heading1)}
@@ -40,7 +59,7 @@ const TrekTrevia = ({ slice }) => {
             </div>
             <div className="w-100 d-m-none mx-2">
               <div className="hd-tab2-iamge position-change1 mb-4 cursor-pointer">
-                {data?.content_image?.url && (
+                {data?.content_image?.url ? (
                   <>
                     <Image
                       src={data?.content_image?.url}
@@ -55,6 +74,32 @@ const TrekTrevia = ({ slice }) => {
                     <p className="p-text-small font-italic p-a-b">
                       Picture by {RichText.asText(data?.photo_caption)}
                     </p>
+                  </>
+                ) : (
+                  <>
+                    <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                      <div className="text-center">
+                        <img
+                          src="/v-icon.png"
+                          alt="playicon'"
+                          className="paly-icon icon-size-50"
+                          onClick={() => {
+                            setTrekVideoUrl(videoUrl);
+                            setShow1(true);
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <Image
+                      src={imageURL}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="center"
+                      onClick={() => {
+                        setTrekVideoUrl(videoUrl);
+                        setShow1(true);
+                      }}
+                    />
                   </>
                 )}
               </div>
@@ -107,6 +152,22 @@ const TrekTrevia = ({ slice }) => {
               objectPosition="top"
             />
           </div>
+        </Modal.Body>
+      </Modal>
+      <Modal size="lg" show={show1} onHide={handle1Close} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <iframe
+            width="100%"
+            height="500"
+            src={trekVideoUrl && trekVideoUrl}
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </Modal.Body>
       </Modal>
     </>
