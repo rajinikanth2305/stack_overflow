@@ -1,5 +1,13 @@
 import React from "react";
-import { TeamBanner, TeamIntro } from "./slices";
+import {
+  TeamBanner,
+  ThoughtBehind,
+  WhatWeAre,
+  OurIhVideos,
+  CoreIhValues,
+  OurTake,
+  IhTimelineStories
+} from "./slices";
 
 /**
  *  slice zone component
@@ -8,12 +16,20 @@ import { TeamBanner, TeamIntro } from "./slices";
 const AboutUsSliceZone = ({ sliceZone }) =>
   sliceZone.map((slice, index) => {
     switch (slice.slice_type) {
-      case "team_banner":
+      case "aboutih_banner":
         return <TeamBanner slice={slice} key={`slice-${index}`} />;
-      case "team_intro":
-        return <TeamIntro slice={slice} key={`slice-${index}`} />;
-      // case "our_team":
-      //   return <OurTeam slice={slice} key={`slice-${index}`} />;
+      case "thought_behind":
+        return <ThoughtBehind slice={slice} key={`slice-${index}`} />;
+      case "what_we_are":
+        return <WhatWeAre slice={slice} key={`slice-${index}`} />;
+      case "our_videos":
+        return <OurIhVideos slice={slice} key={`slice-${index}`} />;
+      case "core_values":
+        return <CoreIhValues slice={slice} key={`slice-${index}`} />;
+      case "our_take":
+        return <OurTake slice={slice} key={`slice-${index}`} />;
+      case "ih_timeline_story":
+        return <IhTimelineStories slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }

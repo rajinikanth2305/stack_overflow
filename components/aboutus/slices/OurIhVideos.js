@@ -8,8 +8,8 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Image from "next/image";
 
-const GtVideos = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
+const OurIhVideos = ({ slice }) => {
+  const heading = slice.primary.heading;
   const ihTrekkerVideosImageArray = slice.items;
   const [show, setShow] = useState(false);
   const [trekVideoUrl, setTrekVideoUrl] = useState();
@@ -55,7 +55,7 @@ const GtVideos = ({ slice }) => {
   };
 
   const ihTrekkerVideosImage = ihTrekkerVideosImageArray.map(function(data, i) {
-    const result = data?.video_link?.url.split(
+    const result = data?.yt_link?.url.split(
       /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
     );
     const videoIdWithParams = result && result[2];
@@ -95,7 +95,7 @@ const GtVideos = ({ slice }) => {
       <div className="mb-4 career_video_sec_grey">
         <div className="trek_video_badge">
           <img src="/trek-badge_badge.png" />
-          <span>{RichText.asText(heading1)}</span>
+          <span>{RichText.asText(heading)}</span>
         </div>
         <div className="container container-custom my-4">
           <div className="m-mt-15">
@@ -128,4 +128,4 @@ const GtVideos = ({ slice }) => {
   );
 };
 
-export default GtVideos;
+export default OurIhVideos;

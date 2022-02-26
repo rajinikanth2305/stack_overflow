@@ -1904,6 +1904,20 @@ export const customStyles = css.global`
     box-shadow: 0px 1px 4px rgb(112,112,112) !important;
   }
 
+  .pillar-card.card {
+    margin: 0 10px;
+    border-radius: 0;
+    max-height: 340px;
+    min-height: 340px;
+  }
+
+  .pillar_images {
+    position: relative;
+    height: 50px;
+    background-size: cover;
+    margin: 0 10px;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -1921,6 +1935,11 @@ export const customStyles = css.global`
     
     .exp-card-blog.gt-blog {
       min-height: auto;
+    }
+
+    .pillar-card.card {
+      max-height: 310px;
+      min-height: 270px;
     }
 
     .trekking_world_image_mobile {

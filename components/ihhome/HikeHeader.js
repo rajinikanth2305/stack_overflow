@@ -147,9 +147,9 @@ const HikeHeader = ({ auth = false }) => {
                 ""
               ) : (
                 <NavLink
-                  href="../../../aboutus"
+                  href="../../../ourteam"
                   className={
-                    router.pathname == "/aboutus" ? "active-custom" : ""
+                    router.pathname == "/ourteam" ? "active-custom" : ""
                   }
                 >
                   Our Story

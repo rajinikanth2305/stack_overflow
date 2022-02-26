@@ -8,12 +8,12 @@ import { HikeHeader } from "components/ihhome";
 import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
-import { AboutUsSliceZone } from "../components/aboutus";
+import { OurTeamSliceZone } from "../components/ourteam";
 
 /**
  * Aboutus component
  */
-const AboutUs = ({ doc }) => {
+const ourTeam = ({ doc }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -21,10 +21,10 @@ const AboutUs = ({ doc }) => {
          <meta charset="utf-8"/>
          <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-         <title>Aboutus - India hikes</title>
+         <title>Team - India hikes</title>
         </Head>
         <HikeHeader/>
-        <AboutUsSliceZone sliceZone={doc.data.body} />
+        <OurTeamSliceZone sliceZone={doc.data.body} />
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
@@ -41,7 +41,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const client = Client()
 
-  const doc = await client.getSingle("aboutih_type", ref ? { ref } : null) || {}
+  const doc = await client.getSingle("hike_team", ref ? { ref } : null) || {}
 
   return {
     props: {
@@ -51,4 +51,4 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   }
 }
 
-export default AboutUs;
+export default ourTeam;
