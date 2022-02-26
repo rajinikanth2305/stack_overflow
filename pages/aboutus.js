@@ -13,7 +13,7 @@ import { AboutUsSliceZone } from "../components/aboutus";
 /**
  * Aboutus component
  */
-const AboutUs = ({ doc }) => {
+const AboutUs = ({ doc, articleData }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -24,7 +24,7 @@ const AboutUs = ({ doc }) => {
          <title>Aboutus - India hikes</title>
         </Head>
         <HikeHeader/>
-        <AboutUsSliceZone sliceZone={doc.data.body} />
+        <AboutUsSliceZone sliceZone={doc.data.body} articleData={articleData} />
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
@@ -43,10 +43,29 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const doc = await client.getSingle("aboutih_type", ref ? { ref } : null) || {}
 
+  const articleData = [];
+  const slice = doc.data?.body?.find(
+    x => x.slice_type === "ih_media"
+  );
+
+  if (slice.items.length > 0) {
+    for (var i = 0; i < slice.items.length; i++) {
+      const data = slice.items[i];
+      const slugUrl = data && data?.article_link?.id;
+      if (slugUrl !== undefined) {
+        const article_details = await Client().getByID(slugUrl);
+        articleData.push(article_details);
+      }
+    }
+  } else {
+    return false;
+  }
+
   return {
     props: {
       doc,
-      preview
+      preview,
+      articleData,
     }
   }
 }

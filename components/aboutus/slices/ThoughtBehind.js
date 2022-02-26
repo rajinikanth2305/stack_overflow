@@ -35,7 +35,7 @@ const ThoughtBehind = ({ slice }) => {
             <div className="p-text-1">{RichText.render(heading2)}</div>
             <div className="p-text-4">{RichText.render(details)}</div>
             <div className="card exp-card-blog b1 mx-0 mt-4 mb-5">
-              <div className="carrer_video_img">
+              <div className="carrer_video_img cursor-pointer">
                 <div className="d-flex align-items-center justify-content-center w-100 h-100">
                   <div className="text-center">
                     <img

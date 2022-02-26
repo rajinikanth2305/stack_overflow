@@ -6,14 +6,16 @@ import {
   OurIhVideos,
   CoreIhValues,
   OurTake,
-  IhTimelineStories
+  IhTimelineStories,
+  IhTalks,
+  IhMedia
 } from "./slices";
 
 /**
  *  slice zone component
  */
 
-const AboutUsSliceZone = ({ sliceZone }) =>
+const AboutUsSliceZone = ({ sliceZone, articleData }) =>
   sliceZone.map((slice, index) => {
     switch (slice.slice_type) {
       case "aboutih_banner":
@@ -30,6 +32,10 @@ const AboutUsSliceZone = ({ sliceZone }) =>
         return <OurTake slice={slice} key={`slice-${index}`} />;
       case "ih_timeline_story":
         return <IhTimelineStories slice={slice} key={`slice-${index}`} />;
+      case "ih_talks":
+        return <IhTalks slice={slice} key={`slice-${index}`} />;
+        case "ih_media":
+        return <IhMedia slice={slice} key={`slice-${index}`} articleData={articleData} />;
       default:
         return null;
     }

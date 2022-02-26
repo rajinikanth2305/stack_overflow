@@ -5,3 +5,5 @@ export { default as OurIhVideos } from "./OurIhVideos";
 export { default as CoreIhValues } from "./CoreIhValues";
 export { default as OurTake } from "./OurTake";
 export { default as IhTimelineStories } from "./IhTimelineStories";
+export { default as IhTalks } from "./IhTalks";
+export { default as IhMedia } from "./IhMedia";

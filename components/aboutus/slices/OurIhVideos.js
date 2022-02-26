@@ -92,7 +92,7 @@ const OurIhVideos = ({ slice }) => {
 
   return (
     <>
-      <div className="mb-4 career_video_sec_grey">
+      <div className="mb-4 career_video_sec">
         <div className="trek_video_badge">
           <img src="/trek-badge_badge.png" />
           <span>{RichText.asText(heading)}</span>

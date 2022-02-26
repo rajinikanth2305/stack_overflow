@@ -1918,6 +1918,11 @@ export const customStyles = css.global`
     margin: 0 10px;
   }
 
+  .abt_vid_img {
+    position: relative;
+    height: 250px;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

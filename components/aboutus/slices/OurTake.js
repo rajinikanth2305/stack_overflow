@@ -75,7 +75,7 @@ const OurTake = ({ slice }) => {
               </div>
               <div className="col-lg-7 col-md-12">
                 <div className="ft-how-do-tabs">
-                  <Tabs className="fam-tabs fam-tabs-gt">{tabsData}</Tabs>
+                  <Tabs className="fam-tabs">{tabsData}</Tabs>
                 </div>
               </div>
             </div>

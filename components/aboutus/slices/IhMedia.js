@@ -4,7 +4,7 @@ import { customStyles } from "styles";
 import Image from "next/image";
 import Link from "next/link";
 
-const LearnMore = ({ slice, articleData }) => {
+const IhMedia = ({ slice, articleData }) => {
   const heading1 = slice.primary.heading1;
   const heading2 = slice?.primary?.heading2;
   const articleArray = slice.items;
@@ -82,4 +82,4 @@ const LearnMore = ({ slice, articleData }) => {
   );
 };
 
-export default LearnMore;
+export default IhMedia;
