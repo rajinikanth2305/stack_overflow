@@ -25,10 +25,6 @@ const WhatSoDifferent = ({ slice }) => {
     "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
   const youtube_imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
 
-  const heading2data = heading2.map((data, i) => {
-    return <p key={i}>{data.text}</p>;
-  });
-
   return (
     <>
       <div>
@@ -63,7 +59,6 @@ const WhatSoDifferent = ({ slice }) => {
                   </div>
                 </div>
               </div>
-              {/* <p className="p-text-4">{heading2data}</p> */}
               <div className="p-text-4">{RichText.render(heading2)}</div>
               <div className="d-flex justify-content-end m-j-c-c">
                 <button className="btn btn-bihtn-yellow">Read More</button>

@@ -1035,7 +1035,7 @@ export const trekStyle = css.global`
   .terk-videos-promary-image {
     background-color: #f1f3f4;
     position: relative;
-    height: 375px;
+    height: 405px;
   }
 
   .terk-videos-secondary-image {

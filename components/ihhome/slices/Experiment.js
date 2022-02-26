@@ -47,11 +47,11 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
           <Link href={url ? url : "#"}>
             <div>
               <div className="expImage">
-                <img
+                {getArticleImage?.primary?.feature_image.url ? <img
                   src={getArticleImage?.primary?.feature_image.url}
                   alt="articleImage"
                   className="expImage"
-                />
+                /> : <img src="./ip.png" className="expImage" /> }
               </div>
               <div className="p-3">
                 <div className="">

@@ -146,14 +146,14 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
             <div className="card_sec">
               <div className="card trek_card">
                 <div alt="imgs" className="choose_trek_image">
-                  {tData.primary.trek_banner_image.url && (
+                  {tData.primary.trek_banner_image.url ? (
                     <Image
                       src={tData.primary.trek_banner_image.url}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"
                     />
-                  )}
+                  ) : <img src="./ip.png" className="choose_trek_image" />}
                 </div>
                 <div className="px-3 py-2">
                   <div className="d-flex align-items-center card-info-text">
