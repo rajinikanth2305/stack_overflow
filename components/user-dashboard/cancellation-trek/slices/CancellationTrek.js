@@ -40,6 +40,7 @@ const CancellationTrek = () => {
   const [cancelPercentage,setCancelPercentage]=useState(15);
   const [flagValue,setFlagValue]=useState('trek-p-cancel');
   const toast = useRef(null);
+
   const {
     register,
     handleSubmit,
@@ -204,15 +205,22 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
         participantList.push(key);
       }
     });*/
+    let offloadingPath=false;
+    if(flagValue==='trek-p-cancel') {
+      offloadingPath=false;
+    }
+    else {
+      offloadingPath=true;
+    }
 
     if (participantList.length > 0) {
       console.log(participantList);
-      cancelParticipantBooking(bookings.id,moneytaryRefund,false, participantList).then(
+      cancelParticipantBooking(bookings.id,moneytaryRefund,offloadingPath, participantList).then(
         res => {
           toast.current.show({
             severity: "info",
             summary: `'Cancelled successfully'`,
-            detail: "Cancel-Trek-Booking"
+            detail: "Cancel-Booking"
           });
           router.push(`/user-dashboard/user-upcoming-treks`);
           //fetchAndBindUserBookings(upComingTrek.email);
@@ -223,7 +231,7 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
       toast.current.show({
         severity: "error",
         summary: `'None of the participant selected for cancellation'`,
-        detail: "Cancel-Trek-Booking"
+        detail: "Cancel-Booking"
       });
     }
   };
@@ -303,8 +311,12 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
       <div className="my-5">
         <div className="container">
           <div>
-            <h5 className="p-text-2-fg b-left-maroon-3px mb-3">
-              Cancellation of Trek Booking
+            <h5 className="p-text-2-fg b-left-maroon-3px mb-3"> 
+             { flagValue==='trek-p-cancel' ? (
+              <span>Cancellation of Trek Booking</span>
+              ) : 
+              <span>Cancellation of Offload Booking</span>
+             }
             </h5>
 
             <div className="row">
@@ -313,23 +325,31 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                   <div className="col-lg-7 col-md-12">
                     <div className="d-flex align-items center p-cancel-text-fg">
                       <div className="col-3">
-                        <p>trek fee per participant</p>
+                        
+                        { flagValue==='trek-p-cancel' ? (
+                               <p>trek fee per participant</p>
+                                ) : 
+                                <p>Offloading fee per participant</p>
+                              }
                         <p>Trek Name</p>
                         <p>date of booking</p>
                         <p>date of cancellation</p>
                         <p>cancellation policy applicable</p>
                       </div>
                       <div className="mx-3 col-8 m-l-border px-3">
-                        <p>
-                          Rs. {bookings?.trekFee} (incl. taxes and mandatory trek insurance)
-                        </p>
+                        
+                        { flagValue==='trek-p-cancel' ? (
+                          <span>Rs. {bookings?.trekFee} (incl. taxes and mandatory trek insurance)</span>)
+                          :
+                          <span>Rs. {bookings?.backPackOffloadingCostPerDay * bookings?.backPackOffloadingDays} (incl. taxes)</span>
+                        }
                         <p>{bookings?.trekName}</p>
                         <p>{moment(bookings?.startDate).format("DD MMM YYYY")}</p>
                         <p>{moment(bookings?.endDate).format("DD MMM YYYY")}</p>
                         <p>
                           Cancellation 30 days before the starting date of the
-                          trek — Get your full trek fee back in an Indiahikes
-                          Trek Voucher OR get a monetary refund with 15%
+                          Trek — Get your full  fee back in an Indiahikes
+                          Voucher OR get a monetary refund with 15%
                           cancellation charges.
                         </p>
                       </div>
