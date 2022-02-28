@@ -40,17 +40,17 @@ const RentGear  = forwardRef((props, ref) => {
 
 
    const initData = (data) => {
-    console.log(data);
+   // console.log(data);
     if(deriveBookingState(data)==true) {
       
        if(wooOrders.length==0) {
          getWooCustomerId(data.email).then (customerData=>{
           if(customerData.length>0) {
             const customer_id=customerData[0].id;
-            console.log(customer_id);
+           // console.log(customer_id);
             setWooCustomer(customerData[0]);
             getWooCustomerOrders(customer_id).then(orders=>{
-              console.log(orders);
+             // console.log(orders);
               setWooOrders(orders);
               const filteredOrder= filterTrek(data,orders);
               preparePresentation(filteredOrder);
@@ -97,9 +97,9 @@ const RentGear  = forwardRef((props, ref) => {
         const dt1=order.meta_data.find(me=>me.key.toLowerCase()==="ih_order_trek_start_date"); //6th Feb, 2022
         const dt2=order.meta_data.find(me=>me.key.toLowerCase()==="ih_order_trek_end_date"); // 11th Feb, 2022
 
-        console.log(dt1);
-        console.log(dt2);
-        console.log(trek);
+     //   console.log(dt1);
+     //   console.log(dt2);
+     //   console.log(trek);
        
         if(trek!==undefined 
           && trek.value.toLowerCase()===trekName.toLowerCase()) {

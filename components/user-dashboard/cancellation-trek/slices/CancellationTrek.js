@@ -11,7 +11,8 @@ import {
   getBatchInfoByUserAndBatchId,
   cancelUserBooking,
   findUserByEmail,
-  cancelParticipantBooking
+  cancelParticipantBooking,
+  getBackPackOffloadingUserStatus
 } from "../../../../services/queries";
 import moment from "moment";
 import { useRouter } from "next/router";
@@ -102,6 +103,12 @@ const CancellationTrek = () => {
           setCancelPercentage(cancelPercent);
           console.log(cancelPercent);
         }
+        setParticipants(lparticipants);
+        const arr = Array.from(new Array(lparticipants.length), (x, i) => i);
+       // console.log(arr.length);
+        setIndexes(arr);
+        setCounter(arr.length);
+        setRender(true);
   }
   else {
     bookingData.participants
@@ -112,17 +119,29 @@ const CancellationTrek = () => {
           cancelPercent=x?.backpackOffloadingCancellationPercentage;
         });
 
-        if(lparticipants.length > 0)
+        if(lparticipants.length > 0) {
            setCancelPercentage(cancelPercent);
-      }
+        }
+      
+      let filteredlparticipants=[];
+      /// filter particpants only cancelled for offloadingParticipantStatus!==initiated
+     // console.log(bookingData);
+     // getBackPackOffloadingUserStatus(bookingData.id).then(res=> {
 
-    setParticipants(lparticipants);
+       // res?.map(x=>{
+         // if(x.offloadingParticipantStatus!=="INITIATED") {
+           // filteredlparticipants.push(lparticipants.find(y=>y.participantId==x.participantId));
+          //}
+        //});
 
-    const arr = Array.from(new Array(lparticipants.length), (x, i) => i);
-   // console.log(arr.length);
-    setIndexes(arr);
-    setCounter(arr.length);
-    setRender(true);
+        setParticipants(lparticipants);
+        const arr = Array.from(new Array(lparticipants.length), (x, i) => i);
+       // console.log(arr.length);
+        setIndexes(arr);
+        setCounter(arr.length);
+        setRender(true);
+     // });
+    }
   };
 
   //"backpackOffloadingAmountPaid": 0,
@@ -350,7 +369,7 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                               sdata?.lastName;
 
                         const state =sdata?.bookingParticipantState === "CANCELLED";
-                        console.log(sdata.cancelled);
+                        console.log(sdata?.cancelled);
                         return (
                           <>
                             <tr key={sdata?.id}>
@@ -387,14 +406,14 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                                    sdata?.amountPaid : sdata?.backpackOffloadingAmountPaid
                                 }
                                 </td>
-                              <td>{sdata.cancellationCharge}</td>
+                              <td>{sdata?.cancellationCharge}</td>
 
                               {moneytaryRefund==false && (
-                              <td>{sdata.voucherCredited}</td>
+                              <td>{sdata?.voucherCredited}</td>
                               )}
 
                               {moneytaryRefund==true && (
-                              <td>{sdata.moneyCredited}</td>
+                              <td>{sdata?.moneyCredited}</td>
                               )}
                             </tr>
                           </>
@@ -471,7 +490,7 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                         {moment(bookings?.startDate).format("DD MMM YYYY")} -{moment(bookings?.endDate).format("DD MMM YYYY")}
                         </p>
                         <p className="p-text-3-fg mb-2">
-                          Cancellation for {participants?.filter(x=>x.cancelled==true).length} of {participants?.length} participants
+                          Cancellation for {participants?.filter(x=>x?.cancelled==true).length} of {participants?.length} participants
                         </p>
 
                         <div className="d-flex justify-content-between mt-4 pt-2">

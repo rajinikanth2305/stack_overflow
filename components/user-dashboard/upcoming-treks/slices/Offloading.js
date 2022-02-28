@@ -8,7 +8,7 @@ import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import {
-  getUserVoucher,getUsersVoucherByBookingId
+  getUserVoucher,getUsersVoucherByBookingId,getBackPackOffloadingUserStatus
 } from "../../../../services/queries";
 import { Dropdown } from "primereact/dropdown";
 import { useForm, Controller } from "react-hook-form";
@@ -85,41 +85,53 @@ const Offloading = forwardRef((props, ref) => {
           const offLoadingFee=Math.round(fee+tax);
           
           const offLoadingList=[];
+        
 
-          data?.userTrekBookingParticipants.map(pdata=> {
-           offLoadingList.push(
-             {
-               id: pdata.participantId,
-               name:  pdata?.userDetailsForDisplay.email === data.email
-                 ? " * " + pdata?.userDetailsForDisplay.firstName +
-                   pdata?.userDetailsForDisplay.lastName +
-                   " (You) "
-                 : pdata?.userDetailsForDisplay.firstName +
-                   pdata?.userDetailsForDisplay.lastName,
-               //voucher: vouchers,
-               offloadingFee:offLoadingFee ,
-               youPay: offLoadingFee,
-               offloadingStatus: "",
-               optedVoucherId:'',
-               voucherAmount:0,
-               voucherId:'',
-               selected:false,
-               email:pdata?.userDetailsForDisplay.email
-             }
-          );
-         });
+          getBackPackOffloadingUserStatus(data.bookingId).then(resData => {
+            //console.log(resData);
+            data?.userTrekBookingParticipants.map(pdata=> {
+              const offloadUser=resData?.find(x=>x.participantId===pdata.participantId);
 
-         setOffLoadings(offLoadingList);
-        // console.log(offLoadingList);
+              if(offloadUser==undefined || offloadUser==null ) {
 
-          const arr = Array.from(
-            new Array(data?.userTrekBookingParticipants?.length),
-            (x, i) => i
-          );
-
-          setIndexes(arr);
-          setCounter(arr.length);
-          setRender(true);
+              offLoadingList.push(
+                {
+                  id: pdata.participantId,
+                  name:  pdata?.userDetailsForDisplay.email === data.email
+                    ? " * " + pdata?.userDetailsForDisplay.firstName +
+                      pdata?.userDetailsForDisplay.lastName +
+                      " (You) "
+                    : pdata?.userDetailsForDisplay.firstName +
+                      pdata?.userDetailsForDisplay.lastName,
+                  //voucher: vouchers,
+                  offloadingFee:offLoadingFee ,
+                  youPay: offLoadingFee,
+                  offloadingStatus: "",
+                  optedVoucherId:'',
+                  voucherAmount:0,
+                  voucherId:'',
+                  selected:false,
+                  email:pdata?.userDetailsForDisplay.email,
+                  offloadingParticipantStatus:"INITIATED",
+                  bookingParticipantState:pdata?.bookingParticipantState
+                }
+             );
+              }
+            });
+            setOffLoadings(offLoadingList);
+            console.log(offLoadingList);
+            console.log(offLoadingList.length);
+    
+              const arr = Array.from(
+                new Array(offLoadingList?.length),
+                (x, i) => i
+              );
+              console.log(arr.length);
+              setIndexes(arr);
+              setCounter(arr.length);
+              setRender(true);
+          });
+       
       }
       else {
         setIndexes([]);
@@ -310,6 +322,7 @@ const Offloading = forwardRef((props, ref) => {
                       indexes.map(index => {
                       const fieldName = `voucher[${index}]`;
                       const sdata = offLoadings[index];
+                      console.log(sdata);
                       const lvouchers = [];
 
                       if (vouchers?.length > 0) {
@@ -322,19 +335,22 @@ const Offloading = forwardRef((props, ref) => {
                           });
                       }
 
-
+                  
                         let status =0;
                         const state= sdata?.bookingParticipantState==="CANCELLED";
                         if(state==true) {
                           status=0;
                         }
                         else {
-                          if (sdata?.offloadingStatus==="Not Required" 
+                         /* if (sdata?.offloadingStatus==="Not Required" 
                           || sdata?.offloadingStatus==="paid"){
+                            //status= 0;
+                          }*/
+                          if (sdata?.offloadingParticipantStatus!== "INITIATED") {
                             status= 0;
                           }
                           else {
-                            status= 1
+                            status= 1;
                           }
                         }
                       return (
