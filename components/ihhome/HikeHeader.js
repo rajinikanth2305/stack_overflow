@@ -55,6 +55,7 @@ const HikeHeader = ({ auth = false }) => {
             id="IH_Logo_in_PNG"
             src="/IH_Logo_in_PNG@2x.png"
             className="logo-Icon"
+            alt="imgs"
           />
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />

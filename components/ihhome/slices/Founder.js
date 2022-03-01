@@ -72,6 +72,7 @@ const Founder = ({ slice }) => {
                       objectFit="cover"
                       objectPosition="bottom"
                       onClick={handleShow}
+                      alt="imgs"
                     />
                   </div>
                 </div>
@@ -119,6 +120,7 @@ const Founder = ({ slice }) => {
                   objectFit="cover"
                   objectPosition="bottom"
                   onClick={handleShow}
+                  alt="imgs"
                 />
               </div>
             </div>

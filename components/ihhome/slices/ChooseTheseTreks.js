@@ -145,13 +145,14 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
           <Link href={url ? url : "#"}>
             <div className="card_sec">
               <div className="card trek_card">
-                <div alt="imgs" className="choose_trek_image">
+                <div className="choose_trek_image">
                   {tData.primary.trek_banner_image.url ? (
                     <Image
                       src={tData.primary.trek_banner_image.url}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"
+                      alt="imgs"
                     />
                   ) : <img src="./ip.png" className="choose_trek_image" />}
                 </div>

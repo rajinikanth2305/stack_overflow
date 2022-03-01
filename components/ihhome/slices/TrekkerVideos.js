@@ -75,12 +75,13 @@ const TrekkerVideos = ({ slice }) => {
       <div className="mx-2 m-mx-0">
         <div className="card_sec">
           <div className="card video_trek_card">
-            <div alt="imgs" className="ih_trekker_videos_image">
+            <div className="ih_trekker_videos_image">
               <Image
                 src={imageURL}
                 layout="fill"
                 objectFit="cover"
                 objectPosition="50% 50%"
+                alt="imgs"
                 onClick={() => {
                   setTrekVideoUrl(videoUrl);
                   setShow(true);

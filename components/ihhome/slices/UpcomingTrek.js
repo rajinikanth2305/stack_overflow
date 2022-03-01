@@ -87,6 +87,7 @@ const UpcomingTrek = ({ slice }) => {
                   layout="fill"
                   objectFit="cover"
                   objectPosition="50% 50%"
+                  alt="imgs"
                 />
                 <div className="image_overlay_text_area">
                   <div className="p-absolute">
@@ -109,6 +110,7 @@ const UpcomingTrek = ({ slice }) => {
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"
+                      alt="imgs"
                     />
                     <div className="image_overlay_text_area_layout4">
                       <div className="p-absolute">
@@ -131,6 +133,7 @@ const UpcomingTrek = ({ slice }) => {
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"
+                      alt="imgs"
                     />
                     <div className="image_overlay_text_area_layout4">
                       <div className="p-absolute">
@@ -156,6 +159,7 @@ const UpcomingTrek = ({ slice }) => {
                     layout="fill"
                     objectFit="cover"
                     objectPosition="50% 50%"
+                    alt="imgs"
                   />
                   <div className="image_overlay_text_area_layout4">
                     <div className="p-absolute">
@@ -176,6 +180,7 @@ const UpcomingTrek = ({ slice }) => {
                     layout="fill"
                     objectFit="cover"
                     objectPosition="50% 50%"
+                    alt="imgs"
                   />
                   <div className="image_overlay_text_area_layout4">
                     <div className="p-absolute">
@@ -196,6 +201,7 @@ const UpcomingTrek = ({ slice }) => {
                     layout="fill"
                     objectFit="cover"
                     objectPosition="50% 50%"
+                    alt="imgs"
                   />
                   <div className="image_overlay_text_area_layout4">
                     <div className="p-absolute">

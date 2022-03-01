@@ -866,4 +866,23 @@ export const upcomingTrekPageStyle = css.global`
       padding: 3px 30px !important;
     }
   }
+
+  @media (min-width: 992px) and (max-width: 1185px) {
+    .trek_card {
+      min-height: 100% !important;
+    }
+
+    .p-btn-btm {
+      position: relative !important;
+      bottom: 0 !important;
+      width: 100% !important;
+    }
+  }
+
+  @media (min-width: 700px) and (max-width: 1300px) {
+    .title-diplay-3 {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
 `;

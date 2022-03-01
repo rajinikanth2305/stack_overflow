@@ -106,7 +106,6 @@ const LatestTrekkingWorld = ({ slice }) => {
           </div>
           <div className="col-lg-6 col-md-12">
             <div
-              alt="imgs"
               className="trekking_world_image_desktop cursor-pointer"
             >
               <div className="d-flex align-items-center justify-content-center w-100 h-100">
@@ -125,6 +124,7 @@ const LatestTrekkingWorld = ({ slice }) => {
                   layout="fill"
                   objectFit="cover"
                   objectPosition="50% 50%"
+                  alt="imgs"
                   onClick={() => {
                     setImgUrl(videoUrl);
                     setShow(true);
@@ -134,13 +134,14 @@ const LatestTrekkingWorld = ({ slice }) => {
                 <img src="./ip.png" />
               )}
             </div>
-            <div alt="imgs" className="trekking_world_image_mobile">
+            <div className="trekking_world_image_mobile">
               {imageURL ? (
                 <Image
                   src={imageURL}
                   layout="fill"
                   objectFit="cover"
                   objectPosition="top"
+                  alt="imgs"
                   onClick={() => {
                     setImgUrl(videoUrl);
                     setShow(true);

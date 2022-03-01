@@ -69,12 +69,13 @@ const Gallery = ({ slice }) => {
     return (
       <>
         <div className="mx-2 gallery_slik_custom" key={i}>
-          <div alt="imgs" className="h_g_images_style">
+          <div className="h_g_images_style">
             <Image
               src={data.home_gallery_image.url}
               layout="fill"
               objectFit="cover"
               objectPosition="50% 50%"
+              alt="imgs"
             />
           </div>
         </div>

@@ -44,7 +44,7 @@ const WeeklyMailer = ({ slice }) => {
           <div className="row">
             <div className="col-lg-6 col-md-12">
               {/* <Image src={imageUrl} width={imageWidth} height={imageHeight} /> */}
-              <img src={imageUrl} className="founder-image" />
+              <img src={imageUrl} className="founder-image" alt="imgs" />
             </div>
             <div className="col-lg-6 col-md-12">
               <p className="founder_message">

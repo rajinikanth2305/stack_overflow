@@ -53,12 +53,13 @@ const FeaturedTreks = ({ slice }) => {
     return (
       <>
         <div className="mx-2" key={i}>
-          <div alt="imgs" className="featured_treks_image">
+          <div className="featured_treks_image">
             <Image
               src={data.featured_treks_image.url}
               layout="responsive"
               height="70px"
               width="170px"
+              alt="imgs"
               // objectFit="cover"
               // objectPosition="right top"
             />

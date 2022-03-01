@@ -23,6 +23,7 @@ const HomeFooter = ({ slice }) => {
             layout="fill"
             objectFit="cover"
             objectPosition="50% 50%"
+            alt="imgs"
           />
         </div>
         <div className="footer_bg">

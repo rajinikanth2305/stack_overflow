@@ -60,12 +60,13 @@ const DoItYourself = ({ slice }) => {
     return (
       <div key={i}>
         <div className="mx-2 m-mx-0">
-          <div alt="imgs" className="doit_images">
+          <div className="doit_images">
             <Image
               src={data.doit_image.url}
               layout="fill"
               objectFit="cover"
               objectPosition="50% 50%"
+              alt="imgs"
             />
           </div>
           <p className="doit_img_caption">{data.doit_image_caption[0].text}</p>

@@ -72,12 +72,13 @@ const TrekkersStories = ({ slice }) => {
           <Link href={url ? url : '#'}>
             <div className="card_sec">
               <div className="card trek_card">
-                <div alt="imgs" className="choose_trek_image">
+                <div className="choose_trek_image">
                   <Image
                     src={data.trekkers_stories_image.url}
                     layout="fill"
                     objectFit="cover"
                     objectPosition="50% 50%"
+                    alt="imgs"
                     // width={350}
                     // height={215}
                   />

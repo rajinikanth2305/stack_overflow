@@ -183,6 +183,7 @@ const LatestUpdatesTrekkings = ({
                       layout="fill"
                       objectFit="cover"
                       objectPosition="center"
+                      alt="imgs"
                       onClick={handleShow}
                     />
                   </div>

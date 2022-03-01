@@ -122,4 +122,22 @@ export const whyTrekWithStyles = css.global`
       min-height: 270px;
     }
   }
+
+  @media (min-width: 992px) and (max-width: 1185px) {
+    .p-text-1 {
+      font-size: 18px;
+      line-height: 24px;
+    }
+
+    .pillar-card.card {
+      max-height: 100%;
+      min-height: 100%;
+    }
+
+    .p-btn-btm {
+      position: relative !important;
+      bottom: 0 !important;
+      width: 100% !important;
+    }
+  }
 `;
