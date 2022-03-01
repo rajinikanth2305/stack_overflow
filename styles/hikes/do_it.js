@@ -107,4 +107,10 @@ export const doItStyles = css.global`
       margin-top: 50px !important;
     }
   }
+
+  @media (min-width: 700px) and (max-width: 1300px) {
+    .doit_images {
+      height: 375px;
+    }
+  }
 `;

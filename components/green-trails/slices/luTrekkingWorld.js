@@ -84,7 +84,7 @@ const LuTrekkingWorld = ({ slice }) => {
               </div>
               <div className="text-center mt-4">
                 <button
-                  class="btn btn-lg btn-ih-primary text-capitalized"
+                  className="btn btn-lg btn-ih-primary text-capitalized"
                   onClick={() => {
                     setImgUrl(videoUrl);
                     setShow(true);

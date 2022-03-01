@@ -104,7 +104,7 @@ const TrekFAQS = forwardRef((props, ref) => {
         </Accordion>
         <div className="text-center mt-4">
          
-            <button type="button" class="btn table-btn-yellow-sm"   onClick={e => onTrekPageNavigate()}>
+            <button type="button" className="btn table-btn-yellow-sm"   onClick={e => onTrekPageNavigate()}>
               Go to the trek page
             </button>
          

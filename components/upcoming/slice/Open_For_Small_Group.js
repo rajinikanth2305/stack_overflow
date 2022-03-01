@@ -6,13 +6,11 @@ import { useRouter } from "next/router";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { hrefResolver, linkResolver } from "prismic-configuration";
 import Link from "next/link";
 
 const UCOpenForSmallGroup = ({ slice, ucOpenData }) => {
   const ucOpenForSmallGroupTitle = slice.primary.uc_open_for_small_group_title;
   const ucOpenForSmallGroupDesc = slice.primary.uc_open_for_small_group_desc;
-  const ucOpenForSmallGroupImagesArray = slice.items;
   const router = useRouter();
 
   const settings = {
@@ -21,9 +19,6 @@ const UCOpenForSmallGroup = ({ slice, ucOpenData }) => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    // centerMode: true,
-    //   centerMode: true,
-    // centerPadding: '60px',
     responsive: [
       {
         breakpoint: 1024,
@@ -49,102 +44,18 @@ const UCOpenForSmallGroup = ({ slice, ucOpenData }) => {
           slidesToScroll: 1,
           arrows: false,
           centerMode: true
-          // centerPadding: "20px"
         }
       }
     ]
   };
 
   const goToTrekPage = data => {
-    // e.preventDefault()
-    // router.push('/trek/hampta_pass');
     const slugUrl = data?.target_url.slug;
 
     if (slugUrl) {
-      // const url = linkResolver(data?.target_url);
-      // router.push(url + 'trek/' + slugUrl);
       router.push(`/trek/${data.target_url.uid}`);
     }
   };
-
-  // const ucOpenForSmallGroupImages = ucOpenForSmallGroupImagesArray.map(function(
-  //   data,
-  //   i
-  // ) {
-  //   return (
-  //     <>
-  //       <div className="mx-4 m-mx-0" key={i}>
-  //         <div className="card_sec">
-  //           <div className="card trek_card opn-trek">
-  //             <div alt="imgs" className="uc_open_for_small_group_images">
-  //               <Image
-  //                 src={data.uc_open_for_small_group_images.url}
-  //                 layout="fill"
-  //                 objectFit="cover"
-  //                 objectPosition="50% 50%"
-  //               />
-  //             </div>
-  //             <div className="px-3 py-2">
-  //               <div className="d-flex align-items-center card-info-text">
-  //                 <div>
-  //                   <p>{data.uc_open_days[0].text} Days</p>
-  //                 </div>
-  //                 <div>
-  //                   <p className="list-dot-style px-1">
-  //                     <span>.</span>
-  //                   </p>
-  //                 </div>
-  //                 <div>
-  //                   <p>{data.uc_open_seasons[0].text}</p>
-  //                 </div>
-  //                 <div>
-  //                   <p className="list-dot-style px-1">
-  //                     <span>.</span>
-  //                   </p>
-  //                 </div>
-  //                 <div>
-  //                   <p>{data.uc_open_guide[0].text}</p>
-  //                 </div>
-  //               </div>
-
-  //               <div>
-  //                 <h3 className="title-diplay-3 m-d-3 text-uppercase">
-  //                   {data.uc_open_title[0].text.length > 20
-  //                     ? `${data.uc_open_desc[0].text.substring(0, 20)}...`
-  //                     : data.uc_open_title[0].text}
-  //                 </h3>
-  //                 <p className="p-display-2 md-2">
-  //                   {data.uc_open_desc[0].text.length > 122
-  //                     ? `${data.uc_open_desc[0].text.substring(0, 122)}...`
-  //                     : data.uc_open_desc[0].text}
-  //                 </p>
-  //                 <div className="d-flex align-items-center flex-wrap pt-2 pb-2">
-  //                   <div className="flex-grow-1">
-  //                     {data.uc_open_familytrek === true ? (
-  //                       <p className="m-0 fam_trek">
-  //                         <span>*</span> Family trek
-  //                       </p>
-  //                     ) : (
-  //                       ""
-  //                     )}
-  //                   </div>
-  //                   <div>
-  //                     <button
-  //                       className="btn btn-ih-green"
-  //                       onClick={() => goToTrekPage(data)}
-  //                     >
-  //                       View Details
-  //                     </button>
-  //                   </div>
-  //                 </div>
-  //               </div>
-  //             </div>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </>
-  //   );
-  // });
 
   const ucOpenForSmallGroupImages = ucOpenData.map(function(data, i) {
     const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
@@ -155,8 +66,8 @@ const UCOpenForSmallGroup = ({ slice, ucOpenData }) => {
     }
     const getFamiltTrek = data?.tags?.find(x => x === "FamilyTrek");
     return (
-      <>
-        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer" key={i}>
+      <div key={i}>
+        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer">
           <Link href={url ? url : "#"}>
             <div className="card_sec">
               <div className="card trek_card">
@@ -176,14 +87,6 @@ const UCOpenForSmallGroup = ({ slice, ucOpenData }) => {
                     <div>
                       <p>{tData.primary.duration[0].text}</p>
                     </div>
-                    {/* <div>
-                    <p className="list-dot-style px-1">
-                      <span>.</span>
-                    </p>
-                  </div>
-                  <div>
-                    <p>{tData.primary.altitude[0].text}</p>
-                  </div> */}
                     <div>
                       <p className="list-dot-style px-1">
                         <span>.</span>
@@ -196,7 +99,6 @@ const UCOpenForSmallGroup = ({ slice, ucOpenData }) => {
 
                   <div>
                     <p className="title-diplay-3 m-t-d3 text-uppercase">
-                      {/* <b>{tData.primary.trek_caption}</b> */}
                       <b>
                         {tData.primary.trek_caption.length > 25
                           ? `${tData.primary.trek_caption.substring(0, 25)}...`
@@ -228,7 +130,7 @@ const UCOpenForSmallGroup = ({ slice, ucOpenData }) => {
             </div>
           </Link>
         </div>
-      </>
+      </div>
     );
   });
 

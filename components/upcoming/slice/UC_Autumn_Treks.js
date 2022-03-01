@@ -11,7 +11,6 @@ import Link from "next/link";
 const UCAutnumTreks = ({ slice, autumnData }) => {
   const ucAutumnTreksTitle = slice.primary.uc_autumn_treks_title;
   const ucAutumnTreksDesc = slice.primary.uc_autumn_treks_desc;
-  const ucAutumnTreksImagesArray = slice.items;
   const router = useRouter();
 
   const settings = {
@@ -66,8 +65,8 @@ const UCAutnumTreks = ({ slice, autumnData }) => {
     }
     const getFamiltTrek = data?.tags?.find(x => x === "FamilyTrek");
     return (
-      <>
-        <div className="mx-4 m-mx-0 m-d-none hvr-grow cursor-pointer" key={i}>
+      <div key={i}>
+        <div className="mx-4 m-mx-0 m-d-none hvr-grow cursor-pointer">
           <Link href={url ? url : "#"}>
             <div className="card_sec">
               <div className="card trek_card">
@@ -99,7 +98,6 @@ const UCAutnumTreks = ({ slice, autumnData }) => {
 
                   <div>
                     <p className="title-diplay-3 text-uppercase">
-                      {/* <b>{tData.primary.trek_caption}</b> */}
                       <b>
                         {tData.primary.trek_caption.length > 25
                           ? `${tData.primary.trek_caption.substring(0, 25)}...`
@@ -150,14 +148,6 @@ const UCAutnumTreks = ({ slice, autumnData }) => {
             <div className="col-7">
               <div>
                 <h3 className="m-title-3">{tData.primary.trek_caption}</h3>
-                {/* <p className="m-display-2">
-                  {data.uc_autumn_treks_image_caption_desc[0].text.length > 125
-                    ? `${data.uc_autumn_treks_image_caption_desc[0].text.substring(
-                        0,
-                        125
-                      )}...`
-                    : data.uc_autumn_treks_image_caption_desc[0].text}
-                </p> */}
                 <p className="m-display-2">
                   {RichText.asText(tData.primary.sub_heading)}
                 </p>
@@ -203,7 +193,7 @@ const UCAutnumTreks = ({ slice, autumnData }) => {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   });
 

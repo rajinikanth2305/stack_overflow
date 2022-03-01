@@ -39,22 +39,22 @@ const ArticelHome = ({ slice }) => (
             <div>
               <a href="">
                 <span className="social_bg mx-1">
-                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                  <i className="fa fa-facebook" aria-hidden="true"></i>
                 </span>
               </a>
               <a href="">
                 <span className="social_bg mx-1">
-                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                  <i className="fa fa-instagram" aria-hidden="true"></i>
                 </span>
               </a>
               <a href="">
                 <span className="social_bg mx-1">
-                  <i class="fa fa-linkedin" aria-hidden="true"></i>
+                  <i className="fa fa-linkedin" aria-hidden="true"></i>
                 </span>
               </a>
               <a href="">
                 <span className="social_bg mx-1">
-                  <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                  <i className="fa fa-whatsapp" aria-hidden="true"></i>
                 </span>
               </a>
             </div>
@@ -81,22 +81,22 @@ const ArticelHome = ({ slice }) => (
                 <div>
                   <a href="">
                     <span className="social_bg mx-1">
-                      <i class="fa fa-facebook" aria-hidden="true"></i>
+                      <i className="fa fa-facebook" aria-hidden="true"></i>
                     </span>
                   </a>
                   <a href="">
                     <span className="social_bg mx-1">
-                      <i class="fa fa-instagram" aria-hidden="true"></i>
+                      <i className="fa fa-instagram" aria-hidden="true"></i>
                     </span>
                   </a>
                   <a href="">
                     <span className="social_bg mx-1">
-                      <i class="fa fa-linkedin" aria-hidden="true"></i>
+                      <i className="fa fa-linkedin" aria-hidden="true"></i>
                     </span>
                   </a>
                   <a href="">
                     <span className="social_bg mx-1">
-                      <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                      <i className="fa fa-whatsapp" aria-hidden="true"></i>
                     </span>
                   </a>
                 </div>
@@ -179,8 +179,8 @@ const ArticelHome = ({ slice }) => (
                   <div className="auth_image">
                     <img src="/p-icon.png" />
                   </div>
-                  <p class="m-0 p-text-3-fg text-center mt-1">Arjun Majumdar</p>
-                  <p class="m-0 p-text-small-black text-center">
+                  <p className="m-0 p-text-3-fg text-center mt-1">Arjun Majumdar</p>
+                  <p className="m-0 p-text-small-black text-center">
                     Founder, CEO, Indiahikes
                   </p>
                 </div>
@@ -306,10 +306,10 @@ const ArticelHome = ({ slice }) => (
                       <div className="auth_image">
                         <img src="/p-icon.png" />
                       </div>
-                      <p class="m-0 p-text-3-fg text-center mt-1">
+                      <p className="m-0 p-text-3-fg text-center mt-1">
                         Arjun Majumdar
                       </p>
-                      <p class="m-0 p-text-small-10-black text-center">
+                      <p className="m-0 p-text-small-10-black text-center">
                         Founder, CEO, Indiahikes
                       </p>
                     </div>
@@ -383,10 +383,10 @@ const ArticelHome = ({ slice }) => (
                           <div className="auth_image">
                             <img src="/p-icon.png" />
                           </div>
-                          <p class="m-0 p-text-3-fg text-center mt-1">
+                          <p className="m-0 p-text-3-fg text-center mt-1">
                             Dushyant Sharma
                           </p>
-                          <p class="m-0 p-text-small-10-black text-center">
+                          <p className="m-0 p-text-small-10-black text-center">
                             Senior Trek Leader & Video Content Creator
                           </p>
                         </div>
@@ -508,10 +508,10 @@ const ArticelHome = ({ slice }) => (
                         <div className="auth_image">
                           <img src="/p-icon.png" />
                         </div>
-                        <p class="m-0 p-text-3-fg text-center mt-1">
+                        <p className="m-0 p-text-3-fg text-center mt-1">
                           Vishnu Benne
                         </p>
-                        <p class="m-0 p-text-small-10-black text-center">
+                        <p className="m-0 p-text-small-10-black text-center">
                           Head of Operations
                         </p>
                       </div>
@@ -652,10 +652,10 @@ const ArticelHome = ({ slice }) => (
                           <div className="auth_image">
                             <img src="/p-icon.png" />
                           </div>
-                          <p class="m-0 p-text-3-fg text-center mt-1">
+                          <p className="m-0 p-text-3-fg text-center mt-1">
                             Arjun Majumdar
                           </p>
-                          <p class="m-0 p-text-small-10-black text-center">
+                          <p className="m-0 p-text-small-10-black text-center">
                             Founder, CEO, Indiahikes
                           </p>
                         </div>

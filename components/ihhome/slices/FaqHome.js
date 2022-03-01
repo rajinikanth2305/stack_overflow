@@ -46,7 +46,7 @@ const FaqHome = ({ slice }) => {
         </Accordion>
         <div className="text-center mt-4">
           <Link href="../../../faq">
-            <button type="button" class="btn btn-ih-primary">
+            <button type="button" className="btn btn-ih-primary">
               View more FAQs
             </button>
           </Link>

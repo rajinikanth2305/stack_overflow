@@ -11,7 +11,6 @@ import Link from "next/link";
 const UCWinterTreks = ({ slice, winterData }) => {
   const ucWinterTreksTitle = slice.primary.uc_winter_treks_title;
   const ucWinterTreksDesc = slice.primary.uc_winter_treks_desc;
-  const ucWinterWreksImagesArray = slice.items;
   const router = useRouter();
 
   const settings = {
@@ -66,8 +65,8 @@ const UCWinterTreks = ({ slice, winterData }) => {
     }
     const getFamiltTrek = data?.tags?.find(x => x === "FamilyTrek");
     return (
-      <>
-        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer" key={i}>
+      <div key={i}>
+        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer">
           <Link href={url ? url : "#"}>
             <div className="card_sec">
               <div className="card trek_card">
@@ -99,7 +98,6 @@ const UCWinterTreks = ({ slice, winterData }) => {
 
                   <div>
                     <p className="title-diplay-3 text-uppercase">
-                      {/* <b>{tData.primary.trek_caption}</b> */}
                       <b>
                         {tData.primary.trek_caption.length > 25
                           ? `${tData.primary.trek_caption.substring(0, 25)}...`
@@ -131,7 +129,7 @@ const UCWinterTreks = ({ slice, winterData }) => {
             </div>
           </Link>
         </div>
-      </>
+      </div>
     );
   });
 
@@ -144,74 +142,61 @@ const UCWinterTreks = ({ slice, winterData }) => {
     }
     const getFamiltTrek = data?.tags?.find(x => x === "FamilyTrek");
     return (
-      <>
-        <div className="col-6" key={j}>
-          <div className="card_sec">
-            <div className="card trek_card_mb">
-              <div className="m-uc_open_for_small_group_images">
-                {tData.primary.trek_banner_image.url && (
-                  <Image
-                    src={tData.primary.trek_banner_image.url}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="50% 50%"
-                    alt="imgs"
-                  />
-                )}
-              </div>
-              <div className="px-3 py-2">
-                <div>
-                  <h3 className="m-title-3 text-uppercase">
-                    {tData.primary.trek_caption.length > 20
-                      ? `${tData.primary.trek_caption.substring(0, 20)}...`
-                      : tData.primary.trek_caption}
-                  </h3>
-                  <p className="m-display-2">
-                    {/* {data.uc_winter_treks_image_caption_desc[0].text.length >
-                    122
-                      ? `${data.uc_winter_treks_image_caption_desc[0].text.substring(
-                          0,
-                          122
-                        )}...`
-                      : data.uc_winter_treks_image_caption_desc[0].text} */}
-                    {RichText.asText(tData.primary.sub_heading)}
-                  </p>
-                  <p className="m-card-info-text m-0">
-                    <span className="list-dot-style-mob"></span>{" "}
-                    {tData.primary.duration[0].text}
-                  </p>
-                  {/* <p className="m-card-info-text m-0">
-                    <span className="list-dot-style-mob"></span>{" "}
-                    {data.uc_winter_treks_seasons[0].text}
-                  </p> */}
-                  <p className="m-card-info-text">
-                    <span className="list-dot-style-mob"></span>{" "}
-                    {tData.primary.difficulty[0].text}
-                  </p>
-                  <div className="d-flex align-items-center flex-wrap pt-2 pb-2">
-                    <div className="flex-grow-1">
-                      {getFamiltTrek !== undefined ? (
-                        <p className="m-0 fam_trek">
-                          <span>*</span> Family trek
-                        </p>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                    <div className="p-abs-btn pb-3">
-                      <Link href={url ? url : "#"}>
-                        <button className="btn m-btn-ih-green px-2">
-                          View Dates / Register
-                        </button>
-                      </Link>
-                    </div>
+      <div className="col-6" key={j}>
+        <div className="card_sec">
+          <div className="card trek_card_mb">
+            <div className="m-uc_open_for_small_group_images">
+              {tData.primary.trek_banner_image.url && (
+                <Image
+                  src={tData.primary.trek_banner_image.url}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                  alt="imgs"
+                />
+              )}
+            </div>
+            <div className="px-3 py-2">
+              <div>
+                <h3 className="m-title-3 text-uppercase">
+                  {tData.primary.trek_caption.length > 20
+                    ? `${tData.primary.trek_caption.substring(0, 20)}...`
+                    : tData.primary.trek_caption}
+                </h3>
+                <p className="m-display-2">
+                  {RichText.asText(tData.primary.sub_heading)}
+                </p>
+                <p className="m-card-info-text m-0">
+                  <span className="list-dot-style-mob"></span>{" "}
+                  {tData.primary.duration[0].text}
+                </p>
+                <p className="m-card-info-text">
+                  <span className="list-dot-style-mob"></span>{" "}
+                  {tData.primary.difficulty[0].text}
+                </p>
+                <div className="d-flex align-items-center flex-wrap pt-2 pb-2">
+                  <div className="flex-grow-1">
+                    {getFamiltTrek !== undefined ? (
+                      <p className="m-0 fam_trek">
+                        <span>*</span> Family trek
+                      </p>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="p-abs-btn pb-3">
+                    <Link href={url ? url : "#"}>
+                      <button className="btn m-btn-ih-green px-2">
+                        View Dates / Register
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   });
 

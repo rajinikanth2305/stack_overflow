@@ -20,10 +20,6 @@ const AllIndiaHikes = ({
 }) => {
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
-  // const moderateTreksList = slice.primary.moderate_treks;
-  // const difficultTreksList = slice.primary.difficult_treks;
-  // const familyTreksList = slice.primary.family_treks;
-  // const diyTreksList = slice.primary.diy_treks;
 
   const easyTrekImage = slice.primary.easy_trek_image.url;
   const easyTrekTitleMobile = slice.primary.easy_trek_title_mobile;
@@ -69,20 +65,18 @@ const AllIndiaHikes = ({
       url = `/trek/${slugUrl}`;
     }
     return (
-      <>
-        <div className="d-flex align-items-center" key={i2}>
-          <div>
-            <p className="badge-yellow"></p>
-          </div>
-          <Link href={url ? url : "#"}>
-            <div className="mx-3">
-              <p className="p-display-3 p-display-3-md cursor-pointer">
-                {data2.data.trek_title[0].text}
-              </p>
-            </div>
-          </Link>
+      <div className="d-flex align-items-center" key={i2}>
+        <div>
+          <p className="badge-yellow"></p>
         </div>
-      </>
+        <Link href={url ? url : "#"}>
+          <div className="mx-3">
+            <p className="p-display-3 p-display-3-md cursor-pointer">
+              {data2.data.trek_title[0].text}
+            </p>
+          </div>
+        </Link>
+      </div>
     );
   });
 
@@ -93,20 +87,18 @@ const AllIndiaHikes = ({
       url = `/trek/${slugUrl}`;
     }
     return (
-      <>
-        <div className="d-flex align-items-center" key={i3}>
-          <div>
-            <p className="badge-red"></p>
-          </div>
-          <div className="mx-3">
-            <Link href={url ? url : "#"}>
-              <p className="p-display-3 p-display-3-md cursor-pointer">
-                {data3.data.trek_title[0].text}
-              </p>
-            </Link>
-          </div>
+      <div className="d-flex align-items-center" key={i3}>
+        <div>
+          <p className="badge-red"></p>
         </div>
-      </>
+        <div className="mx-3">
+          <Link href={url ? url : "#"}>
+            <p className="p-display-3 p-display-3-md cursor-pointer">
+              {data3.data.trek_title[0].text}
+            </p>
+          </Link>
+        </div>
+      </div>
     );
   });
 
@@ -117,20 +109,18 @@ const AllIndiaHikes = ({
       url = `/trek/${slugUrl}`;
     }
     return (
-      <>
-        <div className="d-flex align-items-center" key={i4}>
-          <div>
-            <p className="badge-blue"></p>
-          </div>
-          <div className="mx-3">
-            <Link href={url ? url : "#"}>
-              <p className="p-display-3 p-display-3-md cursor-pointer">
-                {data4.data.trek_title[0].text}
-              </p>
-            </Link>
-          </div>
+      <div className="d-flex align-items-center" key={i4}>
+        <div>
+          <p className="badge-blue"></p>
         </div>
-      </>
+        <div className="mx-3">
+          <Link href={url ? url : "#"}>
+            <p className="p-display-3 p-display-3-md cursor-pointer">
+              {data4.data.trek_title[0].text}
+            </p>
+          </Link>
+        </div>
+      </div>
     );
   });
 
@@ -141,20 +131,18 @@ const AllIndiaHikes = ({
       url = `/trek/${slugUrl}`;
     }
     return (
-      <>
-        <div className="d-flex align-items-center" key={i5}>
-          <div>
-            <p className="badge-blue"></p>
-          </div>
-          <div className="mx-3">
-          <Link href={url ? url : "#"}>
-              <p className="p-display-3 p-display-3-md cursor-pointer">
-                {data5.data.trek_title[0].text}
-              </p>
-            </Link>
-          </div>
+      <div className="d-flex align-items-center" key={i5}>
+        <div>
+          <p className="badge-blue"></p>
         </div>
-      </>
+        <div className="mx-3">
+          <Link href={url ? url : "#"}>
+            <p className="p-display-3 p-display-3-md cursor-pointer">
+              {data5.data.trek_title[0].text}
+            </p>
+          </Link>
+        </div>
+      </div>
     );
   });
 

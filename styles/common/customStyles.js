@@ -2435,4 +2435,27 @@ export const customStyles = css.global`
     text-decoration: none;
     border-bottom: 1px solid #0a0000;
   }
+
+  @media (min-width: 700px) and (max-width: 1300px) {
+    .mw-100 {
+      width: 100% !important;
+    }
+    .mw-100 > button {
+      width: 100% !important;
+      margin-bottom: 10px;
+    }
+    .title-diplay-3 {
+      font-size: 20px;
+      line-height: 24px;
+    }
+    .trek_card {
+      min-height: 475px;
+    }
+    .fam-tabs > .nav-item {
+      width: 150px;
+    }
+    .sustainable_img {
+      min-height: 375px;
+    }
+  }
 `;

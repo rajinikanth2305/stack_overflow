@@ -104,7 +104,7 @@ const DIYTreksGuide = ({ slice }) => {
               </div>
               <div className="col-lg-2 col-md-2">
                 <div className="d-flex justify-content-end">
-                  <button type="button" class="btn btn-bihtn-yellow">
+                  <button type="button" className="btn btn-bihtn-yellow">
                     Filter
                   </button>
                 </div>

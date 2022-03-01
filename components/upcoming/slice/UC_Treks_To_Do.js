@@ -11,7 +11,6 @@ import Link from "next/link";
 const UCTreksToDo = ({ slice, treksToDoData }) => {
   const ucTreksToDoTitle = slice.primary.uc_treks_to_do_title;
   const ucTreksToDoDesc = slice.primary.uc_treks_to_do_desc;
-  const ucTreksToDoImagesArray = slice.items;
   const router = useRouter();
 
   const settings = {
@@ -67,8 +66,8 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
     }
     const getFamiltTrek = data?.tags?.find(x => x === "FamilyTrek");
     return (
-      <>
-        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer" key={i}>
+      <div key={i}>
+        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer">
           <Link href={url ? url : "#"}>
             <div className="card_sec">
               <div className="card trek_card">
@@ -88,14 +87,6 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
                     <div>
                       <p>{tData.primary.duration[0].text}</p>
                     </div>
-                    {/* <div>
-                    <p className="list-dot-style px-1">
-                      <span>.</span>
-                    </p>
-                  </div>
-                  <div>
-                    <p>{tData.primary.altitude[0].text}</p>
-                  </div> */}
                     <div>
                       <p className="list-dot-style px-1">
                         <span>.</span>
@@ -108,7 +99,6 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
 
                   <div>
                     <p className="title-diplay-3 m-t-d3 text-uppercase">
-                      {/* <b>{tData.primary.trek_caption}</b> */}
                       <b>
                         {tData.primary.trek_caption.length > 25
                           ? `${tData.primary.trek_caption.substring(0, 25)}...`
@@ -140,7 +130,7 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
             </div>
           </Link>
         </div>
-      </>
+      </div>
     );
   });
 

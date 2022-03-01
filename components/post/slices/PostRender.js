@@ -49,11 +49,11 @@ const PostRender = ({
             <div className="auth_image">
               <img src={authorData?.data?.author_photo?.url} />
             </div>
-            <p class="m-0 p-text-3-fg text-center mt-1">
+            <p className="m-0 p-text-3-fg text-center mt-1">
               {authorData?.data?.author_first_name}{" "}
               {authorData?.data?.author_last_name}
             </p>
-            <p class="m-0 p-text-small-black text-center">
+            <p className="m-0 p-text-small-black text-center">
               {authorData?.data?.designation}
             </p>
           </div>
@@ -80,10 +80,10 @@ const PostRender = ({
               <div className="auth_image">
                 <img src="/p-icon.png" />
               </div>
-              <p class="m-0 p-text-3-fg text-center mt-1">
+              <p className="m-0 p-text-3-fg text-center mt-1">
                 {slice?.primary?.user_name}
               </p>
-              <p class="m-0 p-text-small-10-black text-center">
+              <p className="m-0 p-text-small-10-black text-center">
                 {slice?.primary?.user_designation}
               </p>
             </div>
@@ -262,10 +262,10 @@ const PostRender = ({
                   <div className="auth_image">
                     <img src={slice?.primary?.user_photo?.url} />
                   </div>
-                  <p class="m-0 p-text-3-fg text-center mt-1">
+                  <p className="m-0 p-text-3-fg text-center mt-1">
                     {slice?.primary?.user_name}
                   </p>
-                  <p class="m-0 p-text-small-10-black text-center">
+                  <p className="m-0 p-text-small-10-black text-center">
                     {slice?.primary?.designation}
                   </p>
                 </div>
@@ -434,22 +434,22 @@ const PostRender = ({
                 <div>
                   <a href="">
                     <span className="social_bg mx-1">
-                      <i class="fa fa-facebook" aria-hidden="true"></i>
+                      <i className="fa fa-facebook" aria-hidden="true"></i>
                     </span>
                   </a>
                   <a href="">
                     <span className="social_bg mx-1">
-                      <i class="fa fa-instagram" aria-hidden="true"></i>
+                      <i className="fa fa-instagram" aria-hidden="true"></i>
                     </span>
                   </a>
                   <a href="">
                     <span className="social_bg mx-1">
-                      <i class="fa fa-linkedin" aria-hidden="true"></i>
+                      <i className="fa fa-linkedin" aria-hidden="true"></i>
                     </span>
                   </a>
                   <a href="">
                     <span className="social_bg mx-1">
-                      <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                      <i className="fa fa-whatsapp" aria-hidden="true"></i>
                     </span>
                   </a>
                 </div>
@@ -486,7 +486,7 @@ const PostRender = ({
                             <a href="">
                               <span className="social_bg mx-1">
                                 <i
-                                  class="fa fa-facebook"
+                                  className="fa fa-facebook"
                                   aria-hidden="true"
                                 ></i>
                               </span>
@@ -494,7 +494,7 @@ const PostRender = ({
                             <a href="">
                               <span className="social_bg mx-1">
                                 <i
-                                  class="fa fa-instagram"
+                                  className="fa fa-instagram"
                                   aria-hidden="true"
                                 ></i>
                               </span>
@@ -502,7 +502,7 @@ const PostRender = ({
                             <a href="">
                               <span className="social_bg mx-1">
                                 <i
-                                  class="fa fa-linkedin"
+                                  className="fa fa-linkedin"
                                   aria-hidden="true"
                                 ></i>
                               </span>
@@ -510,7 +510,7 @@ const PostRender = ({
                             <a href="">
                               <span className="social_bg mx-1">
                                 <i
-                                  class="fa fa-whatsapp"
+                                  className="fa fa-whatsapp"
                                   aria-hidden="true"
                                 ></i>
                               </span>
@@ -571,8 +571,8 @@ const PostRender = ({
                     <div>
                       <textarea rows="3" className="w-100"></textarea>
                     </div>
-                    <div class="d-flex justify-content-end w-100">
-                      <button class="btn btn-btn-yellow-new mt-3 mb-2">
+                    <div className="d-flex justify-content-end w-100">
+                      <button className="btn btn-btn-yellow-new mt-3 mb-2">
                         Post reply
                       </button>
                     </div>
@@ -616,8 +616,8 @@ const PostRender = ({
                           way of life than a 5 or 10 day camping/hiking.
                         </p>
                       </div>
-                      <div class="d-flex justify-content-end w-100">
-                        <button class="btn btn-btn-gray-new mt-3 mb-2">
+                      <div className="d-flex justify-content-end w-100">
+                        <button className="btn btn-btn-gray-new mt-3 mb-2">
                           Reply
                         </button>
                       </div>
@@ -653,8 +653,8 @@ const PostRender = ({
                             </p>
                           </div>
                         </div>
-                        <div class="d-flex justify-content-end w-100">
-                          <button class="btn btn-btn-gray-new mt-3 mb-2">
+                        <div className="d-flex justify-content-end w-100">
+                          <button className="btn btn-btn-gray-new mt-3 mb-2">
                             Reply
                           </button>
                         </div>
@@ -683,8 +683,8 @@ const PostRender = ({
                           60? My classmates would like to go
                         </p>
                       </div>
-                      <div class="d-flex justify-content-end w-100">
-                        <button class="btn btn-btn-gray-new mt-3 mb-2">
+                      <div className="d-flex justify-content-end w-100">
+                        <button className="btn btn-btn-gray-new mt-3 mb-2">
                           Reply
                         </button>
                       </div>

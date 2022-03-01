@@ -92,7 +92,7 @@ const LatestTrekkingWorld = ({ slice }) => {
               <div className="text-center mt-4">
                 {/* <Link href={url ? url : "#"}> */}
                 <button
-                  class="btn btn-lg btn-ih-primary text-capitalized"
+                  className="btn btn-lg btn-ih-primary text-capitalized"
                   onClick={() => {
                     setImgUrl(videoUrl);
                     setShow(true);
@@ -105,33 +105,40 @@ const LatestTrekkingWorld = ({ slice }) => {
             </div>
           </div>
           <div className="col-lg-6 col-md-12">
-            <div
-              className="trekking_world_image_desktop cursor-pointer"
-            >
-              <div className="d-flex align-items-center justify-content-center w-100 h-100">
-                <div className="text-center">
-                  <img
-                    src="/v-icon.png"
-                    alt="playicon'"
-                    className="paly-icon icon-size-50"
-                    onClick={handleShow}
+            <div className="trekking_world_image_desktop cursor-pointer">
+              {data?.yt_link?.url ? (
+                <>
+                  <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                    <div className="text-center">
+                      <img
+                        src="/v-icon.png"
+                        alt="playicon'"
+                        className="paly-icon icon-size-50"
+                        onClick={handleShow}
+                      />
+                    </div>
+                  </div>
+
+                  <Image
+                    src={imageURL}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                    alt="imgs"
+                    onClick={() => {
+                      setImgUrl(videoUrl);
+                      setShow(true);
+                    }}
                   />
-                </div>
-              </div>
-              {imageURL ? (
-                <Image
-                  src={imageURL}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                  alt="imgs"
-                  onClick={() => {
-                    setImgUrl(videoUrl);
-                    setShow(true);
-                  }}
-                />
+                </>
               ) : (
-                <img src="./ip.png" />
+                <Image
+                    src={data?.trekking_world_image?.url}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                    alt="imgs"
+                  />
               )}
             </div>
             <div className="trekking_world_image_mobile">

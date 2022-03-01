@@ -107,7 +107,7 @@ const TrekReviews = ({ slice }) => {
                 </div>
                 <div className="d-flex justify-content-end w-100">
                   <button
-                    class="btn btn-btn-yellow-new mt-3 mb-2"
+                    className="btn btn-btn-yellow-new mt-3 mb-2"
                     onClick={() => {
                       setReveiewInfo(data);
                       setShow(true);

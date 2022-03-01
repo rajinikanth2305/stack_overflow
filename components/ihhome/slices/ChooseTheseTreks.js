@@ -1,18 +1,14 @@
 import React from "react";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { ChooseTreks } from "styles";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { hrefResolver, linkResolver } from "prismic-configuration";
 import Link from "next/link";
 
 const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
   const heading1 = slice.primary.heading1;
-  const chooseTrekImageArray = slice.items;
-  console.log(trekPageData1);
 
   const settings = {
     dots: true,
@@ -50,87 +46,6 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
     ]
   };
 
-  // const chooseTrekImage = chooseTrekImageArray.map(function(data, i) {
-  //   let url;
-  //   const slugUrl = data?.link_url?.slug;
-  //   if (slugUrl) {
-  //     url = `/trek/${data?.link_url?.uid}`;
-  //   }
-  //   return (
-  //     <div key={`choosetrek` + i}>
-  //       <div className="mx-4 m-mx-0 cursor-pointer">
-  //         <Link href={url ? url : '#'}>
-  //           <div className="card_sec">
-  //             <div className="card trek_card">
-  //               <div alt="imgs" className="choose_trek_image">
-  //                 <Image
-  //                   src={data?.choose_trek_image?.url}
-  //                   layout="fill"
-  //                   objectFit="cover"
-  //                   objectPosition="50% 50%"
-  //                 />
-  //               </div>
-  //               <div className="px-3 py-2">
-  //                 <div className="d-flex align-items-center card-info-text">
-  //                   <div>
-  //                     <p>{data?.choose_trek_days[0]?.text} Days</p>
-  //                   </div>
-  //                   <div>
-  //                     <p className="list-dot-style px-1">
-  //                       <span>.</span>
-  //                     </p>
-  //                   </div>
-  //                   <div>
-  //                     <p>{data?.choose_trek_seasons[0]?.text}</p>
-  //                   </div>
-  //                   <div>
-  //                     <p className="list-dot-style px-1">
-  //                       <span>.</span>
-  //                     </p>
-  //                   </div>
-  //                   <div>
-  //                     <p>{data?.choose_trek_guide[0]?.text}</p>
-  //                   </div>
-  //                 </div>
-
-  //                 <div>
-  //                   <p className="title-diplay-3-18px text-uppercase">
-  //                     {data?.choose_trek_title[0]?.text?.length > 20
-  //                     ? `${data?.choose_trek_title[0]?.text.substring(0, 20)}...`
-  //                     : data?.choose_trek_title[0]?.text}
-  //                   </p>
-  //                   <p className="p-text-4 pm-t-4">
-  //                     {data?.choose_trek_desc[0]?.text?.length > 122
-  //                       ? `${data?.choose_trek_desc[0]?.text.substring(
-  //                           0,
-  //                           122
-  //                         )}...`
-  //                       : data?.choose_trek_desc[0]?.text}
-  //                   </p>
-  //                   <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
-  //                     <div className="flex-grow-1">
-  //                       {data?.choose_trek_familytrek === true ? (
-  //                         <p className="m-0 fam_trek"><span>*</span> Family trek</p>
-  //                       ) : (
-  //                         ""
-  //                       )}
-  //                     </div>
-  //                     <div>
-  //                       <button className="btn btn-ih-green">
-  //                         View Details
-  //                       </button>
-  //                     </div>
-  //                   </div>
-  //                 </div>
-  //               </div>
-  //             </div>
-  //           </div>
-  //         </Link>
-  //       </div>
-  //     </div>
-  //   );
-  // });
-
   const chooseTrekImage = trekPageData1.map(function(data, i) {
     const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
     let url;
@@ -140,8 +55,8 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
     }
     const getFamiltTrek = data?.tags?.find(x => x === "FamilyTrek");
     return (
-      <>
-        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer" key={i}>
+      <div key={i}>
+        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer">
           <Link href={url ? url : "#"}>
             <div className="card_sec">
               <div className="card trek_card">
@@ -154,21 +69,15 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
                       objectPosition="50% 50%"
                       alt="imgs"
                     />
-                  ) : <img src="./ip.png" className="choose_trek_image" />}
+                  ) : (
+                    <img src="./ip.png" className="choose_trek_image" />
+                  )}
                 </div>
                 <div className="px-3 py-2">
                   <div className="d-flex align-items-center card-info-text">
                     <div>
                       <p>{tData.primary.duration[0].text}</p>
                     </div>
-                    {/* <div>
-                    <p className="list-dot-style px-1">
-                      <span>.</span>
-                    </p>
-                  </div>
-                  <div>
-                    <p>{tData.primary.altitude[0].text}</p>
-                  </div> */}
                     <div>
                       <p className="list-dot-style px-1">
                         <span>.</span>
@@ -181,7 +90,6 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
 
                   <div>
                     <p className="title-diplay-3-18px text-uppercase frg-mob">
-                      {/* <b>{tData.primary.trek_caption}</b> */}
                       <b>
                         {tData?.primary?.trek_caption?.length > 25
                           ? `${tData?.primary?.trek_caption?.substring(
@@ -205,11 +113,9 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
                         )}
                       </div>
                       <div>
-                        {/* <Link href={url ? url : "#"}> */}
                         <button className="btn btn-ih-green">
                           View Details
                         </button>
-                        {/* </Link> */}
                       </div>
                     </div>
                   </div>
@@ -218,7 +124,7 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
             </div>
           </Link>
         </div>
-      </>
+      </div>
     );
   });
 

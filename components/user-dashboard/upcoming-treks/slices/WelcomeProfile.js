@@ -548,19 +548,19 @@ const WelcomeProfile = () => {
                                             Experience Coordinator
                                             <span className="exp-co-icons">
                                               <i
-                                                class="fa fa-phone"
+                                                className="fa fa-phone"
                                                 aria-hidden="true"
                                               ></i>
                                             </span>
                                             <span className="exp-co-icons">
                                               <i
-                                                class="fa fa-mobile"
+                                                className="fa fa-mobile"
                                                 aria-hidden="true"
                                               ></i>
                                             </span>
                                             <span className="exp-co-icons">
                                               <i
-                                                class="fa fa-envelope"
+                                                className="fa fa-envelope"
                                                 aria-hidden="true"
                                               ></i>
                                             </span>
@@ -812,19 +812,19 @@ const WelcomeProfile = () => {
                                                 Experience Coordinator{" "}
                                                 <span className="exp-co-icons">
                                                   <i
-                                                    class="fa fa-phone"
+                                                    className="fa fa-phone"
                                                     aria-hidden="true"
                                                   ></i>
                                                 </span>
                                                 <span className="exp-co-icons">
                                                   <i
-                                                    class="fa fa-mobile"
+                                                    className="fa fa-mobile"
                                                     aria-hidden="true"
                                                   ></i>
                                                 </span>
                                                 <span className="exp-co-icons">
                                                   <i
-                                                    class="fa fa-envelope"
+                                                    className="fa fa-envelope"
                                                     aria-hidden="true"
                                                   ></i>
                                                 </span>
@@ -860,7 +860,7 @@ const WelcomeProfile = () => {
                                                 </a>
                                               </p>
                                             </div>
-                                            <div class="d-flex justify-content-end w-100 m-m-t-10">
+                                            <div className="d-flex justify-content-end w-100 m-m-t-10">
                                               {trekData?.bookingState ===
                                                 "PAYMENT" || trekData?.bookingState ===
                                               "ADD_PARTICIPANTS" && (

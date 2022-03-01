@@ -41,7 +41,7 @@ const HomeFooter = ({ slice }) => {
                       target="_blank"
                     >
                       <h4>
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                        <i className="fa fa-instagram" aria-hidden="true"></i>
                       </h4>
                     </a>
                   </div>
@@ -52,7 +52,7 @@ const HomeFooter = ({ slice }) => {
                       target="_blank"
                     >
                       <h4>
-                        <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                        <i className="fa fa-youtube-play" aria-hidden="true"></i>
                       </h4>
                     </a>
                   </div>
@@ -63,7 +63,7 @@ const HomeFooter = ({ slice }) => {
                       target="_blank"
                     >
                       <h4>
-                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                        <i className="fa fa-facebook" aria-hidden="true"></i>
                       </h4>
                     </a>
                   </div>
@@ -74,7 +74,7 @@ const HomeFooter = ({ slice }) => {
                       target="_blank"
                     >
                       <h4>
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                        <i className="fa fa-twitter" aria-hidden="true"></i>
                       </h4>
                     </a>
                   </div>
