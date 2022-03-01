@@ -18,6 +18,7 @@ const UCWhyTreks = ({ slice }) => {
                 layout="fill"
                 objectFit="contain"
                 objectPosition="left"
+                alt="imgs"
               />
             </div>
             <p className="why_trek_box_title mb-2 m-d-none">

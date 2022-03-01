@@ -21,6 +21,7 @@ const UCFamilyTreks = ({ slice }) => {
                   layout="fill"
                   objectFit="cover"
                   objectPosition="left"
+                  alt="imgs"
                 />
               </div>
             </div>

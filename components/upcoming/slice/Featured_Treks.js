@@ -14,12 +14,13 @@ const UCFeaturedTreks = ({ slice }) => {
     return (
       <>
         <div className="col-lg-4 col-md-6 px-3" key={i}>
-          <div alt="imgs" className="uc_featured_treks_images">
+          <div className="uc_featured_treks_images">
             <Image
               src={data.uc_featured_treks_images.url}
               layout="fill"
               objectFit="cover"
               objectPosition="50% 50%"
+              alt="imgs"
             />
             <div className="image_overlay_text_area_layout4">
               <div className="p-absolute">

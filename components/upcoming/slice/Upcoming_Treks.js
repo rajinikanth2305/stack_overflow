@@ -356,7 +356,6 @@ const UpComingTreks = ({ slice }) => {
                       <div className="card_sec mb-4 mt-0">
                         <div className="card trek_card">
                           <div
-                            alt="imgs"
                             className="uc_open_for_small_group_images"
                           >
                             {tData.primary.trek_banner_image.url && (
@@ -365,6 +364,7 @@ const UpComingTreks = ({ slice }) => {
                                 layout="fill"
                                 objectFit="cover"
                                 objectPosition="50% 50%"
+                                alt="imgs"
                               />
                             )}
                           </div>
@@ -481,12 +481,13 @@ const UpComingTreks = ({ slice }) => {
                     const trekCaptions = slice.primary.trek_caption;
                     return (
                       <div className="col-lg-4 col-md-6" key={i}>
-                        <div alt="imgs" className="uc_fliter_treks_images">
+                        <div className="uc_fliter_treks_images">
                           <Image
                             src={bannerImage}
                             layout="fill"
                             objectFit="cover"
                             objectPosition="50% 50%"
+                            alt="imgs"
                           />
                           <div className="image_overlay_text_area_layout4">
                             <div className="p-absolute">

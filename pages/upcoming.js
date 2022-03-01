@@ -16,7 +16,19 @@ import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 /**
  * UpComing component
  */
-const UpcomingTreks = ({ doc, bestTrekToDoData, ucOpenData, autumnData, winterData, treksToDoData }) => {
+const UpcomingTreks = ({
+  doc,
+  bestTrekToDoData,
+  ucOpenData,
+  autumnData,
+  winterData,
+  treksToDoData,
+  easyMordatesTreks,
+  moderateTreks,
+  difficultTreks,
+  familyTreks,
+  diyTreks
+}) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -37,6 +49,11 @@ const UpcomingTreks = ({ doc, bestTrekToDoData, ucOpenData, autumnData, winterDa
           autumnData={autumnData}
           winterData={winterData}
           treksToDoData={treksToDoData}
+          easyMordatesTreks={easyMordatesTreks}
+          moderateTreks={moderateTreks}
+          difficultTreks={difficultTreks}
+          familyTreks={familyTreks}
+          diyTreks={diyTreks}
         />
         {/* <IHTrekWithSwathi /> */}
         <IHFooter />
@@ -58,6 +75,27 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       "hike_upcoming_treks_ctype",
       ref ? { ref } : null
     )) || {};
+
+  const easyMordatesTreks = await client.query([
+    Prismic.Predicates.at("document.type", "trek"),
+    Prismic.Predicates.at("document.tags", ["Easy - Moderate"])
+  ]);
+  const moderateTreks = await client.query([
+    Prismic.Predicates.at("document.type", "trek"),
+    Prismic.Predicates.at("document.tags", ["Moderate"])
+  ]);
+  const difficultTreks = await client.query([
+    Prismic.Predicates.at("document.type", "trek"),
+    Prismic.Predicates.at("document.tags", ["Difficult"])
+  ]);
+  const familyTreks = await client.query([
+    Prismic.Predicates.at("document.type", "trek"),
+    Prismic.Predicates.at("document.tags", ["Family"])
+  ]);
+  const diyTreks = await client.query([
+    Prismic.Predicates.at("document.type", "trek"),
+    Prismic.Predicates.at("document.tags", ["DIY"])
+  ]);
 
   const bestTrekToDoData = [];
   const ucOpenData = [];
@@ -106,7 +144,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
-        autumnData.push(trek_details);
+          autumnData.push(trek_details);
       }
     }
   }
@@ -122,7 +160,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
-        winterData.push(trek_details);
+          winterData.push(trek_details);
       }
     }
   }
@@ -138,7 +176,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
-        treksToDoData.push(trek_details);
+          treksToDoData.push(trek_details);
       }
     }
   }
@@ -157,7 +195,12 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       ucOpenData,
       autumnData,
       winterData,
-      treksToDoData
+      treksToDoData,
+      easyMordatesTreks,
+      moderateTreks,
+      difficultTreks,
+      familyTreks,
+      diyTreks
     }
   };
 }

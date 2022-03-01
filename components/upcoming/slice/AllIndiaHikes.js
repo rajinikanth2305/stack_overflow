@@ -8,15 +8,22 @@ import "slick-carousel/slick/slick-theme.css";
 import { Dropdown } from "primereact/dropdown";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
+import Link from "next/link";
 
-const AllIndiaHikes = ({ slice }) => {
+const AllIndiaHikes = ({
+  slice,
+  easyMordatesTreks,
+  moderateTreks,
+  difficultTreks,
+  familyTreks,
+  diyTreks
+}) => {
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
-  const easyModerateTreksList = slice.primary.easy_moderate_treks_list;
-  const moderateTreksList = slice.primary.moderate_treks;
-  const difficultTreksList = slice.primary.difficult_treks;
-  const familyTreksList = slice.primary.family_treks;
-  const diyTreksList = slice.primary.diy_treks;
+  // const moderateTreksList = slice.primary.moderate_treks;
+  // const difficultTreksList = slice.primary.difficult_treks;
+  // const familyTreksList = slice.primary.family_treks;
+  // const diyTreksList = slice.primary.diy_treks;
 
   const easyTrekImage = slice.primary.easy_trek_image.url;
   const easyTrekTitleMobile = slice.primary.easy_trek_title_mobile;
@@ -30,41 +37,61 @@ const AllIndiaHikes = ({ slice }) => {
   const difficultTrekTitleMobile = slice.primary.difficult_trek_title_mobile;
   const difficultTrekDescMobile = slice.primary.difficult_trek_desc_mobile;
 
-  const filterSelection = e => {
-    console.log(e.target.value);
-  };
-
-  const easyModerateTreks = easyModerateTreksList.map(function(data1, i1) {
+  const easyMordatesTreksList = easyMordatesTreks.results?.map(function(
+    data,
+    i
+  ) {
+    let url;
+    const slugUrl = data?.uid;
+    if (slugUrl) {
+      url = `/trek/${slugUrl}`;
+    }
     return (
-      <>
-        <div className="d-flex align-items-center" key={i1}>
-          <div>
-            <p className="badge-green"></p>
-          </div>
-          <div className="mx-3">
-            <p className="p-display-3 p-display-3-md">{data1.text}</p>
-          </div>
+      <div className="d-flex align-items-center" key={i}>
+        <div>
+          <p className="badge-green"></p>
         </div>
-      </>
+        <div className="mx-3">
+          <Link href={url ? url : "#"}>
+            <p className="p-display-3 p-display-3-md cursor-pointer">
+              {data.data.trek_title[0].text}
+            </p>
+          </Link>
+        </div>
+      </div>
     );
   });
 
-  const moderateTreks = moderateTreksList.map(function(data2, i2) {
+  const moderateTreksList = moderateTreks.results?.map(function(data2, i2) {
+    let url;
+    const slugUrl = data2?.uid;
+    if (slugUrl) {
+      url = `/trek/${slugUrl}`;
+    }
     return (
       <>
         <div className="d-flex align-items-center" key={i2}>
           <div>
             <p className="badge-yellow"></p>
           </div>
-          <div className="mx-3">
-            <p className="p-display-3 p-display-3-md">{data2.text}</p>
-          </div>
+          <Link href={url ? url : "#"}>
+            <div className="mx-3">
+              <p className="p-display-3 p-display-3-md cursor-pointer">
+                {data2.data.trek_title[0].text}
+              </p>
+            </div>
+          </Link>
         </div>
       </>
     );
   });
 
-  const difficultTreks = difficultTreksList.map(function(data3, i3) {
+  const difficultTreksList = difficultTreks.results?.map(function(data3, i3) {
+    let url;
+    const slugUrl = data3?.uid;
+    if (slugUrl) {
+      url = `/trek/${slugUrl}`;
+    }
     return (
       <>
         <div className="d-flex align-items-center" key={i3}>
@@ -72,14 +99,23 @@ const AllIndiaHikes = ({ slice }) => {
             <p className="badge-red"></p>
           </div>
           <div className="mx-3">
-            <p className="p-display-3 p-display-3-md">{data3.text}</p>
+            <Link href={url ? url : "#"}>
+              <p className="p-display-3 p-display-3-md cursor-pointer">
+                {data3.data.trek_title[0].text}
+              </p>
+            </Link>
           </div>
         </div>
       </>
     );
   });
 
-  const familyTreks = familyTreksList.map(function(data4, i4) {
+  const familyTreksList = familyTreks.results?.map(function(data4, i4) {
+    let url;
+    const slugUrl = data4?.uid;
+    if (slugUrl) {
+      url = `/trek/${slugUrl}`;
+    }
     return (
       <>
         <div className="d-flex align-items-center" key={i4}>
@@ -87,14 +123,23 @@ const AllIndiaHikes = ({ slice }) => {
             <p className="badge-blue"></p>
           </div>
           <div className="mx-3">
-            <p className="p-display-3 p-display-3-md">{data4.text}</p>
+            <Link href={url ? url : "#"}>
+              <p className="p-display-3 p-display-3-md cursor-pointer">
+                {data4.data.trek_title[0].text}
+              </p>
+            </Link>
           </div>
         </div>
       </>
     );
   });
 
-  const diyTreks = diyTreksList.map(function(data5, i5) {
+  const diyTreksList = diyTreks.results?.map(function(data5, i5) {
+    let url;
+    const slugUrl = data5?.uid;
+    if (slugUrl) {
+      url = `/trek/${slugUrl}`;
+    }
     return (
       <>
         <div className="d-flex align-items-center" key={i5}>
@@ -102,7 +147,11 @@ const AllIndiaHikes = ({ slice }) => {
             <p className="badge-blue"></p>
           </div>
           <div className="mx-3">
-            <p className="p-display-3 p-display-3-md">{data5.text}</p>
+          <Link href={url ? url : "#"}>
+              <p className="p-display-3 p-display-3-md cursor-pointer">
+                {data5.data.trek_title[0].text}
+              </p>
+            </Link>
           </div>
         </div>
       </>
@@ -152,54 +201,40 @@ const AllIndiaHikes = ({ slice }) => {
                     <span className="badge-blue-lg mx-2"></span> DIY Trek{" "}
                   </p>
                 </div>
-                <div>
-                  <select
-                    className="slot-filter"
-                    onChange={e => filterSelection(e)}
-                    placeholder="test"
-                  >
-                    <option selected value="test">
-                      Filter by Region
-                    </option>
-                    <option value="easyModerateTreks">
-                      Easy Moderate trek
-                    </option>
-                    <option value="moderateTrek">Moderate trek</option>
-                    <option value="difficultTrek">Difficult trek</option>
-                    <option value="familyTrek">Family Trek</option>
-                    <option value="DIYTrek">DIY Trek</option>
-                  </select>
-                </div>
               </div>
             </div>
           </div>
           <div className="m-d-none">
-          <div className="row">
-            <div className="col-lg-4 col-md-12">
-              <h3 className="title-dispaly-4 my-3">Easy Moderate Treks</h3>
-              {easyModerateTreks}
-            </div>
-            <div className="col-lg-8 col-md-12">
-              <div className="row">
-                <div className="col-lg-6 col-md-12">
-                  <h3 className="title-dispaly-4 my-3">Moderate Treks</h3>
-                  {moderateTreks}
-                </div>
-                <div className="col-lg-6 col-md-12">
-                  <h3 className="title-dispaly-4 my-3">Difficult Treks</h3>
-                  {difficultTreks}
-                </div>
-                <div className="col-lg-6 col-md-12">
-                  <h3 className="title-dispaly-4 my-3">Family Treks</h3>
-                  {familyTreks}
-                </div>
-                <div className="col-lg-6 col-md-12">
-                  <h3 className="title-dispaly-4 my-3">DIY Treks</h3>
-                  {diyTreks}
+            <div className="row">
+              <div className="col-lg-4 col-md-12">
+                <h3 className="title-dispaly-4 my-3">Easy Moderate Treks</h3>
+                {easyMordatesTreksList}
+                <h3 className="title-dispaly-4 my-3">Family Treks</h3>
+                {familyTreksList}
+                <h3 className="title-dispaly-4 my-3">DIY Treks</h3>
+                {diyTreksList}
+              </div>
+              <div className="col-lg-8 col-md-12">
+                <div className="row">
+                  <div className="col-lg-6 col-md-12">
+                    <h3 className="title-dispaly-4 my-3">Moderate Treks</h3>
+                    {moderateTreksList}
+                  </div>
+                  <div className="col-lg-6 col-md-12">
+                    <h3 className="title-dispaly-4 my-3">Difficult Treks</h3>
+                    {difficultTreksList}
+                  </div>
+                  {/* <div className="col-lg-6 col-md-12">
+                    <h3 className="title-dispaly-4 my-3">Family Treks</h3>
+                    {familyTreksList}
+                  </div> */}
+                  {/* <div className="col-lg-6 col-md-12">
+                    <h3 className="title-dispaly-4 my-3">DIY Treks</h3>
+                    {diyTreks}
+                  </div> */}
                 </div>
               </div>
             </div>
-          </div>
           </div>
 
           <div className="m-d-block">
@@ -235,7 +270,7 @@ const AllIndiaHikes = ({ slice }) => {
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
-                  <Card.Body>{easyModerateTreks}</Card.Body>
+                  <Card.Body>{easyMordatesTreksList}</Card.Body>
                 </Accordion.Collapse>
               </Card>
               <Card>
@@ -269,7 +304,7 @@ const AllIndiaHikes = ({ slice }) => {
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">
-                  <Card.Body>{moderateTreks}</Card.Body>
+                  <Card.Body>{moderateTreksList}</Card.Body>
                 </Accordion.Collapse>
               </Card>
               <Card>
@@ -303,7 +338,7 @@ const AllIndiaHikes = ({ slice }) => {
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="2">
-                  <Card.Body>{difficultTreks}</Card.Body>
+                  <Card.Body>{difficultTreksList}</Card.Body>
                 </Accordion.Collapse>
               </Card>
             </Accordion>

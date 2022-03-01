@@ -71,13 +71,14 @@ const UCWinterTreks = ({ slice, winterData }) => {
           <Link href={url ? url : "#"}>
             <div className="card_sec">
               <div className="card trek_card">
-                <div alt="imgs" className="uc_open_for_small_group_images">
+                <div className="uc_open_for_small_group_images">
                   {tData.primary.trek_banner_image.url && (
                     <Image
                       src={tData.primary.trek_banner_image.url}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"
+                      alt="imgs"
                     />
                   )}
                 </div>
@@ -147,13 +148,14 @@ const UCWinterTreks = ({ slice, winterData }) => {
         <div className="col-6" key={j}>
           <div className="card_sec">
             <div className="card trek_card_mb">
-              <div alt="imgs" className="m-uc_open_for_small_group_images">
+              <div className="m-uc_open_for_small_group_images">
                 {tData.primary.trek_banner_image.url && (
                   <Image
                     src={tData.primary.trek_banner_image.url}
                     layout="fill"
                     objectFit="cover"
                     objectPosition="50% 50%"
+                    alt="imgs"
                   />
                 )}
               </div>

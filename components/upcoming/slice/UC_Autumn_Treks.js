@@ -71,13 +71,14 @@ const UCAutnumTreks = ({ slice, autumnData }) => {
           <Link href={url ? url : "#"}>
             <div className="card_sec">
               <div className="card trek_card">
-                <div alt="imgs" className="uc_open_for_small_group_images">
+                <div className="uc_open_for_small_group_images">
                   {tData.primary.trek_banner_image.url && (
                     <Image
                       src={tData.primary.trek_banner_image.url}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"
+                      alt="imgs"
                     />
                   )}
                 </div>
@@ -134,13 +135,14 @@ const UCAutnumTreks = ({ slice, autumnData }) => {
         <div className="m-d-block mb-3 border-bottom pb-3">
           <div className="row d-flex aling-items-center">
             <div className="col-5">
-              <div alt="imgs" className="mob-autumn-img">
+              <div className="mob-autumn-img">
                 {tData.primary.trek_banner_image.url && (
                   <Image
                     src={tData.primary.trek_banner_image.url}
                     layout="fill"
                     objectFit="cover"
                     objectPosition="50% 50%"
+                    alt="imgs"
                   />
                 )}
               </div>

@@ -21,6 +21,7 @@ const UCDYITreks = ({ slice }) => {
                   layout="fill"
                   objectFit="cover"
                   objectPosition="left"
+                  alt="imgs"
                 />
               </div>
             </div>
