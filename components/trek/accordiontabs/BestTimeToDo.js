@@ -245,7 +245,7 @@ const BestTimeToDo = ({ data }) => {
                 <div className="p-text-4">
                   {RichText.render(content1List)}
                 </div>
-                <div className="row c-images d-flex flex-wrap">
+                <div className="row d-flex flex-wrap">
                   {RichText.render(content1Images)}
                 </div>
               </div>
@@ -299,7 +299,7 @@ const BestTimeToDo = ({ data }) => {
             <div className="p-text-4">
               {RichText.render(content2List)}
             </div>
-            <div className="c-images d-flex flex-wrap mb-3">
+            <div className="d-flex flex-wrap mb-3">
               {RichText.render(content2Images)}
             </div>
           </div>

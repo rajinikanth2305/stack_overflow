@@ -72,7 +72,7 @@ const TrekTrevia = ({ slice }) => {
                       }}
                     />
                     <p className="p-text-small font-italic p-a-b">
-                      Picture by {RichText.asText(data?.photo_caption)}
+                      {RichText.asText(data?.photo_caption)}
                     </p>
                   </>
                 ) : (
