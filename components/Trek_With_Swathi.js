@@ -108,7 +108,7 @@ const IHTrekWithSwathi = () => {
    `}} />
     
   <div className="text" id="webformErrors" name="errorContent"></div>
-    <form accept-charset="UTF-8" action="https://dh315.infusionsoft.com/app/form/process/84a7deb63b24bef4c47dc0c2fd697605" 
+    <form acceptCharset="UTF-8" action="https://dh315.infusionsoft.com/app/form/process/84a7deb63b24bef4c47dc0c2fd697605" 
     className="infusion-form" id="inf_form_84a7deb63b24bef4c47dc0c2fd697605" method="POST" name="Web Form submitted" onsubmit="submitWebForm()">
                 
                 <input name="inf_form_xid" type="hidden" value="84a7deb63b24bef4c47dc0c2fd697605" />

@@ -56,8 +56,8 @@ const WeekendTrek = ({ slice, weekendTrekData }) => {
       url = `/trek/${slugUrl}`;
     }
     return (
-      <>
-        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer" key={i}>
+      <div key={i}>
+        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer">
           <Link href={url ? url : "#"}>
             <div className="card_sec ">
               <div className="card trek_card">
@@ -76,14 +76,6 @@ const WeekendTrek = ({ slice, weekendTrekData }) => {
                     <div>
                       <p>{tData.primary.duration[0].text}</p>
                     </div>
-                    {/* <div>
-                    <p className="list-dot-style px-1">
-                      <span>.</span>
-                    </p>
-                  </div>
-                  <div>
-                    <p>{data.trek_seasons[0].text}</p>
-                  </div> */}
                     <div>
                       <p className="list-dot-style px-1">
                         <span>.</span>
@@ -96,7 +88,6 @@ const WeekendTrek = ({ slice, weekendTrekData }) => {
 
                   <div>
                     <h3 className="title-diplay-3 m-d-3 text-uppercase">
-                      {/* {tData.primary.trek_caption} */}
                       <b>
                         {tData.primary.trek_caption.length > 25
                           ? `${tData.primary.trek_caption.substring(0, 25)}...`
@@ -124,7 +115,7 @@ const WeekendTrek = ({ slice, weekendTrekData }) => {
             </div>
           </Link>
         </div>
-      </>
+      </div>
     );
   });
 

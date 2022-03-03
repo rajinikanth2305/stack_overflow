@@ -4,7 +4,6 @@ import Image from "next/image";
 import { customStyles } from "styles";
 
 const DefiningStandards = ({ slice }) => {
-    console.log(slice);
   const heading1 = slice.primary.heading1;
   const bannerImage = slice.primary.bannerimage.url;
   const heading2List = slice.primary.heading2list;

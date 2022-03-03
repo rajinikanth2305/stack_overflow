@@ -10,41 +10,19 @@ const CommunityContentPitch = ({ slice }) => {
   const detail2List = slice.primary.detail2;
   const communityMembersArray = slice.items;
 
-  const detail1 = detail1List.map(function(data, i) {
-    return (
-      <>
-        <p key={i} className="p-text-4">
-          {data.text}
-        </p>
-      </>
-    );
-  });
-
-  const detail2 = detail2List.map(function(data, j) {
-    return (
-      <>
-        <p key={j} className="p-text-4">
-          {data.text}
-        </p>
-      </>
-    );
-  });
-
   const communityMembers = communityMembersArray.map(function(data, k) {
     return (
-      <>
-        <div key={k} className="mx-3">
-          <div className="community_member_image">
-            <Image
-              src={data.image.url}
-              layout="fill"
-              objectFit="contain"
-              objectPosition="bottom"
-            />
-          </div>
-          <p className="p-text-4 mt-2 mb-0">{data.name[0].text}</p>
+      <div key={k} className="mx-3">
+        <div className="community_member_image">
+          <Image
+            src={data.image.url}
+            layout="fill"
+            objectFit="contain"
+            objectPosition="bottom"
+          />
         </div>
-      </>
+        <p className="p-text-4 mt-2 mb-0">{data.name[0].text}</p>
+      </div>
     );
   });
 
@@ -61,13 +39,17 @@ const CommunityContentPitch = ({ slice }) => {
             <div className="col-lg-6 col-md-12">
               {/* <p className="p-text-2">{RichText.asText(heading2)}</p> */}
               <div className="d-flex align-items-center justify-content-center">
-                  {communityMembers}
+                {communityMembers}
               </div>
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-6 col-md-12">{detail1}</div>
-            <div className="col-lg-6 col-md-12">{detail2}</div>
+            <div className="col-lg-6 col-md-12">
+              <div className="p-text-4">{RichText.render(detail1List)}</div>
+            </div>
+            <div className="col-lg-6 col-md-12">
+              <div className="p-text-4">{RichText.render(detail2List)}</div>
+            </div>
             <div className="d-flex justify-content-end my-4">
               <button type="button" className="btn btn-bihtn-yellow">
                 I want to contribute

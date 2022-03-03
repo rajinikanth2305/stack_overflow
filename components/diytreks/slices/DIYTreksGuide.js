@@ -9,28 +9,26 @@ const DIYTreksGuide = ({ slice }) => {
 
   const treks = treksArray.map(function(data, i) {
     return (
-      <>
-        <div key={i} className="col-lg-4 col-md-6">
-          <div className="d-flex align-items-center">
-            <div>
-              <p
-                class={
-                  data.trek_difficulty[0].text === "easy"
-                    ? "badge-green-diy"
-                    : data.trek_difficulty[0].text === "moderate"
-                    ? "badge-yellow-diy"
-                    : data.trek_difficulty[0].text === "difficult"
-                    ? "badge-red-diy"
-                    : "badge-blue-diy"
-                }
-              ></p>
-            </div>
-            <div className="mx-3">
-              <p>{data.trek_name[0].text}</p>
-            </div>
+      <div key={i} className="col-lg-4 col-md-6">
+        <div className="d-flex align-items-center">
+          <div>
+            <p
+              className={
+                data.trek_difficulty[0].text === "easy"
+                  ? "badge-green-diy"
+                  : data.trek_difficulty[0].text === "moderate"
+                  ? "badge-yellow-diy"
+                  : data.trek_difficulty[0].text === "difficult"
+                  ? "badge-red-diy"
+                  : "badge-blue-diy"
+              }
+            ></p>
+          </div>
+          <div className="mx-3">
+            <p>{data.trek_name[0].text}</p>
           </div>
         </div>
-      </>
+      </div>
     );
   });
 
@@ -60,7 +58,7 @@ const DIYTreksGuide = ({ slice }) => {
                 <div className="row d-flex align-items-center">
                   <div className="col-md-4 col-12 px-4 mb-2">
                     <select className="diy-filter" placeholder="test">
-                      <option selected value="test">
+                      <option defaultValue="test">
                         Filter by Region
                       </option>
                       <option value="easyModerateTreks">
@@ -74,7 +72,7 @@ const DIYTreksGuide = ({ slice }) => {
                   </div>
                   <div className="col-md-4 col-12 px-4 mb-2">
                     <select className="diy-filter" placeholder="test">
-                      <option selected value="test">
+                      <option defaultValue="test">
                         Filter by Difficulty
                       </option>
                       <option value="easyModerateTreks">
@@ -88,7 +86,7 @@ const DIYTreksGuide = ({ slice }) => {
                   </div>
                   <div className="col-md-4 col-12 px-4 mb-2">
                     <select className="diy-filter" placeholder="test">
-                      <option selected value="test">
+                      <option defaultValue="test">
                         Filter by Days
                       </option>
                       <option value="easyModerateTreks">

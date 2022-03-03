@@ -56,8 +56,8 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
       url = `/trek/${slugUrl}`;
     }
     return (
-      <>
-        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer" key={i}>
+      <div key={i}>
+        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer">
           <Link href={url ? url : "#"}>
             <div className="card_sec ">
               <div className="card trek_card">
@@ -76,14 +76,6 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
                     <div>
                       <p>{tData.primary.duration[0].text}</p>
                     </div>
-                    {/* <div>
-                    <p className="list-dot-style px-1">
-                      <span>.</span>
-                    </p>
-                  </div>
-                  <div>
-                    <p>{data.trek_seasons[0].text}</p>
-                  </div> */}
                     <div>
                       <p className="list-dot-style px-1">
                         <span>.</span>
@@ -96,9 +88,6 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
 
                   <div>
                     <h3 className="title-diplay-3 m-d-3 text-uppercase">
-                      {/* {data.trek_title[0].text.length > 20
-                      ? `${data.uc_open_desc[0].text.substring(0, 20)}...`
-                      : data.trek_title[0].text} */}
                       <b>
                         {tData.primary.trek_caption.length > 25
                           ? `${tData.primary.trek_caption.substring(0, 25)}...`
@@ -106,9 +95,6 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
                       </b>
                     </h3>
                     <p className="p-text-4 mt2">
-                      {/* {data.trek_desc[0].text.length > 122
-                      ? `${data.trek_desc[0].text.substring(0, 122)}...`
-                      : data.trek_desc[0].text} */}
                       {RichText.asText(tData.primary.sub_heading)}
                     </p>
                     <div className="d-flex alifn-items-center justify-content-between pt-2 pb-4 flex-wrap p-btn-btm ">
@@ -129,7 +115,7 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
             </div>
           </Link>
         </div>
-      </>
+      </div>
     );
   });
 

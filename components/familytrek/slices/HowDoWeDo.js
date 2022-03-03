@@ -17,6 +17,7 @@ const HowDoWeDo = ({ slice }) => {
       <Tab
         eventKey={`tab` + data?.tab_title[0]?.text}
         title={data?.tab_title[0]?.text}
+        key={i}
       >
         <div>
           <div className="fam-tab-img m-d-block mb-4">

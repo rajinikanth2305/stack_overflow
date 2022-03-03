@@ -1,7 +1,6 @@
 import React from "react";
 import { RichText } from "prismic-reactjs";
 import { trekWithStyles } from "styles";
-import Image from "next/image";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 /**
@@ -110,7 +109,7 @@ const TrekWithSwathi = ({ slice }) => {
     
   <div className="text" id="webformErrors" name="errorContent"></div>
     <form acceptCharset="UTF-8" action="https://dh315.infusionsoft.com/app/form/process/84a7deb63b24bef4c47dc0c2fd697605" 
-    className="infusion-form" id="inf_form_84a7deb63b24bef4c47dc0c2fd697605" method="POST" name="Web Form submitted" onsubmit="submitWebForm()">
+    className="infusion-form" id="inf_form_84a7deb63b24bef4c47dc0c2fd697605" method="POST" name="Web Form submitted" onSubmit="submitWebForm()">
                 
                 <input name="inf_form_xid" type="hidden" value="84a7deb63b24bef4c47dc0c2fd697605" />
     <input name="inf_form_name" type="hidden" value="Web Form submitted" />

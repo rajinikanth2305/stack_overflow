@@ -11,7 +11,6 @@ import Link from "next/link";
 const BestPostTreks = ({ slice, trekData }) => {
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
-  const bestPostTreksArray = slice.items;
 
   const settings = {
     dots: true,
@@ -57,8 +56,8 @@ const BestPostTreks = ({ slice, trekData }) => {
       url = `/trek/${slugUrl}`;
     }
     return (
-      <>
-        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer" key={i}>
+      <div key={i}>
+        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer">
           <Link href={url ? url : "#"}>
             <div className="card_sec">
               <div className="card trek_card">
@@ -88,14 +87,6 @@ const BestPostTreks = ({ slice, trekData }) => {
                     <div>
                       <p>{tData.primary.duration[0].text}</p>
                     </div>
-                    {/* <div>
-                    <p className="list-dot-style px-1">
-                      <span>.</span>
-                    </p>
-                  </div>
-                  <div>
-                    <p>{data.seasons[0].text}</p>
-                  </div> */}
                     <div>
                       <p className="list-dot-style px-1">
                         <span>.</span>
@@ -108,9 +99,6 @@ const BestPostTreks = ({ slice, trekData }) => {
 
                   <div>
                     <p className="p-text-4">
-                      {/* {data.desc[0].text.length > 125
-                      ? `${data.desc[0].text.substring(0, 125)}...`
-                      : data.desc[0].text} */}
                       {RichText.asText(tData.primary.sub_heading)}
                     </p>
                   </div>
@@ -144,7 +132,7 @@ const BestPostTreks = ({ slice, trekData }) => {
             </div>
           </Link>
         </div>
-      </>
+      </div>
     );
   });
 

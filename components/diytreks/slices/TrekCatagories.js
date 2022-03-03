@@ -49,14 +49,16 @@ const TrekCatagories = ({ slice }) => {
 
   const trekImages = trekImagesArray.map(function(data, i) {
     return (
-      <>
-        <div key={i} className="mx-4 m-mx-0">
+      <div key={i}>
+        <div className="mx-4 m-mx-0">
           <div className="trek_image_bg">
             <div className="bg_overlay_trek_image_bg h-100">
               <div className="h-100">
                 <div className="d-flex align-items-end justify-content-center w-100 h-100 px-4 py-3">
                   <div>
-                    <p className="p-text-1-main m-0">{data.diy_heading2[0].text}</p>
+                    <p className="p-text-1-main m-0">
+                      {data.diy_heading2[0].text}
+                    </p>
                     <p className="p-text-4 text-white mb-0">
                       {data.diy_heading1[0].text}
                     </p>
@@ -72,7 +74,7 @@ const TrekCatagories = ({ slice }) => {
             />
           </div>
         </div>
-      </>
+      </div>
     );
   });
 
