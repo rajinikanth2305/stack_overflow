@@ -82,7 +82,7 @@ const relatedArticles=[];
 
             if(related_link===null) {
               slug=data?.article_uid;
-              console.log(slug);
+              // console.log(slug);
               if(slug===null){
                 if(data?.article_title!==null) {
                   slug=data?.article_title.replace(" ","-").toLowerCase();
@@ -91,10 +91,10 @@ const relatedArticles=[];
           }
           else {
             slug=data?.related_article_link?.id;
-            console.log("id" + slug);
+            // console.log("id" + slug);
             uid=true;
           }
-         console.log(slug);
+        //  console.log(slug);
          if(slug!==null &&  slug!==undefined) {
 
           let related_article=null;
@@ -105,7 +105,7 @@ const relatedArticles=[];
               related_article  =  await Client().getByID(slug);
             }
 
-            console.log(related_article);
+            // console.log(related_article);
              if(related_article!==null && related_article!==undefined ){
                 relatedArticles.push(related_article);
              }
@@ -118,7 +118,7 @@ const relatedArticles=[];
  }
 
 
-console.log('authorlink---' + author_lnk_id);
+// console.log('authorlink---' + author_lnk_id);
 let authorData =undefined;
 
 if(author_lnk_id !== undefined) {
@@ -169,7 +169,7 @@ if(author_lnk_id !== undefined) {
     }
   }
  // console.log(JSON.stringify(related_authors));
-  console.log("return is going to call now");
+  // console.log("return is going to call now");
   return {
     props: {
       preview,

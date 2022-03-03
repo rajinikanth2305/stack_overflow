@@ -66,8 +66,8 @@ export async function getStaticProps({
   const slice = trekData.data?.body?.find(
     x => x.slice_type === "others_treks_like"
   );
-  console.log( "items");
-  console.log( JSON.stringify(slice.items));
+  // console.log( "items");
+  // console.log( JSON.stringify(slice.items));
   // trekPageData.push(slice.items);
   const trekPageData = slice.items;
 

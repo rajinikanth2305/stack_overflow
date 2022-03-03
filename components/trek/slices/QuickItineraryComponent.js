@@ -56,12 +56,12 @@ const QuickItineraryComponent = ({ slice }) => {
         <div className="d-flex align-items-start flex-wrap mt-1">
           <div className="col-lg-1 col-md-12">
             <p className="p-text-2 text-brown-shade mb-0">
-              Day {data.day_number_text[0].text}
+              Day {data?.day_number_text[0]?.text}
             </p>
           </div>
           <div className="col-lg-11 col-md-12">
             <p className="p-text-2 mb-0">
-              <b>{data.heading1[0].text}</b>
+              <b>{data?.heading1[0]?.text}</b>
             </p>
             <div className="p-text-small text-dark mb-2">
               {RichText.render(data?.sub_heading2)}
