@@ -7,7 +7,8 @@ import {
   HowDoWeDo,
   DefiningStandards,
   FaqFamily,
-  Testimonoials
+  Testimonoials,
+  FamilyTrekVideos
 } from "./slices";
 
 /**
@@ -22,9 +23,21 @@ const FamilyTrekSliceZone = ({ sliceZone, multiTrekData, weekendTrekData }) =>
       case "trek_exp":
         return <TrekExp slice={slice} key={`slice-${index}`} />;
       case "multi_day_trek_list":
-        return <MultiDayTrekComponent slice={slice} key={`slice-${index}`} multiTrekData={multiTrekData} />;
+        return (
+          <MultiDayTrekComponent
+            slice={slice}
+            key={`slice-${index}`}
+            multiTrekData={multiTrekData}
+          />
+        );
       case "weekend_treks":
-        return <WeekendTrek slice={slice} key={`slice-${index}`} weekendTrekData={weekendTrekData} />;
+        return (
+          <WeekendTrek
+            slice={slice}
+            key={`slice-${index}`}
+            weekendTrekData={weekendTrekData}
+          />
+        );
       case "how_do_we_do_it":
         return <HowDoWeDo slice={slice} key={`slice-${index}`} />;
       case "defining_safety":
@@ -33,6 +46,8 @@ const FamilyTrekSliceZone = ({ sliceZone, multiTrekData, weekendTrekData }) =>
         return <FaqFamily slice={slice} key={`slice-${index}`} />;
       case "fam_testimonials":
         return <Testimonoials slice={slice} key={`slice-${index}`} />;
+      case "fam_trek_videos":
+        return <FamilyTrekVideos slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }
