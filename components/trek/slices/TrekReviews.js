@@ -81,8 +81,8 @@ const TrekReviews = ({ slice }) => {
 
   const trekkersStoriesImage = sampleData?.map(function(data, i) {
     return (
-      <>
-        <div className="mx-4 m-mx-0" key={`trekkstory` + i}>
+      <div key={`trekkstory` + i}>
+        <div className="mx-4 m-mx-0">
           <div className="card_sec">
             <div className="card trek_card review_card">
               <div className="p-4">
@@ -120,7 +120,7 @@ const TrekReviews = ({ slice }) => {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   });
   return (
@@ -170,9 +170,13 @@ const TrekReviews = ({ slice }) => {
                     <b>{reveiewInfo && reveiewInfo.name}</b>
                   </h6>
                   <p className="m-0 p-display-2">Batch of</p>
-                  <p className="m-0 p-display-2">{reveiewInfo && reveiewInfo.batch}</p>
+                  <p className="m-0 p-display-2">
+                    {reveiewInfo && reveiewInfo.batch}
+                  </p>
                 </div>
-                <h3 className="title-diplay-3 ts-lable">{reveiewInfo && reveiewInfo.title}</h3>
+                <h3 className="title-diplay-3 ts-lable">
+                  {reveiewInfo && reveiewInfo.title}
+                </h3>
                 <p className="p-display-2">{reveiewInfo && reveiewInfo.desc}</p>
               </div>
             </div>

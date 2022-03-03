@@ -48,7 +48,7 @@ const FeeDetails = ({ data }) => {
     //   });
     const slice = data && data.find(x => x.slice_type === "trek_fee_details");
     setFeeDetails(slice);
-    console.log(slice);
+    // console.log(slice);
   }
 
   const heading = feeDetails && feeDetails.primary.heading;
@@ -67,12 +67,12 @@ const FeeDetails = ({ data }) => {
           </p>
         </div>
         <div className="mx-2">
-          <p className="trek_optional_details mb-0 mb-0-p">
+          <div className="trek_optional_details mb-0 mb-0-p">
             {RichText.render(data.optional_additions_heading, linkResolver)}
-          </p>
-          <p className="trek_optional_details">
+          </div>
+          <div className="trek_optional_details">
             {RichText.render(data.optional_additions_desc)}
-          </p>
+          </div>
         </div>
       </div>
     );

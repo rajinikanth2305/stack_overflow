@@ -43,6 +43,7 @@ const TrekTrevia = ({ slice }) => {
       <Tab
         eventKey={i + `tab` + data?.tab_name[0]?.text}
         title={data?.tab_name[0]?.text}
+        key={i}
       >
         <div>
           <p className="p-text-1 border-line-left">

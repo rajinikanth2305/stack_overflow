@@ -25,7 +25,7 @@ const HowToReach = ({ data }) => {
 
   const howTo = howToArray?.map(function(data, i) {
     return (
-      <div>
+      <div key={i}>
         {data?.note_image?.url && (
           <div className="reach-map-img my-4">
             <Image
@@ -40,7 +40,7 @@ const HowToReach = ({ data }) => {
           <p className="p-text-1">
             <b>{RichText.asText(data?.heading1)}</b>
           </p>
-          <p className="p-text-4">{RichText.render(data?.details)}</p>
+          <div className="p-text-4">{RichText.render(data?.details)}</div>
         </div>
 
         <div className="d-flex">
@@ -50,9 +50,9 @@ const HowToReach = ({ data }) => {
                 <p className="p-text-2-franklin mb-2">
                   {RichText.asText(data?.important_note_title)}
                 </p>
-                <p className="p-text-4 mb-0">
+                <div className="p-text-4 mb-0">
                   {RichText.render(data?.impprtant_note)}
-                </p>
+                </div>
               </div>
             )}
           </div>

@@ -52,24 +52,22 @@ const QuickItineraryComponent = ({ slice }) => {
 
   const dayNumberText = dayNumberTextArray.map(function(data, i) {
     return (
-      <>
-        <div className="d-flex align-items-start flex-wrap mt-1">
-          <div className="col-lg-1 col-md-12">
-            <p className="p-text-2 text-brown-shade mb-0">
-              Day {data?.day_number_text[0]?.text}
-            </p>
-          </div>
-          <div className="col-lg-11 col-md-12">
-            <p className="p-text-2 mb-0">
-              <b>{data?.heading1[0]?.text}</b>
-            </p>
-            <div className="p-text-small text-dark mb-2">
-              {RichText.render(data?.sub_heading2)}
-            </div>
-            <div className="p-text-4">{RichText.render(data?.heading2)}</div>
-          </div>
+      <div className="d-flex align-items-start flex-wrap mt-1" key={i}>
+        <div className="col-lg-1 col-md-12">
+          <p className="p-text-2 text-brown-shade mb-0">
+            Day {data?.day_number_text[0]?.text}
+          </p>
         </div>
-      </>
+        <div className="col-lg-11 col-md-12">
+          <p className="p-text-2 mb-0">
+            <b>{data?.heading1[0]?.text}</b>
+          </p>
+          <div className="p-text-small text-dark mb-2">
+            {RichText.render(data?.sub_heading2)}
+          </div>
+          <div className="p-text-4">{RichText.render(data?.heading2)}</div>
+        </div>
+      </div>
     );
   });
 
@@ -148,7 +146,7 @@ const QuickItineraryComponent = ({ slice }) => {
                     </span>
                   </p>
                   {/* {proTipsListData} */}
-                  <p className="p-text-4 m-0">{RichText.render(proTipsList)}</p>
+                  <div className="p-text-4 m-0">{RichText.render(proTipsList)}</div>
                 </div>
               </div>
             </div>
@@ -173,7 +171,7 @@ const QuickItineraryComponent = ({ slice }) => {
                       </span>
                     </p>
                     {/* {proTipsListData} */}
-                    <p className="p-text-4">{RichText.render(proTipsList)}</p>
+                    <div className="p-text-4">{RichText.render(proTipsList)}</div>
                   </div>
                 </div>
                 <div className="d-flex justify-content-center bg-transparent-text-effect">

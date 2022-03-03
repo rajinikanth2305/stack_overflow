@@ -69,10 +69,13 @@ const TrekkersStoriesCommon = () => {
     ]
   };
 
-  const trekkersStoriesImage = trekkersStoriesImageArray?.map(function(data, i) {
+  const trekkersStoriesImage = trekkersStoriesImageArray?.map(function(
+    data,
+    i
+  ) {
     return (
-      <>
-        <div className="mx-4 m-mx-0" key={`trekkstory` + i}>
+      <div key={`trekkstory` + i}>
+        <div className="mx-4 m-mx-0">
           <div className="card_sec">
             <div className="card trek_card">
               <div alt="imgs" className="choose_trek_image">
@@ -95,13 +98,15 @@ const TrekkersStoriesCommon = () => {
                       ? `${trekkers_stories_desc.substring(0, 125)}...`
                       : trekkers_stories_desc}
                   </p> */}
-                  <div className="p-display-2">{RichText.render(data.trekkers_stories_desc)}</div>
+                  <div className="p-display-2">
+                    {RichText.render(data.trekkers_stories_desc)}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   });
 
@@ -111,7 +116,9 @@ const TrekkersStoriesCommon = () => {
         <div className="container">
           <div className="d-flex align-items-center flex-wrap border-bottom-4 mb-3">
             <div className="col-md-12">
-              <h2 className="title-display-2 pb-08 mb-3 pb-08-mobile">{RichText.asText(heading1)}</h2>
+              <h2 className="title-display-2 pb-08 mb-3 pb-08-mobile">
+                {RichText.asText(heading1)}
+              </h2>
             </div>
           </div>
           <div className="row">

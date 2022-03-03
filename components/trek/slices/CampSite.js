@@ -16,17 +16,9 @@ const CampSite = ({ slice }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const heading2data = heading2.map((data, i) => {
-    return (
-      <p className="mmb-0" key={i}>
-        {data.text}
-      </p>
-    );
-  });
-
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -36,7 +28,7 @@ const CampSite = ({ slice }) => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 2,
-          infinite: true,
+          infinite: false,
           dots: true
         }
       },
@@ -61,8 +53,8 @@ const CampSite = ({ slice }) => {
 
   const campsitesImages = campsitesImagesArray?.map(function(data, i) {
     return (
-      <>
-        <div className="mx-4 mmx-0" key={i}>
+      <div key={i}>
+        <div className="mx-4 mmx-0">
           <div alt="imgs" className="campsites_images cursor-pointer">
             {data?.campsites_images?.url ? (
               <Image
@@ -90,7 +82,7 @@ const CampSite = ({ slice }) => {
             {data?.image_desc[0]?.text}
           </p>
         </div>
-      </>
+      </div>
     );
   });
 

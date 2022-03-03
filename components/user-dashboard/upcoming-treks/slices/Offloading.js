@@ -65,11 +65,11 @@ const Offloading = forwardRef((props, ref) => {
   }
 
    const initData = async (data) => {
-     console.log(data);
+    //  console.log(data);
 
      if(deriveBookingState(data)==true) {
 
-        console.log("Called here");
+        // console.log("Called here");
 
     let vouchers = [];
     vouchers = await getUsersVoucherByBookingId(data.bookingId);
@@ -119,14 +119,14 @@ const Offloading = forwardRef((props, ref) => {
               }
             });
             setOffLoadings(offLoadingList);
-            console.log(offLoadingList);
-            console.log(offLoadingList.length);
+            // console.log(offLoadingList);
+            // console.log(offLoadingList.length);
     
               const arr = Array.from(
                 new Array(offLoadingList?.length),
                 (x, i) => i
               );
-              console.log(arr.length);
+              // console.log(arr.length);
               setIndexes(arr);
               setCounter(arr.length);
               setRender(true);
@@ -195,7 +195,7 @@ const Offloading = forwardRef((props, ref) => {
           sdata.find(u => u.id === id).voucherAmount = amountToDeductInVocuher;
           sdata.find(u => u.id === id).youPay = Number(youPay-amountToDeductInVocuher);
 
-          console.log(amountToDeductInVocuher);
+          // console.log(amountToDeductInVocuher);
         }
       }
      // console.log(JSON.stringify(sdata.find(u => u.id === id)));
@@ -219,7 +219,7 @@ const Offloading = forwardRef((props, ref) => {
     const sdata = offLoadings
     //// check if already it is selected:
     const optedId = sdata.find(u => u.optedVoucherId === value);
-    console.log(optedId);
+    // console.log(optedId);
 
     if (optedId !== undefined) {
       toast.current.show({
@@ -322,7 +322,7 @@ const Offloading = forwardRef((props, ref) => {
                       indexes.map(index => {
                       const fieldName = `voucher[${index}]`;
                       const sdata = offLoadings[index];
-                      console.log(sdata);
+                      // console.log(sdata);
                       const lvouchers = [];
 
                       if (vouchers?.length > 0) {

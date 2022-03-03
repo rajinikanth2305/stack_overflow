@@ -18,30 +18,31 @@ const TrekVideosComponent = ({ slice }) => {
   const secondaryImage = slice.primary.secondary_image.url;
   const secondaryVideoLink = slice?.primary?.secondary_video_link?.url;
 
-
-  const primaryResult = primaryVideoLink?.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  const primaryResult = primaryVideoLink?.split(
+    /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
+  );
   const primaryvideoIdWithParams = primaryResult && primaryResult[2];
 
   const primarycleanVideoId =
-  primaryvideoIdWithParams && primaryvideoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+    primaryvideoIdWithParams &&
+    primaryvideoIdWithParams.split(/[^0-9a-z_-]/i)[0];
 
   const primaryVideoUrl =
     "https://www.youtube.com/embed/" + primarycleanVideoId + "?autoplay=1";
   const primary_youtube_imageURL = `https://img.youtube.com/vi/${primarycleanVideoId}/hqdefault.jpg`;
 
-  const secondaryResult = secondaryVideoLink?.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  const secondaryResult = secondaryVideoLink?.split(
+    /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
+  );
   const secondaryvideoIdWithParams = secondaryResult && secondaryResult[2];
 
   const secondarycleanVideoId =
-  secondaryvideoIdWithParams && secondaryvideoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+    secondaryvideoIdWithParams &&
+    secondaryvideoIdWithParams.split(/[^0-9a-z_-]/i)[0];
 
   const secondaryVideoUrl =
     "https://www.youtube.com/embed/" + secondarycleanVideoId + "?autoplay=1";
   const secondary_youtube_imageURL = `https://img.youtube.com/vi/${secondarycleanVideoId}/hqdefault.jpg`;
-
-  const heading2data = heading2.map((data, i) => {
-    return <p key={i}>{data.text}</p>;
-  });
 
   const [show, setShow] = useState(false);
   const [primaryShow, setPrimaryShow] = useState(false);
@@ -95,18 +96,20 @@ const TrekVideosComponent = ({ slice }) => {
   };
 
   const videosList = videoArray.map(function(data, i) {
-  const result = data?.video_url?.url?.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-  const videoIdWithParams = result && result[2];
+    const result = data?.video_url?.url?.split(
+      /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
+    );
+    const videoIdWithParams = result && result[2];
 
-  const cleanVideoId =
-  videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+    const cleanVideoId =
+      videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
 
-  const videoUrl =
-    "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
-  const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
+    const videoUrl =
+      "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
+    const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
     return (
-      <>
-        <div className="mx-2 mb-3" key={i}>
+      <div key={i}>
+        <div className="mx-2 mb-3">
           <div className="card card-box-shadow border-0">
             <div className="trek_video_image_array">
               <div className="d-flex align-items-center justify-content-center w-100 h-100">
@@ -137,7 +140,7 @@ const TrekVideosComponent = ({ slice }) => {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   });
 
@@ -152,7 +155,7 @@ const TrekVideosComponent = ({ slice }) => {
               </h2>
             </div>
             <div className="col-12 col-lg-7 col-md-12 d-m-none">
-              <p className="mb-4 pb-2 p-text-4">{RichText.render(heading2)}</p>
+              <div className="mb-4 pb-2 p-text-4">{RichText.render(heading2)}</div>
             </div>
             <div className="col-12 col-lg-7 col-md-12 mpy-0">
               <div className="d-m-none">

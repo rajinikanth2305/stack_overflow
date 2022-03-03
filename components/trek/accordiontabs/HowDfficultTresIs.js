@@ -9,7 +9,6 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 
 const HowDifficultTrekIs = ({ data }) => {
-  console.log(data);
   const [howDiff, setHowDiff] = useState();
 
   useEffect(() => {
@@ -29,7 +28,8 @@ const HowDifficultTrekIs = ({ data }) => {
     //       tt && tt.find(x => x.slice_type === "how_difficult_is_trek");
     //     setHowDiff(slice);
     //   });
-    const slice = data && data.find(x => x.slice_type === "how_difficult_is_trek");
+    const slice =
+      data && data.find(x => x.slice_type === "how_difficult_is_trek");
     setHowDiff(slice);
   }
 
@@ -45,96 +45,80 @@ const HowDifficultTrekIs = ({ data }) => {
 
   // console.log(tabsDataArray);
 
-  const hdText = hdTextList?.map(function(data, i) {
-    return (
-      <>
-        <p className="p-text-4" key={i}>
-          {data.text}
-        </p>
-      </>
-    );
-  });
+  // const hdText = hdTextList?.map(function(data, i) {
+  //   return (
+  //     <>
+  //       <p className="p-text-4" key={i}>
+  //         {data.text}
+  //       </p>
+  //     </>
+  //   );
+  // });
 
   const trekDifficultyContent = trekDifficultyContentList?.map(function(
     data,
     i
   ) {
     return (
-      <>
-        <p key={i}>{data.text}</p>
-      </>
+      <p className="p-text-small" key={i}>
+        {data.text}
+      </p>
     );
   });
 
   const howSafeContent = howSafeContentList?.map(function(data, i) {
     return (
-      <>
-        <p key={i} className="p-text-4" key={i}>
-          {data.text}
-        </p>
-      </>
+      <p key={i} className="p-text-4" key={i}>
+        {data.text}
+      </p>
     );
   });
 
   const tabsData = tabsDataArray?.map(function(data, i) {
     const title = data.title?.map(function(data, i) {
-      return (
-        <>
-          <p key={i}>{data.text}</p>
-        </>
-      );
+      return <p key={i}>{data.text}</p>;
     });
     const description = data.description?.map(function(data, i) {
       return (
-        <>
-          <p key={i} className="p-text-3-2">
-            {data.text ? data.text : "-"}
-          </p>
-        </>
+        <p key={i} className="p-text-3-2">
+          {data.text ? data.text : "-"}
+        </p>
       );
     });
     const content1_title = data.content1_title?.map(function(data, i) {
       return (
-        <>
-          <p key={i} className="p-text-4">
-            <b>
-              {i + 1}. {data.text ? data.text : "-"}
-            </b>
-          </p>
-        </>
+        <p key={i} className="p-text-4">
+          <b>
+            {i + 1}. {data.text ? data.text : "-"}
+          </b>
+        </p>
       );
     });
     const content1_data = data.content1_data?.map(function(data, i) {
       return (
-        <>
-          <p key={i} className="p-text-3-2">
-            {data.text ? data.text : "-"}
-          </p>
-        </>
+        <p key={i} className="p-text-3-2">
+          {data.text ? data.text : "-"}
+        </p>
       );
     });
     const content2_title = data.content2_title?.map(function(data, i) {
       return (
-        <>
-          <p key={i} className="p-text-4">
-            <b>
-              {i + 2}. {data.text ? data.text : "-"}
-            </b>
-          </p>
-        </>
+        <p key={i} className="p-text-4">
+          <b>
+            {i + 2}. {data.text ? data.text : "-"}
+          </b>
+        </p>
       );
     });
     const content2_data = data.content2_data?.map(function(data, i) {
       return (
-        <>
-          <p key={i} className="p-text-3-2">
-            {data.text ? data.text : "-"}
-          </p>
-        </>
+        <p key={i} className="p-text-3-2">
+          {data.text ? data.text : "-"}
+        </p>
       );
     });
     return (
-      <Tab eventKey={`tab` + data?.title[0]?.text} title={data?.title[0]?.text}>
+      <Tab eventKey={`tab` + data?.title[0]?.text} title={data?.title[0]?.text} key={i}>
         {data?.title[0]?.text === "Safety – Altitude Wise" ? (
           <div className="hd-tab2-iamge mb-4">
             {data.heading1_image.url && (
@@ -152,13 +136,14 @@ const HowDifficultTrekIs = ({ data }) => {
         {description}
         {data?.title[0]?.text === "Exit Points & Emergency Details" ? (
           <div className="hd-tab4-iamge mb-4">
-          {data.heading1_image.url &&
-            <Image
-              src={data.heading1_image.url}
-              layout="fill"
-              objectFit="contain"
-              objectPosition="bottom"
-          /> }
+            {data.heading1_image.url && (
+              <Image
+                src={data.heading1_image.url}
+                layout="fill"
+                objectFit="contain"
+                objectPosition="bottom"
+              />
+            )}
           </div>
         ) : (
           ""
@@ -166,13 +151,14 @@ const HowDifficultTrekIs = ({ data }) => {
         {data?.title[0]?.text === "Safety - Terrain Wise" ? (
           <>
             <div className="hd-tab2-iamge mv mb-4 d-m-block">
-            {data.heading1_image.url &&
-              <Image
-                src={data.heading1_image.url}
-                layout="fill"
-                objectFit="cover"
-                objectPosition="50% 50%"
-              />}
+              {data.heading1_image.url && (
+                <Image
+                  src={data.heading1_image.url}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                />
+              )}
             </div>
             <div className="d-flex">
               <div className="flex-fill">
@@ -183,13 +169,14 @@ const HowDifficultTrekIs = ({ data }) => {
               </div>
               <div className="w-100 d-m-none">
                 <div className="hd-tab2-iamge position-change mb-4">
-                {data.heading1_image.url && 
-                  <Image
-                    src={data.heading1_image.url}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="50% 50%"
-                /> }
+                  {data.heading1_image.url && (
+                    <Image
+                      src={data.heading1_image.url}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="50% 50%"
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -265,15 +252,11 @@ const HowDifficultTrekIs = ({ data }) => {
             </div>
             <div className="col-lg-1 col-md-12"></div>
             <div className="col-lg-8 col-md-12">
-              <div>
-                <p className="p-text-small">
-                  {trekDifficultyContent ? trekDifficultyContent : ""}
-                </p>
-              </div>
+              <div>{trekDifficultyContent ? trekDifficultyContent : ""}</div>
             </div>
             <div className="col-md-12">
-            {/* {hdText ? hdText : ""} */}
-            <div className="p-text-4">{RichText.render(hdTextList)}</div>
+              {/* {hdText ? hdText : ""} */}
+              <div className="p-text-4">{RichText.render(hdTextList)}</div>
             </div>
             <div className="col-md-12">
               <div className="my-5 mmt-2">

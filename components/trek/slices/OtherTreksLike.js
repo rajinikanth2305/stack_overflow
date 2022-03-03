@@ -56,8 +56,8 @@ const OtherTreksLike = ({ slice, trekPageData1 }) => {
     }
     const getFamiltTrek = data?.tags?.find(x => x === "FamilyTrek");
     return (
-      <>
-        <div className="mx-4 m-mx-0" key={i}>
+      <div key={i}>
+        <div className="mx-4 m-mx-0">
           <div className="card_sec">
             <div className="card trek_card">
               <div alt="imgs" className="image-view imgaview-view">
@@ -130,7 +130,7 @@ const OtherTreksLike = ({ slice, trekPageData1 }) => {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   });
 

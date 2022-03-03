@@ -99,7 +99,7 @@ const MyTreks = forwardRef((props, ref) => {
   const essentialsArraydetails = essentialIndexes?.map(function(i) {
     const data=essentialData && essentialData[i];
     return (
-      <div className="col-lg-3 col-md-6 col-12">
+      <div className="col-lg-3 col-md-6 col-12" key={i}>
         <p className="m-0 text-decoration-underline">
           <a
             className="p-text-3-blue-lora"
@@ -126,8 +126,8 @@ const MyTreks = forwardRef((props, ref) => {
       "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
     const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
     return (
-      <div>
-        <div className="mx-4 mb-3" key={i}>
+      <div key={i}>
+        <div className="mx-4 mb-3">
           <div className="card card-box-shadow border-0">
             <div className="trek_video_image_array">
               <div className="d-flex align-items-center justify-content-center w-100 h-100">
@@ -177,20 +177,20 @@ const MyTreks = forwardRef((props, ref) => {
           return;
        }
 
-       console.log(trekData);
+      //  console.log(trekData);
        const data=trekData?.data;
        /// Get the prismic trek contents
       const trekName = data.backOfficeTrekLabel.replaceAll(" ", "-").toLowerCase();
-      console.log(trekName);
+      // console.log(trekName);
       const result=trekData.prismicContents?.results?.find(x=>x.uid.toLowerCase()===trekName.toLowerCase());
-      console.log(result);
+      // console.log(result);
       setTrekPageData(result);
 
       fillPrismicContents(result);
 
       const trekId = data?.trekId;
       const bookState= data?.bookingState==="COMPLETED";
-      console.log( data );
+      // console.log( data );
       setBookingState(bookState);
 
       if(bookState) {
@@ -222,7 +222,7 @@ const MyTreks = forwardRef((props, ref) => {
 
   const fillPrismicContents=(result)=> {
     const essentialDownloads = result?.data?.body.find(x => x.slice_type === "essentials_downloads"); 
-     console.log(essentialDownloads);
+    //  console.log(essentialDownloads);
 
     if(essentialDownloads!==undefined) {
     const essentialsArray = essentialDownloads && essentialDownloads?.items;
@@ -283,7 +283,7 @@ const MyTreks = forwardRef((props, ref) => {
 
     if (userLocations.length > 0) {
       ///call save and show message
-      console.log(userLocations);
+      // console.log(userLocations);
       saveUserLocations(participantData.bookingId, userLocations).then(res => {
         setSaveState(true);
         props.onMyTrekSaveDetail(

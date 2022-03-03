@@ -2,13 +2,6 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { trekStyle } from "styles";
 import Image from "next/image";
-// import {
-//   Accordion,
-//   AccordionItem,
-//   AccordionItemHeading,
-//   AccordionItemButton,
-//   AccordionItemPanel
-// } from "react-accessible-accordion";
 import "react-accessible-accordion/dist/fancy-example.css";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
@@ -32,53 +25,53 @@ const KnowYourTrek = ({ slice, data }) => {
       x => x.slice_type === data?.inner_content_slice_id[0]?.text
     );
     return (
-      <>
-        <Accordion>
-          <Card>
-            <Card.Header>
-              <Accordion.Toggle variant="link" eventKey="0" className="kyt-tabs">
-                <div className="d-flex align-items-center border-bottom-custom-2x">
-                  <div className="px-3 mpx-1">
-                    <img
-                      src={data?.accordion_tab_img?.url}
-                      className="accordion_tab_img"
-                    />
-                  </div>
-                  <div className="mx-2 flex-grow-1">
-                    <p className="p-text-1 m-0">
-                      <b>{data?.accordion_tab_title[0]?.text}</b>
-                    </p>
-                    <p className="mb-2 p-text-3-2">
-                      {data?.accordion_tab_desc[0]?.text}
-                    </p>
-                  </div>
-                  <div className="mx-2">
-                    <i
-                      className="fa fa-angle-double-down accordion_arrow_icon"
-                      aria-hidden="true"
-                    ></i>
-                  </div>
+      <Accordion key={i}>
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle variant="link" eventKey="0" className="kyt-tabs">
+              <div className="d-flex align-items-center border-bottom-custom-2x">
+                <div className="px-3 mpx-1">
+                  <img
+                    src={data?.accordion_tab_img?.url}
+                    className="accordion_tab_img"
+                  />
                 </div>
-              </Accordion.Toggle>
-            </Card.Header>
-            <Accordion.Collapse eventKey="0">
-              <Card.Body>
-                {sliceType?.slice_type === "how_does_each_day_looks" ? (
-                  <HowDoesEachDayLooks data={slice_zone} />
-                ) : sliceType?.slice_type === "best_time_to_do_trek" ? (
-                  <BestTimeToDo data={slice_zone} />
-                ) : sliceType?.slice_type === "howto_reach" ? (
-                  <HowToReach data={slice_zone} />
-                ) : sliceType?.slice_type === "trek_inclusions" ? (
-                  <InclusionsAndExclusions data={slice_zone}/>
-                ) : sliceType?.slice_type === "how_difficult_is_trek" ? (
-                  <HowDifficultTrekIs data={slice_zone} />
-                ) : <WhatToPack data={slice_zone} />}
-              </Card.Body>
-            </Accordion.Collapse>
-          </Card>
-        </Accordion>
-      </>
+                <div className="mx-2 flex-grow-1">
+                  <p className="p-text-1 m-0">
+                    <b>{data?.accordion_tab_title[0]?.text}</b>
+                  </p>
+                  <p className="mb-2 p-text-3-2">
+                    {data?.accordion_tab_desc[0]?.text}
+                  </p>
+                </div>
+                <div className="mx-2">
+                  <i
+                    className="fa fa-angle-double-down accordion_arrow_icon"
+                    aria-hidden="true"
+                  ></i>
+                </div>
+              </div>
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="0">
+            <Card.Body>
+              {sliceType?.slice_type === "how_does_each_day_looks" ? (
+                <HowDoesEachDayLooks data={slice_zone} />
+              ) : sliceType?.slice_type === "best_time_to_do_trek" ? (
+                <BestTimeToDo data={slice_zone} />
+              ) : sliceType?.slice_type === "howto_reach" ? (
+                <HowToReach data={slice_zone} />
+              ) : sliceType?.slice_type === "trek_inclusions" ? (
+                <InclusionsAndExclusions data={slice_zone} />
+              ) : sliceType?.slice_type === "how_difficult_is_trek" ? (
+                <HowDifficultTrekIs data={slice_zone} />
+              ) : (
+                <WhatToPack data={slice_zone} />
+              )}
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
     );
   });
 
@@ -128,7 +121,9 @@ const KnowYourTrek = ({ slice, data }) => {
                     <h2 className="title-h2 th-2m pb-08">
                       {RichText.asText(heading1)}
                     </h2>
-                    <div className="p-text-4 mpt4 pt-3">{RichText.render(heading2)}</div>
+                    <div className="p-text-4 mpt4 pt-3">
+                      {RichText.render(heading2)}
+                    </div>
                     <div className="my-5 mmt-2">{accordionTabImg}</div>
                   </div>
                 </div>

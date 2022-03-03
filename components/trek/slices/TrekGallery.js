@@ -49,14 +49,14 @@ const TrekGallery = ({ slice }) => {
 
   const discoveryTrekGallery = discoveryTrekGalleryArray.map((data, i) => {
     return (
-      <>
+      <div key={i}>
         <div className="discovery_trek_gallery">
           {data?.discovery_trek_gallery?.url && (
             <Image
               src={data?.discovery_trek_gallery?.url}
               layout="fill"
-                        objectFit="cover"
-                        objectPosition="top"
+              objectFit="cover"
+              objectPosition="top"
             />
           )}
         </div>
@@ -68,7 +68,8 @@ const TrekGallery = ({ slice }) => {
                   Photo story: {data?.discovery_trek_gallery_story[0]?.text}
                 </p>
                 <p className="text-white mtw p-text-2">
-                  Picture by: {data?.discovery_trek_gallery_pictured_by[0]?.text}
+                  Picture by:{" "}
+                  {data?.discovery_trek_gallery_pictured_by[0]?.text}
                 </p>
               </div>
               <div className="col-12 col-lg-6 col-md-12 d-m-none">
@@ -79,7 +80,7 @@ const TrekGallery = ({ slice }) => {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   });
 

@@ -35,13 +35,11 @@ const TrekExpertSpeak = ({ slice }) => {
             <div>
               {data.what_i_like_content_title.map((tit, index) => {
                 return (
-                  <>
-                    <h5 key={index} className="p-text-2 mb-3">
-                      <b>
-                        {i + 1}. {tit.text}
-                      </b>
-                    </h5>
-                  </>
+                  <h5 key={index} className="p-text-2 mb-3">
+                    <b>
+                      {i + 1}. {tit.text}
+                    </b>
+                  </h5>
                 );
               })}
             </div>
@@ -58,8 +56,8 @@ const TrekExpertSpeak = ({ slice }) => {
                 <Image
                   src={data.what_i_like_image.url}
                   layout="fill"
-                        objectFit="contain"
-                        objectPosition="left"
+                  objectFit="contain"
+                  objectPosition="left"
                   onClick={() => {
                     setImgUrl(data?.what_i_like_image?.url);
                     setShow(true);
@@ -68,7 +66,9 @@ const TrekExpertSpeak = ({ slice }) => {
               )}
             </div>
             <div>
-              <div className="trek_summary_desc font-italic py-3 mpb-0">{RichText.render(data.what_i_like_image_desc)}</div>
+              <div className="trek_summary_desc font-italic py-3 mpb-0">
+                {RichText.render(data.what_i_like_image_desc)}
+              </div>
             </div>
           </div>
         </div>
@@ -85,13 +85,11 @@ const TrekExpertSpeak = ({ slice }) => {
               <div>
                 {data?.what_i_dont_like_content_title?.map((tit, index) => {
                   return (
-                    <>
-                      <h5 key={index} className="p-text-2 mb-3">
-                        <b>
-                          {i + 1}. {tit.text}
-                        </b>
-                      </h5>
-                    </>
+                    <h5 key={index} className="p-text-2 mb-3">
+                      <b>
+                        {i + 1}. {tit.text}
+                      </b>
+                    </h5>
                   );
                 })}
               </div>
@@ -119,7 +117,9 @@ const TrekExpertSpeak = ({ slice }) => {
                   />
                 )}
               </div>
-              <div className="trek_summary_desc font-italic py-3 mpb-0">{RichText.render(data?.what_i_dont_like_image_desc)}</div>
+              <div className="trek_summary_desc font-italic py-3 mpb-0">
+                {RichText.render(data?.what_i_dont_like_image_desc)}
+              </div>
             </div>
           )}
         </div>
@@ -180,8 +180,10 @@ const TrekExpertSpeak = ({ slice }) => {
                   <div className="col-8">
                     <div>
                       {/* <p className="author-text font-italic"> */}
-                        {/* {RichText.asText(aboutAuthor)} */}
-                        <div className="author-text font-italic">{RichText.render(aboutAuthor)}</div>
+                      {/* {RichText.asText(aboutAuthor)} */}
+                      <div className="author-text font-italic">
+                        {RichText.render(aboutAuthor)}
+                      </div>
                       {/* </p> */}
                     </div>
                   </div>

@@ -36,16 +36,16 @@ const UserTV = () => {
   }, []);
 
   function fetchAndBindUserVouchers(email) {
-    console.log(email);
+    // console.log(email);
 
     getUserVoucher(email).then(vouchersData => {
       /// Idenitify and get the booking owner profile informations
-      console.log(vouchersData);
+      // console.log(vouchersData);
       if (vouchersData.length > 0) {
         /// get userid by email
         findUserByEmail(email).then(res => {
           setBookingOwner(res);
-          console.log(res);
+          // console.log(res);
           setVouchers(vouchersData);
           const arr = Array.from(new Array(vouchersData.length), (x, i) => i);
           setIndexes(arr);
@@ -62,39 +62,37 @@ const UserTV = () => {
 
   const vouchetListTr = vouchers.map(function(data, i) {
     return (
-      <>
-        <tr key={data?.id}>
-          <td>{data?.title}</td>
-          <td>
-            <div className="d-flex align-items-center">
-              <div className="flex-grow-1">Rs. {data?.amount} </div>
-              <div className="tv-download-link">
-                <p className="m-0 text-decoration-underline p-text-small-fg-blue">
-                  <PDFDownloadLink
-                    document={<VoucherTemplate voucher={data} />}
-                    fileName={data.title}
-                  >
-                    <i className="pi pi-download p-pr-2"></i>
-                    <span className="">Download</span>
-                  </PDFDownloadLink>
-                </p>
-              </div>
+      <tr key={data?.id}>
+        <td>{data?.title}</td>
+        <td>
+          <div className="d-flex align-items-center">
+            <div className="flex-grow-1">Rs. {data?.amount} </div>
+            <div className="tv-download-link">
+              <p className="m-0 text-decoration-underline p-text-small-fg-blue">
+                <PDFDownloadLink
+                  document={<VoucherTemplate voucher={data} />}
+                  fileName={data.title}
+                >
+                  <i className="pi pi-download p-pr-2"></i>
+                  <span className="">Download</span>
+                </PDFDownloadLink>
+              </p>
             </div>
-          </td>
-          <td>Rs. {data?.amountAvailed}</td>
-          <td>Rs. {data?.amount - data?.amountAvailed}</td>
-          <td>{data?.validTill}</td>
-          <td>
-            <p
-              className={
-                data?.voucherStatus === "Available" ? "text-green m-0" : "m-0"
-              }
-            >
-              {data?.voucherStatus}
-            </p>
-          </td>
-        </tr>
-      </>
+          </div>
+        </td>
+        <td>Rs. {data?.amountAvailed}</td>
+        <td>Rs. {data?.amount - data?.amountAvailed}</td>
+        <td>{data?.validTill}</td>
+        <td>
+          <p
+            className={
+              data?.voucherStatus === "Available" ? "text-green m-0" : "m-0"
+            }
+          >
+            {data?.voucherStatus}
+          </p>
+        </td>
+      </tr>
     );
   });
 
@@ -164,7 +162,10 @@ const UserTV = () => {
                           </Link>
                         </li>
                         <li>
-                          <a href="https://tmsstaging.indiahikes.com/auth/realms/IndiaHikes/account/?referrer=indiahikes-website#" target="_blank">
+                          <a
+                            href="https://tmsstaging.indiahikes.com/auth/realms/IndiaHikes/account/?referrer=indiahikes-website#"
+                            target="_blank"
+                          >
                             <span>My Profile</span>
                           </a>
                         </li>

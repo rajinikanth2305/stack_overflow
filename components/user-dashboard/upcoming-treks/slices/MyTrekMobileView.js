@@ -66,15 +66,15 @@ const MyTrekMobileView = forwardRef((props, ref) => {
  const data=trekData?.data;
  /// Get the prismic trek contents
 const trekName = data.backOfficeTrekLabel.replaceAll(" ", "-").toLowerCase();
-console.log(trekName);
+// console.log(trekName);
 const result=trekData.prismicContents?.results?.find(x=>x.uid.toLowerCase()===trekName.toLowerCase());
-console.log(result);
+// console.log(result);
 setTrekPageData(result);
 
 fillPrismicContents(result);
       const trekId = data.trekId;
       const bookState= data.bookingState==="COMPLETED";
-      console.log( data );
+      // console.log( data );
       setBookingState(bookState);
 
       if(bookState) {
@@ -105,7 +105,7 @@ fillPrismicContents(result);
 
   const fillPrismicContents=(result)=> {
     const essentialDownloads = result?.data?.body.find(x => x.slice_type === "essentials_downloads"); 
-     console.log(essentialDownloads);
+    //  console.log(essentialDownloads);
 
     if(essentialDownloads!==undefined) {
     const essentialsArray = essentialDownloads && essentialDownloads?.items;
@@ -149,7 +149,7 @@ fillPrismicContents(result);
 
 
   const onSubmit = formData => {
-    console.log(formData);
+    // console.log(formData);
 
     const userLocations = [];
 
@@ -169,7 +169,7 @@ fillPrismicContents(result);
 
     if (userLocations.length > 0) {
       ///call save and show message
-      console.log(userLocations);
+      // console.log(userLocations);
       saveUserLocations(participantData.bookingId, userLocations).then(res => {
         setSaveState(true);
         props.onMyTrekSaveDetail(

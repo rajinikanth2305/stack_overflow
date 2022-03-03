@@ -55,16 +55,16 @@ const InclusionsAndExclusions = ({ data }) => {
     <>
       <div>
         <div className="my-4 px-4">
-          <p className="p-text-1 text-capitalize mb-4">
+          <div className="p-text-1 text-capitalize mb-4">
             {RichText.render(inclusionsHeading)}
-          </p>
+          </div>
 
           <div className="row">{inclusionData}</div>
         </div>
         <div className="p-3 bg-gray">
-          <p className="p-text-1 text-capitalize mb-4">
+          <div className="p-text-1 text-capitalize mb-4">
             {RichText.render(exclusionsHeading)}
-          </p>
+          </div>
           <div className="row">{exclusionsData}</div>
         </div>
         <style jsx global>
