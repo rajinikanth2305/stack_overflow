@@ -33,7 +33,6 @@ const OurTeam = () => {
         const tt = response.results[0].data.body;
         const slice = tt && tt.filter(x => x.slice_type === "our_team");
         setOurTeamMmbers(slice);
-        console.log(slice);
       });
   }
 
@@ -41,32 +40,30 @@ const OurTeam = () => {
     ourTeamMmbers &&
     ourTeamMmbers.map(function(dd, i) {
       const membersArray = dd.items;
-      const member = membersArray.map(function(mem, i) {
+      const member = membersArray.map(function(mem, j) {
         return (
-          <>
-            <div className="col-4 col-lg-2 col-md-6">
-              <div
-                className="member_image"
-                onClick={() => {
-                  setMemnerInfo(mem);
-                  setShow(true);
-                }}
-              >
-                <Image
-                  src={mem.member_photo.url}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="top"
-                />
-              </div>
-              <p className="p-text-2-franklin text-center mb-0 pt-2">
-                {mem.name[0].text}
-              </p>
-              <p className="p-text-3 m-text-3 text-center">
-                {mem.position[0].text}
-              </p>
+          <div className="col-4 col-lg-2 col-md-6" key={j}>
+            <div
+              className="member_image"
+              onClick={() => {
+                setMemnerInfo(mem);
+                setShow(true);
+              }}
+            >
+              <Image
+                src={mem.member_photo.url}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="top"
+              />
             </div>
-          </>
+            <p className="p-text-2-franklin text-center mb-0 pt-2">
+              {mem.name[0].text}
+            </p>
+            <p className="p-text-3 m-text-3 text-center">
+              {mem.position[0].text}
+            </p>
+          </div>
         );
       });
       return (

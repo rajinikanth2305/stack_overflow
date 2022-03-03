@@ -41,29 +41,27 @@ const FaqSection = () => {
     faqDetails &&
     faqDetails.map(function(data, i) {
       return (
-        <>
-          <NavItem className="faq_nav" key={i}>
-            <NavLink
-              className={classnames({ active: activeTab === i + 1 })}
-              onClick={() => {
-                toggle(i + 1);
-              }}
-            >
-              <div className="faq_icon_image">
-                <Image
-                  src={data.primary.icon_image.url}
-                  layout="fill"
-                  objectFit="contain"
-                  objectPosition="top"
-                />
-              </div>
-              <p className="p-text-1 my-2">
-                <b>{data.primary.tab_heading[0].text}</b>
-              </p>
-              <p className="p-text-4 m-0">{data.primary.tab_desc[0].text}</p>
-            </NavLink>
-          </NavItem>
-        </>
+        <NavItem className="faq_nav" key={i}>
+          <NavLink
+            className={classnames({ active: activeTab === i + 1 })}
+            onClick={() => {
+              toggle(i + 1);
+            }}
+          >
+            <div className="faq_icon_image">
+              <Image
+                src={data.primary.icon_image.url}
+                layout="fill"
+                objectFit="contain"
+                objectPosition="top"
+              />
+            </div>
+            <p className="p-text-1 my-2">
+              <b>{data.primary.tab_heading[0].text}</b>
+            </p>
+            <p className="p-text-4 m-0">{data.primary.tab_desc[0].text}</p>
+          </NavLink>
+        </NavItem>
       );
     });
 
@@ -129,42 +127,40 @@ const FaqSection = () => {
       const faqArray = data.items;
       const faqAccordionList = faqArray.map(function(faq, j) {
         return (
-          <>
-            <div className="col-lg-6 col-md-12">
-              {/* <h4>{faq.accordion_heading[0].text}</h4> */}
-              {/* <Accordion flush> */}
-              <Card>
-                <Card.Header>
-                  <Accordion.Toggle variant="link" eventKey={j + 1}>
-                    <div className="d-flex align-items-center">
-                      <div className="flex-grow-1">
-                        {faq.accordion_heading[0].text}
-                      </div>
+          <div className="col-lg-6 col-md-12" key={j}>
+            {/* <h4>{faq.accordion_heading[0].text}</h4> */}
+            {/* <Accordion flush> */}
+            <Card>
+              <Card.Header>
+                <Accordion.Toggle variant="link" eventKey={j + 1}>
+                  <div className="d-flex align-items-center">
+                    <div className="flex-grow-1">
+                      {faq.accordion_heading[0].text}
+                    </div>
+                    <div>
                       <div>
-                        <div>
-                          <h2 className="m-0 expand_plus">+</h2>
-                        </div>
+                        <h2 className="m-0 expand_plus">+</h2>
                       </div>
                     </div>
-                  </Accordion.Toggle>
-                </Card.Header>
-                <Accordion.Collapse eventKey={j + 1}>
-                  <Card.Body><p className="p-text-4">{faq.accordion_details[0].text}</p></Card.Body>
-                </Accordion.Collapse>
-              </Card>
-              {/* </Accordion> */}
-            </div>
-          </>
+                  </div>
+                </Accordion.Toggle>
+              </Card.Header>
+              <Accordion.Collapse eventKey={j + 1}>
+                <Card.Body>
+                  <p className="p-text-4">{faq.accordion_details[0].text}</p>
+                </Card.Body>
+              </Accordion.Collapse>
+            </Card>
+            {/* </Accordion> */}
+          </div>
         );
       });
       return (
-        <>
-          <TabPane key={i} tabId={i + 1}>
-            <Accordion flush>
-              <div className="row my-5">{faqAccordionList}</div>
-            </Accordion>
-          </TabPane>
-        </>
+        <TabPane key={i} tabId={i + 1}>
+          <Accordion>
+            <div className="row my-5">{faqAccordionList}</div>
+          </Accordion>
+        </TabPane>
       );
     });
 

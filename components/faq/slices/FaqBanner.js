@@ -9,15 +9,10 @@ const FaqBanner = ({ slice }) => {
   const heading1 = slice.primary.heading1;
   const diyPlaceholder = slice.primary.diy_placeholder;
   const imageUrl = slice.primary.faq_images.url;
-  // const heading2 = slice.primary.heading2;
 
   return (
     <>
       <div>
-        {/* <div className="mt-5 py-5 text-center">
-          <h2>{RichText.asText(heading1)}</h2>
-          <h4>Under development.!!</h4>
-        </div> */}
         <div className="banner-image-desktop">
           <div className="bg_overlay h-100">
             <div className="h-100">

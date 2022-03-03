@@ -27,43 +27,41 @@ const IhTalks = ({ slice }) => {
       "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
     const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
     return (
-      <>
-        <div className="col-md-4 col-12" key={i}>
-          <div className="card">
-            <div alt="imgs" className="abt_vid_img cursor-pointer">
-              <div className="d-flex align-items-center justify-content-center w-100 h-100">
-                <div className="text-center">
-                  <img
-                    src="/v-icon.png"
-                    alt="playicon'"
-                    className="paly-icon icon-size-50"
-                    onClick={() => {
-                      setTrekVideoUrl(videoUrl);
-                      setShow(true);
-                    }}
-                  />
-                </div>
+      <div className="col-md-4 col-12" key={i}>
+        <div className="card">
+          <div alt="imgs" className="abt_vid_img cursor-pointer">
+            <div className="d-flex align-items-center justify-content-center w-100 h-100">
+              <div className="text-center">
+                <img
+                  src="/v-icon.png"
+                  alt="playicon'"
+                  className="paly-icon icon-size-50"
+                  onClick={() => {
+                    setTrekVideoUrl(videoUrl);
+                    setShow(true);
+                  }}
+                />
               </div>
-              <Image
-                src={imageURL}
-                layout="fill"
-                objectFit="cover"
-                objectPosition="50% 50%"
-                onClick={() => {
-                  setTrekVideoUrl(videoUrl);
-                  setShow(true);
-                }}
-              />
             </div>
-            <div className="p-3">
-              <p className="p-text-2 border-l">
-                <b>{RichText.asText(data.title)}</b>
-              </p>
-              <div className="p-text-3">{RichText.render(data.details)}</div>
-            </div>
+            <Image
+              src={imageURL}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="50% 50%"
+              onClick={() => {
+                setTrekVideoUrl(videoUrl);
+                setShow(true);
+              }}
+            />
+          </div>
+          <div className="p-3">
+            <p className="p-text-2 border-l">
+              <b>{RichText.asText(data.title)}</b>
+            </p>
+            <div className="p-text-3">{RichText.render(data.details)}</div>
           </div>
         </div>
-      </>
+      </div>
     );
   });
 

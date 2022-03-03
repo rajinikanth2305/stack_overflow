@@ -33,31 +33,29 @@ const TrekkingTips = ({ slice }) => {
 
   const diyResList = diyResArray?.map(function(data, i) {
     return (
-      <>
-        <div key={i} className="col-lg-4 col-md-6">
-          <div className="d-flex align-items-center row mb-4">
-            <div className="diyres_img_bg col-3 col-lg-3 col-md-12">
-              <Image
-                src={data.res_image.url}
-                layout="fill"
-                objectFit="contain"
-                objectPosition="top"
-              />
-            </div>
-            <div className="col-9 col-lg-9 col-md-12">
-              <p className="p-text-3">
-                <b>{data?.title[0]?.text}</b>
+      <div key={i} className="col-lg-4 col-md-6">
+        <div className="d-flex align-items-center row mb-4">
+          <div className="diyres_img_bg col-3 col-lg-3 col-md-12">
+            <Image
+              src={data.res_image.url}
+              layout="fill"
+              objectFit="contain"
+              objectPosition="top"
+            />
+          </div>
+          <div className="col-9 col-lg-9 col-md-12">
+            <p className="p-text-3">
+              <b>{data?.title[0]?.text}</b>
+            </p>
+            <div>
+              <p className="p-text-small m-0">By {data.name[0].text}</p>
+              <p className="p-text-small m-0">
+                {data.date[0].text} | {data.date[0].text} min read
               </p>
-              <div>
-                <p className="p-text-small m-0">By {data.name[0].text}</p>
-                <p className="p-text-small m-0">
-                  {data.date[0].text} | {data.date[0].text} min read
-                </p>
-              </div>
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   });
 

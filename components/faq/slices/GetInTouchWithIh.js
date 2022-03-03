@@ -10,15 +10,6 @@ const GetInTouchWithIh = ({ slice }) => {
   const detailsList = slice.primary.details;
   const imageUrl = slice.primary.image.url;
   
-  const details = detailsList.map(function(data, i) {
-    return(
-        <>
-            {/* <p className={data.spans.length >= 0 ? 'p-text-2 font-weight-bold' : 'p-text-2'}>{data.text}</p> */}
-            <p className="p-text-2 mb-4">{data.text}</p>
-        </>
-    );
-  });
-
   return (
     <>
       <div className="my-5 py-5">
@@ -42,7 +33,7 @@ const GetInTouchWithIh = ({ slice }) => {
                   <div className="col-lg-6 col-md-12">
                     <div className="card overlay-zx">
                       <div className="p-4">
-                        <p>{details}</p>
+                        <div className="p-text-2">{RichText.render(detailsList)}</div>
                       </div>
                     </div>
                   </div>

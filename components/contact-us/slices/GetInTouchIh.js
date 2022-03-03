@@ -9,7 +9,7 @@ const GetInTouchIh = ({ slice }) => {
 
   const getInTouchIhDetails = getInTouchIh?.map(function(data, k) {
     return (
-      <div className="col-md-6">
+      <div className="col-md-6" key={k}>
         <div className="d-flex align-items-start my-4">
           <div>
             <img src={data?.image.url} className="gtimage" />

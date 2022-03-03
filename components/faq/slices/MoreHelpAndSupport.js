@@ -12,36 +12,34 @@ const MoreHelpAndSupport = ({ slice }) => {
 
   const supportQuostions = supportQuostionsArray.map(function(data, i) {
     return (
-      <>
-        <div className="col-lg-6 col-md-12">
-          <Card>
-            <Card.Header>
-              <Accordion.Toggle variant="link" eventKey={i + 1}>
-                <div className="d-flex align-items-center">
-                  <div className="flex-grow-1">
-                    <p className="p-text-1 mb-1">
-                      <b>{data.support_title[0].text}</b>
-                    </p>
-                    <p className="p-text-3 m-0">
-                      {data.support_sub_title[0].text}
-                    </p>
-                  </div>
+      <div className="col-lg-6 col-md-12" key={i}>
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle variant="link" eventKey={i + 1}>
+              <div className="d-flex align-items-center">
+                <div className="flex-grow-1">
+                  <p className="p-text-1 mb-1">
+                    <b>{data.support_title[0].text}</b>
+                  </p>
+                  <p className="p-text-3 m-0">
+                    {data.support_sub_title[0].text}
+                  </p>
+                </div>
+                <div>
                   <div>
-                    <div>
-                      <img src="/arrow-down.png" />
-                    </div>
+                    <img src="/arrow-down.png" />
                   </div>
                 </div>
-              </Accordion.Toggle>
-            </Card.Header>
-            <Accordion.Collapse eventKey={i + 1}>
-              <Card.Body>
-                <p className="p-text-4">{data.support_details[0].text}</p>
-              </Card.Body>
-            </Accordion.Collapse>
-          </Card>
-        </div>
-      </>
+              </div>
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey={i + 1}>
+            <Card.Body>
+              <p className="p-text-4">{data.support_details[0].text}</p>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </div>
     );
   });
 
@@ -57,7 +55,7 @@ const MoreHelpAndSupport = ({ slice }) => {
             </div>
           </div>
           <div>
-            <Accordion className="more_help_support_accordion" flush>
+            <Accordion className="more_help_support_accordion">
               <div className="row">{supportQuostions}</div>
             </Accordion>
           </div>

@@ -10,20 +10,10 @@ const TeamIntro = ({ slice }) => {
   const teamContentList = slice.primary.team_content;
   const founderImageArray = slice.items;
 
-  const teamContent = teamContentList?.map(function(data, i) {
-    return (
-      <>
-        <p className="p-text-4" key={i}>
-          {data.text}
-        </p>
-      </>
-    );
-  });
-
   const founderImage = founderImageArray.map(function(data, i) {
     return (
-      <>
-        <div className="mx-4" key={i}>
+      <div key={i}>
+        <div className="mx-4">
           <div className="founder_image">
             <Image
               src={data.founder_image.url}
@@ -32,10 +22,14 @@ const TeamIntro = ({ slice }) => {
               objectPosition="top"
             />
           </div>
-          <p className="p-text-2-franklin text-center mb-0 pt-2">{data.founder_name[0].text}</p>
-          <p className="p-text-3 text-center">{data.founder_position[0].text}</p>
+          <p className="p-text-2-franklin text-center mb-0 pt-2">
+            {data.founder_name[0].text}
+          </p>
+          <p className="p-text-3 text-center">
+            {data.founder_position[0].text}
+          </p>
         </div>
-      </>
+      </div>
     );
   });
 
@@ -51,7 +45,7 @@ const TeamIntro = ({ slice }) => {
               <p className="p-text-1 m-border-bottom m-mb-2 mb-5">
                 <b>{RichText.asText(heading2)}</b>
               </p>
-              {teamContent}
+              <div className="p-text-4">{RichText.render(teamContentList)}</div>
             </div>
             <div className="col-lg-5 col-md-12">
               <div className="h-100">

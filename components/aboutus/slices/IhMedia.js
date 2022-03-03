@@ -7,7 +7,6 @@ import Link from "next/link";
 const IhMedia = ({ slice, articleData }) => {
   const heading1 = slice.primary.heading1;
   const heading2 = slice?.primary?.heading2;
-  const articleArray = slice.items;
 
   const articleLearnMore = articleData?.map(function(data, i) {
     let url;
