@@ -342,9 +342,9 @@ export const ChooseTreks = css.global`
     width: 90%;
   }
 
-  .trekvideos-carosule  >  div > .slick-track {
-    width: auto !important;
-  }
+  // .trekvideos-carosule  >  div > .slick-track {
+  //   width: auto !important;
+  // }
 
   .hvr-grow {
     vertical-align: middle;
@@ -370,9 +370,9 @@ export const ChooseTreks = css.global`
       font-size: 12px;
     }
 
-    .trekvideos-carosule  >  div > .slick-track {
-      width: max-content !important;
-    }
+    // .trekvideos-carosule  >  div > .slick-track {
+    //   width: max-content !important;
+    // }
 
     .trek_card {
       min-height: 400px;

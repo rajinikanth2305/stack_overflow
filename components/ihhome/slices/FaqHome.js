@@ -1,33 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { whatTrekkerSayStyles } from "styles";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Link from "next/link";
+import { nullLiteralTypeAnnotation } from "@babel/types";
 
 const FaqHome = ({ slice }) => {
+  nullLiteralTypeAnnotation;
   const faqHeading = slice?.primary?.heading1;
   const faqArray = slice?.items;
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [isActive, setActive] = useState(false);
 
   const faqArrayDetails = faqArray?.map(function(data, k) {
     return (
       <div className="col-md-6" key={k}>
         <Card>
           <Card.Header>
-            <Accordion.Toggle variant="link" eventKey={k + 1}>
-              <div className="d-flex align-items-center">
-                <div className="flex-grow-1">{data.q_title[0].text}</div>
-                <div>
-                  <div>
-                    <h2 className="m-0 expand_plus">+</h2>
-                  </div>
-                </div>
-              </div>
+            <Accordion.Toggle
+              variant="link"
+              eventKey={k + 1}
+              className={k + 1 === activeIndex && activeIndex && isActive === true ? "show" : ""}
+              onClick={() => {setActiveIndex(k + 1); setActive(!isActive)}}
+            >
+              {data.q_title[0].text}
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>
-              <p className="p-text-4">{data.q_answer[0].text}</p>
+              <div className="p-text-4">{RichText.render(data.q_answer)}</div>
             </Card.Body>
           </Accordion.Collapse>
         </Card>

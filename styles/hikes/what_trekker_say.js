@@ -53,4 +53,31 @@ export const whatTrekkerSayStyles = css.global`
     color: rgb(255, 193, 0);
     font-weight: bold;
   }
+
+  .card-header > button {
+    padding: 5px 0;
+  }
+
+  .card-header > button::after {
+    color: rgb(255, 193, 0);
+    content: "\f068";
+    font-family: "FontAwesome" !important;
+    font-size: 16px;
+    float: right;
+    margin-top: -3px;
+    position: relative;
+    top: 4px;
+    font-weight: normal;
+  }
+  .card-header > button:not(.show)::after {
+    color: rgb(255, 193, 0);
+    content: "\f067";
+    font-family: "FontAwesome" !important;
+    font-size: 16px;
+    float: right;
+    margin-top: -3px;
+    position: relative;
+    top: 4px;
+    font-weight: normal;
+  }
 `;
