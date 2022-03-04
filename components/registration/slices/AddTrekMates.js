@@ -8,7 +8,7 @@ import {Button, FormGroup} from "reactstrap";
 import {InputText} from "primereact/inputtext";
 import {InputNumber} from "primereact/inputnumber";
 import {
-  createNewUser,
+  createNewUser, findUserByEmail,
   getUserByAutoSearch,
   getUsersVoucherByBookingId,
   getUserVoucher,
@@ -135,7 +135,8 @@ const renderFooter = (name) => {
     }
 
     //// new user first store into server then local store persistence
-    const newUserData = await createNewUser(data);
+     await createNewUser(data);
+    const newUserData = await findUserByEmail(data.email);
     //console.log(newUserData);
     //console.log(JSON.stringify(newUserData));
 
