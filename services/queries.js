@@ -162,6 +162,15 @@ export const getBatchInfo =  async (batchId)  => {
 
   };
 
+export const findUserByAnyEmail =  async (email)  => {
+    const header=await getTokenHeader();
+    const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
+    let url = `${userApi}/lookups/users?profile=CUSTOMER&email=${email}`;
+    return axios.get(url,{ headers:  header })
+        .then((res) => res.data && res.data.length > 0 ? res.data[0] : res.data);
+
+};
+
   export const getUserBooking =  async (email)  => {
      const header=await getTokenHeader();
      const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
