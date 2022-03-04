@@ -49,6 +49,15 @@ export const annoumentStyles = css.global`
     font-size: 18px;
   }
 
+  .m-p-italic > p {
+    margin: 0;
+  }
+
+  .m-p-italic > p > a {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
   @media only screen and (max-width: 600px) {
     .p-text-1-an {
       font-size: 18px;
