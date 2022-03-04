@@ -123,6 +123,17 @@ export const customStyles = css.global`
     text-transform: capitalize;
   }
 
+  .p-lo-36 {
+    line-height: 40px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
   .btn-ih-primary {
     background: rgb(255, 193, 0);
     border-color: rgb(255, 193, 0);
@@ -1588,8 +1599,21 @@ export const customStyles = css.global`
     opacity: 0.7;
   }
 
+  .fam_get_in_img {
+    position: relative;
+    width: 100%;
+    min-height: 300px;
+    opacity: 0.7;
+  }
+
   .sustainable_box {
     padding: 30px 50px;
+    position: relative;
+    margin-top: -290px;
+  }
+
+  .fam_getin_box {
+    padding: 20px 0;
     position: relative;
     margin-top: -290px;
   }
@@ -1928,6 +1952,17 @@ export const customStyles = css.global`
       position: relative;
       height: 360px;
       background-position: -425px 0;
+    }
+
+    .banner-image-desktop.banner-image-mobile-bg {
+      position: relative;
+      height: 585px;
+      background-position: -425px 0;
+    }
+
+    .p-lo-36 {
+      font-size: 18px;
+      line-height: 24px;
     }
 
     .p-text-2.text-center {

@@ -9,7 +9,8 @@ import {
   FaqFamily,
   Testimonoials,
   FamilyTrekVideos,
-  FtTrekStories
+  FtTrekStories,
+  GetInTouchForm
 } from "./slices";
 
 /**
@@ -62,6 +63,8 @@ const FamilyTrekSliceZone = ({
             latestUpdateAarticleData={latestUpdateAarticleData}
           />
         );
+      case "get_in_touch_form":
+        return <GetInTouchForm slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }
