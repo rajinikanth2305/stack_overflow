@@ -6,8 +6,8 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 
 const OurTake = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
   const tabsDataArray = slice.items;
 
   const tabsData = tabsDataArray?.map(function(data, i) {
@@ -21,7 +21,7 @@ const OurTake = ({ slice }) => {
           <div className="fam-tab-img m-d-block mb-4">
             {data.image.url && (
               <Image
-                src={data.image.url}
+                src={data?.image?.url}
                 layout="fill"
                 objectFit="cover"
                 objectPosition="50% 50%"
@@ -33,7 +33,7 @@ const OurTake = ({ slice }) => {
           </p>
           <div className="row">
             <div className="col-lg-6 col-md-12">
-              <div className="p-text-3">{RichText.render(data.content1)}</div>
+              <div className="p-text-3">{RichText.render(data?.content1)}</div>
               <div className="mt-5 mb-4 mmb-0">
                 <button className="btn btn-bihtn-yellow text-capitalize">
                   Read more
@@ -42,12 +42,12 @@ const OurTake = ({ slice }) => {
             </div>
             <div className="col-lg-6 col-md-12">
               <div className="fam-tab-img m-d-none">
-                {data.image.url && (
+                {data?.image?.url && (
                   <Image
-                    src={data.image.url}
+                    src={data?.image?.url}
                     layout="fill"
                     objectFit="cover"
-                    objectPosition="50% 50%"
+                    objectPosition="left"
                   />
                 )}
               </div>

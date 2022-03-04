@@ -17,7 +17,7 @@ const ContactFaq = ({ slice }) => {
           <Card.Header>
             <Accordion.Toggle variant="link" eventKey={k + 1}>
               <div className="d-flex align-items-center">
-                <div className="flex-grow-1">{data.q_title[0].text}</div>
+                <div className="flex-grow-1">{data?.q_title[0]?.text}</div>
                 <div>
                   <div>
                     <h2 className="m-0 expand_plus">+</h2>
@@ -28,7 +28,7 @@ const ContactFaq = ({ slice }) => {
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>
-              <p className="p-text-4">{data.q_answer[0].text}</p>
+              <p className="p-text-4">{data?.q_answer[0]?.text}</p>
             </Card.Body>
           </Accordion.Collapse>
         </Card>

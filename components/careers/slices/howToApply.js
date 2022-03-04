@@ -4,11 +4,11 @@ import { customStyles } from "styles";
 import Image from "next/image";
 
 const HowToApply = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-  const content1 = slice.primary.content1;
-  const content2 = slice.primary.content2;
-  const noteDetails = slice.primary.note_details;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
+  const content1 = slice?.primary?.content1;
+  const content2 = slice?.primary?.content2;
+  const noteDetails = slice?.primary?.note_details;
 
   return (
     <>

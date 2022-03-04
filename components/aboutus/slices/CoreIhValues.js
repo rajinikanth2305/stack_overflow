@@ -1,16 +1,14 @@
 import React from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
-import Image from "next/image";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const CoreIhValues = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-  const content1 = slice.primary.content1;
-  const content2 = slice.primary.content2;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
+  const content1 = slice?.primary?.content1;
+  const content2 = slice?.primary?.content2;
 
   return (
     <>

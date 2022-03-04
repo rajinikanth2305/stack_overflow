@@ -7,11 +7,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const CoreValues = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-  const content1 = slice.primary.content1;
-  const content2 = slice.primary.content2;
-  const img = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
+  const content1 = slice?.primary?.content1;
+  const content2 = slice?.primary?.content2;
+  const img = slice?.items;
 
   const settings = {
     dots: true,
@@ -100,7 +100,7 @@ const CoreValues = ({ slice }) => {
             <div className="col-lg-6 col-12">
               <div className="carrer_image_1">
                 <Image
-                  src={img[0].images.url}
+                  src={img[0]?.images?.url}
                   layout="fill"
                   objectFit="cover"
                   objectPosition="bottom"
@@ -112,7 +112,7 @@ const CoreValues = ({ slice }) => {
                 <div className="col-lg-8 col-md-8 col-12">
                   <div className="carrer_image_2 mb-2-cus">
                     <Image
-                      src={img[1].images.url}
+                      src={img[1]?.images?.url}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="bottom"
@@ -122,7 +122,7 @@ const CoreValues = ({ slice }) => {
                     <div className="col-lg-6 col-12">
                       <div className="carrer_image_3">
                         <Image
-                          src={img[2].images.url}
+                          src={img[2]?.images?.url}
                           layout="fill"
                           objectFit="cover"
                           objectPosition="bottom"
@@ -132,7 +132,7 @@ const CoreValues = ({ slice }) => {
                     <div className="col-lg-6 col-12">
                       <div className="carrer_image_3">
                         <Image
-                          src={img[3].images.url}
+                          src={img[3]?.images?.url}
                           layout="fill"
                           objectFit="cover"
                           objectPosition="bottom"
@@ -144,7 +144,7 @@ const CoreValues = ({ slice }) => {
                 <div className="col-lg-4 col-md-4 col-12">
                   <div className="carrer_image_3 mb-2-cus">
                     <Image
-                      src={img[4].images.url}
+                      src={img[4]?.images?.url}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="bottom"
@@ -152,7 +152,7 @@ const CoreValues = ({ slice }) => {
                   </div>
                   <div className="carrer_image_3 mb-2-cus">
                     <Image
-                      src={img[5].images.url}
+                      src={img[5]?.images?.url}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="bottom"
@@ -160,7 +160,7 @@ const CoreValues = ({ slice }) => {
                   </div>
                   <div className="carrer_image_3">
                     <Image
-                      src={img[6].images.url}
+                      src={img[6]?.images?.url}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="bottom"

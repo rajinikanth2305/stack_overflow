@@ -5,9 +5,9 @@ import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
 
 const IhTalks = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-  const ytDetailsArray = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
+  const ytDetailsArray = slice?.items;
   const [show, setShow] = useState(false);
   const [trekVideoUrl, setTrekVideoUrl] = useState();
 
@@ -21,7 +21,7 @@ const IhTalks = ({ slice }) => {
     const videoIdWithParams = result && result[2];
 
     const cleanVideoId =
-      videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+      videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
     const videoUrl =
       "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
@@ -47,7 +47,7 @@ const IhTalks = ({ slice }) => {
               src={imageURL}
               layout="fill"
               objectFit="cover"
-              objectPosition="50% 50%"
+              objectPosition="left"
               onClick={() => {
                 setTrekVideoUrl(videoUrl);
                 setShow(true);
@@ -56,9 +56,9 @@ const IhTalks = ({ slice }) => {
           </div>
           <div className="p-3">
             <p className="p-text-2 border-l">
-              <b>{RichText.asText(data.title)}</b>
+              <b>{RichText.asText(data?.title)}</b>
             </p>
-            <div className="p-text-3">{RichText.render(data.details)}</div>
+            <div className="p-text-3">{RichText.render(data?.details)}</div>
           </div>
         </div>
       </div>

@@ -10,8 +10,8 @@ import "slick-carousel/slick/slick-theme.css";
 import { hrefResolver, linkResolver } from "prismic-configuration";
 
 const IhTimelineStories = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const trekkingWorldImageArray = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const trekkingWorldImageArray = slice?.items;
   const [imgUrl, setImgUrl] = useState();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -52,7 +52,7 @@ const IhTimelineStories = ({ slice }) => {
     ]
   };
 
-  const trekkingWorldImage = trekkingWorldImageArray.map(function(data, i) {
+  const trekkingWorldImage = trekkingWorldImageArray?.map(function(data, i) {
     let url;
     const slugUrl = data?.target_link?.slug;
     if (slugUrl) {
@@ -66,21 +66,21 @@ const IhTimelineStories = ({ slice }) => {
     const videoIdWithParams = result && result[2];
 
     const cleanVideoId =
-      videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+      videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
     const videoUrl =
       "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
     const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
     return (
       <div key={`latesttrekking` + i} className="py-3 mx-2 mm-0 mp-0 mpy-0">
-        <div className="row d-flex">
+        <div className="row d-flex align-items-center">
           <div className="col-lg-6 col-md-12 order-1">
             <div>
               <h3 className="title-diplay-3-ltw mpt-3-ltw">
-                {data.title1[0].text}
+                {data?.title1[0]?.text}
               </h3>
               <div className="p-text-4 pr-cus-2">
-                {RichText.render(data.content1)}
+                {RichText.render(data?.content1)}
               </div>
               <div className="text-center mt-4">
                 <button
@@ -116,7 +116,7 @@ const IhTimelineStories = ({ slice }) => {
                 src={imageURL}
                 layout="fill"
                 objectFit="cover"
-                objectPosition="50% 50%"
+                objectPosition="left"
                 onClick={() => {
                   setImgUrl(videoUrl);
                   setShow(true);
@@ -138,7 +138,7 @@ const IhTimelineStories = ({ slice }) => {
                 src={imageURL}
                 layout="fill"
                 objectFit="cover"
-                objectPosition="top"
+                objectPosition="left"
                 onClick={() => {
                   setImgUrl(videoUrl);
                   setShow(true);

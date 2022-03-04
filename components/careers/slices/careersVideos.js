@@ -8,8 +8,8 @@ import Modal from "react-bootstrap/Modal";
 import { RichText } from "prismic-reactjs";
 
 const CareersVideos = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const ihTrekkerVideosImageArray = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const ihTrekkerVideosImageArray = slice?.items;
   const [show, setShow] = useState(false);
   const [trekVideoUrl, setTrekVideoUrl] = useState();
 
@@ -53,14 +53,14 @@ const CareersVideos = ({ slice }) => {
     ]
   };
 
-  const ihTrekkerVideosImage = ihTrekkerVideosImageArray.map(function(data, i) {
+  const ihTrekkerVideosImage = ihTrekkerVideosImageArray?.map(function(data, i) {
     const result = data?.video_link?.url.split(
       /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
     );
     const videoIdWithParams = result && result[2];
 
     const cleanVideoId =
-      videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+      videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
     const videoUrl =
       "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
@@ -75,7 +75,7 @@ const CareersVideos = ({ slice }) => {
                   src={imageURL}
                   layout="fill"
                   objectFit="cover"
-                  objectPosition="50% 50%"
+                  objectPosition="left"
                   onClick={() => {
                     setTrekVideoUrl(videoUrl);
                     setShow(true);

@@ -5,11 +5,11 @@ import Modal from "react-bootstrap/Modal";
 import Image from "next/image";
 
 const WorkAtih = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-  const content1 = slice.primary.content1;
-  const content2 = slice.primary.content2;
-  const yTvideoUrl = slice.primary.video_link.url;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
+  const content1 = slice?.primary?.content1;
+  const content2 = slice?.primary?.content2;
+  const yTvideoUrl = slice?.primary?.video_link?.url;
 
   const [show, setShow] = useState(false);
 
@@ -20,7 +20,7 @@ const WorkAtih = ({ slice }) => {
   const videoIdWithParams = result[2];
 
   const cleanVideoId =
-    videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+    videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
   const videoUrl =
     "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
@@ -53,7 +53,7 @@ const WorkAtih = ({ slice }) => {
                   src={youtube_imageURL && youtube_imageURL}
                   layout="fill"
                   objectFit="cover"
-                  objectPosition="center"
+                  objectPosition="left"
                   onClick={handleShow}
                 />
               </div>

@@ -12,7 +12,7 @@ const GetInTouchIh = ({ slice }) => {
       <div className="col-md-6" key={k}>
         <div className="d-flex align-items-start my-4">
           <div>
-            <img src={data?.image.url} className="gtimage" />
+            <img src={data?.image?.url} className="gtimage" />
           </div>
           <div className="mx-2" />
           <div>

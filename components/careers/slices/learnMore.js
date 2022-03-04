@@ -1,11 +1,10 @@
 import React from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
-import Image from "next/image";
 import Link from "next/link";
 
 const LearnMore = ({ slice, articleData }) => {
-  const heading1 = slice.primary.heading1;
+  const heading1 = slice?.primary?.heading1;
   const heading2 = slice?.primary?.heading2;
   const articleArray = slice.items;
 
@@ -26,9 +25,9 @@ const LearnMore = ({ slice, articleData }) => {
         <Link href={url ? url : "#"}>
           <div className="d-flex align-items-center row mb-4 cursor-pointer">
             <div className="col-3 col-lg-3 col-md-12">
-              {getArticleImage?.primary?.feature_image.url ? (
+              {getArticleImage?.primary?.feature_image?.url ? (
                 <img
-                  src={getArticleImage?.primary?.feature_image.url}
+                  src={getArticleImage?.primary?.feature_image?.url}
                   alt="articleImage"
                   className="diyres_img_bg_img"
                 />
