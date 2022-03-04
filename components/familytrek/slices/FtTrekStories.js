@@ -5,7 +5,7 @@ import Link from "next/link";
 import Modal from "react-bootstrap/Modal";
 import Image from "next/image";
 
-const GtStories = ({ slice, latestUpdateAarticleData1 }) => {
+const FtTrekStories = ({ slice, latestUpdateAarticleData }) => {
   const heading1 = slice.primary.heading1;
   const heading2 = slice.primary.heading2;
   const primaryVideoUrl = slice?.primary?.yt_link?.url;
@@ -27,7 +27,7 @@ const GtStories = ({ slice, latestUpdateAarticleData1 }) => {
     "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
   const youtube_imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
 
-  const latestTrekWorld = latestUpdateAarticleData1?.map(function(data, index) {
+  const latestTrekWorld = latestUpdateAarticleData?.map(function(data, index) {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
@@ -140,4 +140,4 @@ const GtStories = ({ slice, latestUpdateAarticleData1 }) => {
   );
 };
 
-export default GtStories;
+export default FtTrekStories;

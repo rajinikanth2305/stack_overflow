@@ -421,11 +421,11 @@ export const ChooseTreks = css.global`
       padding: 25px 0 20px;
     }
 
-    .trekking_world_image_desktop {
-      display: none;
-    }
+    // .trekking_world_image_desktop {
+    //   display: none;
+    // }
 
-    .trekking_world_image_mobile {
+    .trekking_world_image_desktop {
       position: relative;
       display: block;
       height: 240px;

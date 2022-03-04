@@ -14,9 +14,14 @@ const LatestTrekkingWorld = ({ slice }) => {
   const heading1 = slice.primary.heading1;
   const trekkingWorldImageArray = slice.items;
   const [imgUrl, setImgUrl] = useState();
+  const [imgUrl1, setImgUrl1] = useState();
   const [show, setShow] = useState(false);
+  const [show1, setShow1] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleClose1 = () => setShow1(false);
+  const handleShow1 = () => setShow1(true);
   //   const router = useRouter();
 
   //   const goToTrekPage = (e) => {
@@ -80,7 +85,7 @@ const LatestTrekkingWorld = ({ slice }) => {
     const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
     return (
       <div key={`latesttrekking` + i} className="py-3 mx-2 mm-0 mp-0">
-        <div className="row d-flex">
+        <div className="row d-flex align-items-center">
           <div className="col-lg-6 col-md-12 order-1">
             <div>
               <h3 className="title-diplay-3-ltw mpt-3-ltw">
@@ -136,12 +141,16 @@ const LatestTrekkingWorld = ({ slice }) => {
                     src={data?.trekking_world_image?.url}
                     layout="fill"
                     objectFit="cover"
-                    objectPosition="50% 50%"
+                    objectPosition="left"
                     alt="imgs"
+                    onClick={() => {
+                      setImgUrl1(data?.trekking_world_image?.url);
+                      setShow1(true);
+                    }}
                   />
               )}
             </div>
-            <div className="trekking_world_image_mobile">
+            {/* <div className="trekking_world_image_mobile">
               {imageURL ? (
                 <Image
                   src={imageURL}
@@ -157,7 +166,7 @@ const LatestTrekkingWorld = ({ slice }) => {
               ) : (
                 <img src="./ip.png" />
               )}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -188,14 +197,6 @@ const LatestTrekkingWorld = ({ slice }) => {
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* <div alt="imgs" className="trekking_world_image_desktop_popup">
-            <Image
-              src={imgUrl && imgUrl}
-              layout="fill"
-              objectFit="cover"
-              objectPosition="bottom"
-            />
-          </div> */}
           <iframe
             width="100%"
             height="500"
@@ -205,6 +206,22 @@ const LatestTrekkingWorld = ({ slice }) => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe>
+        </Modal.Body>
+      </Modal>
+
+      <Modal size="xl" show={show1} onHide={handleClose1} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div alt="imgs" className="trekking_world_image_desktop_popup">
+            <Image
+              src={imgUrl1 && imgUrl1}
+              layout="fill"
+              objectFit="contain"
+              objectPosition="top"
+            />
+          </div>
         </Modal.Body>
       </Modal>
     </>

@@ -8,14 +8,20 @@ import {
   DefiningStandards,
   FaqFamily,
   Testimonoials,
-  FamilyTrekVideos
+  FamilyTrekVideos,
+  FtTrekStories
 } from "./slices";
 
 /**
  *  slice zone component
  */
 
-const FamilyTrekSliceZone = ({ sliceZone, multiTrekData, weekendTrekData }) =>
+const FamilyTrekSliceZone = ({
+  sliceZone,
+  multiTrekData,
+  weekendTrekData,
+  latestUpdateAarticleData
+}) =>
   sliceZone.map((slice, index) => {
     switch (slice.slice_type) {
       case "family_terk_banner":
@@ -48,6 +54,14 @@ const FamilyTrekSliceZone = ({ sliceZone, multiTrekData, weekendTrekData }) =>
         return <Testimonoials slice={slice} key={`slice-${index}`} />;
       case "fam_trek_videos":
         return <FamilyTrekVideos slice={slice} key={`slice-${index}`} />;
+      case "fam_trek_stories":
+        return (
+          <FtTrekStories
+            slice={slice}
+            key={`slice-${index}`}
+            latestUpdateAarticleData={latestUpdateAarticleData}
+          />
+        );
       default:
         return null;
     }

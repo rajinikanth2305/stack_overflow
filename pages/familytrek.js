@@ -17,7 +17,12 @@ import { FamilyTrekSliceZone } from "../components/familytrek";
 /**
  * UpComing component
  */
-const FamilyTrek = ({ doc, multiTrekData, weekendTrekData }) => {
+const FamilyTrek = ({
+  doc,
+  multiTrekData,
+  weekendTrekData,
+  latestUpdateAarticleData
+}) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -31,7 +36,12 @@ const FamilyTrek = ({ doc, multiTrekData, weekendTrekData }) => {
           <title>Family Trek</title>
         </Head>
         <HikeHeader />
-        <FamilyTrekSliceZone sliceZone={doc.data.body} multiTrekData={multiTrekData} weekendTrekData={weekendTrekData} />
+        <FamilyTrekSliceZone
+          sliceZone={doc.data.body}
+          multiTrekData={multiTrekData}
+          weekendTrekData={weekendTrekData}
+          latestUpdateAarticleData={latestUpdateAarticleData}
+        />
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
@@ -52,6 +62,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const multiTrekData = [];
   const weekendTrekData = [];
+  const latestUpdateAarticleData = [];
 
   const multitrek_slice = doc.data?.body?.find(
     x => x.slice_type === "multi_day_trek_list"
@@ -64,7 +75,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
-        multiTrekData.push(trek_details);
+          multiTrekData.push(trek_details);
       }
     }
   }
@@ -80,9 +91,25 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
-        weekendTrekData.push(trek_details);
+          weekendTrekData.push(trek_details);
       }
     }
+  }
+
+  const latestUpdate_slice = doc.data?.body?.find(
+    x => x.slice_type === "fam_trek_stories"
+  );
+  if (latestUpdate_slice.items.length > 0) {
+    for (var i = 0; i < latestUpdate_slice.items.length; i++) {
+      const data = latestUpdate_slice.items[i];
+      const slugUrl = data && data?.link_url?.id;
+      if (slugUrl !== undefined) {
+        const article_details = await Client().getByID(slugUrl);
+        latestUpdateAarticleData.push(article_details);
+      }
+    }
+  } else {
+    return false;
   }
 
   return {
@@ -90,7 +117,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       doc,
       preview,
       multiTrekData,
-      weekendTrekData
+      weekendTrekData,
+      latestUpdateAarticleData
     }
   };
 }

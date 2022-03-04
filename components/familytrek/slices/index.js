@@ -7,3 +7,4 @@ export { default as DefiningStandards } from "./DefiningStandards";
 export { default as FaqFamily } from "./FaqFamily";
 export { default as Testimonoials } from "./Testimonoials";
 export { default as FamilyTrekVideos } from "./FamilyTrekVideos";
+export { default as FtTrekStories } from "./FtTrekStories";
