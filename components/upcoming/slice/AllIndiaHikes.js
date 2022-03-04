@@ -33,24 +33,24 @@ const AllIndiaHikes = ({
   const difficultTrekTitleMobile = slice.primary.difficult_trek_title_mobile;
   const difficultTrekDescMobile = slice.primary.difficult_trek_desc_mobile;
 
-  const easyMordatesTreksList = easyMordatesTreks.results?.map(function(
-    data,
-    i
+  const easyMordatesTreksList = easyMordatesTreks?.results?.map(function(
+    data1,
+    i1
   ) {
     let url;
-    const slugUrl = data?.uid;
+    const slugUrl = data1?.uid;
     if (slugUrl) {
       url = `/trek/${slugUrl}`;
     }
     return (
-      <div className="d-flex align-items-center" key={i}>
+      <div className="d-flex align-items-center" key={i1}>
         <div>
           <p className="badge-green"></p>
         </div>
         <div className="mx-3">
           <Link href={url ? url : "#"}>
             <p className="p-display-3 p-display-3-md cursor-pointer">
-              {data.data.trek_title[0].text}
+              {data1.data.trek_title[0].text}
             </p>
           </Link>
         </div>

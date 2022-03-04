@@ -125,10 +125,10 @@ const BestTimeToDo = ({ data }) => {
   const content5List = bestTimeToDo && bestTimeToDo.primary.content5;
   const content5Images = bestTimeToDo && bestTimeToDo.primary.content5_images;
 
-  const btImage1 = bestTimeToDo && bestTimeToDo.primary.btimage1.url;
-  const btImage2 = bestTimeToDo && bestTimeToDo.primary.btimage2.url;
-  const btImage3 = bestTimeToDo && bestTimeToDo.primary.btimage3.url;
-  const btImage4 = bestTimeToDo && bestTimeToDo.primary.btimage4.url;
+  // const btImage1 = bestTimeToDo && bestTimeToDo.primary.btimage1.url;
+  // const btImage2 = bestTimeToDo && bestTimeToDo.primary.btimage2.url;
+  // const btImage3 = bestTimeToDo && bestTimeToDo.primary.btimage3.url;
+  // const btImage4 = bestTimeToDo && bestTimeToDo.primary.btimage4.url;
 
   const importantNoteTitle =
     bestTimeToDo && bestTimeToDo.primary.important_note_title;
@@ -251,7 +251,7 @@ const BestTimeToDo = ({ data }) => {
               </div>
             </div>
           </div>
-          <div className="mb-4 d-m-block">
+          {/* <div className="mb-4 d-m-block">
             <Slider className="home-choose-treks" {...settings}>
               <div>
                 <div className="accordio-sec-images">
@@ -274,7 +274,7 @@ const BestTimeToDo = ({ data }) => {
                 </div>
               </div>
             </Slider>
-          </div>
+          </div> */}
           <div>
             <p className="p-text-1">
               <b>{RichText.asText(content2Title)}</b>
@@ -388,7 +388,7 @@ const BestTimeToDo = ({ data }) => {
             </div>
           </div>
 
-          {btImage1 && <div className="row my-4 d-m-none">
+          {/* {btImage1 && <div className="row my-4 d-m-none">
             <div className="col-lg-7 col-md-12">
               <div className="day1-image-1 cursor-pointer">
                 {btImage1 ? (
@@ -463,7 +463,7 @@ const BestTimeToDo = ({ data }) => {
                 </div>
               </div>
             </div>
-          </div> }
+          </div> } */}
 
           {importantNoteContent && importantNoteContent[0].text !== '' && (
             <div className="important_notice_box">
