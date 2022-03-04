@@ -58,7 +58,7 @@ const AllIndiaHikes = ({
     );
   });
 
-  const moderateTreksList = moderateTreks.results?.map(function(data2, i2) {
+  const moderateTreksList = moderateTreks?.results?.map(function(data2, i2) {
     let url;
     const slugUrl = data2?.uid;
     if (slugUrl) {
@@ -80,7 +80,7 @@ const AllIndiaHikes = ({
     );
   });
 
-  const difficultTreksList = difficultTreks.results?.map(function(data3, i3) {
+  const difficultTreksList = difficultTreks?.results?.map(function(data3, i3) {
     let url;
     const slugUrl = data3?.uid;
     if (slugUrl) {
@@ -102,7 +102,7 @@ const AllIndiaHikes = ({
     );
   });
 
-  const familyTreksList = familyTreks.results?.map(function(data4, i4) {
+  const familyTreksList = familyTreks?.results?.map(function(data4, i4) {
     let url;
     const slugUrl = data4?.uid;
     if (slugUrl) {
@@ -124,7 +124,7 @@ const AllIndiaHikes = ({
     );
   });
 
-  const diyTreksList = diyTreks.results?.map(function(data5, i5) {
+  const diyTreksList = diyTreks?.results?.map(function(data5, i5) {
     let url;
     const slugUrl = data5?.uid;
     if (slugUrl) {
