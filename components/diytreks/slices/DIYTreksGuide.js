@@ -3,9 +3,9 @@ import { RichText } from "prismic-reactjs";
 import { diyStyles } from "styles";
 
 const DIYTreksGuide = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-  const treksArray = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
+  const treksArray = slice?.items;
 
   const treks = treksArray.map(function(data, i) {
     return (
@@ -14,18 +14,18 @@ const DIYTreksGuide = ({ slice }) => {
           <div>
             <p
               className={
-                data.trek_difficulty[0].text === "easy"
+                data?.trek_difficulty[0]?.text === "easy"
                   ? "badge-green-diy"
-                  : data.trek_difficulty[0].text === "moderate"
+                  : data?.trek_difficulty[0]?.text === "moderate"
                   ? "badge-yellow-diy"
-                  : data.trek_difficulty[0].text === "difficult"
+                  : data?.trek_difficulty[0]?.text === "difficult"
                   ? "badge-red-diy"
                   : "badge-blue-diy"
               }
             ></p>
           </div>
           <div className="mx-3">
-            <p>{data.trek_name[0].text}</p>
+            <p>{data?.trek_name[0]?.text}</p>
           </div>
         </div>
       </div>

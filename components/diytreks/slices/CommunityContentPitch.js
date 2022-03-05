@@ -5,23 +5,23 @@ import Image from "next/image";
 import Slider from "react-slick";
 
 const CommunityContentPitch = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const detail1List = slice.primary.detail1;
-  const detail2List = slice.primary.detail2;
-  const communityMembersArray = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const detail1List = slice?.primary?.detail1;
+  const detail2List = slice?.primary?.detail2;
+  const communityMembersArray = slice?.items;
 
-  const communityMembers = communityMembersArray.map(function(data, k) {
+  const communityMembers = communityMembersArray?.map(function(data, k) {
     return (
       <div key={k} className="mx-3">
         <div className="community_member_image">
           <Image
-            src={data.image.url}
+            src={data?.image?.url}
             layout="fill"
             objectFit="contain"
             objectPosition="bottom"
           />
         </div>
-        <p className="p-text-4 mt-2 mb-0">{data.name[0].text}</p>
+        <p className="p-text-4 mt-2 mb-0">{data?.name[0]?.text}</p>
       </div>
     );
   });

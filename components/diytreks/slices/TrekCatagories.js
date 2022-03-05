@@ -7,9 +7,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const TrekCatagories = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-  const trekImagesArray = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
+  const trekImagesArray = slice?.items;
 
   const settings = {
     dots: true,
@@ -47,7 +47,7 @@ const TrekCatagories = ({ slice }) => {
     ]
   };
 
-  const trekImages = trekImagesArray.map(function(data, i) {
+  const trekImages = trekImagesArray?.map(function(data, i) {
     return (
       <div key={i}>
         <div className="mx-4 m-mx-0">
@@ -57,17 +57,17 @@ const TrekCatagories = ({ slice }) => {
                 <div className="d-flex align-items-end justify-content-center w-100 h-100 px-4 py-3">
                   <div>
                     <p className="p-text-1-main m-0">
-                      {data.diy_heading2[0].text}
+                      {data?.diy_heading2[0]?.text}
                     </p>
                     <p className="p-text-4 text-white mb-0">
-                      {data.diy_heading1[0].text}
+                      {data?.diy_heading1[0]?.text}
                     </p>
                   </div>
                 </div>
               </div>
             </div>
             <Image
-              src={data.trek_image.url}
+              src={data?.trek_image?.url}
               layout="fill"
               objectFit="cover"
               objectPosition="bottom"

@@ -5,10 +5,10 @@ import Image from "next/image";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const DIYBanner = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-  const heading3 = slice.primary.heading3;
-  const imageUrl = slice.primary.banner_image.url;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
+  const heading3 = slice?.primary?.heading3;
+  const imageUrl = slice?.primary?.banner_image?.url;
 
   return (
     <>
@@ -29,7 +29,7 @@ const DIYBanner = ({ slice }) => {
                           type="text"
                           name="search"
                           id="search"
-                          placeholder={heading3[0].text}
+                          placeholder={heading3[0]?.text}
                         />
                       </FormGroup>
                     </div>

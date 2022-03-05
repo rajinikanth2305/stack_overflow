@@ -9,8 +9,8 @@ import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 
 const BestPostTreks = ({ slice, trekData }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
 
   const settings = {
     dots: true,
@@ -48,7 +48,7 @@ const BestPostTreks = ({ slice, trekData }) => {
     ]
   };
 
-  const bestPostTreks = trekData.map(function(data, i) {
+  const bestPostTreks = trekData?.map(function(data, i) {
     const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
     let url;
     const slugUrl = data?.uid;
@@ -67,15 +67,15 @@ const BestPostTreks = ({ slice, trekData }) => {
                       <div className="d-flex align-items-end justify-content-center w-100 h-100 px-4 py-3">
                         <div className="w-100">
                           <p className="p-text-1-main m-0">
-                            {tData.primary.trek_caption}
+                            {tData?.primary?.trek_caption}
                           </p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  {tData.primary.trek_banner_image.url && (
+                  {tData?.primary?.trek_banner_image?.url && (
                     <Image
-                      src={tData.primary.trek_banner_image.url}
+                      src={tData?.primary?.trek_banner_image?.url}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"
@@ -85,7 +85,7 @@ const BestPostTreks = ({ slice, trekData }) => {
                 <div className="px-3 py-2">
                   <div className="d-flex align-items-center card-info-text">
                     <div>
-                      <p>{tData.primary.duration[0].text}</p>
+                      <p>{tData?.primary?.duration[0]?.text}</p>
                     </div>
                     <div>
                       <p className="list-dot-style px-1">
@@ -93,13 +93,13 @@ const BestPostTreks = ({ slice, trekData }) => {
                       </p>
                     </div>
                     <div>
-                      <p>tData.primary.difficulty[0].text}</p>
+                      <p>{tData?.primary?.difficulty[0]?.text}</p>
                     </div>
                   </div>
 
                   <div>
                     <p className="p-text-4">
-                      {RichText.asText(tData.primary.sub_heading)}
+                      {RichText.asText(tData?.primary?.sub_heading)}
                     </p>
                   </div>
                   <div className="d-flex align-items-center mb-3 p-btn-btm">

@@ -8,13 +8,13 @@ const DIYResources = ({ slice }) => {
   const heading2 = slice.primary.heading2;
   const diyResArray = slice.items;
 
-  const diyResList = diyResArray.map(function(data, i) {
+  const diyResList = diyResArray?.map(function(data, i) {
     return (
       <div key={i} className="col-lg-4 col-md-6">
         <div className="d-flex align-items-center row mb-4">
           <div className="diyres_img_bg col-3 col-lg-3 col-md-12">
             <Image
-              src={data.res_image.url}
+              src={data?.res_image?.url}
               layout="fill"
               objectFit="contain"
               objectPosition="top"
@@ -22,15 +22,15 @@ const DIYResources = ({ slice }) => {
           </div>
           <div className="col-9 col-lg-9 col-md-12">
             <p className="p-text-3">
-              <b>{data.title[0].text}</b>
+              <b>{data?.title[0]?.text}</b>
             </p>
             <div>
               <p className="p-text-small m-0">
-                <em>By {data.name[0].text}</em>
+                <em>By {data?.name[0]?.text}</em>
               </p>
               <p className="p-text-small m-0 pt-0">
                 <em>
-                  {data.date[0].text} | {data.date[0].text} min read
+                  {data?.date[0]?.text} | {data?.date[0]?.text} min read
                 </em>
               </p>
             </div>
