@@ -7,9 +7,9 @@ import Image from "next/image";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const TrekkingTips = ({ slice }) => {
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
   const [diyResDetails, setDiyResDetails] = useState();
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
 
   useEffect(() => {
     findDiyResources();
@@ -29,7 +29,7 @@ const TrekkingTips = ({ slice }) => {
       });
   }
 
-  const diyResArray = diyResDetails && diyResDetails.items;
+  const diyResArray = diyResDetails && diyResDetails?.items;
 
   const diyResList = diyResArray?.map(function(data, i) {
     return (
@@ -37,7 +37,7 @@ const TrekkingTips = ({ slice }) => {
         <div className="d-flex align-items-center row mb-4">
           <div className="diyres_img_bg col-3 col-lg-3 col-md-12">
             <Image
-              src={data.res_image.url}
+              src={data?.res_image?.url}
               layout="fill"
               objectFit="contain"
               objectPosition="top"
@@ -50,7 +50,7 @@ const TrekkingTips = ({ slice }) => {
             <div>
               <p className="p-text-small m-0">By {data.name[0].text}</p>
               <p className="p-text-small m-0">
-                {data.date[0].text} | {data.date[0].text} min read
+                {data?.date[0]?.text} | {data?.date[0]?.text} min read
               </p>
             </div>
           </div>

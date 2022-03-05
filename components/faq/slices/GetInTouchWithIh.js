@@ -5,10 +5,10 @@ import Image from "next/image";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const GetInTouchWithIh = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-  const detailsList = slice.primary.details;
-  const imageUrl = slice.primary.image.url;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
+  const detailsList = slice?.primary?.details;
+  const imageUrl = slice?.primary?.image?.url;
   
   return (
     <>

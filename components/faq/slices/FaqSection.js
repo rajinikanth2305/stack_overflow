@@ -13,6 +13,8 @@ const FaqSection = () => {
   const [faqDetails, setFaqDetails] = useState();
   const [activeTab, setActiveTab] = useState("1");
   const [faqAaccodionDetails, setFaqAaccodionDetails] = useState();
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [isActive, setActive] = useState(false);
 
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
@@ -36,7 +38,7 @@ const FaqSection = () => {
       });
   }
 
-  const heading1 = faqDetails && faqDetails[0].primary.heading1;
+  const heading1 = faqDetails && faqDetails[0]?.primary?.heading1;
   const faqArrayList =
     faqDetails &&
     faqDetails.map(function(data, i) {
@@ -50,16 +52,16 @@ const FaqSection = () => {
           >
             <div className="faq_icon_image">
               <Image
-                src={data.primary.icon_image.url}
+                src={data?.primary?.icon_image?.url}
                 layout="fill"
                 objectFit="contain"
                 objectPosition="top"
               />
             </div>
             <p className="p-text-1 my-2">
-              <b>{data.primary.tab_heading[0].text}</b>
+              <b>{data?.primary?.tab_heading[0]?.text}</b>
             </p>
-            <p className="p-text-4 m-0">{data.primary.tab_desc[0].text}</p>
+            <p className="p-text-4 m-0">{data?.primary?.tab_desc[0]?.text}</p>
           </NavLink>
         </NavItem>
       );
@@ -67,7 +69,7 @@ const FaqSection = () => {
 
   const faqArrayListMobile =
     faqDetails &&
-    faqDetails.map(function(data, i) {
+    faqDetails?.map(function(data, i) {
       return (
         // <>
         //   <NavItem className="faq_nav" key={i}>
@@ -103,7 +105,7 @@ const FaqSection = () => {
               <div className="d-flex align-items-center">
                 <div className="faq_icon_image">
                   <Image
-                    src={data.primary.icon_image.url}
+                    src={data?.primary?.icon_image.url}
                     layout="fill"
                     objectFit="contain"
                     objectPosition="top"
@@ -111,7 +113,7 @@ const FaqSection = () => {
                 </div>
                 <div className="mx-2">
                   <p className="p-text-3 my-2">
-                    <b>{data.primary.tab_heading[0].text}</b>
+                    <b>{data?.primary?.tab_heading[0]?.text}</b>
                   </p>
                 </div>
               </div>
@@ -124,30 +126,31 @@ const FaqSection = () => {
   const faqAccordionArrayList =
     faqDetails &&
     faqDetails.map(function(data, i) {
-      const faqArray = data.items;
-      const faqAccordionList = faqArray.map(function(faq, j) {
+      const faqArray = data?.items;
+      const faqAccordionList = faqArray?.map(function(faq, j) {
         return (
           <div className="col-lg-6 col-md-12" key={j}>
-            {/* <h4>{faq.accordion_heading[0].text}</h4> */}
-            {/* <Accordion flush> */}
             <Card>
               <Card.Header>
-                <Accordion.Toggle variant="link" eventKey={j + 1}>
-                  <div className="d-flex align-items-center">
-                    <div className="flex-grow-1">
-                      {faq.accordion_heading[0].text}
-                    </div>
-                    <div>
-                      <div>
-                        <h2 className="m-0 expand_plus">+</h2>
-                      </div>
-                    </div>
-                  </div>
+                <Accordion.Toggle
+                  variant="link"
+                  eventKey={j + 1}
+                  className={
+                    j + 1 === activeIndex && activeIndex && isActive === true
+                      ? "show"
+                      : ""
+                  }
+                  onClick={() => {
+                    setActiveIndex(j + 1);
+                    setActive(!isActive);
+                  }}
+                >
+                  {faq?.accordion_heading[0]?.text}
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey={j + 1}>
                 <Card.Body>
-                  <p className="p-text-4">{faq.accordion_details[0].text}</p>
+                  <div className="p-text-4">{RichText.render(faq?.accordion_details)}</div>
                 </Card.Body>
               </Accordion.Collapse>
             </Card>

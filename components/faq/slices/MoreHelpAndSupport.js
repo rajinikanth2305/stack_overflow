@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Image from "next/image";
@@ -7,35 +7,52 @@ import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 
 const MoreHelpAndSupport = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const supportQuostionsArray = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const supportQuostionsArray = slice?.items;
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [isActive, setActive] = useState(false);
 
-  const supportQuostions = supportQuostionsArray.map(function(data, i) {
+  const supportQuostions = supportQuostionsArray?.map(function(data, i) {
     return (
       <div className="col-lg-6 col-md-12" key={i}>
         <Card>
           <Card.Header>
-            <Accordion.Toggle variant="link" eventKey={i + 1}>
+            <Accordion.Toggle
+              variant="link"
+              eventKey={i + 1}
+              eventKey={i + 1}
+              className={
+                i + 1 === activeIndex && activeIndex && isActive === true
+                  ? "show"
+                  : ""
+              }
+              onClick={() => {
+                setActiveIndex(i + 1);
+                setActive(!isActive);
+              }}
+            >
               <div className="d-flex align-items-center">
                 <div className="flex-grow-1">
                   <p className="p-text-1 mb-1">
-                    <b>{data.support_title[0].text}</b>
+                    <b>{data?.support_title[0]?.text}</b>
                   </p>
                   <p className="p-text-3 m-0">
-                    {data.support_sub_title[0].text}
+                    {data?.support_sub_title[0]?.text}
                   </p>
                 </div>
-                <div>
+                {/* <div>
                   <div>
                     <img src="/arrow-down.png" />
                   </div>
-                </div>
+                </div> */}
               </div>
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey={i + 1}>
             <Card.Body>
-              <p className="p-text-4">{data.support_details[0].text}</p>
+              <div className="p-text-4">
+                {RichText.asText(data?.support_details)}
+              </div>
             </Card.Body>
           </Accordion.Collapse>
         </Card>

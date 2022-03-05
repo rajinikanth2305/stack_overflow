@@ -6,9 +6,9 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import FaqSection from "./FaqSection";
 
 const FaqBanner = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const diyPlaceholder = slice.primary.diy_placeholder;
-  const imageUrl = slice.primary.faq_images.url;
+  const heading1 = slice?.primary?.heading1;
+  const diyPlaceholder = slice?.primary?.diy_placeholder;
+  const imageUrl = slice?.primary?.faq_images?.url;
 
   return (
     <>
@@ -26,7 +26,7 @@ const FaqBanner = ({ slice }) => {
                           type="text"
                           name="search"
                           id="search"
-                          placeholder={diyPlaceholder[0].text}
+                          placeholder={diyPlaceholder[0]?.text}
                         />
                       </FormGroup>
                     </div>
