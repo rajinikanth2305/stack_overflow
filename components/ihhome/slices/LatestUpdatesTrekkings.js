@@ -11,19 +11,19 @@ const LatestUpdatesTrekkings = ({
   latestUpdateAarticleData,
   latestUpdateAarticlePrimaryArticleData
 }) => {
-  const Sectiontitle = slice.primary.section_header;
-  const dayTalkTitle = slice.primary.day_talk_title;
+  const Sectiontitle = slice?.primary?.section_header;
+  const dayTalkTitle = slice?.primary?.day_talk_title;
 
-  const videoText = slice.primary.video_text;
-  const primaryVideoUrl = slice.primary.primary_video_url.url;
+  const videoText = slice?.primary?.video_text;
+  const primaryVideoUrl = slice?.primary?.primary_video_url?.url;
 
   const result = primaryVideoUrl?.split(
     /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
   );
-  const videoIdWithParams = result[2];
+  const videoIdWithParams = result && result[2];
 
   const cleanVideoId =
-    videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+    videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
   const videoUrl =
     "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
@@ -40,12 +40,12 @@ const LatestUpdatesTrekkings = ({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const durationTrekRead = slice.primary.duration_trek_read;
+  const durationTrekRead = slice?.primary?.duration_trek_read;
 
   let primary_url;
-  const slugUrl = slice.primary.primary_link_url.slug;
+  const slugUrl = slice?.primary?.primary_link_url?.slug;
   if (slugUrl) {
-    primary_url = linkResolver(slice.primary.primary_link_url);
+    primary_url = linkResolver(slice?.primary?.primary_link_url);
   }
 
   const latestTrekWorld = latestUpdateAarticleData?.map(function(data, index) {
@@ -72,7 +72,7 @@ const LatestUpdatesTrekkings = ({
                 objectPosition="50% 50%"
               /> */}
               <img
-                src={getArticleImage?.primary?.feature_image.url}
+                src={getArticleImage?.primary?.feature_image?.url}
                 alt="articleImage"
                 className="latestTrekWorld_bg"
               />
