@@ -4,9 +4,9 @@ import { aboutUsStyles } from "styles";
 import Image from "next/image";
 
 const TeamBanner = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-  const imageUrl = slice.primary.team_banner_image.url;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
+  const imageUrl = slice?.primary?.team_banner_image?.url;
 
   const bannerImageDesktop = {
     backgroundImage: `url('${imageUrl}')`,

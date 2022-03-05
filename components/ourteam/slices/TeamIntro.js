@@ -5,28 +5,28 @@ import Image from "next/image";
 import OurTeam from "./OurTeam";
 
 const TeamIntro = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-  const teamContentList = slice.primary.team_content;
-  const founderImageArray = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
+  const teamContentList = slice?.primary?.team_content;
+  const founderImageArray = slice?.items;
 
-  const founderImage = founderImageArray.map(function(data, i) {
+  const founderImage = founderImageArray?.map(function(data, i) {
     return (
       <div key={i}>
         <div className="mx-4">
           <div className="founder_image">
             <Image
-              src={data.founder_image.url}
+              src={data?.founder_image?.url}
               layout="fill"
               objectFit="cover"
               objectPosition="top"
             />
           </div>
           <p className="p-text-2-franklin text-center mb-0 pt-2">
-            {data.founder_name[0].text}
+            {data?.founder_name[0]?.text}
           </p>
           <p className="p-text-3 text-center">
-            {data.founder_position[0].text}
+            {data?.founder_position[0]?.text}
           </p>
         </div>
       </div>

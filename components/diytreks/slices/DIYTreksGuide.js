@@ -7,7 +7,7 @@ const DIYTreksGuide = ({ slice }) => {
   const heading2 = slice?.primary?.heading2;
   const treksArray = slice?.items;
 
-  const treks = treksArray.map(function(data, i) {
+  const treks = treksArray?.map(function(data, i) {
     return (
       <div key={i} className="col-lg-4 col-md-6">
         <div className="d-flex align-items-center">
