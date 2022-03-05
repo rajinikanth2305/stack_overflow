@@ -195,7 +195,10 @@ const UserPT = () => {
         participantsCount: book.trekMates.length,
         userTrekBookingParticipants: book.trekMates,
         trekStatus: "COMPLETED", //book.bookingState,
-        reviewStatus: "no"
+        reviewStatus: "no",
+        trekDifficulty: book.trekDifficulty,
+        trekDuration: book.trekDuration,
+        trekAltitude: book.trekAltitude
       });
     }
     setStates(bookTrekContents);

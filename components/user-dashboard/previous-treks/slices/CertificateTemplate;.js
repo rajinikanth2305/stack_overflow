@@ -12,7 +12,7 @@ import {
 import moment from "moment";
 
 const CertificateTemplate = certificateData => {
-  const [selectedReceipts, setselectedReceipts] = useState();
+    const [selectedReceipts, setselectedReceipts] = useState();
 
   //console.log(certificateData);
   //setselectedReceipts(selectedReceiptsData);
@@ -160,7 +160,7 @@ const CertificateTemplate = certificateData => {
             <Text style={styles.sectionText}>
               {certificateData.certificateData &&
                 certificateData.certificateData.trekName}{" "}
-              | Trek Grade: Difficult | Duration: 10 Days | Max Atitude: 10,000
+              | Trek Grade: {certificateData.certificateData.trekDifficulty} | Duration: {certificateData.certificateData.trekDuration} Days | Max Atitude: {certificateData.certificateData.trekAltitude}
               ft
             </Text>
           </View>
