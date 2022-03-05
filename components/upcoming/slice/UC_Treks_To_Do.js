@@ -9,8 +9,8 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 const UCTreksToDo = ({ slice, treksToDoData }) => {
-  const ucTreksToDoTitle = slice.primary.uc_treks_to_do_title;
-  const ucTreksToDoDesc = slice.primary.uc_treks_to_do_desc;
+  const ucTreksToDoTitle = slice?.primary?.uc_treks_to_do_title;
+  const ucTreksToDoDesc = slice?.primary?.uc_treks_to_do_desc;
   const router = useRouter();
 
   const settings = {
@@ -50,10 +50,10 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
   };
 
   const goToTrekPage = data => {
-    const slugUrl = data?.target_url.slug;
+    const slugUrl = data?.target_url?.slug;
 
     if (slugUrl) {
-      router.push(`/trek/${data.target_url.uid}`);
+      router.push(`/trek/${data?.target_url?.uid}`);
     }
   };
 
@@ -72,9 +72,9 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
             <div className="card_sec">
               <div className="card trek_card">
                 <div className="uc_open_for_small_group_images">
-                  {tData.primary.trek_banner_image.url && (
+                  {tData?.primary?.trek_banner_image?.url && (
                     <Image
-                      src={tData.primary.trek_banner_image.url}
+                      src={tData?.primary?.trek_banner_image?.url}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"
@@ -85,7 +85,7 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
                 <div className="px-3 py-2">
                   <div className="d-flex align-items-center card-info-text">
                     <div>
-                      <p>{tData.primary.duration[0].text}</p>
+                      <p>{tData?.primary?.duration[0]?.text}</p>
                     </div>
                     <div>
                       <p className="list-dot-style px-1">
@@ -93,20 +93,20 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
                       </p>
                     </div>
                     <div>
-                      <p>{tData.primary.difficulty[0].text}</p>
+                      <p>{tData?.primary?.difficulty[0]?.text}</p>
                     </div>
                   </div>
 
                   <div>
                     <p className="title-diplay-3 m-t-d3 text-uppercase">
                       <b>
-                        {tData.primary.trek_caption.length > 25
-                          ? `${tData.primary.trek_caption.substring(0, 25)}...`
-                          : tData.primary.trek_caption}
+                        {tData?.primary?.trek_caption.length > 25
+                          ? `${tData?.primary?.trek_caption.substring(0, 25)}...`
+                          : tData?.primary?.trek_caption}
                       </b>
                     </p>
                     <div className="p-display-2">
-                      {RichText.asText(tData.primary.sub_heading)}
+                      {RichText.asText(tData?.primary?.sub_heading)}
                     </div>
                     <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
                       <div className="flex-grow-1">

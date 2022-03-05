@@ -578,6 +578,9 @@ export const upcomingTrekPageStyle = css.global`
   .cursor-pointer {
     cursor: pointer;
   }
+  p > a {
+    text-decoration: underline;
+  }
 
   @media only screen and (max-width: 660px) {
     .fam_trek {

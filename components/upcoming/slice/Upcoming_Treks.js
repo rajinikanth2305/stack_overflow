@@ -9,8 +9,8 @@ import ReactPaginate from "react-paginate";
 import Link from "next/link";
 
 const UpComingTreks = ({ slice }) => {
-  const upcomingTreksTitle = slice.primary.upcoming_treks_title;
-  const upcomingTreksDesc = slice.primary.upcoming_treks_desc;
+  const upcomingTreksTitle = slice?.primary?.upcoming_treks_title;
+  const upcomingTreksDesc = slice?.primary?.upcoming_treks_desc;
   const season = useRef(null);
   const difficulty = useRef(null);
   const [filterResult, setFilterResult] = useState(false);
@@ -358,9 +358,9 @@ const UpComingTreks = ({ slice }) => {
                           <div
                             className="uc_open_for_small_group_images"
                           >
-                            {tData.primary.trek_banner_image.url && (
+                            {tData?.primary?.trek_banner_image?.url && (
                               <Image
-                                src={tData.primary.trek_banner_image.url}
+                                src={tData?.primary?.trek_banner_image?.url}
                                 layout="fill"
                                 objectFit="cover"
                                 objectPosition="50% 50%"
@@ -371,7 +371,7 @@ const UpComingTreks = ({ slice }) => {
                           <div className="px-3 py-2">
                             <div className="d-flex align-items-center card-info-text">
                               <div>
-                                <p>{tData.primary.duration[0].text}</p>
+                                <p>{tData?.primary?.duration[0]?.text}</p>
                               </div>
                               {/* <div>
                     <p className="list-dot-style px-1">
@@ -387,16 +387,16 @@ const UpComingTreks = ({ slice }) => {
                                 </p>
                               </div>
                               <div>
-                                <p>{tData.primary.difficulty[0].text}</p>
+                                <p>{tData?.primary?.difficulty[0]?.text}</p>
                               </div>
                             </div>
 
                             <div>
                               <p className="title-diplay-3 text-uppercase">
-                                <b>{tData.primary.trek_caption}</b>
+                                <b>{tData?.primary?.trek_caption}</b>
                               </p>
                               <div className="p-display-2">
-                                {RichText.asText(tData.primary.sub_heading)}
+                                {RichText.asText(tData?.primary?.sub_heading)}
                               </div>
                               <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
                                 <div className="flex-grow-1">
@@ -474,11 +474,11 @@ const UpComingTreks = ({ slice }) => {
               <div className="container">
                 <div className="row">
                   {results.map(function(result, i) {
-                    const slice = result.data.body.find(
+                    const slice = result?.data?.body?.find(
                       x => x.slice_type === "trek_banner"
                     );
-                    const bannerImage = slice.primary.trek_banner_image.url;
-                    const trekCaptions = slice.primary.trek_caption;
+                    const bannerImage = slice?.primary?.trek_banner_image?.url;
+                    const trekCaptions = slice?.primary?.trek_caption;
                     return (
                       <div className="col-lg-4 col-md-6" key={i}>
                         <div className="uc_fliter_treks_images">

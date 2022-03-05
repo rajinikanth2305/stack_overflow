@@ -5,9 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 const UCDYITreks = ({ slice }) => {
-  const ucDiyTrekImage = slice.primary.uc_diy_trek_image.url;
-  const ucDiyTrekTitle = slice.primary.uc_diy_trek_title;
-  const ucDiyTrekDesc = slice.primary.uc_diy_trek_desc;
+  const ucDiyTrekImage = slice?.primary?.uc_diy_trek_image?.url;
+  const ucDiyTrekTitle = slice?.primary?.uc_diy_trek_title;
+  const ucDiyTrekDesc = slice?.primary?.uc_diy_trek_desc;
 
   return (
     <>
@@ -30,9 +30,9 @@ const UCDYITreks = ({ slice }) => {
                 <h2 className="title-display-2 text-white">
                   {RichText.asText(ucDiyTrekTitle)}
                 </h2>
-                <p className="why_trek_box_desc text-white">
-                  {RichText.asText(ucDiyTrekDesc)}
-                </p>
+                <div className="why_trek_box_desc text-white">
+                  {RichText.render(ucDiyTrekDesc)}
+                </div>
                 <div className="mt-5 pt-3 m-text-center">
                   <Link href="../../../diy">
                     <button className="btn btn-bihtn-yellow">Read More</button>

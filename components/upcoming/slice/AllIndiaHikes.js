@@ -2,7 +2,6 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { upcomingTrekPageStyle } from "styles";
 import Image from "next/image";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Dropdown } from "primereact/dropdown";
@@ -18,20 +17,20 @@ const AllIndiaHikes = ({
   familyTreks,
   diyTreks
 }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
 
-  const easyTrekImage = slice.primary.easy_trek_image.url;
-  const easyTrekTitleMobile = slice.primary.easy_trek_title_mobile;
-  const easyTrekDescMobile = slice.primary.easy_trek_desc_mobile;
+  const easyTrekImage = slice?.primary?.easy_trek_image?.url;
+  const easyTrekTitleMobile = slice?.primary?.easy_trek_title_mobile;
+  const easyTrekDescMobile = slice?.primary?.easy_trek_desc_mobile;
 
-  const moderateTrekimage = slice.primary.moderate_trek_image.url;
-  const moderateTrekTitleMobile = slice.primary.moderate_trek_title_mobile;
-  const moderateTrekDescMobile = slice.primary.moderate_trek_desc_mobile;
+  const moderateTrekimage = slice?.primary?.moderate_trek_image?.url;
+  const moderateTrekTitleMobile = slice?.primary?.moderate_trek_title_mobile;
+  const moderateTrekDescMobile = slice?.primary?.moderate_trek_desc_mobile;
 
-  const difficultTrekImage = slice.primary.difficult_trek_image.url;
-  const difficultTrekTitleMobile = slice.primary.difficult_trek_title_mobile;
-  const difficultTrekDescMobile = slice.primary.difficult_trek_desc_mobile;
+  const difficultTrekImage = slice?.primary?.difficult_trek_image?.url;
+  const difficultTrekTitleMobile = slice?.primary?.difficult_trek_title_mobile;
+  const difficultTrekDescMobile = slice?.primary?.difficult_trek_desc_mobile;
 
   const easyMordatesTreksList = easyMordatesTreks?.results?.map(function(
     data1,
@@ -50,7 +49,7 @@ const AllIndiaHikes = ({
         <div className="mx-3">
           <Link href={url ? url : "#"}>
             <p className="p-display-3 p-display-3-md cursor-pointer">
-              {data1.data.trek_title[0].text}
+              {data1?.data?.trek_title[0]?.text}
             </p>
           </Link>
         </div>
@@ -72,7 +71,7 @@ const AllIndiaHikes = ({
         <Link href={url ? url : "#"}>
           <div className="mx-3">
             <p className="p-display-3 p-display-3-md cursor-pointer">
-              {data2.data.trek_title[0].text}
+              {data2?.data?.trek_title[0]?.text}
             </p>
           </div>
         </Link>
@@ -94,7 +93,7 @@ const AllIndiaHikes = ({
         <div className="mx-3">
           <Link href={url ? url : "#"}>
             <p className="p-display-3 p-display-3-md cursor-pointer">
-              {data3.data.trek_title[0].text}
+              {data3?.data?.trek_title[0]?.text}
             </p>
           </Link>
         </div>
@@ -116,7 +115,7 @@ const AllIndiaHikes = ({
         <div className="mx-3">
           <Link href={url ? url : "#"}>
             <p className="p-display-3 p-display-3-md cursor-pointer">
-              {data4.data.trek_title[0].text}
+              {data4?.data?.trek_title[0]?.text}
             </p>
           </Link>
         </div>
@@ -138,7 +137,7 @@ const AllIndiaHikes = ({
         <div className="mx-3">
           <Link href={url ? url : "#"}>
             <p className="p-display-3 p-display-3-md cursor-pointer">
-              {data5.data.trek_title[0].text}
+              {data5?.data?.trek_title[0]?.text}
             </p>
           </Link>
         </div>

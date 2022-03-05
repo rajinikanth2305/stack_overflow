@@ -4,10 +4,10 @@ import { upcomingTrekPageStyle } from "styles";
 import Image from "next/image";
 
 const UCFeaturedTreks = ({ slice }) => {
-  const featuredTreksTitle = slice.primary.uc_featured_treks_title;
-  const ucFeaturedTreksImagesArray = slice.items;
+  const featuredTreksTitle = slice?.primary?.uc_featured_treks_title;
+  const ucFeaturedTreksImagesArray = slice?.items;
 
-  const ucFeaturedTreksImages = ucFeaturedTreksImagesArray.map(function(
+  const ucFeaturedTreksImages = ucFeaturedTreksImagesArray?.map(function(
     data,
     i
   ) {
@@ -16,7 +16,7 @@ const UCFeaturedTreks = ({ slice }) => {
         <div className="col-lg-4 col-md-6 px-3" key={i}>
           <div className="uc_featured_treks_images">
             <Image
-              src={data.uc_featured_treks_images.url}
+              src={data?.uc_featured_treks_images?.url}
               layout="fill"
               objectFit="cover"
               objectPosition="50% 50%"
@@ -25,10 +25,10 @@ const UCFeaturedTreks = ({ slice }) => {
             <div className="image_overlay_text_area_layout4">
               <div className="p-absolute">
                 <p className="image_overlay_text_title mb-1">
-                  {data.uc_featured_treks_image_caption[0].text}
+                  {data?.uc_featured_treks_image_caption[0]?.text}
                 </p>
                 <p className="image_overlay_text_desc">
-                  {data.uc_featured_treks_image_caption_desc[0].text}
+                  {data?.uc_featured_treks_image_caption_desc[0]?.text}
                 </p>
               </div>
             </div>

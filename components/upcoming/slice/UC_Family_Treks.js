@@ -5,9 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 const UCFamilyTreks = ({ slice }) => {
-  const ucFamilyTreksImage = slice.primary.uc_family_treks_image.url;
-  const ucFamilyTreksTitle = slice.primary.uc_family_treks_title;
-  const ucFamilyTreksDesc = slice.primary.uc_family_treks_desc;
+  const ucFamilyTreksImage = slice?.primary?.uc_family_treks_image?.url;
+  const ucFamilyTreksTitle = slice?.primary?.uc_family_treks_title;
+  const ucFamilyTreksDesc = slice?.primary?.uc_family_treks_desc;
 
   return (
     <>
@@ -30,9 +30,9 @@ const UCFamilyTreks = ({ slice }) => {
                 <h2 className="title-display-2 text-white">
                   {RichText.asText(ucFamilyTreksTitle)}
                 </h2>
-                <p className="why_trek_box_desc text-white">
-                  {RichText.asText(ucFamilyTreksDesc)}
-                </p>
+                <div className="why_trek_box_desc text-white">
+                  {RichText.render(ucFamilyTreksDesc)}
+                </div>
                 <div className="mt-5 pt-3 m-text-center">
                   <Link href="../../../familytrek">
                     <button className="btn btn-bihtn-yellow">Read More</button>

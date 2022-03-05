@@ -9,9 +9,9 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 const BestTrekToDo = ({ slice, bestTrekToDoData }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-  const trekToDoImageArray = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
+  const trekToDoImageArray = slice?.items;
   const router = useRouter();
 
   const settings = {
@@ -50,9 +50,9 @@ const BestTrekToDo = ({ slice, bestTrekToDoData }) => {
   };
 
   const goToTrekPage = data => {
-    const slugUrl = data?.target_url.slug;
+    const slugUrl = data?.target_url?.slug;
     if (slugUrl) {
-      router.push(`/trek/${data.target_url.uid}`);
+      router.push(`/trek/${data?.target_url?.uid}`);
     }
   };
 
@@ -71,9 +71,9 @@ const BestTrekToDo = ({ slice, bestTrekToDoData }) => {
             <div className="card_sec">
               <div className="card trek_card">
                 <div className="uc_open_for_small_group_images">
-                  {tData.primary.trek_banner_image.url && (
+                  {tData?.primary?.trek_banner_image?.url && (
                     <Image
-                      src={tData.primary.trek_banner_image.url}
+                      src={tData?.primary?.trek_banner_image?.url}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"
@@ -84,7 +84,7 @@ const BestTrekToDo = ({ slice, bestTrekToDoData }) => {
                 <div className="px-3 py-2">
                   <div className="d-flex align-items-center card-info-text">
                     <div>
-                      <p>{tData.primary.duration[0].text}</p>
+                      <p>{tData?.primary?.duration[0]?.text}</p>
                     </div>
                     <div>
                       <p className="list-dot-style px-1">
@@ -92,20 +92,20 @@ const BestTrekToDo = ({ slice, bestTrekToDoData }) => {
                       </p>
                     </div>
                     <div>
-                      <p>{tData.primary.difficulty[0].text}</p>
+                      <p>{tData?.primary?.difficulty[0]?.text}</p>
                     </div>
                   </div>
 
                   <div>
                     <p className="title-diplay-3 text-uppercase">
                       <b>
-                        {tData.primary.trek_caption.length > 25
-                          ? `${tData.primary.trek_caption.substring(0, 25)}...`
-                          : tData.primary.trek_caption}
+                        {tData?.primary?.trek_caption.length > 25
+                          ? `${tData?.primary?.trek_caption.substring(0, 25)}...`
+                          : tData?.primary?.trek_caption}
                       </b>
                     </p>
                     <div className="p-display-2">
-                      {RichText.asText(tData.primary.sub_heading)}
+                      {RichText.asText(tData?.primary?.sub_heading)}
                     </div>
                     <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
                       <div className="flex-grow-1">
@@ -133,7 +133,7 @@ const BestTrekToDo = ({ slice, bestTrekToDoData }) => {
     );
   });
 
-  const trekToDoImageMobileView = bestTrekToDoData.map(function(data, j) {
+  const trekToDoImageMobileView = bestTrekToDoData?.map(function(data, j) {
     const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
     let url;
     const slugUrl = data?.uid;
@@ -146,9 +146,9 @@ const BestTrekToDo = ({ slice, bestTrekToDoData }) => {
         <div className="card_sec">
           <div className="card trek_card_mb">
             <div className="m-uc_open_for_small_group_images">
-              {tData.primary.trek_banner_image.url && (
+              {tData?.primary?.trek_banner_image?.url && (
                 <Image
-                  src={tData.primary.trek_banner_image.url}
+                  src={tData?.primary?.trek_banner_image?.url}
                   layout="fill"
                   objectFit="cover"
                   objectPosition="50% 50%"
@@ -159,20 +159,20 @@ const BestTrekToDo = ({ slice, bestTrekToDoData }) => {
             <div className="px-3 py-2">
               <div>
                 <h3 className="m-title-3 text-uppercase">
-                  {tData.primary.trek_caption.length > 20
-                    ? `${tData.primary.trek_caption.substring(0, 20)}...`
-                    : tData.primary.trek_caption}
+                  {tData?.primary?.trek_caption.length > 20
+                    ? `${tData?.primary?.trek_caption.substring(0, 20)}...`
+                    : tData?.primary?.trek_caption}
                 </h3>
                 <p className="m-display-2">
-                  {RichText.asText(tData.primary.sub_heading)}
+                  {RichText.asText(tData?.primary?.sub_heading)}
                 </p>
                 <p className="m-card-info-text m-0">
                   <span className="list-dot-style-mob"></span>{" "}
-                  {tData.primary.duration[0].text}
+                  {tData?.primary?.duration[0]?.text}
                 </p>
                 <p className="m-card-info-text">
                   <span className="list-dot-style-mob"></span>{" "}
-                  {tData.primary.difficulty[0].text}
+                  {tData?.primary?.difficulty[0]?.text}
                 </p>
                 <div className="d-flex align-items-center flex-wrap pt-2 pb-2">
                   <div className="flex-grow-1">
