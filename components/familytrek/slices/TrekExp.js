@@ -6,9 +6,9 @@ import Image from "next/image";
  * FT Slice Components
  */
 const TrekExp = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const detailsList = slice.primary.details;
-  const imageUrl = slice.primary.image.url;
+  const heading1 = slice?.primary?.heading1;
+  const detailsList = slice?.primary?.details;
+  const imageUrl = slice?.primary?.image?.url;
 
   return (
     <>

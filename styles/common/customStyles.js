@@ -1947,6 +1947,34 @@ export const customStyles = css.global`
     height: 250px;
   }
 
+  .card-header > button::after {
+    color: rgb(255, 193, 0);
+    content: "\f068";
+    font-family: "FontAwesome" !important;
+    font-size: 16px;
+    float: right;
+    margin-top: -3px;
+    position: relative;
+    top: 4px;
+    font-weight: normal;
+  }
+
+  .card-header > button:not(.show)::after {
+    color: rgb(255, 193, 0);
+    content: "\f067";
+    font-family: "FontAwesome" !important;
+    font-size: 16px;
+    float: right;
+    margin-top: -3px;
+    position: relative;
+    top: 4px;
+    font-weight: normal;
+  }
+  
+  p > a {
+    text-decoration: underline;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

@@ -9,8 +9,8 @@ import "slick-carousel/slick/slick-theme.css";
  * FT Slice Components
  */
 const Testimonoials = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const testimonialsArray = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const testimonialsArray = slice?.items;
 
   const settings = {
     dots: true,
@@ -48,7 +48,7 @@ const Testimonoials = ({ slice }) => {
     ]
   };
 
-  const testimonials = testimonialsArray.map(function(data, i) {
+  const testimonials = testimonialsArray?.map(function(data, i) {
     return (
       <div key={`testimonial` + i}>
         <div className="mx-4 m-mx-0">
@@ -57,9 +57,9 @@ const Testimonoials = ({ slice }) => {
               <div className="d-flex align-items-center">
                 <div>
                   <div className="testimonial-img">
-                    {data.image.url && (
+                    {data?.image?.url && (
                       <Image
-                        src={data.image.url}
+                        src={data?.image?.url}
                         layout="fill"
                         objectFit="cover"
                         objectPosition="50% 50%"
@@ -68,12 +68,12 @@ const Testimonoials = ({ slice }) => {
                   </div>
                 </div>
                 <div className="px-3">
-                  <p className="p-text-1-fgt mb-0">{RichText.asText(data.title)}</p>
-                  <p className="p-text-3-fg-book-gray">{RichText.asText(data.sub_title)}</p>
+                  <p className="p-text-1-fgt mb-0">{RichText.asText(data?.title)}</p>
+                  <p className="p-text-3-fg-book-gray">{RichText.asText(data?.sub_title)}</p>
                 </div>
               </div>
               <div className="mt-4 mb-2">
-                <div className="p-text-4">{RichText.render(data.content)}</div>
+                <div className="p-text-4">{RichText.render(data?.content)}</div>
               </div>
             </div>
           </div>

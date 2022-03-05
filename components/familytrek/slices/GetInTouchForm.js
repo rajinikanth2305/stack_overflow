@@ -4,8 +4,8 @@ import Image from "next/image";
 import { customStyles } from "styles";
 
 const GetInTouchForm = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const bannerImage = slice.primary.bannerimage.url;
+  const heading1 = slice?.primary?.heading1;
+  const bannerImage = slice?.primary?.bannerimage?.url;
 
   return (
     <>
