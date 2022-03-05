@@ -6,12 +6,12 @@ import Image from "next/image";
  * Founder Slice Components
  */
 const WeeklyMailer = ({ slice }) => {
-  const title = slice.primary.title1;
-  const authors = slice.primary.authors;
-  const founder_Message = slice.primary.founder_message;
-  const imageUrl = slice.primary.image.url;
-  const imageWidth = slice.primary.image.dimensions.width;
-  const imageHeight = slice.primary.image.dimensions.height;
+  const title = slice?.primary?.title1;
+  const authors = slice?.primary?.authors;
+  const founder_Message = slice?.primary?.founder_message;
+  const imageUrl = slice?.primary?.image?.url;
+  const imageWidth = slice?.primary?.image?.dimensions?.width;
+  const imageHeight = slice?.primary?.image?.dimensions?.height;
   //console.log(JSON.stringify(slice.primary));
 
   return (

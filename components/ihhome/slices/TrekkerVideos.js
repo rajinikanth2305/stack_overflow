@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { ChooseTreks } from "styles";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
 
 const TrekkerVideos = ({ slice }) => {
-  const ihTrekkerVideosImageArray = slice.items;
+  const ihTrekkerVideosImageArray = slice?.items;
   const [show, setShow] = useState(false);
   const [trekVideoUrl, setTrekVideoUrl] = useState();
   //   const router = useRouter();
@@ -60,12 +58,12 @@ const TrekkerVideos = ({ slice }) => {
     ]
   };
 
-  const ihTrekkerVideosImage = ihTrekkerVideosImageArray.map(function(data, i) {
-    const result = data?.ih_trekker_video_link?.url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  const ihTrekkerVideosImage = ihTrekkerVideosImageArray?.map(function(data, i) {
+    const result = data?.ih_trekker_video_link?.url?.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
   const videoIdWithParams = result && result[2];
 
   const cleanVideoId =
-  videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+  videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
   const videoUrl =
     "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";

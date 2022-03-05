@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 
 const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
-  const heading1 = slice.primary.heading1;
+  const heading1 = slice?.primary?.heading1;
 
   const settings = {
     dots: true,
@@ -47,7 +47,7 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
   };
 
   const chooseTrekImage = trekPageData1.map(function(data, i) {
-    const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
+    const tData = data?.data?.body?.find(x => x.slice_type === "trek_banner");
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
@@ -61,9 +61,9 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
             <div className="card_sec">
               <div className="card trek_card">
                 <div className="choose_trek_image">
-                  {tData.primary.trek_banner_image.url ? (
+                  {tData?.primary?.trek_banner_image?.url ? (
                     <Image
-                      src={tData.primary.trek_banner_image.url}
+                      src={tData?.primary?.trek_banner_image?.url}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"
@@ -76,7 +76,7 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
                 <div className="px-3 py-2">
                   <div className="d-flex align-items-center card-info-text">
                     <div>
-                      <p>{tData.primary.duration[0].text}</p>
+                      <p>{tData?.primary?.duration[0]?.text}</p>
                     </div>
                     <div>
                       <p className="list-dot-style px-1">
@@ -84,7 +84,7 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
                       </p>
                     </div>
                     <div>
-                      <p>{tData.primary.difficulty[0].text}</p>
+                      <p>{tData?.primary?.difficulty[0]?.text}</p>
                     </div>
                   </div>
 
@@ -100,7 +100,7 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
                       </b>
                     </p>
                     <div className="p-text-4">
-                      {RichText.asText(tData.primary.sub_heading)}
+                      {RichText.asText(tData?.primary?.sub_heading)}
                     </div>
                     <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
                       <div className="flex-grow-1">

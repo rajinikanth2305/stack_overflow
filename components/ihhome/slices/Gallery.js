@@ -9,12 +9,12 @@ import Image from "next/image";
  * Founder Slice Components
  */
 const Gallery = ({ slice }) => {
-  const homePhotoGalleryTitle = slice.primary.home_photo_gallery_title;
-  const galleryCommunityText = slice.primary.gallery_community_text;
+  const homePhotoGalleryTitle = slice?.primary?.home_photo_gallery_title;
+  const galleryCommunityText = slice?.primary?.gallery_community_text;
   const galleryCommunityUpdateText =
-    slice.primary.gallery_community_update_text;
-  const photoContestTitle = slice.primary.photo_contest_title;
-  const homeGalleryImage = slice.items;
+    slice?.primary?.gallery_community_update_text;
+  const photoContestTitle = slice?.primary?.photo_contest_title;
+  const homeGalleryImage = slice?.items;
   // console.log(JSON.stringify(homeGalleryImage)); container-custom
 
   const settings = {
@@ -61,7 +61,7 @@ const Gallery = ({ slice }) => {
 
   const homeGalleryImages = homeGalleryImage.map(function(data, i) {
     const h_g_images = {
-      backgroundImage: `url('${data.home_gallery_image.url}')`,
+      backgroundImage: `url('${data?.home_gallery_image?.url}')`,
       width: "100%",
       backgroundRepeat: "no-repeat"
     };
@@ -71,7 +71,7 @@ const Gallery = ({ slice }) => {
         <div className="mx-2 gallery_slik_custom" key={i}>
           <div className="h_g_images_style">
             <Image
-              src={data.home_gallery_image.url}
+              src={data?.home_gallery_image?.url}
               layout="fill"
               objectFit="cover"
               objectPosition="50% 50%"

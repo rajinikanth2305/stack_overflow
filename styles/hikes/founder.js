@@ -115,6 +115,10 @@ export const founderStyles = css.global`
     padding-right: 3px;
   }
 
+  p > a {
+    text-decoration: underline;
+  }
+
   @media only screen and (max-width: 600px) {
     .title-h2 {
       line-height: 40px;

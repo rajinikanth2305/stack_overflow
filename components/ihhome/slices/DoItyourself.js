@@ -10,9 +10,9 @@ import Link from "next/link";
  * Founder Slice Components
  */
 const DoItYourself = ({ slice }) => {
-  const doitTitle = slice.primary.doit_title;
-  const doitDec = slice.primary.doit_dec;
-  const doit_doitImage_array = slice.items;
+  const doitTitle = slice?.primary?.doit_title;
+  const doitDec = slice?.primary?.doit_dec;
+  const doit_doitImage_array = slice?.items;
 
   const settings = {
     dots: true,
@@ -52,7 +52,7 @@ const DoItYourself = ({ slice }) => {
 
   const doitImage = doit_doitImage_array.map(function(data, i) {
     const doitimgs = {
-      backgroundImage: `url('${data.doit_image.url}')`,
+      backgroundImage: `url('${data?.doit_image?.url}')`,
       width: "100%",
       backgroundRepeat: "no-repeat"
     };
@@ -62,14 +62,14 @@ const DoItYourself = ({ slice }) => {
         <div className="mx-2 m-mx-0">
           <div className="doit_images">
             <Image
-              src={data.doit_image.url}
+              src={data?.doit_image?.url}
               layout="fill"
               objectFit="cover"
               objectPosition="50% 50%"
               alt="imgs"
             />
           </div>
-          <p className="doit_img_caption">{data.doit_image_caption[0].text}</p>
+          <p className="doit_img_caption">{data?.doit_image_caption[0]?.text}</p>
         </div>
       </div>
     );

@@ -10,9 +10,9 @@ import { hrefResolver, linkResolver } from "prismic-configuration";
 import Link from "next/link";
 
 const TrekkersStories = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-  const trekkersStoriesImageArray = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
+  const trekkersStoriesImageArray = slice?.items;
   //   const router = useRouter();
 
   //   const goToTrekPage = (e) => {
@@ -55,8 +55,8 @@ const TrekkersStories = ({ slice }) => {
     ]
   };
 
-  const trekkersStoriesImage = trekkersStoriesImageArray.map(function(data, i) {
-    const trekkers_stories_desc = data.trekkers_stories_desc.map((desc, j) => {
+  const trekkersStoriesImage = trekkersStoriesImageArray?.map(function(data, i) {
+    const trekkers_stories_desc = data.trekkers_stories_desc?.map((desc, j) => {
       return <p key={j}>{desc.text}</p>;
     });
     let url;
@@ -74,7 +74,7 @@ const TrekkersStories = ({ slice }) => {
               <div className="card trek_card">
                 <div className="choose_trek_image">
                   <Image
-                    src={data.trekkers_stories_image.url}
+                    src={data?.trekkers_stories_image?.url}
                     layout="fill"
                     objectFit="cover"
                     objectPosition="50% 50%"
@@ -86,7 +86,7 @@ const TrekkersStories = ({ slice }) => {
                 <div className="p-4">
                   <div>
                     <h3 className="title-diplay-3 ts-lable">
-                      {data.trekkers_stories_title[0].text}
+                      {data?.trekkers_stories_title[0]?.text}
                     </h3>
                     <div className="p-display-2">
                       {trekkers_stories_desc.length > 125

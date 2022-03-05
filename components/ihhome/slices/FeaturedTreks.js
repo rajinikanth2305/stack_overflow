@@ -7,8 +7,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const FeaturedTreks = ({ slice }) => {
-  const featuredTreksTitle = slice.primary.featured_treks_title;
-  const featured_treks_image_array = slice.items;
+  const featuredTreksTitle = slice?.primary?.featured_treks_title;
+  const featured_treks_image_array = slice?.items;
   //console.log(JSON.stringify(slice.primary));
 
   const settings = {
@@ -55,7 +55,7 @@ const FeaturedTreks = ({ slice }) => {
         <div className="mx-2" key={i}>
           <div className="featured_treks_image">
             <Image
-              src={data.featured_treks_image.url}
+              src={data?.featured_treks_image?.url}
               layout="responsive"
               height="70px"
               width="170px"

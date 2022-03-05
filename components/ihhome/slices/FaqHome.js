@@ -4,10 +4,9 @@ import { whatTrekkerSayStyles } from "styles";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Link from "next/link";
-import { nullLiteralTypeAnnotation } from "@babel/types";
+import { linkResolver } from "prismic-configuration";
 
 const FaqHome = ({ slice }) => {
-  nullLiteralTypeAnnotation;
   const faqHeading = slice?.primary?.heading1;
   const faqArray = slice?.items;
   const [activeIndex, setActiveIndex] = useState(null);
@@ -29,7 +28,7 @@ const FaqHome = ({ slice }) => {
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>
-              <div className="p-text-4">{RichText.render(data.q_answer)}</div>
+              <div className="p-text-4">{RichText.render(data.q_answer, linkResolver)}</div>
             </Card.Body>
           </Accordion.Collapse>
         </Card>

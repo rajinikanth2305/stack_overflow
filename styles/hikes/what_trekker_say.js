@@ -80,4 +80,7 @@ export const whatTrekkerSayStyles = css.global`
     top: 4px;
     font-weight: normal;
   }
+  p > a {
+    text-decoration: underline;
+  }
 `;

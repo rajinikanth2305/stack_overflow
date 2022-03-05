@@ -3,25 +3,25 @@ import { RichText } from "prismic-reactjs";
 import { founderStyles } from "styles";
 import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
+import { linkResolver } from "prismic-configuration";
 /**
  * Founder Slice Components
  */
 const Founder = ({ slice }) => {
-  const title = slice.primary.title1;
-  const sub_title = slice.primary.sub_title;
-  const authors = slice.primary.authors;
-  const author_position = slice.primary.author_position;
-  const founder_Message_List = slice.primary.founder_message;
+  const title = slice?.primary?.title1;
+  const sub_title = slice?.primary?.sub_title;
+  const authors = slice?.primary?.authors;
+  const author_position = slice?.primary?.author_position;
+  const founder_Message_List = slice?.primary?.founder_message;
   // const imageWidth = slice.primary.image.dimensions.width;
   // const imageHeight = slice.primary.image.dimensions.height;
-  const primaryVideoUrl = slice.primary.video_url.url;
+  const primaryVideoUrl = slice?.primary?.video_url?.url;
 
   const result = primaryVideoUrl?.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
   const videoIdWithParams = result && result[2];
 
   const cleanVideoId =
-    videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+    videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
   const videoUrl =
     "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
@@ -79,7 +79,7 @@ const Founder = ({ slice }) => {
               </div>
               <div className="col-lg-6 col-md-12">
                 <div className="p-text-2 fl-style">
-                  {RichText.render(founder_Message_List)}
+                  {RichText.render(founder_Message_List, linkResolver)}
                 </div>
                 <div>
                   <p className="author_name mb-2">{RichText.asText(authors)}</p>

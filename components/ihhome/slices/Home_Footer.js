@@ -6,12 +6,12 @@ import Image from "next/image";
  * Founder Slice Components
  */
 const HomeFooter = ({ slice }) => {
-  const homeFooterImage = slice.primary.home_footer_image.url;
-  const contactNumber = slice.primary.contact_number;
-  const office1 = slice.primary.office_1;
-  const office1Address = slice.primary.office_1_address;
-  const office2 = slice.primary.office_2;
-  const office2Address = slice.primary.office_2_address;
+  const homeFooterImage = slice?.primary?.home_footer_image?.url;
+  const contactNumber = slice?.primary?.contact_number;
+  const office1 = slice?.primary?.office_1;
+  const office1Address = slice?.primary?.office_1_address;
+  const office2 = slice?.primary?.office_2;
+  const office2Address = slice?.primary?.office_2_address;
   //console.log(JSON.stringify(slice.primary));
 
   return (

@@ -8,24 +8,24 @@ import { hrefResolver, linkResolver } from "prismic-configuration";
  * Home Banner Slice Components
  */
 const HomeBannerWithCaption = ({ slice }) => {
-  const imageUrl = slice.primary.banner_image.url;
-  const imageUrlMobile = slice.primary.mobile_banner_image.url;
-  const imageWidth = slice.primary.banner_image.dimensions.width;
-  const imageHeight = slice.primary.banner_image.dimensions.height;
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
+  const imageUrl = slice?.primary?.banner_image?.url;
+  const imageUrlMobile = slice?.primary?.mobile_banner_image?.url;
+  const imageWidth = slice?.primary?.banner_image?.dimensions?.width;
+  const imageHeight = slice?.primary?.banner_image?.dimensions?.height;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
   // const linkButtonText=slice.items?.[0].linkbutton_text.text;
-  const linkUrl = slice.items?.[0].linkbutton1;
-  const linkType = slice.items?.[0].linkbutton1.link_type;
+  const linkUrl = slice?.items?.[0]?.linkbutton1;
+  const linkType = slice?.items?.[0]?.linkbutton1?.link_type;
 
   //console.log(slice);
 
-  let url = linkType == "Web" ? slice.items?.[0].linkbutton1.url : "";
+  let url = linkType == "Web" ? slice.items?.[0]?.linkbutton1?.url : "";
   const slugUrl =
-    linkType == "Document" ? slice.items?.[0].linkbutton1.slug : undefined;
-  const linkButtonText = RichText.asText(slice.items?.[0].linkbutton_text);
+    linkType == "Document" ? slice?.items?.[0].linkbutton1?.slug : undefined;
+  const linkButtonText = RichText.asText(slice?.items?.[0]?.linkbutton_text);
 
-  if (slugUrl) url = linkResolver(slice.items?.[0].linkbutton1);
+  if (slugUrl) url = linkResolver(slice?.items?.[0].linkbutton1);
   //as={linkResolver(post)}
   //href={hrefResolver(post)}
 

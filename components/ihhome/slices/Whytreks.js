@@ -12,8 +12,8 @@ import Modal from "react-bootstrap/Modal";
  * WhyTrek Slice Components
  */
 const WhyTrek = ({ slice }) => {
-  const heading = slice.primary.heading;
-  const pillarImagesArray = slice.items;
+  const heading = slice?.primary?.heading;
+  const pillarImagesArray = slice?.items;
 
   const [show, setShow] = useState(false);
   const [trekVideoUrl, setTrekVideoUrl] = useState();
@@ -28,7 +28,7 @@ const WhyTrek = ({ slice }) => {
     const videoIdWithParams = result && result[2];
 
     const cleanVideoId =
-      videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+      videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
     const videoUrl =
       "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
@@ -46,19 +46,19 @@ const WhyTrek = ({ slice }) => {
                 <div>
                   <div>
                     <img
-                      src={data.pillar_images.url}
+                      src={data?.pillar_images?.url}
                       alt="icons"
                       className="pillar_images"
                     />
                   </div>
                 </div>
                 <div>
-                  <p className="p-text-1">{data.pillar_title[0].text}</p>
+                  <p className="p-text-1">{data?.pillar_title[0]?.text}</p>
                 </div>
               </div>
               <div>
                 <div className="p-text-3-wt">
-                  {RichText.render(data.pillar_desc)}
+                  {RichText.render(data?.pillar_desc)}
                 </div>
               </div>
               <div className="text-center pt-2 pb-3 p-btn-btm">
@@ -70,7 +70,7 @@ const WhyTrek = ({ slice }) => {
                     setShow(true);
                   }}
                 >
-                  {RichText.asText(data.button_name)}
+                  {RichText.asText(data?.button_name)}
                 </button>
                 {/* </Link> */}
               </div>

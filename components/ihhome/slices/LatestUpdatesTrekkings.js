@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { RichText, Date } from "prismic-reactjs";
 import { latestUpdatesTrekkingsStyles } from "styles";
 import Image from "next/image";
-import { hrefResolver, linkResolver } from "prismic-configuration";
+import { linkResolver } from "prismic-configuration";
 import Link from "next/link";
 import Modal from "react-bootstrap/Modal";
 
@@ -107,7 +107,7 @@ const LatestUpdatesTrekkings = ({
                     <img
                       src={
                         latestLrekImage &&
-                        latestLrekImage?.primary?.feature_image.url
+                        latestLrekImage?.primary?.feature_image?.url
                       }
                       alt="articleImage"
                       className="latestLrekImage_bg"
@@ -138,8 +138,9 @@ const LatestUpdatesTrekkings = ({
                           By&nbsp;
                           {/* {RichText.asText(nameEditor)} */}
                           {
-                          latestUpdateAarticlePrimaryArticleData[0]?.data?.author_link?.uid
-                        }
+                            latestUpdateAarticlePrimaryArticleData[0]?.data
+                              ?.author_link?.uid
+                          }
                         </i>
                       </p>
                       <p className="name_editor">
@@ -165,35 +166,37 @@ const LatestUpdatesTrekkings = ({
               <div className="col-lg-6 col-md-12">
                 <div className="row">{latestTrekWorld}</div>
               </div>
-              <div className="col-lg-6 col-md-12">
-                <div className="card exp-card-blog mx-0">
-                  <div className="latest_update_img">
-                    <div className="d-flex align-items-center justify-content-center w-100 h-100">
-                      <div className="text-center">
-                        <img
-                          src="/v-icon.png"
-                          alt="playicon'"
-                          className="paly-icon icon-size-50"
-                          onClick={handleShow}
-                        />
+              {primaryVideoUrl && (
+                <div className="col-lg-6 col-md-12">
+                  <div className="card exp-card-blog mx-0">
+                    <div className="latest_update_img">
+                      <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                        <div className="text-center">
+                          <img
+                            src="/v-icon.png"
+                            alt="playicon'"
+                            className="paly-icon icon-size-50"
+                            onClick={handleShow}
+                          />
+                        </div>
                       </div>
+                      <Image
+                        src={youtube_imageURL && youtube_imageURL}
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="center"
+                        alt="imgs"
+                        onClick={handleShow}
+                      />
                     </div>
-                    <Image
-                      src={youtube_imageURL && youtube_imageURL}
-                      layout="fill"
-                      objectFit="cover"
-                      objectPosition="center"
-                      alt="imgs"
-                      onClick={handleShow}
-                    />
-                  </div>
-                  <div className="p-3">
-                    <p className="latestTrekWorld_caption">
-                      {RichText.asText(videoText)}
-                    </p>
+                    <div className="p-3">
+                      <p className="latestTrekWorld_caption">
+                        {RichText.asText(videoText)}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
           <div className="m-d-block">

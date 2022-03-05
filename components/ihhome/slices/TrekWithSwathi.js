@@ -7,9 +7,9 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
  * Founder Slice Components
  */
 const TrekWithSwathi = ({ slice }) => {
-  const trekWithSwathiLogoImg = slice.primary.trek_with_image.url;
-  const signUpText = slice.primary.sign_up_text;
-  const signUpTextDesc = slice.primary.sign_up_text_desc;
+  const trekWithSwathiLogoImg = slice?.primary?.trek_with_image?.url;
+  const signUpText = slice?.primary?.sign_up_text;
+  const signUpTextDesc = slice?.primary?.sign_up_text_desc;
 
   const logoImg = {
     backgroundImage: `url('${trekWithSwathiLogoImg}')`,

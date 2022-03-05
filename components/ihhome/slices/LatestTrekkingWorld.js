@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { ChooseTreks } from "styles";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { hrefResolver, linkResolver } from "prismic-configuration";
+import { linkResolver } from "prismic-configuration";
 import Link from "next/link";
 import Modal from "react-bootstrap/Modal";
 
 const LatestTrekkingWorld = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const trekkingWorldImageArray = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const trekkingWorldImageArray = slice?.items;
   const [imgUrl, setImgUrl] = useState();
   const [imgUrl1, setImgUrl1] = useState();
   const [show, setShow] = useState(false);
@@ -66,7 +65,7 @@ const LatestTrekkingWorld = ({ slice }) => {
 
   const trekkingWorldImage = trekkingWorldImageArray.map(function(data, i) {
     let url;
-    const slugUrl = data?.button_link.slug;
+    const slugUrl = data?.button_link?.slug;
     if (slugUrl) {
       url = linkResolver(data?.button_link);
     } else {
@@ -78,7 +77,7 @@ const LatestTrekkingWorld = ({ slice }) => {
     const videoIdWithParams = result && result[2];
 
     const cleanVideoId =
-      videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+      videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
     const videoUrl =
       "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
@@ -89,10 +88,10 @@ const LatestTrekkingWorld = ({ slice }) => {
           <div className="col-lg-6 col-md-12 order-1">
             <div>
               <h3 className="title-diplay-3-ltw mpt-3-ltw">
-                {data.trekking_world_heading[0].text}
+                {data?.trekking_world_heading[0]?.text}
               </h3>
               <div className="p-text-4 pr-cus-2">
-                {RichText.render(data.trekking_world_desc)}
+                {RichText.render(data?.trekking_world_desc)}
               </div>
               <div className="text-center mt-4">
                 {/* <Link href={url ? url : "#"}> */}
@@ -103,7 +102,7 @@ const LatestTrekkingWorld = ({ slice }) => {
                     setShow(true);
                   }}
                 >
-                  {data.button_name[0].text}
+                  {data?.button_name[0]?.text}
                 </button>
                 {/* </Link> */}
               </div>

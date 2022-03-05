@@ -4,10 +4,10 @@ import { experimentStyles } from "styles";
 import Image from "next/image";
 
 const CrossTrek = ({ slice }) => {
-  const crossTrekImage = slice.primary.cross_trek_image.url;
-  const heading1 = slice.primary.heading1;
-  const description = slice.primary.description;
-  const details = slice.primary.dretails;
+  const crossTrekImage = slice?.primary?.cross_trek_image?.url;
+  const heading1 = slice?.primary?.heading1;
+  const description = slice?.primary?.description;
+  const details = slice?.primary?.dretails;
 
   const crossTrekImagebg = {
     backgroundImage: `url('${crossTrekImage}')`,
@@ -36,7 +36,7 @@ const CrossTrek = ({ slice }) => {
                       <div>
                         <div className="mt-5 m-text-center">
                           <button className="btn btn-lg btn-ih-primary">
-                          View Crosstrek Store
+                            View Crosstrek Store
                           </button>
                         </div>
                       </div>

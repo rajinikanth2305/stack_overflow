@@ -9,11 +9,11 @@ import Image from "next/image";
  * UpcomingTrek Slice Components
  */
 const UpcomingTrek = ({ slice }) => {
-  const heading = slice.primary.upcoming_trek_heading;
-  const title = slice.primary.upcoming_trek_title;
-  const imageUrl = slice.primary.upcoming_trek_image.url;
-  const imageWidth = slice.primary.upcoming_trek_image.dimensions.width;
-  const imageHeight = slice.primary.upcoming_trek_image.dimensions.height;
+  const heading = slice?.primary?.upcoming_trek_heading;
+  const title = slice?.primary?.upcoming_trek_title;
+  const imageUrl = slice?.primary?.upcoming_trek_image?.url;
+  const imageWidth = slice?.primary?.upcoming_trek_image?.dimensions?.width;
+  const imageHeight = slice?.primary?.upcoming_trek_image?.dimensions?.height;
   //.log(JSON.stringify(slice.primary));
 
   const imageLayout8 = {

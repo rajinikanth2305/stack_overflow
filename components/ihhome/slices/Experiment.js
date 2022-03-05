@@ -8,8 +8,8 @@ import Link from "next/link";
  * Home Banner Slice Components
  */
 const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
-  const experimentHeading = slice.primary.experiment_heading;
-  const heading2 = slice.primary.experiment_paragraph;
+  const experimentHeading = slice?.primary?.experiment_heading;
+  const heading2 = slice?.primary?.experiment_paragraph;
 
   const expirimentMainImage =
     expLearningPrimaryArticleData &&
@@ -24,9 +24,9 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
     );
 
   let primary_url;
-  const slugUrl = slice.primary.link_url_primary.slug;
+  const slugUrl = slice?.primary?.link_url_primary?.slug;
   if (slugUrl) {
-    primary_url = linkResolver(slice.primary.link_url_primary);
+    primary_url = linkResolver(slice?.primary?.link_url_primary);
   }
 
   const artData = articleData.map(function(data, i) {
@@ -47,8 +47,8 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
           <Link href={url ? url : "#"}>
             <div>
               <div className="expImage">
-                {getArticleImage?.primary?.feature_image.url ? <img
-                  src={getArticleImage?.primary?.feature_image.url}
+                {getArticleImage?.primary?.feature_image?.url ? <img
+                  src={getArticleImage?.primary?.feature_image?.url}
                   alt="articleImage"
                   className="expImage"
                 /> : <img src="./ip.png" className="expImage" /> }
@@ -99,7 +99,7 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
                     <img
                       src={
                         expirimentMainImage &&
-                        expirimentMainImage?.primary?.feature_image.url
+                        expirimentMainImage?.primary?.feature_image?.url
                       }
                       alt="articleImage"
                       className="expirimentMainImage"
