@@ -78,7 +78,7 @@ const TrekkerVideos = ({ slice }) => {
                 src={imageURL}
                 layout="fill"
                 objectFit="cover"
-                objectPosition="50% 50%"
+                objectPosition="50% 60%"
                 alt="imgs"
                 onClick={() => {
                   setTrekVideoUrl(videoUrl);

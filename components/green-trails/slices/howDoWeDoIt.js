@@ -4,11 +4,17 @@ import { customStyles } from "styles";
 import Image from "next/image";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
+import Modal from "react-bootstrap/Modal";
 
 const HowDoWeDoIt = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-  const tabsDataArray = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
+  const tabsDataArray = slice?.items;
+
+  const [imgUrl, setImageUrl] = useState();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const tabsData = tabsDataArray?.map(function(data, i) {
     return (
@@ -18,12 +24,16 @@ const HowDoWeDoIt = ({ slice }) => {
       >
         <div>
           <div className="fam-tab-img m-d-block mb-4">
-            {data.image.url && (
+            {data?.image?.url && (
               <Image
-                src={data.image.url}
+                src={data?.image?.url}
                 layout="fill"
-                objectFit="cover"
-                objectPosition="50% 50%"
+                objectFit="contain"
+                objectPosition="top"
+                onClick={() => {
+                  setImageUrl(data?.image?.url);
+                  setShow(true);
+                }}
               />
             )}
           </div>
@@ -32,7 +42,7 @@ const HowDoWeDoIt = ({ slice }) => {
           </p>
           <div className="row">
             <div className="col-lg-6 col-md-12">
-              <div className="p-text-3">{RichText.render(data.content1)}</div>
+              <div className="p-text-3">{RichText.render(data?.content1)}</div>
               <div className="mt-5 mb-4 mmb-0">
                 <button className="btn btn-bihtn-yellow text-capitalize">
                   Read more
@@ -40,13 +50,17 @@ const HowDoWeDoIt = ({ slice }) => {
               </div>
             </div>
             <div className="col-lg-6 col-md-12">
-              <div className="fam-tab-img m-d-none">
-                {data.image.url && (
+              <div className="fam-tab-img m-d-none cursor-pointer">
+                {data?.image?.url && (
                   <Image
-                    src={data.image.url}
+                    src={data?.image?.url}
                     layout="fill"
-                    objectFit="cover"
-                    objectPosition="50% 50%"
+                    objectFit="contain"
+                    objectPosition="top"
+                    onClick={() => {
+                      setImageUrl(data?.image?.url);
+                      setShow(true);
+                    }}
                   />
                 )}
               </div>
@@ -85,6 +99,21 @@ const HowDoWeDoIt = ({ slice }) => {
           </style>
         </div>
       </div>
+      <Modal size="xl" show={show} onHide={handleClose} animation={false}>
+        <Modal.Header className="img-header-popup" closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div alt="imgs" className="trekking_world_image_desktop_popup">
+            <Image
+              src={imgUrl && imgUrl}
+              layout="fill"
+              objectFit="contain"
+              objectPosition="top"
+            />
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

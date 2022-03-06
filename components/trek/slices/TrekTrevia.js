@@ -59,14 +59,14 @@ const TrekTrevia = ({ slice }) => {
               </Link>
             </div>
             <div className="w-100 d-m-none mx-2">
-              <div className="hd-tab2-iamge position-change1 mb-4 cursor-pointer">
+              <div className="hd-tab2-iamge-tabs position-change1 mb-4 cursor-pointer">
                 {data?.content_image?.url ? (
                   <>
                     <Image
                       src={data?.content_image?.url}
                       layout="fill"
-                      objectFit="cover"
-                      objectPosition="50% 50%"
+                      objectFit="contain"
+                      objectPosition="left top"
                       onClick={() => {
                         setImageUrl(data?.content_image?.url);
                         setShow(true);

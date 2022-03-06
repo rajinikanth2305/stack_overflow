@@ -1555,7 +1555,8 @@ export const customStyles = css.global`
   .fam-tab-img {
     position: relative;
     width: 450px;
-    height: 300px;
+    min-height: 300px;
+    height: 100%;
     left: 12%;
   }
 
@@ -1815,7 +1816,8 @@ export const customStyles = css.global`
   .trekking_world_image_desktop {
     position: relative;
     width: 100%;
-    height: 420px;
+    min-height: 420px;
+    height: 100%;
   }
 
   .trekking_world_image_desktop_popup {
@@ -2131,7 +2133,7 @@ export const customStyles = css.global`
     .fam-tab-img {
       width: 100%;
       left: 0;
-      height: 215px;
+      min-height: 215px;
     }
 
     .sustainable_box {

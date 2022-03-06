@@ -950,6 +950,19 @@ export const trekStyle = css.global`
     width: 45%;
   }
 
+  .hd-tab2-iamge-tabs {
+    position: relative;
+    min-height: 280px;
+    height: 100%;
+    width: 100%;
+  }
+
+  .hd-tab2-iamge-tabs.position-change {
+    position: absolute;
+    left: 75%;
+    width: 45%;
+  }
+
   .position-change {
     position: absolute;
     left: 75%;
@@ -1889,6 +1902,11 @@ export const trekStyle = css.global`
     .hd-tab2-iamge.mv {
       height: 200px;
     }
+
+    .hd-tab2-iamge-tabs.mv {
+      height: 200px;
+    }
+
 
     .m-t-expert-image {
       margin-top: 20px;
