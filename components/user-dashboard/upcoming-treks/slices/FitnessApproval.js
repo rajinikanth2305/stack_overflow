@@ -201,7 +201,7 @@ const FitnessApproval = forwardRef((props, ref) => {
                         <td>{pdata?.userDetailsForDisplay?.email}</td> */}
                         <td>
                           {
-                            loggedUser && pdata.participantDocuments.length>0 ? (
+                            loggedUser && pdata.participantDocuments && pdata.participantDocuments.length>0 ? (
                                  <div>
                                  { 
                                   pdata?.participantDocuments?.map(doc=> {
