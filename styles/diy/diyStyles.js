@@ -575,6 +575,16 @@ export const diyStyles = css.global`
   }
 
   @media only screen and (max-width: 660px) {
+    .p-text-1 {
+      line-height: 24px;
+      font-size: 18px;
+    }
+
+    .p-text-4 {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
     .banner-image-desktop {
       position: relative;
       height: 450px;
@@ -600,7 +610,7 @@ export const diyStyles = css.global`
     }
 
     .banner-text-1 {
-      font-size: 42px;
+      font-size: 36px;
       margin-bottom: 0px;
       text-align: left;
     }
@@ -608,8 +618,7 @@ export const diyStyles = css.global`
     .banner-text-2 {
       line-height: 22px;
       text-align: left;
-      font-size: 16px;
-      font-family: Poppins;
+      font-size: 20px;
     }
 
     .banner-text-3 {
@@ -645,7 +654,7 @@ export const diyStyles = css.global`
     }
 
     .title-h2 {
-      font-size: 24px !important;
+      font-size: 36px !important;
     }
 
     .m-d-none {
@@ -662,12 +671,18 @@ export const diyStyles = css.global`
 
     .p-text-2 {
       font-size: 16px;
+      line-height: 24px;
     }
   }
 
   @media only screen and (max-width: 900px) and (min-width: 660px) {
     .banner-text-sec {
       padding: 100px 0;
+    }
+
+    .card-info-text > div > p {
+      font-size: 14px;
+      line-height: 16px;
     }
   }
 

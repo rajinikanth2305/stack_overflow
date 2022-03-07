@@ -57,7 +57,7 @@ const LatestTrekkingWorld = ({ slice }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
+          arrows: false,
         }
       }
     ]
@@ -86,7 +86,7 @@ const LatestTrekkingWorld = ({ slice }) => {
       <div key={`latesttrekking` + i} className="py-3 mx-2 mm-0 mp-0">
         <div className="row d-flex align-items-center">
           <div className="col-lg-6 col-md-12 order-1">
-            <div>
+            <div className="m-card-pd">
               <h3 className="title-diplay-3-ltw mpt-3-ltw">
                 {data?.trekking_world_heading[0]?.text}
               </h3>
@@ -183,7 +183,7 @@ const LatestTrekkingWorld = ({ slice }) => {
               </h2>
             </div>
           </div>
-          <div className="my-4 mm-0">
+          <div className="my-4 mm-0 m-crad">
             <Slider {...settings}>{trekkingWorldImage}</Slider>
           </div>
         </div>

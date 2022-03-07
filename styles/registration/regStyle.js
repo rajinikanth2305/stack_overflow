@@ -455,11 +455,11 @@ export const regStyle = css.global`
   }
 
   .btn-ih-green {
-    background: rgba(57, 114, 41, 1);
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
+    background: rgb(57, 114, 41) none repeat scroll 0% 0%;
     border: 0;
-    border-radius: 2px;
-    padding: 10px 30px !important;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
+    border-radius: 3px !important;
+    padding: 3px 30px;
     border-radius: 0;
     line-height: 24px;
     text-align: center;
@@ -983,6 +983,11 @@ export const regStyle = css.global`
       padding: 8px 15px !important;
     }
 
+    .p-text-4 {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
     .nav-item.nav-link.active:nth-child(1)::before,
     .nav-item.nav-link.active:nth-child(2)::before,
     .nav-item.nav-link.active:nth-child(3)::before,
@@ -1020,6 +1025,11 @@ export const regStyle = css.global`
       font-size: 14px;
     }
 
+    .p-text-2 {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
     .border-custom-yellow {
       background: #fff9e5;
       border: 0;
@@ -1039,7 +1049,7 @@ export const regStyle = css.global`
 
     .title-h2.reg-t-2-m {
       border-bottom: 2px solid rgb(255, 193, 0);
-      font-size: 24px;
+      font-size: 36px;
     }
 
     .m-mt-1 {

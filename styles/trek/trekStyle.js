@@ -292,10 +292,10 @@ export const trekStyle = css.global`
   }
 
   .btn-ih-green {
-    background: rgba(57, 114, 41, 1);
+    background: rgb(57, 114, 41) none repeat scroll 0% 0%;
     border: 0;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.659);
-    border-radius: 2px;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
+    border-radius: 3px !important;
     padding: 3px 30px;
     border-radius: 0;
     line-height: 24px;
@@ -306,7 +306,6 @@ export const trekStyle = css.global`
     font-size: 18px;
     color: rgba(255, 255, 255, 1);
     text-transform: capitalize;
-    width: 100%;
   }
 
   .btn-ptr {
@@ -1531,14 +1530,17 @@ export const trekStyle = css.global`
     .title-h1 {
       font-size: 36px;
     }
-
+    .p-text-4 {
+      font-size: 16px;
+      line-height: 24px;
+    }
     .title-h2 {
       font-size: 36px;
     }
 
     .title-h2.th-2m {
       border-bottom: 2px solid rgb(255, 193, 0);
-      font-size: 24px;
+      font-size: 36px;
       margin-bottom: 0;
     }
 
@@ -1553,6 +1555,7 @@ export const trekStyle = css.global`
 
     .p-text-2 {
       font-size: 16px;
+      line-height: 24px;
     }
 
     .mpt-0 {
@@ -1804,7 +1807,7 @@ export const trekStyle = css.global`
 
     .title-h2.gallery-title {
       color: #000000 !important;
-      font-size: 24px;
+      font-size: 36px;
       margin-bottom: 15px !important;
     }
 

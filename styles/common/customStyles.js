@@ -594,18 +594,20 @@ export const customStyles = css.global`
   }
 
   .btn-ih-green {
-    background: rgb(91, 133, 70);
+    background: rgb(57, 114, 41) none repeat scroll 0% 0%;
     border: 0;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
+    border-radius: 3px !important;
     padding: 3px 30px;
     border-radius: 0;
     line-height: 24px;
     text-align: center;
-    font-family: Poppins;
+    font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 18px;
     color: rgba(255, 255, 255, 1);
-    text-transform: uppercase;
+    text-transform: capitalize;
   }
 
   .slick-prev::before,
@@ -998,20 +1000,20 @@ export const customStyles = css.global`
     font-size: 12px;
   }
 
-  .btn-ih-green {
-    background: rgb(91, 133, 70);
-    border: 0;
-    padding: 3px 30px;
-    border-radius: 0;
-    line-height: 24px;
-    text-align: center;
-    font-family: Franklin Gothic;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
-  }
+  // .btn-ih-green {
+  //   background: rgb(91, 133, 70);
+  //   border: 0;
+  //   padding: 3px 30px;
+  //   border-radius: 0;
+  //   line-height: 24px;
+  //   text-align: center;
+  //   font-family: Franklin Gothic;
+  //   font-style: normal;
+  //   font-weight: normal;
+  //   font-size: 16px;
+  //   color: rgba(255, 255, 255, 1);
+  //   text-transform: capitalize;
+  // }
 
   .bg-gray-shade {
     background: linear-gradient(to right, #f2f2f2 10%, #fff 20%);
@@ -2002,6 +2004,11 @@ export const customStyles = css.global`
     .banner-text-1.m-m-b-5 {
       margin-bottom: 5px;
     }
+
+    .p-text-4 {
+      font-size: 16px;
+      line-height: 24px;
+    }
     
     .exp-card-blog.gt-blog {
       min-height: auto;
@@ -2104,8 +2111,8 @@ export const customStyles = css.global`
     }
 
     .card-info-text > div > p {
-      font-size: 11px;
-      line-height: 10px;
+      font-size: 14px;
+      line-height: 16px;
     }
 
     .title-diplay-3.m-d-3 {
@@ -2182,7 +2189,7 @@ export const customStyles = css.global`
     }
 
     .banner-text-1 {
-      font-size: 30px;
+      font-size: 36px;
       line-height: 36px;
       margin-bottom: 35px;
       text-align: left;
@@ -2191,7 +2198,7 @@ export const customStyles = css.global`
     .banner-text-2 {
       line-height: 22px;
       text-align: left;
-      font-size: 16px;
+      font-size: 20px;
     }
 
     .banner-text-3 {
@@ -2222,7 +2229,7 @@ export const customStyles = css.global`
     }
 
     .title-h2 {
-      font-size: 24px !important;
+      font-size: 36px !important;
     }
 
     .mmy-2 {
@@ -2278,7 +2285,13 @@ export const customStyles = css.global`
 
     .m-col-12 > .p-text-2-fg,
     .p-text-2-fg {
-      font-size: 14px;
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    .p-text-2 {
+      font-size: 16px;
+      line-height: 24px;
     }
 
     .m-col-12 > .p-text-10-fgb {
@@ -2324,7 +2337,7 @@ export const customStyles = css.global`
     }
 
     .p-text-1 {
-      line-height: 22px;
+      line-height: 24px;
       font-size: 18px;
     }
 

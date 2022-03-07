@@ -70,7 +70,7 @@ const Founder = ({ slice }) => {
                       src={youtube_imageURL && youtube_imageURL}
                       layout="fill"
                       objectFit="cover"
-                      objectPosition="bottom"
+                      objectPosition="50% 50%"
                       onClick={handleShow}
                       alt="imgs"
                     />
@@ -118,7 +118,7 @@ const Founder = ({ slice }) => {
                   src={youtube_imageURL}
                   layout="fill"
                   objectFit="cover"
-                  objectPosition="bottom"
+                  objectPosition="50% 50%"
                   onClick={handleShow}
                   alt="imgs"
                 />

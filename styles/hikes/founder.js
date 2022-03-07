@@ -128,6 +128,7 @@ export const founderStyles = css.global`
 
     .p-text-1 {
       font-size: 18px !important;
+      line-height: 24px;
     }
 
     .founder_message {
@@ -154,6 +155,11 @@ export const founderStyles = css.global`
 
     .border-top-image {
       border-top: 2px solid rgb(255, 193, 0);
+    }
+    
+    .p-text-2 {
+      font-size: 16px;
+      line-height: 24px;
     }
   }
 `;

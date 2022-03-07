@@ -62,15 +62,17 @@ export const annoumentStyles = css.global`
     .p-text-1-an {
       font-size: 18px;
       padding: 7px 0;
+      line-height: 24px;
     }
     .p-text-2-an {
       font-style: italic;
-      font-size: 12px;
+      font-size: 14px;
       line-height: 15px;
     }
     .p-text-2.m-p-italic {
       font-style: italic;
       font-size: 16px;
+      line-height: 24px;
     }
     .announcement_sec {
       padding: 5px 0 20px;

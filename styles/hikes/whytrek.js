@@ -92,7 +92,11 @@ export const whyTrekWithStyles = css.global`
     }
 
     .title-h2 {
-      font-size: 24px;
+      font-size: 36px;
+    }
+
+    .p-text-3-wt {
+      line-height: 20px;
     }
 
     .m-d-none {

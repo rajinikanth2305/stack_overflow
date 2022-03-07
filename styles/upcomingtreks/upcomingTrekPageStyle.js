@@ -194,8 +194,8 @@ export const upcomingTrekPageStyle = css.global`
   .btn-ih-green {
     background: rgb(57, 114, 41) none repeat scroll 0% 0%;
     border: 0;
-    box-shadow: rgba(0, 0, 0, 0.66) 2px 2px 2px;
-    border-radius: 2px;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
+    border-radius: 3px !important;
     padding: 3px 30px;
     border-radius: 0;
     line-height: 24px;
@@ -612,7 +612,7 @@ export const upcomingTrekPageStyle = css.global`
     }
 
     .title-display-2 {
-      font-size: 24px;
+      font-size: 36px;
     }
 
     .desc-dispaly-1 {
@@ -785,8 +785,8 @@ export const upcomingTrekPageStyle = css.global`
     // }
 
     .card-info-text > div > p {
-      font-size: 11px;
-      line-height: 10px;
+      font-size: 14px;
+      line-height: 16px;
     }
 
     .title-diplay-3.m-d-3 {

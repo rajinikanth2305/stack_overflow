@@ -166,8 +166,8 @@ export const ChooseTreks = css.global`
   .btn-ih-green {
     background: rgb(57, 114, 41) none repeat scroll 0% 0%;
     border: 0;
-    box-shadow: rgba(0, 0, 0, 0.66) 2px 2px 2px;
-    border-radius: 2px;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
+    border-radius: 3px !important;
     padding: 3px 30px;
     border-radius: 0;
     line-height: 24px;
@@ -371,6 +371,11 @@ export const ChooseTreks = css.global`
       font-size: 12px;
     }
 
+    .p-text-4 {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
     // .trekvideos-carosule  >  div > .slick-track {
     //   width: max-content !important;
     // }
@@ -378,6 +383,15 @@ export const ChooseTreks = css.global`
     .trek_card {
       min-height: 400px;
     }
+
+    .m-crad {
+      filter: drop-shadow(0px 3px 6px rgba(0,0,0,0.161));
+      border: 1px solid rgba(0, 0, 0, 0.125);
+    }
+
+    // .m-card-pd {
+    //   margin: 0 20px;
+    // }
 
     .card_sec {
       margin: 5px 0;
@@ -395,7 +409,7 @@ export const ChooseTreks = css.global`
     }
 
     .title-display-2 {
-      font-size: 24px;
+      font-size: 36px;
     }
 
     .c-mx-2 {
@@ -433,13 +447,13 @@ export const ChooseTreks = css.global`
     }
 
     .card-info-text > div > p {
-      font-size: 11px;
-      line-height: 10px;
+      font-size: 14px;
+      line-height: 16px;
     }
 
     .title-diplay-3-18px {
       font-weight: normal !important;
-      font-size: 16px;
+      font-size: 20px;
       // margin-top: 15px;
       line-height: 20px;
     }

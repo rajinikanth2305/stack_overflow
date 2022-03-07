@@ -252,6 +252,11 @@ export const aboutUsStyles = css.global`
       background-position: -425px 0;
     }
 
+    .p-text-4 {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
     // .banner-image-mobile {
     //   display: block;
     //   width: 100%;
@@ -270,7 +275,7 @@ export const aboutUsStyles = css.global`
     }
 
     .banner-text-1 {
-      font-size: 42px;
+      font-size: 36px;
       // line-height: 36px;
       // margin-bottom: 35px;
       text-align: left;
@@ -279,7 +284,7 @@ export const aboutUsStyles = css.global`
     .banner-text-2 {
       line-height: 22px;
       text-align: left;
-      font-size: 16px;
+      font-size: 20px;
       font-family: Franklin Gothic;
     }
 
@@ -312,10 +317,12 @@ export const aboutUsStyles = css.global`
 
     .p-text-1 {
       font-size: 18px;
+      line-height: 24px;
     }
 
     .p-text-2 {
-      font-size: 14px;
+      font-size: 16px;
+      line-height: 24px;
     }
 
     .title-h3 {
@@ -327,7 +334,7 @@ export const aboutUsStyles = css.global`
     }
 
     .p-text-2-franklin {
-      font-size: 14px;
+      font-size: 16px;
       line-height: 16px;
     }
 

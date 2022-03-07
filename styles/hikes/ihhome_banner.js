@@ -87,6 +87,7 @@ export const ihhomeBannerStyles = css.global`
     background: rgb(255, 193, 0);
     border-color: rgb(255, 193, 0);
     border-radius: 3px;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
     color: black;
     font-size: 18px;
     text-transform: capitalize;
@@ -116,7 +117,7 @@ export const ihhomeBannerStyles = css.global`
     }
 
     .banner-text-1 {
-      font-size: 30px;
+      font-size: 36px;
       line-height: 36px;
       margin-bottom: 40px;
       text-align: left;
@@ -125,7 +126,7 @@ export const ihhomeBannerStyles = css.global`
     .banner-text-2 {
       line-height: 22px;
       text-align: left;
-      font-size: 16px;
+      font-size: 20px;
       font-family: Franklin Gothic;
     }
 
