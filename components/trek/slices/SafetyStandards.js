@@ -4,9 +4,9 @@ import Image from "next/image";
 import { trekStyle } from "styles";
 
 const SafetyStandards = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const bannerImage = slice.primary.banner_image.url;
-  const heading2List = slice.primary.heading2;
+  const heading1 = slice?.primary?.heading1;
+  const bannerImage = slice?.primary?.banner_image.url;
+  const heading2List = slice?.primary?.heading2;
 
   return (
     <>

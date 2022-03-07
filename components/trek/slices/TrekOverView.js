@@ -11,10 +11,10 @@ import FeeDetails from "./FeeDetails";
  * Trek Banner Slice Components
  */
 const TrekOverView = ({ slice, data }) => {
-  const heading1 = slice.primary.heading1;
-  const heading1Subtitle = slice.primary.heading1_subtitle;
-  const heading2 = slice.primary.heading2;
-  const trekSummaryIconArray = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const heading1Subtitle = slice?.primary?.heading1_subtitle;
+  const heading2 = slice?.primary?.heading2;
+  const trekSummaryIconArray = slice?.items;
 
   const settings = {
     dots: true,
@@ -51,7 +51,7 @@ const TrekOverView = ({ slice, data }) => {
     ]
   };
 
-  const trekSummaryIcon = trekSummaryIconArray.map(function(data, i) {
+  const trekSummaryIcon = trekSummaryIconArray?.map(function(data, i) {
     return (
       <>
         <div className="mt-2 mb-4">

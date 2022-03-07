@@ -15,9 +15,9 @@ import Prismic from "@prismicio/client";
 //const userService = dynamic(() => import('../../../utils/UserService'),{ ssr: false });
 
 const BookYourTrek = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const cancelInfoHeading = slice.primary.cancel_info_heading;
-  const cancelInfodetailsList = slice.primary.cancel_info_details;
+  const heading1 = slice?.primary?.heading1;
+  const cancelInfoHeading = slice?.primary?.cancel_info_heading;
+  const cancelInfodetailsList = slice?.primary?.cancel_info_details;
   const [bookingDate, setBookingDate] = useState(undefined);
   const [showSelectedLabel, setShowSelectedLabel] = useState(false);
   const [feeDetails, setFeeDetails] = useState();
@@ -43,11 +43,10 @@ const BookYourTrek = ({ slice }) => {
   //     });
   // }
 
-  // let myRef = feeDetails && feeDetails.primary.ref_id_tosroll[0].text;
+  // let myRef = feeDetails && feeDetails?.primary?.ref_id_tosroll[0].text;
   // myRef = useRef(null);
 
   const bookingSelect = value => {
-    console.log(JSON.stringify(value));
     setBookingDate(value);
     setShowSelectedLabel(true);
   };
@@ -61,7 +60,7 @@ const BookYourTrek = ({ slice }) => {
       });
       return;
     }
-    router.push(`/registration?batchId=${bookingDate.batchId}`);
+    router.push(`/registration?batchId=${bookingDate?.batchId}`);
   };
 
   return (
@@ -122,12 +121,12 @@ const BookYourTrek = ({ slice }) => {
                       {showSelectedLabel && (
                         <div>
                           <p className="m-0 p-text-3-1">
-                            <b>Selected {bookingDate.trekName}:</b>
+                            <b>Selected {bookingDate?.trekName}:</b>
                           </p>
                           <p className="p-text-2">
                             <b>
-                              {moment(bookingDate.startDate).format("Do")} to{" "}
-                              {moment(bookingDate.endDate).format("Do MMMM")}
+                              {moment(bookingDate?.startDate).format("Do")} to{" "}
+                              {moment(bookingDate?.endDate).format("Do MMMM")}
                             </b>
                           </p>
                         </div>
@@ -145,15 +144,15 @@ const BookYourTrek = ({ slice }) => {
                       {showSelectedLabel && (
                         <div>
                           <p className="m-0 p-text-3-1">
-                            <b>Selected {bookingDate.trekName}:</b>
+                            <b>Selected {bookingDate?.trekName}:</b>
                           </p>
                           <p className="p-text-2">
                             <b>
-                              {moment(bookingDate.startDate).format(
+                              {moment(bookingDate?.startDate).format(
                                 "Do"
                               )}{" "}
                               to{" "}
-                              {moment(bookingDate.endDate).format("Do MMMM")}
+                              {moment(bookingDate?.endDate).format("Do MMMM")}
                             </b>
                           </p>
                         </div>

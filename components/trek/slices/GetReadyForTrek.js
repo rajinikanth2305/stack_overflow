@@ -3,11 +3,11 @@ import { RichText } from "prismic-reactjs";
 import { trekStyle } from "styles";
 
 const GetReadyForTrek = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
   const lnkLabelArray = slice.items;
 
-  const lnkLabel = lnkLabelArray.map((data, i) => {
+  const lnkLabel = lnkLabelArray?.map((data, i) => {
     return (
       <>
         <div className="d-flex align-items-center mb-2 border-bottom">
@@ -15,7 +15,7 @@ const GetReadyForTrek = ({ slice }) => {
             <img src="/Icons_Outline_Calendar_g.png" />
           </div>
           <div className="mx-2 flex-grow-1">
-            <p className="p-text-1 m-0">{data.lnk_label[0].text}</p>
+            <p className="p-text-1 m-0">{data?.lnk_label[0]?.text}</p>
             <p className="mb-1 p-text-3">Plan your travel with this</p>
           </div>
           <div className="mx-2">

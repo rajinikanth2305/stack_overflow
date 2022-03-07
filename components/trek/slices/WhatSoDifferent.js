@@ -6,10 +6,10 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
 const WhatSoDifferent = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
   const videoUrl = slice?.primary?.video_url?.url;
-  // const videoImage = slice.primary.image.url;
+  // const videoImage = slice?.primary?.image.url;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -19,7 +19,7 @@ const WhatSoDifferent = ({ slice }) => {
   const videoIdWithParams = result && result[2];
 
   const cleanVideoId =
-    videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+    videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
   const ytvideoUrl =
     "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";

@@ -7,8 +7,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const TrekWhatSays = ({ slice }) => {
-  const trekWhatTrekkerSayTitle = slice.primary.trek_what_trekkers_say_title;
-  const trekkerPhotosArray = slice.items;
+  const trekWhatTrekkerSayTitle = slice?.primary?.trek_what_trekkers_say_title;
+  const trekkerPhotosArray = slice?.items;
 
   const settings = {
     dots: true,
@@ -45,14 +45,14 @@ const TrekWhatSays = ({ slice }) => {
     ]
   };
 
-  const trekkerPhotos = trekkerPhotosArray.map((data, i) => {
+  const trekkerPhotos = trekkerPhotosArray?.map((data, i) => {
     return (
       <>
         <div className="mx-2">
           <div className="trekker_photos">
-            {data.trekker_photos.url && (
+            {data?.trekker_photos?.url && (
               <Image
-                src={data.trekker_photos.url}
+                src={data?.trekker_photos?.url}
                 layout="fill"
                 objectFit="contain"
                 objectPosition="left left"

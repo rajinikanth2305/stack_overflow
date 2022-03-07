@@ -51,12 +51,12 @@ const FeeDetails = ({ data }) => {
     // console.log(slice);
   }
 
-  const heading = feeDetails && feeDetails.primary.heading;
-  const price = feeDetails && feeDetails.primary.price;
-  const tax = feeDetails && feeDetails.primary.tax;
-  const descriptions = feeDetails && feeDetails.primary.descriptions;
-  const insurance = feeDetails && feeDetails.primary.insurance;
-  const optionalAdditionsArray = feeDetails && feeDetails.items;
+  const heading = feeDetails && feeDetails?.primary?.heading;
+  const price = feeDetails && feeDetails?.primary?.price;
+  const tax = feeDetails && feeDetails?.primary?.tax;
+  const descriptions = feeDetails && feeDetails?.primary?.descriptions;
+  const insurance = feeDetails && feeDetails?.primary?.insurance;
+  const optionalAdditionsArray = feeDetails && feeDetails?.items;
 
   const optionalAdditions = optionalAdditionsArray?.map(function(data, i) {
     return (
@@ -68,10 +68,10 @@ const FeeDetails = ({ data }) => {
         </div>
         <div className="mx-2">
           <div className="trek_optional_details mb-0 mb-0-p">
-            {RichText.render(data.optional_additions_heading, linkResolver)}
+            {RichText.render(data?.optional_additions_heading, linkResolver)}
           </div>
           <div className="trek_optional_details">
-            {RichText.render(data.optional_additions_desc)}
+            {RichText.render(data?.optional_additions_desc)}
           </div>
         </div>
       </div>

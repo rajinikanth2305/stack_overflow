@@ -19,41 +19,20 @@ const HowDifficultTrekIs = ({ data }) => {
   }, []);
 
   async function findTrekStories() {
-    // const client = Client();
-    // const doc = await client
-    //   .query([Prismic.Predicates.at("document.type", "trek")])
-    //   .then(function(response) {
-    //     const tt = response.results[0].data.body;
-    //     const slice =
-    //       tt && tt.find(x => x.slice_type === "how_difficult_is_trek");
-    //     setHowDiff(slice);
-    //   });
     const slice =
       data && data.find(x => x.slice_type === "how_difficult_is_trek");
     setHowDiff(slice);
   }
 
-  const headingImage = howDiff && howDiff.primary.heading_image.url;
-  const heading1 = howDiff && howDiff.primary.heading1;
-  const heading2 = howDiff && howDiff.primary.heading2;
-  const hdTextList = howDiff && howDiff.primary.hd_text;
+  const headingImage = howDiff && howDiff?.primary?.heading_image.url;
+  const heading1 = howDiff && howDiff?.primary?.heading1;
+  const heading2 = howDiff && howDiff?.primary?.heading2;
+  const hdTextList = howDiff && howDiff?.primary?.hd_text;
   const trekDifficultyContentList =
-    howDiff && howDiff.primary.trek_difficulty_content;
-  const howSafeTitle = howDiff && howDiff.primary.content_editor;
-  const howSafeContentList = howDiff && howDiff.primary.how_safe_content;
-  const tabsDataArray = howDiff && howDiff.items;
-
-  // console.log(tabsDataArray);
-
-  // const hdText = hdTextList?.map(function(data, i) {
-  //   return (
-  //     <>
-  //       <p className="p-text-4" key={i}>
-  //         {data.text}
-  //       </p>
-  //     </>
-  //   );
-  // });
+    howDiff && howDiff?.primary?.trek_difficulty_content;
+  const howSafeTitle = howDiff && howDiff?.primary?.content_editor;
+  const howSafeContentList = howDiff && howDiff?.primary?.how_safe_content;
+  const tabsDataArray = howDiff && howDiff?.items;
 
   const trekDifficultyContent = trekDifficultyContentList?.map(function(
     data,
@@ -61,7 +40,7 @@ const HowDifficultTrekIs = ({ data }) => {
   ) {
     return (
       <p className="p-text-small" key={i}>
-        {data.text}
+        {data?.text}
       </p>
     );
   });
@@ -69,51 +48,51 @@ const HowDifficultTrekIs = ({ data }) => {
   const howSafeContent = howSafeContentList?.map(function(data, i) {
     return (
       <p key={i} className="p-text-4" key={i}>
-        {data.text}
+        {data?.text}
       </p>
     );
   });
 
   const tabsData = tabsDataArray?.map(function(data, i) {
     const title = data.title?.map(function(data, i) {
-      return <p key={i}>{data.text}</p>;
+      return <p key={i}>{data?.text}</p>;
     });
-    const description = data.description?.map(function(data, i) {
+    const description = data?.description?.map(function(data, i) {
       return (
         <p key={i} className="p-text-3-2">
-          {data.text ? data.text : "-"}
+          {data?.text ? data?.text : "-"}
         </p>
       );
     });
-    const content1_title = data.content1_title?.map(function(data, i) {
+    const content1_title = data?.content1_title?.map(function(data, i) {
       return (
         <p key={i} className="p-text-4">
           <b>
-            {i + 1}. {data.text ? data.text : "-"}
+            {i + 1}. {data?.text ? data?.text : "-"}
           </b>
         </p>
       );
     });
-    const content1_data = data.content1_data?.map(function(data, i) {
+    const content1_data = data?.content1_data?.map(function(data, i) {
       return (
         <p key={i} className="p-text-3-2">
-          {data.text ? data.text : "-"}
+          {data?.text ? data?.text : "-"}
         </p>
       );
     });
-    const content2_title = data.content2_title?.map(function(data, i) {
+    const content2_title = data?.content2_title?.map(function(data, i) {
       return (
         <p key={i} className="p-text-4">
           <b>
-            {i + 2}. {data.text ? data.text : "-"}
+            {i + 2}. {data?.text ? data?.text : "-"}
           </b>
         </p>
       );
     });
-    const content2_data = data.content2_data?.map(function(data, i) {
+    const content2_data = data?.content2_data?.map(function(data, i) {
       return (
         <p key={i} className="p-text-3-2">
-          {data.text ? data.text : "-"}
+          {data?.text ? data?.text : "-"}
         </p>
       );
     });
@@ -121,9 +100,9 @@ const HowDifficultTrekIs = ({ data }) => {
       <Tab eventKey={`tab` + data?.title[0]?.text} title={data?.title[0]?.text} key={i}>
         {data?.title[0]?.text === "Safety – Altitude Wise" ? (
           <div className="hd-tab2-iamge mb-4">
-            {data.heading1_image.url && (
+            {data?.heading1_image?.url && (
               <Image
-                src={data.heading1_image.url}
+                src={data?.heading1_image?.url}
                 layout="fill"
                 objectFit="cover"
                 objectPosition="50% 50%"
@@ -136,9 +115,9 @@ const HowDifficultTrekIs = ({ data }) => {
         {description}
         {data?.title[0]?.text === "Exit Points & Emergency Details" ? (
           <div className="hd-tab4-iamge mb-4">
-            {data.heading1_image.url && (
+            {data?.heading1_image?.url && (
               <Image
-                src={data.heading1_image.url}
+                src={data?.heading1_image?.url}
                 layout="fill"
                 objectFit="contain"
                 objectPosition="bottom"
@@ -151,9 +130,9 @@ const HowDifficultTrekIs = ({ data }) => {
         {data?.title[0]?.text === "Safety - Terrain Wise" ? (
           <>
             <div className="hd-tab2-iamge mv mb-4 d-m-block">
-              {data.heading1_image.url && (
+              {data?.heading1_image?.url && (
                 <Image
-                  src={data.heading1_image.url}
+                  src={data?.heading1_image?.url}
                   layout="fill"
                   objectFit="cover"
                   objectPosition="50% 50%"
@@ -169,9 +148,9 @@ const HowDifficultTrekIs = ({ data }) => {
               </div>
               <div className="w-100 d-m-none">
                 <div className="hd-tab2-iamge position-change mb-4">
-                  {data.heading1_image.url && (
+                  {data?.heading1_image?.url && (
                     <Image
-                      src={data.heading1_image.url}
+                      src={data?.heading1_image?.url}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"

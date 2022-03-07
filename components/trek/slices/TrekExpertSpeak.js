@@ -5,16 +5,16 @@ import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
 
 const TrekExpertSpeak = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const bannerImage = slice.primary.banner_image.url;
-  const author = slice.primary.author;
-  const position = slice.primary.position;
-  const aboutAuthor = slice.primary.about_author;
-  const authorImage = slice.primary.author_image.url;
-  const contentHeading = slice.primary.content_heading;
-  const contentHeadingDesc = slice.primary.content_heading_desc;
-  const contentHeadingDesc1 = slice.primary.what_i_dont_like_title;
-  const whatILikeImageArray = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const bannerImage = slice?.primary?.banner_image?.url;
+  const author = slice?.primary?.author;
+  const position = slice?.primary?.position;
+  const aboutAuthor = slice?.primary?.about_author;
+  const authorImage = slice?.primary?.author_image?.url;
+  const contentHeading = slice?.primary?.content_heading;
+  const contentHeadingDesc = slice?.primary?.content_heading_desc;
+  const contentHeadingDesc1 = slice?.primary?.what_i_dont_like_title;
+  const whatILikeImageArray = slice?.items;
   const [trekExpertSecHeight, setTrekExpertSecHeight] = useState(375);
   const [imgUrl, setImgUrl] = useState();
   const [show, setShow] = useState(false);
@@ -27,17 +27,17 @@ const TrekExpertSpeak = ({ slice }) => {
     backgroundRepeat: "no-repeat"
   };
 
-  const whatILikeImageView = whatILikeImageArray.map((data, i) => {
+  const whatILikeImageView = whatILikeImageArray?.map((data, i) => {
     return (
       <div key={i}>
         <div className="row d-flex align-items-center">
           <div className="col-lg-7 col-md-12 mb-2 pb-3">
             <div>
-              {data.what_i_like_content_title.map((tit, index) => {
+              {data.what_i_like_content_title?.map((tit, index) => {
                 return (
                   <h5 key={index} className="p-text-2 mb-3">
                     <b>
-                      {i + 1}. {tit.text}
+                      {i + 1}. {tit?.text}
                     </b>
                   </h5>
                 );
@@ -45,16 +45,16 @@ const TrekExpertSpeak = ({ slice }) => {
             </div>
             <div>
               <div className="p-text-4">
-                {RichText.render(data.what_i_like_content_desc)}
+                {RichText.render(data?.what_i_like_content_desc)}
               </div>
             </div>
           </div>
           <div className="col-lg-1 col-md-12"></div>
           <div className="col-lg-4 col-md-12 mb-4">
             <div className="what_i_like_image cursor-pointer">
-              {data.what_i_like_image.url !== undefined && (
+              {data?.what_i_like_image?.url !== undefined && (
                 <Image
-                  src={data.what_i_like_image.url}
+                  src={data?.what_i_like_image?.url}
                   layout="fill"
                   objectFit="contain"
                   objectPosition="left"
@@ -67,7 +67,7 @@ const TrekExpertSpeak = ({ slice }) => {
             </div>
             <div>
               <div className="trek_summary_desc font-italic py-3 mpb-0">
-                {RichText.render(data.what_i_like_image_desc)}
+                {RichText.render(data?.what_i_like_image_desc)}
               </div>
             </div>
           </div>
@@ -76,7 +76,7 @@ const TrekExpertSpeak = ({ slice }) => {
     );
   });
 
-  const whatIdontLikeImageView = whatILikeImageArray.map((data, i) => {
+  const whatIdontLikeImageView = whatILikeImageArray?.map((data, i) => {
     return (
       <div key={i}>
         <div className="row d-flex align-items-center">
@@ -87,7 +87,7 @@ const TrekExpertSpeak = ({ slice }) => {
                   return (
                     <h5 key={index} className="p-text-2 mb-3">
                       <b>
-                        {i + 1}. {tit.text}
+                        {i + 1}. {tit?.text}
                       </b>
                     </h5>
                   );

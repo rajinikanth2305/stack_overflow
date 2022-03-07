@@ -7,12 +7,12 @@ import Tab from "react-bootstrap/Tab";
 import Modal from "react-bootstrap/Modal";
 
 const QuickItineraryComponent = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const dayNumberTextArray = slice.items;
-  const itineraryMapImage = slice.primary.map_image.url;
-  const imgDesc = slice.primary.img_desc;
-  const importantNoteList = slice.primary.important_note;
-  const proTipsList = slice.primary.pro_tips;
+  const heading1 = slice?.primary?.heading1;
+  const dayNumberTextArray = slice?.items;
+  const itineraryMapImage = slice?.primary?.map_image?.url;
+  const imgDesc = slice?.primary?.img_desc;
+  const importantNoteList = slice?.primary?.important_note;
+  const proTipsList = slice?.primary?.pro_tips;
   const [qiHeight, setQiHeight] = useState(480);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -20,10 +20,10 @@ const QuickItineraryComponent = ({ slice }) => {
 
   // console.log(slice);
 
-  const importantNoteListdata = importantNoteList.map((data, i) => {
+  const importantNoteListdata = importantNoteList?.map((data, i) => {
     return (
       <p className="p-text-4 m-0" key={i}>
-        {data.text}
+        {data?.text}
       </p>
     );
   });
@@ -50,7 +50,7 @@ const QuickItineraryComponent = ({ slice }) => {
   //   );
   // });
 
-  const dayNumberText = dayNumberTextArray.map(function(data, i) {
+  const dayNumberText = dayNumberTextArray?.map(function(data, i) {
     return (
       <div className="d-flex align-items-start flex-wrap mt-1" key={i}>
         <div className="col-lg-1 col-md-12">

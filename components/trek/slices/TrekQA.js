@@ -8,11 +8,11 @@ import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 
 const TrekQA = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
 
-  const heading2data = heading2.map((data, i) => {
-    return <p key={i}>{data.text}</p>;
+  const heading2data = heading2?.map((data, i) => {
+    return <p key={i}>{data?.text}</p>;
   });
 
   return (

@@ -8,13 +8,13 @@ import { hrefResolver, linkResolver } from "prismic-configuration";
  * Trek Banner Slice Components
  */
 const TrekBannerWithCaption = ({ slice }) => {
-  const imageUrl = slice.primary.trek_banner_image.url;
-  const trekCaption = slice.primary.trek_caption;
-  const subHeading = slice.primary.sub_heading;
-  const difficulty = slice.primary.difficulty;
-  const duration = slice.primary.duration;
-  const altitude = slice.primary.altitude;
-  const age = slice.primary.age;
+  const imageUrl = slice?.primary?.trek_banner_image.url;
+  const trekCaption = slice?.primary?.trek_caption;
+  const subHeading = slice?.primary?.sub_heading;
+  const difficulty = slice?.primary?.difficulty;
+  const duration = slice?.primary?.duration;
+  const altitude = slice?.primary?.altitude;
+  const age = slice?.primary?.age;
 
   const bannerImageDesktop = {
     backgroundImage: `url('${imageUrl}')`,

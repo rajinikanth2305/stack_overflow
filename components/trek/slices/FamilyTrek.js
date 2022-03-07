@@ -4,14 +4,14 @@ import Image from "next/image";
 import { trekStyle } from "styles";
 
 const FamilyTrek = ({ slice }) => {
-  const trekFamilyTrekTitle = slice.primary.trek_family_trek_title;
-  const trekFamilyTrekImage = slice.primary.trek_family_trek_image.url;
-  const trekFamilyTrekDetailsList = slice.primary.trek_family_trek_details;
+  const trekFamilyTrekTitle = slice?.primary?.trek_family_trek_title;
+  const trekFamilyTrekImage = slice?.primary?.trek_family_trek_image?.url;
+  const trekFamilyTrekDetailsList = slice?.primary?.trek_family_trek_details;
 
-  const trekFamilyTrekDetails = trekFamilyTrekDetailsList.map((data, i) => {
+  const trekFamilyTrekDetails = trekFamilyTrekDetailsList?.map((data, i) => {
     return (
       <>
-        <p>{data.text}</p>
+        <p>{data?.text}</p>
       </>
     );
   });

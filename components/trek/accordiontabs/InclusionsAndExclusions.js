@@ -23,9 +23,9 @@ const InclusionsAndExclusions = ({ data }) => {
 
   const mapUrl = inclusions && inclusions?.primary?.map_url?.url;
   const inclusionsHeading = inclusions && inclusions?.primary?.heading1;
-  const inclusionArray = inclusions && inclusions.items;
+  const inclusionArray = inclusions && inclusions?.items;
   const exclusionsHeading = exclusions && exclusions?.primary?.heading1;
-  const exclusionsArray = exclusions && exclusions.items;
+  const exclusionsArray = exclusions && exclusions?.items;
 
   const inclusionData = inclusionArray?.map(function(data, i) {
     return (

@@ -80,61 +80,61 @@ const BestTimeToDo = ({ data }) => {
     setBestTimeToDo(slice);
   }
 
-  const content1Title = bestTimeToDo && bestTimeToDo.primary.content1_title;
+  const content1Title = bestTimeToDo && bestTimeToDo?.primary?.content1_title;
   const content1Temprature =
-    bestTimeToDo && bestTimeToDo.primary.content1_temprature;
-  const content1Snow = bestTimeToDo && bestTimeToDo.primary.content1_snow;
+    bestTimeToDo && bestTimeToDo?.primary?.content1_temprature;
+  const content1Snow = bestTimeToDo && bestTimeToDo?.primary?.content1_snow;
   const content1WarmLayers =
-    bestTimeToDo && bestTimeToDo.primary.content1_warm_layers;
-  const content1List = bestTimeToDo && bestTimeToDo.primary.content1;
-  const content1Images = bestTimeToDo && bestTimeToDo.primary.content1_images;
+    bestTimeToDo && bestTimeToDo?.primary?.content1_warm_layers;
+  const content1List = bestTimeToDo && bestTimeToDo?.primary?.content1;
+  const content1Images = bestTimeToDo && bestTimeToDo?.primary?.content1_images;
 
-  const content2Title = bestTimeToDo && bestTimeToDo.primary.content2_title;
+  const content2Title = bestTimeToDo && bestTimeToDo?.primary?.content2_title;
   const content2Temprature =
-    bestTimeToDo && bestTimeToDo.primary.content2_temprature;
-  const content2Snow = bestTimeToDo && bestTimeToDo.primary.content2_snow;
+    bestTimeToDo && bestTimeToDo?.primary?.content2_temprature;
+  const content2Snow = bestTimeToDo && bestTimeToDo?.primary?.content2_snow;
   const content2WarmLayers =
-    bestTimeToDo && bestTimeToDo.primary.content2_warm_layers;
-  const content2List = bestTimeToDo && bestTimeToDo.primary.content2;
-  const content2Images = bestTimeToDo && bestTimeToDo.primary.content2_images;
+    bestTimeToDo && bestTimeToDo?.primary?.content2_warm_layers;
+  const content2List = bestTimeToDo && bestTimeToDo?.primary?.content2;
+  const content2Images = bestTimeToDo && bestTimeToDo?.primary?.content2_images;
 
-  const content3Title = bestTimeToDo && bestTimeToDo.primary.content3_title;
+  const content3Title = bestTimeToDo && bestTimeToDo?.primary?.content3_title;
   const content3Temprature =
-    bestTimeToDo && bestTimeToDo.primary.content3_temprature;
-  const content3Snow = bestTimeToDo && bestTimeToDo.primary.content3_snow;
+    bestTimeToDo && bestTimeToDo?.primary?.content3_temprature;
+  const content3Snow = bestTimeToDo && bestTimeToDo?.primary?.content3_snow;
   const content3WarmLayers =
-    bestTimeToDo && bestTimeToDo.primary.content3_warm_layers;
-  const content3List = bestTimeToDo && bestTimeToDo.primary.content3;
-  const content3Images = bestTimeToDo && bestTimeToDo.primary.content3_images;
+    bestTimeToDo && bestTimeToDo?.primary?.content3_warm_layers;
+  const content3List = bestTimeToDo && bestTimeToDo?.primary?.content3;
+  const content3Images = bestTimeToDo && bestTimeToDo?.primary?.content3_images;
 
-  const content4Title = bestTimeToDo && bestTimeToDo.primary.content4_title;
+  const content4Title = bestTimeToDo && bestTimeToDo?.primary?.content4_title;
   const content4Temprature =
-    bestTimeToDo && bestTimeToDo.primary.content4_temprature;
-  const content4Snow = bestTimeToDo && bestTimeToDo.primary.content4_snow;
+    bestTimeToDo && bestTimeToDo?.primary?.content4_temprature;
+  const content4Snow = bestTimeToDo && bestTimeToDo?.primary?.content4_snow;
   const content4WarmLayers =
-    bestTimeToDo && bestTimeToDo.primary.content4_warm_layers;
-  const content4List = bestTimeToDo && bestTimeToDo.primary.content4;
-  const content4Images = bestTimeToDo && bestTimeToDo.primary.content4_images;
+    bestTimeToDo && bestTimeToDo?.primary?.content4_warm_layers;
+  const content4List = bestTimeToDo && bestTimeToDo?.primary?.content4;
+  const content4Images = bestTimeToDo && bestTimeToDo?.primary?.content4_images;
 
-  const content5Title = bestTimeToDo && bestTimeToDo.primary.content5_title;
+  const content5Title = bestTimeToDo && bestTimeToDo?.primary?.content5_title;
   const content5Temprature =
-    bestTimeToDo && bestTimeToDo.primary.content5_temprature;
-  const content5Snow = bestTimeToDo && bestTimeToDo.primary.content5_snow;
+    bestTimeToDo && bestTimeToDo?.primary?.content5_temprature;
+  const content5Snow = bestTimeToDo && bestTimeToDo?.primary?.content5_snow;
   const content5WarmLayers =
-    bestTimeToDo && bestTimeToDo.primary.content5_warm_layers;
-  const content5List = bestTimeToDo && bestTimeToDo.primary.content5;
-  const content5Images = bestTimeToDo && bestTimeToDo.primary.content5_images;
+    bestTimeToDo && bestTimeToDo?.primary?.content5_warm_layers;
+  const content5List = bestTimeToDo && bestTimeToDo?.primary?.content5;
+  const content5Images = bestTimeToDo && bestTimeToDo?.primary?.content5_images;
 
-  // const btImage1 = bestTimeToDo && bestTimeToDo.primary.btimage1.url;
-  // const btImage2 = bestTimeToDo && bestTimeToDo.primary.btimage2.url;
-  // const btImage3 = bestTimeToDo && bestTimeToDo.primary.btimage3.url;
-  // const btImage4 = bestTimeToDo && bestTimeToDo.primary.btimage4.url;
+  // const btImage1 = bestTimeToDo && bestTimeToDo?.primary?.btimage1.url;
+  // const btImage2 = bestTimeToDo && bestTimeToDo?.primary?.btimage2.url;
+  // const btImage3 = bestTimeToDo && bestTimeToDo?.primary?.btimage3.url;
+  // const btImage4 = bestTimeToDo && bestTimeToDo?.primary?.btimage4.url;
 
   const importantNoteTitle =
-    bestTimeToDo && bestTimeToDo.primary.important_note_title;
+    bestTimeToDo && bestTimeToDo?.primary?.important_note_title;
   const importantNoteContent =
-    bestTimeToDo && bestTimeToDo.primary.important_note_content;
-    const highlightMonths = bestTimeToDo && bestTimeToDo.primary.highlight_months;
+    bestTimeToDo && bestTimeToDo?.primary?.important_note_content;
+    const highlightMonths = bestTimeToDo && bestTimeToDo?.primary?.highlight_months;
 
   const htext = highlightMonths?.map(function(data, i) {
     return (

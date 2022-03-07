@@ -8,9 +8,9 @@ import Link from "next/link";
 import Modal from "react-bootstrap/Modal";
 
 const TrekTrevia = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-  const tabsDataArray = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
+  const tabsDataArray = slice?.items;
 
   const [imgUrl, setImageUrl] = useState();
   const [show, setShow] = useState(false);
@@ -34,7 +34,7 @@ const TrekTrevia = ({ slice }) => {
     const videoIdWithParams = result && result[2];
 
     const cleanVideoId =
-      videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+      videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
     const videoUrl =
       "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";

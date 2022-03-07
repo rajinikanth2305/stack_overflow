@@ -82,12 +82,12 @@ const HowDoesEachDayLooks = ({ data }) => {
 
   const dayNum =
     dayWise &&
-    dayWise.map(function(dd, i) {
-      const daysItieneryArray = dd.items;
-      const daysItienery = daysItieneryArray.map(function(daysIt, i) {
-        const place_description_editor = daysIt?.place_description_editor.map(
+    dayWise?.map(function(dd, i) {
+      const daysItieneryArray = dd?.items;
+      const daysItienery = daysItieneryArray?.map(function(daysIt, i) {
+        const place_description_editor = daysIt?.place_description_editor?.map(
           function(ed, j) {
-            return <p className="p-text-4" key={j}>{ed.text}</p>;
+            return <p className="p-text-4" key={j}>{ed?.text}</p>;
           }
         );
         return (
@@ -273,8 +273,8 @@ const HowDoesEachDayLooks = ({ data }) => {
       });
       return (
         <Tab
-          eventKey={`Day` + dd.primary.day_num}
-          title={`Day` + dd.primary.day_num}
+          eventKey={`Day` + dd?.primary?.day_num}
+          title={`Day` + dd?.primary?.day_num}
           key={i}
         >
           {daysItienery}

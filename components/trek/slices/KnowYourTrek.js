@@ -13,13 +13,13 @@ import InclusionsAndExclusions from "../accordiontabs/InclusionsAndExclusions";
 import WhatToPack from "../accordiontabs/WhatToPack";
 
 const KnowYourTrek = ({ slice, data }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
   const accordionTabImgArray = slice.items;
 
   const slice_zone = data;
 
-  const accordionTabImg = accordionTabImgArray.map((data, i) => {
+  const accordionTabImg = accordionTabImgArray?.map((data, i) => {
     const inner_content_slice_id = data?.inner_content_slice_id[0]?.text;
     const sliceType = slice_zone.find(
       x => x.slice_type === data?.inner_content_slice_id[0]?.text

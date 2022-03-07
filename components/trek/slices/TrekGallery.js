@@ -7,8 +7,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const TrekGallery = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const discoveryTrekGalleryArray = slice.items;
+  const heading1 = slice?.primary?.heading1;
+  const discoveryTrekGalleryArray = slice?.items;
 
   const settings = {
     dots: true,
@@ -47,7 +47,7 @@ const TrekGallery = ({ slice }) => {
     ]
   };
 
-  const discoveryTrekGallery = discoveryTrekGalleryArray.map((data, i) => {
+  const discoveryTrekGallery = discoveryTrekGalleryArray?.map((data, i) => {
     return (
       <div key={i}>
         <div className="discovery_trek_gallery">

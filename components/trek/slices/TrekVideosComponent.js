@@ -10,12 +10,12 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
 const TrekVideosComponent = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-  const videoArray = slice.items;
-  const primaryImage = slice.primary.primary_image.url;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
+  const videoArray = slice?.items;
+  const primaryImage = slice?.primary?.primary_image?.url;
   const primaryVideoLink = slice?.primary?.primary_video_link?.url;
-  const secondaryImage = slice.primary.secondary_image.url;
+  const secondaryImage = slice?.primary?.secondary_image.url;
   const secondaryVideoLink = slice?.primary?.secondary_video_link?.url;
 
   const primaryResult = primaryVideoLink?.split(
@@ -25,7 +25,7 @@ const TrekVideosComponent = ({ slice }) => {
 
   const primarycleanVideoId =
     primaryvideoIdWithParams &&
-    primaryvideoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+    primaryvideoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
   const primaryVideoUrl =
     "https://www.youtube.com/embed/" + primarycleanVideoId + "?autoplay=1";
@@ -38,7 +38,7 @@ const TrekVideosComponent = ({ slice }) => {
 
   const secondarycleanVideoId =
     secondaryvideoIdWithParams &&
-    secondaryvideoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+    secondaryvideoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
   const secondaryVideoUrl =
     "https://www.youtube.com/embed/" + secondarycleanVideoId + "?autoplay=1";
@@ -102,7 +102,7 @@ const TrekVideosComponent = ({ slice }) => {
     const videoIdWithParams = result && result[2];
 
     const cleanVideoId =
-      videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+      videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
     const videoUrl =
       "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";

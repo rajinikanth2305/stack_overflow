@@ -8,8 +8,8 @@ import "slick-carousel/slick/slick-theme.css";
 import Modal from "react-bootstrap/Modal";
 
 const CampSite = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
   const campsitesImagesArray = slice.items;
   const [imgUrl, setImgUrl] = useState();
   const [show, setShow] = useState(false);
