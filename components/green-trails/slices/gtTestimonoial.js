@@ -5,7 +5,7 @@ import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
 
 const GtTestimonoial = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
+  const heading1 = slice?.primary?.heading1;
   return (
     <>
       <div className="my-5">

@@ -6,8 +6,8 @@ import Modal from "react-bootstrap/Modal";
 import Image from "next/image";
 
 const GtStories = ({ slice, latestUpdateAarticleData1 }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
   const primaryVideoUrl = slice?.primary?.yt_link?.url;
 
   const [show, setShow] = useState(false);
@@ -21,7 +21,7 @@ const GtStories = ({ slice, latestUpdateAarticleData1 }) => {
   const videoIdWithParams = result && result[2];
 
   const cleanVideoId =
-    videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+    videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
   const videoUrl =
     "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
@@ -44,9 +44,9 @@ const GtStories = ({ slice, latestUpdateAarticleData1 }) => {
         <Link href={url ? url : "#"}>
           <div className="card exp-card-blog gt-blog mx-0 cursor-pointer">
             <div alt="img" className="latestTrekWorld_bg ltw_img">
-              {getArticleImage?.primary?.feature_image.url ? (
+              {getArticleImage?.primary?.feature_image?.url ? (
                 <img
-                  src={getArticleImage?.primary?.feature_image.url}
+                  src={getArticleImage?.primary?.feature_image?.url}
                   alt="articleImage"
                   className="latestTrekWorld_bg ltw_img"
                 />

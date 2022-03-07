@@ -5,8 +5,8 @@ import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
 
 const GtOverview = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const content1 = slice.primary.content1;
+  const heading1 = slice?.primary?.heading1;
+  const content1 = slice?.primary?.content1;
 
   const primaryVideoUrl = slice?.primary?.yt_link?.url;
 
@@ -16,7 +16,7 @@ const GtOverview = ({ slice }) => {
   const videoIdWithParams = result && result[2];
 
   const cleanVideoId =
-    videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+    videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
   const videoUrl =
     "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";

@@ -8,8 +8,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const LatestGt = ({ slice, latestUpdateAarticleData }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
 
   const settings = {
     dots: true,
@@ -66,9 +66,9 @@ const LatestGt = ({ slice, latestUpdateAarticleData }) => {
             <Link href={url ? url : "#"}>
               <div className="cursor-pointer">
                 <div alt="img" className="gt_lt_img">
-                  {getArticleImage?.primary?.feature_image.url ? (
+                  {getArticleImage?.primary?.feature_image?.url ? (
                     <img
-                      src={getArticleImage?.primary?.feature_image.url}
+                      src={getArticleImage?.primary?.feature_image?.url}
                       alt="articleImage"
                       className="gt_lt_img"
                     />

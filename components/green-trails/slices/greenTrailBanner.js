@@ -4,14 +4,14 @@ import { customStyles } from "styles";
 import Image from "next/image";
 
 const GreenTrailBanner = ({ slice }) => {
-  const heading1 = slice.primary.heading1;
-  const heading2 = slice.primary.heading2;
-  const imageUrl = slice.primary.banner_image.url;
-  const gtLogo = slice.primary.green_trails_logo.url;
-  const totalTreks = slice.primary.total_no_of_treks;
-  const kilosOfWaste = slice.primary.kilos_of_waste;
-  const recycling = slice.primary.recycling;
-  const wetWaste = slice.primary.wet_waste_management;
+  const heading1 = slice?.primary?.heading1;
+  const heading2 = slice?.primary?.heading2;
+  const imageUrl = slice?.primary?.banner_image?.url;
+  const gtLogo = slice?.primary?.green_trails_logo?.url;
+  const totalTreks = slice?.primary?.total_no_of_treks;
+  const kilosOfWaste = slice?.primary?.kilos_of_waste;
+  const recycling = slice?.primary?.recycling;
+  const wetWaste = slice?.primary?.wet_waste_management;
 
   return (
     <>
