@@ -105,9 +105,9 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const slice = doc.data?.body?.find(x => x.slice_type === "best_treks_to_do");
 
-  if (slice.items.length > 0) {
-    for (var i = 0; i < slice.items.length; i++) {
-      const data = slice.items[i];
+  if (slice?.items?.length > 0) {
+    for (var i = 0; i < slice?.items?.length; i++) {
+      const data = slice?.items[i];
       const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
@@ -121,9 +121,9 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     x => x.slice_type === "uc_open_for_small_group"
   );
 
-  if (ucOpen_slice.items.length > 0) {
-    for (var i = 0; i < ucOpen_slice.items.length; i++) {
-      const data = ucOpen_slice.items[i];
+  if (ucOpen_slice?.items?.length > 0) {
+    for (var i = 0; i < ucOpen_slice?.items?.length; i++) {
+      const data = ucOpen_slice?.items[i];
       const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
@@ -137,9 +137,9 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     x => x.slice_type === "uc_autumn_treks"
   );
 
-  if (autumn_slice.items.length > 0) {
-    for (var i = 0; i < autumn_slice.items.length; i++) {
-      const data = autumn_slice.items[i];
+  if (autumn_slice?.items?.length > 0) {
+    for (var i = 0; i < autumn_slice?.items?.length; i++) {
+      const data = autumn_slice?.items[i];
       const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
@@ -153,9 +153,9 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     x => x.slice_type === "uc_winter_treks"
   );
 
-  if (winter_slice.items.length > 0) {
-    for (var i = 0; i < winter_slice.items.length; i++) {
-      const data = winter_slice.items[i];
+  if (winter_slice?.items?.length > 0) {
+    for (var i = 0; i < winter_slice?.items?.length; i++) {
+      const data = winter_slice?.items[i];
       const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
@@ -169,9 +169,9 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     x => x.slice_type === "uc_treks_to_do"
   );
 
-  if (treksToDo_slice.items.length > 0) {
-    for (var i = 0; i < treksToDo_slice.items.length; i++) {
-      const data = treksToDo_slice.items[i];
+  if (treksToDo_slice?.items?.length > 0) {
+    for (var i = 0; i < treksToDo_slice?.items?.length; i++) {
+      const data = treksToDo_slice?.items[i];
       const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);

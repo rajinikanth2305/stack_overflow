@@ -30,7 +30,7 @@ const TrekkersVideoCommon = () => {
       });
   }
 
-  const ihTrekkerVideosImageArray = results && results.items;
+  const ihTrekkerVideosImageArray = results && results?.items;
   const [show, setShow] = useState(false);
   const [trekVideoUrl, setTrekVideoUrl] = useState();
   const handleClose = () => setShow(false);
@@ -78,13 +78,13 @@ const TrekkersVideoCommon = () => {
     data,
     i
   ) {
-    const result = data?.ih_trekker_video_link?.url.split(
+    const result = data?.ih_trekker_video_link?.url?.split(
       /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
     );
     const videoIdWithParams = result && result[2];
 
     const cleanVideoId =
-      videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+      videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
     const videoUrl =
       "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
@@ -109,17 +109,17 @@ const TrekkersVideoCommon = () => {
               <div className="px-3 py-2">
                 <div>
                   <p className="p-text-5-tv mb-1">
-                    {data.ih_trekker_videos_title[0].text}
+                    {data?.ih_trekker_videos_title[0]?.text}
                   </p>
                   <div className="d-flex alifn-center justify-content-between video_views">
                     <div>
                       <p className="m-0">
-                        {data.ih_trekker_videos_views[0].text} views
+                        {data?.ih_trekker_videos_views[0]?.text} views
                       </p>
                     </div>
                     <div>
                       <p className="m-0">
-                        {data.ih_trekker_videos_date[0].text} views
+                        {data?.ih_trekker_videos_date[0]?.text} views
                       </p>
                     </div>
                   </div>

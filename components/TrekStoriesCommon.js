@@ -80,7 +80,7 @@ const TrekkersStoriesCommon = () => {
             <div className="card trek_card">
               <div alt="imgs" className="choose_trek_image">
                 <Image
-                  src={data.trekkers_stories_image.url}
+                  src={data?.trekkers_stories_image?.url}
                   layout="fill"
                   objectFit="cover"
                   objectPosition="50% 50%"
@@ -91,7 +91,7 @@ const TrekkersStoriesCommon = () => {
               <div className="p-4">
                 <div>
                   <h3 className="title-diplay-3 ts-lable">
-                    {data.trekkers_stories_title[0].text}
+                    {data?.trekkers_stories_title[0]?.text}
                   </h3>
                   {/* <p className="p-display-2">
                     {trekkers_stories_desc.length > 125
@@ -99,7 +99,7 @@ const TrekkersStoriesCommon = () => {
                       : trekkers_stories_desc}
                   </p> */}
                   <div className="p-display-2">
-                    {RichText.render(data.trekkers_stories_desc)}
+                    {RichText.render(data?.trekkers_stories_desc)}
                   </div>
                 </div>
               </div>

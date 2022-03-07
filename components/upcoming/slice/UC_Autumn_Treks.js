@@ -56,7 +56,7 @@ const UCAutnumTreks = ({ slice, autumnData }) => {
     }
   };
 
-  const ucAutumnTreksImages = autumnData.map(function(data, i) {
+  const ucAutumnTreksImages = autumnData?.map(function(data, i) {
     const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
     let url;
     const slugUrl = data?.uid;
