@@ -2522,5 +2522,8 @@ export const customStyles = css.global`
     .sustainable_img {
       min-height: 375px;
     }
+    .required {
+      color: red;
+    }
   }
 `;

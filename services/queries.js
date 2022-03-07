@@ -4,7 +4,7 @@ import moment from "moment";
 import auth from './Authenticate.js';
 //Backend base url
 const REACT_APP_TMS_BACKEND_URL="https://tmsstaging.indiahikes.com/tms-service/api/v1";
-const REACT_APP_TMS_PUBLIC_BACKEND_URL="https://tmsstaging.indiahikes.com/tms-service/public-api/v1";
+const REACT_APP_TMS_BACKEND_PUBLIC_URL="https://tmsstaging.indiahikes.com/tms-service/public-api/v1";
 //const REACT_APP_IAM_URL=http://143.110.177.110:8080
 
 //export const batchBaseApi = `${process.env.REACT_APP_TMS_BACKEND_URL}/batches`;
@@ -55,8 +55,8 @@ export const getBatches = async (trekName, month,year)  => {
                if(res.status == 200){
                    // test for status you want, etc
                   // console.log(res.status)
-               }
-               // Don't forget to return something
+               }    
+               // Don't forget to return something   
               // console.log(res.data)
                return res.data
            }
@@ -75,8 +75,8 @@ export const getBatches = async (trekName, month,year)  => {
                if(res.status == 200){
                    // test for status you want, etc
                   // console.log(res.status)
-               }
-               // Don't forget to return something
+               }    
+               // Don't forget to return something   
               // console.log(res.data)
                return res.data
            }
@@ -151,7 +151,7 @@ export const getBatchInfo =  async (batchId)  => {
                 let url = `${api}/batches/${batchId}`;
                 return axios.get(url,{ headers:  header })
                        .then((res) => res.data);
-
+         
 };
   export const findUserByEmail =  async (email)  => {
     const header=await getTokenHeader();
@@ -159,17 +159,8 @@ export const getBatchInfo =  async (batchId)  => {
                   let url = `${userApi}/users/me`;
                   return axios.get(url,{ headers:  header })
                          .then((res) => res.data);
-
+           
   };
-
-export const findUserByAnyEmail =  async (email)  => {
-    const header=await getTokenHeader();
-    const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
-    let url = `${userApi}/lookups/users?profile=CUSTOMER&email=${email}`;
-    return axios.get(url,{ headers:  header })
-        .then((res) => res.data && res.data.length > 0 ? res.data[0] : res.data);
-
-};
 
   export const getUserBooking =  async (email)  => {
      const header=await getTokenHeader();
@@ -192,7 +183,7 @@ export const getTrekFeeByTrekName =  async (trekName)  => {
      const header=await getTokenHeader();
      const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
      let url = `${userApi}/users/my-bookings`;
-
+  
      const payload={
       "batchId": batchId,
       "termsAndConditionsAccepted": true,
@@ -205,25 +196,28 @@ export const getTrekFeeByTrekName =  async (trekName)  => {
 
 export const createNewUser =  async (data)  => {
   const header=await getTokenHeader();
-  const userApi = `${REACT_APP_TMS_PUBLIC_BACKEND_URL}`;
+  const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
   let url = `${userApi}/users`;
 
   const payload=
     {
       "firstName": data.firstName,
       "lastName": data.lastName,
+      "userReferenceId": "",
       "height": data.height,
       "weight": data.weight,
       "bmi": 0,
       "phone": data.phone,
-      "email": data.email,
-      "gender": data.gender,
-      "dob": moment(data.dob).format('YYYY-MM-DDT00:00:00')
+      "email": data.email
  }
 
          try {
           let res = await axios.post(url,payload,{ headers:  header })
-           // Don't forget to return something
+           if(res.status == 200){
+               // test for status you want, etc
+               console.log(res.status)
+           }    
+           // Don't forget to return something   
            return res.data
        }
        catch (err) {
@@ -247,7 +241,7 @@ export const saveDraftBooking =  async (bookingStage,data,stepName='Default')  =
   }
    console.log(JSON.stringify(payload));
    return axios.put(url,payload,{ headers:  header });
-
+        
 };
 
 export const makePayment =  async (data)  => {
@@ -257,7 +251,7 @@ export const makePayment =  async (data)  => {
   const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
   const total=10;//computeTotal(data.trekUsers);
   let url = `${userApi}/booking-payments/${data.bookingId}/grand-totals/${total}`;  /// Later will change to POST
-
+  
   return axios.get(url,{ headers:  header })
          .then((res) => res.data);
 };
@@ -269,7 +263,7 @@ export const doSavePayments =  async (bookingId,data)  => {
 
   const header=await getTokenHeader();
   const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
-  let url = `${userApi}/booking-payments/${bookingId}/do-payments`;
+  let url = `${userApi}/booking-payments/${bookingId}/do-payments`;  
   return axios.post(url,data,{ headers:  header });
 }
 
@@ -279,9 +273,9 @@ export const doSaveOffloadingPayments =  async (bookingId,data)  => {
 
   const header=await getTokenHeader();
   const api = `${REACT_APP_TMS_BACKEND_URL}`;
-  let url = `${api}/participants/bookings/${bookingId}/backpack-offloads`;
+  let url = `${api}/participants/bookings/${bookingId}/backpack-offloads`;  
   return axios.post(url,data,{ headers:  header });
-
+        
 };
 
 const computeTotal=(usersData)=>{
@@ -295,14 +289,14 @@ const computeTotal=(usersData)=>{
 }
 
 const buildTrekMates = (data,primaryUserEmail,stepName='Default') => {
-
+ 
   const trekMates= [];
   //data?.trekUsers?.filter(x=>x.email!==primaryUserEmail)?.map(y => {
     data?.trekUsers?.map(y => {
    // const dobstring=Date.parse(y.dob);
    // var date = new Date(dobstring);
    // const dob=new Date(date.getTime() + Math.abs(date.getTimezoneOffset() * 60000));
-
+    
    if(stepName==='make_payment') {  /// only make payment step saveDraft pass the voucher id if exists
     const userdata= {
       userId: y?.id,
@@ -356,7 +350,7 @@ export const getTrekLocations = async (trekId)  => {
 
   return axios.get(url,{ headers:  header })
   .then((res) => res.data);
-
+  
 };
 
 export const saveUserLocations =  async (bookingId,payload)  => {
@@ -384,18 +378,18 @@ export const saveUserLocations =  async (bookingId,payload)  => {
     return axios.get(url,{ headers:  header }).then((res) => res.data);
   };
 
-
+  
   export const getTrekOpenBatches = async (trekId,startDate)  => {
     const header=await getTokenHeader();
     const formattedDate=moment(new Date()).format('YYYY-MM-DDT00:00:00')
     const api = `${REACT_APP_TMS_BACKEND_URL}`;
     ///https://tmsstaging.indiahikes.com/tms-service/api/v1/batches?pageNo=0&pageSize=100&searchQuery=trekId:9 AND startDate>'2021-09-26T00:00:00'
-
+   
     let url = `${api}/batches?pageNo=0&pageSize=100&searchQuery=trekId:${trekId} AND startDate>'${formattedDate}'&sortField=startDate&sortOrderDescending=false`;
     return axios.get(url,{ headers:  header }).then((res) => res.data);
   };
 
-
+ 
   export const uploadUserFitness =  async (participantId,documentType,payload)  => {
 
     const header=await getTokenHeaderWithMultiPartMimeType();
@@ -428,6 +422,26 @@ export const saveUserLocations =  async (bookingId,payload)  => {
     const api = `${REACT_APP_TMS_BACKEND_URL}`;
     let url = `${api}/bookings/${bookingId}/backpack-offloading`;
     return axios.get(url,{ headers:  header }).then((res) => res.data);
+  };
+
+  export const saveWebComments =   (postname,payload)  => {
+    const api = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}`;
+    let url = `${api}/website-comments`;
+    return axios.post(url,payload)
+           .then((res) => res.data);
+  };
+
+  export const getPostComments =  (postName)  => {
+    const api = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}`;
+    let url = `${api}/website-comments?post-name=${postName}`;
+    return axios.get(url).then((res) => res.data);
+  };
+
+
+  export const getTrekReviews =  (trekName)  => {
+    const api = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}`;
+    let url = `${api}/${trekName}/reviews`;
+    return axios.get(url).then((res) => res.data);
   };
 
 
