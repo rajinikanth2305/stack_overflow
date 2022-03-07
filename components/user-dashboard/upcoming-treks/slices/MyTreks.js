@@ -103,10 +103,10 @@ const MyTreks = forwardRef((props, ref) => {
         <p className="m-0 text-decoration-underline">
           <a
             className="p-text-3-blue-lora"
-            href={data?.documen_link.url}
+            href={data?.documen_link?.url}
             target="_blank"
           >
-            {data?.document_name[0].text}
+            {data?.document_name[0]?.text}
           </a>
         </p>
         <p className="p-text-10-fgb text-left-custom">Click link To Download</p>
@@ -116,11 +116,11 @@ const MyTreks = forwardRef((props, ref) => {
 
   const trekVideosArrayDetails = videoIndexes?.map(function(i) {
     const data=videoData && videoData[i];
-    const result = data?.video_url?.url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+    const result = data?.video_url?.url?.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
     const videoIdWithParams = result && result[2];
   
     const cleanVideoId =
-    videoIdWithParams && videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+    videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
   
     const videoUrl =
       "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
