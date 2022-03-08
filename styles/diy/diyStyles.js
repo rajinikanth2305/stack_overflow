@@ -551,9 +551,9 @@ export const diyStyles = css.global`
     width: 100%;
   }
 
-  .trekvideos-carosule-common  >  div > .slick-track {
-    width: auto !important;
-  }
+  // .trekvideos-carosule-common  >  div > .slick-track {
+  //   width: auto !important;
+  // }
 
   .hvr-grow {
     vertical-align: middle;
@@ -591,9 +591,9 @@ export const diyStyles = css.global`
       background-position: -425px 0;
     }
 
-    .trekvideos-carosule-common  >  div > .slick-track {
-      width: max-content !important;
-    }
+    // .trekvideos-carosule-common  >  div > .slick-track {
+    //   width: max-content !important;
+    // }
 
     .community_member_image {
       width: 75px;

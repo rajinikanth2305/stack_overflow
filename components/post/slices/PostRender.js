@@ -959,8 +959,10 @@ const PostRender = ({
                             <p className="m-0 p-text-small-black">
                               By{" "}
                               <b>
-                                {data?.author_first_name}{" "}
-                                {data?.author_last_name}
+                                {/* {data?.author_first_name}{" "}
+                                {data?.author_last_name} */}
+                                {authorData?.data?.author_first_name}{" "}
+                                {authorData?.data?.author_last_name}
                               </b>
                             </p>
                             <p className="m-0 p-text-small-black">

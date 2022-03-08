@@ -12,6 +12,8 @@ const FaqHome = ({ slice }) => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [isActive, setActive] = useState(false);
 
+  console.log(activeIndex);
+
   const faqArrayDetails = faqArray?.map(function(data, k) {
     return (
       <div className="col-md-6" key={k}>
@@ -20,7 +22,8 @@ const FaqHome = ({ slice }) => {
             <Accordion.Toggle
               variant="link"
               eventKey={k + 1}
-              className={k + 1 === activeIndex && activeIndex && isActive === true ? "show" : ""}
+              // className={k + 1 === activeIndex && activeIndex && isActive === true ? "show" : ""}
+              className={activeIndex && activeIndex === k + 1 ? "show" : ""}
               onClick={() => {setActiveIndex(k + 1); setActive(!isActive)}}
             >
               {data.q_title[0].text}
@@ -28,7 +31,7 @@ const FaqHome = ({ slice }) => {
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>
-              <div className="p-text-4">{RichText.render(data.q_answer, linkResolver)}</div>
+              <div className="p-text-4 img-ctrl">{RichText.render(data.q_answer, linkResolver)}</div>
             </Card.Body>
           </Accordion.Collapse>
         </Card>

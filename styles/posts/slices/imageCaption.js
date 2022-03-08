@@ -94,9 +94,9 @@ export const imageCaptionStyles = css.global`
   }
   .image-label {
     display: block;
-    text-align: center;
+    text-align: left;
     font-style: italic;
-    font-size: 14px;
+    font-size: 12px;
     color: #949494;
   }
   .img-ctrl > .block-img > img {

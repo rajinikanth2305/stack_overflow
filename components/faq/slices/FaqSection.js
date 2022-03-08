@@ -135,11 +135,7 @@ const FaqSection = () => {
                 <Accordion.Toggle
                   variant="link"
                   eventKey={j + 1}
-                  className={
-                    j + 1 === activeIndex && activeIndex && isActive === true
-                      ? "show"
-                      : ""
-                  }
+                  className={activeIndex && activeIndex === j + 1 ? "show" : ""}
                   onClick={() => {
                     setActiveIndex(j + 1);
                     setActive(!isActive);

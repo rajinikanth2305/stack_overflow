@@ -83,4 +83,7 @@ export const whatTrekkerSayStyles = css.global`
   p > a {
     text-decoration: underline;
   }
+  .img-ctrl > .block-img > img {
+    width: 100% !important;
+  }
 `;

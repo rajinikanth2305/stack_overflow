@@ -81,9 +81,9 @@ const Founder = ({ slice }) => {
                 <div className="p-text-2 fl-style">
                   {RichText.render(founder_Message_List, linkResolver)}
                 </div>
-                <div>
+                {/* <div>
                   <p className="author_name mb-2">{RichText.asText(authors)}</p>
-                </div>
+                </div> */}
                 <div>
                   <p className="m-0 p-text-2">
                     <b>{RichText.asText(authors)}</b>
@@ -132,9 +132,9 @@ const Founder = ({ slice }) => {
                 {RichText.render(founder_Message_List)}
               </div>
             </div>
-            <div>
+            {/* <div>
               <p className="author_name mb-2">{RichText.asText(authors)}</p>
-            </div>
+            </div> */}
             <div>
               <p className="m-0 p-text-2">
                 <b>{RichText.asText(authors)}</b>

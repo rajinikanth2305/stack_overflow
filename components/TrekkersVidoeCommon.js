@@ -106,7 +106,7 @@ const TrekkersVideoCommon = () => {
                   }}
                 />
               </div>
-              <div className="px-3 py-2">
+              {/* <div className="px-3 py-2">
                 <div>
                   <p className="p-text-5-tv mb-1">
                     {data?.ih_trekker_videos_title[0]?.text}
@@ -124,7 +124,7 @@ const TrekkersVideoCommon = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
