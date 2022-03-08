@@ -14,12 +14,13 @@ import { Rating } from 'primereact/rating';
 const TrekReviews = ({ slice }) => {
   const [show, setShow] = useState(false);
   const [reveiewInfo, setReveiewInfo] = useState();
-
+  const [answers, setAnswers] = React.useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [trekUserReviews, setTrekUserReviews] = useState([]); 
   const [indexes, setIndexes] = React.useState([]);
   const [counter, setCounter] = React.useState(0);
+
   
 
   const settings = {
@@ -57,50 +58,27 @@ const TrekReviews = ({ slice }) => {
     ]
   };
 
-  const sampleData = [
-    {
-      name: "Harshini Ramesh",
-      batch: "January 2022",
-      title: "Kedarkantha – The Trek That Transformed Indian Trekking",
-      desc:
-        "To say the trek was magical is a small word. Being in this trek has helped me realise that this saying Be the change you wish to see in the world is true, how India hikes was created, has been soaring and has been changing and impacting individuals is remarkable."
-    },
-    {
-      name: "Deya Bhattacharjee",
-      batch: "January 2021",
-      title:
-        "Rupin Pass – One Of The Flagship Treks Of Indiahikes And Of Trekkers In Our Country.",
-      desc:
-        "To say the trek was magical is a small word. Being in this trek has helped me realise that this saying Be the change you wish to see in the world is true, how India hikes was created, has been soaring and has been changing and impacting individuals is remarkable."
-    },
-    {
-      name: "Pruthvi mj",
-      batch: "December 2021",
-      title: "Kedarkantha – The Trek That Transformed Indian Trekking",
-      desc:
-        "To say the trek was magical is a small word. Being in this trek has helped me realise that this saying Be the change you wish to see in the world is true, how India hikes was created, has been soaring and has been changing and impacting individuals is remarkable."
-    },
-    {
-      name: "Pruthvi mj",
-      batch: "December 2021",
-      title: "Kedarkantha – The Trek That Transformed Indian Trekking",
-      desc:
-        "To say the trek was magical is a small word. Being in this trek has helped me realise that this saying Be the change you wish to see in the world is true, how India hikes was created, has been soaring and has been changing and impacting individuals is remarkable."
-    }
-  ];
-
   const trekkersStoriesImage = trekUserReviews?.map(function(data, i) {
     let title="";
     let desc="";
-    //"answerType": "Answer::Descriptive"
+ 
     if(data?.reviewAnswers?.length > 0) {
-      const answers= data?.reviewAnswers.filter(y=>y.answerType==="Answer::Descriptive");
-      const descriptives=answers?.filter(z=>z.questionText.indexOf("Describe  your trekking experience")>0);
-      if(descriptives?.length>0) {
-        const answer=descriptives[0];
+      const answers= data?.reviewAnswers.filter(y=>y.questionType==="Question::Descriptive");
+      if(answers?.length>0) {
+        const answer=answers[0];
         title=answer?.questionText;
         desc=answer?.answerText
       }
+    }
+
+    const onMoreClick=(data)=> {
+      setReveiewInfo(data);
+      console.log(data);
+      const answers= data?.reviewAnswers?.filter(y=>y.questionType==="Question::Descriptive");
+      setAnswers(answers);
+      const arr = Array.from(new Array(answers?.length), (x, i) => i);
+      setIndexes(arr);
+      setShow(true);
     }
 
     return (
@@ -137,8 +115,7 @@ const TrekReviews = ({ slice }) => {
                   <button
                     className="btn btn-btn-yellow-new mt-3 mb-2"
                     onClick={() => {
-                      setReveiewInfo(data);
-                      setShow(true);
+                      onMoreClick(data);
                     }}
                   >
                     Read More
@@ -177,11 +154,9 @@ const TrekReviews = ({ slice }) => {
    const getTrekReviewsByTrekName=(trekName)=>{
            getTrekReviews(trekName).then(res=>{
                  setTrekUserReviews(res);
-                 const arr = Array.from(new Array(2), (x, i) => i);
-                  setIndexes(arr);
-                  setCounter(1);
+                
            });
-   }
+          }
 
   return (
     <>
@@ -238,106 +213,18 @@ const TrekReviews = ({ slice }) => {
                   {reveiewInfo && reveiewInfo.title}
                 </h3>
 
-                <p className="p-display-2">
-
-                {indexes.slice(0, 1).map((i) => {
-            {
-              return reveiewInfo?.reviewQuestions.map((item, index) => {
-                const multiple = item.reviewQuestionType.toLowerCase() == 'multiple_choice';
-                const single = item.reviewQuestionType.toLowerCase() == 'single_choice';
-                const descriptive = item.reviewQuestionType.toLowerCase() == 'Answer::Descriptive';
-                const rating = item.reviewQuestionType.toLowerCase() == 'rating';
-
-                return (
-                  <div className="card">
-                    <strong>
-                      <span dangerouslySetInnerHTML={{ __html: item.question }} />
-                    </strong>
-                    {multiple && (
-                      <div>
-                        {item.answers.map((ch, index) => {
-                          return (
-                            <div>
-                              <p></p>
-                              <Controller
-                                name={`${item.questionId}-${index}`}
-                                control={control}
-                                render={({ onChange, value }) => (
-                                  <Checkbox
-                                    checked={value}
-                                    onChange={(e) => {
-                                      onChange(e.checked);
-                                    }}
-                                  />
-                                )}
-                              />
-                              <label className="p-col-12 p-mb-2 p-md-2 p-mb-md-0">{ch}</label>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
-                    {single && (
-                      <div>
-                        {item.answers.map((ch, index) => {
-                          // @ts-ignore
-                          const formValues = getValues(item.questionId.toString());
-                          // @ts-ignore
-                          let radioChecked = false;
-                          if (formValues !== undefined) {
-                            const val = formValues.split('-');
-                            console.log(val);
-                            if (Number(val[1]) === index) radioChecked = true;
-                          }
-                          return (
-                            <div className="p-field-radiobutton">
-                              <p></p>
-                              <Controller
-                                name={`${item.questionId}`}
-                                control={control}
-                                render={({ onChange, value }) => (
-                                  <RadioButton
-                                    name={`${item.questionId}`}
-                                    checked={radioChecked}
-                                  />
-                                )}
-                              />
-
-                              <label className="p-col-12 p-mb-2 p-md-2 p-mb-md-0">{ch}</label>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
-                    {descriptive && (
-                      <div>
-                        <p></p>
-                        <InputText className="p-my-2 w-100" />
-                      </div>
-                    )}
-                    {rating && (
-                      <div>
-                        <p></p>
-                        <Controller
-                          name={`${item.questionId}`}
-                          control={control}
-                          render={({ onChange, value }) => (
-                            <Rating
-                              stars={5}
-                              className="p-rating-star"
-                              value={value}
-                            />
-                          )}
-                        />
-                      </div>
-                    )}
-                  </div>
-                );
-              });
-            }
-          })}
-
-                </p>
+                {
+                  indexes.map(index => {
+                  const ansdata=answers?.[index];
+                  console.log(ansdata);
+                      return(
+                      <p className="p-display-2">
+                          {ansdata?.answerText}
+                      </p>
+                      )
+                       
+                      })
+                }
 
               </div>
             </div>

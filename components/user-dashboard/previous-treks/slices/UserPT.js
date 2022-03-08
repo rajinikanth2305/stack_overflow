@@ -205,9 +205,9 @@ const UserPT = () => {
   };
 
   const onSubmit = formData => {
-    console.log(JSON.stringify(formData));
-    console.log(reviewData);
-    console.log(currentBookingData);
+   // console.log(JSON.stringify(formData));
+    //console.log(reviewData);
+   // console.log(currentBookingData);
 
     var map = new Map();
     let ratingStar = 0;
@@ -252,11 +252,13 @@ const UserPT = () => {
       userId: userId,
       reviewAnswers: buildAnswers(map, ratingQuestionId, ratingStar)
     };
-    console.log(saveObject);
+   // console.log(saveObject);
 
     saveUserReviews(saveObject)
       .then(res => {
         console.log("review saved successfully");
+       alert("Review submitted succesfully.");
+       window.scrollTo(0, 0);
         toast?.current?.show({
           severity: "info",
           summary: `' Thanks for your review submission'`,
