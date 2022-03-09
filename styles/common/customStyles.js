@@ -1520,6 +1520,12 @@ export const customStyles = css.global`
     width: 100%;
   }
 
+  .ar_video_big_img {
+    height: 360px;
+    width: 100%;
+    position: relative;
+  }
+
   .note_sec {
     border-left: 2px solid rgb(206, 156, 132);
     padding-left: 15px;

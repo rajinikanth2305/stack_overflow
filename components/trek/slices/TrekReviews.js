@@ -25,7 +25,7 @@ const TrekReviews = ({ slice }) => {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -35,7 +35,7 @@ const TrekReviews = ({ slice }) => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          infinite: true,
+          infinite: false,
           dots: true
         }
       },

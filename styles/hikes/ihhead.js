@@ -37,6 +37,15 @@ export const ihheaderStyles = css.global`
     padding-left: 1.5rem;
   }
 
+  .navbar-expand-lg .navbar-nav .nav-item.r-nav {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+
+  .navbar-expand-lg .navbar-nav .dropdown-menu {
+    right: 0;
+  }
+
   // .navbar-light .navbar-nav .nav-link.active,
   // .navbar-light .navbar-nav .show > .nav-link {
   //   border-bottom: 3px solid rgb(255, 193, 0);
@@ -98,9 +107,37 @@ export const ihheaderStyles = css.global`
     display: none;
   }
 
+  .g-search {
+    border-radius: 20px;
+    border: 1px solid #cccccc;
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-size: 14px;
+    padding: 3px 15px;
+  }
+
+  .search-box-section {
+    background: #ffffff;
+    border: 1px solid rgb(255,193,0);
+    position: absolute;
+    right: 7%;
+    width: 25%;
+    z-index: 99;
+  }
+
   @media only screen and (max-width: 660px) {
     .m-d-block {
       display: block;
+    }
+
+    .mw-100 {
+      width: 100%;
+    }
+
+    .search-box-section {
+      position: relative;
+      width: 100%;
+      right: 0;
     }
   }
 

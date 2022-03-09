@@ -519,18 +519,34 @@ const PostRender = ({
           }}
         >
           <div>
+            
             {imageURL && (
+              <div className="ar_video_big_img">
+               <div className="d-flex align-items-center justify-content-center w-100 h-100">
+               <div className="text-center">
+                 <img
+                   src="/v-icon.png"
+                   alt="playicon'"
+                   className="paly-icon icon-size-50"
+                   // onClick={handleShow}
+                 />
+               </div>
+             </div>
               <Image
                 src={imageURL}
-                objectFit="cover"
-                width="1920"
-                height="1080"
+                // objectFit="cover"
+                // width="1920"
+                // height="1080"
+                layout="fill"
+                    objectFit="cover"
+                    objectPosition="50% 50%"
                 alt="Click on the image to view the Video"
                 onClick={() => {
                   setTrekVideoUrl(videoUrl);
                   setShow(true);
                 }}
               />
+              </div>
             )}
           </div>
         </div>
@@ -562,6 +578,16 @@ const PostRender = ({
               }}
             >
               <div className="ar_right_side_imgs">
+                <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                  <div className="text-center">
+                    <img
+                      src="/v-icon.png"
+                      alt="playicon'"
+                      className="paly-icon icon-size-50"
+                      // onClick={handleShow}
+                    />
+                  </div>
+                </div>
                 {imageURL && (
                   <Image
                     src={imageURL}
