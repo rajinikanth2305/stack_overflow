@@ -215,7 +215,8 @@ const WelcomeProfile = () => {
         bookingState: book.bookingState,
         backPackOffloadingDays: book.backPackOffloadingDays,
         backPackOffloadingCostPerDay: book.backPackOffloadingCostPerDay,
-        backPackOffloadingTax: book.backPackOffloadingTax
+        backPackOffloadingTax: book.backPackOffloadingTax,
+        waitListNumber: book.waitListNumber
       });
     }
     setStates(bookTrekContents,bookingId,prismicResults);
@@ -618,6 +619,17 @@ const WelcomeProfile = () => {
                                             </a>
                                             </>
                                             )}
+                                        {upComingTrek?.bookingState === "WAITING_LIST" && (
+                                            <>
+                                              <div className="mx-2" />
+                                              <button
+                                                  className="btn table-btn-yellow"
+                                              >
+                                                Waiting List # {upComingTrek.waitListNumber}
+                                              </button>
+                                            </>
+                                        )
+                                        }
                                             {upComingTrek?.bookingState !==
                                             "IN_ACTIVE" && (
                                                 <>
@@ -861,6 +873,7 @@ const WelcomeProfile = () => {
                                               </p>
                                             </div>
                                             <div className="d-flex justify-content-end w-100 m-m-t-10">
+
                                               {trekData?.bookingState ===
                                                 "PAYMENT" || trekData?.bookingState ===
                                               "ADD_PARTICIPANTS" && (
@@ -887,25 +900,15 @@ const WelcomeProfile = () => {
                                                   >
                                                     Make payment
                                                   </button>
-                                                  {trekData?.bookingState === "WAITING_LIST" && (
-                                                    <>
-                                                  <div className="mx-2" />
-                                                    <button
-                                                      className="btn table-btn-yellow"
-                                                    >
-                                                      Waiting List # {trekData.waitListNumber}
-                                                    </button>
-                                                  </>
-                                                  )
-                                                }
+
                                                 </>
                                               )}
                                             </div>
                                             <div>
-                                            {/* {trekData?.bookingState === "WAITING_LIST" && (
+                                             {trekData?.bookingState === "WAITING_LIST" && (
                                                <span> Waiting List # {trekData.waitListNumber} </span>
                                                )
-                                            } */}
+                                            }
                                             </div>
                                           </div>
                                         </div>
