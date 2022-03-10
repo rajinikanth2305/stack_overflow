@@ -183,7 +183,7 @@ const FaqSection = () => {
                 {faqArrayListMobile && faqArrayListMobile}
               </div>
             </div>
-            <TabContent activeTab={activeTab}>
+            <TabContent className="faq-tab-content" activeTab={activeTab}>
               {faqAccordionArrayList}
             </TabContent>
           </div>

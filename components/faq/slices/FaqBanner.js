@@ -13,7 +13,7 @@ const FaqBanner = ({ slice }) => {
   return (
     <>
       <div>
-        <div className="banner-image-desktop">
+        <div className="banner-image-desktop c-us-bg">
           <div className="bg_overlay h-100">
             <div className="h-100">
               <div className="d-flex align-items-center justify-content-center w-100 h-100">

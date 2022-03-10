@@ -62,7 +62,7 @@ const MoreHelpAndSupport = ({ slice }) => {
 
   return (
     <>
-      <div className="my-5 pt-4 mmy-2 mpt-0">
+      <div className="my-5 mmy-2 mpt-0">
         <div className="container">
           <div className="row d-flex align-items-center mt-4 mb-2">
             <div className="col-md-12">

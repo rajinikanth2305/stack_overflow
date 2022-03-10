@@ -338,7 +338,7 @@ export const customStyles = css.global`
     box-shadow: 0px 1px 4px rgb(112, 112, 112) !important;
     border-radius: 0;
     cursor: pointer;
-    margin: 0 15px;
+    margin-right: 30px;
   }
 
   .faq_icon_image {
@@ -1565,6 +1565,10 @@ export const customStyles = css.global`
   .tab-content {
     background: #ffffff;
     padding: 30px;
+  }
+
+  .tab-content.faq-tab-content {
+    padding: 10px 0 0 0 !important;
   }
 
   .fam-tab-img {
