@@ -86,4 +86,9 @@ export const whatTrekkerSayStyles = css.global`
   .img-ctrl > .block-img > img {
     width: 100% !important;
   }
+  .faq_video_img {
+    position: relative;
+    width: 100%;
+    height: 300px;
+  }
 `;

@@ -33,24 +33,25 @@ const CertificateTemplate = certificateData => {
       borderBottom: "1px solid #ffcc36",
       width: "67%",
       position: "absolute",
-      top: "34%",
+      top: "68%",
       left: "23%"
     },
     header1: {
       color: "#2c2e35",
-      fontSize: "16px",
+      fontSize: "24px",
       marginBottom: "10px",
       textAlign: "center",
       textTransform: "capitalize",
       position: "absolute",
-      top: "45%",
-      borderBottom: "1px solid #333333",
-      left: "46%",
-      paddingBottom: "2px"
+      top: "42%",
+      // borderBottom: "1px solid #333333",
+      left: "5%",
+      paddingBottom: "2px",
+      width: "100%"
     },
     sectionText: {
       color: "#2c2e35",
-      fontSize: "9px",
+      fontSize: "10px",
       fontWeight: "extrabold",
       paddingTop: "5px",
       paddingBottom: "5px",
@@ -62,7 +63,7 @@ const CertificateTemplate = certificateData => {
       marginBottom: "10px",
       position: "absolute",
       top: "53%",
-      left: "39%",
+      left: "37.5%",
       width: "35%",
       textAlign: "center",
       lineHeight: "1.5px"
@@ -73,7 +74,7 @@ const CertificateTemplate = certificateData => {
       marginBottom: "10px",
       position: "absolute",
       top: "57%",
-      left: "39%",
+      left: "37.5%",
       width: "35%",
       textAlign: "center",
       lineHeight: "1.5px"
@@ -84,7 +85,7 @@ const CertificateTemplate = certificateData => {
       marginBottom: "10px",
       position: "absolute",
       top: "61%",
-      left: "39%",
+      left: "37.5%",
       width: "35%",
       textAlign: "center",
       lineHeight: "1.5px"
@@ -124,7 +125,7 @@ const CertificateTemplate = certificateData => {
   return (
     <>
       <Document>
-        <Page size="A4" style={styles.page}>
+        <Page size="A4" style={styles.page} orientation="landscape">
           <View style={styles.section}>
             <Image src="/certificate.png" />
             <Text style={styles.header1}>
@@ -137,6 +138,7 @@ const CertificateTemplate = certificateData => {
                 certificateData?.certificateData?.userTrekBookingParticipants[0]
                   ?.userDetailsForDisplay?.lastName
               }
+              {/* Mohammed Ameen arif meeran */}
             </Text>
             <Text style={styles.header2}>For successfully completing the</Text>
             <Text style={styles.header22}>

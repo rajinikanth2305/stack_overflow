@@ -2124,6 +2124,12 @@ export const customStyles = css.global`
     text-align: left !important;
   }
 
+  .faq_video_img {
+    position: relative;
+    width: 100%;
+    height: 300px;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

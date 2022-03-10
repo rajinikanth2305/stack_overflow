@@ -627,6 +627,7 @@ const WelcomeProfile = () => {
                                               >
                                                 Waiting List # {upComingTrek.waitListNumber}
                                               </button>
+                                              <div className="mx-2" />
                                             </>
                                         )
                                         }

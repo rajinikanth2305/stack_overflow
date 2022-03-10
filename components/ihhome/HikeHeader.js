@@ -32,7 +32,7 @@ const HikeHeader = ({ auth = false }) => {
   const [userServiceObject, setUserServiceObject] = useState(undefined);
   const [searchText, setSearchText] = useState();
 
-  useEffect(() => {
+ // useEffect(() => {
     // if (auth) {
     //   import("../../services/UserService").then(mod => {
     //     //setUserServiceObject(mod);
@@ -51,7 +51,23 @@ const HikeHeader = ({ auth = false }) => {
     //   Prismic.Predicates.at("document.tags", ["latest updates"])
     // ]);
     // console.log(easyMordatesTreks);
-  }, []);
+  //}, []);
+
+  // useEffect(() => {
+  //   fintOurTeamMembers();
+  //   return () => {
+  //     //   console.log("test");
+  //   };
+  // }, []);
+
+  // async function fintOurTeamMembers() {
+  //   const client = Client();
+  //   const doc = await client
+  //     .query([Prismic.Predicates.fulltext(document, "hampta")])
+  //     .then(function(response) {
+  //       console.log(response);
+  //     });
+  // }
 
   // React Render
   const postAuthenticAction = () => {
