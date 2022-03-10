@@ -31,9 +31,10 @@ const LatestUpdatesTrekkings = ({
     "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
   const youtube_imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
 
-  // getYoutubeTitle(cleanVideoId, function (err, title) {
-  //   setVtitle(title);
-  // });
+  getYoutubeTitle(cleanVideoId, function(err, title) {
+    setVtitle(title);
+    console.log(title);
+  });
 
   const latestLrekImage =
     latestUpdateAarticlePrimaryArticleData &&
@@ -195,12 +196,11 @@ const LatestUpdatesTrekkings = ({
                         onClick={handleShow}
                       />
                     </div>
-                    <div className="p-3">
-                      <p className="latestTrekWorld_caption">
-                        {/* {RichText.asText(videoText)} */}
-                        {/* {vTitle && vTitle} */}
-                      </p>
-                    </div>
+                    {vTitle && (
+                      <div className="p-3">
+                        <p className="latestTrekWorld_caption">{vTitle}</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}

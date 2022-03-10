@@ -465,6 +465,8 @@ export const trekStyle = css.global`
 
   .author_img {
     float: none;
+    border-radius: 50%;
+    border: 2px solid #ffc100 !important;
   }
 
   .what_i_like_image {
@@ -1909,7 +1911,6 @@ export const trekStyle = css.global`
     .hd-tab2-iamge-tabs.mv {
       height: 200px;
     }
-
 
     .m-t-expert-image {
       margin-top: 20px;
