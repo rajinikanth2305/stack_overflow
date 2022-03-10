@@ -28,7 +28,6 @@ const HikeHeader = ({ auth = false }) => {
 
   const toggle = () => setIsOpen(!isOpen);
   const router = useRouter();
-  console.log(router.pathname);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userServiceObject, setUserServiceObject] = useState(undefined);
   const [searchText, setSearchText] = useState();
@@ -46,12 +45,12 @@ const HikeHeader = ({ auth = false }) => {
     // const easyMordatesTreks = client.query([Prismic.Predicates.fulltext(document, "")]);
     // console.log(easyMordatesTreks);
     // }
-    const client = Client();
-    const easyMordatesTreks = client.query([
-      Prismic.Predicates.at("document.type", "post"),
-      Prismic.Predicates.at("document.tags", ["latest updates"])
-    ]);
-    console.log(easyMordatesTreks);
+    // const client = Client();
+    // const easyMordatesTreks = client.query([
+    //   Prismic.Predicates.at("document.type", "post"),
+    //   Prismic.Predicates.at("document.tags", ["latest updates"])
+    // ]);
+    // console.log(easyMordatesTreks);
   }, []);
 
   // React Render
@@ -325,7 +324,7 @@ const HikeHeader = ({ auth = false }) => {
                   <Link href="../../../greentrails">
                     <DropdownItem>Green Trails</DropdownItem>
                   </Link>
-                  <Link href="../../../articles">
+                  <Link href="../../../articles/latest-updates">
                     <DropdownItem>Articles</DropdownItem>
                   </Link>
                 </DropdownMenu>

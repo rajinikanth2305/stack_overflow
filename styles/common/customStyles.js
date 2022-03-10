@@ -425,6 +425,13 @@ export const customStyles = css.global`
     object-fit: cover;
   }
 
+  .latest_art_img_bg_img {
+    height: 200px;
+    width: 100%;
+    position: relative;
+    object-fit: cover;
+  }
+
   .p-text-small {
     line-height: 16px;
     text-align: left;
@@ -1552,7 +1559,7 @@ export const customStyles = css.global`
   }
 
   .bg-grey {
-    background: rgba(242,242,242,1);
+    background: rgba(242, 242, 242, 1);
   }
 
   .tab-content {
@@ -1582,7 +1589,7 @@ export const customStyles = css.global`
   }
 
   .fam-tabs-gt.fam-tabs > .nav-item {
-    background: rgba(57,114,41,1);
+    background: rgba(57, 114, 41, 1);
     color: #ffffff;
   }
 
@@ -1706,7 +1713,7 @@ export const customStyles = css.global`
   }
 
   .career_video_sec_grey {
-    background:rgba(242,242,242,1);
+    background: rgba(242, 242, 242, 1);
     padding: 35px 0 20px;
     margin-top: 80px;
   }
@@ -1781,7 +1788,9 @@ export const customStyles = css.global`
     -webkit-transition-property: transform;
     transition-property: transform;
   }
-  .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+  .hvr-grow:hover,
+  .hvr-grow:focus,
+  .hvr-grow:active {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }
@@ -1798,15 +1807,15 @@ export const customStyles = css.global`
   }
 
   .color-matroon {
-    color: rgba(157,58,11,1);
+    color: rgba(157, 58, 11, 1);
   }
 
   .color-blue {
-    color: rgba(0,85,196,1);
+    color: rgba(0, 85, 196, 1);
   }
 
   .color-green {
-    color: rgba(57,114,41,1);
+    color: rgba(57, 114, 41, 1);
   }
 
   .img-margin {
@@ -1855,6 +1864,14 @@ export const customStyles = css.global`
     object-fit: cover;
   }
 
+  .hikesnews-bg {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    object-fit: cover;
+  }
+
   .latestTrekWorld_caption {
     line-height: 24px;
     text-align: left;
@@ -1862,7 +1879,7 @@ export const customStyles = css.global`
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
-    color: rgba(0,0,0,1);
+    color: rgba(0, 0, 0, 1);
     letter-spacing: 0.5px;
   }
 
@@ -1897,7 +1914,7 @@ export const customStyles = css.global`
   }
 
   .btn-btn-gray-new {
-    background: rgba(112,112,112,1);
+    background: rgba(112, 112, 112, 1);
     box-shadow: rgba(0, 0, 0, 0.353) 3px 3px 3px;
     border: 0px none;
     padding: 10px 30px;
@@ -1927,7 +1944,7 @@ export const customStyles = css.global`
   }
 
   .bg-peach {
-    background: rgba(255,193,0,0.102);
+    background: rgba(255, 193, 0, 0.102);
   }
 
   .gtimage {
@@ -1935,7 +1952,7 @@ export const customStyles = css.global`
   }
 
   .card.faq-card {
-    box-shadow: 0px 1px 4px rgb(112,112,112) !important;
+    box-shadow: 0px 1px 4px rgb(112, 112, 112) !important;
   }
 
   .pillar-card.card {
@@ -1980,9 +1997,131 @@ export const customStyles = css.global`
     top: 4px;
     font-weight: normal;
   }
-  
+
   p > a {
     text-decoration: underline;
+  }
+
+  .article_tabs.nav-tabs {
+    border-bottom: 0;
+    background: #ffc100;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.161);
+    // padding: 0 50px;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .article_tabs > .nav.card-header-tabs.article_tabs.nav-tabs {
+    margin-bottom: 20px;
+  }
+
+  .article_tabs > .nav-item > .nav-link.active {
+    background-color: #ffffff !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    color: #000000;
+    border-top: 2px solid black !important;
+    position: relative;
+    top: 0px;
+  }
+
+  .article_tabs > .nav-item > .nav-link {
+    background: rgba(255, 193, 0, 0.251) !important;
+    border-radius: 0 !important;
+    color: #000000;
+    padding: 5px 30px !important;
+    line-height: 18px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
+  }
+
+  .article_tabs > .nav-item.nav-link::after {
+    font-family: "FontAwesome" !important;
+    font-size: 18px;
+    content: "\f107" !important;
+    left: 8px;
+    position: relative;
+    top: 2px;
+  }
+
+  .article-tab-content > div > .tab-content {
+    padding: 15px 0 15px 0;
+  }
+
+  .tab-bg {
+    background: #ffc100;
+    padding: 16px;
+    position: absolute;
+    width: 100%;
+    z-index: -99;
+  }
+
+  .latestLrekImage_bg {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    // margin-top: 30px;
+    background-size: cover;
+    object-fit: cover;
+  }
+
+  .day_talk_title {
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic Medium;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .day_talk_title > span {
+    border-bottom: 2px solid rgba(255, 193, 0, 1);
+    padding: 5px 0;
+  }
+
+  .day_trek_talk_title {
+    line-height: 40px;
+    text-align: left;
+    font-family: Lora-Medium;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+    margin: 30px 0;
+  }
+
+  .latest_trek_details {
+    // height: 460px;
+    padding: 45px 35px 30px 35px;
+  }
+
+  .name_editor {
+    line-height: 18px;
+    text-align: left;
+    font-family: Lora-Medium;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .new_titile_bg {
+    background: #9D3A0B;
+    padding: 5px;
+  }
+
+  .new_titile_bg > div > .banner-text-3 {
+    text-align: left !important;
   }
 
   @media only screen and (max-width: 660px) {
@@ -1996,6 +2135,32 @@ export const customStyles = css.global`
       position: relative;
       height: 585px;
       background-position: -425px 0;
+    }
+
+    .latestLrekImage_bg {
+      height: 200px;
+      margin: 0;
+      background-size: cover;
+      background-position: bottom;
+      object-fit: cover;
+    }
+
+    .day_trek_talk_title {
+      font-size: 24px;
+      line-height: 35px;
+      margin: 20px 0 10px;
+    }
+
+    latest_trek_details {
+      height: 370px;
+      padding: 45px 15px 30px 20px;
+    }
+
+    .name_editor {
+      font-style: italic;
+      font-weight: normal;
+      font-size: 12px;
+      color: rgba(112, 112, 112, 1);
     }
 
     .p-lo-36 {
@@ -2015,7 +2180,7 @@ export const customStyles = css.global`
       font-size: 16px;
       line-height: 24px;
     }
-    
+
     .exp-card-blog.gt-blog {
       min-height: auto;
     }
@@ -2042,6 +2207,10 @@ export const customStyles = css.global`
     }
 
     .latestTrekWorld_bg.ltw_img {
+      height: 170px;
+    }
+    
+    .hikesnews-bg {
       height: 170px;
     }
 
@@ -2250,7 +2419,7 @@ export const customStyles = css.global`
     .mpy-0 {
       padding: 0 !important;
     }
-    
+
     .mmt-10 {
       margin-top: 20px !important;
     }

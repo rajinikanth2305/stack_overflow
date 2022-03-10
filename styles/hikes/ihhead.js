@@ -118,11 +118,21 @@ export const ihheaderStyles = css.global`
 
   .search-box-section {
     background: #ffffff;
-    border: 1px solid rgb(255,193,0);
+    border: 1px solid rgb(255, 193, 0);
     position: absolute;
     right: 7%;
     width: 25%;
     z-index: 99;
+  }
+
+  .dropdown-item {
+    line-height: 17.5px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
   }
 
   @media only screen and (max-width: 660px) {
