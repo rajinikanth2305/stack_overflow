@@ -53,21 +53,22 @@ const HikeHeader = ({ auth = false }) => {
     // console.log(easyMordatesTreks);
   //}, []);
 
-  // useEffect(() => {
-  //   fintOurTeamMembers();
-  //   return () => {
-  //     //   console.log("test");
-  //   };
-  // }, []);
+  useEffect(() => {
+    fintOurTeamMembers();
+    return () => {
+      //   console.log("test");
+    };
+  }, []);
 
-  // async function fintOurTeamMembers() {
-  //   const client = Client();
-  //   const doc = await client
-  //     .query([Prismic.Predicates.fulltext(document, "hampta")])
-  //     .then(function(response) {
-  //       console.log(response);
-  //     });
-  // }
+   async function fintOurTeamMembers() {
+     const client = Client();
+
+       const doc = await client.query(
+           Prismic.Predicates.fulltext("document", "hampta"), {
+               orderings: "[type desc]"
+           },
+       )
+   }
 
   // React Render
   const postAuthenticAction = () => {
