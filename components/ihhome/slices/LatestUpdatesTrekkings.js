@@ -33,7 +33,6 @@ const LatestUpdatesTrekkings = ({
 
   getYoutubeTitle(cleanVideoId, function(err, title) {
     setVtitle(title);
-    console.log(title);
   });
 
   const latestLrekImage =

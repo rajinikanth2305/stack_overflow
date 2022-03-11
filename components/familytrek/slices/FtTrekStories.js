@@ -4,11 +4,13 @@ import { customStyles } from "styles";
 import Link from "next/link";
 import Modal from "react-bootstrap/Modal";
 import Image from "next/image";
+import getYoutubeTitle from "get-youtube-title";
 
 const FtTrekStories = ({ slice, latestUpdateAarticleData }) => {
   const heading1 = slice?.primary?.heading1;
   const heading2 = slice?.primary?.heading2;
   const primaryVideoUrl = slice?.primary?.yt_link?.url;
+  const [vTitle, setVtitle] = useState();
 
   const [show, setShow] = useState(false);
 
@@ -26,6 +28,10 @@ const FtTrekStories = ({ slice, latestUpdateAarticleData }) => {
   const videoUrl =
     "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
   const youtube_imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
+
+  getYoutubeTitle(cleanVideoId, function(err, title) {
+    setVtitle(title);
+  });
 
   const latestTrekWorld = latestUpdateAarticleData?.map(function(data, index) {
     let url;
@@ -112,6 +118,11 @@ const FtTrekStories = ({ slice, latestUpdateAarticleData }) => {
                       {RichText.asText(videoText)}
                     </p>
                   </div> */}
+                {vTitle && (
+                  <div className="p-3">
+                    <p className="latestTrekWorld_caption">{vTitle}</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -137,11 +137,12 @@ export const customStyles = css.global`
   .btn-ih-primary {
     background: rgb(255, 193, 0);
     border-color: rgb(255, 193, 0);
-    border-radius: 3px;
+    border-radius: 3px !important;
     color: black;
     font-size: 18px;
     text-transform: capitalize;
     font-family: Franklin Gothic;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
   }
 
   .title-h1 {
@@ -392,6 +393,7 @@ export const customStyles = css.global`
 
   .btn-bihtn-yellow {
     background: rgba(255, 193, 0, 1);
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
     border: 0;
     padding: 3px 30px;
     border-radius: 0;
@@ -403,6 +405,7 @@ export const customStyles = css.global`
     font-size: 16px;
     color: #000000;
     text-transform: uppercase;
+    border-radius: 3px !important;
   }
 
   .border-bottom-custom {
