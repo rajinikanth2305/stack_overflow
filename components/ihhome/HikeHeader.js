@@ -63,11 +63,17 @@ const HikeHeader = ({ auth = false }) => {
    async function fintOurTeamMembers() {
      const client = Client();
 
-       const doc = await client.query(
-           Prismic.Predicates.fulltext("document", "hampta"), {
+       const trekDocuments = await client.query(
+        [Prismic.Predicates.at("document.type", "trek"),  Prismic.Predicates.fulltext("document", "hampta")], {
                orderings: "[type desc]"
            },
        )
+
+     const articleDocuments = await client.query(
+         [Prismic.Predicates.at("document.type", "post"),  Prismic.Predicates.fulltext("document", "hampta")], {
+           orderings: "[type desc]"
+         },
+     )
    }
 
   // React Render
