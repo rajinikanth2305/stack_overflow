@@ -125,6 +125,11 @@ export const ihheaderStyles = css.global`
     z-index: 99;
   }
 
+  .s-r-height {
+    max-height: 600px;
+    overflow-y: auto;
+  }
+
   .dropdown-item {
     line-height: 17.5px;
     text-align: left;
@@ -133,6 +138,34 @@ export const ihheaderStyles = css.global`
     font-weight: normal;
     font-size: 14px;
     color: rgba(0, 0, 0, 1);
+  }
+
+  .search-result-title {
+    line-height: 17.5px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .s_r_image {
+    position: relative;
+    height: 90px;
+    width: 100%;
+  }
+
+  .type-highlight {
+    position: absolute;
+    color: black;
+    z-index: 999;
+    background: #ffd62b;
+    padding: 0 5px;
+    font-size: 14px;
+    text-transform: capitalize;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
+    font-family: Franklin Gothic;
   }
 
   @media only screen and (max-width: 660px) {

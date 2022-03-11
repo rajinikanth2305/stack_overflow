@@ -19,6 +19,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Prismic from "@prismicio/client";
 import { Client } from "utils/prismicHelpers";
+import Image from "next/image";
+import { DebounceInput } from "react-debounce-input";
 
 /**
  * Homepage header component
@@ -31,50 +33,35 @@ const HikeHeader = ({ auth = false }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userServiceObject, setUserServiceObject] = useState(undefined);
   const [searchText, setSearchText] = useState();
+  const [searchResults, setSearchResults] = useState([]);
 
- // useEffect(() => {
-    // if (auth) {
-    //   import("../../services/UserService").then(mod => {
-    //     //setUserServiceObject(mod);
-    //     console.log("token" + mod.getToken());
-    //     setUserServiceObject(mod);
-    //     mod.initKeycloak(postAuthenticAction);
-    //   }),
-    //     { ssr: false };
-    // const client = Client();
-    // const easyMordatesTreks = client.query([Prismic.Predicates.fulltext(document, "")]);
-    // console.log(easyMordatesTreks);
-    // }
-    // const client = Client();
-    // const easyMordatesTreks = client.query([
-    //   Prismic.Predicates.at("document.type", "post"),
-    //   Prismic.Predicates.at("document.tags", ["latest updates"])
-    // ]);
-    // console.log(easyMordatesTreks);
+  // useEffect(() => {
+  // if (auth) {
+  //   import("../../services/UserService").then(mod => {
+  //     //setUserServiceObject(mod);
+  //     console.log("token" + mod.getToken());
+  //     setUserServiceObject(mod);
+  //     mod.initKeycloak(postAuthenticAction);
+  //   }),
+  //     { ssr: false };
   //}, []);
 
-  useEffect(() => {
-    fintOurTeamMembers();
-    return () => {
-      //   console.log("test");
-    };
-  }, []);
-
-   async function fintOurTeamMembers() {
-     const client = Client();
-
-       const trekDocuments = await client.query(
-        [Prismic.Predicates.at("document.type", "trek"),  Prismic.Predicates.fulltext("document", "hampta")], {
-               orderings: "[type desc]"
-           },
-       )
-
-     const articleDocuments = await client.query(
-         [Prismic.Predicates.at("document.type", "post"),  Prismic.Predicates.fulltext("document", "hampta")], {
-           orderings: "[type desc]"
-         },
-     )
-   }
+  async function getSearchResultData() {
+    const client = Client();
+    const doc = await client
+      .query(
+        [
+          Prismic.Predicates.at("document.type", "trek"),
+          Prismic.Predicates.fulltext("document", searchText)
+        ]
+        // {
+        //   orderings: "[type desc]"
+        // }
+      )
+      .then(function(response) {
+        setSearchResults(response?.results);
+      });
+  }
 
   // React Render
   const postAuthenticAction = () => {
@@ -82,9 +69,59 @@ const HikeHeader = ({ auth = false }) => {
   };
 
   const handleGetSearchText = e => {
-    console.log(e.target.value);
     setSearchText(e.target.value);
+    if (e.target.value) {
+      setTimeout(() => {
+        getSearchResultData();
+      }, 3000);
+    }
+    if (e.target.value === "") {
+      setSearchResults([]);
+    }
   };
+
+  const resultListing =
+    searchResults &&
+    searchResults?.map(function(data, i) {
+      let url;
+      const slugUrl = data?.uid;
+      if (slugUrl) {
+        url = `/trek/${slugUrl}`;
+      }
+      return (
+        <div key={i} className="card border-0 px-3 py-1 cursor-pointer">
+          <Link href={url ? url : "#"}>
+            <div className="mw-100">
+              <div className="d-flex align-items-start border-bottom pb-2 mb-2">
+                <div className="col-5">
+                  <span className="type-highlight">{data?.type}</span>
+                  <div className="s_r_image">
+                    {data?.data?.body[0]?.primary?.trek_banner_image?.url ? (
+                      <Image
+                        src={
+                          data?.data?.body[0]?.primary?.trek_banner_image?.url
+                        }
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="50% 50%"
+                        alt="imgs"
+                      />
+                    ) : (
+                      <img src="./ip.png" className="s_r_image" />
+                    )}
+                  </div>
+                </div>
+                <div className="col-7 px-2">
+                  <p className="search-result-title">
+                    {data?.data?.trek_title[0]?.text}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </div>
+      );
+    });
 
   return (
     <>
@@ -98,6 +135,11 @@ const HikeHeader = ({ auth = false }) => {
                 className="g-search mw-100"
                 onChange={handleGetSearchText}
               />
+              {/* <DebounceInput
+                minLength={2}
+                debounceTimeout={300}
+                onChange={handleGetSearchText}
+              /> */}
             </div>
           </div>
         </div>
@@ -360,30 +402,16 @@ const HikeHeader = ({ auth = false }) => {
         </style>
       </div>
 
-      {searchText && searchText && (
+      {searchResults && searchResults.length > 0 && (
         <div className="search-box-section">
-          <div className="card border-0 p-3">
-            <div className="mw-100">
-              <div className="d-flex align-items-start border-bottom pb-2 mb-2">
-                <div>
-                  <img src="./ip.png" height="90px" />
-                </div>
-                <div className="mx-2" />
-                <div>
-                  <p>Hampta Pass trek</p>
-                </div>
-              </div>
-              <div className="d-flex align-items-start border-bottom pb-2">
-                <div>
-                  <img src="./ip.png" height="90px" />
-                </div>
-                <div className="mx-2" />
-                <div>
-                  <p>Hampta Pass trek</p>
-                </div>
-              </div>
-            </div>
+          <div className="d-flex justify-content-end p-1">
+            <i
+              class="fa fa-window-close cursor-pointer"
+              aria-hidden="true"
+              onClick={() => setSearchResults([])}
+            ></i>
           </div>
+          <div className="s-r-height">{resultListing}</div>
         </div>
       )}
     </>
