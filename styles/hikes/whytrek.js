@@ -63,8 +63,8 @@ export const whyTrekWithStyles = css.global`
   .pillar-card.card {
     margin: 0 10px;
     border-radius: 0;
-    max-height: 310px;
-    min-height: 310px;
+    max-height: 300px;
+    min-height: 300px;
   }
 
   .card-shadow {
@@ -84,6 +84,12 @@ export const whyTrekWithStyles = css.global`
 
   .pb-08 {
     padding-bottom: 0.8rem;
+  }
+
+  .p-btn-btm-why {
+    position: absolute;
+    bottom: 20px;
+    width: 90%;
   }
 
   @media only screen and (max-width: 600px) {
@@ -122,8 +128,8 @@ export const whyTrekWithStyles = css.global`
     }
 
     .pillar-card.card {
-      max-height: 310px;
-      min-height: 270px;
+      max-height: 250px;
+      min-height: 250px;
     }
   }
 

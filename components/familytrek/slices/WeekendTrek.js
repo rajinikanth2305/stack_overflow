@@ -90,12 +90,20 @@ const WeekendTrek = ({ slice, weekendTrekData }) => {
                     <h3 className="title-diplay-3 m-d-3 text-uppercase">
                       <b>
                         {tData?.primary?.trek_caption.length > 25
-                          ? `${tData?.primary?.trek_caption.substring(0, 25)}...`
+                          ? `${tData?.primary?.trek_caption.substring(
+                              0,
+                              25
+                            )}...`
                           : tData?.primary?.trek_caption}
                       </b>
                     </h3>
-                    <p className="p-text-4 mt2">
-                      {RichText.asText(tData?.primary?.sub_heading)}
+                    <p className="p-text-4 mt2 trek_card_desc_min_height">
+                      {/* {RichText.asText(tData?.primary?.sub_heading)} */}
+                      {RichText.asText(tData?.primary?.sub_heading).length > 25
+                        ? `${RichText.asText(
+                            tData?.primary?.sub_heading
+                          ).substring(0, 75)}...`
+                        : RichText.asText(tData?.primary?.sub_heading)}
                     </p>
                     <div className="d-flex alifn-items-center justify-content-between pt-2 pb-4 flex-wrap p-btn-btm ">
                       <div className="mw-100">
@@ -154,7 +162,9 @@ const WeekendTrek = ({ slice, weekendTrekData }) => {
                   <p className="m-card-info-text m-0">
                     {data.trek_days[0].text} Days
                   </p>
-                  <p className="m-card-info-text">{data?.trek_guide[0]?.text}</p>
+                  <p className="m-card-info-text">
+                    {data?.trek_guide[0]?.text}
+                  </p>
                   <div className="t-2 pb-4">
                     <button className="btn m-btn-ih-green">
                       View Dates / Register

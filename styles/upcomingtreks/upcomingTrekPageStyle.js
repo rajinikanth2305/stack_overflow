@@ -249,13 +249,18 @@ export const upcomingTrekPageStyle = css.global`
 
   .trek_card {
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
-    min-height: 440px;
+    // min-height: 440px;
+  }
+
+  .trek_card_desc_min_height {
+    min-height: 42px;
   }
 
   .p-btn-btm {
-    position: absolute;
-    bottom: 20px;
-    width: 90%;
+    // position: absolute;
+    // bottom: 20px;
+    // width: 90%;
+    margin: 10px 0;
   }
 
   .card_sec {
@@ -590,12 +595,12 @@ export const upcomingTrekPageStyle = css.global`
     .section-padd {
       padding: 15px 0;
     }
-    .trek_card_mb {
-      min-height: 315px;
-    }
-    .trek_card {
-      min-height: 400px;
-    }
+    // .trek_card_mb {
+    //   min-height: 315px;
+    // }
+    // .trek_card {
+    //   min-height: 400px;
+    // }
     .title-diplay-3.m-t-d3 {
       font-size: 16px;
       line-height: 18px;
@@ -875,11 +880,11 @@ export const upcomingTrekPageStyle = css.global`
       min-height: 100% !important;
     }
 
-    .p-btn-btm {
-      position: relative !important;
-      bottom: 0 !important;
-      width: 100% !important;
-    }
+    // .p-btn-btm {
+    //   position: relative !important;
+    //   bottom: 0 !important;
+    //   width: 100% !important;
+    // }
   }
 
   @media (min-width: 700px) and (max-width: 1300px) {

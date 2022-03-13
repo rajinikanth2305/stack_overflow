@@ -355,9 +355,7 @@ const UpComingTreks = ({ slice }) => {
                       </div> */}
                       <div className="card_sec mb-4 mt-0">
                         <div className="card trek_card">
-                          <div
-                            className="uc_open_for_small_group_images"
-                          >
+                          <div className="uc_open_for_small_group_images">
                             {tData?.primary?.trek_banner_image?.url && (
                               <Image
                                 src={tData?.primary?.trek_banner_image?.url}
@@ -395,8 +393,16 @@ const UpComingTreks = ({ slice }) => {
                               <p className="title-diplay-3 text-uppercase">
                                 <b>{tData?.primary?.trek_caption}</b>
                               </p>
-                              <div className="p-display-2">
-                                {RichText.asText(tData?.primary?.sub_heading)}
+                              <div className="p-display-2 trek_card_desc_min_height">
+                                {/* {RichText.asText(tData?.primary?.sub_heading)} */}
+                                {RichText.asText(tData?.primary?.sub_heading)
+                                  .length > 25
+                                  ? `${RichText.asText(
+                                      tData?.primary?.sub_heading
+                                    ).substring(0, 75)}...`
+                                  : RichText.asText(
+                                      tData?.primary?.sub_heading
+                                    )}
                               </div>
                               <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
                                 <div className="flex-grow-1">

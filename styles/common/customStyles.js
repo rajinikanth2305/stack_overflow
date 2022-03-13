@@ -1667,13 +1667,18 @@ export const customStyles = css.global`
 
   .trek_card {
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
-    min-height: 440px;
+    // min-height: 440px;
+  }
+
+  .trek_card_desc_min_height {
+    min-height: 42px;
   }
 
   .p-btn-btm {
-    position: absolute;
-    bottom: 0;
-    width: 90%;
+    // position: absolute;
+    // bottom: 0;
+    // width: 90%;
+    margin: 10px 0;
   }
 
   .banner-image-desktop {
@@ -2714,9 +2719,9 @@ export const customStyles = css.global`
       font-size: 20px;
       line-height: 24px;
     }
-    .trek_card {
-      min-height: 475px;
-    }
+    // .trek_card {
+    //   min-height: 475px;
+    // }
     .fam-tabs > .nav-item {
       width: 150px;
     }

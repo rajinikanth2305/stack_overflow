@@ -29,7 +29,11 @@ export const ChooseTreks = css.global`
 
   .trek_card {
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
-    min-height: 440px;
+    // min-height: 440px;
+  }
+
+  .trek_card_desc_min_height {
+    min-height: 42px;
   }
 
   .video_trek_card {
@@ -338,9 +342,10 @@ export const ChooseTreks = css.global`
   }
 
   .p-btn-btm {
-    position: absolute;
-    bottom: 20px;
-    width: 90%;
+    // position: absolute;
+    // bottom: 20px;
+    // width: 90%;
+    margin: 10px 0;
   }
 
   // .trekvideos-carosule  >  div > .slick-track {
@@ -381,7 +386,7 @@ export const ChooseTreks = css.global`
     // }
 
     .trek_card {
-      min-height: 400px;
+      // min-height: 400px;
     }
 
     .m-crad {

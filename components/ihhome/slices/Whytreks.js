@@ -59,9 +59,15 @@ const WhyTrek = ({ slice }) => {
               <div>
                 <div className="p-text-3-wt">
                   {RichText.render(data?.pillar_desc)}
+                  {/* {RichText.asText(data?.pillar_desc)
+                          .length > 25
+                          ? `${RichText.asText(
+                            data?.pillar_desc
+                            ).substring(0, 130)}...`
+                          : RichText.asText(data?.pillar_desc)} */}
                 </div>
               </div>
-              <div className="text-center pt-2 pb-3 p-btn-btm">
+              <div className="text-center mt-4 p-btn-btm-why">
                 {/* <Link href={url}> */}
                 <button
                   className="btn btn-ih-green"

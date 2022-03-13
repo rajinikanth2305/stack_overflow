@@ -104,8 +104,14 @@ const BestTrekToDo = ({ slice, bestTrekToDoData }) => {
                           : tData?.primary?.trek_caption}
                       </b>
                     </p>
-                    <div className="p-display-2">
-                      {RichText.asText(tData?.primary?.sub_heading)}
+                    <div className="p-display-2 trek_card_desc_min_height">
+                      {/* {RichText.asText(tData?.primary?.sub_heading)} */}
+                      {RichText.asText(tData?.primary?.sub_heading)
+                          .length > 25
+                          ? `${RichText.asText(
+                            tData?.primary?.sub_heading
+                            ).substring(0, 75)}...`
+                          : RichText.asText(tData?.primary?.sub_heading)}
                     </div>
                     <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
                       <div className="flex-grow-1">
