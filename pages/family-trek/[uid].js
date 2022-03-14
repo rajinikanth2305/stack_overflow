@@ -78,9 +78,9 @@ export async function getStaticProps({
     x => x.slice_type === "multi_day_trek_list"
   );
 
-  if (multitrek_slice.items.length > 0) {
-    for (var i = 0; i < multitrek_slice.items.length; i++) {
-      const data = multitrek_slice.items[i];
+  if (multitrek_slice?.items.length > 0) {
+    for (var i = 0; i < multitrek_slice?.items.length; i++) {
+      const data = multitrek_slice?.items[i];
       const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
@@ -94,9 +94,9 @@ export async function getStaticProps({
     x => x.slice_type === "weekend_treks"
   );
 
-  if (weekendtrek_slice.items.length > 0) {
-    for (var i = 0; i < weekendtrek_slice.items.length; i++) {
-      const data = weekendtrek_slice.items[i];
+  if (weekendtrek_slice?.items.length > 0) {
+    for (var i = 0; i < weekendtrek_slice?.items.length; i++) {
+      const data = weekendtrek_slice?.items[i];
       const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);

@@ -1650,9 +1650,18 @@ export const customStyles = css.global`
     position: relative;
     height: 100px;
     width: 100px;
+    border-radius: 50%;
+    border: 3px solid #ffc100 !important;
   }
 
   .testimonial-img > div > img {
+    border-radius: 50%;
+    border: 3px solid #ffc100 !important;
+  }
+
+  .testimonial-img-static {
+    height: 100px;
+    width: 100px;
     border-radius: 50%;
     border: 3px solid #ffc100 !important;
   }

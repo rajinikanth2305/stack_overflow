@@ -76,32 +76,34 @@ const HowDoWeDo = ({ slice }) => {
 
   return (
     <>
-      <div className="py-5">
-        <div className="bg-blue py-4">
-          <div className="container">
-            <div className="row d-flex align-items-center">
-              <div className="col-lg-3 col-md-12">
-                <div>
-                  <h2 className="text-white title-h2 border-0 mb-0">
-                    {RichText.asText(heading1)}
-                  </h2>
-                  <p className="p-text-1 text-white">
-                    {RichText.asText(heading2)}
-                  </p>
+      {tabsDataArray && tabsDataArray?.length > 0 && (
+        <div className="py-5">
+          <div className="bg-blue py-4">
+            <div className="container">
+              <div className="row d-flex align-items-center">
+                <div className="col-lg-3 col-md-12">
+                  <div>
+                    <h2 className="text-white title-h2 border-0 mb-0">
+                      {RichText.asText(heading1)}
+                    </h2>
+                    <p className="p-text-1 text-white">
+                      {RichText.asText(heading2)}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="col-lg-7 col-md-12">
-                <div className="ft-how-do-tabs">
-                  <Tabs className="fam-tabs">{tabsData}</Tabs>
+                <div className="col-lg-7 col-md-12">
+                  <div className="ft-how-do-tabs">
+                    <Tabs className="fam-tabs">{tabsData}</Tabs>
+                  </div>
                 </div>
               </div>
             </div>
+            <style jsx global>
+              {customStyles}
+            </style>
           </div>
-          <style jsx global>
-            {customStyles}
-          </style>
         </div>
-      </div>
+      )}
       <Modal size="xl" show={show} onHide={handleClose} animation={false}>
         <Modal.Header className="img-header-popup" closeButton>
           <Modal.Title></Modal.Title>

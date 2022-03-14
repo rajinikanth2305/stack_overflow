@@ -56,24 +56,36 @@ const Testimonoials = ({ slice }) => {
             <div className="card card-body">
               <div className="d-flex align-items-center">
                 <div>
-                  <div className="testimonial-img">
-                    {data?.image?.url && (
+                  {data?.image?.url ? (
+                    <div className="testimonial-img">
                       <Image
                         src={data?.image?.url}
                         layout="fill"
                         objectFit="cover"
                         objectPosition="50% 50%"
                       />
-                    )}
-                  </div>
+                    </div>
+                  ) : (
+                    <img src="../ip.png" className="testimonial-img-static" />
+                  )}
                 </div>
                 <div className="px-3">
-                  <p className="p-text-1-fgt mb-0">{RichText.asText(data?.title)}</p>
-                  <p className="p-text-3-fg-book-gray">{RichText.asText(data?.sub_title)}</p>
+                  <p className="p-text-1-fgt mb-0">
+                    {RichText.asText(data?.title)}
+                  </p>
+                  <p className="p-text-3-fg-book-gray">
+                    {RichText.asText(data?.sub_title)}
+                  </p>
                 </div>
               </div>
               <div className="mt-4 mb-2">
-                <div className="p-text-4">{RichText.render(data?.content)}</div>
+                <p className="p-text-4">
+                  {/* {RichText.render(data?.content)} */}
+                  {RichText.asText(data?.content)
+                          .length > 25
+                          ? `${RichText.asText(data?.content).substring(0, 200)}...`
+                          : RichText.asText(data?.content)}
+                </p>
               </div>
             </div>
           </div>
@@ -83,9 +95,9 @@ const Testimonoials = ({ slice }) => {
   });
 
   return (
-    <div className="py-5">
+    <div className="py-4">
       <div className="container">
-        <h2 className="title-h2 mb-0">{RichText.asText(heading1)}</h2>
+        <h2 className="title-h2 mb-0 pb-08">{RichText.asText(heading1)}</h2>
         <div className="my-4 py-2">
           <Slider className="home-choose-treks" {...settings}>
             {testimonials}
