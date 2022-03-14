@@ -257,7 +257,7 @@ const TrekExpertSpeak = ({ slice }) => {
                       <div className="d-flex justify-content-center bg-transparent-text-effect-tes">
                         {trekExpertSecHeight === 375 ? (
                           <button
-                            className="btn btn-ptr"
+                            className="btn btn-ptr hvr-grow"
                             onClick={() => setTrekExpertSecHeight("auto")}
                           >
                             read more
@@ -265,7 +265,7 @@ const TrekExpertSpeak = ({ slice }) => {
                         ) : (
                           <a href="#trekexper-sec">
                             <button
-                              className="btn btn-ptr"
+                              className="btn btn-ptr hvr-grow"
                               onClick={() => setTrekExpertSecHeight(375)}
                             >
                               read less

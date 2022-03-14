@@ -64,7 +64,7 @@ const TrekGallery = ({ slice }) => {
           <div className="container">
             <div className="row">
               <div className="col-12 col-lg-6 col-md-12">
-                <p className="text-white mtw p-text-2">
+                <p className="text-white mtw p-text-2 mb-1">
                   Photo story: {data?.discovery_trek_gallery_story[0]?.text}
                 </p>
                 <p className="text-white mtw p-text-2">

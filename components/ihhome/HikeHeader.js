@@ -125,7 +125,7 @@ const HikeHeader = ({ auth = false }) => {
 
   return (
     <>
-      <div className="border-bottom-custom-header">
+      <div className="border-bottom-custom-header position-sticky">
         <div className="container">
           <div className="d-flex justify-content-end">
             <div>

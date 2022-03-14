@@ -42,7 +42,7 @@ const TrekkersVideoCommon = () => {
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 1,
-    arrows: false,
+    arrows: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -140,7 +140,7 @@ const TrekkersVideoCommon = () => {
           <span>Trekker Videos</span>
         </div>
         <div className="container container-custom">
-          <div>
+          <div className="m-mt-15">
             <Slider className="trekvideos-carosule-common" {...settings}>
               {ihTrekkerVideosImage}
             </Slider>

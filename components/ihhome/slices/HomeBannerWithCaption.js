@@ -76,7 +76,7 @@ const HomeBannerWithCaption = ({ slice }) => {
                 <p className="banner-text-3">defining the future of trekking</p> */}
                 <div className="banner-text-2">{RichText.render(heading2)}</div>
                 <div className="mt-3 m-text-center">
-                  <button className="btn btn-lg btn-ih-primary">
+                  <button className="btn btn-lg btn-ih-primary hvr-grow">
                     <Link href={url ? url : "#"}>
                       <a> {linkButtonText}</a>
                     </Link>

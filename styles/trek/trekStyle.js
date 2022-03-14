@@ -57,7 +57,7 @@ export const trekStyle = css.global`
   }
 
   .title-h2.gallery-title {
-    text-align: left;
+    text-align: center;
     font-family: Lora;
     font-style: normal;
     font-weight: bold;
@@ -68,6 +68,10 @@ export const trekStyle = css.global`
     border-bottom: 4px solid rgb(255, 193, 0);
     padding-bottom: 3px;
     margin-bottom: 20px;
+  }
+
+  .title-h2.text-white {
+    font-size: 38px;
   }
 
   .p-text-1 {
@@ -427,7 +431,7 @@ export const trekStyle = css.global`
 
   .expert_speak_box {
     background: rgba(255, 193, 0, 1);
-    padding: 12px 10px;
+    padding: 12px 10px 12px 15px;
     position: relative;
     top: -25px;
     width: 250px;
@@ -564,10 +568,10 @@ export const trekStyle = css.global`
   .btn-btn-yellow-new {
     background: rgba(255, 193, 0, 1);
     border-radius: 2px;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.353);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
     border: 0;
     padding: 10px 30px;
-    border-radius: 0;
+    border-radius: 3px;
     line-height: 24px;
     text-align: center;
     font-family: Franklin Gothic;
@@ -1028,7 +1032,7 @@ export const trekStyle = css.global`
 
   .paly-icon {
     position: relative;
-    z-index: 999;
+    z-index: 99;
     cursor: pointer;
   }
 
@@ -1428,7 +1432,8 @@ export const trekStyle = css.global`
 
   .text-adj {
     text-align: right !important;
-    padding: 30px 30px 0 30px;
+    padding: 55px 30px 0 30px;
+    line-height: 48px;
   }
 
   .q-des {
@@ -1517,11 +1522,18 @@ export const trekStyle = css.global`
     cursor: pointer;
   }
 
+  .m-mt-15 {
+    margin: 0 30px;
+  }
+
   @media only screen and (max-width: 660px) {
     .q-des {
       font-size: 40px;
       left: 0px;
       top: 15px;
+    }
+    .m-mt-15 {
+      margin: 15px 0 0 0;
     }
     .icon-size-70 {
       width: 50px;

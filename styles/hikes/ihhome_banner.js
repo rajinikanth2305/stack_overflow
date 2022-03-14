@@ -21,14 +21,14 @@ export const ihhomeBannerStyles = css.global`
 
   .banner-image-desktop {
     width: 100%;
-    height: 700px;
+    height: 600px;
     background-size: cover;
     position: relative;
     background-position: bottom;
   }
 
   .bg_overlay {
-    height: 700px;
+    height: 600px;
     background: rgba(0, 0, 0, 0.2);
   }
 
@@ -53,7 +53,7 @@ export const ihhomeBannerStyles = css.global`
     font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
-    font-size: 52px;
+    font-size: 60px;
     color: rgba(255, 255, 255, 1);
     letter-spacing: 2px;
     margin-bottom: 50px;

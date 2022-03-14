@@ -43,7 +43,7 @@ const FamilyTrek = ({ slice }) => {
                 </p>
                 <div className="d-flex mt-5 mmt-0">
                   <div>
-                    <button className="btn btn-bihtn-yellow">READ MORE</button>
+                    <button className="btn btn-bihtn-yellow hvr-grow">READ MORE</button>
                   </div>
                 </div>
               </div>

@@ -84,7 +84,7 @@ export const founderStyles = css.global`
 
   .paly-icon {
     position: relative;
-    z-index: 999;
+    z-index: 99;
     cursor: pointer;
   }
 

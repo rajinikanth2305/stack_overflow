@@ -96,7 +96,7 @@ const LatestTrekkingWorld = ({ slice }) => {
               <div className="text-center mt-4">
                 {/* <Link href={url ? url : "#"}> */}
                 <button
-                  className="btn btn-lg btn-ih-primary text-capitalized"
+                  className="btn btn-lg btn-ih-primary text-capitalized hvr-grow"
                   onClick={() => {
                     setImgUrl(videoUrl);
                     setShow(true);

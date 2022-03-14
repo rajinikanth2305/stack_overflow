@@ -99,7 +99,7 @@ const FaqHome = ({ slice }) => {
         </Accordion>
         <div className="text-center mt-4">
           <Link href="../../../faq">
-            <button type="button" className="btn btn-ih-primary">
+            <button type="button" className="btn btn-ih-primary hvr-grow">
               View more FAQs
             </button>
           </Link>

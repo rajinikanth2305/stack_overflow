@@ -367,6 +367,10 @@ export const ChooseTreks = css.global`
     transform: scale(1.1);
   }
 
+  .m-mt-15 {
+    margin: 0 30px;
+  }
+
   @media only screen and (max-width: 600px) {
     .btn-ih-green {
       font-size: 14px;
@@ -505,7 +509,7 @@ export const ChooseTreks = css.global`
     }
 
     .m-mt-15 {
-      margin-top: 15px;
+      margin: 15px 0 0 0;
     }
   }
 `;

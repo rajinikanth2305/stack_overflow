@@ -170,7 +170,7 @@ const HowDoesEachDayLooks = ({ data }) => {
                   <div className="d-flex justify-content-center bg-transparent-text-effect">
                     {readMoreHeight === 200 ? (
                       <button
-                        className="btn btn-ptr"
+                        className="btn btn-ptr hvr-grow"
                         onClick={() => setReadMoreHeight("auto")}
                       >
                         read more
@@ -178,7 +178,7 @@ const HowDoesEachDayLooks = ({ data }) => {
                     ) : (
                       <a href="#trekexper-sec">
                         <button
-                          className="btn btn-ptr"
+                          className="btn btn-ptr hvr-grow"
                           onClick={() => setReadMoreHeight(200)}
                         >
                           read less

@@ -113,7 +113,7 @@ const TrekReviews = ({ slice }) => {
                 </div>
                 <div className="d-flex justify-content-end w-100">
                   <button
-                    className="btn btn-btn-yellow-new mt-3 mb-2"
+                    className="btn btn-btn-yellow-new mt-3 mb-2 hvr-grow"
                     onClick={() => {
                       onMoreClick(data);
                     }}

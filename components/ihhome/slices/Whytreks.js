@@ -38,7 +38,7 @@ const WhyTrek = ({ slice }) => {
       url = linkResolver(data?.article_link);
     }
     return (
-      <div key={`pillar-${i}`}>
+      <div key={`pillar-${i}`} className="hvr-grow cursor-pointer">
         <div className="pillar-card card card-shadow">
           <div className="card-body">
             <div>

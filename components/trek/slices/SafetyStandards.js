@@ -40,7 +40,7 @@ const SafetyStandards = ({ slice }) => {
                         <div className="p-text-4 text-white mb-0 text-center-custom">{RichText.render(heading2List)}</div>
                         <div className="d-m-block">
                           <div className="d-flex justify-content-end m-j-c-c mt-5">
-                            <button className="btn btn-bihtn-yellow">
+                            <button className="btn btn-bihtn-yellow hvr-grow">
                               Read more
                             </button>
                           </div>

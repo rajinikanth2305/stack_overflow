@@ -119,7 +119,7 @@ const FeeDetails = ({ data }) => {
                 <a onClick={handleShow}>See Inclusions and Exclusions</a>
               </p>
               <div className="my-3">
-                <button className="btn btn-block btn-ih-green-trek-fee">
+                <button className="btn btn-block btn-ih-green-trek-fee hvr-grow">
                   <a href="#goToBookTicket">View Dates / Register</a>
                 </button>
               </div>
@@ -167,7 +167,7 @@ const FeeDetails = ({ data }) => {
               </div>
             </div>
             <div className="col-4">
-              <button className="btn btn-block btn-ih-green-trek-fee">
+              <button className="btn btn-block btn-ih-green-trek-fee hvr-grow">
                 <a href="#goToBookTicket">View Dates</a>
               </button>
             </div>

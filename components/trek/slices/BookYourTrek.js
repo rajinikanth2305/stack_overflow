@@ -132,7 +132,7 @@ const BookYourTrek = ({ slice }) => {
                         </div>
                       )}
 
-                      <button className="btn btn-ptr" onClick={register}>
+                      <button className="btn btn-ptr hvr-grow" onClick={register}>
                         Proceed to registration
                       </button>
                     </div>
@@ -158,7 +158,7 @@ const BookYourTrek = ({ slice }) => {
                         </div>
                       )}
 
-                      <button className="btn btn-ptr" onClick={register}>
+                      <button className="btn btn-ptr hvr-grow" onClick={register}>
                         Proceed to registration
                       </button>
                     </div>

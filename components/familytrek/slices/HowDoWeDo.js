@@ -47,7 +47,7 @@ const HowDoWeDo = ({ slice }) => {
             <div className="col-lg-6 col-md-12">
               <div className="p-text-3">{RichText.render(data?.content)}</div>
               <div className="mt-5 mb-4 mmb-0">
-                <button className="btn btn-bihtn-yellow text-capitalize">
+                <button className="btn btn-bihtn-yellow text-capitalize hvr-grow">
                   Read more
                 </button>
               </div>

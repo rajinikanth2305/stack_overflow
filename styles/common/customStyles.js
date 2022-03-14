@@ -1387,7 +1387,7 @@ export const customStyles = css.global`
   .paly-icon {
     position: relative;
     cursor: pointer;
-    z-index: 999;
+    z-index: 99;
   }
 
   .icon-size-50 {
@@ -1920,10 +1920,10 @@ export const customStyles = css.global`
 
   .btn-btn-yellow-new {
     background: rgb(255, 193, 0) none repeat scroll 0% 0%;
-    box-shadow: rgba(0, 0, 0, 0.353) 3px 3px 3px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.353);
     border: 0px none;
     padding: 10px 30px;
-    border-radius: 0px;
+    border-radius: 3px;
     line-height: 24px;
     text-align: center;
     font-family: Franklin Gothic;
@@ -1977,7 +1977,7 @@ export const customStyles = css.global`
   }
 
   .pillar-card.card {
-    margin: 0 10px;
+    margin: 10px;
     border-radius: 0;
     max-height: 340px;
     min-height: 340px;

@@ -61,14 +61,14 @@ export const whyTrekWithStyles = css.global`
   }
 
   .pillar-card.card {
-    margin: 0 10px;
+    margin: 20px 15px;
     border-radius: 0;
     max-height: 300px;
     min-height: 300px;
   }
 
   .card-shadow {
-    box-shadow: 1px 1px 3px rgba(125, 125, 125, 1);
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.161);
   }
 
   .pillar_images {

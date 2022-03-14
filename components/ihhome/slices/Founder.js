@@ -55,7 +55,7 @@ const Founder = ({ slice }) => {
                 />
               </div> */}
                 <div className="card card-box-shadow">
-                  <div className="img-margin">
+                  <div className="img-margin  cursor-pointer">
                     <div className="d-flex align-items-center justify-content-center w-100 h-100">
                       <div className="text-center">
                         <img

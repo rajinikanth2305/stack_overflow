@@ -68,7 +68,7 @@ const TrekkersStories = ({ slice }) => {
     }
     return (
       <div key={`trekkstory` + i}>
-        <div className="mx-4 m-mx-0 cursor-pointer">
+        <div className="mx-4 m-mx-0 cursor-pointer hvr-grow">
           <Link href={url ? url : '#'}>
             <div className="card_sec">
               <div className="card trek_card">

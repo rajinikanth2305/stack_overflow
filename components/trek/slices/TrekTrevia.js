@@ -53,7 +53,7 @@ const TrekTrevia = ({ slice }) => {
             <div className="flex-fill">
               <div className="tt-content">{RichText.render(data?.content)}</div>
               <Link href={url ? url : "#"}>
-                <button className="btn btn-btn-yellow-new mt-3 mb-2">
+                <button className="btn btn-btn-yellow-new mt-3 mb-2 hvr-grow">
                   Read More
                 </button>
               </Link>
