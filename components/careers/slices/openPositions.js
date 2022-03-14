@@ -1,6 +1,8 @@
 import React from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
+import Modal from "react-bootstrap/Modal";
+import OpenPositionsTabs from "./openPositionsTabs";
 
 const OpenPositions = ({ slice }) => {
   const heading1 = slice?.primary?.heading1;
@@ -8,19 +10,27 @@ const OpenPositions = ({ slice }) => {
 
   return (
     <>
-      <div className="my-5 py-5">
+      <div className="my-5">
         <div className="container">
-          <div className="d-flex flex-wrap align-items-end border-bottom-custom mb-4 pb-08">
-            <div className="col-lg-7 col-md-12">
-              <h2 className="title-h2 border-0 mb-0">
+          <div className="d-flex flex-wrap align-items-end justify-content-center mb-4">
+            <div className="col-lg-7 col-md-12 col-12">
+              <h2 className="title-h2 mb-0 pb-08">
                 {RichText.asText(heading1)}
               </h2>
+
+              <div className="p-display-1 m-d-1 mmb-0 mb-0">
+                {RichText.render(heading2)}
+              </div>
+
+              <div>
+                <OpenPositionsTabs />
+              </div>
             </div>
-            <div className="col-lg-5 col-md-12">
-              <p className="p-display-1 m-d-1 mmb-0 mb-0">
-                {RichText.asText(heading2)}
-              </p>
-            </div>
+            {/* <div className="col-lg-5 col-md-12">
+              <div className="p-display-1 m-d-1 mmb-0 mb-0">
+                {RichText.render(heading2)}
+              </div>
+            </div> */}
           </div>
         </div>
         <style jsx global>

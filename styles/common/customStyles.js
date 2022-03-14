@@ -2128,7 +2128,7 @@ export const customStyles = css.global`
   }
 
   .new_titile_bg {
-    background: #9D3A0B;
+    background: #9d3a0b;
     padding: 5px;
   }
 
@@ -2140,6 +2140,72 @@ export const customStyles = css.global`
     position: relative;
     width: 100%;
     height: 300px;
+  }
+
+  .p1-acc-card > button > p {
+    margin: 0;
+  }
+
+  .p1-acc-card > button > p.text-small {
+    font-size: 12px;
+    font-weight: normal;
+    color: #7c7979;
+  }
+
+  .reg-acc-tabs.carrier-tabs > div > div > .card {
+    box-shadow: none;
+    margin: 0;
+  }
+
+  .carrier-position-tabs-header.card-header {
+    background: transparent;
+    border-bottom: 1px solid rgb(255, 193, 0) !important;
+  }
+
+  .carrier-position-tabs-header.card-header > button::after {
+    color: #7d7c7c;
+    content: "\f107";
+    font-family: "FontAwesome" !important;
+    font-size: 20px;
+    float: right;
+    margin-top: -3px;
+    position: relative;
+    top: 4px;
+    font-weight: normal;
+  }
+
+  .carrier-position-tabs-header.card-header > button:not(.show)::after {
+    color: #7d7c7c;
+    content: "\f106";
+    font-family: "FontAwesome" !important;
+    font-size: 20px;
+    float: right;
+    margin-top: -3px;
+    position: relative;
+    top: 4px;
+    font-weight: normal;
+  }
+
+  .p1-acc-card.carrier-position-tabs-header.card-header > button::after {
+    color: #7d7c7c;
+    content: "\f107";
+    font-family: "FontAwesome" !important;
+    font-size: 20px;
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    font-weight: normal;
+  }
+
+  .p1-acc-card.carrier-position-tabs-header.card-header > button:not(.show)::after {
+    color: #7d7c7c;
+    content: "\f106";
+    font-family: "FontAwesome" !important;
+    font-size: 20px;
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    font-weight: normal;
   }
 
   @media only screen and (max-width: 660px) {
@@ -2227,7 +2293,7 @@ export const customStyles = css.global`
     .latestTrekWorld_bg.ltw_img {
       height: 170px;
     }
-    
+
     .hikesnews-bg {
       height: 170px;
     }

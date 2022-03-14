@@ -18,8 +18,8 @@ const CareersSliceZone = ({ sliceZone, articleData }) =>
         return <WorkAtih slice={slice} key={`slice-${index}`} />;
       case "work_cultures_video":
         return <CareersVideos slice={slice} key={`slice-${index}`} />;
-      // case "open_positions":
-      //   return <OpenPositions slice={slice} key={`slice-${index}`} />;
+      case "open_positions":
+        return <OpenPositions slice={slice} key={`slice-${index}`} />;
       case "core_values":
         return <CoreValues slice={slice} key={`slice-${index}`} />;
       case "how_to_apply":
