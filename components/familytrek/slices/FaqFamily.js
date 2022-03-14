@@ -44,7 +44,7 @@ const FaqFamily = ({ slice }) => {
                 setActive(!isActive);
               }}
             >
-              {data.q_title[0].text}
+              {data?.q_title[0]?.text}
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>

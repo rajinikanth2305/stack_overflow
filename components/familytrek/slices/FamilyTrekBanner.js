@@ -31,12 +31,14 @@ const FamilyTrekBanner = ({ slice }) => {
               </div>
             </div>
           </div>
-          <Image
-            src={imageUrl}
-            layout="fill"
-            objectFit="cover"
-            objectPosition="bottom"
-          />
+          {imageUrl && (
+            <Image
+              src={imageUrl}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="bottom"
+            />
+          )}
         </div>
         <style jsx global>
           {customStyles}

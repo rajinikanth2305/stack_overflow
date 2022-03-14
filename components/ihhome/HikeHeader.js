@@ -195,7 +195,7 @@ const HikeHeader = ({ auth = false }) => {
                   ""
                 ) : (
                   <NavLink
-                    href="../../../familytrek"
+                    href="../../../family-trek/family-trek"
                     className={
                       router.pathname == "/familytrek" ? "active-custom" : ""
                     }
