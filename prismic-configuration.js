@@ -14,6 +14,9 @@ export const linkResolver = (doc) => {
   if (doc.type === 'post') {
     return `/blog/${doc.uid}`
   }
+  if (doc.type === 'document_trek_type') {
+    return `/doc-trek/${doc.uid}`
+  }
   if (doc.type === 'hike_home_ctype') {
     return `/`
   }
