@@ -162,8 +162,7 @@ const CertificateTemplate = certificateData => {
             <Text style={styles.sectionText}>
               {certificateData.certificateData &&
                 certificateData.certificateData.trekName}{" "}
-              | Trek Grade: {certificateData.certificateData.trekDifficulty} | Duration: {certificateData.certificateData.trekDuration} Days | Max Atitude: {certificateData.certificateData.trekAltitude}
-              ft
+              | Trek Grade: {certificateData.certificateData.trekDifficulty} | Duration: {certificateData.certificateData.trekDuration} Days | Max Atitude: {certificateData.certificateData.trekAltitude} ft
             </Text>
           </View>
         </Page>
