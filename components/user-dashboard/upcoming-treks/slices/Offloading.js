@@ -92,7 +92,7 @@ const Offloading = forwardRef((props, ref) => {
             data?.userTrekBookingParticipants.map(pdata=> {
               const offloadUser=resData?.find(x=>x.participantId===pdata.participantId);
 
-              if(offloadUser==undefined || offloadUser==null ) {
+            //  if(offloadUser==undefined || offloadUser==null ) {
 
               offLoadingList.push(
                 {
@@ -112,11 +112,11 @@ const Offloading = forwardRef((props, ref) => {
                   voucherId:'',
                   selected:false,
                   email:pdata?.userDetailsForDisplay.email,
-                  offloadingParticipantStatus:"INITIATED",
+                  offloadingParticipantStatus: (offloadUser == undefined || false) ? "N/A" : offloadUser.offloadingState,
                   bookingParticipantState:pdata?.bookingParticipantState
                 }
              );
-              }
+             // }
             });
             setOffLoadings(offLoadingList);
             // console.log(offLoadingList);
@@ -346,7 +346,7 @@ const Offloading = forwardRef((props, ref) => {
                           || sdata?.offloadingStatus==="paid"){
                             //status= 0;
                           }*/
-                          if (sdata?.offloadingParticipantStatus!== "INITIATED") {
+                          if (sdata?.offloadingParticipantStatus!== "N/A") {
                             status= 0;
                           }
                           else {
@@ -421,8 +421,8 @@ const Offloading = forwardRef((props, ref) => {
                             <td>{sdata?.offloadingFee}</td>
                             <td>{sdata?.youPay}</td>
                             <td>
-                              <span>{sdata?.offloadingStatus}</span>
-                              {sdata?.offloadingStatus === "Paid" && (
+                              <span>{sdata?.offloadingParticipantStatus}</span>
+                              {sdata?.offloadingParticipantStatus === "Paid" && (
                                 <span className="mx-2 p-text-small-fg-red text-decoration-underline">
                                   Cancel
                                 </span>
