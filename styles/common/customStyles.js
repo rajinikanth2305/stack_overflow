@@ -178,6 +178,16 @@ export const customStyles = css.global`
     text-transform: uppercase;
   }
 
+  .title-h3-f28 {
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
+  }
+
   .p-text-1 {
     line-height: 30px;
     text-align: left;
@@ -217,6 +227,17 @@ export const customStyles = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: capitalize;
+  }
+
+  .p-text-2-fg-f16 {
+    line-height: 24px;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
     color: rgba(0, 0, 0, 1);
     text-transform: capitalize;
   }
@@ -1102,6 +1123,10 @@ export const customStyles = css.global`
     border-bottom: 2px solid rgba(255, 193, 0, 1);
     color: #000000;
     padding-bottom: 2px;
+  }
+
+  .right-menu-dashboard.sticky-top {
+    z-index: 99;
   }
 
   .user-dashboard-tab > nav {

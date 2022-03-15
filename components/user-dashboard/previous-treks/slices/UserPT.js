@@ -397,14 +397,14 @@ const UserPT = () => {
                         {/* {({ blob, url, loading, error }) => */}
                         {/* loading ? <i className="pi pi-spin pi-spinner"></i> : <i className="pi pi-download"></i> */}
                         {/* } */} <i className="pi pi-download p-pr-2"></i>
-                        <span className="btn table-btn-blue">
+                        <span className="btn table-btn-blue hvr-grow">
                           Download Certificate
                         </span>
                       </PDFDownloadLink>
                     )}
                     {data.reviewStatus === "no" && (
                       <button
-                        className="btn table-btn-yellow ml-custom-3"
+                        className="btn table-btn-yellow ml-custom-3 hvr-grow"
                         onClick={() => {
                           toggle(i);
                           fetchTrekReview(data);
@@ -414,7 +414,7 @@ const UserPT = () => {
                       </button>
                     )}
                     {data.trekStatus === "Cancelled" && (
-                      <button className="btn table-btn-green-lg">
+                      <button className="btn table-btn-green-lg hvr-grow">
                         register again
                       </button>
                     )}
@@ -435,7 +435,7 @@ const UserPT = () => {
                   id={data.bookingId}
                 >
                   <div className="card">
-                    <div className="py-4 px-5 mx-5">
+                    <div className="py-4 px-5 mx-5 my-5">
                       <h5 className="p-text-2-fg b-left-3px">
                         your thoughts on the {data.trekName} expereience
                       </h5>
@@ -466,7 +466,7 @@ const UserPT = () => {
                                 "rating";
 
                               return (
-                                <div className="q-border py-4">
+                                <div className="pb-4">
                                   <p className="p-text-3 font-weight-bold m-0">
                                     <span
                                       dangerouslySetInnerHTML={{
@@ -554,7 +554,7 @@ const UserPT = () => {
                                                 />
                                               </div>
                                               <div className="mx-2">
-                                                <label className="p-col-12 p-mb-2 p-md-2 p-mb-md-0">
+                                                <label className="p-col-12 p-mb-2 p-md-2 p-mb-md-0 p-text-3 font-weight-bold">
                                                   {ch}
                                                 </label>
                                               </div>
@@ -612,7 +612,7 @@ const UserPT = () => {
                       <div className="text-center">
                         <button
                           type="submit"
-                          className="btn table-btn-green-lg"
+                          className="btn table-btn-green-lg hvr-grow"
                         >
                           Submit Review
                         </button>

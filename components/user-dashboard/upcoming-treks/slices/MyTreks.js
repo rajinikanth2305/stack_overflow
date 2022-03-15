@@ -311,7 +311,7 @@ const MyTreks = forwardRef((props, ref) => {
                     <th className="w-15per">email ID</th>
                     <th className="w-15per">pickup & location</th>
                     <th className="w-15per">Drop & Location</th>
-                    <th className="w-15per">Booking State</th>
+                    <th className="w-15per">Fitness status</th>
                   </tr>
                 </thead>
                 <tbody>
