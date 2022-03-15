@@ -77,7 +77,7 @@ const GetInTouchForm = ({ slice }) => {
                                     rows="3"
                                   />
                                 </div>
-                                <button class="btn btn-bihtn-yellow text-capitalize">Submit</button>
+                                <button class="btn btn-bihtn-yellow text-capitalize hvr-grow">Submit</button>
                               </form>
                             </div>
                           </div>

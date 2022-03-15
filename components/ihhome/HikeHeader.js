@@ -126,7 +126,9 @@ const HikeHeader = ({ auth = false }) => {
                   minLength={1}
                   debounceTimeout={300}
                   className="g-search mw-100"
-                  onChange={onChange} />
+                  onChange={onChange}
+                  placeholder="Find your trek here?"
+                  />
               {/* <DebounceInput
                 minLength={2}
                 debounceTimeout={300}
@@ -189,7 +191,7 @@ const HikeHeader = ({ auth = false }) => {
                   <NavLink
                     href="../../../family-trek/family-trek"
                     className={
-                      router.pathname == "/familytrek" ? "active-custom" : ""
+                      router.asPath == "/family-trek/family-trek" ? "active-custom" : ""
                     }
                   >
                     Experiential Learning

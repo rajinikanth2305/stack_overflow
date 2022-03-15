@@ -226,17 +226,18 @@ export const upcomingTrekPageStyle = css.global`
 
   .btn-bihtn-yellow {
     background: rgba(255, 193, 0, 1);
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 35%) !important;
     border: 0;
-    padding: 3px 30px;
-    border-radius: 0;
+    padding: 10px 30px;
     line-height: 24px;
     text-align: center;
-    font-family: Franklin Gothic Medium;
+    font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     color: #000000;
-    text-transform: uppercase;
+    text-transform: capitalize;
+    border-radius: 3px !important;
   }
 
   .float-right {

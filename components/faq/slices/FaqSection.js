@@ -43,7 +43,7 @@ const FaqSection = () => {
     faqDetails &&
     faqDetails.map(function(data, i) {
       return (
-        <NavItem className="faq_nav" key={i}>
+        <NavItem className="faq_nav hvr-grow" key={i}>
           <NavLink
             className={classnames({ active: activeTab === i + 1 })}
             onClick={() => {

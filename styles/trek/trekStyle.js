@@ -551,10 +551,9 @@ export const trekStyle = css.global`
 
   .btn-bihtn-yellow {
     background: rgba(255, 193, 0, 1);
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
     border: 0;
     padding: 10px 30px;
-    border-radius: 0;
     line-height: 24px;
     text-align: center;
     font-family: Franklin Gothic;
@@ -563,6 +562,7 @@ export const trekStyle = css.global`
     font-size: 16px;
     color: #000000;
     text-transform: capitalize;
+    border-radius: 3px !important;
   }
 
   .btn-btn-yellow-new {

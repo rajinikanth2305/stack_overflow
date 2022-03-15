@@ -57,7 +57,7 @@ const DIYResources = ({ slice }) => {
           <div className="row">
             {diyResList}
             <div className="d-flex justify-content-end">
-              <button type="button" className="btn btn-bihtn-yellow">
+              <button type="button" className="btn btn-bihtn-yellow hvr-grow">
                 More Resources
               </button>
             </div>

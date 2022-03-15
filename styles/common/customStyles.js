@@ -59,7 +59,7 @@ export const customStyles = css.global`
   .bg_overlay-ft {
     height: 700px;
     background: rgba(0, 0, 0, 0.2);
-    z-index: 999;
+    z-index: 99;
     position: relative;
   }
 
