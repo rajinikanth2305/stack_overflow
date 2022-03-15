@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useMemo, useCallback, useRef} from "react";
 import {
   Collapse,
   Navbar,
@@ -20,7 +20,9 @@ import { useRouter } from "next/router";
 import Prismic from "@prismicio/client";
 import { Client } from "utils/prismicHelpers";
 import Image from "next/image";
-import { DebounceInput } from "react-debounce-input";
+import {DebounceInput} from 'react-debounce-input';
+
+
 
 /**
  * Homepage header component
@@ -35,32 +37,23 @@ const HikeHeader = ({ auth = false }) => {
   const [searchText, setSearchText] = useState();
   const [searchResults, setSearchResults] = useState([]);
 
-  // useEffect(() => {
-  // if (auth) {
-  //   import("../../services/UserService").then(mod => {
-  //     //setUserServiceObject(mod);
-  //     console.log("token" + mod.getToken());
-  //     setUserServiceObject(mod);
-  //     mod.initKeycloak(postAuthenticAction);
-  //   }),
-  //     { ssr: false };
-  //}, []);
-
-  async function getSearchResultData() {
-    const client = Client();
-    const doc = await client
-      .query(
-        [
-          Prismic.Predicates.at("document.type", "trek"),
-          Prismic.Predicates.fulltext("document", searchText)
-        ]
-        // {
-        //   orderings: "[type desc]"
-        // }
-      )
-      .then(function(response) {
-        setSearchResults(response?.results);
-      });
+  const fetchData = async() => {
+    if(searchText && searchText !== "") {
+      const client = Client();
+      await client
+          .query(
+              [
+                Prismic.Predicates.at("document.type", "trek"),
+                Prismic.Predicates.fulltext("document", searchText)
+              ]
+              // {
+              //   orderings: "[type desc]"
+              // }
+          )
+          .then(function (response) {
+            setSearchResults(response?.results);
+          });
+    }
   }
 
   // React Render
@@ -68,16 +61,10 @@ const HikeHeader = ({ auth = false }) => {
     setIsLoggedIn(true);
   };
 
-  const handleGetSearchText = e => {
-    setSearchText(e.target.value);
-    if (e.target.value) {
-      setTimeout(() => {
-        getSearchResultData();
-      }, 3000);
-    }
-    if (e.target.value === "") {
-      setSearchResults([]);
-    }
+  const onChange = event => {
+    const { value: nextValue } = event.target;
+    setSearchText(nextValue);
+    fetchData();
   };
 
   const resultListing =
@@ -129,12 +116,17 @@ const HikeHeader = ({ auth = false }) => {
         <div className="container">
           <div className="d-flex justify-content-end">
             <div>
-              <input
-                type="text"
-                placeholder="Find your trek here?"
-                className="g-search mw-100"
-                onChange={handleGetSearchText}
-              />
+              {/*<input*/}
+              {/*  type="text"*/}
+              {/*  placeholder="Find your trek here?"*/}
+              {/*  className="g-search mw-100"*/}
+              {/*  onChange={onChange}*/}
+              {/*/>*/}
+              <DebounceInput
+                  minLength={1}
+                  debounceTimeout={300}
+                  className="g-search mw-100"
+                  onChange={onChange} />
               {/* <DebounceInput
                 minLength={2}
                 debounceTimeout={300}
