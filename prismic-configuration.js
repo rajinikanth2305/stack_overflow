@@ -12,20 +12,21 @@ export const accessToken = 'MC5ZS0ljT2hJQUFDVUF5Tk5X.EGDvv70577-9Gu-_vX9Y77-9BhF
 export const linkResolver = (doc) => {
   
   if (doc.type === 'post') {
-    return `/blog/${doc.uid}`
+    return `/blog/${doc.uid}`;
+  }
+  if (doc.type === 'family_trek') {
+    return `/family-trek/${doc.uid}`;
   }
   if (doc.type === 'document_trek_type') {
-    return `/doc-trek/${doc.uid}`
+    return `/doc-trek/${doc.uid}`;
   }
   if (doc.type === 'hike_home_ctype') {
-    return `/`
-  }
-  if (doc.type === 'hike_upcoming_treks_ctype') {
-    return `/upcoming`
+    return `/`;
   }
   if (doc.type === 'trek') {
-    return `/trek/${doc.uid}`
+    return `/trek/${doc.uid}`;
   }
+ 
   return `/${doc.uid}`;
 }
 

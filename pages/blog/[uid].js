@@ -20,19 +20,22 @@ import IHTrekWithSwathi from "components/Trek_With_Swathi";
  */
 const Post = ({ post, authorData,updatesData,upComingData,relatedArticles,related_authors }) => {
   if (post && post.data) {
-    const hasTitle = RichText.asText(post.data.title).length !== 0;
-    const title = hasTitle ? RichText.asText(post.data.title) : "Untitled";
-    const meta_title = RichText.asText(post.data?.meta_title);
-    const meta_desc = RichText.asText(post.data?.meta_description);
+    const hasTitle = post?.data?.meta_title?.length !== 0;
+    const title = hasTitle ? post.data?.meta_title : RichText.asText(post?.data?.title);
+    const meta_title = post.data?.meta_title;
+    const meta_desc = post.data?.meta_description;
+    const meta_keywords = post.data?.meta_keywords;
+   // console.log(JSON.stringify(post));
+  // console.log(post.data?.meta_title);
+  //  console.log(post.data?.meta_keywords);
 
     return (
       <DefaultLayout>
         <Head>
           <title>{title}</title>
-          <meta 
-          name={meta_title}
-          content = {meta_desc}
-         />
+          <meta name="meta_keywords" content = {meta_keywords}/>
+          <meta name="meta_description" content = {meta_desc}/>
+        
         </Head>
         <HikeHeader/>
         <div className="main">
