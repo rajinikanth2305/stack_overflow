@@ -217,7 +217,7 @@ const BestTimeToDo = ({ data }) => {
                 <p className="p-text-1">
                   <b>{RichText.asText(content1Title)}</b>
                 </p>
-                {content1Temprature && content1Temprature[0]?.text !== '' && (
+                {content1Temprature && content1Temprature[0]?.text && (
                   <p className="p-text-3-1 mb-2">
                     <img src="/Duration.png" alt="img" />{" "}
                     <span className="px-2">
@@ -225,7 +225,7 @@ const BestTimeToDo = ({ data }) => {
                     </span>
                   </p>
                 )}
-                {content1Snow && content1Snow[0]?.text !== '' && (
+                {content1Snow && content1Snow[0]?.text && (
                   <p className="p-text-3-1 mb-2">
                     <img src="/shoes.png" alt="img" />{" "}
                     <span className="px-2">
@@ -233,7 +233,7 @@ const BestTimeToDo = ({ data }) => {
                     </span>
                   </p>
                 )}
-                {content1WarmLayers && content1WarmLayers[0]?.text !== '' && (
+                {content1WarmLayers && content1WarmLayers[0]?.text && (
                   <p className="p-text-3-1">
                     <img src="/Offloading.png" alt="img" />{" "}
                     <span className="px-2">
@@ -279,17 +279,17 @@ const BestTimeToDo = ({ data }) => {
             <p className="p-text-1">
               <b>{RichText.asText(content2Title)}</b>
             </p>
-            {content2Temprature && content2Temprature[0]?.text !== '' && (  <p className="p-text-3-1 mb-2">
+            {content2Temprature && content2Temprature[0]?.text && (  <p className="p-text-3-1 mb-2">
               <img src="/Duration.png" alt="img" />{" "}
               <span className="px-2">
                 {RichText.asText(content2Temprature)}
               </span>
             </p> )}
-            {content2Snow && content2Snow[0]?.text !== '' && ( <p className="p-text-3-1 mb-2">
+            {content2Snow && content2Snow[0]?.text && ( <p className="p-text-3-1 mb-2">
               <img src="/shoes.png" alt="img" />{" "}
               <span className="px-2">{RichText.asText(content2Snow)}</span>
             </p> )}
-            {content2WarmLayers && content2WarmLayers[0]?.text !== '' && ( <p className="p-text-3-1">
+            {content2WarmLayers && content2WarmLayers[0]?.text && ( <p className="p-text-3-1">
               <img src="/Offloading.png" alt="img" />{" "}
               <span className="px-2">
                 {RichText.asText(content2WarmLayers)}
@@ -308,17 +308,17 @@ const BestTimeToDo = ({ data }) => {
             <p className="p-text-1">
               <b>{RichText.asText(content3Title)}</b>
             </p>
-            {content3Temprature && content3Temprature[0]?.text !== '' && ( <p className="p-text-3-1 mb-2">
+            {content3Temprature && content3Temprature[0]?.text && ( <p className="p-text-3-1 mb-2">
               <img src="/Duration.png" alt="img" />{" "}
               <span className="px-2">
                 {RichText.asText(content3Temprature)}
               </span>
             </p> )}
-            {content3Snow && content3Snow[0]?.text !== '' && ( <p className="p-text-3-1 mb-2">
+            {content3Snow && content3Snow[0]?.text && ( <p className="p-text-3-1 mb-2">
               <img src="/shoes.png" alt="img" />{" "}
               <span className="px-2">{RichText.asText(content3Snow)}</span>
             </p> )}
-            {content3WarmLayers && content3WarmLayers[0]?.text !== '' && ( <p className="p-text-3-1">
+            {content3WarmLayers && content3WarmLayers[0]?.text && ( <p className="p-text-3-1">
               <img src="/Offloading.png" alt="img" />{" "}
               <span className="px-2">
                 {RichText.asText(content3WarmLayers)}
@@ -336,17 +336,17 @@ const BestTimeToDo = ({ data }) => {
             <p className="p-text-1">
               <b>{RichText.asText(content4Title)}</b>
             </p>
-            {content4Temprature && content4Temprature.length > 0 && ( <p className="p-text-3-1 mb-2">
+            {content4Temprature && content4Temprature[0]?.text && ( <p className="p-text-3-1 mb-2">
               <img src="/Duration.png" alt="img" />{" "}
               <span className="px-2">
                 {RichText.asText(content4Temprature)}
               </span>
             </p> )}
-            {content4Snow && content4Snow.length > 0 && (<p className="p-text-3-1 mb-2">
+            {content4Snow && content4Snow[0]?.text && (<p className="p-text-3-1 mb-2">
               <img src="/shoes.png" alt="img" />{" "}
               <span className="px-2">{RichText.asText(content4Snow)}</span>
             </p> )}
-            {content4WarmLayers && content4WarmLayers.length > 0 && (<p className="p-text-3-1">
+            {content4WarmLayers && content4WarmLayers[0]?.text && (<p className="p-text-3-1">
               <img src="/Offloading.png" alt="img" />{" "}
               <span className="px-2">
                 {RichText.asText(content4WarmLayers)}
@@ -364,17 +364,17 @@ const BestTimeToDo = ({ data }) => {
             <p className="p-text-1">
               <b>{RichText.asText(content5Title)}</b>
             </p>
-            {content5Temprature && content5Temprature.length > 0 && ( <p className="p-text-3-1 mb-2">
+            {content5Temprature && content5Temprature[0]?.text && ( <p className="p-text-3-1 mb-2">
               <img src="/Duration.png" alt="img" />{" "}
               <span className="px-2">
                 {RichText.asText(content5Temprature)}
               </span>
             </p> )}
-            {content5Snow && content5Snow.length > 0 && (<p className="p-text-3-1 mb-2">
+            {content5Snow && content5Snow[0]?.text&& (<p className="p-text-3-1 mb-2">
               <img src="/shoes.png" alt="img" />{" "}
               <span className="px-2">{RichText.asText(content5Snow)}</span>
             </p> )}
-            {content5WarmLayers && content5WarmLayers.length > 0 && (<p className="p-text-3-1">
+            {content5WarmLayers && content5WarmLayers[0]?.text && (<p className="p-text-3-1">
               <img src="/Offloading.png" alt="img" />{" "}
               <span className="px-2">
                 {RichText.asText(content5WarmLayers)}
@@ -465,7 +465,7 @@ const BestTimeToDo = ({ data }) => {
             </div>
           </div> } */}
 
-          {importantNoteContent && importantNoteContent[0]?.text !== '' && (
+          {importantNoteContent && importantNoteContent[0]?.text && (
             <div className="important_notice_box">
               <p className="p-text-2-franklin">
                 {RichText.asText(importantNoteTitle)}

@@ -1432,7 +1432,7 @@ export const trekStyle = css.global`
 
   .text-adj {
     text-align: right !important;
-    padding: 55px 30px 0 30px;
+    padding: 0 30px 0 30px;
     line-height: 48px;
   }
 
@@ -1530,7 +1530,7 @@ export const trekStyle = css.global`
     .q-des {
       font-size: 40px;
       left: 0px;
-      top: 15px;
+      top: -8px;
     }
     .m-mt-15 {
       margin: 15px 0 0 0;
@@ -1574,6 +1574,10 @@ export const trekStyle = css.global`
 
     .mpt-0 {
       padding-top: 0px !important;
+    }
+
+    .mmt-4 {
+      margin-top: 75px !important;
     }
 
     .mpb-0 {
@@ -1879,7 +1883,7 @@ export const trekStyle = css.global`
     }
 
     .nav-item.nav-link {
-      padding: 3px 15px !important;
+      padding: 3px 12px !important;
       font-size: 12px;
     }
 
@@ -1893,10 +1897,10 @@ export const trekStyle = css.global`
     //   margin-bottom: 0px;
     // }
 
-    .hd-tabs > .nav > .nav-item.nav-link.active {
-      border-radius: 0 !important;
-      box-shadow: none !important;
-    }
+    // .hd-tabs > .nav > .nav-item.nav-link.active {
+    //   border-radius: 0 !important;
+    //   box-shadow: none !important;
+    // }
 
     .hd-tabs > .nav > .nav-item.nav-link {
       width: 100%;

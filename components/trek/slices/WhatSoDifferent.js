@@ -60,9 +60,9 @@ const WhatSoDifferent = ({ slice }) => {
                 </div>
               </div>
               <div className="p-text-4">{RichText.render(heading2)}</div>
-              <div className="d-flex justify-content-end m-j-c-c">
+              {/* <div className="d-flex justify-content-end m-j-c-c">
                 <button className="btn btn-bihtn-yellow hvr-grow">Read More</button>
-              </div>
+              </div> */}
             </div>
             <div className="col-12 col-lg-1 col-md-12"></div>
             <div className="col-12 col-lg-4 col-md-12 mb-5">

@@ -134,22 +134,24 @@ const TrekkersVideoCommon = () => {
 
   return (
     <>
-      <div className="mb-4 choose_trek_sec-common">
-        <div className="trek_video_badge mmb2">
-          <img src="/trek-badge_badge.png" />
-          <span>Trekker Videos</span>
-        </div>
-        <div className="container container-custom">
-          <div className="m-mt-15">
-            <Slider className="trekvideos-carosule-common" {...settings}>
-              {ihTrekkerVideosImage}
-            </Slider>
+      {ihTrekkerVideosImageArray && ihTrekkerVideosImageArray?.length && (
+        <div className="mb-4 mmt-4 choose_trek_sec-common">
+          <div className="trek_video_badge mmb2">
+            <img src="/trek-badge_badge.png" />
+            <span>Trekker Videos</span>
           </div>
+          <div className="container container-custom">
+            <div className="m-mt-15">
+              <Slider className="trekvideos-carosule-common" {...settings}>
+                {ihTrekkerVideosImage}
+              </Slider>
+            </div>
+          </div>
+          <style jsx global>
+            {trekStyle}
+          </style>
         </div>
-        <style jsx global>
-          {trekStyle}
-        </style>
-      </div>
+      )}
       <Modal size="lg" show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title></Modal.Title>

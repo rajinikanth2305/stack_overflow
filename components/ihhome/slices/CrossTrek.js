@@ -12,7 +12,8 @@ const CrossTrek = ({ slice }) => {
   const crossTrekImagebg = {
     backgroundImage: `url('${crossTrekImage}')`,
     width: "100%",
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
+    backgroungPosition: "center center;"
   };
 
   return (
