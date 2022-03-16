@@ -91,24 +91,22 @@ const FeeDetails = ({ data }) => {
                   <p className="trek_fee">₹ {RichText.asText(price)}</p>
                 </div> */}
                 <div className="d-flex align-items-center">
-                    <div>
-                      <p className="trek_fee">₹</p>
-                    </div>
-                    <div className="mx-2">
-                      <p className="trek_fee">
-                        {RichText.asText(price)}
-                      </p>
-                    </div>
+                  <div>
+                    <p className="trek_fee">₹</p>
                   </div>
+                  <div className="mx-2">
+                    <p className="trek_fee">{RichText.asText(price)}</p>
+                  </div>
+                </div>
                 <div className="mx-3">
                   <p className="trek-info-detail m-0">
                     + {RichText.asText(tax)}% gst
                   </p>
                   <p className="trek-info-detail m-0">
                     + {RichText.asText(insurance)}{" "}
-                    <span className="mx-1">
+                    {/* <span className="mx-1">
                       <i className="fa fa-info-circle" aria-hidden="true"></i>
-                    </span>
+                    </span> */}
                   </p>
                 </div>
               </div>
@@ -161,7 +159,14 @@ const FeeDetails = ({ data }) => {
                     <span>+ {RichText.asText(tax)}% gst</span>
                   </p>
                   <p className="p-xxs-text m-0">
-                    <span>+ {RichText.asText(insurance)}</span>
+                    <span>+ {RichText.asText(insurance)} </span>{" "}
+                    <span className="mx-1">
+                      <i
+                        className="fa fa-info-circle"
+                        aria-hidden="true"
+                        onClick={handleShow}
+                      ></i>
+                    </span>
                   </p>
                 </div>
               </div>

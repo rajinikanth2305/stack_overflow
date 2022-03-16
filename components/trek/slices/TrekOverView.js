@@ -205,7 +205,7 @@ const TrekOverView = ({ slice, data }) => {
               </div>
             </div>
             <div className="col-12 col-lg-1 col-md-12"></div>
-            <div className="col-12 col-lg-4 col-md-12 d-m-none">
+            <div className="col-12 col-lg-4 col-md-12">
               <FeeDetails data={data} />
             </div>
           </div>
