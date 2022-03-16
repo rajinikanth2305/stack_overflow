@@ -360,7 +360,7 @@ const WelcomeProfile = () => {
 
     if (participantList.length > 0) {
       console.log(participantList);
-      cancelParticipantBooking(upComingTrek.bookingId, participantList).then(
+      cancelParticipantBooking(upComingTrek.bookingId, true, false, participantList).then(
         res => {
           toast.current.show({
             severity: "info",
