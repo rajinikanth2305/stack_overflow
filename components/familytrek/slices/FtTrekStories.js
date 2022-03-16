@@ -29,7 +29,7 @@ const FtTrekStories = ({ slice, latestUpdateAarticleData }) => {
     "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
   const youtube_imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
 
-  getYoutubeTitle(cleanVideoId, function(err, title) {
+  getYoutubeTitle(cleanVideoId && cleanVideoId ? cleanVideoId : "", function(err, title) {
     setVtitle(title);
   });
 
@@ -92,7 +92,7 @@ const FtTrekStories = ({ slice, latestUpdateAarticleData }) => {
             <div className="col-lg-6 col-md-12">
               <div className="row">{latestTrekWorld}</div>
             </div>
-            <div className="col-lg-6 col-md-12">
+            { primaryVideoUrl && <div className="col-lg-6 col-md-12">
               <div className="card exp-card-blog gt-blog mx-0">
                 <div className="latest_update_img">
                   <div className="d-flex align-items-center justify-content-center w-100 h-100">
@@ -113,18 +113,13 @@ const FtTrekStories = ({ slice, latestUpdateAarticleData }) => {
                     onClick={handleShow}
                   />
                 </div>
-                {/* <div className="p-3">
-                    <p className="latestTrekWorld_caption">
-                      {RichText.asText(videoText)}
-                    </p>
-                  </div> */}
                 {vTitle && (
                   <div className="p-3">
                     <p className="latestTrekWorld_caption">{vTitle}</p>
                   </div>
                 )}
               </div>
-            </div>
+            </div> }
           </div>
         </div>
         <style jsx global>
