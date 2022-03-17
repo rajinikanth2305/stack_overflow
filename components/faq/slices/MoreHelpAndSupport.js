@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
+import Modal from "react-bootstrap/Modal";
 
 const MoreHelpAndSupport = ({ slice }) => {
   const heading1 = slice?.primary?.heading1;
@@ -12,7 +13,24 @@ const MoreHelpAndSupport = ({ slice }) => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [isActive, setActive] = useState(false);
 
+  const [show, setShow] = useState(false);
+  const [trekVideoUrl, setTrekVideoUrl] = useState();
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const supportQuostions = supportQuostionsArray?.map(function(data, i) {
+    const result = data?.video_link?.url?.split(
+      /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
+    );
+    const videoIdWithParams = result && result[2];
+
+    const cleanVideoId =
+      videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
+
+    const videoUrl =
+      "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
+    const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
     return (
       <div className="col-lg-6 col-md-12" key={i}>
         <Card>
@@ -20,11 +38,6 @@ const MoreHelpAndSupport = ({ slice }) => {
             <Accordion.Toggle
               variant="link"
               eventKey={i + 1}
-              // className={
-              //   i + 1 === activeIndex && activeIndex && isActive === true
-              //     ? "show"
-              //     : ""
-              // }
               className={activeIndex && activeIndex === i + 1 ? "show" : ""}
               onClick={() => {
                 setActiveIndex(i + 1);
@@ -53,6 +66,33 @@ const MoreHelpAndSupport = ({ slice }) => {
               <div className="p-text-4">
                 {RichText.render(data?.support_details)}
               </div>
+              {data?.video_link?.url && (
+                <div>
+                  <div className="faq_video_img">
+                    <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                      <div className="text-center">
+                        <img
+                          src="/v-icon.png"
+                          alt="playicon'"
+                          className="paly-icon icon-size-50"
+                          onClick={handleShow}
+                        />
+                      </div>
+                    </div>
+                    <Image
+                      src={imageURL}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="50% 60%"
+                      alt="imgs"
+                      onClick={() => {
+                        setTrekVideoUrl(videoUrl);
+                        setShow(true);
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -81,6 +121,22 @@ const MoreHelpAndSupport = ({ slice }) => {
           {customStyles}
         </style>
       </div>
+      <Modal size="lg" show={show} onHide={handleClose} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <iframe
+            width="100%"
+            height="500"
+            src={trekVideoUrl && trekVideoUrl}
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

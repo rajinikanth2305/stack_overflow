@@ -8,6 +8,7 @@ import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
 import classnames from "classnames";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
+import Modal from "react-bootstrap/Modal";
 
 const FaqSection = () => {
   const [faqDetails, setFaqDetails] = useState();
@@ -19,6 +20,12 @@ const FaqSection = () => {
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
   };
+
+  const [show, setShow] = useState(false);
+  const [trekVideoUrl, setTrekVideoUrl] = useState();
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     fintFaqDetails();
@@ -136,6 +143,17 @@ const FaqSection = () => {
     faqDetails.map(function(data, i) {
       const faqArray = data?.items;
       const faqAccordionList = faqArray?.map(function(faq, j) {
+        const result = faq?.yt_link?.url?.split(
+          /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
+        );
+        const videoIdWithParams = result && result[2];
+
+        const cleanVideoId =
+          videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
+
+        const videoUrl =
+          "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
+        const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
         return (
           <div className="col-lg-6 col-md-12" key={j}>
             <Card>
@@ -157,6 +175,33 @@ const FaqSection = () => {
                   <div className="p-text-4">
                     {RichText.render(faq?.accordion_details)}
                   </div>
+                  {faq?.yt_link?.url && (
+                    <div>
+                      <div className="faq_video_img cursor-pointer">
+                        <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                          <div className="text-center">
+                            <img
+                              src="/v-icon.png"
+                              alt="playicon'"
+                              className="paly-icon icon-size-50"
+                              onClick={handleShow}
+                            />
+                          </div>
+                        </div>
+                        <Image
+                          src={imageURL}
+                          layout="fill"
+                          objectFit="cover"
+                          objectPosition="50% 60%"
+                          alt="imgs"
+                          onClick={() => {
+                            setTrekVideoUrl(videoUrl);
+                            setShow(true);
+                          }}
+                        />
+                      </div>
+                    </div>
+                  )}
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
@@ -202,6 +247,22 @@ const FaqSection = () => {
           {customStyles}
         </style>
       </div>
+      <Modal size="lg" show={show} onHide={handleClose} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <iframe
+            width="100%"
+            height="500"
+            src={trekVideoUrl && trekVideoUrl}
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
