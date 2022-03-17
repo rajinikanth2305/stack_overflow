@@ -107,38 +107,41 @@ const TrekVideosComponent = ({ slice }) => {
     const videoUrl =
       "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
     const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
+
     return (
       <div key={i}>
         <div className="mx-2 mb-3">
-          <div className="card card-box-shadow border-0">
-            <div className="trek_video_image_array">
-              <div className="d-flex align-items-center justify-content-center w-100 h-100">
-                <div className="text-center">
-                  <img
-                    src="/v-icon.png"
-                    alt="playicon'"
-                    className="paly-icon icon-size-50"
+          {cleanVideoId && cleanVideoId !== undefined && (
+            <div className="card card-box-shadow border-0">
+              <div className="trek_video_image_array">
+                <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                  <div className="text-center">
+                    <img
+                      src="/v-icon.png"
+                      alt="playicon'"
+                      className="paly-icon icon-size-50"
+                      onClick={() => {
+                        setTrekVideoUrl(videoUrl);
+                        setShow(true);
+                      }}
+                    />
+                  </div>
+                </div>
+                {imageURL && (
+                  <Image
+                    src={imageURL}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="center"
                     onClick={() => {
                       setTrekVideoUrl(videoUrl);
                       setShow(true);
                     }}
                   />
-                </div>
+                )}
               </div>
-              {imageURL && (
-                <Image
-                  src={imageURL}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="center"
-                  onClick={() => {
-                    setTrekVideoUrl(videoUrl);
-                    setShow(true);
-                  }}
-                />
-              )}
             </div>
-          </div>
+          )}
         </div>
       </div>
     );
@@ -148,72 +151,84 @@ const TrekVideosComponent = ({ slice }) => {
     <>
       <div>
         <div className="container">
-          <div className="row mt-5 mb-3 mmt-0">
-            <div className="col-12 col-lg-7 col-md-12">
-              <h2 className="title-h2 th-2m pb-08">
-                {RichText.asText(heading1)}
-              </h2>
-            </div>
-            <div className="col-12 col-lg-7 col-md-12 d-m-none">
-              <div className="mb-4 pb-2 p-text-4">{RichText.render(heading2)}</div>
-            </div>
-            <div className="col-12 col-lg-7 col-md-12 mpy-0">
-              <div className="d-m-none">
-                <div className="card card-box-shadow border-0">
-                  <div className="terk-videos-promary-image">
-                    <div className="d-flex align-items-center justify-content-center w-100 h-100">
-                      <div className="text-center">
-                        <img
-                          src="/v-icon.png"
-                          alt="playicon'"
-                          className="paly-icon"
+          <div className={primaryVideoLink ? "row mt-5 mb-3 mmt-0" : "my-3" }>
+            {primaryVideoLink && (
+              <div className="col-12 col-lg-7 col-md-12">
+                <h2 className="title-h2 th-2m pb-08">
+                  {RichText.asText(heading1)}
+                </h2>
+              </div>
+            )}
+            {primaryVideoLink && (
+              <div className="col-12 col-lg-7 col-md-12 d-m-none">
+                <div className="mb-4 pb-2 p-text-4">
+                  {RichText.render(heading2)}
+                </div>
+              </div>
+            )}
+            {primaryVideoLink && (
+              <div className="col-12 col-lg-7 col-md-12 mpy-0">
+                <div className="d-m-none">
+                  <div className="card card-box-shadow border-0">
+                    <div className="terk-videos-promary-image">
+                      <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                        <div className="text-center">
+                          <img
+                            src="/v-icon.png"
+                            alt="playicon'"
+                            className="paly-icon"
+                            onClick={handlePrimary}
+                          />
+                        </div>
+                      </div>
+                      {primary_youtube_imageURL && (
+                        <Image
+                          src={primary_youtube_imageURL}
+                          layout="fill"
+                          objectFit="cover"
+                          objectPosition="center"
                           onClick={handlePrimary}
                         />
-                      </div>
+                      )}
                     </div>
-                    {primary_youtube_imageURL && (
-                      <Image
-                        src={primary_youtube_imageURL}
-                        layout="fill"
-                        objectFit="cover"
-                        objectPosition="center"
-                        onClick={handlePrimary}
-                      />
-                    )}
                   </div>
                 </div>
               </div>
-            </div>
+            )}
             <div className="col-12 col-lg-1 col-md-12"></div>
             <div className="col-12 col-lg-4 col-md-12">
-              <div>
-                <div className="card card-box-shadow border-0">
-                  <div className="terk-videos-secondary-image">
-                    <div className="d-flex align-items-center justify-content-center w-100 h-100">
-                      <div className="text-center">
-                        <img
-                          src="/v-icon.png"
-                          alt="playicon'"
-                          className="paly-icon icon-size-70"
+              {secondaryVideoLink && (
+                <div>
+                  <div className="card card-box-shadow border-0">
+                    <div className="terk-videos-secondary-image">
+                      <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                        <div className="text-center">
+                          <img
+                            src="/v-icon.png"
+                            alt="playicon'"
+                            className="paly-icon icon-size-70"
+                            onClick={handleSecondary}
+                          />
+                        </div>
+                      </div>
+                      {secondary_youtube_imageURL && (
+                        <Image
+                          src={secondary_youtube_imageURL}
+                          layout="fill"
+                          objectFit="cover"
+                          objectPosition="center"
                           onClick={handleSecondary}
                         />
-                      </div>
+                      )}
                     </div>
-                    {secondary_youtube_imageURL && (
-                      <Image
-                        src={secondary_youtube_imageURL}
-                        layout="fill"
-                        objectFit="cover"
-                        objectPosition="center"
-                        onClick={handleSecondary}
-                      />
-                    )}
                   </div>
                 </div>
-              </div>
-              <div className="my-5 m-my-2x">
-                <Slider {...settings}>{videosList}</Slider>
-              </div>
+              )}
+              {videoArray?.length > 0 && (
+                <div className="my-5 m-my-2x">
+                  <Slider {...settings}>{videosList}</Slider>
+                </div>
+              )}
             </div>
           </div>
         </div>

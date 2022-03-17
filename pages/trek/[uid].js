@@ -71,9 +71,9 @@ export async function getStaticProps({
   // trekPageData.push(slice.items);
   const trekPageData = slice.items;
 
-  if (slice.items.length > 0) {
-    for (var i = 0; i < slice.items.length; i++) {
-      const data = slice.items[i];
+  if (slice?.items.length > 0) {
+    for (var i = 0; i < slice?.items.length; i++) {
+      const data = slice?.items[i];
       const slugUrl =  data?.other_trek?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
