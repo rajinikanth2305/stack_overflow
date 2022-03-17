@@ -14,17 +14,24 @@ import { linkResolver } from "prismic-configuration";
 import { Text, Quote, ImageWithCaption, IframeTag, EmbedHtml } from "./index";
 import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
-
-
 import {
-  saveWebComments,getPostComments
-} from "../../../services/queries";
+  WhatsappShareButton,
+  WhatsappIcon,
+  FacebookShareButton,
+  FacebookIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  TwitterShareButton,
+  TwitterIcon
+} from "react-share";
+
+import { saveWebComments, getPostComments } from "../../../services/queries";
 /**
  * Post slice component
  */
 
-  //TO DO IMPLEMENT RECAPTHHA LATER!
-  // https://javascript.plainenglish.io/integrate-google-recaptcha-v2-invisible-with-react-and-nodejs-9d119c94433b
+//TO DO IMPLEMENT RECAPTHHA LATER!
+// https://javascript.plainenglish.io/integrate-google-recaptcha-v2-invisible-with-react-and-nodejs-9d119c94433b
 
 const PostRender = ({
   data,
@@ -48,206 +55,206 @@ const PostRender = ({
   const caption = "";
   //console.log(upComingData);
 
+  const router = useRouter();
+  const shareUrl = `https://apstage.co.in${router?.asPath}`;
+
   const featureSlice = data.body.find(x => x.slice_type == "feature_image");
   if (featureSlice != null) {
     featureImageUrl = featureSlice.primary.feature_image.url;
   }
 
   React.useEffect(() => {
-   // http://localhost:3000/blog/12-most-beautiful-alpine-lakes-to-trek-to-in-india
+    // https://apstage.co.in/blog/12-most-beautiful-alpine-lakes-to-trek-to-in-india
     let url = location.href.replace(location.origin, "");
     let pageUrl = url.split("/");
     const postName = pageUrl[2]; //batchid
-    console.log(postName);
     getPostCommentsByPostName(postName);
-
   }, []);
 
-  const tempData=()=>{
-   const data= [
+  const tempData = () => {
+    const data = [
       {
-        "id": 1,
-        "oldCommentId": null,
-        "commentPostId": 27325,
-        "commentPostTitle": null,
-        "commentPostName": "why-hampta-pass-is-a-superb-trek-for-mid-june",
-        "commentAuthor": "Surya Pillai",
-        "commentAuthorEmail": "suryapillai0709@gmail.com",
-        "commentAuthorUrl": null,
-        "commentAuthorIp": "59.184.191.252",
-        "createdAt": "2022-03-06T04:09:11",
-        "commentContent": " This actually sounds like a great experience. But I was wondering, will we get to see the Chandrataal lake as well? If not in June, when does Chandrataal become part of the Itinerary?",
-        "commentApproved": true,
-        "commentParent": 0,
-        "commentType": "",
-        "userId": 0,
-        "commentAlterId": 16,
-        "votes": 0,
-        "parentId": 0,
-        "replies":[],
-        "childrens":[]
+        id: 1,
+        oldCommentId: null,
+        commentPostId: 27325,
+        commentPostTitle: null,
+        commentPostName: "why-hampta-pass-is-a-superb-trek-for-mid-june",
+        commentAuthor: "Surya Pillai",
+        commentAuthorEmail: "suryapillai0709@gmail.com",
+        commentAuthorUrl: null,
+        commentAuthorIp: "59.184.191.252",
+        createdAt: "2022-03-06T04:09:11",
+        commentContent:
+          " This actually sounds like a great experience. But I was wondering, will we get to see the Chandrataal lake as well? If not in June, when does Chandrataal become part of the Itinerary?",
+        commentApproved: true,
+        commentParent: 0,
+        commentType: "",
+        userId: 0,
+        commentAlterId: 16,
+        votes: 0,
+        parentId: 0,
+        replies: [],
+        childrens: []
       },
       {
-        "id": 2,
-        "oldCommentId": null,
-        "commentPostId": 27325,
-        "commentPostTitle": null,
-        "commentPostName": "why-hampta-pass-is-a-superb-trek-for-mid-june",
-        "commentAuthor": "Kunal maiti",
-        "commentAuthorEmail": "kunalmaity57@gmail.com",
-        "commentAuthorUrl": null,
-        "commentAuthorIp": "223.176.50.32",
-        "createdAt": "2022-03-06T04:09:11",
-        "commentContent": " Will we be able to see chandrtal.",
-        "commentApproved": true,
-        "commentParent": 0,
-        "commentType": "",
-        "userId": 0,
-        "commentAlterId": 17,
-        "votes": 0,
-        "parentId": 0,
-        "replies":[],
-        "childrens":[]
+        id: 2,
+        oldCommentId: null,
+        commentPostId: 27325,
+        commentPostTitle: null,
+        commentPostName: "why-hampta-pass-is-a-superb-trek-for-mid-june",
+        commentAuthor: "Kunal maiti",
+        commentAuthorEmail: "kunalmaity57@gmail.com",
+        commentAuthorUrl: null,
+        commentAuthorIp: "223.176.50.32",
+        createdAt: "2022-03-06T04:09:11",
+        commentContent: " Will we be able to see chandrtal.",
+        commentApproved: true,
+        commentParent: 0,
+        commentType: "",
+        userId: 0,
+        commentAlterId: 17,
+        votes: 0,
+        parentId: 0,
+        replies: [],
+        childrens: []
       },
       {
-        "id": 3,
-        "oldCommentId": null,
-        "commentPostId": 27325,
-        "commentPostTitle": null,
-        "commentPostName": "why-hampta-pass-is-a-superb-trek-for-mid-june",
-        "commentAuthor": "aswati anand",
-        "commentAuthorEmail": "aswati@indiahikes.in",
-        "commentAuthorUrl": null,
-        "commentAuthorIp": "124.40.244.150",
-        "createdAt": "2022-03-06T04:09:11",
-        "commentContent": " Yes. If the weather is good.",
-        "commentApproved": true,
-        "commentParent": 17,
-        "commentType": "",
-        "userId": 86,
-        "commentAlterId": 18,
-        "votes": 0,
-        "parentId": 1,
-        "replies":[],
-        "childrens":[]
+        id: 3,
+        oldCommentId: null,
+        commentPostId: 27325,
+        commentPostTitle: null,
+        commentPostName: "why-hampta-pass-is-a-superb-trek-for-mid-june",
+        commentAuthor: "aswati anand",
+        commentAuthorEmail: "aswati@indiahikes.in",
+        commentAuthorUrl: null,
+        commentAuthorIp: "124.40.244.150",
+        createdAt: "2022-03-06T04:09:11",
+        commentContent: " Yes. If the weather is good.",
+        commentApproved: true,
+        commentParent: 17,
+        commentType: "",
+        userId: 86,
+        commentAlterId: 18,
+        votes: 0,
+        parentId: 1,
+        replies: [],
+        childrens: []
       },
       {
-        "id": 4,
-        "oldCommentId": null,
-        "commentPostId": 27325,
-        "commentPostTitle": null,
-        "commentPostName": "why-hampta-pass-is-a-superb-trek-for-mid-june",
-        "commentAuthor": "aswati anand",
-        "commentAuthorEmail": "aswati@indiahikes.in",
-        "commentAuthorUrl": null,
-        "commentAuthorIp": "124.40.244.150",
-        "createdAt": "2022-03-06T04:09:11",
-        "commentContent": " Yes. If the weather is good.",
-        "commentApproved": true,
-        "commentParent": 17,
-        "commentType": "",
-        "userId": 86,
-        "commentAlterId": 18,
-        "votes": 0,
-        "parentId": 3,
-        "replies":[],
-        "childrens":[]
+        id: 4,
+        oldCommentId: null,
+        commentPostId: 27325,
+        commentPostTitle: null,
+        commentPostName: "why-hampta-pass-is-a-superb-trek-for-mid-june",
+        commentAuthor: "aswati anand",
+        commentAuthorEmail: "aswati@indiahikes.in",
+        commentAuthorUrl: null,
+        commentAuthorIp: "124.40.244.150",
+        createdAt: "2022-03-06T04:09:11",
+        commentContent: " Yes. If the weather is good.",
+        commentApproved: true,
+        commentParent: 17,
+        commentType: "",
+        userId: 86,
+        commentAlterId: 18,
+        votes: 0,
+        parentId: 3,
+        replies: [],
+        childrens: []
       }
     ];
     return data;
-  }
+  };
 
-  const getPostCommentsByPostName = (postName) => {
-        getPostComments(postName).then(res=> {
-         // console.log(res);
-         var comments= getPreparedData(res);
-          setPostComments(comments);
-          const arr = Array.from(new Array(comments?.length),(x, i) => i);
-          setIndexes(arr);
-          setCounter(arr.length);
-          //setRender(true);
-        });
-  }
+  const getPostCommentsByPostName = postName => {
+    getPostComments(postName).then(res => {
+      // console.log(res);
+      var comments = getPreparedData(res);
+      setPostComments(comments);
+      const arr = Array.from(new Array(comments?.length), (x, i) => i);
+      setIndexes(arr);
+      setCounter(arr.length);
+      //setRender(true);
+    });
+  };
 
-  const buildInternalBindStructure =(res)=> {
-    let comments=[];
-    
-    res?.map(y=> {
+  const buildInternalBindStructure = res => {
+    let comments = [];
+
+    res?.map(y => {
       comments.push({
-        "id": y.id,
-        "oldCommentId": y.oldCommentId,
-        "commentPostId": y.commentPostId,
-        "commentPostTitle": y.commentPostTitle,
-        "commentPostName": y.commentPostName,
-        "commentAuthor": y.commentAuthor,
-        "commentAuthorEmail": y.commentAuthorEmail,
-        "commentAuthorUrl": y.commentAuthorUrl,
-        "commentAuthorIp": y.commentAuthorIp,
-        "createdAt": y.createdAt,
-        "commentContent": y.commentContent,
-        "commentApproved": y.commentApproved,
-        "commentParent": y.refcommentParent,
-        "commentType": y.commentType,
-        "userId": y.userId,
-        "commentAlterId":y.commentAlterId,
-        "votes": y.renderLatestUpdatesvotes,
-        "parentId":y.parentId ,
-        "replies":[],
-        "childrens":[]
+        id: y.id,
+        oldCommentId: y.oldCommentId,
+        commentPostId: y.commentPostId,
+        commentPostTitle: y.commentPostTitle,
+        commentPostName: y.commentPostName,
+        commentAuthor: y.commentAuthor,
+        commentAuthorEmail: y.commentAuthorEmail,
+        commentAuthorUrl: y.commentAuthorUrl,
+        commentAuthorIp: y.commentAuthorIp,
+        createdAt: y.createdAt,
+        commentContent: y.commentContent,
+        commentApproved: y.commentApproved,
+        commentParent: y.refcommentParent,
+        commentType: y.commentType,
+        userId: y.userId,
+        commentAlterId: y.commentAlterId,
+        votes: y.renderLatestUpdatesvotes,
+        parentId: y.parentId,
+        replies: [],
+        childrens: []
       });
     });
     return comments;
-  }
+  };
 
-  const getPreparedData=(res)=> {
-    const dt= buildInternalBindStructure(res);//tempData();
+  const getPreparedData = res => {
+    const dt = buildInternalBindStructure(res); //tempData();
     //console.log(dt);
-    let comments=[];
+    let comments = [];
 
-    dt?.filter(y=>y.parentId==0  ).map(y=> {
+    dt?.filter(y => y.parentId == 0).map(y => {
       comments.push(y);
     });
-   // console.log(comments);
+    // console.log(comments);
 
-    dt?.filter(y=>y.parentId>0 ).map(x=> {
-     const comment= comments?.find(z=>z.id===x.parentId);
-     if(comment!==null && comment!==undefined) {
+    dt?.filter(y => y.parentId > 0).map(x => {
+      const comment = comments?.find(z => z.id === x.parentId);
+      if (comment !== null && comment !== undefined) {
         comment?.replies?.push(x);
         comment?.childrens?.push(x.id);
-     }
-     else {
-      let findNesteParent;
-        comments?.map(cmt=> {
-        cmt.childrens?.map(item => {
-          if( item === x.parentId) {
-            findNesteParent=cmt;
-            return cmt;
-          }
-      });
-     });
+      } else {
+        let findNesteParent;
+        comments?.map(cmt => {
+          cmt.childrens?.map(item => {
+            if (item === x.parentId) {
+              findNesteParent = cmt;
+              return cmt;
+            }
+          });
+        });
 
-     console.log(findNesteParent);
-      if(findNesteParent!==null && findNesteParent!==undefined) {
-        findNesteParent.childrens.push(x.id);
-        findChildrensAndAdd(findNesteParent,x);
+        console.log(findNesteParent);
+        if (findNesteParent !== null && findNesteParent !== undefined) {
+          findNesteParent.childrens.push(x.id);
+          findChildrensAndAdd(findNesteParent, x);
+        }
       }
-     }
     });
-  
-   // console.log(comments);
+
+    // console.log(comments);
     return comments;
-  }
-  const findChildrensAndAdd=(commentItem,childItem)=> {
-    var reply= commentItem?.replies?.find(v=>v.id===childItem.parentId);
-    if(reply==null || reply===undefined) {
-      commentItem?.replies?.map(rep=>{
-        findChildrensAndAdd(rep,childItem);
-    });
-    }
-    else {
+  };
+  const findChildrensAndAdd = (commentItem, childItem) => {
+    var reply = commentItem?.replies?.find(v => v.id === childItem.parentId);
+    if (reply == null || reply === undefined) {
+      commentItem?.replies?.map(rep => {
+        findChildrensAndAdd(rep, childItem);
+      });
+    } else {
       reply.replies.push(childItem);
     }
-  }
+  };
 
   const renderAuthorSlice = () => {
     return (
@@ -519,33 +526,32 @@ const PostRender = ({
           }}
         >
           <div>
-            
             {imageURL && (
               <div className="ar_video_big_img">
-               <div className="d-flex align-items-center justify-content-center w-100 h-100">
-               <div className="text-center">
-                 <img
-                   src="/v-icon.png"
-                   alt="playicon'"
-                   className="paly-icon icon-size-50"
-                   // onClick={handleShow}
-                 />
-               </div>
-             </div>
-              <Image
-                src={imageURL}
-                // objectFit="cover"
-                // width="1920"
-                // height="1080"
-                layout="fill"
-                    objectFit="cover"
-                    objectPosition="50% 50%"
-                alt="Click on the image to view the Video"
-                onClick={() => {
-                  setTrekVideoUrl(videoUrl);
-                  setShow(true);
-                }}
-              />
+                <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                  <div className="text-center">
+                    <img
+                      src="/v-icon.png"
+                      alt="playicon'"
+                      className="paly-icon icon-size-50"
+                      // onClick={handleShow}
+                    />
+                  </div>
+                </div>
+                <Image
+                  src={imageURL}
+                  // objectFit="cover"
+                  // width="1920"
+                  // height="1080"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                  alt="Click on the image to view the Video"
+                  onClick={() => {
+                    setTrekVideoUrl(videoUrl);
+                    setShow(true);
+                  }}
+                />
               </div>
             )}
           </div>
@@ -649,281 +655,306 @@ const PostRender = ({
     );
   };
 
-  const onReply = formData  => {
-     setActiveReply(formData);
+  const onReply = formData => {
+    setActiveReply(formData);
   };
 
-
-  const onReplyComments = (formData)  => {
-
+  const onReplyComments = formData => {
     //console.log(formData);
 
     let url = location.href.replace(location.origin, "");
     let pageUrl = url.split("/");
     const postName = pageUrl[2]; //postname
 
-    const field1="uname_" + activeReply;
-    const field2="email_" + activeReply;
-    const field3="comment_" + activeReply;
+    const field1 = "uname_" + activeReply;
+    const field2 = "email_" + activeReply;
+    const field3 = "comment_" + activeReply;
 
     console.log(field1 + field2 + field3);
 
-    const userName=document.getElementById(`"${field1}"`).value;
-    const email=document.getElementById(`"${field2}"`).value;
-    const replyText=document.getElementById(`"${field3}"`).value;
-   
+    const userName = document.getElementById(`"${field1}"`).value;
+    const email = document.getElementById(`"${field2}"`).value;
+    const replyText = document.getElementById(`"${field3}"`).value;
 
     //console.log(userName + replyText + email);
 
-      let today = new Date();
-   
+    let today = new Date();
 
-      if(replyText.trim().length==0) {
-        alert("Reply text should'nt be Empty");
-        toast?.current?.show({
-          severity: "error",
-          summary: `'Reply text should'nt be Empty!'`,
-          detail: "Post Comments"
-        });
-        return;
-      }
-      if(userName.trim().length==0) {
-        alert("UserName text should'nt be Empty");
-        toast.current.show({
-          severity: "error",
-          summary: `'Reply UserName should'nt be Empty!'`,
-          detail: "Post Comments"
-        });
-        return;
-      }
-      if(email.trim().length==0) {
-        alert("Email text should'nt be Empty");
-        toast.current.show({
-          severity: "error",
-          summary: `'Reply Email should'nt be Empty!'`,
-          detail: "Post Comments"
-        });
-        return;
-      }
-     
-      if(! ValidateEmail(document.getElementById(`"${field2}"`))) {
-        return;
-      }
-
-    
-
-      const postData= {
-        "id": 0,
-        "oldCommentId": 0,
-        "commentPostId": 0,
-        "commentPostTitle": "",
-        "commentPostName": postName,
-        "commentAuthor": userName,
-        "commentAuthorEmail": email,
-        "commentAuthorUrl": "",
-        "commentAuthorIp": "",
-        "createdAt":today,
-        "commentContent": replyText,
-        "commentApproved": false,
-        "commentParent": 0,
-        "commentType": "",
-        "userId": 0,
-        "commentAlterId": 0,
-        "votes": 0,
-         "parentId":formData
-      }
-
-      saveWebComments(postName,postData).then(res => {
-        toast?.current?.show({
-          severity: "info",
-          summary: `' Successfully saved'`,
-          detail: "Post-Comments"
-        });
-        alert("Thank you very much for your comments");
-        setActiveReply(0);
+    if (replyText.trim().length == 0) {
+      alert("Reply text should'nt be Empty");
+      toast?.current?.show({
+        severity: "error",
+        summary: `'Reply text should'nt be Empty!'`,
+        detail: "Post Comments"
       });
+      return;
+    }
+    if (userName.trim().length == 0) {
+      alert("UserName text should'nt be Empty");
+      toast.current.show({
+        severity: "error",
+        summary: `'Reply UserName should'nt be Empty!'`,
+        detail: "Post Comments"
+      });
+      return;
+    }
+    if (email.trim().length == 0) {
+      alert("Email text should'nt be Empty");
+      toast.current.show({
+        severity: "error",
+        summary: `'Reply Email should'nt be Empty!'`,
+        detail: "Post Comments"
+      });
+      return;
+    }
+
+    if (!ValidateEmail(document.getElementById(`"${field2}"`))) {
+      return;
+    }
+
+    const postData = {
+      id: 0,
+      oldCommentId: 0,
+      commentPostId: 0,
+      commentPostTitle: "",
+      commentPostName: postName,
+      commentAuthor: userName,
+      commentAuthorEmail: email,
+      commentAuthorUrl: "",
+      commentAuthorIp: "",
+      createdAt: today,
+      commentContent: replyText,
+      commentApproved: false,
+      commentParent: 0,
+      commentType: "",
+      userId: 0,
+      commentAlterId: 0,
+      votes: 0,
+      parentId: formData
+    };
+
+    saveWebComments(postName, postData).then(res => {
+      toast?.current?.show({
+        severity: "info",
+        summary: `' Successfully saved'`,
+        detail: "Post-Comments"
+      });
+      alert("Thank you very much for your comments");
+      setActiveReply(0);
+    });
   };
 
-  const onPostComments = (formData)  => {
+  const onPostComments = formData => {
     let url = location.href.replace(location.origin, "");
     let pageUrl = url.split("/");
     const postName = pageUrl[2]; //postname
 
-    const userName=document.getElementById("userName").value;
-    const email=document.getElementById("email").value;
-    const replyText=document.getElementById("postReplyText").value;
+    const userName = document.getElementById("userName").value;
+    const email = document.getElementById("email").value;
+    const replyText = document.getElementById("postReplyText").value;
 
     let today = new Date();
-   
 
-      if(replyText.trim().length===0) {
-        console.log(replyText.trim().length);
-        console.log(  toast.current);
-        alert("Reply text should'nt be Empty");
-        toast?.current?.show({
-          severity: "error",
-          summary: `'Reply text should'nt be Empty!'`,
-          detail: "Post Comments"
-        });
-        return;
-      }
-      if(userName.trim().length==0) {
-        alert("UserName text should'nt be Empty");
-        toast.current.show({
-          severity: "error",
-          summary: `'Reply UserName should'nt be Empty!'`,
-          detail: "Post Comments"
-        });
-        return;
-      }
-      if(email.trim().length===0) {
-        alert("Email text should'nt be Empty");
-        toast.current.show({
-          severity: "error",
-          summary: `'Reply Email should'nt be Empty!'`,
-          detail: "Post Comments"
-        });
-        return;
-      }
-     if(! ValidateEmail(document.getElementById("email"))) {
-       return;
-     }
-     
-      const postData= {
-        "id": 0,
-        "oldCommentId": 0,
-        "commentPostId": 0,
-        "commentPostTitle": "",
-        "commentPostName": postName,
-        "commentAuthor": userName,
-        "commentAuthorEmail": email,
-        "commentAuthorUrl": "",
-        "commentAuthorIp": "",
-        "createdAt":today,
-        "commentContent": replyText,
-        "commentApproved": false,
-        "commentParent": 0,
-        "commentType": "",
-        "userId": 0,
-        "commentAlterId": 0,
-        "votes": 0,
-        "parentId": 0
-      }
+    if (replyText.trim().length === 0) {
+      console.log(replyText.trim().length);
+      console.log(toast.current);
+      alert("Reply text should'nt be Empty");
+      toast?.current?.show({
+        severity: "error",
+        summary: `'Reply text should'nt be Empty!'`,
+        detail: "Post Comments"
+      });
+      return;
+    }
+    if (userName.trim().length == 0) {
+      alert("UserName text should'nt be Empty");
+      toast.current.show({
+        severity: "error",
+        summary: `'Reply UserName should'nt be Empty!'`,
+        detail: "Post Comments"
+      });
+      return;
+    }
+    if (email.trim().length === 0) {
+      alert("Email text should'nt be Empty");
+      toast.current.show({
+        severity: "error",
+        summary: `'Reply Email should'nt be Empty!'`,
+        detail: "Post Comments"
+      });
+      return;
+    }
+    if (!ValidateEmail(document.getElementById("email"))) {
+      return;
+    }
 
-      saveWebComments(postName,postData).then(res => {
-          toast?.current?.show({
-            severity: "info",
-            summary: `' Successfully saved'`,
-            detail: "Post-Comments"
-          });
-          alert("Thank you very much for your comments");
-          document.getElementById("userName").value="";
-    document.getElementById("email").value="";
-    document.getElementById("postReplyText").value="";
-        });
+    const postData = {
+      id: 0,
+      oldCommentId: 0,
+      commentPostId: 0,
+      commentPostTitle: "",
+      commentPostName: postName,
+      commentAuthor: userName,
+      commentAuthorEmail: email,
+      commentAuthorUrl: "",
+      commentAuthorIp: "",
+      createdAt: today,
+      commentContent: replyText,
+      commentApproved: false,
+      commentParent: 0,
+      commentType: "",
+      userId: 0,
+      commentAlterId: 0,
+      votes: 0,
+      parentId: 0
+    };
+
+    saveWebComments(postName, postData).then(res => {
+      toast?.current?.show({
+        severity: "info",
+        summary: `' Successfully saved'`,
+        detail: "Post-Comments"
+      });
+      alert("Thank you very much for your comments");
+      document.getElementById("userName").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("postReplyText").value = "";
+    });
   };
 
-  const recursiveReplyrender =(commentData)=> {
-    
-                       let field1='';
-                      let field2='';
-                      let field3='';
-                      if(activeReply>0) {
-                         field1="uname_" + commentData?.id;
-                         field2="email_" + commentData?.id;
-                         field3="comment_" + commentData?.id;
-                      }
-    return(
-    <div className="pl-l-cus-40">
-    <div className="pl-border-yel">
-      <div className="d-flex align-items-center">
-        <div>
-          <div className="auth_image_1">
-            <img src="../ip.png" />
+  const recursiveReplyrender = commentData => {
+    let field1 = "";
+    let field2 = "";
+    let field3 = "";
+    if (activeReply > 0) {
+      field1 = "uname_" + commentData?.id;
+      field2 = "email_" + commentData?.id;
+      field3 = "comment_" + commentData?.id;
+    }
+    return (
+      <div className="pl-l-cus-40">
+        <div className="pl-border-yel">
+          <div className="d-flex align-items-center">
+            <div>
+              <div className="auth_image_1">
+                <img src="../ip.png" />
+              </div>
+            </div>
+            <div className="mx-2" />
+            <div>
+              <p className="mb-1 p-text-3">{commentData?.author}</p>
+              <p className="m-0 p-text-small-black">
+                {moment(commentData?.createdAt).format("DD MMM YYYY")}
+              </p>
+            </div>
+          </div>
+
+          <div className="p-text-4 my-3">
+            <p>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: commentData?.commentContent
+                }}
+              />
+            </p>
           </div>
         </div>
-        <div className="mx-2" />
-        <div>
-          <p className="mb-1 p-text-3">{commentData?.author}</p>
-          <p className="m-0 p-text-small-black">
-          {moment(commentData?.createdAt).format("DD MMM YYYY")}
-          </p>
+        <div className="d-flex justify-content-end w-100">
+          <button
+            className="btn btn-btn-gray-new mt-3 mb-2"
+            onClick={e => {
+              onReply(commentData.id);
+            }}
+          >
+            Reply
+          </button>
         </div>
-      </div>
+        {activeReply > 0 && activeReply === commentData.id && (
+          <div>
+            <h5 className="p-text-1">
+              <b>LEAVE A REPLY</b>
+            </h5>
+            <p className="p-text-4">
+              Your email address will not be published. Required fields are
+              marked
+            </p>
+            <p>
+              <div>
+                <label for="name">
+                  {" "}
+                  Name<span class="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id={`"${field1}"`}
+                  rows="3"
+                  className="w-100"
+                  placeholder="Name"
+                ></input>
+              </div>
+            </p>
+            <p>
+              <div>
+                <label for="name">
+                  {" "}
+                  Email<span class="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id={`"${field2}"`}
+                  rows="3"
+                  className="w-100"
+                  placeholder="Email"
+                ></input>
+              </div>
+            </p>
+            <p>
+              <div>
+                <label for="name">
+                  {" "}
+                  Comments<span class="required">*</span>
+                </label>
+                <textarea
+                  id={`"${field3}"`}
+                  rows="3"
+                  className="w-100"
+                  placeholder="post comments"
+                ></textarea>
+              </div>
+              <p aria-hidden="true" id="required-description">
+                <span class="required">*</span>Required field
+              </p>
+            </p>
+            <div className="d-flex justify-content-end w-100">
+              <button
+                className="btn btn-btn-yellow-new mt-3 mb-2"
+                onClick={e => {
+                  onReplyComments(commentData.id);
+                }}
+              >
+                Post reply
+              </button>
+            </div>
+          </div>
+        )}
 
-      <div className="p-text-4 my-3">
-        <p>
-        <div dangerouslySetInnerHTML={{ __html: commentData?.commentContent}} />
-        </p>
+        {commentData?.replies?.map(commentReply => {
+          return <div>{recursiveReplyrender(commentReply)}</div>;
+        })}
       </div>
-    </div>
-    <div className="d-flex justify-content-end w-100">
-      <button className="btn btn-btn-gray-new mt-3 mb-2" onClick={e => {onReply(commentData.id)}}>
-        Reply
-      </button>
-    </div>
-    {activeReply > 0 && activeReply===commentData.id && (
-                                 <div>
-                                 <h5 className="p-text-1">
-                                   <b>LEAVE A REPLY</b>
-                                 </h5>
-                                 <p className="p-text-4">
-                                   Your email address will not be published. Required fields
-                                   are marked
-                                 </p>
-                                 <p>
-                                 <div>
-                                 <label for="name"> Name<span class="required">*</span></label>
-                                   <input type="text"   id={`"${field1}"`} rows="3" className="w-100" placeholder="Name" ></input>
-                                 </div>
-                                 </p>
-                                 <p>
-                                 <div>
-                                 <label for="name"> Email<span class="required">*</span></label>
-                                 <input type="text" id={`"${field2}"`} rows="3" className="w-100" placeholder="Email" ></input>
-                                 </div>
-                                 </p>
-                                 <p>
-                                 <div>
-                                 <label for="name"> Comments<span class="required">*</span></label>
-                                   <textarea id={`"${field3}"`} rows="3" className="w-100" placeholder="post comments"></textarea>
-                                 </div>
-                                 <p aria-hidden="true" id="required-description">
-                                     <span class="required">*</span>Required field
-                                 </p>
-                                 </p>
-                                 <div className="d-flex justify-content-end w-100">
-                                   <button className="btn btn-btn-yellow-new mt-3 mb-2" onClick={e => {onReplyComments(commentData.id)}} >
-                                     Post reply
-                                   </button>
-                                 </div>
-                                 </div>
-                              )
-                            }
-
-     {
-              commentData?.replies?.map(commentReply=> {
-                return(
-                  <div>
-                      {recursiveReplyrender(commentReply)}
-                    </div>
-                );
-            })
-          }
-  </div>
     );
-  }
+  };
 
   function ValidateEmail(input) {
-          var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-          if (input.value.match(validRegex)) {
-            return true;
-          } else {
-            alert("Invalid email address!");
-            input.focus();
-            return false;
-          }
-        }
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (input.value.match(validRegex)) {
+      return true;
+    } else {
+      alert("Invalid email address!");
+      input.focus();
+      return false;
+    }
+  }
 
   return (
     <>
@@ -943,7 +974,33 @@ const PostRender = ({
                 <p className="border-bottom-custom-1 pb-2 mb-2"></p>
                 <p className="p-text-small mb-2">Share this story</p>
                 <div>
-                  <a href="">
+                  <>
+                    <FacebookShareButton
+                      url={shareUrl}
+                      className="social-share-icons "
+                    >
+                      <FacebookIcon size={28} round />
+                    </FacebookShareButton>
+                    <LinkedinShareButton
+                      url={shareUrl}
+                      className="social-share-icons "
+                    >
+                      <LinkedinIcon size={28} round />
+                    </LinkedinShareButton>
+                    <TwitterShareButton
+                                url={shareUrl}
+                                className="social-share-icons "
+                              >
+                                <TwitterIcon size={28} round />
+                              </TwitterShareButton>
+                    <WhatsappShareButton
+                      url={shareUrl}
+                      className="social-share-icons "
+                    >
+                      <WhatsappIcon size={28} round />
+                    </WhatsappShareButton>
+                  </>
+                  {/* <a href="">
                     <span className="social_bg mx-1">
                       <i className="fa fa-facebook" aria-hidden="true"></i>
                     </span>
@@ -962,7 +1019,7 @@ const PostRender = ({
                     <span className="social_bg mx-1">
                       <i className="fa fa-whatsapp" aria-hidden="true"></i>
                     </span>
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>
@@ -996,7 +1053,33 @@ const PostRender = ({
                             </p>
                           </div>
                           <div>
-                            <a href="">
+                            <>
+                              <FacebookShareButton
+                                url={shareUrl}
+                                className="social-share-icons "
+                              >
+                                <FacebookIcon size={28} round />
+                              </FacebookShareButton>
+                              <LinkedinShareButton
+                                url={shareUrl}
+                                className="social-share-icons "
+                              >
+                                <LinkedinIcon size={28} round />
+                              </LinkedinShareButton>
+                              <TwitterShareButton
+                                url={shareUrl}
+                                className="social-share-icons "
+                              >
+                                <TwitterIcon size={28} round />
+                              </TwitterShareButton>
+                              <WhatsappShareButton
+                                url={shareUrl}
+                                className="social-share-icons "
+                              >
+                                <WhatsappIcon size={28} round />
+                              </WhatsappShareButton>
+                            </>
+                            {/* <a href="">
                               <span className="social_bg mx-1">
                                 <i
                                   className="fa fa-facebook"
@@ -1027,7 +1110,7 @@ const PostRender = ({
                                   aria-hidden="true"
                                 ></i>
                               </span>
-                            </a>
+                            </a> */}
                           </div>
                         </div>
                       </div>
@@ -1083,49 +1166,76 @@ const PostRender = ({
                       are marked
                     </p>
                     <p>
-                    <div>
-                     <label for="name"> Name<span class="required">*</span></label>
-                      <input type="text" id="userName" rows="3" className="w-100"  ></input>
-                    </div>
+                      <div>
+                        <label for="name">
+                          {" "}
+                          Name<span class="required">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="userName"
+                          rows="3"
+                          className="w-100"
+                        ></input>
+                      </div>
                     </p>
                     <p>
-                    <div>
-                    <label for="name"> Email<span class="required">*</span></label>
-                    <input type="text" id="email" rows="3" className="w-100"  ></input>
-                    </div>
+                      <div>
+                        <label for="name">
+                          {" "}
+                          Email<span class="required">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="email"
+                          rows="3"
+                          className="w-100"
+                        ></input>
+                      </div>
                     </p>
                     <p>
-                    <div>
-                    <label for="name"> Comments <span class="required">*</span></label>
-                      <textarea id="postReplyText" rows="3" className="w-100" ></textarea>
-                    </div>
-                    <p aria-hidden="true" id="required-description">
-                      <span class="required">*</span>Required field
-                    </p>
+                      <div>
+                        <label for="name">
+                          {" "}
+                          Comments <span class="required">*</span>
+                        </label>
+                        <textarea
+                          id="postReplyText"
+                          rows="3"
+                          className="w-100"
+                        ></textarea>
+                      </div>
+                      <p aria-hidden="true" id="required-description">
+                        <span class="required">*</span>Required field
+                      </p>
                     </p>
                     <div className="d-flex justify-content-end w-100">
-                      <button className="btn btn-btn-yellow-new mt-3 mb-2" onClick={e => {onPostComments()}} >
+                      <button
+                        className="btn btn-btn-yellow-new mt-3 mb-2"
+                        onClick={e => {
+                          onPostComments();
+                        }}
+                      >
                         Post reply
                       </button>
                     </div>
-                    </div>
-                    
-                    {
-                      indexes.map(index => {
-                      const fieldName = `voucher[${index}]`;
-                      const sdata = postComments[index];
-                      let field1='';
-                      let field2='';
-                      let field3='';
-                      if(activeReply>0) {
-                         field1="uname_" + sdata.id;
-                         field2="email_" + sdata.id;
-                         field3="comment_" + sdata.id;
-                      }
+                  </div>
 
-                      return (
-                       <div>
-                         {/*
+                  {indexes.map(index => {
+                    const fieldName = `voucher[${index}]`;
+                    const sdata = postComments[index];
+                    let field1 = "";
+                    let field2 = "";
+                    let field3 = "";
+                    if (activeReply > 0) {
+                      field1 = "uname_" + sdata.id;
+                      field2 = "email_" + sdata.id;
+                      field3 = "comment_" + sdata.id;
+                    }
+
+                    return (
+                      <div>
+                        {/*
                             <div className="my-5">
                               <p className="p-text-1">
                                 <b>
@@ -1135,81 +1245,120 @@ const PostRender = ({
                             </div>
                          */}
 
-                    <div className="border-bottom pb-4 mb-4">
-                            <div className="d-flex align-items-center"> 
-                              <div>
-                                <div className="auth_image_1">
-                                  <img src="../ip.png" />
-                                </div>
+                        <div className="border-bottom pb-4 mb-4">
+                          <div className="d-flex align-items-center">
+                            <div>
+                              <div className="auth_image_1">
+                                <img src="../ip.png" />
                               </div>
-                              <div className="mx-2" />
-                              <div>
-                                <p className="mb-1 p-text-3">{sdata?.commentAuthor}</p>
-                                <p className="m-0 p-text-small-black">
+                            </div>
+                            <div className="mx-2" />
+                            <div>
+                              <p className="mb-1 p-text-3">
+                                {sdata?.commentAuthor}
+                              </p>
+                              <p className="m-0 p-text-small-black">
                                 {moment(sdata?.createdAt).format("DD MMM YYYY")}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="p-text-4 my-3">
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: sdata?.commentContent
+                              }}
+                            />
+                          </div>
+                          <div className="d-flex justify-content-end w-100">
+                            <button
+                              className="btn btn-btn-gray-new mt-3 mb-2"
+                              onClick={e => {
+                                onReply(sdata.id);
+                              }}
+                            >
+                              Reply
+                            </button>
+                          </div>
+
+                          {activeReply > 0 && activeReply === sdata.id && (
+                            <div>
+                              <h5 className="p-text-1">
+                                <b>LEAVE A REPLY</b>
+                              </h5>
+                              <p className="p-text-4">
+                                Your email address will not be published.
+                                Required fields are marked
+                              </p>
+                              <p>
+                                <div>
+                                  <label for="name">
+                                    {" "}
+                                    Name<span class="required">*</span>
+                                  </label>
+                                  <input
+                                    type="text"
+                                    id={`"${field1}"`}
+                                    rows="3"
+                                    className="w-100"
+                                    placeholder="Name"
+                                  ></input>
+                                </div>
+                              </p>
+                              <p>
+                                <div>
+                                  <label for="email">
+                                    {" "}
+                                    Email<span class="required">*</span>
+                                  </label>
+                                  <input
+                                    type="text"
+                                    id={`"${field2}"`}
+                                    rows="3"
+                                    className="w-100"
+                                    placeholder="Email"
+                                  ></input>
+                                </div>
+                              </p>
+                              <p>
+                                <div>
+                                  <label for="comments">
+                                    {" "}
+                                    Comments <span class="required">*</span>
+                                  </label>
+                                  <textarea
+                                    id={`"${field3}"`}
+                                    rows="3"
+                                    className="w-100"
+                                    placeholder="post comments"
+                                  ></textarea>
+                                </div>
+                                <p aria-hidden="true" id="required-description">
+                                  <span class="required">*</span>Required field
                                 </p>
+                              </p>
+                              <div className="d-flex justify-content-end w-100">
+                                <button
+                                  className="btn btn-btn-yellow-new mt-3 mb-2"
+                                  onClick={e => {
+                                    onReplyComments(sdata.id);
+                                  }}
+                                >
+                                  Post reply
+                                </button>
                               </div>
                             </div>
+                          )}
 
-                            <div className="p-text-4 my-3">
-                            <div dangerouslySetInnerHTML={{ __html: sdata?.commentContent}} />
-                            </div>
-                            <div className="d-flex justify-content-end w-100">
-                              <button className="btn btn-btn-gray-new mt-3 mb-2" onClick={e => {onReply(sdata.id)}}>
-                                Reply
-                              </button>
-                            </div>
+                          {/*nested replies */
 
-                            {activeReply > 0 && activeReply===sdata.id && (
-                                 <div>
-                                 <h5 className="p-text-1">
-                                   <b>LEAVE A REPLY</b>
-                                 </h5>
-                                 <p className="p-text-4">
-                                   Your email address will not be published. Required fields
-                                   are marked
-                                 </p>
-                                 <p>
-                                 <div>
-                                 <label for="name"> Name<span class="required">*</span></label>
-                                   <input type="text"   id={`"${field1}"`} rows="3" className="w-100" placeholder="Name" ></input>
-                                 </div>
-                                 </p>
-                                 <p>
-                                 <div>
-                                 <label for="email"> Email<span class="required">*</span></label>
-                                 <input type="text" id={`"${field2}"`} rows="3" className="w-100" placeholder="Email" ></input>
-                                 </div>
-                                 </p>
-                                 <p>
-                                 <div>
-                                 <label for="comments"> Comments <span class="required">*</span></label>
-                                   <textarea id={`"${field3}"`} rows="3" className="w-100" placeholder="post comments"></textarea>
-                                 </div>
-                                 <p aria-hidden="true" id="required-description">
-                                     <span class="required">*</span>Required field
-                                 </p>
-                                 </p>
-                                 <div className="d-flex justify-content-end w-100">
-                                   <button className="btn btn-btn-yellow-new mt-3 mb-2" onClick={e => {onReplyComments(sdata.id)}} >
-                                     Post reply
-                                   </button>
-                                 </div>
-                                 </div>
-                              )
-                            }
-                           
-                           {/*nested replies */
-
-                           sdata?.replies?.map(rep=> {
-                              return recursiveReplyrender(rep);
-                           })
-                      }
+                          sdata?.replies?.map(rep => {
+                            return recursiveReplyrender(rep);
+                          })}
+                        </div>
                       </div>
-                      </div>
-                      )
-                      })
-                    }
+                    );
+                  })}
                 </div>
 
                 <div className="col-lg-4 col-md-12">

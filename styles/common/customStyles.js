@@ -2273,6 +2273,10 @@ export const customStyles = css.global`
     font-weight: normal;
   }
 
+  .social-share-icons {
+    margin: 0 2px;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

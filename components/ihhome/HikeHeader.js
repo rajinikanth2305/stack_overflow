@@ -32,6 +32,7 @@ const HikeHeader = ({ auth = false }) => {
 
   const toggle = () => setIsOpen(!isOpen);
   const router = useRouter();
+  console.log(router);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userServiceObject, setUserServiceObject] = useState(undefined);
   const [searchText, setSearchText] = useState();
