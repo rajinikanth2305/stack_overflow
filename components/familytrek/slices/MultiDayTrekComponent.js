@@ -14,7 +14,7 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -24,7 +24,7 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          infinite: true,
+          infinite: false,
           dots: true
         }
       },
@@ -183,16 +183,16 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
     <>
       <div className="my-5 pt-4 mmy-2 mpt-0 mpb-2">
         <div className="container">
-          <div className="d-flex flex-wrap align-items-center border-bottom-custom mb-4 pb-08">
+          <div className="d-flex flex-wrap align-items-end border-bottom-custom mb-4 pb-08">
             <div className="col-lg-7 col-md-12">
               <h2 className="title-h2 border-0 mb-0">
                 {RichText.asText(heading1)}
               </h2>
             </div>
             <div className="col-lg-5 col-md-12">
-              <p className="p-display-1 m-d-1 mmb-0 mb-4">
-                {RichText.asText(heading2)}
-              </p>
+              <div className="p-display-1 m-d-1 mmb-0 mb-4">
+                {RichText.render(heading2)}
+              </div>
             </div>
           </div>
           <div>

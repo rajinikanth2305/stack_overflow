@@ -14,7 +14,7 @@ const WeekendTrek = ({ slice, weekendTrekData }) => {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -24,7 +24,7 @@ const WeekendTrek = ({ slice, weekendTrekData }) => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          infinite: true,
+          infinite: false,
           dots: true
         }
       },
@@ -190,9 +190,9 @@ const WeekendTrek = ({ slice, weekendTrekData }) => {
               </h2>
             </div>
             <div className="col-lg-5 col-md-12">
-              <p className="p-display-1 m-d-1 mmb-0 mb-4">
-                {RichText.asText(heading2)}
-              </p>
+              <div className="p-display-1 m-d-1 mmb-0 mb-4">
+                {RichText.render(heading2)}
+              </div>
             </div>
           </div>
           <div>
