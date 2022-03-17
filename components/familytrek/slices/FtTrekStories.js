@@ -46,7 +46,7 @@ const FtTrekStories = ({ slice, latestUpdateAarticleData }) => {
       x => x.slice_type === "text"
     );
     return (
-      <div className="col-lg-6 col-md-12" key={index}>
+      <div className={primaryVideoUrl ? "col-lg-6 col-md-12" : "col-lg-3 col-md-6 col-12"} key={index}>
         <Link href={url ? url : "#"}>
           <div className="card exp-card-blog gt-blog mx-0 cursor-pointer">
             <div alt="img" className="latestTrekWorld_bg ltw_img">
@@ -89,7 +89,7 @@ const FtTrekStories = ({ slice, latestUpdateAarticleData }) => {
             <div className="col-lg-6 col-md-6" />
           </div>
           <div className="row">
-            <div className="col-lg-6 col-md-12">
+            <div className={primaryVideoUrl ? "col-lg-6 col-md-12" : "col-lg-12 col-12"}>
               <div className="row">{latestTrekWorld}</div>
             </div>
             { primaryVideoUrl && <div className="col-lg-6 col-md-12">

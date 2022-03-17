@@ -52,11 +52,15 @@ const TrekTrevia = ({ slice }) => {
           <div className="d-flex">
             <div className="flex-fill">
               <div className="tt-content">{RichText.render(data?.content)}</div>
-              <Link href={url ? url : "#"}>
-                <button className="btn btn-btn-yellow-new mt-3 mb-2 hvr-grow">
-                  Read More
-                </button>
-              </Link>
+              {data?.read_more_btn_lnk_url?.url ? (
+                <Link href={url ? url : "#"}>
+                  <button className="btn btn-btn-yellow-new mt-3 mb-2 hvr-grow">
+                    Read More
+                  </button>
+                </Link>
+              ) : (
+                <div className="my-5 my-4 mmy-0" />
+              )}
             </div>
             <div className="w-100 d-m-none mx-2">
               <div className="hd-tab2-iamge-tabs position-change1 mb-4 cursor-pointer">

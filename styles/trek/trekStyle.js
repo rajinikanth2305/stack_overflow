@@ -1432,8 +1432,9 @@ export const trekStyle = css.global`
 
   .text-adj {
     text-align: right !important;
-    padding: 0 30px 0 30px;
+    padding: 0 15px 0 30px;
     line-height: 48px;
+    margin-top: 45px;
   }
 
   .q-des {
@@ -1570,6 +1571,10 @@ export const trekStyle = css.global`
     .p-text-2 {
       font-size: 16px;
       line-height: 24px;
+    }
+
+    .text-adj {
+      margin-top: 0;
     }
 
     .mpt-0 {

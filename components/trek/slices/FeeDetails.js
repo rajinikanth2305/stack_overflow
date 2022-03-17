@@ -100,7 +100,7 @@ const FeeDetails = ({ data }) => {
                 </div>
                 <div className="mx-3">
                   <p className="trek-info-detail m-0">
-                    + {RichText.asText(tax)}% gst
+                    + {RichText.asText(tax)}% Gst
                   </p>
                   <p className="trek-info-detail m-0">
                     + {RichText.asText(insurance)}{" "}
@@ -156,7 +156,7 @@ const FeeDetails = ({ data }) => {
                 </div>
                 <div className="mx-2">
                   <p className="p-xxs-text mb-2">
-                    <span>+ {RichText.asText(tax)}% gst</span>
+                    <span>+ {RichText.asText(tax)}% Gst</span>
                   </p>
                   <p className="p-xxs-text m-0">
                     <span>+ {RichText.asText(insurance)} </span>{" "}
