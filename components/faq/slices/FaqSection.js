@@ -51,12 +51,16 @@ const FaqSection = () => {
             }}
           >
             <div className="faq_icon_image">
-              <Image
-                src={data?.primary?.icon_image?.url}
-                layout="fill"
-                objectFit="contain"
-                objectPosition="top"
-              />
+              {data?.primary?.icon_image?.url ? (
+                <Image
+                  src={data?.primary?.icon_image?.url}
+                  layout="fill"
+                  objectFit="contain"
+                  objectPosition="top"
+                />
+              ) : (
+                <img src="./ip.png" className="faq_icon_image" />
+              )}
             </div>
             <p className="p-text-1 my-2">
               <b>{data?.primary?.tab_heading[0]?.text}</b>
@@ -104,12 +108,16 @@ const FaqSection = () => {
             <div className="card-faq px-2 py-1">
               <div className="d-flex align-items-center">
                 <div className="faq_icon_image">
-                  <Image
-                    src={data?.primary?.icon_image.url}
-                    layout="fill"
-                    objectFit="contain"
-                    objectPosition="top"
-                  />
+                  {data?.primary?.icon_image?.url ? (
+                    <Image
+                      src={data?.primary?.icon_image?.url}
+                      layout="fill"
+                      objectFit="contain"
+                      objectPosition="top"
+                    />
+                  ) : (
+                    <img src="./ip.png" className="faq_icon_image" />
+                  )}
                 </div>
                 <div className="mx-2">
                   <p className="p-text-3 my-2">
@@ -146,7 +154,9 @@ const FaqSection = () => {
               </Card.Header>
               <Accordion.Collapse eventKey={j + 1}>
                 <Card.Body>
-                  <div className="p-text-4">{RichText.render(faq?.accordion_details)}</div>
+                  <div className="p-text-4">
+                    {RichText.render(faq?.accordion_details)}
+                  </div>
                 </Card.Body>
               </Accordion.Collapse>
             </Card>

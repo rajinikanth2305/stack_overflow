@@ -385,11 +385,12 @@ export const customStyles = css.global`
     border: 0;
     width: 100%;
     text-align: left;
-    font-family: Lora;
+    font-family: Franklin Gothic;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
+    padding-right: 15px;
   }
 
   .expand_plus {
@@ -1608,7 +1609,7 @@ export const customStyles = css.global`
   }
 
   .fam-tabs > .nav-item {
-    width: 185px;
+    max-width: 140px;
     text-align: left;
     font-family: Franklin Gothic;
     font-style: normal;
@@ -1945,7 +1946,7 @@ export const customStyles = css.global`
 
   .btn-btn-yellow-new {
     background: rgb(255, 193, 0) none repeat scroll 0% 0%;
-    box-shadow: 1px 1px 1px rgba(0,0,0,0.353);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
     border: 0px none;
     padding: 10px 30px;
     border-radius: 3px;
@@ -2042,6 +2043,35 @@ export const customStyles = css.global`
     position: relative;
     top: 4px;
     font-weight: normal;
+  }
+
+  .mhs-faq.card-header > button::after {
+    color: #7d7c7c;
+    content: "\f106";
+    font-family: "FontAwesome" !important;
+    font-size: 20px;
+    float: right;
+    margin-top: -65px;
+    position: relative;
+    top: 4px;
+    font-weight: normal;
+  }
+
+  .mhs-faq.card-header > button:not(.show)::after {
+    color: #7d7c7c;
+    content: "\f107";
+    font-family: "FontAwesome" !important;
+    font-size: 20px;
+    float: right;
+    margin-top: -65px;
+    position: relative;
+    top: 4px;
+    font-weight: normal;
+  }
+
+  .mhs-title-space {
+    padding-right: 15px;
+    min-height: 60px;
   }
 
   p > a {
@@ -2198,7 +2228,7 @@ export const customStyles = css.global`
 
   .carrier-position-tabs-header.card-header > button::after {
     color: #7d7c7c;
-    content: "\f107";
+    content: "\f106";
     font-family: "FontAwesome" !important;
     font-size: 20px;
     float: right;
@@ -2210,7 +2240,7 @@ export const customStyles = css.global`
 
   .carrier-position-tabs-header.card-header > button:not(.show)::after {
     color: #7d7c7c;
-    content: "\f106";
+    content: "\f107";
     font-family: "FontAwesome" !important;
     font-size: 20px;
     float: right;
@@ -2231,7 +2261,8 @@ export const customStyles = css.global`
     font-weight: normal;
   }
 
-  .p1-acc-card.carrier-position-tabs-header.card-header > button:not(.show)::after {
+  .p1-acc-card.carrier-position-tabs-header.card-header
+    > button:not(.show)::after {
     color: #7d7c7c;
     content: "\f106";
     font-family: "FontAwesome" !important;

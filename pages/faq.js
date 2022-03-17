@@ -17,7 +17,7 @@ import FaqSliceZone from "../components/faq/FaqSliceZone";
 /**
  * UpComing component
  */
-const FAQ = ({ doc }) => {
+const FAQ = ({ doc, articleData }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -28,7 +28,7 @@ const FAQ = ({ doc }) => {
          <title>FAQ</title>
         </Head>
         <HikeHeader/>
-        <FaqSliceZone sliceZone={doc.data.body} />
+        <FaqSliceZone sliceZone={doc.data.body} articleData={articleData} />
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
@@ -47,10 +47,29 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const doc = await client.getSingle("trek_faq", ref ? { ref } : null) || {}
 
+  const articleData = [];
+  const slice = doc.data?.body?.find(
+    x => x.slice_type === "trekking_tips"
+  );
+
+  if (slice?.items.length > 0) {
+    for (var i = 0; i < slice?.items.length; i++) {
+      const data = slice?.items[i];
+      const slugUrl = data && data?.article_link?.id;
+      if (slugUrl !== undefined) {
+        const article_details = await Client().getByID(slugUrl);
+        articleData.push(article_details);
+      }
+    }
+  } else {
+    return false;
+  }
+
   return {
     props: {
       doc,
-      preview
+      preview,
+      articleData
     }
   }
 }

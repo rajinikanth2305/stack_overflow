@@ -10,7 +10,7 @@ import {
  *  slice zone component
  */
 
-const FaqSliceZone = ({ sliceZone }) =>
+const FaqSliceZone = ({ sliceZone, articleData }) =>
   sliceZone.map((slice, index) => {
     switch (slice.slice_type) {
       case "faq_banner":
@@ -20,7 +20,7 @@ const FaqSliceZone = ({ sliceZone }) =>
       case "get_in_touch_with_ih":
         return <GetInTouchWithIh slice={slice} key={`slice-${index}`} />;
         case "trekking_tips":
-        return <TrekkingTips slice={slice} key={`slice-${index}`} />;
+        return <TrekkingTips slice={slice} key={`slice-${index}`} articleData={articleData} />;
       default:
         return null;
     }

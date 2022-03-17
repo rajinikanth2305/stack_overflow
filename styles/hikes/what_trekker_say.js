@@ -42,11 +42,12 @@ export const whatTrekkerSayStyles = css.global`
     border: 0px none;
     width: 100%;
     text-align: left;
-    font-family: Lora;
+    font-family: Franklin Gothic;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
     color: rgb(0, 0, 0);
+    padding-right: 15px;
   }
 
   .expand_plus {

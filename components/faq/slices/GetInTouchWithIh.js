@@ -13,11 +13,11 @@ const GetInTouchWithIh = ({ slice }) => {
   return (
     <>
       <div className="my-5 py-5">
-        <div className="help_support_bg p-3">
+        <div className="help_support_bg">
           <div className="bg_overlay h-100">
             <div className="container h-100">
               <div className="h-100">
-                <div className="row h-100">
+                <div className="row d-flex- align-items-center h-100">
                   <div className="col-lg-6 col-md-12">
                     <div className="d-flex align-items-center justify-content-center w-100 h-100">
                       <div className="banner-text-sec">

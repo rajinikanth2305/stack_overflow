@@ -16,23 +16,23 @@ const MoreHelpAndSupport = ({ slice }) => {
     return (
       <div className="col-lg-6 col-md-12" key={i}>
         <Card>
-          <Card.Header>
+          <Card.Header className="mhs-faq">
             <Accordion.Toggle
               variant="link"
               eventKey={i + 1}
-              eventKey={i + 1}
-              className={
-                i + 1 === activeIndex && activeIndex && isActive === true
-                  ? "show"
-                  : ""
-              }
+              // className={
+              //   i + 1 === activeIndex && activeIndex && isActive === true
+              //     ? "show"
+              //     : ""
+              // }
+              className={activeIndex && activeIndex === i + 1 ? "show" : ""}
               onClick={() => {
                 setActiveIndex(i + 1);
                 setActive(!isActive);
               }}
             >
               <div className="d-flex align-items-center">
-                <div className="flex-grow-1">
+                <div className="flex-grow-1 mhs-title-space">
                   <p className="p-text-1 mb-1">
                     <b>{data?.support_title[0]?.text}</b>
                   </p>
@@ -51,7 +51,7 @@ const MoreHelpAndSupport = ({ slice }) => {
           <Accordion.Collapse eventKey={i + 1}>
             <Card.Body>
               <div className="p-text-4">
-                {RichText.asText(data?.support_details)}
+                {RichText.render(data?.support_details)}
               </div>
             </Card.Body>
           </Accordion.Collapse>
