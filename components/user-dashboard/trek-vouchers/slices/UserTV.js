@@ -109,15 +109,19 @@ const UserTV = () => {
                     <p className="p-text-1 font-weight-bold m-0">
                       Hi {bookingOwner?.firstName} - {bookingOwner?.lastName}
                     </p>
-                    <p className="p-text-1 font-weight-bold">
-                      Welcome To Your Indiahikes Trek Dashboard!
-                    </p>
-                    <p className="col-md-8 p-text-4">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequa
-                    </p>
+                    {vouchers?.length > 0 ? (
+                      <p className="col-md-8 p-text-4 mt-2">
+                        <>
+                          Here are the treks you have done so far with
+                          Indiahikes.
+                          <br />
+                          The voucher will automatically appear on your payment
+                          page when you're booking a trek.
+                        </>
+                      </p>
+                    ) : (
+                      <p className="col-md-8 p-text-4 mt-2">You have no trek vouchers from Indiahikes so far.</p>
+                    )}
                   </div>
 
                   <h5 className="p-text-2-fg b-left-3px mb-4">trek vouchers</h5>

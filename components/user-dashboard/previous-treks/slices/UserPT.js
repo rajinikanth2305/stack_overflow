@@ -205,9 +205,9 @@ const UserPT = () => {
   };
 
   const onSubmit = formData => {
-   // console.log(JSON.stringify(formData));
+    // console.log(JSON.stringify(formData));
     //console.log(reviewData);
-   // console.log(currentBookingData);
+    // console.log(currentBookingData);
 
     var map = new Map();
     let ratingStar = 0;
@@ -252,13 +252,13 @@ const UserPT = () => {
       userId: userId,
       reviewAnswers: buildAnswers(map, ratingQuestionId, ratingStar)
     };
-   // console.log(saveObject);
+    // console.log(saveObject);
 
     saveUserReviews(saveObject)
       .then(res => {
         console.log("review saved successfully");
-       alert("Review submitted succesfully.");
-       window.scrollTo(0, 0);
+        alert("Review submitted succesfully.");
+        window.scrollTo(0, 0);
         toast?.current?.show({
           severity: "info",
           summary: `' Thanks for your review submission'`,
@@ -644,14 +644,11 @@ const UserPT = () => {
                       Hi {bookingOwner?.userDetailsForDisplay.firstName} -{" "}
                       {bookingOwner?.userDetailsForDisplay.lastName}
                     </p>
-                    <p className="p-text-1 font-weight-bold">
+                    {/* <p className="p-text-1 font-weight-bold">
                       Welcome To Your Indiahikes Trek Dashboard!
-                    </p>
-                    <p className="col-md-8 p-text-4">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequa
+                    </p> */}
+                    <p className="col-md-8 p-text-4 mt-2">
+                      Here are the treks you have done so far with Indiahikes.
                     </p>
                   </div>
 

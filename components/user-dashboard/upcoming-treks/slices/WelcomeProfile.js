@@ -360,17 +360,20 @@ const WelcomeProfile = () => {
 
     if (participantList.length > 0) {
       console.log(participantList);
-      cancelParticipantBooking(upComingTrek.bookingId, true, false, participantList).then(
-        res => {
-          toast.current.show({
-            severity: "info",
-            summary: `'Cancelled successfully'`,
-            detail: "Cancel-Trek-Booking"
-          });
-          fetchAndBindUserBookings(upComingTrek.email);
-          handleClose();
-        }
-      );
+      cancelParticipantBooking(
+        upComingTrek.bookingId,
+        true,
+        false,
+        participantList
+      ).then(res => {
+        toast.current.show({
+          severity: "info",
+          summary: `'Cancelled successfully'`,
+          detail: "Cancel-Trek-Booking"
+        });
+        fetchAndBindUserBookings(upComingTrek.email);
+        handleClose();
+      });
     } else {
       toast.current.show({
         severity: "error",
@@ -425,12 +428,12 @@ const WelcomeProfile = () => {
                         <p className="p-text-1 font-weight-bold">
                           Welcome To Your Indiahikes Trek Dashboard!
                         </p>
-                        <p className="col-md-8 p-text-4">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua. Ut enim ad minim veniam, quis
-                          nostrud exercitation ullamco laboris nisi ut aliquip
-                          ex ea commodo consequa
+                        <p className="col-md-8 p-text-4">This is
+                          your one stop for any changes or additions you want to
+                          make to your trek. You can update your profile, make
+                          payments to offload your backpack, update your travel
+                          and emergency contact details, upload your fitness
+                          proof, view your trek history or cancel your trek.
                         </p>
                       </div>
 
@@ -1202,7 +1205,10 @@ const WelcomeProfile = () => {
                     </tbody>
                   </table>
                   <div className="d-flex justify-content-end">
-                    <button type="submit" className="btn table-btn-blue-sm hvr-grow">
+                    <button
+                      type="submit"
+                      className="btn table-btn-blue-sm hvr-grow"
+                    >
                       <span className="px-2">Confirm</span>
                     </button>
                   </div>
