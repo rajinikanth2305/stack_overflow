@@ -191,7 +191,7 @@ export async function getStaticPaths() {
   //documents.push(doc);
 
   return {
-    paths: documents.map(doc => `/doc-trek/${doc?.uid}`),
+    paths: documents.map(doc => `/documented-trek/${doc?.uid}`),
     fallback: true,
   }
 }

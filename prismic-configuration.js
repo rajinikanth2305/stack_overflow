@@ -18,7 +18,7 @@ export const linkResolver = (doc) => {
     return `/family-trek/${doc.uid}`;
   }
   if (doc.type === 'document_trek_type') {
-    return `/doc-trek/${doc.uid}`;
+    return `/documented-trek/${doc.uid}`;
   }
   if (doc.type === 'hike_home_ctype') {
     return `/`;
