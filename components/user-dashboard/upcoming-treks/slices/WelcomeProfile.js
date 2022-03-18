@@ -965,12 +965,15 @@ const WelcomeProfile = () => {
                               </Link>
                             </li>
                             <li>
-                              <a
+                              {/* <a
                                 href="https://tmsstaging.indiahikes.com/auth/realms/IndiaHikes/account/?referrer=indiahikes-website#"
                                 target="_blank"
                               >
                                 <span>My Profile</span>
-                              </a>
+                              </a> */}
+                              <Link href="../../../user-dashboard/user-myprofile">
+                                <span>My Profile</span>
+                              </Link>
                             </li>
                             <li>
                               <Link href="../../../user-dashboard/user-trekvouchers">

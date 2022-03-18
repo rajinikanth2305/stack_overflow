@@ -120,7 +120,9 @@ const UserTV = () => {
                         </>
                       </p>
                     ) : (
-                      <p className="col-md-8 p-text-4 mt-2">You have no trek vouchers from Indiahikes so far.</p>
+                      <p className="col-md-8 p-text-4 mt-2">
+                        You have no trek vouchers from Indiahikes so far.
+                      </p>
                     )}
                   </div>
 
@@ -166,12 +168,15 @@ const UserTV = () => {
                           </Link>
                         </li>
                         <li>
-                          <a
+                          {/* <a
                             href="https://tmsstaging.indiahikes.com/auth/realms/IndiaHikes/account/?referrer=indiahikes-website#"
                             target="_blank"
                           >
                             <span>My Profile</span>
-                          </a>
+                          </a> */}
+                          <Link href="../../../user-dashboard/user-myprofile">
+                            <span>My Profile</span>
+                          </Link>
                         </li>
                         <li>
                           <Link href="../../../user-dashboard/user-trekvouchers">

@@ -2277,6 +2277,10 @@ export const customStyles = css.global`
     margin: 0 2px;
   }
 
+  .form-control {
+    border: 1px solid #707070;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
