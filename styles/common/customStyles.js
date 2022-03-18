@@ -2863,26 +2863,30 @@ export const customStyles = css.global`
     .sustainable_img {
       min-height: 375px;
     }
+  }
     .required {
       color: red;
     }
-    .ih-font-color-red { color: #FF0000;}
-    .ih-font-color-blue {color: #0000FF;}
-    .ih-font-color-green {color: 	#008000;}
-    .ih-font-color-yellow {color: #FFFF00;}
-    .ih-font-color-gray {color: #808080;}
-    .ih-font-color-maroon {color: #800000;}
-    .ih-font-color-purple {color: #800080;}
-    .ih-font-color-orange {color: #FFA500;}
-    .ih-font-color-gold {color: #FFD700;}
-    
-    .ih-bg-color-red {color: #FF0000;}
-    .ih-bg-color-blue {color: #0000FF;}
-    .ih-bg-color-green {color: #008000;}
-    .ih-bg-color-yellow {color: #FFFF00;}
-    .ih-bg-color-maroon {color: #800000;}
-    .ih-bg-color-purple {color: #800080;}
-    .ih-bg-color-black {color: #000000;}
-    .ih-bg-color-gold {color: #FFD700;}
-  }
+
+    ///https://www.rapidtables.com/web/color/RGB_Color.html
+    .ih-font-color-red { 
+      color: red !important;
+    }
+    .ih-font-color-blue {color: #0000FF !important;}
+    .ih-font-color-green {color: 	#008000 !important;}
+    .ih-font-color-yellow {color: #FFFF00 !important;}
+    .ih-font-color-gray {color: #808080 !important;;}
+    .ih-font-color-maroon {color: #800000 !important;;}
+    .ih-font-color-purple {color: #800080 !important;;}
+    .ih-font-color-orange {color: #FFA500 !important;;}
+    .ih-font-color-gold {color: #FFD700 !important;;}
+
+    .ih-bg-color-red {color: #FF0000 !important;;}
+    .ih-bg-color-blue {color: #0000FF !important;;}
+    .ih-bg-color-green {color: #008000 !important;;}
+    .ih-bg-color-yellow {color: #FFFF00 !important;;}
+    .ih-bg-color-maroon {color: #800000 !important;;}
+    .ih-bg-color-purple {color: #800080 !important;;}
+    .ih-bg-color-black {color: #000000 !important;;}
+    .ih-bg-color-gold {color: #FFD700 !important;;}
 `;

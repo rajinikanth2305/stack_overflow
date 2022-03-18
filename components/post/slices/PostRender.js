@@ -1397,9 +1397,7 @@ const PostRender = ({
         </div>
       </div> */}
         </div>
-        <style jsx global>
-          {customStyles}
-        </style>
+      
       </div>
       <Modal size="lg" show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
@@ -1417,6 +1415,9 @@ const PostRender = ({
           ></iframe>
         </Modal.Body>
       </Modal>
+      <style jsx global>
+          {customStyles}
+        </style>
     </>
   );
 };
