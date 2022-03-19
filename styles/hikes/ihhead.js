@@ -219,7 +219,7 @@ export const ihheaderStyles = css.global`
 
     .view-in-mob {
       display: block;
-      width: 40%;
+      width: 33%;
     }
   }
 
