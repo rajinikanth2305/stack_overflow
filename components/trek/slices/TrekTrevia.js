@@ -70,7 +70,7 @@ const TrekTrevia = ({ slice }) => {
                       src={data?.content_image?.url}
                       layout="fill"
                       objectFit="contain"
-                      objectPosition="left top"
+                      objectPosition="left bottom"
                       onClick={() => {
                         setImageUrl(data?.content_image?.url);
                         setShow(true);

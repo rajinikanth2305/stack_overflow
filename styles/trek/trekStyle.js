@@ -958,7 +958,7 @@ export const trekStyle = css.global`
   .hd-tab2-iamge-tabs {
     position: relative;
     min-height: 280px;
-    height: 100%;
+    // height: 100%;
     width: 100%;
   }
 

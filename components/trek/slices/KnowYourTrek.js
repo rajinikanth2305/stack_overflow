@@ -11,6 +11,7 @@ import BestTimeToDo from "../accordiontabs/BestTimeToDo";
 import HowToReach from "../accordiontabs/HowToReach";
 import InclusionsAndExclusions from "../accordiontabs/InclusionsAndExclusions";
 import WhatToPack from "../accordiontabs/WhatToPack";
+import KytFaq from "../accordiontabs/KytFaq";
 
 const KnowYourTrek = ({ slice, data }) => {
   const heading1 = slice?.primary?.heading1;
@@ -65,6 +66,8 @@ const KnowYourTrek = ({ slice, data }) => {
                 <InclusionsAndExclusions data={slice_zone} />
               ) : sliceType?.slice_type === "how_difficult_is_trek" ? (
                 <HowDifficultTrekIs data={slice_zone} />
+              ) : sliceType?.slice_type === "kyt_faq" ? (
+                <KytFaq data={slice_zone} />
               ) : (
                 <WhatToPack data={slice_zone} />
               )}
