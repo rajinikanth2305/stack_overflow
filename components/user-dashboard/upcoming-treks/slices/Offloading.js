@@ -450,14 +450,14 @@ const Offloading = forwardRef((props, ref) => {
                 <p className="m-0 p-text-small-brown">* Primary participant</p>
               </div>
               <div>
-                {showSaveButton && (
+              
                   <button
-                    className="btn table-btn-blue-sm"
+                    className="btn table-btn-blue-sm"  disabled={!showSaveButton}
                     onClick={e => navigateTo()}
                   >
                     <span className="px-2">pay offloading fee</span>
                   </button>
-                )}
+               
               </div>
             </div>
           </div>

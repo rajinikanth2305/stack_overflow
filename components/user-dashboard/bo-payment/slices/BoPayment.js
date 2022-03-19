@@ -17,6 +17,7 @@ import { Toast } from "primereact/toast";
 import { Checkbox  } from 'primereact/checkbox';
 import moment from "moment";
 import { useRouter } from "next/router";
+import { confirmDialog } from "primereact/confirmdialog"; // To use <ConfirmDialog> tag
 
 const BoPayment = forwardRef((props, ref) => {
   const [show, setShow] = useState(false);
@@ -226,6 +227,32 @@ const BoPayment = forwardRef((props, ref) => {
 };
 
 const doPayment = () => {
+
+  confirmDialog({
+    //target: e.currentTarget,
+    header: "Backpacks offloading confirmation?",
+    message: `
+    We don't usually encourage offloading of backpacks. These backpacks are carried by mules or porters. Having too many mules on a trail isn't good for the ecosystem and as for porters, they are hard to find.
+    Besides, when you complete a trek by carrying your own backpack, the self-sufficient and confidence that you get at the end of the trek is incomparable!
+    So try and reconsider offloading your backpack. I'll leave you with a few quick tips to carry your backpack easily .
+    
+    But if you have a genuine reason, I'll understand if you want to offload it.'`,
+    icon: "pi pi-exclamation-triangle",
+    acceptLabel: "Accept",
+    rejectLabel: "Cancel",
+    breakpoints: { "960px": "75vw", "640px": "100vw" },
+    style: { width: "50vw" },
+    accept: () => {
+      paymentInitiate();
+    },
+    reject: e => {
+      router.reload(`/user-dashboard/user-upcoming-treks/`);
+    }
+    
+  });
+};
+
+const paymentInitiate = () => {
   const voucherList =  buildVouchers( offSelectedData.participants);
   //console.log(JSON.stringify(voucherList));
   
@@ -252,7 +279,7 @@ const doPayment = () => {
         }
       });
   }
-};
+}
 
 const processPayments = (voucherList) => {
   doSaveOffloadingPayments(offSelectedData.header.bookingId, voucherList)
