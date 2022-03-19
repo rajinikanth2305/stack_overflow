@@ -11,32 +11,13 @@ const FollowUsIh = ({ slice }) => {
   const followUsIhDetails = followUsIh?.map(function(data, k) {
     const url = data?.target_url;
     return (
-      <div className="col-md-3" key={k}>
+      <div className="flex-fill mx-2" key={k}>
         <Link href={url ? url : "#"}>
           <div className="card faq-card mt-4 cursor-pointer">
             <div className="p-3">
-              <div className="row">
-                <div className="col-3 col-md-12">
-                  {data?.image?.url ? (
-                    <img
-                      src={data?.image?.url}
-                      className="faq_icon_image faq-mob-icon mb-3"
-                    />
-                  ) : (
-                    <img src="./ip.png" className="faq_icon_image faq-mob-icon mb-3" />
-                  )}
-                </div>
-                <div className="col-9 col-md-12">
-                  <div>
-                    <p className="p-text-1">
-                      <b>{RichText.asText(data?.title)}</b>
-                    </p>
-                    <div className="p-text-4">
-                      {RichText.render(data?.details)}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <p className="p-text-1 m-0">
+                <b>{RichText.asText(data?.title)}</b>
+              </p>
             </div>
           </div>
         </Link>
@@ -60,7 +41,9 @@ const FollowUsIh = ({ slice }) => {
               </p>
             </div>
           </div>
-          <div className="row">{followUsIhDetails}</div>
+          <div className="d-flex align-items-center flex-wrap">
+            {followUsIhDetails}
+          </div>
           <style jsx global>
             {customStyles}
           </style>

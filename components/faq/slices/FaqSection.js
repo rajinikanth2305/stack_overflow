@@ -12,7 +12,7 @@ import Modal from "react-bootstrap/Modal";
 
 const FaqSection = () => {
   const [faqDetails, setFaqDetails] = useState();
-  const [activeTab, setActiveTab] = useState("1");
+  const [activeTab, setActiveTab] = useState(1);
   const [faqAaccodionDetails, setFaqAaccodionDetails] = useState();
   const [activeIndex, setActiveIndex] = useState(null);
   const [isActive, setActive] = useState(false);
@@ -212,7 +212,7 @@ const FaqSection = () => {
       return (
         <TabPane key={i} tabId={i + 1}>
           <Accordion>
-            <div className="row my-5">{faqAccordionList}</div>
+            <div className="row my-5 mmb-0">{faqAccordionList}</div>
           </Accordion>
         </TabPane>
       );

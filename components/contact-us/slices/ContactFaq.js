@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Accordion from "react-bootstrap/Accordion";
@@ -10,20 +10,24 @@ const ContactFaq = ({ slice }) => {
   const faqHeading2 = slice?.primary?.heading2;
   const faqArray = slice?.items;
 
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [isActive, setActive] = useState(false);
+
   const faqArrayDetails = faqArray?.map(function(data, k) {
     return (
       <div className="col-md-6" key={k}>
         <Card>
           <Card.Header>
-            <Accordion.Toggle variant="link" eventKey={k + 1}>
-              <div className="d-flex align-items-center">
-                <div className="flex-grow-1">{data?.q_title[0]?.text}</div>
-                <div>
-                  <div>
-                    <h2 className="m-0 expand_plus">+</h2>
-                  </div>
-                </div>
-              </div>
+            <Accordion.Toggle
+              variant="link"
+              eventKey={k + 1}
+              className={activeIndex && activeIndex === k + 1 ? "show" : ""}
+              onClick={() => {
+                setActiveIndex(k + 1);
+                setActive(!isActive);
+              }}
+            >
+              {data?.q_title[0]?.text}
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>

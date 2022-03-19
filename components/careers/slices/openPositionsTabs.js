@@ -134,7 +134,7 @@ const openPositionsTabs = () => {
         <div key={i}>
           <Card>
             <Card.Header>
-              <Accordion.Toggle
+              {/* <Accordion.Toggle
                 variant="link"
                 eventKey={i + 1}
                 className={activeIndex && activeIndex === i + 1 ? "show" : ""}
@@ -142,11 +142,11 @@ const openPositionsTabs = () => {
                   setActiveIndex(i + 1);
                   setActive(!isActive);
                 }}
-              >
-                {data?.primary?.position_tab_name[0]?.text}
-              </Accordion.Toggle>
+              > */}
+                <p className="p-text-3-fg m-0"><b>{data?.primary?.position_tab_name[0]?.text}</b></p>
+              {/* </Accordion.Toggle> */}
             </Card.Header>
-            <Accordion.Collapse eventKey={i + 1}>
+            {/* <Accordion.Collapse eventKey={i + 1}> */}
               <Card.Body>
                 {positionLeve1 && (
                   <Accordion
@@ -157,7 +157,7 @@ const openPositionsTabs = () => {
                   </Accordion>
                 )}
               </Card.Body>
-            </Accordion.Collapse>
+            {/* </Accordion.Collapse> */}
           </Card>
         </div>
       );

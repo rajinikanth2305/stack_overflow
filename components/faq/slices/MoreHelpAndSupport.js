@@ -47,7 +47,7 @@ const MoreHelpAndSupport = ({ slice }) => {
               <div className="d-flex align-items-center">
                 <div className="flex-grow-1 mhs-title-space">
                   <p className="p-text-1 mb-1">
-                    <b>{data?.support_title[0]?.text}</b>
+                    {data?.support_title[0]?.text}
                   </p>
                   <p className="p-text-3 m-0">
                     {data?.support_sub_title[0]?.text}
@@ -102,7 +102,7 @@ const MoreHelpAndSupport = ({ slice }) => {
 
   return (
     <>
-      <div className="my-5 mmy-2 mpt-0">
+      <div className="my-5">
         <div className="container">
           <div className="row d-flex align-items-center mt-4 mb-2">
             <div className="col-md-12">

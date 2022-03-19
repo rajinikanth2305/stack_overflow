@@ -17,10 +17,10 @@ const TeamBanner = ({ slice }) => {
               <div className="d-flex align-items-center w-100 h-100">
                 <div className="banner-text-sec w-100">
                   <p className="banner-text-1 m-m-b-5">
-                    {RichText.asText(heading1)}
+                    <b>{RichText.asText(heading1)}</b>
                   </p>
                   <div className="d-flex align-items-center justify-content-center">
-                    <p className="p-text-2 mb-0 text-white w-40 text-center">
+                    <p className="banner-text-2 mb-0 text-white w-40 text-center">
                       {RichText.asText(heading2)}
                     </p>
                   </div>

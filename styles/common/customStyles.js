@@ -330,7 +330,7 @@ export const customStyles = css.global`
   }
 
   .p-text-4 {
-    line-height: 21px;
+    line-height: 24px;
     text-align: left;
     font-family: Lora;
     font-style: normal;
@@ -1793,7 +1793,7 @@ export const customStyles = css.global`
   .careers_videos_image {
     position: relative;
     width: 100%;
-    height: 126px;
+    height: 137px;
     cursor: pointer;
   }
 
@@ -2252,7 +2252,7 @@ export const customStyles = css.global`
 
   .p1-acc-card.carrier-position-tabs-header.card-header > button::after {
     color: #7d7c7c;
-    content: "\f107";
+    content: "\f106";
     font-family: "FontAwesome" !important;
     font-size: 20px;
     position: absolute;
@@ -2264,7 +2264,7 @@ export const customStyles = css.global`
   .p1-acc-card.carrier-position-tabs-header.card-header
     > button:not(.show)::after {
     color: #7d7c7c;
-    content: "\f106";
+    content: "\f107";
     font-family: "FontAwesome" !important;
     font-size: 20px;
     position: absolute;
@@ -2333,6 +2333,10 @@ export const customStyles = css.global`
       margin-bottom: 5px;
     }
 
+    .careers_videos_image {
+      height: 162px;
+    }
+
     .p-text-4 {
       font-size: 16px;
       line-height: 24px;
@@ -2369,6 +2373,10 @@ export const customStyles = css.global`
 
     .hikesnews-bg {
       height: 170px;
+    }
+
+    .banner-text-2.text-white.w-40 {
+      text-align: left !important;
     }
 
     .gt_lt_img {
