@@ -114,14 +114,26 @@ export const ihheaderStyles = css.global`
     margin-bottom: 0;
     font-size: 14px;
     padding: 3px 15px;
+    position: absolute;
+    width: 30%;
+    right: 0;
+  }
+
+  .searchHs {
+    position: absolute;
+    z-index: 99;
+    right: 8%;
   }
 
   .search-box-section {
     background: #ffffff;
     border: 1px solid rgb(255, 193, 0);
     position: absolute;
-    right: 7%;
-    width: 25%;
+    // right: 7%;
+    // width: 25%;
+    right: 0;
+    width: 30%;
+    top: 40px;
     z-index: 99;
   }
 
@@ -168,7 +180,20 @@ export const ihheaderStyles = css.global`
     font-family: Franklin Gothic;
   }
 
+  .view-in-desk {
+    display: block;
+  }
+
+  .view-in-mob {
+    display: none;
+  }
+
   @media only screen and (max-width: 660px) {
+    .navbar-expand-lg .navbar-nav .nav-item {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+
     .m-d-block {
       display: block;
     }
@@ -181,6 +206,20 @@ export const ihheaderStyles = css.global`
       position: relative;
       width: 100%;
       right: 0;
+    }
+
+    .searchHs {
+      position: relative;
+      right: 0;
+    }
+
+    .view-in-desk {
+      display: none;
+    }
+
+    .view-in-mob {
+      display: block;
+      width: 40%;
     }
   }
 

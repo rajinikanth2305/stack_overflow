@@ -1,4 +1,10 @@
-import React, {useState, useEffect, useMemo, useCallback, useRef} from "react";
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+  useRef
+} from "react";
 import {
   Collapse,
   Navbar,
@@ -20,9 +26,7 @@ import { useRouter } from "next/router";
 import Prismic from "@prismicio/client";
 import { Client } from "utils/prismicHelpers";
 import Image from "next/image";
-import {DebounceInput} from 'react-debounce-input';
-
-
+import { DebounceInput } from "react-debounce-input";
 
 /**
  * Homepage header component
@@ -32,30 +36,31 @@ const HikeHeader = ({ auth = false }) => {
 
   const toggle = () => setIsOpen(!isOpen);
   const router = useRouter();
-  console.log(router);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userServiceObject, setUserServiceObject] = useState(undefined);
   const [searchText, setSearchText] = useState();
   const [searchResults, setSearchResults] = useState([]);
 
-  const fetchData = async() => {
-    if(searchText && searchText !== "") {
+  const [showSearch, setShowSearch] = useState(false);
+
+  const fetchData = async () => {
+    if (searchText && searchText !== "") {
       const client = Client();
       await client
-          .query(
-              [
-                Prismic.Predicates.at("document.type", "trek"),
-                Prismic.Predicates.fulltext("document", searchText)
-              ]
-              // {
-              //   orderings: "[type desc]"
-              // }
-          )
-          .then(function (response) {
-            setSearchResults(response?.results);
-          });
+        .query(
+          [
+            Prismic.Predicates.at("document.type", "trek"),
+            Prismic.Predicates.fulltext("document", searchText)
+          ]
+          // {
+          //   orderings: "[type desc]"
+          // }
+        )
+        .then(function(response) {
+          setSearchResults(response?.results);
+        });
     }
-  }
+  };
 
   // React Render
   const postAuthenticAction = () => {
@@ -114,30 +119,6 @@ const HikeHeader = ({ auth = false }) => {
   return (
     <>
       <div className="border-bottom-custom-header position-sticky">
-        <div className="container">
-          <div className="d-flex justify-content-end">
-            <div>
-              {/*<input*/}
-              {/*  type="text"*/}
-              {/*  placeholder="Find your trek here?"*/}
-              {/*  className="g-search mw-100"*/}
-              {/*  onChange={onChange}*/}
-              {/*/>*/}
-              <DebounceInput
-                  minLength={1}
-                  debounceTimeout={300}
-                  className="g-search mw-100"
-                  onChange={onChange}
-                  placeholder="Find your trek here?"
-                  />
-              {/* <DebounceInput
-                minLength={2}
-                debounceTimeout={300}
-                onChange={handleGetSearchText}
-              /> */}
-            </div>
-          </div>
-        </div>
         <Navbar light expand="lg" className="container">
           <NavbarBrand href="/">
             <img
@@ -147,6 +128,25 @@ const HikeHeader = ({ auth = false }) => {
               alt="imgs"
             />
           </NavbarBrand>
+          <div className="view-in-mob">
+            <div className="d-flex align-items-center justify-content-end">
+              <div>
+                <Link href="../../../user-dashboard/user-upcoming-treks">
+                  <i
+                    className="fa fa-user-o cursor-pointer"
+                    aria-hidden="true"
+                  ></i>
+                </Link>
+              </div>
+              <div className="mx-4">
+                <i
+                  className="fa fa-search cursor-pointer"
+                  aria-hidden="true"
+                  onClick={() => setShowSearch(!showSearch)}
+                ></i>
+              </div>
+            </div>
+          </div>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
@@ -192,7 +192,9 @@ const HikeHeader = ({ auth = false }) => {
                   <NavLink
                     href="../../../family-trek/family-trek"
                     className={
-                      router.asPath == "/family-trek/family-trek" ? "active-custom" : ""
+                      router.asPath == "/family-trek/family-trek"
+                        ? "active-custom"
+                        : ""
                     }
                   >
                     Experiential Learning
@@ -354,7 +356,18 @@ const HikeHeader = ({ auth = false }) => {
                   ""
                 )}
               </NavItem>
-              <NavItem>
+              <NavItem
+                className="r-nav"
+                onClick={() => setShowSearch(!showSearch)}
+              >
+                <NavLink className="view-in-desk">
+                  <i
+                    className="fa fa-search cursor-pointer"
+                    aria-hidden="true"
+                  ></i>
+                </NavLink>
+              </NavItem>
+              <NavItem className="view-in-desk">
                 <NavLink>
                   <Link href="../../../user-dashboard/user-upcoming-treks">
                     <i
@@ -364,7 +377,7 @@ const HikeHeader = ({ auth = false }) => {
                   </Link>
                 </NavLink>
               </NavItem>
-              <UncontrolledDropdown inNavbar nav className="r-nav">
+              <UncontrolledDropdown inNavbar nav className="r-nav view-in-desk">
                 <DropdownToggle nav>
                   <i
                     className="fa fa-bars cursor-pointer"
@@ -396,17 +409,37 @@ const HikeHeader = ({ auth = false }) => {
           {ihheaderStyles}
         </style>
       </div>
-
-      {searchResults && searchResults.length > 0 && (
-        <div className="search-box-section">
-          <div className="d-flex justify-content-end p-1">
-            <i
-              class="fa fa-window-close cursor-pointer"
-              aria-hidden="true"
-              onClick={() => setSearchResults([])}
-            ></i>
+      {showSearch === true && (
+        <div className="container searchHs">
+          <div className="d-flex justify-content-end">
+            <div className="flex-fill">
+              {/*<input*/}
+              {/*  type="text"*/}
+              {/*  placeholder="Find your trek here?"*/}
+              {/*  className="g-search mw-100"*/}
+              {/*  onChange={onChange}*/}
+              {/*/>*/}
+              <DebounceInput
+                minLength={1}
+                debounceTimeout={300}
+                className="g-search mw-100"
+                onChange={onChange}
+                placeholder="Find your trek here?"
+              />
+            </div>
           </div>
-          <div className="s-r-height">{resultListing}</div>
+          {searchResults && searchResults.length > 0 && (
+            <div className="search-box-section">
+              <div className="d-flex justify-content-end p-1">
+                <i
+                  class="fa fa-window-close cursor-pointer"
+                  aria-hidden="true"
+                  onClick={() => setSearchResults([])}
+                ></i>
+              </div>
+              <div className="s-r-height">{resultListing}</div>
+            </div>
+          )}
         </div>
       )}
     </>
