@@ -92,7 +92,7 @@ const Offloading = forwardRef((props, ref) => {
             x => x.participantId === pdata.participantId
           );
 
-          //  if(offloadUser==undefined || offloadUser==null ) {
+            if(pdata?.bookingParticipantState !== "CANCELLED" ) {
 
           offLoadingList.push({
             id: pdata.participantId,
@@ -119,7 +119,7 @@ const Offloading = forwardRef((props, ref) => {
                 : offloadUser.offloadingState,
             bookingParticipantState: pdata?.bookingParticipantState
           });
-          // }
+           }
         });
         setOffLoadings(offLoadingList);
         // console.log(offLoadingList);
