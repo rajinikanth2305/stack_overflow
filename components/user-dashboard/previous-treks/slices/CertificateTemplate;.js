@@ -12,7 +12,7 @@ import {
 import moment from "moment";
 
 const CertificateTemplate = certificateData => {
-    const [selectedReceipts, setselectedReceipts] = useState();
+  const [selectedReceipts, setselectedReceipts] = useState();
 
   //console.log(certificateData);
   //setselectedReceipts(selectedReceiptsData);
@@ -43,11 +43,12 @@ const CertificateTemplate = certificateData => {
       textAlign: "center",
       textTransform: "capitalize",
       position: "absolute",
-      top: "42%",
+      top: "43%",
       // borderBottom: "1px solid #333333",
       left: "5%",
       paddingBottom: "2px",
-      width: "100%"
+      width: "100%",
+      textDecoration: "underline"
     },
     sectionText: {
       color: "#2c2e35",
@@ -55,38 +56,38 @@ const CertificateTemplate = certificateData => {
       fontWeight: "extrabold",
       paddingTop: "5px",
       paddingBottom: "5px",
-      textAlign: "center",
+      textAlign: "center"
     },
     header2: {
       color: "#2c2e35",
-      fontSize: "12px",
-      marginBottom: "10px",
+      fontSize: "14px",
+      marginBottom: "12px",
       position: "absolute",
       top: "53%",
-      left: "37.5%",
-      width: "35%",
+      left: "32.5%",
+      width: "45%",
       textAlign: "center",
       lineHeight: "1.5px"
     },
     header22: {
       color: "#2c2e35",
-      fontSize: "12px",
-      marginBottom: "10px",
+      fontSize: "14px",
+      marginBottom: "12px",
       position: "absolute",
       top: "57%",
-      left: "37.5%",
-      width: "35%",
+      left: "32.5%",
+      width: "45%",
       textAlign: "center",
       lineHeight: "1.5px"
     },
     header23: {
       color: "#2c2e35",
-      fontSize: "12px",
-      marginBottom: "10px",
+      fontSize: "14px",
+      marginBottom: "12px",
       position: "absolute",
       top: "61%",
-      left: "37.5%",
-      width: "35%",
+      left: "32.5%",
+      width: "45%",
       textAlign: "center",
       lineHeight: "1.5px"
     },
@@ -144,7 +145,11 @@ const CertificateTemplate = certificateData => {
             <Text style={styles.header22}>
               {certificateData.certificateData &&
                 certificateData.certificateData.trekName}
-              &nbsp; from{" "}
+              &nbsp;In{" "}
+              {
+                certificateData?.certificateData?.userTrekBookingParticipants[0]
+                  ?.userDetailsForDisplay?.state
+              }{" "}
             </Text>
             <Text style={styles.header23}>
               {certificateData.certificateData &&
@@ -162,7 +167,9 @@ const CertificateTemplate = certificateData => {
             <Text style={styles.sectionText}>
               {certificateData.certificateData &&
                 certificateData.certificateData.trekName}{" "}
-              | Trek Grade: {certificateData.certificateData.trekDifficulty} | Duration: {certificateData.certificateData.trekDuration} Days | Max Atitude: {certificateData.certificateData.trekAltitude} ft
+              | Trek Grade: {certificateData.certificateData.trekDifficulty} |
+              Duration: {certificateData.certificateData.trekDuration} Days |
+              Max Atitude: {certificateData.certificateData.trekAltitude} ft
             </Text>
           </View>
         </Page>
