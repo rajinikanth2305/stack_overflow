@@ -94,6 +94,20 @@ export const getBatchInfoByUserAndBatchId = async (userEmail, batchId)  => {
 };
 
 
+export const getLoggedInUserDetails = async ()  => {
+    const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
+    let url = `${userApi}/users/me`;
+    const header=await getTokenHeader();
+    return axios.get(url,{ headers: header}) ;
+};
+
+export const saveMyProfile =  async (data)  => {
+    const header=await getTokenHeader();
+    const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
+    let url = `${userApi}/users`;
+    return axios.put(url,data,{ headers:  header })
+        .then((res) => res.data);
+};
 
 
 const getTokenHeader=async () => {

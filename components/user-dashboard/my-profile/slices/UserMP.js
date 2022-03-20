@@ -3,6 +3,8 @@ import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Link from "next/link";
 import auth from "../../../../services/Authenticate";
+import {getLoggedInUserDetails, saveMyProfile} from "../../../../services/queries";
+import { useForm, Controller } from "react-hook-form";
 
 const UserMP = () => {
   const [show, setShow] = useState(false);
@@ -12,13 +14,43 @@ const UserMP = () => {
 
   const [userServiceObject, setUserServiceObject] = useState(undefined);
   const [userEmail, setUserEmail] = useState(undefined);
+  const [user, setUser] = useState({});
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    control,
+    errors,
+    formState,
+    getValues
+  } = useForm();
 
   React.useEffect(() => {
     //const res=await
-    auth.keycloak().then(([userTokenObject, userEmail]) => {
+    auth.keycloak().then(([userTokenObject, loggedInUserEmail]) => {
       setUserServiceObject(userTokenObject);
-      setUserEmail(userEmail);
-      // return userEmail;
+      setUserEmail(loggedInUserEmail);
+      getLoggedInUserDetails().then(data => {
+        const userData = data.data;
+        setUser(userData);
+        setValue("firstName", userData.firstName);
+        setValue("lastName", userData.lastName);
+        setValue("dob", userData.dob);
+        setValue("email", userData.email);
+        setValue("height", userData.height);
+        setValue("weight", userData.weight);
+        setValue("phone", userData.phone);
+        setValue("country", userData.country);
+        setValue("state", userData.state);
+        setValue("city", userData.city);
+        setValue("zipcode", userData.zipcode);
+        setValue("address", userData.address);
+        setValue("emergencyContactNumber", userData.emergencyContactNumber);
+        setValue("emergencyContactName", userData.emergencyContactName);
+        setValue("emergencyContactRelationshipToYou", userData.emergencyContactRelationshipToYou);
+      });
     });
     // console.log(res);
     //fetchAndBindUserBookings(res);
@@ -27,6 +59,33 @@ const UserMP = () => {
   const onLogout = () => {
     userServiceObject.doLogout();
   };
+
+  const onSubmit = userData => {
+console.log(userData);
+    console.log(user);
+
+    const userUpdated = user;
+    userUpdated.firstName=userData.firstName;
+    userUpdated.lastName=userData.lastName;
+    userUpdated.dob=userData.dob;
+    userUpdated.email=userData.email;
+    userUpdated.height=userData.height;
+    userUpdated.weight=userData.weight;
+    userUpdated.phone=userData.phone;
+    userUpdated.country=userData.country;
+    userUpdated.state=userData.state;
+    userUpdated.city=userData.city;
+    userUpdated.zipcode=userData.zipcode;
+    userUpdated.address=userData.address;
+    userUpdated.emergencyContactNumber=userData.emergencyContactNumber;
+    userUpdated.emergencyContactName=userData.emergencyContactName;
+    userUpdated.emergencyContactRelationshipToYou=userData.emergencyContactRelationshipToYou;
+
+    saveMyProfile(userUpdated).then(() => {
+      setUser(userUpdated);
+      alert("User profile saved successfully")
+    });
+  }
 
   return (
     <>
@@ -39,7 +98,7 @@ const UserMP = () => {
                 <div className="col-lg-10 col-md-12 bg-gray border-right b-right-2px">
                   <div className="mb-2 py-4">
                     <p className="p-text-1 font-weight-bold m-0">
-                      Hi Sandhya Uc
+                      Hi {user.displayName}
                     </p>
                     <p className="col-md-8 p-text-4 mt-2 mb-5">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -235,73 +294,93 @@ const UserMP = () => {
                         Essential Information
                       </h5>
                     </div>
-
-                    <div className="row mt-4">
+                    <form onSubmit={handleSubmit(onSubmit)} onReset={() => reset}>
+                      <div className="row mt-4">
                       <div className="col-lg-7 col-md-12 col-12">
                         <div className="card">
                           <div className="card-body">
                             <form>
                               <div className="form-group row">
                                 <label
-                                  for="firstnameInput"
+                                  for="firstName"
                                   className="col-sm-3 col-form-label p-text-3-fgc"
                                 >
-                                  First Name*
+                                  First Name
                                 </label>
                                 <div className="col-sm-9">
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    id="firstnameInput"
-                                    placeholder="First Name"
+                                  <Controller
+                                      name="firstName"
+                                      control={control}
+                                      defaultValue=""
+                                      render={({ onChange, value }) => <input
+                                          type="text"
+                                          className="form-control"
+                                          placeholder="First Name"
+                                          value={value} onChange={onChange}
+                                      />}
                                   />
                                 </div>
                               </div>
                               <div className="form-group row">
                                 <label
-                                  for="lastnameInput"
+                                  for="lastName"
                                   className="col-sm-3 col-form-label p-text-3-fgc"
                                 >
-                                  Last Name*
+                                  Last Name
                                 </label>
                                 <div className="col-sm-9">
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    id="lastnameInput"
-                                    placeholder="Last Name"
+                                  <Controller
+                                      name="lastName"
+                                      control={control}
+                                      defaultValue=""
+                                      render={({ onChange, value }) => <input
+                                          type="text"
+                                          className="form-control"
+                                          placeholder="Last Name"
+                                          value={value} onChange={onChange}
+                                      />}
                                   />
                                 </div>
                               </div>
                               <div className="form-group row">
                                 <label
-                                  for="emailInput"
+                                  for="email"
                                   className="col-sm-3 col-form-label p-text-3-fgc"
                                 >
                                   Email Id*
                                 </label>
                                 <div className="col-sm-9">
-                                  <input
-                                    type="email"
-                                    className="form-control"
-                                    id="emailInput"
-                                    placeholder="Emai Id"
+                                  <Controller
+                                      name="email"
+                                      control={control}
+                                      defaultValue=""
+                                      render={({ onChange, value }) => <input
+                                          type="text"
+                                          className="form-control"
+                                          placeholder="Email"
+                                          value={value} onChange={onChange}
+                                      />}
                                   />
                                 </div>
                               </div>
                               <div className="form-group row">
                                 <label
-                                  for="dateInput"
+                                  for="dob"
                                   className="col-sm-3 col-form-label p-text-3-fgc"
                                 >
                                   Date Of Birth
                                 </label>
                                 <div className="col-sm-9">
-                                  <input
-                                    type="date"
-                                    className="form-control"
-                                    id="dateInput"
-                                    placeholder="Email Id"
+                                  <Controller
+                                      name="dob"
+                                      control={control}
+                                      defaultValue=""
+                                      render={({ onChange, value }) => <input
+                                          type="text"
+                                          className="form-control"
+                                          placeholder="Date of birth"
+                                          value={value} onChange={onChange}
+                                      />}
                                   />
                                 </div>
                               </div>
@@ -309,105 +388,134 @@ const UserMP = () => {
                               <div className="border-top-c mt-3">
                                 <div className="form-group row mt-3">
                                   <label
-                                    for="phoneInput"
+                                    for="phone"
                                     className="col-sm-3 col-form-label p-text-3-fgc"
                                   >
                                     Phone
                                   </label>
                                   <div className="col-sm-9">
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      id="phoneInput"
-                                      placeholder="Phone Number"
+                                    <Controller
+                                        name="phone"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Phone"
+                                            value={value} onChange={onChange}
+                                        />}
                                     />
                                   </div>
                                 </div>
                                 <div className="form-group row">
                                   <label
-                                    for="countrySelect"
+                                    for="country"
                                     className="col-sm-3 col-form-label p-text-3-fgc"
                                   >
                                     Country*
                                   </label>
                                   <div className="col-sm-9">
-                                    <select
-                                      id="countrySelect"
-                                      class="form-control ud-form"
-                                    >
-                                      <option selected>Country</option>
-                                      <option>...</option>
-                                    </select>
+                                    <Controller
+                                        name="country"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Country"
+                                            value={value} onChange={onChange}
+                                        />}
+                                    />
+
                                   </div>
                                 </div>
 
                                 <div className="form-group row">
                                   <label
-                                    for="residentialAddress"
+                                    for="address"
                                     className="col-sm-3 col-form-label p-text-3-fgc"
                                   >
                                     Residential Address*
                                   </label>
                                   <div className="col-sm-9">
-                                    <textarea
-                                      type="text"
-                                      className="form-control"
-                                      id="residentialAddress"
-                                      placeholder="Address"
-                                      rows="4"
+                                    <Controller
+                                        name="address"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => <textarea
+                                            className="form-control"
+                                            placeholder="Address"
+                                            rows="4"
+                                            value={value} onChange={onChange}
+                                        />}
                                     />
+
                                   </div>
                                 </div>
 
                                 <div className="form-group row">
                                   <label
-                                    for="pincodeInput"
+                                    for="zipcode"
                                     className="col-sm-3 col-form-label p-text-3-fgc"
                                   >
                                     Pin Code
                                   </label>
                                   <div className="col-sm-9">
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      id="pincodeInput"
-                                      placeholder="Pin Code"
+                                    <Controller
+                                        name="zipcode"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Pin Code"
+                                            value={value} onChange={onChange}
+                                        />}
                                     />
                                   </div>
                                 </div>
 
                                 <div className="form-group row">
                                   <label
-                                    for="cityInput"
+                                    for="city"
                                     className="col-sm-3 col-form-label p-text-3-fgc"
                                   >
                                     City
                                   </label>
                                   <div className="col-sm-9">
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      id="cityInput"
-                                      placeholder="City"
+                                    <Controller
+                                        name="city"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="City"
+                                            value={value} onChange={onChange}
+                                        />}
                                     />
                                   </div>
                                 </div>
 
                                 <div className="form-group row">
                                   <label
-                                    for="stateSelect"
+                                    for="state"
                                     className="col-sm-3 col-form-label p-text-3-fgc"
                                   >
                                     State
                                   </label>
                                   <div className="col-sm-9">
-                                    <select
-                                      id="stateSelect"
-                                      class="form-control ud-form"
-                                    >
-                                      <option selected>State</option>
-                                      <option>...</option>
-                                    </select>
+                                    <Controller
+                                        name="state"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="State"
+                                            value={value} onChange={onChange}
+                                        />}
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -415,19 +523,23 @@ const UserMP = () => {
                               <div className="border-top-c mt-3">
                                 <div className="form-group row mt-3">
                                   <label
-                                    for="heightSelect"
+                                    for="height"
                                     className="col-sm-3 col-form-label p-text-3-fgc"
                                   >
-                                    Height (In Ft)*
+                                    Height (In CM)
                                   </label>
                                   <div className="col-sm-9">
-                                    <select
-                                      id="heightSelect"
-                                      class="form-control ud-form"
-                                    >
-                                      <option selected>Height (In Ft)</option>
-                                      <option>...</option>
-                                    </select>
+                                    <Controller
+                                        name="height"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Height (In CM)"
+                                            value={value} onChange={onChange}
+                                        />}
+                                    />
                                   </div>
                                 </div>
                                 <div className="form-group row">
@@ -438,11 +550,16 @@ const UserMP = () => {
                                     Weight (In Kg)*
                                   </label>
                                   <div className="col-sm-9">
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      id="weightInput"
-                                      placeholder="Weight (In Kg)"
+                                    <Controller
+                                        name="weight"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Weight (In Kg)"
+                                            value={value} onChange={onChange}
+                                        />}
                                     />
                                   </div>
                                 </div>
@@ -451,53 +568,65 @@ const UserMP = () => {
                               <div className="border-top-c mt-3">
                                 <div className="form-group row mt-3">
                                   <label
-                                    for="ecInput"
+                                    for="emergencyContactNumber"
                                     className="col-sm-3 col-form-label p-text-3-fgc"
                                   >
-                                    Emergency Contact*
+                                    Emergency Contact
                                   </label>
                                   <div className="col-sm-9">
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      id="ecInput"
-                                      placeholder="Phone Number"
+                                    <Controller
+                                        name="emergencyContactNumber"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Emergency Contact Number"
+                                            value={value} onChange={onChange}
+                                        />}
                                     />
                                   </div>
                                 </div>
                                 <div className="form-group row">
                                   <label
-                                    for="ncInput"
+                                    for="emergencyContactName"
                                     className="col-sm-3 col-form-label p-text-3-fgc"
                                   >
                                     Name Of Contact*
                                   </label>
                                   <div className="col-sm-9">
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      id="ncInput"
-                                      placeholder="Name Of Emergency Contact"
+                                    <Controller
+                                        name="emergencyContactName"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Contact Name"
+                                            value={value} onChange={onChange}
+                                        />}
                                     />
                                   </div>
                                 </div>
                                 <div className="form-group row">
                                   <label
-                                    for="relationshipSelect"
+                                    for="emergencyContactRelationshipToYou"
                                     className="col-sm-3 col-form-label p-text-3-fgc"
                                   >
                                     Relationship
                                   </label>
                                   <div className="col-sm-9">
-                                    <select
-                                      id="relationshipSelect"
-                                      class="form-control ud-form"
-                                    >
-                                      <option selected>
-                                        RelationshipTo You
-                                      </option>
-                                      <option>...</option>
-                                    </select>
+                                    <Controller
+                                        name="emergencyContactRelationshipToYou"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Relationship"
+                                            value={value} onChange={onChange}
+                                        />}
+                                    />
                                   </div>
                                 </div>
                               </div>
@@ -507,7 +636,7 @@ const UserMP = () => {
                                   Modify
                                 </button>
                                 <div className="mx-4" />
-                                <button className="btn btn-ih-green">
+                                <button className="btn btn-ih-green" type="submit">
                                   Save changes
                                 </button>
                               </div>
@@ -516,6 +645,7 @@ const UserMP = () => {
                         </div>
                       </div>
                     </div>
+                    </form>
                   </div>
                 </div>
                 <div className="col-lg-2 col-md-12 bg-white p-0">
