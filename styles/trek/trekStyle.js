@@ -704,7 +704,8 @@ export const trekStyle = css.global`
   }
 
   .trek_card.review_card {
-    min-height: 345px;
+    min-height: 38vh;
+    height: 100%;
   }
 
   .card_sec {

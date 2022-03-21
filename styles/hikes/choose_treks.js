@@ -45,7 +45,7 @@ export const ChooseTreks = css.global`
     position: relative;
     width: 100%;
     height: 222px;
-    border-bottom: 2px solid rgb(255,193,0);
+    border-bottom: 2px solid rgb(255, 193, 0);
   }
 
   .trek_badge {
@@ -328,13 +328,13 @@ export const ChooseTreks = css.global`
   }
 
   .fam_trek {
-    color: rgba(112,112,112,1);
+    color: rgba(112, 112, 112, 1);
     font-family: Lora-Medium;
     font-size: 14px;
   }
 
   .fam_trek > span {
-    color: rgb(255,193,0);
+    color: rgb(255, 193, 0);
   }
 
   .pr-cus-2 {
@@ -362,13 +362,24 @@ export const ChooseTreks = css.global`
     -webkit-transition-property: transform;
     transition-property: transform;
   }
-  .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+  .hvr-grow:hover,
+  .hvr-grow:focus,
+  .hvr-grow:active {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }
 
   .m-mt-15 {
     margin: 0 30px;
+  }
+
+  .review_modal > .modal-dialog > .modal-content > .modal-body {
+    background: #ffffff;
+  }
+
+  .trek_card.review_card {
+    min-height: 38vh;
+    height: 100%;
   }
 
   @media only screen and (max-width: 600px) {
@@ -394,7 +405,7 @@ export const ChooseTreks = css.global`
     }
 
     .m-crad {
-      filter: drop-shadow(0px 3px 6px rgba(0,0,0,0.161));
+      filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
       border: 1px solid rgba(0, 0, 0, 0.125);
     }
 
