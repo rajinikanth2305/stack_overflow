@@ -195,6 +195,7 @@ const MyTreks = forwardRef((props, ref) => {
 
       if(bookState) {
       getTrekLocations(trekId).then(res => {
+        console.log("location - get" + res);
         setLocations(res);
         setParticipantData(data);
         const arr = Array.from(
@@ -215,6 +216,7 @@ const MyTreks = forwardRef((props, ref) => {
       setIndexes(arr);
       setCounter(arr.length);
       setRender(true);
+      //setLocations(null);
     }
     }
   }));
@@ -268,8 +270,16 @@ const MyTreks = forwardRef((props, ref) => {
     const userLocations = [];
 
     participantData?.userTrekBookingParticipants?.map((user, index) => {
-      const locid1 = formData.locs[index]?.pickupLocation;
-      const locid2 = formData.locs[index]?.dropLocation;
+
+      let locid1 = formData.locs[index]?.pickupLocation;
+      let locid2 = formData.locs[index]?.dropLocation;
+
+      if(locid1==null || locid1==undefined) {
+        locid1 = user?.pickupLocationId ;
+      }
+      if(locid2==null || locid2==undefined) {
+        locid2 =user?.dropOffLocationId ;
+      }
 
       if (locid1 !== undefined && locid2 !== undefined) {
         const udata = {
@@ -319,7 +329,7 @@ const MyTreks = forwardRef((props, ref) => {
                     const pdata =
                       participantData?.userTrekBookingParticipants[index];
                     const fieldName = `locs[${index}]`;
-                   //  console.log(JSON.stringify(pdata));
+                     console.log(JSON.stringify(pdata));
 
                     const name =
                       pdata?.userDetailsForDisplay?.email ===
@@ -339,18 +349,18 @@ const MyTreks = forwardRef((props, ref) => {
                     );
 
                     const currentPickupLocation =
-                      pdata?.pickupLocationId !== undefined
+                      pdata?.pickupLocationId !== null
                         ? pdata?.pickupLocationId
                         : null;
                     const currentDropLocation =
-                      pdata?.dropOffLocationId !== undefined
+                      pdata?.dropOffLocationId !== null
                         ? pdata.dropOffLocationId
                         : null;
 
                     const state =
                       pdata?.bookingParticipantState === "CANCELLED";
-                    // console.log(currentPickupLocation + name);
-                    // console.log(currentDropLocation +  name);
+                     console.log(currentPickupLocation + name);
+                     console.log(currentDropLocation +  name);
 
                     return (
                       <tr>
@@ -371,7 +381,7 @@ const MyTreks = forwardRef((props, ref) => {
                                     optionLabel="name"
                                     optionValue="locationId"
                                     options={pickupLocations}
-                                    value={value}
+                                    value={(value==null || value==undefined) ? currentPickupLocation:value}
                                     onChange={e => {
                                       onChange(e.value);
                                     }}
@@ -395,12 +405,12 @@ const MyTreks = forwardRef((props, ref) => {
                                   <Dropdown
                                     optionLabel="name"
                                     optionValue="locationId"
-                                    value={value}
+                                    value={(value==null || value==undefined) ? currentDropLocation:value}
                                     options={dropLocations}
                                     onChange={e => {
                                       onChange(e.value);
                                     }}
-                                    placeholder="Select a Pickup locations "
+                                    placeholder="Select a Drop_Off locations "
                                   />
                                 )}
                               />
