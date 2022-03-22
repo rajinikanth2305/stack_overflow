@@ -354,7 +354,7 @@ const MyTreks = forwardRef((props, ref) => {
                         : null;
                     const currentDropLocation =
                       pdata?.dropOffLocationId !== null
-                        ? pdata.dropOffLocationId
+                        ? pdata?.dropOffLocationId
                         : null;
 
                     const state =
@@ -405,7 +405,7 @@ const MyTreks = forwardRef((props, ref) => {
                                   <Dropdown
                                     optionLabel="name"
                                     optionValue="locationId"
-                                    value={(value==null || value==undefined) ? currentDropLocation:value}
+                                    value={(value==null || value==undefined) ? currentDropLocation : value}
                                     options={dropLocations}
                                     onChange={e => {
                                       onChange(e.value);
