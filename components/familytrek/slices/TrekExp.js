@@ -90,7 +90,7 @@ const TrekExp = ({ slice }) => {
                 </div>
                 <div className="col-lg-6 col-md-12">
                   <div className="mt-h2 pb-08">{RichText.render(heading1)}</div>
-                  <div>{RichText.render(detailsList)}</div>
+                  <div className="p-text-4">{RichText.render(detailsList)}</div>
                 </div>
               </div>
             </div>

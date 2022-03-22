@@ -2286,8 +2286,8 @@ export const customStyles = css.global`
     border: 1px solid #707070;
   }
 
-  .RVEQke {
-    background: transparent !important;
+  .pl-custom {
+    padding-left: 20px;
   }
 
   @media only screen and (max-width: 660px) {
@@ -2295,6 +2295,10 @@ export const customStyles = css.global`
       position: relative;
       height: 360px;
       background-position: -425px 0;
+    }
+
+    .pl-custom {
+      padding-left: 0px;
     }
 
     .banner-image-desktop.banner-image-mobile-bg {
@@ -2883,6 +2887,44 @@ export const customStyles = css.global`
     }
     .sustainable_img {
       min-height: 375px;
+    }
+  }
+  @media (min-width: 1182px) and (max-width: 1400px) {
+    .trek_card  {
+      min-height: 485px;
+    }
+
+    .p-btn-btm {
+      position: absolute !important;
+      // bottom: 20px !important;
+      width: 90% !important;
+    }
+
+    .mw-100 > button {
+      width: 100% !important;
+      margin-bottom: 10px;
+    }
+    .mw-100 {
+      width: 100% !important;
+    }
+  }
+
+  @media (min-width: 1000px) and (max-width: 1182px) {
+    .trek_card  {
+      min-height: 485px;
+    }
+
+    .p-btn-btm {
+      position: absolute !important;
+      // bottom: 20px !important;
+      width: 90% !important;
+    }
+
+    .mw-100 > button {
+      width: 100% !important;
+    }
+    .mw-100 {
+      width: 100% !important;
     }
   }
   .required {

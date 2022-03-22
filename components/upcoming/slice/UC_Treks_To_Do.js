@@ -43,7 +43,7 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          centerMode: true
+          // centerMode: true
         }
       }
     ]
@@ -153,7 +153,7 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
               </h2>
             </div>
             <div className="col-lg-6 col-md-12">
-              <p className="p-display-1 m-d-1">
+              <p className="p-display-1 m-d-1 pl-custom">
                 {RichText.asText(ucTreksToDoDesc)}
               </p>
             </div>

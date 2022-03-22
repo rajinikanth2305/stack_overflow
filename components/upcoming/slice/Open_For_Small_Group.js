@@ -44,7 +44,7 @@ const UCOpenForSmallGroup = ({ slice, ucOpenData }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          centerMode: true
+          // centerMode: true
         }
       }
     ]
@@ -154,7 +154,7 @@ const UCOpenForSmallGroup = ({ slice, ucOpenData }) => {
               </h2>
             </div>
             <div className="col-lg-6 col-md-12">
-              <p className="p-display-1 m-d-1">
+              <p className="p-display-1 m-d-1 pl-custom">
                 {RichText.asText(ucOpenForSmallGroupDesc)}
               </p>
             </div>

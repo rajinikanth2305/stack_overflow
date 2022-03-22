@@ -452,9 +452,9 @@ export const ChooseTreks = css.global`
       padding: 40px 0 20px;
     }
 
-    .mpt-3-ltw {
-      padding: 25px 0 20px;
-    }
+    // .mpt-3-ltw {
+    //   padding: 25px 0 20px;
+    // }
 
     // .trekking_world_image_desktop {
     //   display: none;
@@ -521,6 +521,30 @@ export const ChooseTreks = css.global`
 
     .m-mt-15 {
       margin: 15px 0 0 0;
+    }
+  }
+
+  @media (min-width: 1182px) and (max-width: 1400px) {
+    .trek_card  {
+      min-height: 450px;
+    }
+
+    .p-btn-btm {
+      position: absolute !important;
+      bottom: 20px !important;
+      width: 90% !important;
+    }
+  }
+
+  @media (min-width: 1000px) and (max-width: 1182px) {
+    .trek_card  {
+      min-height: 485px;
+    }
+
+    .p-btn-btm {
+      position: absolute !important;
+      bottom: 20px !important;
+      width: 90% !important;
     }
   }
 `;

@@ -38,7 +38,10 @@ const WhyTrek = ({ slice }) => {
       url = linkResolver(data?.article_link);
     }
     return (
-      <div key={`pillar-${i}`} className="hvr-grow cursor-pointer">
+      <div
+        key={`pillar-${i}`}
+        className="hvr-grow cursor-pointer card__wrap--inner"
+      >
         <div className="pillar-card card card-shadow">
           <div className="card-body">
             <div>
@@ -59,16 +62,9 @@ const WhyTrek = ({ slice }) => {
               <div>
                 <div className="p-text-3-wt">
                   {RichText.render(data?.pillar_desc)}
-                  {/* {RichText.asText(data?.pillar_desc)
-                          .length > 25
-                          ? `${RichText.asText(
-                            data?.pillar_desc
-                            ).substring(0, 130)}...`
-                          : RichText.asText(data?.pillar_desc)} */}
                 </div>
               </div>
               <div className="text-center mt-4 p-btn-btm-why">
-                {/* <Link href={url}> */}
                 <button
                   className="btn btn-ih-green"
                   onClick={() => {
@@ -78,11 +74,44 @@ const WhyTrek = ({ slice }) => {
                 >
                   {RichText.asText(data?.button_name)}
                 </button>
-                {/* </Link> */}
               </div>
             </div>
           </div>
         </div>
+        {/* <div class="pillar-card card card-shadow p-3">
+            <div className="d-flex align-items-center">
+              <div>
+                <div>
+                  <img
+                    src={data?.pillar_images?.url}
+                    alt="icons"
+                    className="pillar_images"
+                  />
+                </div>
+              </div>
+              <div>
+                <p className="p-text-1">{data?.pillar_title[0]?.text}</p>
+              </div>
+            </div>
+            <div class="card__item flexible">
+              <div className="p-text-3-wt">
+                {RichText.render(data?.pillar_desc)}
+              </div>
+            </div>
+            <div class="card__footer">
+              <div className="text-center mt-4">
+                <button
+                  className="btn btn-ih-green"
+                  onClick={() => {
+                    setTrekVideoUrl(videoUrl);
+                    setShow(true);
+                  }}
+                >
+                  {RichText.asText(data?.button_name)}
+                </button>
+              </div>
+            </div>
+          </div> */}
       </div>
     );
   });
@@ -133,6 +162,9 @@ const WhyTrek = ({ slice }) => {
                   {RichText.asText(heading)}
                 </h2>
               </div>
+              {/* <div className="card__wrap--outer flex-warp">
+                {pillarImages}
+              </div> */}
               <div>
                 <Slider {...settings}>{pillarImages}</Slider>
               </div>

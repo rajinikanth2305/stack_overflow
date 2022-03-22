@@ -190,7 +190,7 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
               </h2>
             </div>
             <div className="col-lg-5 col-md-12">
-              <div className="p-display-1 m-d-1 mmb-0 mb-4">
+              <div className="p-display-1 m-d-1 mmb-0 mb-4 pl-custom">
                 {RichText.render(heading2)}
               </div>
             </div>

@@ -27,6 +27,7 @@ const HikeHome = ({
       <HomeLayout>
         <Head>
           <title>India Hikes</title>
+          <meta content="width=device-width, initial-scale=1" name="viewport" />
         </Head>
         <HikeHeader />
         <SliceZone

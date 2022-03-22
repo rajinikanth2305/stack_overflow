@@ -40,7 +40,9 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          centerMode: true
+          // centerMode: true,
+          // centerPadding: '20px',
+          adaptiveHeight: true,
         }
       }
     ]

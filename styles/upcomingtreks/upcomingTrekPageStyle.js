@@ -435,19 +435,22 @@ export const upcomingTrekPageStyle = css.global`
   .uc_family_treks_image {
     position: relative;
     width: 100%;
-    height: 400px;
+    min-height: 400px;
+    height: 100%;
   }
 
   .ucFamilyTreks_box {
     background: rgba(0, 40, 148, 1);
     padding: 30px 50px;
-    height: 400px;
+    min-height: 400px;
+    height: 100%;
   }
 
   .ucDyiTreks_box {
     background: rgba(157, 58, 11, 1);
     padding: 30px 50px;
     height: 400px;
+    height: 100%;
   }
 
   .badge-green {
@@ -588,6 +591,10 @@ export const upcomingTrekPageStyle = css.global`
     text-decoration: underline;
   }
 
+  .pl-custom {
+    padding-left: 20px;
+  }
+
   @media only screen and (max-width: 660px) {
     .fam_trek {
       font-size: 12px;
@@ -679,6 +686,10 @@ export const upcomingTrekPageStyle = css.global`
 
     .m-padd-2 {
       padding: 10px !important;
+    }
+
+    .pl-custom {
+      padding-left: 0px;
     }
 
     .uc_family_treks_image {
@@ -876,22 +887,34 @@ export const upcomingTrekPageStyle = css.global`
     }
   }
 
-  @media (min-width: 992px) and (max-width: 1185px) {
-    .trek_card {
-      min-height: 100% !important;
-    }
-
-    // .p-btn-btm {
-    //   position: relative !important;
-    //   bottom: 0 !important;
-    //   width: 100% !important;
-    // }
-  }
-
   @media (min-width: 700px) and (max-width: 1300px) {
     .title-diplay-3 {
       font-size: 20px;
       line-height: 24px;
+    }
+  }
+
+  @media (min-width: 1182px) and (max-width: 1400px) {
+    .trek_card  {
+      min-height: 450px;
+    }
+
+    .p-btn-btm {
+      position: absolute !important;
+      bottom: 20px !important;
+      width: 90% !important;
+    }
+  }
+
+  @media (min-width: 1000px) and (max-width: 1182px) {
+    .trek_card  {
+      min-height: 485px;
+    }
+
+    .p-btn-btm {
+      position: absolute !important;
+      bottom: 20px !important;
+      width: 90% !important;
     }
   }
 `;

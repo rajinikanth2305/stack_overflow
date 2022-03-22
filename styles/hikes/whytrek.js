@@ -150,4 +150,16 @@ export const whyTrekWithStyles = css.global`
       width: 100% !important;
     }
   }
+
+  @media (min-width: 1182px) and (max-width: 1400px) {
+    .pillar-card.card {
+      min-height: 325px;
+    }
+  }
+
+  @media (min-width: 1000px) and (max-width: 1182px) {
+    .pillar-card.card {
+      min-height: 325px;
+    }
+  }
 `;

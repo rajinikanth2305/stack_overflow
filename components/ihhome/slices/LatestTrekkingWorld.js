@@ -34,6 +34,7 @@ const LatestTrekkingWorld = ({ slice }) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    adaptiveHeight: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -84,7 +85,7 @@ const LatestTrekkingWorld = ({ slice }) => {
     const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
     return (
       <div key={`latesttrekking` + i} className="py-3 mx-2 mm-0 mp-0">
-        <div className="row d-flex align-items-center">
+        <div className="row d-flex">
           <div className="col-lg-6 col-md-12 order-1">
             <div className="m-card-pd">
               <h3 className="title-diplay-3-ltw mpt-3-ltw">
@@ -183,7 +184,7 @@ const LatestTrekkingWorld = ({ slice }) => {
               </h2>
             </div>
           </div>
-          <div className="my-4 mm-0 m-crad">
+          <div className="my-4 mm-0">
             <Slider {...settings}>{trekkingWorldImage}</Slider>
           </div>
         </div>
