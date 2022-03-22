@@ -49,8 +49,7 @@ const HikeHeader = ({ auth = false }) => {
       await client
         .query(
           [
-            Prismic.Predicates.at("document.type", "trek"),
-            Prismic.Predicates.fulltext("document", searchText)
+            Prismic.Predicates.fulltext("my.trek.trek_title", searchText)
           ]
           // {
           //   orderings: "[type desc]"
@@ -59,6 +58,19 @@ const HikeHeader = ({ auth = false }) => {
         .then(function(response) {
           setSearchResults(response?.results);
         });
+
+      // await client
+      //     .query(
+      //         [
+      //           Prismic.Predicates.fulltext("my.post.title", searchText)
+      //         ]
+      //         // {
+      //         //   orderings: "[type desc]"
+      //         // }
+      //     )
+      //     .then(function(response) {
+      //       setSearchResults(response?.results);
+      //     });
     }
   };
 
