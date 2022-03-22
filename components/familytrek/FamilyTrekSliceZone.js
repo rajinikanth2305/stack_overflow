@@ -5,6 +5,7 @@ import {
   MultiDayTrekComponent,
   WeekendTrek,
   HowDoWeDo,
+  FamilyGallery,
   DefiningStandards,
   FaqFamily,
   Testimonoials,
@@ -65,6 +66,8 @@ const FamilyTrekSliceZone = ({
         );
       case "get_in_touch_form":
         return <GetInTouchForm slice={slice} key={`slice-${index}`} />;
+      case "family_gallery":
+        return <FamilyGallery slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }

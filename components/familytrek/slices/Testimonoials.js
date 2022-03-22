@@ -99,9 +99,10 @@ const Testimonoials = ({ slice }) => {
       <div className="container">
         <h2 className="title-h2 mb-0 pb-08">{RichText.asText(heading1)}</h2>
         <div className="my-4 py-2">
-          <Slider className="home-choose-treks" {...settings}>
+          <Slider className="home-choose-treks m-d-none" {...settings}>
             {testimonials}
           </Slider>
+          <div className="m-d-block">{testimonials}</div>
         </div>
       </div>
       <style jsx global>
