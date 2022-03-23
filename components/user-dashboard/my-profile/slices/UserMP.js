@@ -767,7 +767,7 @@ const UserMP = () => {
                                     <div className="col-lg-12 col-md-12 col-12">
                                       <FileUpload
                                           id="frontImage"
-                                          name="backImage"
+                                          name="frontImage"
                                           customUpload={true}
                                           chooseOptions={chooseOptions}
                                           uploadOptions={uploadOptions}
@@ -790,7 +790,7 @@ const UserMP = () => {
                                 </label>
                                 <div className="col-sm-9">
                                   <label className="col-form-label p-text-3-fgc">
-                                    Back od Id card
+                                    Back of Id card
                                   </label>
                                   <div className="row">
                                       {frontImage &&(
