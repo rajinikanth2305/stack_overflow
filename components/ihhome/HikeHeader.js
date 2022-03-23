@@ -49,11 +49,8 @@ const HikeHeader = ({ auth = false }) => {
       await client
         .query(
           [
-            Prismic.Predicates.fulltext("my.document_trek_type.categories", searchText)
+            Prismic.Predicates.fulltext("my.trek.search_keywords", searchText)
           ]
-          // {
-          //   orderings: "[type desc]"
-          // }
         )
         .then(function(response) {
           setSearchResults(response?.results);
