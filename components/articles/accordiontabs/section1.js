@@ -4,10 +4,12 @@ import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
 import Link from "next/link";
 import { linkResolver } from "prismic-configuration";
+import getYoutubeTitle from "get-youtube-title";
 
 const Section1 = ({ data, section1DataList, primaryArticleData }) => {
   const primaryVideoUrl = data?.primary?.primary_video_url?.url;
   const dayTalkTitle = data?.primary?.day_talk_title;
+  const [vTitle, setVtitle] = useState();
 
   const [show, setShow] = useState(false);
 
@@ -39,6 +41,13 @@ const Section1 = ({ data, section1DataList, primaryArticleData }) => {
   if (slugUrl) {
     primary_url = linkResolver(data?.primary?.primary_link_url);
   }
+
+  getYoutubeTitle(cleanVideoId && cleanVideoId ? cleanVideoId : "", function(
+    err,
+    title
+  ) {
+    setVtitle(title);
+  });
 
   const section1Data = section1DataList?.map(function(data, index) {
     let url;
@@ -173,6 +182,11 @@ const Section1 = ({ data, section1DataList, primaryArticleData }) => {
                         onClick={handleShow}
                       />
                     </div>
+                    {vTitle && (
+                      <div className="p-3">
+                        <p className="latestTrekWorld_caption">{vTitle}</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
