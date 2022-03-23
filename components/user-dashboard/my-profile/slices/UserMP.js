@@ -3,7 +3,10 @@ import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Link from "next/link";
 import auth from "../../../../services/Authenticate";
-import {getLoggedInUserDetails, saveMyProfile} from "../../../../services/queries";
+import {
+  getLoggedInUserDetails,
+  saveMyProfile
+} from "../../../../services/queries";
 import { useForm, Controller } from "react-hook-form";
 
 const UserMP = () => {
@@ -49,7 +52,10 @@ const UserMP = () => {
         setValue("address", userData.address);
         setValue("emergencyContactNumber", userData.emergencyContactNumber);
         setValue("emergencyContactName", userData.emergencyContactName);
-        setValue("emergencyContactRelationshipToYou", userData.emergencyContactRelationshipToYou);
+        setValue(
+          "emergencyContactRelationshipToYou",
+          userData.emergencyContactRelationshipToYou
+        );
       });
     });
     // console.log(res);
@@ -61,31 +67,32 @@ const UserMP = () => {
   };
 
   const onSubmit = userData => {
-console.log(userData);
+    console.log(userData);
     console.log(user);
 
     const userUpdated = user;
-    userUpdated.firstName=userData.firstName;
-    userUpdated.lastName=userData.lastName;
-    userUpdated.dob=userData.dob;
-    userUpdated.email=userData.email;
-    userUpdated.height=userData.height;
-    userUpdated.weight=userData.weight;
-    userUpdated.phone=userData.phone;
-    userUpdated.country=userData.country;
-    userUpdated.state=userData.state;
-    userUpdated.city=userData.city;
-    userUpdated.zipcode=userData.zipcode;
-    userUpdated.address=userData.address;
-    userUpdated.emergencyContactNumber=userData.emergencyContactNumber;
-    userUpdated.emergencyContactName=userData.emergencyContactName;
-    userUpdated.emergencyContactRelationshipToYou=userData.emergencyContactRelationshipToYou;
+    userUpdated.firstName = userData.firstName;
+    userUpdated.lastName = userData.lastName;
+    userUpdated.dob = userData.dob;
+    userUpdated.email = userData.email;
+    userUpdated.height = userData.height;
+    userUpdated.weight = userData.weight;
+    userUpdated.phone = userData.phone;
+    userUpdated.country = userData.country;
+    userUpdated.state = userData.state;
+    userUpdated.city = userData.city;
+    userUpdated.zipcode = userData.zipcode;
+    userUpdated.address = userData.address;
+    userUpdated.emergencyContactNumber = userData.emergencyContactNumber;
+    userUpdated.emergencyContactName = userData.emergencyContactName;
+    userUpdated.emergencyContactRelationshipToYou =
+      userData.emergencyContactRelationshipToYou;
 
     saveMyProfile(userUpdated).then(() => {
       setUser(userUpdated);
-      alert("User profile saved successfully")
+      alert("User profile saved successfully");
     });
-  }
+  };
 
   return (
     <>
@@ -107,10 +114,10 @@ console.log(userData);
                       ullamco laboris nisi ut aliquip ex ea commodo consequa
                     </p>
 
-                    <div>
+                    <div style={{ display: "none" }}>
                       <h5 className="p-text-2-fg b-left-3px">About Me</h5>
                     </div>
-                    <div className="row mt-4">
+                    <div className="row mt-4" style={{ display: "none" }}>
                       <div className="col-lg-7 col-md-12 col-12">
                         <div className="card">
                           <div className="card-body">
@@ -294,357 +301,472 @@ console.log(userData);
                         Essential Information
                       </h5>
                     </div>
-                    <form onSubmit={handleSubmit(onSubmit)} onReset={() => reset}>
+                    <form
+                      onSubmit={handleSubmit(onSubmit)}
+                      onReset={() => reset}
+                    >
                       <div className="row mt-4">
-                      <div className="col-lg-7 col-md-12 col-12">
-                        <div className="card">
-                          <div className="card-body">
-                            <form>
-                              <div className="form-group row">
-                                <label
-                                  for="firstName"
-                                  className="col-sm-3 col-form-label p-text-3-fgc"
-                                >
-                                  First Name
-                                </label>
-                                <div className="col-sm-9">
-                                  <Controller
+                        <div className="col-lg-6 col-md-12 col-12">
+                          <div className="card">
+                            <div className="card-body">
+                              <form>
+                                <div className="form-group row">
+                                  <label
+                                    for="firstName"
+                                    className="col-sm-3 col-form-label p-text-3-fgc"
+                                  >
+                                    First Name
+                                  </label>
+                                  <div className="col-sm-9">
+                                    <Controller
                                       name="firstName"
                                       control={control}
                                       defaultValue=""
-                                      render={({ onChange, value }) => <input
+                                      render={({ onChange, value }) => (
+                                        <input
                                           type="text"
                                           className="form-control"
                                           placeholder="First Name"
-                                          value={value} onChange={onChange}
-                                      />}
-                                  />
+                                          value={value}
+                                          onChange={onChange}
+                                        />
+                                      )}
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                              <div className="form-group row">
-                                <label
-                                  for="lastName"
-                                  className="col-sm-3 col-form-label p-text-3-fgc"
-                                >
-                                  Last Name
-                                </label>
-                                <div className="col-sm-9">
-                                  <Controller
+                                <div className="form-group row">
+                                  <label
+                                    for="lastName"
+                                    className="col-sm-3 col-form-label p-text-3-fgc"
+                                  >
+                                    Last Name
+                                  </label>
+                                  <div className="col-sm-9">
+                                    <Controller
                                       name="lastName"
                                       control={control}
                                       defaultValue=""
-                                      render={({ onChange, value }) => <input
+                                      render={({ onChange, value }) => (
+                                        <input
                                           type="text"
                                           className="form-control"
                                           placeholder="Last Name"
-                                          value={value} onChange={onChange}
-                                      />}
-                                  />
+                                          value={value}
+                                          onChange={onChange}
+                                        />
+                                      )}
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                              <div className="form-group row">
-                                <label
-                                  for="email"
-                                  className="col-sm-3 col-form-label p-text-3-fgc"
-                                >
-                                  Email Id*
-                                </label>
-                                <div className="col-sm-9">
-                                  <Controller
+                                <div className="form-group row">
+                                  <label
+                                    for="email"
+                                    className="col-sm-3 col-form-label p-text-3-fgc"
+                                  >
+                                    Email Id*
+                                  </label>
+                                  <div className="col-sm-9">
+                                    <Controller
                                       name="email"
                                       control={control}
                                       defaultValue=""
-                                      render={({ onChange, value }) => <input
+                                      render={({ onChange, value }) => (
+                                        <input
                                           type="text"
                                           className="form-control"
                                           placeholder="Email"
-                                          value={value} onChange={onChange}
-                                      />}
-                                  />
+                                          value={value}
+                                          onChange={onChange}
+                                        />
+                                      )}
+                                    />
+                                  </div>
+                                </div>
+                                <div className="form-group row">
+                                  <label
+                                    for="dob"
+                                    className="col-sm-3 col-form-label p-text-3-fgc"
+                                  >
+                                    Date Of Birth
+                                  </label>
+                                  <div className="col-sm-9">
+                                    <Controller
+                                      name="dob"
+                                      control={control}
+                                      defaultValue=""
+                                      render={({ onChange, value }) => (
+                                        <input
+                                          type="text"
+                                          className="form-control"
+                                          placeholder="Date of birth"
+                                          value={value}
+                                          onChange={onChange}
+                                        />
+                                      )}
+                                    />
+                                  </div>
+                                </div>
+
+                                <div className="border-top-c mt-3">
+                                  <div className="form-group row mt-3">
+                                    <label
+                                      for="phone"
+                                      className="col-sm-3 col-form-label p-text-3-fgc"
+                                    >
+                                      Phone
+                                    </label>
+                                    <div className="col-sm-9">
+                                      <Controller
+                                        name="phone"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => (
+                                          <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Phone"
+                                            value={value}
+                                            onChange={onChange}
+                                          />
+                                        )}
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="form-group row">
+                                    <label
+                                      for="country"
+                                      className="col-sm-3 col-form-label p-text-3-fgc"
+                                    >
+                                      Country*
+                                    </label>
+                                    <div className="col-sm-9">
+                                      <Controller
+                                        name="country"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => (
+                                          <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Country"
+                                            value={value}
+                                            onChange={onChange}
+                                          />
+                                        )}
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div className="form-group row">
+                                    <label
+                                      for="address"
+                                      className="col-sm-3 col-form-label p-text-3-fgc"
+                                    >
+                                      Residential Address*
+                                    </label>
+                                    <div className="col-sm-9">
+                                      <Controller
+                                        name="address"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => (
+                                          <textarea
+                                            className="form-control"
+                                            placeholder="Address"
+                                            rows="4"
+                                            value={value}
+                                            onChange={onChange}
+                                          />
+                                        )}
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div className="form-group row">
+                                    <label
+                                      for="zipcode"
+                                      className="col-sm-3 col-form-label p-text-3-fgc"
+                                    >
+                                      Pin Code
+                                    </label>
+                                    <div className="col-sm-9">
+                                      <Controller
+                                        name="zipcode"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => (
+                                          <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Pin Code"
+                                            value={value}
+                                            onChange={onChange}
+                                          />
+                                        )}
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div className="form-group row">
+                                    <label
+                                      for="city"
+                                      className="col-sm-3 col-form-label p-text-3-fgc"
+                                    >
+                                      City
+                                    </label>
+                                    <div className="col-sm-9">
+                                      <Controller
+                                        name="city"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => (
+                                          <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="City"
+                                            value={value}
+                                            onChange={onChange}
+                                          />
+                                        )}
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div className="form-group row">
+                                    <label
+                                      for="state"
+                                      className="col-sm-3 col-form-label p-text-3-fgc"
+                                    >
+                                      State
+                                    </label>
+                                    <div className="col-sm-9">
+                                      <Controller
+                                        name="state"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => (
+                                          <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="State"
+                                            value={value}
+                                            onChange={onChange}
+                                          />
+                                        )}
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div className="border-top-c mt-3">
+                                  <div className="form-group row mt-3">
+                                    <label
+                                      for="height"
+                                      className="col-sm-3 col-form-label p-text-3-fgc"
+                                    >
+                                      Height (In CM)
+                                    </label>
+                                    <div className="col-sm-9">
+                                      <Controller
+                                        name="height"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => (
+                                          <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Height (In CM)"
+                                            value={value}
+                                            onChange={onChange}
+                                          />
+                                        )}
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="form-group row">
+                                    <label
+                                      for="weightInput"
+                                      className="col-sm-3 col-form-label p-text-3-fgc"
+                                    >
+                                      Weight (In Kg)*
+                                    </label>
+                                    <div className="col-sm-9">
+                                      <Controller
+                                        name="weight"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => (
+                                          <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Weight (In Kg)"
+                                            value={value}
+                                            onChange={onChange}
+                                          />
+                                        )}
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div className="border-top-c mt-3">
+                                  <div className="form-group row mt-3">
+                                    <label
+                                      for="emergencyContactNumber"
+                                      className="col-sm-3 col-form-label p-text-3-fgc"
+                                    >
+                                      Emergency Contact
+                                    </label>
+                                    <div className="col-sm-9">
+                                      <Controller
+                                        name="emergencyContactNumber"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => (
+                                          <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Emergency Contact Number"
+                                            value={value}
+                                            onChange={onChange}
+                                          />
+                                        )}
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="form-group row">
+                                    <label
+                                      for="emergencyContactName"
+                                      className="col-sm-3 col-form-label p-text-3-fgc"
+                                    >
+                                      Name Of Contact*
+                                    </label>
+                                    <div className="col-sm-9">
+                                      <Controller
+                                        name="emergencyContactName"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => (
+                                          <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Contact Name"
+                                            value={value}
+                                            onChange={onChange}
+                                          />
+                                        )}
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="form-group row">
+                                    <label
+                                      for="emergencyContactRelationshipToYou"
+                                      className="col-sm-3 col-form-label p-text-3-fgc"
+                                    >
+                                      Relationship
+                                    </label>
+                                    <div className="col-sm-9">
+                                      <Controller
+                                        name="emergencyContactRelationshipToYou"
+                                        control={control}
+                                        defaultValue=""
+                                        render={({ onChange, value }) => (
+                                          <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Relationship"
+                                            value={value}
+                                            onChange={onChange}
+                                          />
+                                        )}
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div className="d-flex align-items-center justify-content-end mt-4 mb-3">
+                                  <button className="btn btn-bihtn-yellow text-capitalize">
+                                    Modify
+                                  </button>
+                                  <div className="mx-4" />
+                                  <button
+                                    className="btn btn-ih-green"
+                                    type="submit"
+                                  >
+                                    Save changes
+                                  </button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="col-lg-6 col-md-12 col-12">
+                          <div className="card">
+                            <div className="card-body">
+                              <div className="form-group row">
+                                <label
+                                  for="pofilePic"
+                                  className="col-sm-3 col-form-label p-text-3-fgc"
+                                >
+                                  ID Proof* Following accepted: - Aadhar card -
+                                  Voter Id - Driving license - Passport
+                                </label>
+                                <div className="col-sm-9">
+                                  <label className="col-form-label p-text-3-fgc">
+                                    Front of Id card
+                                  </label>
+                                  <div className="row">
+                                    <div className="col-lg-12 col-md-12 col-12">
+                                      <img
+                                        src="../ip.png"
+                                        width="100%"
+                                        height="200px"
+                                      />
+                                    </div>
+                                    <div className="col-lg-12 col-md-12 col-12">
+                                      <input
+                                        type="file"
+                                        id="pofilePic"
+                                        className="form-control"
+                                      />
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                               <div className="form-group row">
                                 <label
-                                  for="dob"
+                                  for="pofilePic"
                                   className="col-sm-3 col-form-label p-text-3-fgc"
                                 >
-                                  Date Of Birth
+                                  {" "}
                                 </label>
                                 <div className="col-sm-9">
-                                  <Controller
-                                      name="dob"
-                                      control={control}
-                                      defaultValue=""
-                                      render={({ onChange, value }) => <input
-                                          type="text"
-                                          className="form-control"
-                                          placeholder="Date of birth"
-                                          value={value} onChange={onChange}
-                                      />}
-                                  />
-                                </div>
-                              </div>
-
-                              <div className="border-top-c mt-3">
-                                <div className="form-group row mt-3">
-                                  <label
-                                    for="phone"
-                                    className="col-sm-3 col-form-label p-text-3-fgc"
-                                  >
-                                    Phone
+                                  <label className="col-form-label p-text-3-fgc">
+                                    Back od Id card
                                   </label>
-                                  <div className="col-sm-9">
-                                    <Controller
-                                        name="phone"
-                                        control={control}
-                                        defaultValue=""
-                                        render={({ onChange, value }) => <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Phone"
-                                            value={value} onChange={onChange}
-                                        />}
-                                    />
-                                  </div>
-                                </div>
-                                <div className="form-group row">
-                                  <label
-                                    for="country"
-                                    className="col-sm-3 col-form-label p-text-3-fgc"
-                                  >
-                                    Country*
-                                  </label>
-                                  <div className="col-sm-9">
-                                    <Controller
-                                        name="country"
-                                        control={control}
-                                        defaultValue=""
-                                        render={({ onChange, value }) => <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Country"
-                                            value={value} onChange={onChange}
-                                        />}
-                                    />
-
-                                  </div>
-                                </div>
-
-                                <div className="form-group row">
-                                  <label
-                                    for="address"
-                                    className="col-sm-3 col-form-label p-text-3-fgc"
-                                  >
-                                    Residential Address*
-                                  </label>
-                                  <div className="col-sm-9">
-                                    <Controller
-                                        name="address"
-                                        control={control}
-                                        defaultValue=""
-                                        render={({ onChange, value }) => <textarea
-                                            className="form-control"
-                                            placeholder="Address"
-                                            rows="4"
-                                            value={value} onChange={onChange}
-                                        />}
-                                    />
-
-                                  </div>
-                                </div>
-
-                                <div className="form-group row">
-                                  <label
-                                    for="zipcode"
-                                    className="col-sm-3 col-form-label p-text-3-fgc"
-                                  >
-                                    Pin Code
-                                  </label>
-                                  <div className="col-sm-9">
-                                    <Controller
-                                        name="zipcode"
-                                        control={control}
-                                        defaultValue=""
-                                        render={({ onChange, value }) => <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Pin Code"
-                                            value={value} onChange={onChange}
-                                        />}
-                                    />
-                                  </div>
-                                </div>
-
-                                <div className="form-group row">
-                                  <label
-                                    for="city"
-                                    className="col-sm-3 col-form-label p-text-3-fgc"
-                                  >
-                                    City
-                                  </label>
-                                  <div className="col-sm-9">
-                                    <Controller
-                                        name="city"
-                                        control={control}
-                                        defaultValue=""
-                                        render={({ onChange, value }) => <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="City"
-                                            value={value} onChange={onChange}
-                                        />}
-                                    />
-                                  </div>
-                                </div>
-
-                                <div className="form-group row">
-                                  <label
-                                    for="state"
-                                    className="col-sm-3 col-form-label p-text-3-fgc"
-                                  >
-                                    State
-                                  </label>
-                                  <div className="col-sm-9">
-                                    <Controller
-                                        name="state"
-                                        control={control}
-                                        defaultValue=""
-                                        render={({ onChange, value }) => <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="State"
-                                            value={value} onChange={onChange}
-                                        />}
-                                    />
+                                  <div className="row">
+                                    <div className="col-lg-12 col-md-12 col-12">
+                                      <img
+                                        src="../ip.png"
+                                        width="100%"
+                                        height="200px"
+                                      />
+                                    </div>
+                                    <div className="col-lg-12 col-md-12 col-12">
+                                      <input
+                                        type="file"
+                                        id="pofilePic"
+                                        className="form-control"
+                                      />
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-
-                              <div className="border-top-c mt-3">
-                                <div className="form-group row mt-3">
-                                  <label
-                                    for="height"
-                                    className="col-sm-3 col-form-label p-text-3-fgc"
-                                  >
-                                    Height (In CM)
-                                  </label>
-                                  <div className="col-sm-9">
-                                    <Controller
-                                        name="height"
-                                        control={control}
-                                        defaultValue=""
-                                        render={({ onChange, value }) => <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Height (In CM)"
-                                            value={value} onChange={onChange}
-                                        />}
-                                    />
-                                  </div>
-                                </div>
-                                <div className="form-group row">
-                                  <label
-                                    for="weightInput"
-                                    className="col-sm-3 col-form-label p-text-3-fgc"
-                                  >
-                                    Weight (In Kg)*
-                                  </label>
-                                  <div className="col-sm-9">
-                                    <Controller
-                                        name="weight"
-                                        control={control}
-                                        defaultValue=""
-                                        render={({ onChange, value }) => <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Weight (In Kg)"
-                                            value={value} onChange={onChange}
-                                        />}
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div className="border-top-c mt-3">
-                                <div className="form-group row mt-3">
-                                  <label
-                                    for="emergencyContactNumber"
-                                    className="col-sm-3 col-form-label p-text-3-fgc"
-                                  >
-                                    Emergency Contact
-                                  </label>
-                                  <div className="col-sm-9">
-                                    <Controller
-                                        name="emergencyContactNumber"
-                                        control={control}
-                                        defaultValue=""
-                                        render={({ onChange, value }) => <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Emergency Contact Number"
-                                            value={value} onChange={onChange}
-                                        />}
-                                    />
-                                  </div>
-                                </div>
-                                <div className="form-group row">
-                                  <label
-                                    for="emergencyContactName"
-                                    className="col-sm-3 col-form-label p-text-3-fgc"
-                                  >
-                                    Name Of Contact*
-                                  </label>
-                                  <div className="col-sm-9">
-                                    <Controller
-                                        name="emergencyContactName"
-                                        control={control}
-                                        defaultValue=""
-                                        render={({ onChange, value }) => <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Contact Name"
-                                            value={value} onChange={onChange}
-                                        />}
-                                    />
-                                  </div>
-                                </div>
-                                <div className="form-group row">
-                                  <label
-                                    for="emergencyContactRelationshipToYou"
-                                    className="col-sm-3 col-form-label p-text-3-fgc"
-                                  >
-                                    Relationship
-                                  </label>
-                                  <div className="col-sm-9">
-                                    <Controller
-                                        name="emergencyContactRelationshipToYou"
-                                        control={control}
-                                        defaultValue=""
-                                        render={({ onChange, value }) => <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Relationship"
-                                            value={value} onChange={onChange}
-                                        />}
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div className="d-flex align-items-center justify-content-end mt-4 mb-3">
-                                <button className="btn btn-bihtn-yellow text-capitalize">
-                                  Modify
-                                </button>
-                                <div className="mx-4" />
-                                <button className="btn btn-ih-green" type="submit">
-                                  Save changes
-                                </button>
-                              </div>
-                            </form>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
                     </form>
                   </div>
                 </div>
