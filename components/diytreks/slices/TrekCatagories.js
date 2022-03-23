@@ -48,53 +48,43 @@ const TrekCatagories = ({ slice, dtcData }) => {
     ]
   };
 
-  const trekImages = dtcData?.map(function(data, i) {
-    let url;
-    const slugUrl = data?.uid;
-    if (slugUrl) {
-      url = `/documented-trek/${slugUrl}`;
-    }
-    const getArticleImage = data?.data?.body?.filter(
-      x => x.slice_type === "image_with_caption"
-    );
-    const getArticleHeadingText = data?.data?.body?.find(
-      x => x.slice_type === "text"
-    );
-    return (
-      <div key={i}>
-        <div className="mx-4 m-mx-0">
-          <Link href={url ? url : "#"}>
-            <div className="trek_image_bg cursor-pointer hvr-grow">
-              <div className="bg_overlay_trek_image_bg h-100">
-                <div className="h-100">
-                  <div className="d-flex align-items-end justify-content-center w-100 h-100 px-4 py-3">
-                    <div>
-                      <p className="p-text-1-main m-0">
-                        {RichText.asText(data?.data?.title)}
-                      </p>
-                      {/* <p className="p-text-4 text-white mb-0">
-                        {data?.diy_heading1[0]?.text}
-                      </p> */}
+  const trekImages =
+    trekImagesArray &&
+    trekImagesArray?.map(function(data, i) {
+      const url = `../state?name=${data?.trek_state[0]?.text}`;
+      return (
+        <div key={i}>
+          <div className="mx-4 m-mx-0">
+            <a href={url} style={{textDecoration: "none"}}>
+              <div className="trek_image_bg cursor-pointer hvr-grow">
+                <div className="bg_overlay_trek_image_bg h-100">
+                  <div className="h-100">
+                    <div className="d-flex align-items-end justify-content-center w-100 h-100 px-4 py-3">
+                      <div>
+                        <p className="p-text-1-main m-0">
+                          {RichText.asText(data?.trek_state)}
+                        </p>
+                        <p className="p-text-4 text-white mb-0">
+                          {data?.short_description[0]?.text}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
+                {data?.trek_image?.url && (
+                  <Image
+                    src={data?.trek_image?.url}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="bottom"
+                  />
+                )}
               </div>
-              {getArticleImage && getArticleImage[0]?.primary?.image?.url && (
-                <Image
-                  src={
-                    getArticleImage && getArticleImage[0]?.primary?.image?.url
-                  }
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="bottom"
-                />
-              )}
-            </div>
-          </Link>
+            </a>
+          </div>
         </div>
-      </div>
-    );
-  });
+      );
+    });
 
   return (
     <>

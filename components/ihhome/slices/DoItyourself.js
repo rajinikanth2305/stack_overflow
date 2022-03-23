@@ -56,21 +56,25 @@ const DoItYourself = ({ slice }) => {
       width: "100%",
       backgroundRepeat: "no-repeat"
     };
-
+    const url = `../state?name=${data?.doit_image_caption[0]?.text}`;
     return (
       <div key={i}>
-        <div className="mx-2 m-mx-0">
-          <div className="doit_images">
-            <Image
-              src={data?.doit_image?.url}
-              layout="fill"
-              objectFit="cover"
-              objectPosition="50% 50%"
-              alt="imgs"
-            />
+        <a href={url}>
+          <div className="mx-2 m-mx-0">
+            <div className="doit_images">
+              <Image
+                src={data?.doit_image?.url}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="50% 50%"
+                alt="imgs"
+              />
+            </div>
+            <p className="doit_img_caption">
+              {data?.doit_image_caption[0]?.text}
+            </p>
           </div>
-          <p className="doit_img_caption">{data?.doit_image_caption[0]?.text}</p>
-        </div>
+        </a>
       </div>
     );
   });
