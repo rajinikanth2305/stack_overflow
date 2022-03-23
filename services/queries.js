@@ -13,9 +13,9 @@ const REACT_APP_TMS_BACKEND_PUBLIC_URL="https://tmsstaging.indiahikes.com/tms-se
  const batchBaseApi = `${REACT_APP_TMS_BACKEND_URL}/batches`;
 
 // export const locationBaseApi = `http://localhost:9090/api/v1/locations`;
-export const getBatches = async (trekName, month,year)  => {
+export const getBatchesByTrekId = async (trekId, month,year)  => {
     const api = `${REACT_APP_TMS_BACKEND_URL}`;
-    let url = `https://tmsstaging.indiahikes.com/tms-service/public-api/v1/available-batches/${trekName}?month=${month}&year=${year}`;
+    let url = `https://tmsstaging.indiahikes.com/tms-service/public-api/v1/available-batches/${trekId}?month=${month}&year=${year}`;
     //console.log((url));
     const data= await axios.get(url) ;
     return data.data;

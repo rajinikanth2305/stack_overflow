@@ -13,8 +13,10 @@ import "primeflex/primeflex.css";
 import { confirmPopup } from "primereact/confirmpopup"; // To use confirmPopup method
 import { confirmDialog } from "primereact/confirmdialog"; // To use <ConfirmDialog> tag
 // Project components & functions
-import { getBatches } from "services/queries";
+import {getBatches, getBatchesByTrekId} from "services/queries";
 import { batch } from "react-redux";
+import Prismic from "@prismicio/client";
+import { Client } from "utils/prismicHelpers";
 
 const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
   const [selectedBatchDate, setSelectedBatchDate] = useState();
@@ -48,34 +50,46 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
       const pageUrl = window.location.href;
       const pageNamesArray = pageUrl.split("/");
       const pageName = pageNamesArray[pageNamesArray.length - 1];
+      actualTrekPageName = pageName;
       const hashIndex = pageName.indexOf("#");
 
       if (hashIndex > 0) {
         actualTrekPageName = pageName
-          .substring(0, hashIndex)
-          .replaceAll("-", " ");
-      } else {
-        actualTrekPageName = pageName.replaceAll("-", " ");
-        // actualTrekPageName = actualTrekPageName.replaceAll("-", " ");
+          .substring(0, hashIndex);
       }
     } else {
       console.log(mode);
       actualTrekPageName = getTrekNameFromUrlQueryPath();
     }
 
-    const data = await getBatches(
-      actualTrekPageName,
-      date.month + 1,
-      date.year
-    );
+    const client = Client();
 
-    setBatchDates(undefined);
-    if (data.length > 0) {
-      var withoutDuplicates = removeDuplicatesBy(x => x.startDate, data);
-      //console.log(withoutDuplicates);
-      setBatchData(withoutDuplicates);
-      prepareDateDisableList(date, withoutDuplicates);
-    }
+    await client
+        .query(
+            [
+              Prismic.Predicates.at("my.trek.uid", actualTrekPageName)
+            ]
+        )
+        .then(async function (response) {
+          if (response.results && response.results.length > 0 && response.results[0].data?.trek_id) {
+
+            const trekId = response.results[0].data?.trek_id[0].text;
+            const data = await getBatchesByTrekId(
+                trekId,
+                date.month + 1,
+                date.year
+            );
+
+            setBatchDates(undefined);
+            if (data.length > 0) {
+              var withoutDuplicates = removeDuplicatesBy(x => x.startDate, data);
+              //console.log(withoutDuplicates);
+              setBatchData(withoutDuplicates);
+              prepareDateDisableList(date, withoutDuplicates);
+            }
+          }
+        });
+
   };
 
   function removeDuplicatesBy(keyFn, array) {
