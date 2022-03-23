@@ -1,33 +1,41 @@
 import React from "react";
 import { RichText } from "prismic-reactjs";
 import { diyStyles } from "styles";
+import Link from "next/link";
 
-const DIYTreksGuide = ({ slice }) => {
+const DIYTreksGuide = ({ slice, alldiyTreks }) => {
   const heading1 = slice?.primary?.heading1;
   const heading2 = slice?.primary?.heading2;
   const treksArray = slice?.items;
 
-  const treks = treksArray?.map(function(data, i) {
+  const treks = alldiyTreks?.results?.map(function(data, i) {
+    let url;
+    const slugUrl = data?.uid;
+    if (slugUrl) {
+      url = `/documented-trek/${slugUrl}`;
+    }
     return (
       <div key={i} className="col-lg-4 col-md-6">
-        <div className="d-flex align-items-center">
-          <div>
-            <p
-              className={
-                data?.trek_difficulty[0]?.text === "easy"
-                  ? "badge-green-diy"
-                  : data?.trek_difficulty[0]?.text === "moderate"
-                  ? "badge-yellow-diy"
-                  : data?.trek_difficulty[0]?.text === "difficult"
-                  ? "badge-red-diy"
-                  : "badge-blue-diy"
-              }
-            ></p>
+        <Link href={url ? url : "#"}>
+          <div className="d-flex align-items-center cursor-pointer">
+            <div>
+              <p
+                className={
+                  data?.data?.categories.match(/Easy/g)
+                    ? "badge-green-diy"
+                    : data?.data?.categories.match(/Moderate/g)
+                    ? "badge-yellow-diy"
+                    : data?.data?.categories.match(/Difficult/g)
+                    ? "badge-red-diy"
+                    : "badge-blue-diy"
+                }
+              ></p>
+            </div>
+            <div className="mx-3">
+              <p className="p-text-3">{RichText.asText(data?.data?.title)}</p>
+            </div>
           </div>
-          <div className="mx-3">
-            <p>{data?.trek_name[0]?.text}</p>
-          </div>
-        </div>
+        </Link>
       </div>
     );
   });
@@ -51,7 +59,7 @@ const DIYTreksGuide = ({ slice }) => {
             </div>
           </div>
         </div>
-        <div className="p-3 bg-grey-filter">
+        {/* <div className="p-3 bg-grey-filter">
           <div className="container">
             <div className="row">
               <div className="col-lg-10 col-md-12">
@@ -109,7 +117,7 @@ const DIYTreksGuide = ({ slice }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="container my-3">
           <div className="row">{treks}</div>
         </div>

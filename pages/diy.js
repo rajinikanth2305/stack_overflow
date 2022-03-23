@@ -17,7 +17,7 @@ import { DIYSliceZone } from "../components/diytreks";
 /**
  * UpComing component
  */
-const DIY = ({ doc, trekData, dtcData, diyResourceData }) => {
+const DIY = ({ doc, trekData, dtcData, diyResourceData, alldiyTreks }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -31,7 +31,13 @@ const DIY = ({ doc, trekData, dtcData, diyResourceData }) => {
           <title>DIY</title>
         </Head>
         <HikeHeader />
-        <DIYSliceZone sliceZone={doc.data.body} trekData={trekData} dtcData={dtcData} diyResourceData={diyResourceData} />
+        <DIYSliceZone
+          sliceZone={doc.data.body}
+          trekData={trekData}
+          dtcData={dtcData}
+          diyResourceData={diyResourceData}
+          alldiyTreks={alldiyTreks}
+        />
         {/* <div className="mt-5 py-5 text-center">
           <h3>DIY</h3>
           <h4>Under development.!!</h4>
@@ -47,19 +53,16 @@ const DIY = ({ doc, trekData, dtcData, diyResourceData }) => {
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
-
-  const { ref } = previewData
+  const { ref } = previewData;
 
   const client = Client();
 
-  const doc = await client.getSingle("diy_trek", ref ? { ref } : null) || {}
+  const doc = (await client.getSingle("diy_trek", ref ? { ref } : null)) || {};
   const trekData = [];
   const dtcData = [];
   const diyResourceData = [];
 
-  const slice = doc.data?.body?.find(
-    x => x.slice_type === "best_post_treks"
-  );
+  const slice = doc.data?.body?.find(x => x.slice_type === "best_post_treks");
 
   if (slice.items.length > 0) {
     for (var i = 0; i < slice.items.length; i++) {
@@ -68,7 +71,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
-        trekData.push(trek_details);
+          trekData.push(trek_details);
       }
     }
   }
@@ -84,7 +87,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       if (slugUrl !== undefined) {
         const diy_trek_details = await Client().getByID(slugUrl);
         if (diy_trek_details !== undefined && diy_trek_details !== null)
-        dtcData.push(diy_trek_details);
+          dtcData.push(diy_trek_details);
       }
     }
   }
@@ -100,10 +103,16 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       if (slugUrl !== undefined) {
         const diy_res_details = await Client().getByID(slugUrl);
         if (diy_res_details !== undefined && diy_res_details !== null)
-        diyResourceData.push(diy_res_details);
+          diyResourceData.push(diy_res_details);
       }
     }
   }
+
+  const alldiyTreks = await client.query([
+    Prismic.Predicates.at("document.type", "document_trek_type")], {
+      pageSize: 250
+    }
+  );
 
   return {
     props: {
@@ -112,8 +121,9 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       trekData,
       dtcData,
       diyResourceData,
+      alldiyTreks
     }
-  }
+  };
 }
 
 export default DIY;
