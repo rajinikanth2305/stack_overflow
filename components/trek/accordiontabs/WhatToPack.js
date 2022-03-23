@@ -7,12 +7,14 @@ import Prismic from "@prismicio/client";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Modal from "react-bootstrap/Modal";
+import getYoutubeTitle from "get-youtube-title";
 
 const WhatToPack = ({ data }) => {
   const [whattoPack, setWhattoPack] = useState();
   const [primaryShow, setPrimaryShow] = useState(false);
   const handlePrimaryClose = () => setPrimaryShow(false);
   const handlePrimary = () => setPrimaryShow(true);
+  const [vTitle, setVtitle] = useState();
 
   useEffect(() => {
     findHowToReach();
@@ -40,17 +42,36 @@ const WhatToPack = ({ data }) => {
     whattoPack && whattoPack?.primary?.first_aid_details;
   const picture = whattoPack && whattoPack?.primary?.picture?.url;
   const video_image = whattoPack && whattoPack?.primary?.video_image?.url;
-  const video_link = whattoPack && whattoPack?.primary?.video_link?.url;
+  const primaryVideoUrl = whattoPack && whattoPack?.primary?.video_link?.url;
   const video_details = whattoPack && whattoPack?.primary?.video_details;
+
+  const result = primaryVideoUrl?.split(
+    /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
+  );
+  const videoIdWithParams = result && result[2];
+
+  const cleanVideoId =
+    videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
+
+  const videoUrl =
+    "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
+  const youtube_imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
+
+  getYoutubeTitle(cleanVideoId && cleanVideoId ? cleanVideoId : "", function(
+    err,
+    title
+  ) {
+    setVtitle(title);
+  });
 
   return (
     <>
       <div>
-        <p className="p-text-4 my-4">{RichText.asText(heading1)}</p>
+        <p className="p-text-1 mt-4">{RichText.asText(heading1)}</p>
         <Tabs
           defaultActiveKey="md"
           id="uncontrolled-tab-example"
-          className="mt-5 mb-4"
+          className="mt-4 mb-4"
         >
           <Tab
             eventKey="md"
@@ -73,28 +94,34 @@ const WhatToPack = ({ data }) => {
             title={title_things_to_carry && title_things_to_carry[0]?.text}
           >
             <>
-              <div className="card card-box-shadow border-0 mb-5">
-                <div className="terk-videos-promary-image">
-                  <div className="d-flex align-items-center justify-content-center w-100 h-100">
-                    <div className="text-center">
-                      <img
-                        src="/v-icon.png"
-                        alt="playicon'"
-                        className="paly-icon"
+              {primaryVideoUrl && (
+                <div className="card card-box-shadow border-0 mb-5">
+                  <div className="terk-videos-promary-image">
+                    <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                      <div className="text-center">
+                        <img
+                          src="/v-icon.png"
+                          alt="playicon'"
+                          className="paly-icon icon-size-50"
+                          onClick={handlePrimary}
+                        />
+                      </div>
+                    </div>
+                    {youtube_imageURL && (
+                      <Image
+                        src={youtube_imageURL}
+                        layout="fill"
                         onClick={handlePrimary}
                       />
-                    </div>
+                    )}
                   </div>
-                  {video_image && (
-                    <Image
-                      src={video_image}
-                      layout="fill"
-                      onClick={handlePrimary}
-                    />
+                  {vTitle && (
+                    <div className="p-3">
+                      <p className="latestTrekWorld_caption">{vTitle}</p>
+                    </div>
                   )}
                 </div>
-                <div className="p-text-4 p-4">{RichText.render(video_details)}</div>
-              </div>
+              )}
               <div className="p-text-4">
                 {RichText.render(title_things_to_carry_details)}
               </div>
@@ -138,7 +165,7 @@ const WhatToPack = ({ data }) => {
           <iframe
             width="100%"
             height="500"
-            src={video_link}
+            src={videoUrl}
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

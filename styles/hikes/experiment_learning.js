@@ -169,6 +169,19 @@ export const experimentStyles = css.global`
   .pb-08 {
     padding-bottom: 0.8rem;
   }
+  .latestTrekWorld_caption {
+    line-height: 24px;
+    text-align: left;
+    font-family: Lora-Medium;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 1);
+    letter-spacing: 0.5px;
+  }
+  .nav.card-header-tabs.nav-tabs {
+    flex-wrap: initial;
+  }
   @media only screen and (max-width: 600px) {
     .exprriment-bg {
       background: transparent;

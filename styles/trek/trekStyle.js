@@ -873,6 +873,7 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 16px;
     text-transform: uppercase;
+    line-height: 18px;
   }
 
   .hd-tabs > div.tab-content {
@@ -904,7 +905,7 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 16px;
     text-transform: capitalize;
-    line-height: 20px;
+    line-height: 18px;
     margin: 0px 3px;
     width: 170px;
   }
@@ -912,6 +913,10 @@ export const trekStyle = css.global`
   .hd-tabs.trek-tr > .nav > .nav-item.nav-link {
     padding: 15px 30px !important;
     width: auto;
+  }
+
+  .hd-tabs.trek-tr > .nav {
+    flex-wrap: initial;
   }
 
   .accordion_tab_img {
@@ -1550,16 +1555,23 @@ export const trekStyle = css.global`
       font-size: 16px;
       line-height: 24px;
     }
+    .nav-item.nav-link {
+      line-height: 15px;
+    }
     .title-h2 {
       font-size: 36px;
     }
-
+    .terk-videos-promary-image {
+      height: 175px;
+    }
     .title-h2.th-2m {
       border-bottom: 2px solid rgb(255, 193, 0);
       font-size: 36px;
       margin-bottom: 0;
     }
-
+    .hd-tabs.trek-tr > .nav {
+      overflow: auto;
+    }
     .pr-3 {
       padding-right: 0;
     }
