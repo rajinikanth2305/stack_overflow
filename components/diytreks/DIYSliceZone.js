@@ -13,7 +13,7 @@ import {
  *  slice zone component
  */
 
-const DIYSliceZone = ({ sliceZone, trekData, dtcData }) =>
+const DIYSliceZone = ({ sliceZone, trekData, dtcData, diyResourceData }) =>
   sliceZone.map((slice, index) => {
     switch (slice.slice_type) {
       case "banner":
@@ -23,7 +23,7 @@ const DIYSliceZone = ({ sliceZone, trekData, dtcData }) =>
       case "diy_trek_categories":
         return <TrekCatagories slice={slice} key={`slice-${index}`} dtcData={dtcData} />;
       case "diy_resources":
-        return <DIYResources slice={slice} key={`slice-${index}`} />;
+        return <DIYResources slice={slice} key={`slice-${index}`} diyResourceData={diyResourceData} />;
       case "best_post_treks":
         return <BestPostTreks slice={slice} key={`slice-${index}`} trekData={trekData} />;
       case "community_content_pitch":

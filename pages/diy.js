@@ -17,7 +17,7 @@ import { DIYSliceZone } from "../components/diytreks";
 /**
  * UpComing component
  */
-const DIY = ({ doc, trekData, dtcData }) => {
+const DIY = ({ doc, trekData, dtcData, diyResourceData }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -31,7 +31,7 @@ const DIY = ({ doc, trekData, dtcData }) => {
           <title>DIY</title>
         </Head>
         <HikeHeader />
-        <DIYSliceZone sliceZone={doc.data.body} trekData={trekData} dtcData={dtcData} />
+        <DIYSliceZone sliceZone={doc.data.body} trekData={trekData} dtcData={dtcData} diyResourceData={diyResourceData} />
         {/* <div className="mt-5 py-5 text-center">
           <h3>DIY</h3>
           <h4>Under development.!!</h4>
@@ -55,6 +55,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const doc = await client.getSingle("diy_trek", ref ? { ref } : null) || {}
   const trekData = [];
   const dtcData = [];
+  const diyResourceData = [];
 
   const slice = doc.data?.body?.find(
     x => x.slice_type === "best_post_treks"
@@ -63,7 +64,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   if (slice.items.length > 0) {
     for (var i = 0; i < slice.items.length; i++) {
       const data = slice.items[i];
-      const slugUrl = data && data?.trek_link?.id;
+      const slugUrl = data && data?.diy_article_link?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
@@ -88,12 +89,29 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     }
   }
 
+  const dtResourceslice = doc.data?.body?.find(
+    x => x.slice_type === "diy_resources"
+  );
+
+  if (dtResourceslice?.items.length > 0) {
+    for (var i = 0; i < dtResourceslice?.items.length; i++) {
+      const data = dtResourceslice?.items[i];
+      const slugUrl = data && data?.diy_article_link?.id;
+      if (slugUrl !== undefined) {
+        const diy_res_details = await Client().getByID(slugUrl);
+        if (diy_res_details !== undefined && diy_res_details !== null)
+        diyResourceData.push(diy_res_details);
+      }
+    }
+  }
+
   return {
     props: {
       doc,
       preview,
       trekData,
-      dtcData
+      dtcData,
+      diyResourceData,
     }
   }
 }

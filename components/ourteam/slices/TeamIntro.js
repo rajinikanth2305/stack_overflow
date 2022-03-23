@@ -15,12 +15,16 @@ const TeamIntro = ({ slice }) => {
       <div key={i}>
         <div className="mx-4">
           <div className="founder_image">
-            <Image
-              src={data?.founder_image?.url}
-              layout="fill"
-              objectFit="cover"
-              objectPosition="top"
-            />
+            {data?.founder_image?.url ? (
+              <Image
+                src={data?.founder_image?.url}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="top"
+              />
+            ) : (
+              <img src="./ip.png" className="founder_image" />
+            )}
           </div>
           <p className="p-text-2-franklin text-center mb-0 pt-2">
             {data?.founder_name[0]?.text}

@@ -48,12 +48,12 @@ const OurTeam = () => {
                 setShow(true);
               }}
             >
-              <Image
+             {mem?.member_photo?.url ? <Image
                 src={mem?.member_photo?.url}
                 layout="fill"
                 objectFit="cover"
                 objectPosition="top"
-              />
+             /> : <img src="./ip.png" className="founder_image" /> }
             </div>
             <p className="p-text-2-franklin text-center mb-0 pt-2">
               {mem?.name[0]?.text}

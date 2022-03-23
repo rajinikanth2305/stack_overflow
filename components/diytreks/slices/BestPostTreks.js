@@ -49,12 +49,17 @@ const BestPostTreks = ({ slice, trekData }) => {
   };
 
   const bestPostTreks = trekData?.map(function(data, i) {
-    const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
-      url = `/trek/${slugUrl}`;
+      url = `/documented-trek/${slugUrl}`;
     }
+    const getArticleImage = data?.data?.body?.filter(
+      x => x.slice_type === "image_with_caption"
+    );
+    const getArticleHeadingText = data?.data?.body?.find(
+      x => x.slice_type === "text"
+    );
     return (
       <div key={i}>
         <div className="mx-4 m-mx-0 hvr-grow cursor-pointer">
@@ -67,15 +72,15 @@ const BestPostTreks = ({ slice, trekData }) => {
                       <div className="d-flex align-items-end justify-content-center w-100 h-100 px-4 py-3">
                         <div className="w-100">
                           <p className="p-text-1-main m-0">
-                            {tData?.primary?.trek_caption}
+                            {RichText.asText(data?.data?.title)}
                           </p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  {tData?.primary?.trek_banner_image?.url && (
+                  {getArticleImage && getArticleImage[0]?.primary?.image?.url && (
                     <Image
-                      src={tData?.primary?.trek_banner_image?.url}
+                      src={getArticleImage && getArticleImage[0]?.primary?.image?.url}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"
@@ -83,9 +88,9 @@ const BestPostTreks = ({ slice, trekData }) => {
                   )}
                 </div>
                 <div className="px-3 py-2">
-                  <div className="d-flex align-items-center card-info-text">
+                  {/* <div className="d-flex align-items-center card-info-text">
                     <div>
-                      <p>{tData?.primary?.duration[0]?.text}</p>
+                      <p>{data?.data[0]?.primary?.duration[0]?.text}</p>
                     </div>
                     <div>
                       <p className="list-dot-style px-1">
@@ -93,34 +98,16 @@ const BestPostTreks = ({ slice, trekData }) => {
                       </p>
                     </div>
                     <div>
-                      <p>{tData?.primary?.difficulty[0]?.text}</p>
+                      <p>{data?.data[0]?.primary?.difficulty[0]?.text}</p>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div>
                     <p className="p-text-4">
-                      {RichText.asText(tData?.primary?.sub_heading)}
+                      {RichText.asText(getArticleImage && getArticleImage[0]?.primary?.caption)}
                     </p>
                   </div>
                   <div className="d-flex align-items-center mb-3 p-btn-btm">
-                    {/* <div>
-                    <div className="doc_image">
-                      <Image
-                        src={data.trek_documentor_img.url}
-                        layout="fill"
-                        objectFit="cover"
-                        objectPosition="top"
-                      />
-                    </div>
-                  </div>
-                  <div className="mx-2 flex-grow-1">
-                    <p className="p-text-3-fgg m-0">
-                      <b>{data.documentor_name[0].text}</b>
-                    </p>
-                    <p className="p-text-3-fgg m-0">
-                      {data.documentor_title[0].text}
-                    </p>
-                  </div> */}
                     <div>
                       <button className="btn btn-bihtn-yellow">
                         View Trek

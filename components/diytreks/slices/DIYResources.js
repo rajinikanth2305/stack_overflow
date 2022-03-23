@@ -3,35 +3,47 @@ import { RichText } from "prismic-reactjs";
 import { diyStyles } from "styles";
 import Image from "next/image";
 
-const DIYResources = ({ slice }) => {
+const DIYResources = ({ slice, diyResourceData }) => {
   const heading1 = slice?.primary?.heading1;
   const heading2 = slice?.primary?.heading2;
   const diyResArray = slice?.items;
+  console.log(diyResourceData);
 
-  const diyResList = diyResArray?.map(function(data, i) {
+  const diyResList = diyResourceData?.map(function(data, i) {
+    let url;
+    const slugUrl = data?.uid;
+    if (slugUrl) {
+      url = `/documented-trek/${slugUrl}`;
+    }
+    const getArticleImage = data?.data?.body?.filter(
+      x => x.slice_type === "image_with_caption"
+    );
+    const getArticleHeadingText = data?.data?.body?.find(
+      x => x.slice_type === "text"
+    );
     return (
       <div key={i} className="col-lg-4 col-md-6">
         <div className="d-flex align-items-center row mb-4">
           <div className="diyres_img_bg col-3 col-lg-3 col-md-12">
-            <Image
-              src={data?.res_image?.url}
-              layout="fill"
-              objectFit="contain"
-              objectPosition="top"
-            />
+            {getArticleImage && getArticleImage[0]?.primary?.image?.url && (
+              <Image
+                src={getArticleImage && getArticleImage[0]?.primary?.image?.url}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="top"
+              />
+            )}
           </div>
           <div className="col-9 col-lg-9 col-md-12">
             <p className="p-text-3">
-              <b>{data?.title[0]?.text}</b>
+              <b>{RichText.asText(data?.data?.title)}</b>
             </p>
             <div>
               <p className="p-text-small m-0">
-                <em>By {data?.name[0]?.text}</em>
+                <em>By {data?.data?.author_link?.uid}</em>
               </p>
               <p className="p-text-small m-0 pt-0">
-                <em>
-                  {data?.date[0]?.text} | {data?.date[0]?.text} min read
-                </em>
+                <em>{data?.data?.date}</em>
               </p>
             </div>
           </div>

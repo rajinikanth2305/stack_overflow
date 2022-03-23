@@ -57,7 +57,6 @@ const TrekCatagories = ({ slice, dtcData }) => {
     const getArticleImage = data?.data?.body?.filter(
       x => x.slice_type === "image_with_caption"
     );
-    console.log(getArticleImage[0]);
     const getArticleHeadingText = data?.data?.body?.find(
       x => x.slice_type === "text"
     );
@@ -65,13 +64,13 @@ const TrekCatagories = ({ slice, dtcData }) => {
       <div key={i}>
         <div className="mx-4 m-mx-0">
           <Link href={url ? url : "#"}>
-            <div className="trek_image_bg">
+            <div className="trek_image_bg cursor-pointer hvr-grow">
               <div className="bg_overlay_trek_image_bg h-100">
                 <div className="h-100">
                   <div className="d-flex align-items-end justify-content-center w-100 h-100 px-4 py-3">
                     <div>
                       <p className="p-text-1-main m-0">
-                      {RichText.asText(data?.data?.title)}
+                        {RichText.asText(data?.data?.title)}
                       </p>
                       {/* <p className="p-text-4 text-white mb-0">
                         {data?.diy_heading1[0]?.text}
@@ -80,12 +79,16 @@ const TrekCatagories = ({ slice, dtcData }) => {
                   </div>
                 </div>
               </div>
-              <Image
-                src={getArticleImage && getArticleImage[0]?.primary?.image?.url}
-                layout="fill"
-                objectFit="cover"
-                objectPosition="bottom"
-              />
+              {getArticleImage && getArticleImage[0]?.primary?.image?.url && (
+                <Image
+                  src={
+                    getArticleImage && getArticleImage[0]?.primary?.image?.url
+                  }
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="bottom"
+                />
+              )}
             </div>
           </Link>
         </div>
