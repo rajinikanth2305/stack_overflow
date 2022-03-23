@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, {useRef, useState} from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Link from "next/link";
 import auth from "../../../../services/Authenticate";
 import {
-  getLoggedInUserDetails,
-  saveMyProfile
+  getLoggedInUserDetails, getUserIdProof,
+  saveMyProfile, uploadUserFitness, uploadUserIdProof
 } from "../../../../services/queries";
 import { useForm, Controller } from "react-hook-form";
+import {FileUpload} from "primereact/fileupload";
+import "primereact/resources/themes/saga-blue/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
+import { Toast } from "primereact/toast";
+import {Image} from "react-bootstrap";
 
 const UserMP = () => {
   const [show, setShow] = useState(false);
@@ -17,8 +23,10 @@ const UserMP = () => {
 
   const [userServiceObject, setUserServiceObject] = useState(undefined);
   const [userEmail, setUserEmail] = useState(undefined);
+  const [frontImage, setFrontImage] = useState(undefined);
+  const [backImage, setBackImage] = useState(undefined);
   const [user, setUser] = useState({});
-
+  const toast = useRef(null);
   const {
     register,
     handleSubmit,
@@ -57,9 +65,14 @@ const UserMP = () => {
           userData.emergencyContactRelationshipToYou
         );
       });
+
+      getUserIdProof(true).then(data => setFrontImage(data));
+      getUserIdProof(false).then(data => setBackImage(data));
+
     });
-    // console.log(res);
-    //fetchAndBindUserBookings(res);
+
+
+
   }, []);
 
   const onLogout = () => {
@@ -67,9 +80,6 @@ const UserMP = () => {
   };
 
   const onSubmit = userData => {
-    console.log(userData);
-    console.log(user);
-
     const userUpdated = user;
     userUpdated.firstName = userData.firstName;
     userUpdated.lastName = userData.lastName;
@@ -94,8 +104,38 @@ const UserMP = () => {
     });
   };
 
+  const chooseOptions = { label: "Choose", icon: "pi pi-fw pi-plus" };
+
+  const uploadOptions = {
+    label: "Upload",
+    icon: "pi pi-upload",
+    className: "p-button-success"
+  };
+
+  const cancelOptions = {
+    label: "Cancel",
+    icon: "pi pi-times",
+    className: "p-button-danger"
+  };
+
+  const myUploader = async event => {
+    const fileId = event.options.props.id;
+    event.files.map(file => {
+      const formData = new FormData();
+      formData.append("file", file);
+      uploadUserIdProof(formData, fileId === 'frontImage');
+    });
+
+    toast.current.show({
+      severity: "info",
+      summary: `'File uploaded successfull'`,
+      detail: "Fitness Approval"
+    });
+  };
+
   return (
     <>
+      <Toast ref={toast} />
       <div>
         <div className="container container-custom p-0">
           <div className="bg-gray-shade">
@@ -717,18 +757,25 @@ const UserMP = () => {
                                     Front of Id card
                                   </label>
                                   <div className="row">
+                                      {frontImage &&(
                                     <div className="col-lg-12 col-md-12 col-12">
-                                      <img
-                                        src="../ip.png"
-                                        width="100%"
-                                        height="200px"
-                                      />
+                                      <Image src={URL.createObjectURL(frontImage)}
+                                             alt="Image" width="250" preview />
+
                                     </div>
+                                          )}
                                     <div className="col-lg-12 col-md-12 col-12">
-                                      <input
-                                        type="file"
-                                        id="pofilePic"
-                                        className="form-control"
+                                      <FileUpload
+                                          id="frontImage"
+                                          name="backImage"
+                                          customUpload={true}
+                                          chooseOptions={chooseOptions}
+                                          uploadOptions={uploadOptions}
+                                          cancelOptions={cancelOptions}
+                                          uploadHandler={myUploader}
+                                          maxFileSize="10000000"
+                                          accept="image/*"
+                                          invalidFileSizeMessageDetail="Maximum 10 MB file(s) are allowed to upload"
                                       />
                                     </div>
                                   </div>
@@ -746,18 +793,24 @@ const UserMP = () => {
                                     Back od Id card
                                   </label>
                                   <div className="row">
+                                      {frontImage &&(
+                                      <div className="col-lg-12 col-md-12 col-12">
+                                          <Image src={URL.createObjectURL(backImage)}
+                                                 alt="Image" width="250" preview />
+
+                                      </div>)}
                                     <div className="col-lg-12 col-md-12 col-12">
-                                      <img
-                                        src="../ip.png"
-                                        width="100%"
-                                        height="200px"
-                                      />
-                                    </div>
-                                    <div className="col-lg-12 col-md-12 col-12">
-                                      <input
-                                        type="file"
-                                        id="pofilePic"
-                                        className="form-control"
+                                      <FileUpload
+                                          id="backImage"
+                                          name="backImage"
+                                          customUpload={true}
+                                          chooseOptions={chooseOptions}
+                                          uploadOptions={uploadOptions}
+                                          cancelOptions={cancelOptions}
+                                          uploadHandler={myUploader}
+                                          maxFileSize="10000000"
+                                          accept="image/*"
+                                          invalidFileSizeMessageDetail="Maximum 10 MB file(s) are allowed to upload"
                                       />
                                     </div>
                                   </div>

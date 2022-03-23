@@ -2,6 +2,7 @@ import { Client } from '../utils/prismicHelpers'
 import axios from 'axios';
 import moment from "moment";
 import auth from './Authenticate.js';
+import {boolean} from "yup";
 //Backend base url
 const REACT_APP_TMS_BACKEND_URL="https://tmsstaging.indiahikes.com/tms-service/api/v1";
 const REACT_APP_TMS_BACKEND_PUBLIC_URL="https://tmsstaging.indiahikes.com/tms-service/public-api/v1";
@@ -506,3 +507,18 @@ export const getWooCustomerOrders = async (customerId)  => {
   return axios.get(url).then((res) => res.data);
 };
 
+
+export const uploadUserIdProof =  async (file,frontIdCard)  => {
+    const header=await getTokenHeaderWithMultiPartMimeType();
+    const api = `${REACT_APP_TMS_BACKEND_URL}`;
+    let url = frontIdCard ? `${api}/users/documents/ID_PROOF_FRONT` : `${api}/users/documents/ID_PROOF_BACK`;
+    return axios.post(url,file,{ headers:  header })
+        .then((res) => res.data);
+};
+
+export const getUserIdProof = async (frontIdCard)  => {
+    const header=await getTokenHeaderWithDocumentType();
+    const api = `${REACT_APP_TMS_BACKEND_URL}`;
+    let url = frontIdCard ? `${api}/users/documents/ID_PROOF_FRONT` : `${api}/users/documents/ID_PROOF_BACK`;
+    return axios.get(url,{ headers:  header,     responseType: 'blob' }).then((res) => res.data);
+};
