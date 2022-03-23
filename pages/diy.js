@@ -17,7 +17,7 @@ import { DIYSliceZone } from "../components/diytreks";
 /**
  * UpComing component
  */
-const DIY = ({ doc, trekData }) => {
+const DIY = ({ doc, trekData, dtcData }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -31,7 +31,7 @@ const DIY = ({ doc, trekData }) => {
           <title>DIY</title>
         </Head>
         <HikeHeader />
-        <DIYSliceZone sliceZone={doc.data.body} trekData={trekData} />
+        <DIYSliceZone sliceZone={doc.data.body} trekData={trekData} dtcData={dtcData} />
         {/* <div className="mt-5 py-5 text-center">
           <h3>DIY</h3>
           <h4>Under development.!!</h4>
@@ -54,6 +54,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const doc = await client.getSingle("diy_trek", ref ? { ref } : null) || {}
   const trekData = [];
+  const dtcData = [];
 
   const slice = doc.data?.body?.find(
     x => x.slice_type === "best_post_treks"
@@ -71,11 +72,28 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     }
   }
 
+  const dtcslice = doc.data?.body?.find(
+    x => x.slice_type === "diy_trek_categories"
+  );
+
+  if (dtcslice?.items.length > 0) {
+    for (var i = 0; i < dtcslice?.items.length; i++) {
+      const data = dtcslice?.items[i];
+      const slugUrl = data && data?.diy_trek_link?.id;
+      if (slugUrl !== undefined) {
+        const diy_trek_details = await Client().getByID(slugUrl);
+        if (diy_trek_details !== undefined && diy_trek_details !== null)
+        dtcData.push(diy_trek_details);
+      }
+    }
+  }
+
   return {
     props: {
       doc,
       preview,
-      trekData
+      trekData,
+      dtcData
     }
   }
 }
