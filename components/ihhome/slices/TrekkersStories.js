@@ -156,14 +156,14 @@ const TrekkersStories = ({ slice }) => {
                     <h6>
                       <b>{data.name}</b>
                     </h6>
-                    <p className="m-0 p-display-2">Batch of</p>
+                    <p className="m-0 p-display-2">Group of</p>
                     <p className="m-0 p-display-2">{data.batch}</p>
                   </div>
-                  <h3 className="title-diplay-3 ts-lable">
+                  {/* <h3 className="title-diplay-3 ts-lable">
                     {data.title.length > 25
                       ? `${data.title.substring(0, 55)}...`
                       : data.title}
-                  </h3>
+                  </h3> */}
                   <p className="p-display-2">
                     {data.desc.length > 125
                       ? `${data.desc.substring(0, 195)}...`
@@ -234,14 +234,14 @@ const TrekkersStories = ({ slice }) => {
                   <h6>
                     <b>{reveiewInfo && reveiewInfo.name}</b>
                   </h6>
-                  <p className="m-0 p-display-2">Batch of</p>
+                  <p className="m-0 p-display-2">Group of</p>
                   <p className="m-0 p-display-2">
                     {reveiewInfo && reveiewInfo.batch}
                   </p>
                 </div>
-                <h3 className="title-diplay-3 ts-lable">
+                {/* <h3 className="title-diplay-3 ts-lable">
                   {reveiewInfo && reveiewInfo.title}
-                </h3>
+                </h3> */}
                 <p className="p-display-2">{reveiewInfo && reveiewInfo.desc}</p>
               </div>
             </div>
