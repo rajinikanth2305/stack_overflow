@@ -123,14 +123,17 @@ const UserMP = () => {
     event.files.map(file => {
       const formData = new FormData();
       formData.append("file", file);
-      uploadUserIdProof(formData, fileId === 'frontImage');
+      uploadUserIdProof(formData, fileId === 'frontImage').then(() => {
+        toast.current.show({
+          severity: "info",
+          summary: `'Id proof successfully'`,
+          detail: "Id Proof"
+        });
+        getUserIdProof(fileId === 'frontImage').then(data => fileId === 'frontImage' ? setFrontImage(data) : setBackImage(data));
+      });
     });
 
-    toast.current.show({
-      severity: "info",
-      summary: `'File uploaded successfull'`,
-      detail: "Fitness Approval"
-    });
+
   };
 
   return (
