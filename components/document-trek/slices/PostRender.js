@@ -1340,12 +1340,12 @@ const PostRender = ({
                 </div>
 
                 <div className="col-lg-4 col-md-12">
-                  <div className="mmy-2 mpy-0">
+                  {/* <div className="mmy-2 mpy-0">
                     {renderAuthorSlice()}
-                  </div>
+                  </div> */}
                   {renderUpComingTreks()}
-                  {renderRelatedArticles()}
-                  {renderLatestVideos()}
+                  {/* {renderRelatedArticles()} */}
+                  {/* {renderLatestVideos()} */}
                   {renderLatestUpdates()}
                 </div>
               </div>

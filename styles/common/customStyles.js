@@ -1677,8 +1677,11 @@ export const customStyles = css.global`
   .sustainable_img {
     position: relative;
     width: 100%;
-    height: 300px;
-    opacity: 0.7;
+    // min-height: 300px;
+    height: 100%;
+    // height: 0vh;
+    // opacity: 0.7;
+    // padding: 30px 0;
   }
 
   .fam_get_in_img {
@@ -1701,8 +1704,11 @@ export const customStyles = css.global`
   }
 
   .bg_overlay_sustainable {
-    height: 300px;
-    background: rgb(0, 0, 0);
+    height: 100%;
+    background: rgba(0, 0, 0, 0.51);
+    position: relative;
+    z-index: 99;
+    padding: 30px 0;
   }
 
   .testimonial-img {
@@ -1774,7 +1780,7 @@ export const customStyles = css.global`
   .banner-text-sec {
     line-height: 56px;
     text-align: center;
-    margin-top: -30px;
+    // margin-top: -30px;
   }
 
   .w-40 {
@@ -2359,6 +2365,10 @@ export const customStyles = css.global`
       overflow: auto;
     }
 
+    .sustainable_img {
+      height: 100%;
+    }
+
     .pl-custom {
       padding-left: 0px;
     }
@@ -2600,7 +2610,7 @@ export const customStyles = css.global`
 
     .banner-text-sec {
       text-align: left;
-      padding: 80px 15px;
+      padding: 0px 15px;
     }
 
     .bg_overlay {
@@ -2951,9 +2961,9 @@ export const customStyles = css.global`
     .fam-tabs > .nav-item {
       width: 150px;
     }
-    .sustainable_img {
-      min-height: 375px;
-    }
+    // .sustainable_img {
+    //   height: 100%;
+    // }
   }
   @media (min-width: 1182px) and (max-width: 1400px) {
     .trek_card {
