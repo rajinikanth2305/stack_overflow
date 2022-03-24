@@ -126,7 +126,7 @@ const UserMP = () => {
       uploadUserIdProof(formData, fileId === 'frontImage').then(() => {
         toast.current.show({
           severity: "info",
-          summary: `'Id proof successfully'`,
+          summary: `'Id proof uploaded successfully'`,
           detail: "Id Proof"
         });
         getUserIdProof(fileId === 'frontImage').then(data => fileId === 'frontImage' ? setFrontImage(data) : setBackImage(data));
@@ -763,7 +763,7 @@ const UserMP = () => {
                                       {frontImage &&(
                                     <div className="col-lg-12 col-md-12 col-12">
                                       <Image src={URL.createObjectURL(frontImage)}
-                                             alt="Image" className="id-card-img" preview />
+                                             alt="Image" width="250" preview />
 
                                     </div>
                                           )}
@@ -799,7 +799,7 @@ const UserMP = () => {
                                       {backImage &&(
                                       <div className="col-lg-12 col-md-12 col-12">
                                           <Image src={URL.createObjectURL(backImage)}
-                                                 alt="Image" className="id-card-img" preview />
+                                                 alt="Image" width="250" preview />
 
                                       </div>)}
                                     <div className="col-lg-12 col-md-12 col-12">
