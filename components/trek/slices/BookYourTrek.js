@@ -73,8 +73,7 @@ const BookYourTrek = ({ slice }) => {
               <div className="row my-5 pt-4 mpt-0">
                 <div className="col-12 col-lg-6 col-md-12">
                   <div>
-                    <h2
-                      className="title-h2 th-2m pb-08 mb-0">
+                    <h2 className="title-h2 th-2m pb-08 mb-0">
                       {RichText.asText(heading1)}
                     </h2>
                     <div className="slots-bg mb-4 mmb-0">
@@ -113,6 +112,25 @@ const BookYourTrek = ({ slice }) => {
                       />
                     )}
                   </div>
+                  <div className="pt-3 d-m-none px-2">
+                    {showSelectedLabel && (
+                      <div>
+                        <p className="m-0 p-text-3-1">
+                          <b>Selected {bookingDate?.trekName}:</b>
+                        </p>
+                        <p className="p-text-2">
+                          <b>
+                            {moment(bookingDate?.startDate).format("Do")} to{" "}
+                            {moment(bookingDate?.endDate).format("Do MMMM")}
+                          </b>
+                        </p>
+                      </div>
+                    )}
+
+                    <button className="btn btn-ptr hvr-grow" onClick={register}>
+                      Proceed to registration
+                    </button>
+                  </div>
                 </div>
                 <div className="col-lg-1 col-md-12"></div>
                 <div className="col-12 col-lg-5 col-md-12">
@@ -132,15 +150,20 @@ const BookYourTrek = ({ slice }) => {
                         </div>
                       )}
 
-                      <button className="btn btn-ptr hvr-grow" onClick={register}>
+                      <button
+                        className="btn btn-ptr hvr-grow"
+                        onClick={register}
+                      >
                         Proceed to registration
                       </button>
                     </div>
                     <p className="p-text-1 b-left">
                       <b>{RichText.asText(cancelInfoHeading)}</b>
                     </p>
-                    <div className="p-text-4">{RichText.render(cancelInfodetailsList)}</div>
-                    <div className="mt-5 pt-3 d-m-none">
+                    <div className="p-text-4">
+                      {RichText.render(cancelInfodetailsList)}
+                    </div>
+                    {/* <div className="mt-5 pt-3 d-m-none">
                       {showSelectedLabel && (
                         <div>
                           <p className="m-0 p-text-3-1">
@@ -161,7 +184,7 @@ const BookYourTrek = ({ slice }) => {
                       <button className="btn btn-ptr hvr-grow" onClick={register}>
                         Proceed to registration
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

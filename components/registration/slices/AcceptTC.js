@@ -30,12 +30,12 @@ const AcceptTC = ({
 
   const EligibilityCriteriaTitle =
     eligibilityCriteria &&
-    eligibilityCriteria.primary.eligibility_criteria_title;
+    eligibilityCriteria?.primary?.eligibility_criteria_title;
   const EligibilityCriteriaDesc =
     eligibilityCriteria &&
-    eligibilityCriteria.primary.eligibility_criteria_desc;
-  const heading2 = eligibilityCriteria && eligibilityCriteria.primary.heading2;
-  const ecArray = eligibilityCriteria && eligibilityCriteria.items;
+    eligibilityCriteria?.primary?.eligibility_criteria_desc;
+  const heading2 = eligibilityCriteria && eligibilityCriteria?.primary?.heading2;
+  const ecArray = eligibilityCriteria && eligibilityCriteria?.items;
 
   useEffect(() => {
     let url = location.href.replace(location.origin, "");
@@ -50,7 +50,6 @@ const AcceptTC = ({
     }
 
     if (stepName === "addparticipant" || stepName === "payment") {
-      console.log(stepName);
       setAgree(true);
     }
 
@@ -62,12 +61,12 @@ const AcceptTC = ({
   const inclusionsHeading = inclusionsData && inclusionsData?.primary?.heading1;
   const knowAboutYourTrekTitle =
     inclusionsData && inclusionsData?.primary?.know_about_your_trek_title;
-  const inclusionArray = inclusionsData && inclusionsData.items;
+  const inclusionArray = inclusionsData && inclusionsData?.items;
   const exclusionsHeading = exclusionsData && exclusionsData?.primary?.heading1;
-  const exclusionsArray = exclusionsData && exclusionsData.items;
+  const exclusionsArray = exclusionsData && exclusionsData?.items;
   const whyIndiaHikesHeading =
     whyIndiaHikesData && whyIndiaHikesData?.primary?.heading1;
-  const whyIndiaHikesArray = whyIndiaHikesData && whyIndiaHikesData.items;
+  const whyIndiaHikesArray = whyIndiaHikesData && whyIndiaHikesData?.items;
   const tacHeading = tac && tac?.primary?.title;
   const tacArray = tac && tac?.items;
 
@@ -122,7 +121,7 @@ const AcceptTC = ({
       return (
         <>
           <p key={j} className="p-text-3">
-            {ecd.text}
+            {ecd?.text}
           </p>
         </>
       );
@@ -164,7 +163,7 @@ const AcceptTC = ({
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>
-              <p className="p-text-4">{data.details[0].text}</p>
+              <p className="p-text-4">{data?.details[0]?.text}</p>
             </Card.Body>
           </Accordion.Collapse>
         </Card>

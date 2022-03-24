@@ -69,7 +69,7 @@ export async function getStaticProps({
   // console.log( "items");
   // console.log( JSON.stringify(slice.items));
   // trekPageData.push(slice.items);
-  const trekPageData = slice.items;
+  const trekPageData = slice?.items;
 
   if (slice?.items.length > 0) {
     for (var i = 0; i < slice?.items.length; i++) {
