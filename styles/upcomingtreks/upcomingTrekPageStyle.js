@@ -59,7 +59,7 @@ export const upcomingTrekPageStyle = css.global`
     font-weight: bold;
     font-size: 48px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     margin-bottom: 15px;
   }
 
@@ -93,7 +93,7 @@ export const upcomingTrekPageStyle = css.global`
     font-weight: normal;
     font-size: 30px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .desc-dispaly-1 {
@@ -104,7 +104,7 @@ export const upcomingTrekPageStyle = css.global`
     font-weight: normal;
     font-size: 24px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     padding-top: 7px;
   }
 
@@ -205,7 +205,7 @@ export const upcomingTrekPageStyle = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .btn-ih-green-filter {
@@ -236,7 +236,7 @@ export const upcomingTrekPageStyle = css.global`
     font-weight: normal;
     font-size: 16px;
     color: #000000;
-    text-transform: capitalize;
+    text-transform: none;
     border-radius: 3px !important;
   }
 
@@ -333,7 +333,7 @@ export const upcomingTrekPageStyle = css.global`
     font-weight: lighter;
     font-size: 12px;
     color: rgba(112, 112, 112, 1);
-    text-transform: capitalize;
+    text-transform: none;
     margin-bottom: 7px;
   }
 
@@ -383,7 +383,7 @@ export const upcomingTrekPageStyle = css.global`
     font-weight: bold;
     font-size: 24px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .why_trek_box_desc {
@@ -620,7 +620,7 @@ export const upcomingTrekPageStyle = css.global`
     .title-display-1 {
       font-size: 36px;
       border: 0;
-      text-transform: capitalize;
+      text-transform: none;
       padding-bottom: 5px;
     }
 
@@ -733,7 +733,7 @@ export const upcomingTrekPageStyle = css.global`
       font-weight: normal;
       font-size: 12px;
       color: rgba(0, 0, 0, 1);
-      text-transform: capitalize;
+      text-transform: none;
     }
 
     .m-btn-ih-green {
@@ -758,7 +758,7 @@ export const upcomingTrekPageStyle = css.global`
       font-weight: normal;
       font-size: 11px;
       color: rgba(112, 112, 112, 1);
-      text-transform: capitalize;
+      text-transform: none;
     }
 
     .mmy-2 {
@@ -816,7 +816,7 @@ export const upcomingTrekPageStyle = css.global`
     .p-display-2.md-2 {
       font-size: 12px;
       color: rgb(0, 0, 0);
-      text-transform: capitalize;
+      text-transform: none;
     }
 
     .uc_open_for_small_group_images {

@@ -101,7 +101,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 24px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
     letter-spacing: 0.5px;
   }
 
@@ -125,7 +125,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 36px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-lo-36 {
@@ -136,7 +136,7 @@ export const customStyles = css.global`
     font-weight: bold;
     font-size: 36px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .btn-ih-primary {
@@ -145,7 +145,7 @@ export const customStyles = css.global`
     border-radius: 3px !important;
     color: black;
     font-size: 18px;
-    text-transform: capitalize;
+    text-transform: none;
     font-family: Franklin Gothic;
     box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
   }
@@ -166,7 +166,7 @@ export const customStyles = css.global`
     font-weight: bold;
     font-size: 48px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     margin-bottom: 15px;
     border-bottom: 4px solid rgb(255, 193, 0);
     padding-bottom: 3px;
@@ -201,7 +201,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 24px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-text-1-fgt {
@@ -212,7 +212,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 24px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-text-2 {
@@ -233,7 +233,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-text-2-fg-f16 {
@@ -244,7 +244,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-text-3-fg {
@@ -255,14 +255,14 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-text-3-fg-book {
     font-family: Franklin Gothic Book;
     font-style: normal;
     font-weight: normal;
-    text-transform: capitalize;
+    text-transform: none;
     line-height: 24px;
     text-align: left;
     font-style: normal;
@@ -275,7 +275,7 @@ export const customStyles = css.global`
     font-family: Franklin Gothic Book;
     font-style: normal;
     font-weight: normal;
-    text-transform: capitalize;
+    text-transform: none;
     line-height: 24px;
     text-align: left;
     font-style: normal;
@@ -511,7 +511,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 12px;
     color: rgba(112, 112, 112, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-text-small-fg.font-italic {
@@ -527,7 +527,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 10px;
     color: rgba(35, 76, 187, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-text-small-fg-blue > a {
@@ -542,7 +542,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 10px;
     color: rgba(157, 58, 11, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-text-small-brown {
@@ -553,7 +553,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 10px;
     color: rgba(157, 58, 11, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-text-small-blue {
@@ -564,7 +564,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 10px;
     color: rgba(0, 40, 148, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-text-f20 {
@@ -599,7 +599,7 @@ export const customStyles = css.global`
     font-weight: lighter;
     font-size: 12px;
     color: rgba(112, 112, 112, 1);
-    text-transform: capitalize;
+    text-transform: none;
     margin-bottom: 7px;
   }
 
@@ -644,7 +644,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .btn-ih-green:hover {
@@ -715,7 +715,7 @@ export const customStyles = css.global`
     font-weight: normal !important;
     font-size: 14px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .table.table-dashboard-profile > tbody > tr > td {
@@ -727,7 +727,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     padding-top: 20px;
     padding-bottom: 20px;
   }
@@ -740,7 +740,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 12px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .table.table-dashboard-profile-style-1 > tbody > tr > td {
@@ -751,7 +751,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 12px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .table.table-dashboard-profile-style-3 > thead > tr > th {
@@ -762,7 +762,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 10px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     background: rgba(255, 193, 0, 1);
   }
 
@@ -774,7 +774,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 12px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .table-dashboard-profile-style-2 > tbody > tr > td {
@@ -786,7 +786,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     padding-top: 20px;
     padding-bottom: 20px;
   }
@@ -801,7 +801,7 @@ export const customStyles = css.global`
     font-weight: normal !important;
     font-size: 14px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .table.table-dashboard-voucher > tbody > tr > td {
@@ -813,7 +813,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     padding-top: 20px;
     padding-bottom: 20px;
   }
@@ -828,7 +828,7 @@ export const customStyles = css.global`
     font-weight: normal !important;
     font-size: 14px;
     color: #ffffff;
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .table.table-dashboard-voucher-style-1 > tbody > tr > td {
@@ -840,7 +840,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     padding-top: 20px;
     padding-bottom: 20px;
   }
@@ -855,7 +855,7 @@ export const customStyles = css.global`
     font-weight: normal !important;
     font-size: 14px;
     color: #000000;
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .table.table-dashboard-voucher-style-2 > tbody > tr > td {
@@ -867,7 +867,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     padding-top: 20px;
     padding-bottom: 20px;
   }
@@ -890,7 +890,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
     padding: 0 20px;
   }
 
@@ -905,7 +905,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
     padding: 0 40px;
   }
 
@@ -939,7 +939,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
     padding: 0 20px;
   }
 
@@ -954,7 +954,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
     padding: 0 20px;
   }
 
@@ -973,7 +973,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: #000000;
-    text-transform: capitalize;
+    text-transform: none;
     padding: 0 20px;
   }
 
@@ -988,7 +988,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
     padding: 0 20px;
   }
 
@@ -1002,7 +1002,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 12px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
     padding: 0 10px;
   }
 
@@ -1020,7 +1020,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 12px;
     color: #000000;
-    text-transform: capitalize;
+    text-transform: none;
     padding: 0 10px;
   }
 
@@ -1035,7 +1035,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 12px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
     padding: 0 10px;
   }
 
@@ -1069,7 +1069,7 @@ export const customStyles = css.global`
   //   font-weight: normal;
   //   font-size: 16px;
   //   color: rgba(255, 255, 255, 1);
-  //   text-transform: capitalize;
+  //   text-transform: none;
   // }
 
   .bg-gray-shade {
@@ -1124,7 +1124,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 10px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .menu-title-bg {
@@ -1241,7 +1241,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 12px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .ud-dropwon-1.form-group > .p-dropdown {
@@ -1326,7 +1326,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 12px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     margin-bottom: 3px;
   }
 
@@ -1420,7 +1420,7 @@ export const customStyles = css.global`
     font-weight: bold;
     font-size: 48px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     margin-bottom: 15px;
     border-bottom: 4px solid rgb(255, 193, 0);
     padding-bottom: 3px;
@@ -1529,7 +1529,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 14px;
     color: rgb(0, 0, 0);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .author-text.f-c {
@@ -1555,7 +1555,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     padding-bottom: 4px;
   }
 
@@ -1649,7 +1649,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     background: rgba(255, 193, 0, 1);
     margin-right: 15px;
   }
@@ -1667,7 +1667,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .fam-tabs-gt.fam-tabs > .nav-link.active {
@@ -1990,7 +1990,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgb(0, 0, 0);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .btn-btn-gray-new {
@@ -2006,7 +2006,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: #ffffff;
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .pl-l-cus-40 {
@@ -2187,7 +2187,7 @@ export const customStyles = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     font-weight: 600;
     letter-spacing: 0.5px;
   }
@@ -2205,7 +2205,7 @@ export const customStyles = css.global`
     font-weight: bold;
     font-size: 36px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     margin: 30px 0;
   }
 
@@ -2344,11 +2344,19 @@ export const customStyles = css.global`
     padding-bottom: 30px;
   }
 
+  .ft-how-do-tabs > .nav {
+    flex-wrap: initial;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
       height: 360px;
       background-position: -425px 0;
+    }
+
+    .ft-how-do-tabs > .nav {
+      overflow: auto;
     }
 
     .pl-custom {
@@ -2570,7 +2578,7 @@ export const customStyles = css.global`
     .p-text-4.mt2 {
       font-size: 14px;
       color: rgb(0, 0, 0);
-      text-transform: capitalize;
+      text-transform: none;
       line-ight: 18px;
     }
 
@@ -2636,7 +2644,7 @@ export const customStyles = css.global`
     .btn-ih-primary {
       font-weight: normal;
       font-size: 14px;
-      text-transform: capitalize;
+      text-transform: none;
     }
 
     .title-h2 {

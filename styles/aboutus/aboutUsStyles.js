@@ -33,7 +33,7 @@ export const aboutUsStyles = css.global`
     font-size: 52px;
     filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.749));
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
     letter-spacing: 2px;
   }
 
@@ -46,7 +46,7 @@ export const aboutUsStyles = css.global`
     font-size: 24px;
     filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 1));
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
     letter-spacing: 0.5px;
   }
 
@@ -66,7 +66,7 @@ export const aboutUsStyles = css.global`
     font-weight: bold;
     font-size: 48px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     margin-bottom: 15px;
     border-bottom: 4px solid rgb(255, 193, 0);
     padding-bottom: 3px;
@@ -81,7 +81,7 @@ export const aboutUsStyles = css.global`
     font-weight: bold;
     font-size: 36px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-text-1 {
@@ -92,7 +92,7 @@ export const aboutUsStyles = css.global`
     font-weight: normal;
     font-size: 24px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-text-2 {
@@ -112,7 +112,7 @@ export const aboutUsStyles = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-text-3 {
@@ -312,7 +312,7 @@ export const aboutUsStyles = css.global`
     .btn-ih-primary {
       font-weight: normal;
       font-size: 14px;
-      text-transform: capitalize;
+      text-transform: none;
     }
 
     .p-text-1 {

@@ -33,7 +33,7 @@ export const doItStyles = css.global`
     font-weight: bold;
     font-size: 48px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     border-bottom: 4px solid rgb(255, 193, 0);
     padding-bottom: 7px;
     margin: 25px 0;
@@ -68,7 +68,7 @@ export const doItStyles = css.global`
     border-radius: 3px;
     color: black;
     font-size: 18px;
-    text-transform: capitalize;
+    text-transform: none;
     font-family: Franklin Gothic Medium;
   }
 

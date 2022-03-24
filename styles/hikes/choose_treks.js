@@ -97,7 +97,7 @@ export const ChooseTreks = css.global`
     font-weight: lighter;
     font-size: 12px;
     color: rgba(112, 112, 112, 1);
-    text-transform: capitalize;
+    text-transform: none;
     margin-bottom: 7px;
   }
 
@@ -181,7 +181,7 @@ export const ChooseTreks = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .choose_trek_sec {
@@ -201,7 +201,7 @@ export const ChooseTreks = css.global`
     font-weight: bold;
     font-size: 48px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     margin-bottom: 15px;
   }
 
@@ -245,7 +245,7 @@ export const ChooseTreks = css.global`
     font-weight: normal;
     font-size: 14px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .video_views {
@@ -320,7 +320,7 @@ export const ChooseTreks = css.global`
     font-weight: normal;
     font-size: 14px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .pb-08 {
@@ -494,7 +494,7 @@ export const ChooseTreks = css.global`
     .p-display-2 {
       font-size: 12px;
       color: rgba(0, 0, 0, 1);
-      text-transform: capitalize;
+      text-transform: none;
     }
 
     .mx-4.m-mx-0 {

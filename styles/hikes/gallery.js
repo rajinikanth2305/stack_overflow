@@ -13,7 +13,7 @@ export const galleryStyles = css.global`
     font-weight: bold;
     font-size: 48px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .gallery_community_text > p {
@@ -73,7 +73,7 @@ export const galleryStyles = css.global`
     font-weight: bold;
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .photo_more_details {

@@ -36,7 +36,7 @@ export const regStyle = css.global`
     font-weight: bold;
     font-size: 48px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     margin-bottom: 15px;
     border-bottom: 4px solid rgb(255, 193, 0);
     padding-bottom: 3px;
@@ -51,7 +51,7 @@ export const regStyle = css.global`
     font-weight: bold;
     font-size: 36px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .title-h3-fg {
@@ -62,7 +62,7 @@ export const regStyle = css.global`
     font-weight: bold;
     font-size: 36px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-text-1 {
@@ -73,7 +73,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 24px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-text-1-franklin {
@@ -83,7 +83,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 24px;
     color: rgba(0, 0, 0, 1);
-    // text-transform: capitalize;
+    // text-transform: none;
     line-height: 26px;
   }
 
@@ -114,7 +114,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-text-2-franklin-g {
@@ -216,7 +216,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 12px;
     color: rgba(112, 112, 112, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-text-xtra-small-franklin {
@@ -227,7 +227,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 10px;
     color: rgba(112, 112, 112, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .border-bottom-custom {
@@ -362,7 +362,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     margin-right: 10px;
   }
 
@@ -468,7 +468,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .btn-yellow-outline {
@@ -482,7 +482,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     padding: 5px 30px;
   }
 
@@ -500,7 +500,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 18px;
     color: #000000;
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .btn-bihtn-yellow-sm {
@@ -517,7 +517,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 12px;
     color: #000000;
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .slots-bg {
@@ -586,7 +586,7 @@ export const regStyle = css.global`
     font-weight: normal !important;
     font-size: 14px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .table.table-secondar-main > thead > tr > th {
@@ -597,7 +597,7 @@ export const regStyle = css.global`
     font-weight: normal !important;
     font-size: 14px;
     color: #000000;
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .table.table-main > tbody > tr > td {
@@ -654,7 +654,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .form-check-input[type="checkbox"] {
@@ -731,7 +731,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 12px;
     color: rgba(112, 112, 112, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .reg-dropdown.form-group > .p-dropdown {
@@ -749,7 +749,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 12px;
     color: rgba(112, 112, 112, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-dropdown:not(.p-disabled).p-focus {
@@ -763,7 +763,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 12px;
     color: rgba(112, 112, 112, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .mp-dropdown.reg-dropdown.form-group > .p-dropdown {
@@ -813,7 +813,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 9px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .nav.nav-tabs.reg-tabs .nav-link.disabled {
@@ -851,7 +851,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(57, 114, 41, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .text-green-clr {
@@ -874,7 +874,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(157, 58, 11, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .text-maroon-clr {
@@ -934,7 +934,7 @@ export const regStyle = css.global`
     font-weight: normal;
     font-size: 14px !important;
     color: rgba(255, 255, 255, 1) !important;
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .card-header > button {
@@ -1068,7 +1068,7 @@ export const regStyle = css.global`
       font-weight: normal;
       font-size: 12px;
       color: rgba(112, 112, 112, 1);
-      text-transform: capitalize;
+      text-transform: none;
     }
 
     .m-m-custom-my {
@@ -1089,7 +1089,7 @@ export const regStyle = css.global`
       font-weight: normal;
       font-size: 12px;
       color: rgba(0, 0, 0, 1);
-      text-transform: capitalize;
+      text-transform: none;
       vertical-align: middle;
     }
 
@@ -1100,7 +1100,7 @@ export const regStyle = css.global`
       font-weight: normal;
       font-size: 14px;
       color: rgba(0, 0, 0, 1);
-      text-transform: capitalize;
+      text-transform: none;
     }
 
     .pr-custom-5 {

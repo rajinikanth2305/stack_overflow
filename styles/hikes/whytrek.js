@@ -22,7 +22,7 @@ export const whyTrekWithStyles = css.global`
     font-style: normal;
     font-weight: bold;
     font-size: 48px;
-    text-transform: capitalize;
+    text-transform: none;
     border-bottom: 4px solid rgb(255, 193, 0);
     padding: 10px 0;
   }
@@ -34,7 +34,7 @@ export const whyTrekWithStyles = css.global`
     font-weight: bold;
     font-size: 24px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
   .why_trek_box_desc {
     line-height: 24px;

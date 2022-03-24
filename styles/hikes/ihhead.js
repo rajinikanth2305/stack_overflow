@@ -175,7 +175,7 @@ export const ihheaderStyles = css.global`
     background: #ffd62b;
     padding: 0 5px;
     font-size: 14px;
-    text-transform: capitalize;
+    text-transform: none;
     box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
     font-family: Franklin Gothic;
   }

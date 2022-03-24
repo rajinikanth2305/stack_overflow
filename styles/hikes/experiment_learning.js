@@ -37,7 +37,7 @@ export const experimentStyles = css.global`
     font-weight: bold;
     font-size: 36px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
   #Lorem_ipsum_dolor_sit_amet_con {
     left: 20px;
@@ -70,7 +70,7 @@ export const experimentStyles = css.global`
     font-weight: bold;
     font-size: 48px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     border-bottom: 4px solid rgb(255, 193, 0);
     padding-bottom: 8px;
     margin-bottom: 25px;
@@ -196,7 +196,7 @@ export const experimentStyles = css.global`
       font-weight: bold;
       font-size: 36px;
       color: rgba(0, 0, 0, 1);
-      text-transform: capitalize;
+      text-transform: none;
     }
     .expirimentMainImage {
       position: relative;

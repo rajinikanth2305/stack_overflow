@@ -65,7 +65,7 @@ export const bannerStyle = css.global`
     font-weight: normal;
     font-size: 14px;
     color: rgba(0, 0, 0, 1);
-    // text-transform: capitalize;
+    // text-transform: none;
     padding: 7px 0;
   }
 

@@ -67,7 +67,7 @@ export const ihhomeBannerStyles = css.global`
     font-weight: normal;
     font-size: 24px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
     letter-spacing: 0.5px;
   }
 
@@ -90,7 +90,7 @@ export const ihhomeBannerStyles = css.global`
     box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
     color: black;
     font-size: 18px;
-    text-transform: capitalize;
+    text-transform: none;
     font-family: Franklin Gothic Medium;
     padding: 5px 30px;
   }
@@ -154,7 +154,7 @@ export const ihhomeBannerStyles = css.global`
     .btn-ih-primary {
       font-weight: normal;
       font-size: 14px;
-      text-transform: capitalize;
+      text-transform: none;
     }
 
     .m-w-50p {

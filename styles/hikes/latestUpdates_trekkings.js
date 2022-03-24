@@ -30,7 +30,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
     font-weight: bold;
     font-size: 48px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     line-height: 62px;
     padding-bottom: 3px;
   }
@@ -57,7 +57,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     font-weight: 600;
     letter-spacing: 0.5px;
   }
@@ -75,7 +75,7 @@ export const latestUpdatesTrekkingsStyles = css.global`
     font-weight: bold;
     font-size: 36px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     margin: 30px 0;
   }
 

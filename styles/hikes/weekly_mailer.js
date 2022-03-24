@@ -35,7 +35,7 @@ export const weeklyMailerStyles = css.global`
     font-weight: bold;
     font-size: 36px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
   #Repeat_Grid_51 {
     position: absolute;
@@ -86,7 +86,7 @@ export const weeklyMailerStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
   #Icons_Outline_Poles {
     position: absolute;
@@ -137,7 +137,7 @@ export const weeklyMailerStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
   #Icons_Outline_Poles_e {
     position: absolute;
@@ -188,7 +188,7 @@ export const weeklyMailerStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
   #Icons_Outline_Poles_fa {
     position: absolute;
@@ -239,7 +239,7 @@ export const weeklyMailerStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
   #Icons_Outline_Poles_fb {
     position: absolute;
@@ -270,7 +270,7 @@ export const weeklyMailerStyles = css.global`
     font-weight: bold;
     font-size: 48px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
     border-bottom: 4px solid rgb(255, 193, 0);
     padding: 10px 0;
   }
@@ -282,7 +282,7 @@ export const weeklyMailerStyles = css.global`
     font-weight: bold;
     font-size: 24px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
   .why_trek_box_desc {
     line-height: 24px;

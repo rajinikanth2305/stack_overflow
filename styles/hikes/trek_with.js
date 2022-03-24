@@ -31,7 +31,7 @@ export const trekWithStyles = css.global`
     font-weight: bold;
     font-size: 48px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
     line-height: 60px;
   }
 
@@ -95,7 +95,7 @@ export const trekWithStyles = css.global`
       color: rgb(0, 0, 0);
       font-size: 14px;
       color: rgba(0, 0, 0, 1);
-      text-transform: capitalize;
+      text-transform: none;
       border-radius: 0;
       padding: 6px 30px;
     }

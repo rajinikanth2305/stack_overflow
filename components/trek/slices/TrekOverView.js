@@ -123,13 +123,13 @@ const TrekOverView = ({ slice, data }) => {
                       </p>
                     </div>
                   </a>
-                  <a href="#">
+                  {/* <a href="#">
                     <div>
                       <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
                         FAQs
                       </p>
                     </div>
-                  </a>
+                  </a> */}
                   <a href="#KYT">
                     <div>
                       <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
@@ -137,20 +137,22 @@ const TrekOverView = ({ slice, data }) => {
                       </p>
                     </div>
                   </a>
-                  <a href="#goToTS">
+                  {/* <a href="#goToTS">  */}
+                  
+                  <a href="#KYT">
                     <div>
                       <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
                         Trek Safety
                       </p>
                     </div>
                   </a>
-                  <a href="#">
+                  {/* <a href="#">
                     <div>
                       <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
                         Trek Gear
                       </p>
                     </div>
-                  </a>
+                  </a> */}
                   <a href="#goToSustainabilty">
                     <div>
                       <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
@@ -172,7 +174,7 @@ const TrekOverView = ({ slice, data }) => {
                       </p>
                     </div>
                   </a>
-                  <a href="#">
+                  <a href="#GoToTrekTrivia">
                     <div>
                       <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
                         Trek Trivia
@@ -186,7 +188,7 @@ const TrekOverView = ({ slice, data }) => {
                       </p>
                     </div>
                   </a>
-                  <a href="#">
+                  {/* <a href="#">
                     <div>
                       <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
                         {" "}
@@ -200,7 +202,7 @@ const TrekOverView = ({ slice, data }) => {
                         Weather
                       </p>
                     </div>
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>

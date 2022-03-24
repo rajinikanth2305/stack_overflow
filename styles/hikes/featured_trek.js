@@ -8,7 +8,7 @@ export const featuredTrekStyles = css.global`
     font-weight: bold;
     font-size: 48px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     border-bottom: 4px solid rgb(255, 193, 0);
     padding-bottom: 7px;
     margin-bottom: 30px;

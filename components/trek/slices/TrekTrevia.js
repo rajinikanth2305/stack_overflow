@@ -117,7 +117,7 @@ const TrekTrevia = ({ slice }) => {
 
   return (
     <>
-      <div className="mt-5 mmy-0 trek-trevia-bg">
+      <div className="mt-5 mmy-0 trek-trevia-bg" id="GoToTrekTrivia">
         <div className="container">
           <div className="row">
             <div className="col-lg-2 col-md-12">

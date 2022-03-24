@@ -27,7 +27,7 @@ export const trekStyle = css.global`
     font-weight: bold;
     font-size: 58px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .title-h1-v {
@@ -37,7 +37,7 @@ export const trekStyle = css.global`
     font-weight: bold;
     font-size: 56px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     line-height: 50px;
     padding-bottom: 15px;
   }
@@ -49,7 +49,7 @@ export const trekStyle = css.global`
     font-weight: bold;
     font-size: 48px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     margin-bottom: 15px;
     border-bottom: 4px solid rgb(255, 193, 0);
     padding-bottom: 3px;
@@ -63,7 +63,7 @@ export const trekStyle = css.global`
     font-weight: bold;
     font-size: 48px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     margin-bottom: 15px;
     border-bottom: 4px solid rgb(255, 193, 0);
     padding-bottom: 3px;
@@ -177,7 +177,7 @@ export const trekStyle = css.global`
     font-family: Lora;
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 14px;
     color: rgba(112, 112, 112, 1);
     padding-top: 7px;
   }
@@ -276,7 +276,7 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 14px;
     color: rgba(112, 112, 112, 1);
-    text-transform: capitalize;
+    text-transform: none;
     padding: 7px 0;
     cursor: pointer;
   }
@@ -309,7 +309,7 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .btn-ptr {
@@ -325,7 +325,7 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .btn-ptr > a {
@@ -343,7 +343,7 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 24px;
     color: rgba(255, 255, 255, 1);
-    text-transform: capitalize;
+    text-transform: none;
     width: 100%;
     padding: 0;
   }
@@ -383,7 +383,7 @@ export const trekStyle = css.global`
     font-weight: bold;
     font-size: 12px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     padding-top: 20px;
   }
 
@@ -415,7 +415,7 @@ export const trekStyle = css.global`
     font-weight: bold;
     font-size: 36px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     border-bottom: 4px solid rgb(255, 193, 0);
     margin: 0;
     padding-bottom: 25px;
@@ -445,7 +445,7 @@ export const trekStyle = css.global`
     font-size: 150px;
     color: rgba(255, 193, 0, 1);
     letter-spacing: -0.5px;
-    text-transform: capitalize;
+    text-transform: none;
     position: relative;
     top: -35px;
   }
@@ -561,7 +561,7 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 16px;
     color: #000000;
-    text-transform: capitalize;
+    text-transform: none;
     border-radius: 3px !important;
   }
 
@@ -579,7 +579,7 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 16px;
     color: #000000;
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .what_trek_says_bg {
@@ -645,7 +645,7 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 16px;
     color: rgba(157, 58, 11, 1);
-    text-transform: capitalize;
+    text-transform: none;
     text-decoration: underline;
     cursor: pointer;
   }
@@ -904,7 +904,7 @@ export const trekStyle = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
-    text-transform: capitalize;
+    text-transform: none;
     line-height: 18px;
     margin: 0px 3px;
     width: 170px;
@@ -1002,7 +1002,7 @@ export const trekStyle = css.global`
     font-weight: bold;
     font-size: 14px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
     margin: 0 1px;
   }
 
@@ -1187,7 +1187,7 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-inputtext {
@@ -1202,7 +1202,7 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 8px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .p-xxs-text {
@@ -1245,7 +1245,7 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 14px;
     color: rgba(0, 0, 0, 1);
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .expert_speak_box > p {
