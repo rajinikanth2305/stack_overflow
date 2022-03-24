@@ -2,6 +2,7 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { diyStyles } from "styles";
 import Image from "next/image";
+import Link from "next/link";
 
 const DIYResources = ({ slice, diyResourceData }) => {
   const heading1 = slice?.primary?.heading1;
@@ -23,31 +24,35 @@ const DIYResources = ({ slice, diyResourceData }) => {
     );
     return (
       <div key={i} className="col-lg-4 col-md-6">
-        <div className="d-flex align-items-center row mb-4">
-          <div className="diyres_img_bg col-3 col-lg-3 col-md-12">
-            {getArticleImage && getArticleImage[0]?.primary?.image?.url && (
-              <Image
-                src={getArticleImage && getArticleImage[0]?.primary?.image?.url}
-                layout="fill"
-                objectFit="cover"
-                objectPosition="top"
-              />
-            )}
-          </div>
-          <div className="col-9 col-lg-9 col-md-12">
-            <p className="p-text-3">
-              <b>{RichText.asText(data?.data?.title)}</b>
-            </p>
-            <div>
-              <p className="p-text-small m-0">
-                <em>By {data?.data?.author_link?.uid}</em>
+        <Link href={url ? url : "#"}>
+          <div className="d-flex align-items-center row mb-4 cursor-pointer">
+            <div className="diyres_img_bg col-3 col-lg-3 col-md-12">
+              {getArticleImage && getArticleImage[0]?.primary?.image?.url && (
+                <Image
+                  src={
+                    getArticleImage && getArticleImage[0]?.primary?.image?.url
+                  }
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="top"
+                />
+              )}
+            </div>
+            <div className="col-9 col-lg-9 col-md-12">
+              <p className="p-text-3">
+                <b>{RichText.asText(data?.data?.title)}</b>
               </p>
-              <p className="p-text-small m-0 pt-0">
-                <em>{data?.data?.date}</em>
-              </p>
+              <div>
+                <p className="p-text-small m-0">
+                  <em>By {data?.data?.author_link?.uid}</em>
+                </p>
+                <p className="p-text-small m-0 pt-0">
+                  <em>{data?.data?.date}</em>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       </div>
     );
   });
@@ -68,11 +73,11 @@ const DIYResources = ({ slice, diyResourceData }) => {
           </div>
           <div className="row">
             {diyResList}
-            <div className="d-flex justify-content-end">
+            {/* <div className="d-flex justify-content-end">
               <button type="button" className="btn btn-bihtn-yellow hvr-grow">
                 More Resources
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         <style jsx global>
