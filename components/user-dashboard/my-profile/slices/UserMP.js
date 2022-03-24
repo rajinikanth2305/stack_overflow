@@ -66,8 +66,8 @@ const UserMP = () => {
         );
       });
 
-      getUserIdProof(true).then(data => setFrontImage(data));
-      getUserIdProof(false).then(data => setBackImage(data));
+      getUserIdProof(true).then(data => setFrontImage(data)).catch(error => console.log(error));
+      getUserIdProof(false).then(data => setBackImage(data)).catch(error => console.log(error));
 
     });
 

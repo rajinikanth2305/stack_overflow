@@ -28,7 +28,7 @@ const FitnessApproval = forwardRef((props, ref) => {
   const [showContents, setShowContents] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
   const [isActive, setActive] = useState(false);
-  const faqData = props.data.data.body.find(
+  const faqData = props.data?.data?.body.find(
     x => x.slice_type === "faq_about_trek"
   );
 

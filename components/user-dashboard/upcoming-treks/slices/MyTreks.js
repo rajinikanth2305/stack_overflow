@@ -239,7 +239,7 @@ const MyTreks = forwardRef((props, ref) => {
       setEssentialCounter(0);
     }
 
-    const trekVideoData = result.data.body.find( x => x.slice_type === "trek_videos");
+    const trekVideoData = result?.data?.body?.find( x => x.slice_type === "trek_videos");
     if(trekVideoData!==undefined) {
     const trekVideosArray = trekVideoData && trekVideoData?.items;
     setVideoData(trekVideosArray);
