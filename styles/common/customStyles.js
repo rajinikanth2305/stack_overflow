@@ -2290,6 +2290,25 @@ export const customStyles = css.global`
     padding-left: 20px;
   }
 
+  .id-card-img {
+    border: 1px solid #d3d3d3;
+    width: 100% !important;
+    height: 225px;
+  }
+
+  .p-fileupload .p-fileupload-buttonbar {
+    display: flex !important;
+    border: 1px solid #d3d3d3 !important;
+  }
+
+  #frontImage > .p-fileupload-content {
+    display: none;
+  }
+
+  #backImage > .p-fileupload-content {
+    display: none;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -2831,7 +2850,7 @@ export const customStyles = css.global`
   }
 
   .pi {
-    font-family: aerial;
+    // font-family: aerial;
     speak: none;
     font-style: normal;
     font-weight: 400;
