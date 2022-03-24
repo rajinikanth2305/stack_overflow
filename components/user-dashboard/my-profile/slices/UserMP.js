@@ -793,7 +793,7 @@ const UserMP = () => {
                                     Back of Id card
                                   </label>
                                   <div className="row">
-                                      {frontImage &&(
+                                      {backImage &&(
                                       <div className="col-lg-12 col-md-12 col-12">
                                           <Image src={URL.createObjectURL(backImage)}
                                                  alt="Image" width="250" preview />
