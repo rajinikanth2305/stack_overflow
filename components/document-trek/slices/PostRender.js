@@ -50,6 +50,10 @@ const PostRender = ({
     featureImageUrl = featureSlice.primary.feature_image.url;
   }
 
+  const getArticleImage = data?.body?.filter(
+    x => x.slice_type === "image_with_caption"
+  );
+
   React.useEffect(() => {
     // http://localhost:3000/blog/12-most-beautiful-alpine-lakes-to-trek-to-in-india
     let url = location.href.replace(location.origin, "");
@@ -248,7 +252,27 @@ const PostRender = ({
     return (
       <div id="sidepanel_author_panel">
         <div className="ml-100">
-          <div className="text-center">
+          {/* <div className="text-center">
+            <div className="auth_image">
+              <img src={authorData?.data?.author_photo?.url} />
+            </div>
+            <p className="m-0 p-text-3-fg text-center mt-1">
+              {authorData?.data?.author_first_name}{" "}
+              {authorData?.data?.author_last_name}
+            </p>
+            <p className="m-0 p-text-small-black text-center">
+              {authorData?.data?.designation}
+            </p>
+          </div> */}
+
+          <div className="grey-bg gbg-mt-3 border-top-c">
+            <p className="p-text-4 mb-2 border-bottom-c pb-2">
+              <strong>About the author</strong>
+            </p>
+            <p className="p-text-small-black">
+              {RichText.asText(authorData?.data?.author_description)}
+            </p>
+            <div className="text-center">
             <div className="auth_image">
               <img src={authorData?.data?.author_photo?.url} />
             </div>
@@ -260,14 +284,6 @@ const PostRender = ({
               {authorData?.data?.designation}
             </p>
           </div>
-
-          <div className="grey-bg border-top-c">
-            <p className="p-text-4 mb-2">
-              <strong>About the author</strong>
-            </p>
-            <p className="p-text-small-black">
-              {RichText.asText(authorData?.data?.author_description)}
-            </p>
           </div>
         </div>
       </div>
@@ -611,7 +627,7 @@ const PostRender = ({
     return (
       <div className="ml-100">
         <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
-          Latest Articles
+          DIY Articles
         </p>
         {relatedArticles?.map(function(article, i) {
           let featureImageUrl = "";
@@ -948,18 +964,42 @@ const PostRender = ({
     <>
       <Toast ref={toast} />
       <div>
-        <div className="article_banner_img">
+        {/* <div className="article_banner_img">
           {featureImageUrl ? (
             <img src={featureImageUrl} />
           ) : (
             <img src="../ip.png" />
           )}
+        </div> */}
+        <div className="banner-image-desktop">
+          <div className="bg_overlay h-100">
+            <div className="h-100">
+              <div className="d-flex align-items-center w-100 h-100">
+                <div className="banner-text-sec w-100">
+                  <p className="banner-text-1 m-m-b-5"><b>{RichText.asText(data?.title)}</b></p>
+                  {/* <div className="d-flex align-items-center justify-content-center">
+                    <p className="banner-text-2 mb-0 text-white w-40 text-center">
+                      {RichText.asText(heading2)}
+                    </p>
+                  </div> */}
+                </div>
+              </div>
+            </div>
+          </div>
+          {getArticleImage && getArticleImage[0]?.primary?.image?.url && 
+            <Image
+            src={getArticleImage[0]?.primary?.image?.url}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="bottom"
+          />
+          }
         </div>
 
         <div className="container">
           <div className="row my-3">
             <div className="col-lg-3 col-md-12 pr-5p pt-4">
-              <div className="position-sticky border-0">
+              {/* <div className="position-sticky border-0">
                 <p className="p-text-3-fgc border-bottom-0 m-0">
                   <span>{RichText.asText(data?.title)}</span>
                 </p>
@@ -987,29 +1027,27 @@ const PostRender = ({
                     </span>
                   </a>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="col-lg-9 col-md-12">
               <div className="row">
                 <div className="col-lg-8 col-md-12">
                   <div>
                     <div>
-                      <p className="p-text-3-fg">
+                      {/* <p className="p-text-3-fg">
                         <span className="border-bottom-custom-1 pb-2">
                           {data?.sub_title}
                         </span>
-                      </p>
-                      <h2 className="title-h2 border-0 mb-0 pb-0">
+                      </p> */}
+                      <h2 className="title-h2 pb-08 mt-5 mmy-2">
                         {RichText.asText(data?.title)}
                       </h2>
-                      <div className="auth_sec">
+                      {/* <div className="auth_sec">
                         <div className="d-flex align-items-center">
                           <div className="flex-grow-1">
                             <p className="m-0 p-text-small-black">
                               By{" "}
                               <b>
-                                {/* {data?.author_first_name}{" "}
-                                {data?.author_last_name} */}
                                 {authorData?.data?.author_first_name}{" "}
                                 {authorData?.data?.author_last_name}
                               </b>
@@ -1053,7 +1091,7 @@ const PostRender = ({
                             </a>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <div id="postbody" className="border-bottom mb-4 pb-3">
@@ -1097,7 +1135,7 @@ const PostRender = ({
                     })}
                   </div>
 
-                  <div>
+                  {/* <div>
                     <h5 className="p-text-1">
                       <b>LEAVE A REPLY</b>
                     </h5>
@@ -1159,7 +1197,7 @@ const PostRender = ({
                         Post reply
                       </button>
                     </div>
-                  </div>
+                  </div> */}
 
                   {indexes.map(index => {
                     const fieldName = `voucher[${index}]`;
@@ -1302,7 +1340,7 @@ const PostRender = ({
                 </div>
 
                 <div className="col-lg-4 col-md-12">
-                  <div className="my-5 py-5 mmy-2 mpy-0">
+                  <div className="mmy-2 mpy-0">
                     {renderAuthorSlice()}
                   </div>
                   {renderUpComingTreks()}

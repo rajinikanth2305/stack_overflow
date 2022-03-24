@@ -1348,6 +1348,10 @@ export const customStyles = css.global`
     border-top: 2px solid rgb(248, 217, 120);
   }
 
+  .border-bottom-c {
+    border-bottom: 2px solid rgb(248, 217, 120);
+  }
+
   .ml-100 {
     margin-left: 100px;
   }
@@ -2333,6 +2337,13 @@ export const customStyles = css.global`
     display: none;
   }
 
+  .gbg-mt-3 {
+    margin-top: -16px;
+    border: 0;
+    padding-top: 100px;
+    padding-bottom: 30px;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -2342,6 +2353,10 @@ export const customStyles = css.global`
 
     .pl-custom {
       padding-left: 0px;
+    }
+
+    .gbg-mt-3 {
+      padding-top: 20px;
     }
 
     .banner-image-desktop.banner-image-mobile-bg {
@@ -2933,7 +2948,7 @@ export const customStyles = css.global`
     }
   }
   @media (min-width: 1182px) and (max-width: 1400px) {
-    .trek_card  {
+    .trek_card {
       min-height: 485px;
     }
 
@@ -2953,7 +2968,7 @@ export const customStyles = css.global`
   }
 
   @media (min-width: 1000px) and (max-width: 1182px) {
-    .trek_card  {
+    .trek_card {
       min-height: 485px;
     }
 
