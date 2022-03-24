@@ -111,7 +111,7 @@ const AcceptTC = ({
       <>
         <p key={i} className="p-text-4 m-0">
           <span>{i + 1}.</span>{" "}
-          <span className="px-2">{data.ec_heading[0].text}</span>
+          <span className="px-2">{data?.ec_heading && data?.ec_heading.length > 0 ?data?.ec_heading[0].text : ''}</span>
         </p>
       </>
     );
@@ -131,7 +131,7 @@ const AcceptTC = ({
       <>
         <div key={i} className="col-lg-12 col-md-12">
           <p className="p-text-2 mb-2 text-brown-shade">
-            {i + 1}. {data.ec_heading[0].text}
+            {i + 1}. {data?.ec_heading && data?.ec_heading.length > 0 ? data.ec_heading[0].text : ''}
           </p>
           {ec_desc}
         </div>
