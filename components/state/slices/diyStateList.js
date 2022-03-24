@@ -50,6 +50,15 @@ const DiyStateList = ({ slice }) => {
           <div className="hvr-grow cursor-pointer">
             <Link href={url ? url : "#"}>
               <div className="card_sec">
+                <span className="trek_status">
+                  {data?.data?.categories.match(/Easy/g)
+                    ? "Easy"
+                    : data?.data?.categories.match(/Moderate/g)
+                    ? "Moderate"
+                    : data?.data?.categories.match(/Difficult/g)
+                    ? "Difficult"
+                    : ""}
+                </span>
                 <div className="card trek_card">
                   <div alt="imgs" className="best_treks_images">
                     <div className="bg_overlay_trek_image_bg h-100">

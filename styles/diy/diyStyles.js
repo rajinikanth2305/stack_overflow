@@ -319,8 +319,9 @@ export const diyStyles = css.global`
   .btn-bihtn-yellow {
     background: rgba(255, 193, 0, 1);
     border: 0;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
     padding: 3px 30px !important;
-    border-radius: 0;
+    border-radius: 3px;
     line-height: 24px;
     text-align: center;
     font-family: Franklin Gothic Medium;
@@ -328,7 +329,7 @@ export const diyStyles = css.global`
     font-weight: normal;
     font-size: 16px;
     color: #000000;
-    text-transform: uppercase;
+    text-transform: none;
   }
 
   .slick-prev::before,
@@ -565,13 +566,27 @@ export const diyStyles = css.global`
     -webkit-transition-property: transform;
     transition-property: transform;
   }
-  .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+  .hvr-grow:hover,
+  .hvr-grow:focus,
+  .hvr-grow:active {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }
 
   .cursor-pointer {
     cursor: pointer;
+  }
+
+  .trek_status {
+    background: #000000;
+    color: #ffffff;
+    font-family: Franklin Gothic Medium;
+    padding: 0 5px 3px 5px;
+    position: absolute;
+    z-index: 99;
+    top: -4px;
+    left: 1px;
+    box-shadow: 1px 1px 1px #242424;
   }
 
   @media only screen and (max-width: 660px) {
