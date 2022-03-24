@@ -452,7 +452,7 @@ const Offloading = forwardRef((props, ref) => {
               <div>
               
                   <button
-                    className="btn table-btn-blue-sm"  disabled={!showSaveButton}
+                    className="btn table-btn-blue-sm hvr-grow"  disabled={!showSaveButton}
                     onClick={e => navigateTo()}
                   >
                     <span className="px-2">pay offloading fee</span>

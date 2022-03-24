@@ -325,11 +325,11 @@ const UserMP = () => {
                               </div>
 
                               <div className="d-flex align-items-center justify-content-end mt-4 mb-3">
-                                <button className="btn btn-bihtn-yellow text-capitalize">
+                                <button className="btn btn-bihtn-yellow text-capitalize hvr-grow">
                                   Modify
                                 </button>
                                 <div className="mx-4" />
-                                <button className="btn btn-ih-green">
+                                <button className="btn btn-ih-green hvr-grow">
                                   Save changes
                                 </button>
                               </div>
@@ -728,12 +728,12 @@ const UserMP = () => {
                                 </div>
 
                                 <div className="d-flex align-items-center justify-content-end mt-4 mb-3">
-                                  <button className="btn btn-bihtn-yellow text-capitalize">
+                                  <button className="btn btn-bihtn-yellow text-capitalize hvr-grow">
                                     Modify
                                   </button>
                                   <div className="mx-4" />
                                   <button
-                                    className="btn btn-ih-green"
+                                    className="btn btn-ih-green hvr-grow"
                                     type="submit"
                                   >
                                     Save changes

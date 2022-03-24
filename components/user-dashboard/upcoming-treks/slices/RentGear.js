@@ -156,7 +156,7 @@ const RentGear = forwardRef((props, ref) => {
               </>
             </p>
             <div className="d-flex justify-content-end">
-              <span className="btn table-btn-yellow">
+              <span className="btn table-btn-yellow hvr-grow">
                 <a href="https://store.indiahikes.com" target="new">
                   Rent gear
                 </a>

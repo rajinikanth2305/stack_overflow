@@ -647,6 +647,10 @@ export const customStyles = css.global`
     text-transform: capitalize;
   }
 
+  .btn-ih-green:hover {
+    color: #ffffff;
+  }
+
   .slick-prev::before,
   .slick-next::before {
     color: #707070;
@@ -905,6 +909,10 @@ export const customStyles = css.global`
     padding: 0 40px;
   }
 
+  .table-btn-maroon:hover {
+    color: #ffffff;
+  }
+
   .table-btn-maroon-lg {
     background: rgba(157, 58, 11, 1);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.353);
@@ -948,6 +956,10 @@ export const customStyles = css.global`
     color: rgba(255, 255, 255, 1);
     text-transform: capitalize;
     padding: 0 20px;
+  }
+
+  .table-btn-green:hover {
+    color: #ffffff;
   }
 
   .table-btn-yellow {
@@ -994,6 +1006,10 @@ export const customStyles = css.global`
     padding: 0 10px;
   }
 
+  .table-btn-green-sm:hover {
+    color: #ffffff;
+  }
+
   .table-btn-yellow-sm {
     background: rgba(255, 193, 0, 1);
     border-radius: 0;
@@ -1021,6 +1037,10 @@ export const customStyles = css.global`
     color: rgba(255, 255, 255, 1);
     text-transform: capitalize;
     padding: 0 10px;
+  }
+
+  .table-btn-blue-sm:hover {
+    color: #ffffff;
   }
 
   .register-form-box {
@@ -1112,6 +1132,10 @@ export const customStyles = css.global`
     margin-bottom: 10px;
   }
 
+  .menu-title-bg > p {
+    white-space: nowrap;
+  }
+
   .right-menu-dashboard > ul > li {
     cursor: pointer;
     list-style: none;
@@ -1152,7 +1176,7 @@ export const customStyles = css.global`
     box-shadow: 1px 1px 3px rgba(112, 112, 112, 1);
     margin-right: 10px;
     border-radius: 2px;
-    padding: 5px 50px;
+    padding: 5px 0px;
     line-height: 20px;
     text-align: center;
     font-family: Franklin Gothic;

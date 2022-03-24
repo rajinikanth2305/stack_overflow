@@ -328,7 +328,7 @@ fillPrismicContents(result);
                 </div>
                 <div>
                 {bookingState && (
-                  <button type="submit" className="btn table-btn-blue-sm">
+                  <button type="submit" className="btn table-btn-blue-sm hvr-grow">
                     <span className="px-2">Save details</span>
                   </button>
                 )}

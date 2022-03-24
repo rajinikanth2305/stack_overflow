@@ -14,7 +14,7 @@ const RentGear = () => {
           aliquip ex ea commodo consequa
         </p>
         <div className="d-flex justify-content-end">
-          <button className="btn table-btn-yellow">Rent gear</button>
+          <button className="btn table-btn-yellow hvr-grow">Rent gear</button>
         </div>
       </div>
     </>

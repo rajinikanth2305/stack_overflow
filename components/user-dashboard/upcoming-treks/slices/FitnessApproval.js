@@ -26,6 +26,8 @@ const FitnessApproval = forwardRef((props, ref) => {
   const [participantData, setParticipantData] = React.useState([]);
   const [render, setRender] = useState(false);
   const [showContents, setShowContents] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [isActive, setActive] = useState(false);
   const faqData = props.data.data.body.find(
     x => x.slice_type === "faq_about_trek"
   );
@@ -39,22 +41,23 @@ const FitnessApproval = forwardRef((props, ref) => {
       <div className="col-md-6" key={k}>
         <Card>
           <Card.Header>
-            <Accordion.Toggle variant="link" eventKey={k + 1}>
-              <div className="d-flex align-items-center">
-                <div className="flex-grow-1">
-                  {data.question_heading[0].text}
-                </div>
-                <div>
-                  <div>
-                    <h2 className="m-0 expand_plus">+</h2>
-                  </div>
-                </div>
-              </div>
+            <Accordion.Toggle
+              variant="link"
+              eventKey={k + 1}
+              className={activeIndex && activeIndex === k + 1 ? "show" : ""}
+              onClick={() => {
+                setActiveIndex(k + 1);
+                setActive(!isActive);
+              }}
+            >
+              {data?.question_heading[0]?.text}
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>
-              <p className="p-text-4">{data.answer_content[0].text}</p>
+              <div className="p-text-4 img-ctrl">
+                {RichText.render(data?.answer_content)}
+              </div>
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -260,9 +263,18 @@ const FitnessApproval = forwardRef((props, ref) => {
                   invalidFileSizeMessageDetail="Maximum 10 MB file(s) are allowed to upload"
                 />
                 <div className="p-text-small-brown mt-2">
-                  <p className="mb-1">1. The offloaded backpack cannot weigh more than 9 kilos.</p>
-                  <p className="mb-1">2. We do not allow suitcases or duffel bags in the offloading. We only allow trekking backpacks.</p>
-                  <p className="mb-1">3. You will need a smaller daypack to keep your water bottles, medical kit and rainwear along with you while trekking.</p>
+                  <p className="mb-1">
+                    1. The offloaded backpack cannot weigh more than 9 kilos.
+                  </p>
+                  <p className="mb-1">
+                    2. We do not allow suitcases or duffel bags in the
+                    offloading. We only allow trekking backpacks.
+                  </p>
+                  <p className="mb-1">
+                    3. You will need a smaller daypack to keep your water
+                    bottles, medical kit and rainwear along with you while
+                    trekking.
+                  </p>
                 </div>
               </div>
             </div>

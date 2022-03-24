@@ -109,7 +109,7 @@ const MyTreks = () => {
             <p className="m-0 p-text-small-blue px-3">changes saved</p>
           </div>
           <div>
-            <button className="btn table-btn-blue-sm">
+            <button className="btn table-btn-blue-sm hvr-grow">
               <span className="px-2">Save details</span>
             </button>
           </div>

@@ -331,11 +331,9 @@ const goBack =() =>{
             <div className="row">
               <div className="col-lg-8 col-md-12">
                 <div>
-                <button className="btn table-btn-blue-sm"  onClick={e => goBack()}>
+                <button className="btn table-btn-blue-sm mb-3"  onClick={e => goBack()}>
                   <span className="px-2">Go Back</span>
                 </button>
-                   <br></br>
-
                   <h5 className="p-text-3-fg b-left-blue-3px mb-3">
                     * Backpack Offloading
                   </h5>
@@ -397,7 +395,7 @@ const goBack =() =>{
                             <td>
                               <div className="d-flex alifn-items-center">
                                 <div>
-                                <FormGroup className="reg-dropdown mp-dropdown">
+                                <FormGroup className="ud-dropwon-1">
                                     <Controller
                                       name={`${fieldName}.appliedVoucher`}
                                       control={control}
