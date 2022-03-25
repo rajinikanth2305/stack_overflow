@@ -502,7 +502,7 @@ async function fetchDocsWithFilter(page = 1, document_type,routes = []) {
     return fetchDocsWithFilter(page + 1, document_type,allRoutes);
   }
   return [...new Set(allRoutes)];
-};
+}
 
 
 
