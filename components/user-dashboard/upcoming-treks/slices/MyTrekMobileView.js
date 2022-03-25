@@ -62,7 +62,7 @@ const MyTrekMobileView = forwardRef((props, ref) => {
     return;
  }
 
-
+ setRender(false);
  const data=trekData?.data;
  /// Get the prismic trek contents
 const trekName = data.backOfficeTrekLabel.replaceAll(" ", "-").toLowerCase();
@@ -71,7 +71,7 @@ const result=trekData.prismicContents?.results?.find(x=>x.uid.toLowerCase()===tr
 // console.log(result);
 setTrekPageData(result);
 
-fillPrismicContents(result);
+      fillPrismicContents(result);
       const trekId = data.trekId;
       const bookState= data.bookingState==="COMPLETED";
       // console.log( data );
@@ -263,7 +263,7 @@ fillPrismicContents(result);
                                       optionLabel="name"
                                       optionValue="locationId"
                                       options={pickupLocations}
-                                      value={value}
+                                      value={(value==null || value==undefined) ? currentPickupLocation : value}
                                       onChange={e => {
                                         onChange(e.value);
                                       }}
@@ -295,12 +295,12 @@ fillPrismicContents(result);
                                     <Dropdown
                                       optionLabel="name"
                                       optionValue="locationId"
-                                      value={value}
+                                      value={(value==null || value==undefined) ? currentDropLocation : value}
                                       options={dropLocations}
                                       onChange={e => {
                                         onChange(e.value);
                                       }}
-                                      placeholder="Select a Pickup locations "
+                                      placeholder="Select a Drop Off location"
                                     />
                                   )}
                                 />
