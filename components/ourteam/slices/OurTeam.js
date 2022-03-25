@@ -48,12 +48,16 @@ const OurTeam = () => {
                 setShow(true);
               }}
             >
-             {mem?.member_photo?.url ? <Image
-                src={mem?.member_photo?.url}
-                layout="fill"
-                objectFit="cover"
-                objectPosition="top"
-             /> : <img src="./ip.png" className="founder_image" /> }
+              {mem?.member_photo?.url ? (
+                <Image
+                  src={mem?.member_photo?.url}
+                  layout="fill"
+                  objectFit="contain"
+                  objectPosition="top"
+                />
+              ) : (
+                <img src="./ip.png" className="founder_image" />
+              )}
             </div>
             <p className="p-text-2-franklin text-center mb-0 pt-2">
               {mem?.name[0]?.text}
@@ -117,7 +121,7 @@ const OurTeam = () => {
                 <Image
                   src={memnerInfo && memnerInfo?.member_photo?.url}
                   layout="fill"
-                  objectFit="cover"
+                  objectFit="contain"
                   objectPosition="top"
                 />
               </div>
@@ -135,36 +139,42 @@ const OurTeam = () => {
             {RichText.render(memnerInfo && memnerInfo?.short_info)}
           </div>
           <div className="d-flex align-items-center mb-2">
-            <div className="flex-grow-1">
-              <p className="p-text-4 m-0">
-                <b>{RichText.asText(memnerInfo && memnerInfo?.email_id)}</b>
-              </p>
-            </div>
-            <div>
-              <a
-                href={
-                  memnerInfo && memnerInfo?.insta_link?.url
-                    ? memnerInfo?.insta_link?.url
-                    : "#"
-                }
-                target="_blank"
-              >
-                <img src="./insta_sm.png" />
-              </a>
-            </div>
+            {memnerInfo && memnerInfo?.short_info && (
+              <div className="flex-grow-1">
+                <p className="p-text-4 m-0">
+                  <b>{RichText.asText(memnerInfo && memnerInfo?.email_id)}</b>
+                </p>
+              </div>
+            )}
+            {memnerInfo && memnerInfo?.insta_link?.url && (
+              <div>
+                <a
+                  href={
+                    memnerInfo && memnerInfo?.insta_link?.url
+                      ? memnerInfo?.insta_link?.url
+                      : "#"
+                  }
+                  target="_blank"
+                >
+                  <img src="./insta_sm.png" />
+                </a>
+              </div>
+            )}
             <div className="mx-1"></div>
-            <div>
-              <a
-                href={
-                  memnerInfo && memnerInfo?.linkedin_link?.url
-                    ? memnerInfo?.linkedin_link?.url
-                    : "#"
-                }
-                target="_blank"
-              >
-                <img src="./in_sm.png" />
-              </a>
-            </div>
+            {memnerInfo && memnerInfo?.linkedin_link?.url && (
+              <div>
+                <a
+                  href={
+                    memnerInfo && memnerInfo?.linkedin_link?.url
+                      ? memnerInfo?.linkedin_link?.url
+                      : "#"
+                  }
+                  target="_blank"
+                >
+                  <img src="./in_sm.png" />
+                </a>
+              </div>
+            )}
           </div>
         </Modal.Body>
       </Modal>
