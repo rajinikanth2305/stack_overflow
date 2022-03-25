@@ -276,6 +276,7 @@ const UpComingTreks = ({ slice }) => {
                         <option>Summer</option>
                         <option>Autumn</option>
                         <option>Rainy</option>
+                        <option>Spring</option>
                       </select>
                     </div>
 
@@ -286,7 +287,6 @@ const UpComingTreks = ({ slice }) => {
                         id="exampleFormControlSelect1"
                         ref={difficulty}
                       >
-                        <option>Difficulty</option>
                         <option>Beginner</option>
                         <option>Moderate</option>
                         <option>Difficult</option>
