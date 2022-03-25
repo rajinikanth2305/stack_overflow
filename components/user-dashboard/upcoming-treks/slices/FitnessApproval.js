@@ -180,8 +180,8 @@ const FitnessApproval = forwardRef((props, ref) => {
                   <table className="table table-dashboard-profile-style-1">
                     <thead>
                       <tr className="header-bg">
-                        <th className="w-20per">participants</th>
-                        <th className="w-20per">fitness status</th>
+                        <th className="w-20per">Participants</th>
+                        <th className="w-20per">Fitness status</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -249,7 +249,7 @@ const FitnessApproval = forwardRef((props, ref) => {
               </div>
               <div className="col-lg-7 col-md-12">
                 <div>
-                  <p>Upload the screenshots of your runs here.</p>
+                  <p className="p-text-4">Upload the screenshots of your runs here.</p>
                 </div>
                 <FileUpload
                   name="demo[]"
@@ -264,30 +264,37 @@ const FitnessApproval = forwardRef((props, ref) => {
                 />
                 <div className="p-text-small-brown mt-2">
                   <p className="mb-1">
-                    1. The offloaded backpack cannot weigh more than 9 kilos.
+                    <strong>Here is what you have to do:</strong>
                   </p>
                   <p className="mb-1">
-                    2. We do not allow suitcases or duffel bags in the
-                    offloading. We only allow trekking backpacks.
+                    1. Install a Nike/Strava running app on your phone.
                   </p>
                   <p className="mb-1">
-                    3. You will need a smaller daypack to keep your water
-                    bottles, medical kit and rainwear along with you while
-                    trekking.
+                    2. Record the run on the app and upload the screenshots on
+                    your dashboard.
+                  </p>
+                  <p className="mb-1">
+                    3. Take screenshot of the summary of your run of one month.
+                    We will need a detailed split of each kilometer of your run.
+                    This is usually integrated into all running apps
+                  </p>
+                  <p className="mb-1">
+                    You need to upload these two screenshots 15 days before the
+                    start of the trek.
                   </p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-4">
+          {/* <div className="mt-4">
             <h5 className="p-text-3-fg b-left-blue-3px mb-4">
               {RichText.asText(faqHeading)}
             </h5>
             <Accordion defaultActiveKey="0" className="reg-acc-tabs">
               <div className="row">{faqArrayDetails}</div>
             </Accordion>
-          </div>
+          </div> */}
         </div>
       ) : (
         <p className="p-text-4 mb-0">

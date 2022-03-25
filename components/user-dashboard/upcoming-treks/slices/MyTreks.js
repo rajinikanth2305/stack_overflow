@@ -458,7 +458,7 @@ const MyTreks = forwardRef((props, ref) => {
             </div>
           </div>
 
-          <div>
+          {/* <div>
             <div>
               <h5 className="p-text-3-fg b-left-blue-3px">
                 {
@@ -468,7 +468,7 @@ const MyTreks = forwardRef((props, ref) => {
                 <Slider {...settings}>{trekVideosArrayDetails}</Slider>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       )}
       <Modal size="lg" show={show} onHide={handleClose} animation={false}>

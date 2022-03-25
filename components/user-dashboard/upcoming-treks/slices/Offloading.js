@@ -92,34 +92,33 @@ const Offloading = forwardRef((props, ref) => {
             x => x.participantId === pdata.participantId
           );
 
-            if(pdata?.bookingParticipantState !== "CANCELLED" ) {
-
-          offLoadingList.push({
-            id: pdata.participantId,
-            name:
-              pdata?.userDetailsForDisplay.email === data.email
-                ? " * " +
-                  pdata?.userDetailsForDisplay.firstName +
-                  pdata?.userDetailsForDisplay.lastName +
-                  " (You) "
-                : pdata?.userDetailsForDisplay.firstName +
-                  pdata?.userDetailsForDisplay.lastName,
-            //voucher: vouchers,
-            offloadingFee: offLoadingFee,
-            youPay: offLoadingFee,
-            offloadingStatus: "",
-            optedVoucherId: "",
-            voucherAmount: 0,
-            voucherId: "",
-            selected: false,
-            email: pdata?.userDetailsForDisplay.email,
-            offloadingParticipantStatus:
-              offloadUser == undefined || false
-                ? "N/A"
-                : offloadUser.offloadingState,
-            bookingParticipantState: pdata?.bookingParticipantState
-          });
-           }
+          if (pdata?.bookingParticipantState !== "CANCELLED") {
+            offLoadingList.push({
+              id: pdata.participantId,
+              name:
+                pdata?.userDetailsForDisplay.email === data.email
+                  ? " * " +
+                    pdata?.userDetailsForDisplay.firstName +
+                    pdata?.userDetailsForDisplay.lastName +
+                    " (You) "
+                  : pdata?.userDetailsForDisplay.firstName +
+                    pdata?.userDetailsForDisplay.lastName,
+              //voucher: vouchers,
+              offloadingFee: offLoadingFee,
+              youPay: offLoadingFee,
+              offloadingStatus: "",
+              optedVoucherId: "",
+              voucherAmount: 0,
+              voucherId: "",
+              selected: false,
+              email: pdata?.userDetailsForDisplay.email,
+              offloadingParticipantStatus:
+                offloadUser == undefined || false
+                  ? "N/A"
+                  : offloadUser.offloadingState,
+              bookingParticipantState: pdata?.bookingParticipantState
+            });
+          }
         });
         setOffLoadings(offLoadingList);
         // console.log(offLoadingList);
@@ -275,13 +274,10 @@ const Offloading = forwardRef((props, ref) => {
             Backpack Offloading
           </h5>
           <p className="col-md-8 p-text-4">
-            Please note: We don't usually encourage offloading of backpacks.
-            These backpacks are carried by mules or porters. Having too many
-            extra resources on a trail isn't good for the eco system. Besides,
-            when you complete a trek by carrying your own backpack, the
-            self-sufficient and confidence that you get at the end of the trek
-            is incomparable! So avoid offloading your backpack. Unless of course
-            you have a genuine issue, I'll understand if you want to offload it.
+            We don't encourage offloading of backpacks. These backpacks are
+            carried by mules or porters. Having too many extra resources on a
+            trail isn't good for the eco system. Unless you have a genuine
+            issue, avoid offloading your backpack.
           </p>
           <div className="d-flex justify-content-between p-text-3-fg-book">
             <div>
@@ -317,11 +313,11 @@ const Offloading = forwardRef((props, ref) => {
               <thead>
                 <tr className="header-bg">
                   <th className="w-20per">Select</th>
-                  <th className="w-20per">participants</th>
+                  <th className="w-20per">Participants</th>
                   {/*<th className="w-20per">Applicable Voucher</th>*/}
-                  <th className="w-15per">Offloading Fee</th>
-                  <th className="w-15per">You Pay</th>
-                  <th className="w-15per">offloading status</th>
+                  <th className="w-15per">Offloading fee</th>
+                  <th className="w-15per">You pay</th>
+                  <th className="w-15per">Offloading status</th>
                 </tr>
               </thead>
               <tbody>
@@ -450,14 +446,13 @@ const Offloading = forwardRef((props, ref) => {
                 <p className="m-0 p-text-small-brown">* Primary participant</p>
               </div>
               <div>
-              
-                  <button
-                    className="btn table-btn-blue-sm hvr-grow"  disabled={!showSaveButton}
-                    onClick={e => navigateTo()}
-                  >
-                    <span className="px-2">pay offloading fee</span>
-                  </button>
-               
+                <button
+                  className="btn table-btn-blue-sm hvr-grow"
+                  disabled={!showSaveButton}
+                  onClick={e => navigateTo()}
+                >
+                  <span className="px-2">Pay offloading fee</span>
+                </button>
               </div>
             </div>
           </div>

@@ -1,19 +1,22 @@
-import React, {useRef, useState} from "react";
+import React, { useRef, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Link from "next/link";
 import auth from "../../../../services/Authenticate";
 import {
-  getLoggedInUserDetails, getUserIdProof,
-  saveMyProfile, uploadUserFitness, uploadUserIdProof
+  getLoggedInUserDetails,
+  getUserIdProof,
+  saveMyProfile,
+  uploadUserFitness,
+  uploadUserIdProof
 } from "../../../../services/queries";
 import { useForm, Controller } from "react-hook-form";
-import {FileUpload} from "primereact/fileupload";
+import { FileUpload } from "primereact/fileupload";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { Toast } from "primereact/toast";
-import {Image} from "react-bootstrap";
+import { Image } from "react-bootstrap";
 
 const UserMP = () => {
   const [show, setShow] = useState(false);
@@ -66,13 +69,13 @@ const UserMP = () => {
         );
       });
 
-      getUserIdProof(true).then(data => setFrontImage(data)).catch(error => console.log(error));
-      getUserIdProof(false).then(data => setBackImage(data)).catch(error => console.log(error));
-
+      getUserIdProof(true)
+        .then(data => setFrontImage(data))
+        .catch(error => console.log(error));
+      getUserIdProof(false)
+        .then(data => setBackImage(data))
+        .catch(error => console.log(error));
     });
-
-
-
   }, []);
 
   const onLogout = () => {
@@ -123,17 +126,17 @@ const UserMP = () => {
     event.files.map(file => {
       const formData = new FormData();
       formData.append("file", file);
-      uploadUserIdProof(formData, fileId === 'frontImage').then(() => {
+      uploadUserIdProof(formData, fileId === "frontImage").then(() => {
         toast.current.show({
           severity: "info",
           summary: `'Id proof uploaded successfully'`,
           detail: "Id Proof"
         });
-        getUserIdProof(fileId === 'frontImage').then(data => fileId === 'frontImage' ? setFrontImage(data) : setBackImage(data));
+        getUserIdProof(fileId === "frontImage").then(data =>
+          fileId === "frontImage" ? setFrontImage(data) : setBackImage(data)
+        );
       });
     });
-
-
   };
 
   return (
@@ -151,10 +154,7 @@ const UserMP = () => {
                       Hi {user.displayName}
                     </p>
                     <p className="col-md-8 p-text-4 mt-2 mb-5">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequa
+                      Update your personal information here.
                     </p>
 
                     <div style={{ display: "none" }}>
@@ -760,25 +760,28 @@ const UserMP = () => {
                                     Front of Id card
                                   </label>
                                   <div className="row">
-                                      {frontImage &&(
-                                    <div className="col-lg-12 col-md-12 col-12">
-                                      <Image src={URL.createObjectURL(frontImage)}
-                                             alt="Image" width="250" preview />
-
-                                    </div>
-                                          )}
+                                    {frontImage && (
+                                      <div className="col-lg-12 col-md-12 col-12">
+                                        <Image
+                                          src={URL.createObjectURL(frontImage)}
+                                          alt="Image"
+                                          className="id-card-img"
+                                          preview
+                                        />
+                                      </div>
+                                    )}
                                     <div className="col-lg-12 col-md-12 col-12">
                                       <FileUpload
-                                          id="frontImage"
-                                          name="frontImage"
-                                          customUpload={true}
-                                          chooseOptions={chooseOptions}
-                                          uploadOptions={uploadOptions}
-                                          cancelOptions={cancelOptions}
-                                          uploadHandler={myUploader}
-                                          maxFileSize="10000000"
-                                          accept="image/*"
-                                          invalidFileSizeMessageDetail="Maximum 10 MB file(s) are allowed to upload"
+                                        id="frontImage"
+                                        name="frontImage"
+                                        customUpload={true}
+                                        chooseOptions={chooseOptions}
+                                        uploadOptions={uploadOptions}
+                                        cancelOptions={cancelOptions}
+                                        uploadHandler={myUploader}
+                                        maxFileSize="10000000"
+                                        accept="image/*"
+                                        invalidFileSizeMessageDetail="Maximum 10 MB file(s) are allowed to upload"
                                       />
                                     </div>
                                   </div>
@@ -796,24 +799,28 @@ const UserMP = () => {
                                     Back of Id card
                                   </label>
                                   <div className="row">
-                                      {backImage &&(
+                                    {backImage && (
                                       <div className="col-lg-12 col-md-12 col-12">
-                                          <Image src={URL.createObjectURL(backImage)}
-                                                 alt="Image" width="250" preview />
-
-                                      </div>)}
+                                        <Image
+                                          src={URL.createObjectURL(backImage)}
+                                          alt="Image"
+                                          className="id-card-img"
+                                          preview
+                                        />
+                                      </div>
+                                    )}
                                     <div className="col-lg-12 col-md-12 col-12">
                                       <FileUpload
-                                          id="backImage"
-                                          name="backImage"
-                                          customUpload={true}
-                                          chooseOptions={chooseOptions}
-                                          uploadOptions={uploadOptions}
-                                          cancelOptions={cancelOptions}
-                                          uploadHandler={myUploader}
-                                          maxFileSize="10000000"
-                                          accept="image/*"
-                                          invalidFileSizeMessageDetail="Maximum 10 MB file(s) are allowed to upload"
+                                        id="backImage"
+                                        name="backImage"
+                                        customUpload={true}
+                                        chooseOptions={chooseOptions}
+                                        uploadOptions={uploadOptions}
+                                        cancelOptions={cancelOptions}
+                                        uploadHandler={myUploader}
+                                        maxFileSize="10000000"
+                                        accept="image/*"
+                                        invalidFileSizeMessageDetail="Maximum 10 MB file(s) are allowed to upload"
                                       />
                                     </div>
                                   </div>

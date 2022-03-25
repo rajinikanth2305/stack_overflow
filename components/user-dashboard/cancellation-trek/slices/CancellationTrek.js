@@ -334,7 +334,7 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                         <p>Trek Name</p>
                         <p>date of booking</p>
                         <p>date of cancellation</p>
-                        <p>cancellation policy applicable</p>
+                        {/* <p>cancellation policy applicable</p> */}
                       </div>
                       <div className="mx-3 col-8 m-l-border px-3">
                         
@@ -346,12 +346,12 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                         <p>{bookings?.trekName}</p>
                         <p>{moment(bookings?.startDate).format("DD MMM YYYY")}</p>
                         <p>{moment(bookings?.endDate).format("DD MMM YYYY")}</p>
-                        <p>
+                        {/* <p>
                           Cancellation 30 days before the starting date of the
                           Trek — Get your full  fee back in an Indiahikes
                           Voucher OR get a monetary refund with 15%
                           cancellation charges.
-                        </p>
+                        </p> */}
                       </div>
                     </div>
 
@@ -483,11 +483,7 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                         Trek Cancellation terms and conditions
                       </h5>
                       <p className="p-text-3-fg-book px-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequa
+                        <a href="https://indiahikes.com/cancellation-policy/" target="_blank">Read our cancellation policy here</a>
                       </p>
                     </div>
                   </div>

@@ -146,13 +146,9 @@ const RentGear = forwardRef((props, ref) => {
               <>
                 Why buy when you can rent?
                 <br />
-                Trekking in the Himalayas needs quality trekking equipment. You
-                cannot trek with substandard gear. But premium gear does not
-                come cheap. <br />
-                This is why we have started renting gear at Indiahikes. We have
-                introduced high-quality gear at very low rates for more and more
-                people to rent. We strongly believe this will help people spend
-                less and trek more.
+                We have introduced high-quality gear at very low rates for more
+                and more people to rent. We strongly believe this will help
+                people spend less and trek more.
               </>
             </p>
             <div className="d-flex justify-content-end">
@@ -254,7 +250,7 @@ const RentGear = forwardRef((props, ref) => {
           ) : (
             <p className="p-text-4 mb-0">
               <strong>
-                Rent Gear information is not found for this Trek name and Date
+                {/* Rent Gear information is not found for this Trek name and Date */}
               </strong>
             </p>
           )}

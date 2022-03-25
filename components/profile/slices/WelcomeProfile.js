@@ -211,7 +211,7 @@ const WelcomeProfile = () => {
                                     <div>
                                       <button className="btn table-btn-blue mx-3">
                                         <span className="px-2">
-                                          add participants
+                                          Add participants
                                         </span>
                                       </button>
                                       <button className="btn table-btn-green-lg">

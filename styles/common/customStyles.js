@@ -551,7 +551,7 @@ export const customStyles = css.global`
     font-family: Franklin Gothic Book;
     font-style: italic;
     font-weight: normal;
-    font-size: 10px;
+    font-size: 12px;
     color: rgba(157, 58, 11, 1);
     text-transform: none;
   }

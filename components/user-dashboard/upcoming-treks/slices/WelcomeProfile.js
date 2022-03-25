@@ -428,12 +428,13 @@ const WelcomeProfile = () => {
                         <p className="p-text-1 font-weight-bold">
                           Welcome To Your Indiahikes Trek Dashboard!
                         </p>
-                        <p className="col-md-8 p-text-4">This is
-                          your one stop for any changes or additions you want to
-                          make to your trek. You can update your profile, make
-                          payments to offload your backpack, update your travel
-                          and emergency contact details, upload your fitness
-                          proof, view your trek history or cancel your trek.
+                        <p className="col-md-8 p-text-4">
+                          This is your one stop for any changes or additions you
+                          want to make to your trek. You can update your
+                          profile, make payments to offload your backpack,
+                          update your travel and emergency contact details,
+                          upload your fitness proof, view your trek history or
+                          cancel your trek.
                         </p>
                       </div>
 
@@ -902,7 +903,7 @@ const WelcomeProfile = () => {
                                                       }
                                                     >
                                                       <span className="px-2">
-                                                        add participants
+                                                        Add participants
                                                       </span>
                                                     </button>
                                                     <button
