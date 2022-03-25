@@ -569,7 +569,7 @@ const renderFooter = (name) => {
               <div className="p-3">
                 <p className="p-text-1 text-center">
                   <span className="border-bottom-custom-1 pb-2">
-                    <b>add Participants</b>
+                    <b>Add Participants</b>
                   </span>
                 </p>
                 <p className="p-text-4 text-center mb-0">
@@ -842,7 +842,7 @@ const renderFooter = (name) => {
                           type="submit"
                           className="btn btn-yellow-outline"
                         >
-                          create account
+                          Create account
                         </button>
                        
                       </div>
@@ -859,10 +859,10 @@ const renderFooter = (name) => {
             <div className="mt-5 mb-3">
               <button
                 type="button"
-                className="btn btn-ih-green py-2"
+                className="btn btn-ih-green hvr-grow py-2"
                 onClick={nextTabNav}
               >
-                proceed to next step of registration
+                Proceed to next step of registration
               </button>
             </div>
           </div>
@@ -872,10 +872,10 @@ const renderFooter = (name) => {
             <div className="mt-5 mb-3">
               <button
                   type="button"
-                  className="btn btn-ih-green py-2"
+                  className="btn btn-ih-green hvr-grow py-2"
                   onClick={waitingListConfirmation}
               >
-                proceed to waiting list registration
+                Proceed to waiting list registration
               </button>
             </div>
           </div>

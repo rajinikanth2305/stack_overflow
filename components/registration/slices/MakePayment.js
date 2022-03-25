@@ -347,10 +347,10 @@ const MakePayment = forwardRef((props, ref) => {
                 <table className="table table-secondar-main">
                   <thead>
                     <tr className="header-bg">
-                      <th>trek name</th>
+                      <th>Trek name</th>
                       <th>Date</th>
-                      <th>difficulty</th>
-                      <th>trekkers</th>
+                      <th>Difficulty</th>
+                      <th>Trekkers</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -372,13 +372,13 @@ const MakePayment = forwardRef((props, ref) => {
                 <table className="table table-bordered table-sm">
                   <tbody>
                     <tr>
-                      <td className="reg-mp-mob-table-td">trek name</td>
+                      <td className="reg-mp-mob-table-td">Trek name</td>
                       <td className="reg-mp-mob-table-td-1">
                         {bookingInformation?.trekName}
                       </td>
                     </tr>
                     <tr>
-                      <td className="reg-mp-mob-table-td">batch dates</td>
+                      <td className="reg-mp-mob-table-td">Batch dates</td>
                       <td className="reg-mp-mob-table-td-1">
                         {/* {moment(bookingInformation?.startDate).format(
                           "MM/DD/YYYY"
@@ -392,13 +392,13 @@ const MakePayment = forwardRef((props, ref) => {
                       </td>
                     </tr>
                     <tr>
-                      <td className="reg-mp-mob-table-td">difficulty</td>
+                      <td className="reg-mp-mob-table-td">Difficulty</td>
                       <td className="reg-mp-mob-table-td-1">
                         Moderate-Difficult
                       </td>
                     </tr>
                     <tr>
-                      <td className="reg-mp-mob-table-td">trekkers</td>
+                      <td className="reg-mp-mob-table-td">Trekkers</td>
                       <td className="reg-mp-mob-table-td-1">
                         {bookingInformation?.trekkersCount} trekkers
                       </td>
@@ -416,10 +416,10 @@ const MakePayment = forwardRef((props, ref) => {
                 <table className="table table-secondar-main">
                   <thead>
                     <tr>
-                      <th>trekker</th>
+                      <th>Trekker</th>
                       <th>Applicable Voucher</th>
-                      <th>trek fee</th>
-                      <th>you pay</th>
+                      <th>Trek fee</th>
+                      <th>You pay</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -510,7 +510,7 @@ const MakePayment = forwardRef((props, ref) => {
                                 {vouchers.length > 0 && (
                                   <button
                                     type="button"
-                                    className="btn btn-bihtn-yellow-sm"
+                                    className="btn btn-bihtn-yellow-sm hvr-grow"
                                     onClick={e =>
                                       onVoucherApply(data.id, index)
                                     }
@@ -596,7 +596,7 @@ const MakePayment = forwardRef((props, ref) => {
                             {vouchers.length > 0 && (
                               <button
                                 type="button"
-                                className="btn btn-bihtn-yellow-sm"
+                                className="btn btn-bihtn-yellow-sm hvr-grow"
                                 onClick={e => onVoucherApply(data.id, index)}
                               >
                                 Apply
@@ -720,7 +720,7 @@ const MakePayment = forwardRef((props, ref) => {
                 <div className="mt-5 mb-3">
                   <button
                     type="button"
-                    className="btn btn-ih-green py-2"
+                    className="btn btn-ih-green hvr-grow py-2"
                     id="btnSubmit"
                     onClick={doPayment}
                   >

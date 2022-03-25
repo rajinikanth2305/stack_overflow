@@ -279,6 +279,7 @@ export const regStyle = css.global`
 
   .stepper-tabs > .nav.nav-tabs {
     display: flex;
+    flex-wrap: initial;
   }
 
   .stepper-tabs > .nav.nav-tabs > a.nav-item.nav-link {
@@ -469,6 +470,10 @@ export const regStyle = css.global`
     font-size: 18px;
     color: rgba(255, 255, 255, 1);
     text-transform: none;
+  }
+
+  .btn-ih-green:hover {
+    color: #ffffff;
   }
 
   .btn-yellow-outline {
@@ -970,6 +975,23 @@ export const regStyle = css.global`
     cursor: pointer;
   }
 
+  .hvr-grow {
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+  }
+  .hvr-grow:hover,
+  .hvr-grow:focus,
+  .hvr-grow:active {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
   @media only screen and (max-width: 660px) {
     .m-d-none {
       display: none;
@@ -988,21 +1010,31 @@ export const regStyle = css.global`
       line-height: 24px;
     }
 
-    .nav-item.nav-link.active:nth-child(1)::before,
-    .nav-item.nav-link.active:nth-child(2)::before,
-    .nav-item.nav-link.active:nth-child(3)::before,
-    .nav-item.nav-link.active:nth-child(4)::before,
-    .nav-item.nav-link.active:nth-child(5)::before {
-      margin-right: 0;
+    .stepper-tabs > .nav.nav-tabs {
+      overflow: scroll;
+      margin-bottom: 15px;
     }
 
-    .nav-item.nav-link:nth-child(1)::before,
-    .nav-item.nav-link:nth-child(2)::before,
-    .nav-item.nav-link:nth-child(3)::before,
-    .nav-item.nav-link:nth-child(4)::before,
-    .nav-item.nav-link:nth-child(5)::before {
-      margin-right: 0;
+    .stepper-tabs > nav > .nav-item.nav-link {
+      font-size: 12px;
+      white-space: nowrap;
     }
+
+    // .nav-item.nav-link.active:nth-child(1)::before,
+    // .nav-item.nav-link.active:nth-child(2)::before,
+    // .nav-item.nav-link.active:nth-child(3)::before,
+    // .nav-item.nav-link.active:nth-child(4)::before,
+    // .nav-item.nav-link.active:nth-child(5)::before {
+    //   margin-right: 0;
+    // }
+
+    // .nav-item.nav-link:nth-child(1)::before,
+    // .nav-item.nav-link:nth-child(2)::before,
+    // .nav-item.nav-link:nth-child(3)::before,
+    // .nav-item.nav-link:nth-child(4)::before,
+    // .nav-item.nav-link:nth-child(5)::before {
+    //   margin-right: 0;
+    // }
 
     .nav-item.nav-link {
       font-size: 12px;

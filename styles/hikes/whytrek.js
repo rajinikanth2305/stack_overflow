@@ -128,8 +128,8 @@ export const whyTrekWithStyles = css.global`
     }
 
     .pillar-card.card {
-      max-height: 250px;
-      min-height: 250px;
+      max-height: 300px;
+      min-height: 300px;
     }
   }
 

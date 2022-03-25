@@ -472,10 +472,10 @@ function daysBetween(startDate, endDate) {
             <div className="my-4 pt-2">
               <button
                 type="button"
-                className="btn btn-ih-green py-2"
+                className="btn btn-ih-green hvr-grow py-2"
                 onClick={nextTabNav}
               >
-                proceed to next step of registration
+                Proceed to next step of registration
               </button>
             </div>
           </div>

@@ -312,10 +312,14 @@ export const trekStyle = css.global`
     text-transform: none;
   }
 
+  .btn-ih-green:hover {
+    color: #ffffff;
+  }
+
   .btn-ptr {
     background: rgba(57, 114, 41, 1);
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
-    border-radius: 2px;
+    border-radius: 3px;
     border: 0;
     padding: 10px 30px;
     line-height: 24px;
@@ -326,6 +330,10 @@ export const trekStyle = css.global`
     font-size: 16px;
     color: rgba(255, 255, 255, 1);
     text-transform: none;
+  }
+
+  .btn-ptr:hover {
+    color: #ffffff;
   }
 
   .btn-ptr > a {

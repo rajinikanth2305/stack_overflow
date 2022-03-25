@@ -184,6 +184,10 @@ export const ChooseTreks = css.global`
     text-transform: none;
   }
 
+  .btn-ih-green:hover {
+    color: #ffffff;
+  }
+
   .choose_trek_sec {
     background: rgba(255, 247, 225, 1);
     padding: 35px 0 20px;

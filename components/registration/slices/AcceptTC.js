@@ -249,11 +249,11 @@ const AcceptTC = ({
             <div>
               {showButton && (
                 <button
-                  className="btn btn-ih-green"
+                  className="btn btn-ih-green hvr-grow"
                   onClick={termAccepted}
                   disabled={agree === true ? "" : "disabled"}
                 >
-                  proceed to next step of registration
+                  Proceed to next step of registration
                 </button>
               )}
             </div>

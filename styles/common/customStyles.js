@@ -942,6 +942,10 @@ export const customStyles = css.global`
     text-transform: none;
     padding: 0 20px;
   }
+  
+  .table-btn-blue:hover {
+    color: #ffffff;
+  }
 
   .table-btn-green {
     background: rgba(13, 193, 67, 1);

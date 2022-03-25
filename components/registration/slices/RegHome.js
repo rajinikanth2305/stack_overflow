@@ -59,11 +59,11 @@ const RegHome = ({ slice }) => {
   const [termAccepted, setTermAccepted] = useState(false);
   const [key, setKey] = useState("accepet");
   const childRef = useRef();
-  const childMobRef = useRef();
+  // const childMobRef = useRef();
   const trekMateChildRef = useRef();
-  const trekMateChilMobdRef = useRef();
+  // const trekMateChilMobdRef = useRef();
   const paymentChildRef = useRef();
-  const paymentChildMobRef = useRef();
+  // const paymentChildMobRef = useRef();
   const [batchBookingData, setBatchBookingData] = useState(undefined);
   const [inclusions, setInclusions] = useState();
   const [exclusions, setExclusions] = useState();
@@ -148,11 +148,11 @@ const RegHome = ({ slice }) => {
 
     /// sample url to parse andget the batchid /registration?batchId=6049#state=f2bgfhgfh
     let url = location.href.replace(location.origin, "");
-    console.log(url);
+    // console.log(url);
     let urlWithParams=url.split("#")[0];
     let batchKeyVal=urlWithParams.split("?")[1].split("&")[0];
     let batchId=batchKeyVal.split("=")[1];
-    console.log(batchId);
+    // console.log(batchId);
   
     // const prismicPageName=getTrekNameFromUrlQueryPath().replace("%20","_").toLocaleLowerCase();
     // console.log(prismicPageName);
@@ -169,10 +169,10 @@ const RegHome = ({ slice }) => {
   }
 
   const getTrekContentsFromPrismic = async (trekName) =>{
-    console.log(trekName);
+    // console.log(trekName);
     const response =    await Client().getByUID("trek", trekName);
     const tt = response.data.body;
-    console.log(tt);
+    // console.log(tt);
     const slice = tt && tt.find(x => x.slice_type === "book_your_trek");
     setEligibilityCriteria(slice);
     const inclusionsSlice = tt && tt.find(x => x.slice_type === "trek_inclusions");
@@ -183,13 +183,13 @@ const RegHome = ({ slice }) => {
     setWhyIndiaHikes(whyhikesSlice);
     const tac = tt && tt.find(x => x.slice_type === "terams_and_condition");
     setTac(tac);
-    console.log(tac);
+    // console.log(tac);
   }
 
   const showToken = () => {
     if (userServiceObject !== undefined) {
       let x = userServiceObject.getUsername();
-      console.log(x);
+      // console.log(x);
     }
   };
 
@@ -213,8 +213,8 @@ const RegHome = ({ slice }) => {
     const userId =
       userEmail == "" ? userServiceObject.getUsername() : userEmail;
 
-    console.log(batchId);
-    console.log(userId);
+    // console.log(batchId);
+    // console.log(userId);
 
     if (callMode === "Button_Click") {
       if (disableOnAcceptTab === true) {
@@ -232,12 +232,12 @@ const RegHome = ({ slice }) => {
       stateEmpty = isEmpty(sdata);
     }
 
-    console.log(stateEmpty);
+    // console.log(stateEmpty);
 
     if (stateEmpty) {
       getBatchInfoByUserAndBatchId(userId, batchId)
         .then(data => {
-          console.log("Booking found for the batchid and useremailid");
+          // console.log("Booking found for the batchid and useremailid");
           /// if state is cancelled or completed then block the flow
           //console.log(data);
           if(data.data.state==="COMPLETED") {
@@ -267,7 +267,7 @@ const RegHome = ({ slice }) => {
         })
         .catch(res => {
           //// Booking is not found for the batchid and userid
-          console.log("Booking Not found for the batchid and user emailid");
+          // console.log("Booking Not found for the batchid and user emailid");
           //  if(res?.status===500) {
           if (callMode === "Button_Click") {
             createNewBooking();
@@ -276,7 +276,7 @@ const RegHome = ({ slice }) => {
           }
           //}
           // else {
-          console.log(callMode);
+          // console.log(callMode);
           // }
         });
     } else {
@@ -289,7 +289,7 @@ const RegHome = ({ slice }) => {
     const userId = userServiceObject.getUsername();
    
     ///Batch not exits will create and then query
-    console.log("Booking not found for the batchid and user emailid");
+    // console.log("Booking not found for the batchid and user emailid");
     /// get userid by email
     findUserByEmail(userServiceObject.getUsername()).then(res => {
       const id = res.id;
@@ -303,20 +303,20 @@ const RegHome = ({ slice }) => {
 
                 })
                 .catch(err => {
-                  console.log(err.response?.data?.message);
+                  // console.log(err.response?.data?.message);
                   onDialogShow(res?.response?.data?.message)
                 });
         })
             .catch(res => {
-              console.log(res);
+              // console.log(res);
               if (res.response?.data?.message) {
-                console.log(res.response.data?.message);
+                // console.log(res.response.data?.message);
                 onDialogShow(res?.response?.data?.message)
               }
         })
         .catch(res => {
             if (res.response?.data?.message) {
-              console.log(res.response.data?.message);
+              // console.log(res.response.data?.message);
               onDialogShow(res?.response?.data?.message);
             }
         });
@@ -325,7 +325,7 @@ const RegHome = ({ slice }) => {
 
   const setStateStoreData = async (data, userId) => {
     //try{
-    console.log(data);
+    // console.log(data);
     // console.log(userId);
 
     let vouchers = [];
@@ -423,11 +423,11 @@ const RegHome = ({ slice }) => {
     await dispatch(addOrUpdateState(bookDetails));
 
     childRef.current.changeState();
-    childMobRef.current.changeState();
+    // childMobRef.current.changeState();
     trekMateChildRef.current.changeState();
-    trekMateChilMobdRef.current.changeState();
+    // trekMateChilMobdRef.current.changeState();
     paymentChildRef.current.changeState();
-    paymentChildMobRef.current.changeState();
+    // paymentChildMobRef.current.changeState();
 
   };
 
@@ -470,14 +470,14 @@ const RegHome = ({ slice }) => {
 
   const setBatchDateChange = () => {
     trekMateChildRef.current.changeState();
-    trekMateChilMobdRef.current.changeState();
+    // trekMateChilMobdRef.current.changeState();
     paymentChildRef.current.changeState();
-    paymentChildMobRef.current.changeState();
+    // paymentChildMobRef.current.changeState();
   };
 
   const setTrekUsersChange = () => {
     paymentChildRef.current.changeState();
-    paymentChildMobRef.current.changeState();
+    // paymentChildMobRef.current.changeState();
   };
 
   let selectBatchProps = {
@@ -521,7 +521,7 @@ const renderFooter = (name) => {
                 <b>{RichText.asText(completeTheSteps)}</b>
                 {/* Complete the below step for your {bookDetails?.trekName} */}
               </p>
-              <div className="stepper-tabs m-d-none">
+              <div className="stepper-tabs">
                 <p className="tabs-behind-border-bg"></p>
                 <Tabs
                   activeKey={key}
@@ -589,115 +589,7 @@ const renderFooter = (name) => {
               </div> */}
 
               {/* Mobile first desugn */}
-              <div className="m-d-block">
-                <Nav tabs className="reg-tabs mob">
-                  <NavItem>
-                    <NavLink
-                      className={classnames({
-                        activeRegTab: activeTab === "1"
-                      })}
-                      onClick={() => {
-                        toggle("1");
-                      }}
-                      // disabled={!enableOnAcceptTab}
-                    >
-                      <div>
-                        <div
-                          className={classnames({ active: activeTab === "1" })}
-                        >
-                          1
-                        </div>
-                        <p className="mt-1">Accept T&C</p>
-                      </div>
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({
-                        activeRegTab: activeTab === "2"
-                      })}
-                      onClick={() => {
-                        toggle("2");
-                      }}
-                      disabled={!termAccepted}
-                    >
-                      <div>
-                        <div
-                          className={classnames({ active: activeTab === "2" })}
-                        >
-                          2
-                        </div>
-                        <p className="mt-1">Select Batch</p>
-                      </div>
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({
-                        activeRegTab: activeTab === "3"
-                      })}
-                      onClick={() => {
-                        toggle("3");
-                      }}
-                      disabled={!termAccepted}
-                    >
-                      <div>
-                        <div
-                          className={classnames({ active: activeTab === "3" })}
-                        >
-                          3
-                        </div>
-                        <p className="mt-1">Add Trekmates</p>
-                      </div>
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({
-                        activeRegTab: activeTab === "4"
-                      })}
-                      onClick={() => {
-                        toggle("4");
-                      }}
-                      disabled={computeMakePaymentTabStatus}
-                    >
-                      <div>
-                        <div
-                          className={classnames({ active: activeTab === "4" })}
-                        >
-                          4
-                        </div>
-                        <p className="mt-1">Make Payment</p>
-                      </div>
-                    </NavLink>
-                  </NavItem>
-                </Nav>
-                <TabContent activeTab={activeTab}>
-                  <TabPane tabId="1">
-                    <AcceptTC
-                      data={eligibilityCriteria}
-                      props={bookDetails}
-                      onTermAccept={onTermAccept}
-                      inclusionsData={inclusions}
-                      exclusionsData={exclusions}
-                      whyIndiaHikesData={whyIndiaHikes}
-                      tac={tac}
-                    />
-                  </TabPane>
-                  <TabPane tabId="2">
-                    <SelectBatch {...selectBatchProps} ref={childMobRef} />
-                  </TabPane>
-                  <TabPane tabId="3">
-                    <AddTrekMates
-                      {...selectBatchProps}
-                      ref={trekMateChilMobdRef}
-                    />
-                  </TabPane>
-                  <TabPane tabId="4">
-                    <MakePayment ref={paymentChildMobRef} />
-                  </TabPane>
-                </TabContent>
-              </div>
+              
             </div>
           </div>
         </div>

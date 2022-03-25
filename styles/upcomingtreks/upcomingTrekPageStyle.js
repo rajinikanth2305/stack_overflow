@@ -208,6 +208,10 @@ export const upcomingTrekPageStyle = css.global`
     text-transform: none;
   }
 
+  .btn-ih-green:hover {
+    color: #ffffff;
+  }
+
   .btn-ih-green-filter {
     line-height: 24px;
     text-align: center;
