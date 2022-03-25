@@ -176,7 +176,7 @@ const MyTreks = forwardRef((props, ref) => {
           //setRender(false);
           return;
        }
-
+       setRender(false);
       //  console.log(trekData);
        const data=trekData?.data;
        /// Get the prismic trek contents
@@ -361,6 +361,7 @@ const MyTreks = forwardRef((props, ref) => {
                       pdata?.bookingParticipantState === "CANCELLED";
                      console.log(currentPickupLocation + name);
                      console.log(currentDropLocation +  name);
+                     console.log(state);
 
                     return (
                       <tr>
@@ -380,12 +381,12 @@ const MyTreks = forwardRef((props, ref) => {
                                   <Dropdown
                                     optionLabel="name"
                                     optionValue="locationId"
-                                    options={pickupLocations}
+                                    options={locations.filter(x => x.type === "PICKUP" )}
                                     value={(value==null || value==undefined) ? currentPickupLocation:value}
                                     onChange={e => {
                                       onChange(e.value);
                                     }}
-                                    placeholder="Select a Pickup locations"
+                                    placeholder="Select a Pickup location"
                                   />
                                 )}
                               />
@@ -406,11 +407,11 @@ const MyTreks = forwardRef((props, ref) => {
                                     optionLabel="name"
                                     optionValue="locationId"
                                     value={(value==null || value==undefined) ? currentDropLocation : value}
-                                    options={dropLocations}
+                                    options={locations.filter(x => x.type === "DROP_OFF" )}
                                     onChange={e => {
                                       onChange(e.value);
                                     }}
-                                    placeholder="Select a Drop_Off locations "
+                                    placeholder="Select a Drop Off location"
                                   />
                                 )}
                               />

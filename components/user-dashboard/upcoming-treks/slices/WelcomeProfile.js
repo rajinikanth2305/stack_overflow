@@ -234,8 +234,8 @@ const WelcomeProfile = () => {
     const activeBooking = bookings.find(x => x.bookingId === bookingId);
     setUpComingTrek(activeBooking); /// setting the toggled bookingid trek has upcoming trek
     deriveAndSetOffLoadingTabVisible(activeBooking);
-    console.log("myTrekRef.current?.changeState(activeBooking)");
-    console.log(myTrekRef.current);
+    //console.log("myTrekRef.current?.changeState(activeBooking)");
+    //console.log(myTrekRef.current);
 
     const mytrekRefData = {
       data: activeBooking,
