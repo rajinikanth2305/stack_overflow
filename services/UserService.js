@@ -1,6 +1,6 @@
 import Keycloak from 'keycloak-js';
 
-const REACT_APP_IAM_URL="https://tmsstaging.indiahikes.com";
+const REACT_APP_IAM_URL=process.env.NEXT_PUBLIC_IAM_URL;
 const initOptions = {
   url: `${REACT_APP_IAM_URL}/auth/`,
   realm: 'IndiaHikes',

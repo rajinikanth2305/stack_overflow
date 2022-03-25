@@ -47,6 +47,7 @@
   },
   "scripts": {
     "dev": "next dev",
+    "build:staging": "APP_ENV=development next build",
     "build": "next build",
     "start": "next start"
   },

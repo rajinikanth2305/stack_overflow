@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import auth from './Authenticate.js';
 //Backend base url
-const REACT_APP_TMS_BACKEND_URL="https://tmsstaging.indiahikes.com/tms-service/api/v1";
+const REACT_APP_TMS_BACKEND_URL=process.env.NEXT_PUBLIC_TMS_BACKEND_URL;
 //const REACT_APP_IAM_URL=http://143.110.177.110:8080
 
 //export const batchBaseApi = `${process.env.REACT_APP_TMS_BACKEND_URL}/batches`;

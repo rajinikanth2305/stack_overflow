@@ -4,8 +4,9 @@ import moment from "moment";
 import auth from './Authenticate.js';
 import {boolean} from "yup";
 //Backend base url
-const REACT_APP_TMS_BACKEND_URL="https://tmsstaging.indiahikes.com/tms-service/api/v1";
-const REACT_APP_TMS_BACKEND_PUBLIC_URL="https://tmsstaging.indiahikes.com/tms-service/public-api/v1";
+
+const REACT_APP_TMS_BACKEND_URL=process.env.NEXT_PUBLIC_TMS_BACKEND_URL;
+const REACT_APP_TMS_BACKEND_PUBLIC_URL=process.env.NEXT_PUBLIC_TMS_BACKEND_PUBLIC_URL;
 //const REACT_APP_IAM_URL=http://143.110.177.110:8080
 
 //export const batchBaseApi = `${process.env.REACT_APP_TMS_BACKEND_URL}/batches`;
@@ -15,7 +16,7 @@ const REACT_APP_TMS_BACKEND_PUBLIC_URL="https://tmsstaging.indiahikes.com/tms-se
 // export const locationBaseApi = `http://localhost:9090/api/v1/locations`;
 export const getBatchesByTrekId = async (trekId, month,year)  => {
     const api = `${REACT_APP_TMS_BACKEND_URL}`;
-    let url = `https://tmsstaging.indiahikes.com/tms-service/public-api/v1/available-batches/${trekId}?month=${month}&year=${year}`;
+    let url = `${REACT_APP_TMS_BACKEND_URL}/available-batches/${trekId}?month=${month}&year=${year}`;
     //console.log((url));
     const data= await axios.get(url) ;
     return data.data;
