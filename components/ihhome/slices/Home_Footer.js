@@ -95,7 +95,7 @@ const HomeFooter = ({ slice }) => {
                       <li><a href="../../../careers">Careers</a></li>
                       <li><a href="../../../contact-us">Contact Us</a></li>
                       {/* <li><a href="../../../safety">Safety at Indiahikes</a></li> */}
-                      <li><a href="../../../greentrails">Green Trails</a></li>
+                      <li><a href="../../../green-trails">Green Trails</a></li>
                     </ul>
                   </div>
                 </div>

@@ -182,9 +182,9 @@ const HikeHeader = ({ auth = false }) => {
                   ""
                 ) : (
                   <NavLink
-                    href="../../../upcoming"
+                    href="../../../upcoming-treks"
                     className={
-                      router.pathname == "/upcoming" ? "active-custom" : ""
+                      router.pathname == "/upcoming-treks" ? "active-custom" : ""
                     }
                   >
                     Upcoming Treks
@@ -218,8 +218,8 @@ const HikeHeader = ({ auth = false }) => {
                   ""
                 ) : (
                   <NavLink
-                    href="../../../diy"
-                    className={router.pathname == "/diy" ? "active-custom" : ""}
+                    href="../../../do-it-yourself-treks"
+                    className={router.pathname == "/do-it-yourself-treks" ? "active-custom" : ""}
                   >
                     DIY treks
                   </NavLink>
@@ -403,7 +403,7 @@ const HikeHeader = ({ auth = false }) => {
                   <Link href="../../../contact-us">
                     <DropdownItem>Contact Us</DropdownItem>
                   </Link>
-                  <Link href="../../../greentrails">
+                  <Link href="../../../green-trails">
                     <DropdownItem>Green Trails</DropdownItem>
                   </Link>
                   <Link href="../../../articles/latest-updates">

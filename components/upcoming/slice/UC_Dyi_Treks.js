@@ -34,7 +34,7 @@ const UCDYITreks = ({ slice }) => {
                   {RichText.render(ucDiyTrekDesc)}
                 </div>
                 <div className="mt-5 pt-3 m-text-center">
-                  <Link href="../../../diy">
+                  <Link href="../../../do-it-yourself-treks">
                     <button className="btn btn-bihtn-yellow hvr-grow">Read More</button>
                   </Link>
                 </div>

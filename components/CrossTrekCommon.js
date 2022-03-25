@@ -58,9 +58,14 @@ const CrossTrekCommon = () => {
                       <p className="c-details">{RichText.asText(details)}</p>
                       <div>
                         <div className="mt-5 m-text-center">
-                          <button className="btn btn-lg btn-ih-primary hvr-grow">
-                            View Crosstrek Store
-                          </button>
+                          <a
+                            href="https://store.indiahikes.com/"
+                            target="_blank"
+                          >
+                            <button className="btn btn-lg btn-ih-primary hvr-grow">
+                              View Crosstrek Store
+                            </button>
+                          </a>
                         </div>
                       </div>
                     </div>
