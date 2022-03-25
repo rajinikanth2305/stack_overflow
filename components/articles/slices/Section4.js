@@ -3,12 +3,12 @@ import { RichText } from "prismic-reactjs";
 import Link from "next/link";
 import { linkResolver } from "prismic-configuration";
 
-const Section4 = ({ slice, latestPrimaryArticleData, latestArticleData }) => {
+const Section4 = ({ slice, laPrimaryArticlePrimaryArticleData, latestArticleData }) => {
   const heading1 = slice?.primary?.heading1;
 
   const latestLrekImage =
-    latestPrimaryArticleData &&
-    latestPrimaryArticleData[0]?.data?.body?.find(
+    laPrimaryArticlePrimaryArticleData &&
+    laPrimaryArticlePrimaryArticleData[0]?.data?.body?.find(
       x => x.slice_type === "feature_image"
     );
 
@@ -79,7 +79,7 @@ const Section4 = ({ slice, latestPrimaryArticleData, latestArticleData }) => {
         <div className="container">
           <div className="row mt-4 pt-2">
             <div className="col-lg-6 col-md-12 col-12">
-              {latestPrimaryArticleData && latestPrimaryArticleData && (
+              {laPrimaryArticlePrimaryArticleData && laPrimaryArticlePrimaryArticleData && (
                 <div className="card tw_trek_card mx-0 my-4 m-mt-0 cursor-pointer">
                   <Link href={primary_url ? primary_url : "#"}>
                     <div className="row">
@@ -109,22 +109,22 @@ const Section4 = ({ slice, latestPrimaryArticleData, latestArticleData }) => {
                           <div>
                             <p className="day_trek_talk_title my-3">
                               {RichText.asText(
-                                latestPrimaryArticleData &&
-                                  latestPrimaryArticleData[0]?.data?.title
+                                laPrimaryArticlePrimaryArticleData &&
+                                  laPrimaryArticlePrimaryArticleData[0]?.data?.title
                               )}
                             </p>
                             <p className="name_editor m-0 text-capitalize">
                               <i>
                                 By&nbsp;
-                                {latestPrimaryArticleData &&
-                                  latestPrimaryArticleData[0]?.data?.author_link
+                                {laPrimaryArticlePrimaryArticleData &&
+                                  laPrimaryArticlePrimaryArticleData[0]?.data?.author_link
                                     ?.uid}
                               </i>
                             </p>
                             <p className="name_editor">
                               <span>
-                                {latestPrimaryArticleData &&
-                                  latestPrimaryArticleData[0]?.data?.date}{" "}
+                                {laPrimaryArticlePrimaryArticleData &&
+                                  laPrimaryArticlePrimaryArticleData[0]?.data?.date}{" "}
                                 {" "}
                               </span>
                             </p>

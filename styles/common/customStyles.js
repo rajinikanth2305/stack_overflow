@@ -276,7 +276,7 @@ export const customStyles = css.global`
     font-style: normal;
     font-weight: normal;
     text-transform: none;
-    line-height: 24px;
+    line-height: 20px;
     text-align: left;
     font-style: normal;
     font-weight: normal;
@@ -2354,6 +2354,14 @@ export const customStyles = css.global`
     flex-wrap: initial;
   }
 
+  .m-mt-15 {
+    margin: 0 30px;
+  }
+
+  .review_modal > .modal-dialog > .modal-content > .modal-body {
+    background: #ffffff;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -2367,6 +2375,10 @@ export const customStyles = css.global`
 
     .sustainable_img {
       height: 100%;
+    }
+
+    .m-mt-15 {
+      margin: 15px 0 0 0;
     }
 
     .pl-custom {

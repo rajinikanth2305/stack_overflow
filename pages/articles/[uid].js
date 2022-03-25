@@ -25,7 +25,8 @@ const Articles1 = ({
   hikesNewsData,
   trekkingprimaryArticleData,
   trekkingArticleData,
-  highAlititudeData
+  highAlititudeData,
+  laPrimaryArticlePrimaryArticleData,
 }) => {
   if (doc && doc.data) {
     return (
@@ -52,6 +53,7 @@ const Articles1 = ({
           trekkingprimaryArticleData={trekkingprimaryArticleData}
           trekkingArticleData={trekkingArticleData}
           highAlititudeData={highAlititudeData}
+          laPrimaryArticlePrimaryArticleData={laPrimaryArticlePrimaryArticleData}
         />
         <IHTrekWithSwathi />
         <IHFooter />
@@ -93,6 +95,7 @@ export async function getStaticProps({
   const trekkingArticleData = [];
 
   const highAlititudeData = [];
+  const laPrimaryArticlePrimaryArticleData = [];
 
   const articleTabsList = await client.query([
     Prismic.Predicates.at("document.type", "articles_landing_type")
@@ -165,6 +168,13 @@ export async function getStaticProps({
       }
     }
   }
+
+  const laPrimaryArticlePrimaryArticle =
+  latestArticleSlice && latestArticleSlice?.primary?.primary_article_link?.id;
+  if (laPrimaryArticlePrimaryArticle !== undefined) {
+  const article_details = await Client().getByID(laPrimaryArticlePrimaryArticle);
+  laPrimaryArticlePrimaryArticleData.push(article_details);
+}
 
   const hikesNewsSlice =
     doc && doc?.data?.body?.find(x => x.slice_type === "hike_news_articles");
@@ -245,7 +255,8 @@ export async function getStaticProps({
       hikesNewsData,
       trekkingprimaryArticleData,
       trekkingArticleData,
-      highAlititudeData
+      highAlititudeData,
+      laPrimaryArticlePrimaryArticleData,
     }
   };
 }
