@@ -78,8 +78,8 @@ export async function getStaticProps({
   previewData = {}
 }) {
   const { ref } = previewData;
-  const post =
-    (await Client().getByUID("post", params.uid, ref ? { ref } : null)) || {};
+  const post = {};
+    //(await Client().getByUID("post", params.uid, ref ? { ref } : null)) || {};
 
   //console.log(JSON.stringify(post));
 
