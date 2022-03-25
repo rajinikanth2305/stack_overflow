@@ -3,6 +3,7 @@
   "description": "India Hikes",
   "author": "Aparimitha",
   "dependencies": {
+    "@babel/runtime": "7.17.8",
     "@hookform/resolvers": "^1.3.5",
     "@popperjs/core": "^2.9.2",
     "@prismicio/client": "^4.0.0",
@@ -12,6 +13,7 @@
     "@zeit/next-less": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.21.0",
+    "babel-runtime": "^6.26.0",
     "bootstrap": "^5.0.1",
     "font-awesome": "^4.7.0",
     "get-youtube-title": "^1.0.1",
