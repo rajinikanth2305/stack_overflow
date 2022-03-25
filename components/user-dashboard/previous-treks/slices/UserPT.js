@@ -131,6 +131,9 @@ const UserPT = () => {
         setBookingOwner(bookingOwner[0]);
         getAndSetTrekContents(bookingsData, email);
       }
+      else {
+        setBookings([]);
+      }
     });
   }
 
