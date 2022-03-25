@@ -16,7 +16,7 @@ const REACT_APP_TMS_BACKEND_PUBLIC_URL=process.env.NEXT_PUBLIC_TMS_BACKEND_PUBLI
 // export const locationBaseApi = `http://localhost:9090/api/v1/locations`;
 export const getBatchesByTrekId = async (trekId, month,year)  => {
     const api = `${REACT_APP_TMS_BACKEND_URL}`;
-    let url = `${REACT_APP_TMS_BACKEND_URL}/available-batches/${trekId}?month=${month}&year=${year}`;
+    let url = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}/available-batches/${trekId}?month=${month}&year=${year}`;
     //console.log((url));
     const data= await axios.get(url) ;
     return data.data;
