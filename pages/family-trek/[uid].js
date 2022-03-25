@@ -13,6 +13,8 @@ import { Client } from "utils/prismicHelpers";
 import IHFooter from "components/Footer";
 import IHTrekWithSwathi from "components/Trek_With_Swathi";
 import { FamilyTrekSliceZone } from "components/familytrek";
+import { queryRepeatableDocuments } from "services/queries";
+import { queryRepeatableDocumentsWithDocTypeFilter } from "services/queries";
 
 /**
  * UpComing component
@@ -47,7 +49,7 @@ const FamilyTrek = ({
       </HomeLayout>
     );
   }
-
+   console.log("called here");
   // Message when repository has not been setup yet
   return <SetupRepo />;
 };
@@ -74,7 +76,7 @@ export async function getStaticProps({
   const weekendTrekData = [];
   const latestUpdateAarticleData = [];
 
-  const multitrek_slice = doc.data?.body?.find(
+  const multitrek_slice = doc?.data?.body?.find(
     x => x.slice_type === "multi_day_trek_list"
   );
 
@@ -109,7 +111,7 @@ export async function getStaticProps({
   const latestUpdate_slice = doc.data?.body?.find(
     x => x.slice_type === "fam_trek_stories"
   );
-  if (latestUpdate_slice?.items.length > 0) {
+  if (latestUpdate_slice?.items?.length > 0) {
     for (var i = 0; i < latestUpdate_slice?.items.length; i++) {
       const data = latestUpdate_slice?.items[i];
       const slugUrl = data && data?.link_url?.id;
@@ -119,6 +121,7 @@ export async function getStaticProps({
       }
     }
   }
+  console.log("Called here2");
 
   return {
     props: {
@@ -133,11 +136,13 @@ export async function getStaticProps({
 
 export async function getStaticPaths() {
   //const documents = await queryRepeatableDocuments((doc) => doc.type === 'trek')
+  const documents = await queryRepeatableDocumentsWithDocTypeFilter("family_trek");
+  console.log(documents.length);
 
-  const response = await Client().query(
+  /*const response = await Client().query(
     Prismic.Predicates.at("document.type", "family_trek")
-  );
-  const documents = response.results;
+  );*/
+  //const documents = documents; //response.results;
   return {
     paths: documents.map(doc => `/family-trek/${doc.uid}`),
     fallback: true

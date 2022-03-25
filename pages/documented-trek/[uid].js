@@ -3,7 +3,7 @@ import Head from "next/head";
 import { RichText } from "prismic-reactjs";
 
 import { queryRepeatableDocuments } from 'services/queries'
-
+import { queryRepeatableDocumentsWithDocTypeFilter } from "services/queries";
 // Project components
 import DefaultLayout from "layouts";
 import { BackButton, SliceZone } from "components/document-trek";
@@ -186,7 +186,8 @@ if(author_lnk_id !== undefined) {
 }
 
 export async function getStaticPaths() {
-  const documents = await queryRepeatableDocuments((doc) => doc.type === 'document_trek_type')
+ // const documents = await queryRepeatableDocuments((doc) => doc.type === 'document_trek_type')
+ const documents = await queryRepeatableDocumentsWithDocTypeFilter("document_trek_type");
   //const doc    =    await Client().getByUID("post", "how-to-choose-trek-pants-the-ultimate-trekking-pants-guide-2021");
   
   //const documents=[];

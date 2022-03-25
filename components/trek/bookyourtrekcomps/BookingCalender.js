@@ -30,6 +30,50 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
   const [batchId, setBatchId] = useState();
   const [onceSelectClicked, setOnceSelectClicked] = useState();
   const toast = useRef(null);
+  const [batchOpenedDataValueSet, setBatchOpenedDataValueSet] = useState(true);
+   const [trekId,setTrekId]=useState();
+   const [render,setRender]=useState(false);
+  
+
+  React.useEffect(() => {
+
+    const client = Client();
+
+    const actualTrekPageName =  getTrekName();
+
+    console.log(actualTrekPageName);
+
+     client.query([Prismic.Predicates.at("my.trek.uid", actualTrekPageName)])
+        .then(async function (response) {
+          if (response?.results && response?.results?.length > 0 && response.results[0].data?.trek_id) {
+            const trekId = response.results[0].data?.trek_id[0].text;
+             console.log(trekId);
+            if(viewDt==undefined) {
+              getBatchesByTrekId(trekId, 0,0).then(bResult=> {
+                console.log(bResult);
+                if(bResult?.length>0) {
+                  console.log(bResult[0].startDate);
+                 
+                  const date = new Date(bResult[0].startDate);
+                            const additionOfMonths = 1;
+                            date.setMonth(date.getMonth())
+                  console.log(date);
+                  //var date = moment(bResult[0].startDate).format('DD-MM-YYYY');
+                  viewDt=date;
+                  console.log(viewDt);
+                  setViewDate(viewDt);
+                  setRender(true);
+                }
+              });
+            }
+            else {
+              setViewDate(viewDt);
+              setRender(true);
+            }
+          }
+        });
+  }, []);
+
 
   function getTrekNameFromUrlQueryPath() {
     return paramTrekName;
@@ -43,7 +87,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     return pageUrl[1].split("=")[1];
   }
 
-  const fetchTrekMonthBatches = async date => {
+  const getTrekName =() => {
     let actualTrekPageName = "";
     if (mode === "inline_page") {
       //console.log(mode);
@@ -61,7 +105,12 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
       console.log(mode);
       actualTrekPageName = getTrekNameFromUrlQueryPath();
     }
+    return actualTrekPageName;
+  }
+ 
+  const fetchTrekMonthBatches = async date => {
 
+    const actualTrekPageName =  getTrekName();
     const client = Client();
 
     await client
@@ -71,7 +120,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
             ]
         )
         .then(async function (response) {
-          if (response.results && response.results.length > 0 && response.results[0].data?.trek_id) {
+          if (response?.results && response?.results?.length > 0 && response.results[0].data?.trek_id) {
 
             const trekId = response.results[0].data?.trek_id[0].text;
             const data = await getBatchesByTrekId(
@@ -334,7 +383,8 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
         <div>
           <div>
             <div>
-              <div>
+            {render && (
+              <div> 
                 <Calendar
                   id="navigatorstemplate"
                   onSelect={e => onSelect(e.value)}
@@ -347,9 +397,10 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
                   dateTemplate={dateTemplate}
                   monthNavigatorTemplate={monthNavigatorTemplate}
                   yearNavigatorTemplate={yearNavigatorTemplate}
-                  viewDate={viewDt != undefined ? viewDt : new Date()}
+                  viewDate={viewDate != undefined ? viewDate : new Date()}
                 />
               </div>
+               )}
             </div>
           </div>
         </div>

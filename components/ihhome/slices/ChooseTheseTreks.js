@@ -48,7 +48,7 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
     ]
   };
 
-  const chooseTrekImage = trekPageData1.map(function(data, i) {
+  const chooseTrekImage = trekPageData1?.map(function(data, i) {
     const tData = data?.data?.body?.find(x => x.slice_type === "trek_banner");
     let url;
     const slugUrl = data?.uid;

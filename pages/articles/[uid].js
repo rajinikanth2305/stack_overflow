@@ -10,7 +10,7 @@ import { Client } from "utils/prismicHelpers";
 import IHFooter from "components/Footer";
 import IHTrekWithSwathi from "components/Trek_With_Swathi";
 import { ArticlesSliceZone } from "components/articles";
-
+import { queryRepeatableDocumentsWithDocTypeFilter } from "services/queries";
 /**
  * UpComing component
  */
@@ -263,11 +263,13 @@ export async function getStaticProps({
 
 export async function getStaticPaths() {
   //const documents = await queryRepeatableDocuments((doc) => doc.type === 'trek')
-
-  const response = await Client().query(
+  const documents = await queryRepeatableDocumentsWithDocTypeFilter("articles_landing_type");
+  
+  /*const response = await Client().query(
     Prismic.Predicates.at("document.type", "articles_landing_type")
-  );
-  const documents = response.results;
+  );*/
+
+  //const documents = response.results;
   return {
     paths: documents.map(doc => `/articles/${doc.uid}`),
     fallback: true

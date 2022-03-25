@@ -3,7 +3,7 @@ import Head from "next/head";
 import { RichText } from "prismic-reactjs";
 
 import { queryRepeatableDocuments } from "services/queries";
-
+import { queryRepeatableDocumentsWithDocTypeFilter } from "services/queries";
 // Project components
 import DefaultLayout from "layouts";
 import { BackButton, SliceZone } from "components/post";
@@ -205,7 +205,8 @@ export async function getStaticProps({
 }
 
 export async function getStaticPaths() {
-  const documents = await queryRepeatableDocuments(doc => doc.type === "post");
+  //const documents = await queryRepeatableDocuments(doc => doc.type === "post");
+  const documents = await queryRepeatableDocumentsWithDocTypeFilter("post");
   //const doc    =    await Client().getByUID("post", "how-to-choose-trek-pants-the-ultimate-trekking-pants-guide-2021");
 
   //const documents=[];

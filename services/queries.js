@@ -4,6 +4,7 @@ import moment from "moment";
 import auth from './Authenticate.js';
 import {boolean} from "yup";
 //Backend base url
+import Prismic from "@prismicio/client";
 
 const REACT_APP_TMS_BACKEND_URL=process.env.NEXT_PUBLIC_TMS_BACKEND_URL;
 const REACT_APP_TMS_BACKEND_PUBLIC_URL=process.env.NEXT_PUBLIC_TMS_BACKEND_PUBLIC_URL;
@@ -14,9 +15,16 @@ const REACT_APP_TMS_BACKEND_PUBLIC_URL=process.env.NEXT_PUBLIC_TMS_BACKEND_PUBLI
  const batchBaseApi = `${REACT_APP_TMS_BACKEND_URL}/batches`;
 
 // export const locationBaseApi = `http://localhost:9090/api/v1/locations`;
-export const getBatchesByTrekId = async (trekId, month,year)  => {
+export const getBatchesByTrekId = async (trekId, month=0,year=0)  => {
     const api = `${REACT_APP_TMS_BACKEND_URL}`;
-    let url = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}/available-batches/${trekId}?month=${month}&year=${year}`;
+    let url="";
+    if(month==0 && year==0) {
+      url = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}/available-batches/${trekId}`;
+    }
+    else {
+       url = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}/available-batches/${trekId}?month=${month}&year=${year}`;
+    }
+  
     //console.log((url));
     const data= await axios.get(url) ;
     return data.data;
@@ -472,10 +480,26 @@ export const saveUserLocations =  async (bookingId,payload)  => {
 
 
 async function fetchDocs(page = 1, routes = []) {
-  const response = await Client().query('', { pageSize: 100, lang: '*', page });
+  const response = await Client().query('', { pageSize: 10, lang: '*', page });
   const allRoutes = routes.concat(response.results);
   if (response.results_size + routes.length < response.total_results_size) {
     return fetchDocs(page + 1, allRoutes);
+  }
+  return [...new Set(allRoutes)];
+};
+
+
+export const queryRepeatableDocumentsWithDocTypeFilter = async (filter) => {
+  const allRoutes = await fetchDocsWithFilter(1,filter);
+  return allRoutes; // allRoutes.filter(filter)
+}
+
+async function fetchDocsWithFilter(page = 1, document_type,routes = []) {
+  const response = await Client().query(
+    Prismic.Predicates.at("document.type", document_type), { pageSize: 50, lang: '*', page });
+  const allRoutes = routes.concat(response.results);
+  if (response.results_size + routes.length < response.total_results_size) {
+    return fetchDocsWithFilter(page + 1, document_type,allRoutes);
   }
   return [...new Set(allRoutes)];
 };
