@@ -163,26 +163,37 @@ const RegHome = ({ slice }) => {
     // setEligibilityCriteria(slice);
     getBatchInfo(batchId).then(res=>{
       const trekName = res.trekName.replaceAll(" ", "-").toLowerCase();
-      getTrekContentsFromPrismic(trekName);
+      getTrekContentsFromPrismic(res.trekId);
     });
 
   }
 
-  const getTrekContentsFromPrismic = async (trekName) =>{
+  const getTrekContentsFromPrismic = async (trekId) =>{
     // console.log(trekName);
-    const response =    await Client().getByUID("trek", trekName);
-    const tt = response.data.body;
-    // console.log(tt);
-    const slice = tt && tt.find(x => x.slice_type === "book_your_trek");
-    setEligibilityCriteria(slice);
-    const inclusionsSlice = tt && tt.find(x => x.slice_type === "trek_inclusions");
-    setInclusions(inclusionsSlice);
-    const exclusionsSlice = tt && tt.find(x => x.slice_type === "trek_exclusions");
-    setExclusions(exclusionsSlice);
-    const whyhikesSlice = tt && tt.find(x => x.slice_type === "why_india_hikes");
-    setWhyIndiaHikes(whyhikesSlice);
-    const tac = tt && tt.find(x => x.slice_type === "terams_and_condition");
-    setTac(tac);
+    // const response =    await Client().getByUID("trek", trekName);
+
+    const client = Client();
+    await client
+        .query([
+          Prismic.Predicates.fulltext("my.trek.trek_id", trekId.toString())
+        ])
+        .then(function(response) {
+          if(response && response.results && response.results.length > 0) {
+            const tt = response.results[0].data.body;
+            const slice = tt && tt.find(x => x.slice_type === "book_your_trek");
+            setEligibilityCriteria(slice);
+            const inclusionsSlice = tt && tt.find(x => x.slice_type === "trek_inclusions");
+            setInclusions(inclusionsSlice);
+            const exclusionsSlice = tt && tt.find(x => x.slice_type === "trek_exclusions");
+            setExclusions(exclusionsSlice);
+            const whyhikesSlice = tt && tt.find(x => x.slice_type === "why_india_hikes");
+            setWhyIndiaHikes(whyhikesSlice);
+            const tac = tt && tt.find(x => x.slice_type === "terams_and_condition");
+            setTac(tac);
+          }
+        });
+
+
     // console.log(tac);
   }
 
