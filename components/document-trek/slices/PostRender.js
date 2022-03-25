@@ -167,7 +167,7 @@ const PostRender = ({
       setIndexes(arr);
       setCounter(arr.length);
       //setRender(true);
-    });
+    }).catch(error => console.log(error));
   };
 
   const buildInternalBindStructure = res => {
