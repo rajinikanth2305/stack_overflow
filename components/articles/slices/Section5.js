@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { linkResolver } from "prismic-configuration";
 
 const Section5 = ({ slice, hikesNewsData }) => {
+  console.log(hikesNewsData);
   const heading1 = slice?.primary?.heading1;
 
   const settings = {

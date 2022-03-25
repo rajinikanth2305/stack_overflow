@@ -61,9 +61,9 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const latestUpdate_slice = doc.data?.body?.find(
     x => x.slice_type === "latest_gt_updates"
   );
-  if (latestUpdate_slice.items.length > 0) {
-    for (var i = 0; i < latestUpdate_slice.items.length; i++) {
-      const data = latestUpdate_slice.items[i];
+  if (latestUpdate_slice?.items.length > 0) {
+    for (var i = 0; i < latestUpdate_slice?.items.length; i++) {
+      const data = latestUpdate_slice?.items[i];
       const slugUrl = data && data?.article_link?.id;
       if (slugUrl !== undefined) {
         const article_details = await Client().getByID(slugUrl);
@@ -77,9 +77,9 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const latestUpdate_slice1 = doc.data?.body?.find(
     x => x.slice_type === "gt_stories"
   );
-  if (latestUpdate_slice1.items.length > 0) {
-    for (var i = 0; i < latestUpdate_slice1.items.length; i++) {
-      const data = latestUpdate_slice1.items[i];
+  if (latestUpdate_slice1?.items.length > 0) {
+    for (var i = 0; i < latestUpdate_slice1?.items.length; i++) {
+      const data = latestUpdate_slice1?.items[i];
       const slugUrl = data && data?.link_url?.id;
       if (slugUrl !== undefined) {
         const article_details = await Client().getByID(slugUrl);
@@ -95,8 +95,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   );
 
   if (slice.items.length > 0) {
-    for (var i = 0; i < slice.items.length; i++) {
-      const data = slice.items[i];
+    for (var i = 0; i < slice?.items.length; i++) {
+      const data = slice?.items[i];
       const slugUrl = data && data?.article_link?.id;
       if (slugUrl !== undefined) {
         const article_details = await Client().getByID(slugUrl);
