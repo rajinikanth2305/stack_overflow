@@ -173,7 +173,7 @@ const HowDoesEachDayLooks = ({ data }) => {
                         className="btn btn-ptr hvr-grow"
                         onClick={() => setReadMoreHeight("auto")}
                       >
-                        read more
+                        Read more
                       </button>
                     ) : (
                       <a href="#trekexper-sec">

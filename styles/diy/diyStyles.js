@@ -30,6 +30,7 @@ export const diyStyles = css.global`
     background-size: cover;
     position: relative;
     background-position: bottom;
+    z-index: -99;
   }
 
   .trek_image_bg {

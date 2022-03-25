@@ -20,7 +20,7 @@ const UCFamilyTreks = ({ slice }) => {
                   src={ucFamilyTreksImage}
                   layout="fill"
                   objectFit="cover"
-                  objectPosition="left"
+                  objectPosition="50% 50%"
                   alt="imgs"
                 />
               </div>

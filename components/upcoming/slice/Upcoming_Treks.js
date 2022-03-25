@@ -302,8 +302,8 @@ const UpComingTreks = ({ slice }) => {
                         </p>
                       </div>
                       <div>
-                        <button className="btn btn-ih-green" onClick={find}>
-                          FIND TREKS
+                        <button className="btn btn-ih-green hvr-grow" onClick={find}>
+                          Find treks
                         </button>
                       </div>
                     </div>
@@ -396,7 +396,7 @@ const UpComingTreks = ({ slice }) => {
                               <div className="p-display-2 trek_card_desc_min_height">
                                 {/* {RichText.asText(tData?.primary?.sub_heading)} */}
                                 {RichText.asText(tData?.primary?.sub_heading)
-                                  .length > 25
+                                  .length > 75
                                   ? `${RichText.asText(
                                       tData?.primary?.sub_heading
                                     ).substring(0, 75)}...`
@@ -488,13 +488,13 @@ const UpComingTreks = ({ slice }) => {
                     return (
                       <div className="col-lg-4 col-md-6" key={i}>
                         <div className="uc_fliter_treks_images">
-                          <Image
+                          {bannerImage && <Image
                             src={bannerImage}
                             layout="fill"
                             objectFit="cover"
                             objectPosition="50% 50%"
                             alt="imgs"
-                          />
+                          /> }
                           <div className="image_overlay_text_area_layout4">
                             <div className="p-absolute">
                               <p className="image_overlay_text_title mb-1">

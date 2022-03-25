@@ -539,8 +539,11 @@ export const trekStyle = css.global`
   .sustainable_img {
     position: relative;
     width: 100%;
-    height: 300px;
-    opacity: 0.7;
+    // min-height: 300px;
+    height: 100%;
+    // height: 0vh;
+    // opacity: 0.7;
+    // padding: 30px 0;
   }
 
   .family_terk_box {
@@ -773,8 +776,11 @@ export const trekStyle = css.global`
   }
 
   .bg_overlay_sustainable {
-    height: 300px;
-    background: rgb(0, 0, 0);
+    height: 100%;
+    background: rgba(0, 0, 0, 0.51);
+    position: relative;
+    z-index: 99;
+    padding: 30px 0;
   }
 
   .text-center {
@@ -1750,13 +1756,13 @@ export const trekStyle = css.global`
     }
 
     .sustainable_img {
-      height: 500px;
+      height: 100%;
     }
 
-    .bg_overlay_sustainable {
-      height: 500px;
-      background: rgb(0, 0, 0);
-    }
+    // .bg_overlay_sustainable {
+    //   height: 500px;
+    //   background: rgb(0, 0, 0);
+    // }
 
     .p-datepicker table td > span {
       width: 2.8rem;

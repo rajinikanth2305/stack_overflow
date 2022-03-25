@@ -9,11 +9,11 @@ const SustainableTrekking = ({ slice }) => {
   const heading1 = slice?.primary?.heading1;
   const bannerImage = slice?.primary?.banner_image?.url;
   const heading2List = slice?.primary?.heading2;
-  
+
   return (
     <>
       <div className="mt-5 pt-5 mpt-0 mpb-0 mmt-0" id="goToSustainabilty">
-        <div className="container container-custom">
+        {/* <div className="container container-custom">
           <div className="row">
             <div className="col-12 col-lg-12 col-md-12 p-0">
               <div className="bg_overlay_sustainable">
@@ -55,10 +55,42 @@ const SustainableTrekking = ({ slice }) => {
               </div>
             </div>
           </div>
+        </div> */}
+        <div className="sustainable_img">
+          <div className="bg_overlay_sustainable h-100">
+            <div className="h-100">
+              <div className="container h-100">
+                <div className="row h-100">
+                  <div className="col-lg-2 col-md-2 col-12" />
+                  <div className="col-lg-8 col-md-8 col-12">
+                    <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                      <div>
+                        <h2 className="title-h2 text-white text-center pb-08 mb-3">
+                          {RichText.asText(heading1)}
+                        </h2>
+                        <div className="p-text-4 text-white text-center">
+                          {RichText.render(heading2List)}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-2 col-md-2 col-12" />
+                </div>
+              </div>
+            </div>
+          </div>
+          {bannerImage && (
+            <Image
+              src={bannerImage}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="bottom"
+            />
+          )}
         </div>
         <div>
-          <div style={{ 'display': 'none' }}>
-          <TrekkersStoriesCommon />
+          <div style={{ display: "none" }}>
+            <TrekkersStoriesCommon />
           </div>
           <TrekkersVideoCommon />
         </div>

@@ -110,7 +110,7 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
                     </p>
                     <div className="p-display-2 trek_card_desc_min_height">
                       {/* {RichText.asText(tData?.primary?.sub_heading)} */}
-                      {RichText.asText(tData?.primary?.sub_heading).length > 25
+                      {RichText.asText(tData?.primary?.sub_heading).length > 75
                         ? `${RichText.asText(
                             tData?.primary?.sub_heading
                           ).substring(0, 75)}...`

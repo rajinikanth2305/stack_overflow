@@ -78,14 +78,18 @@ const BestPostTreks = ({ slice, trekData }) => {
                       </div>
                     </div>
                   </div>
-                  {getArticleImage && getArticleImage[0]?.primary?.image?.url && (
-                    <Image
-                      src={getArticleImage && getArticleImage[0]?.primary?.image?.url}
-                      layout="fill"
-                      objectFit="cover"
-                      objectPosition="50% 50%"
-                    />
-                  )}
+                  {getArticleImage &&
+                    getArticleImage[0]?.primary?.image?.url && (
+                      <Image
+                        src={
+                          getArticleImage &&
+                          getArticleImage[0]?.primary?.image?.url
+                        }
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="50% 50%"
+                      />
+                    )}
                 </div>
                 <div className="px-3 py-2">
                   {/* <div className="d-flex align-items-center card-info-text">
@@ -104,7 +108,20 @@ const BestPostTreks = ({ slice, trekData }) => {
 
                   <div>
                     <p className="p-text-4">
-                      {RichText.asText(getArticleImage && getArticleImage[0]?.primary?.caption)}
+                      {/* {RichText.asText(
+                        getArticleImage && getArticleImage[0]?.primary?.caption
+                      )} */}
+                      {RichText.asText(
+                        getArticleImage && getArticleImage[0]?.primary?.caption
+                      )?.length > 120
+                        ? `${RichText.asText(
+                            getArticleImage &&
+                              getArticleImage[0]?.primary?.caption
+                          )?.substring(0, 120)}...`
+                        : RichText.asText(
+                            getArticleImage &&
+                              getArticleImage[0]?.primary?.caption
+                          )}
                     </p>
                   </div>
                   <div className="d-flex align-items-center mb-3 p-btn-btm">

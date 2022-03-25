@@ -112,7 +112,7 @@ const QuickItineraryComponent = ({ slice }) => {
                     </div>
                     <div className="d-flex justify-content-end mt-3">
                       <button className="btn btn-ptr hvr-grow">
-                        <a href="#KYT">read Detailed Itinerary</a>
+                        <a href="#KYT">Read detailed itinerary</a>
                       </button>
                     </div>
                   </div>
@@ -180,7 +180,7 @@ const QuickItineraryComponent = ({ slice }) => {
                       className="btn btn-ptr hvr-grow"
                       onClick={() => setQiHeight("auto")}
                     >
-                      read more
+                      Read more
                     </button>
                   ) : (
                     <a href="#importantNoteListdata-sec">

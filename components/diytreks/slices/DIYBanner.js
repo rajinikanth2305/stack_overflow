@@ -22,7 +22,7 @@ const DIYBanner = ({ slice }) => {
                   <p className="banner-text-2 mb-0">
                     {RichText.asText(heading2)}
                   </p>
-                  <form>
+                  {/* <form>
                     <div className="mt-5 mb-2">
                       <FormGroup className="diyform">
                         <Input
@@ -34,9 +34,9 @@ const DIYBanner = ({ slice }) => {
                       </FormGroup>
                     </div>
                     <div>
-                      <button type="button" className="btn btn-bihtn-yellow">explore</button>
+                      <button type="button" className="btn btn-bihtn-yellow hvr-grow">Explore</button>
                     </div>
-                  </form>
+                  </form> */}
                 </div>
               </div>
             </div>
