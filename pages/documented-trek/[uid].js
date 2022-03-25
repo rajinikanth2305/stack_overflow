@@ -143,7 +143,9 @@ if(author_lnk_id !== undefined) {
              //console.log("trek_id" + JSON.stringify(data?.trek_link));
              //console.log("trek_id" + trekId.id);
              let trekData  =  await Client().getByID(trekId.id);
-             upComingData.push(trekData);
+             if(trekData) {
+                 upComingData.push(trekData);
+             }
              }
        }
       }
