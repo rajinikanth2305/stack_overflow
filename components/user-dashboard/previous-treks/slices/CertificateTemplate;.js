@@ -43,7 +43,7 @@ const CertificateTemplate = certificateData => {
       textAlign: "center",
       textTransform: "capitalize",
       position: "absolute",
-      top: "43%",
+      top: "43.5%",
       // borderBottom: "1px solid #333333",
       left: "5%",
       paddingBottom: "2px",
@@ -60,23 +60,23 @@ const CertificateTemplate = certificateData => {
     },
     header2: {
       color: "#2c2e35",
-      fontSize: "14px",
+      fontSize: "15px",
       marginBottom: "12px",
       position: "absolute",
       top: "53%",
-      left: "32.5%",
-      width: "45%",
+      left: "31%",
+      width: "52%",
       textAlign: "center",
       lineHeight: "1.5px"
     },
     header22: {
       color: "#2c2e35",
-      fontSize: "14px",
+      fontSize: "15px",
       marginBottom: "12px",
       position: "absolute",
       top: "57%",
-      left: "32.5%",
-      width: "45%",
+      left: "31%",
+      width: "52%",
       textAlign: "center",
       lineHeight: "1.5px"
     },
@@ -141,17 +141,18 @@ const CertificateTemplate = certificateData => {
               }
               {/* Mohammed Ameen arif meeran */}
             </Text>
-            <Text style={styles.header2}>For successfully completing the</Text>
-            <Text style={styles.header22}>
+            <Text style={styles.header2}>
+              For successfully completing the{" "}
               {certificateData.certificateData &&
                 certificateData.certificateData.trekName}
-              &nbsp;In{" "}
+            </Text>
+            <Text style={styles.header22}>
+              &nbsp;in{" "}
               {
                 certificateData?.certificateData?.userTrekBookingParticipants[0]
                   ?.userDetailsForDisplay?.state
-              }{" "}
-            </Text>
-            <Text style={styles.header23}>
+              }
+              from{" "}
               {certificateData.certificateData &&
                 moment(certificateData.certificateData.startDate).format(
                   "MM/DD/YYYY"
@@ -162,6 +163,17 @@ const CertificateTemplate = certificateData => {
                   "MM/DD/YYYY"
                 )}
             </Text>
+            {/* <Text style={styles.header23}>
+              {certificateData.certificateData &&
+                moment(certificateData.certificateData.startDate).format(
+                  "MM/DD/YYYY"
+                )}{" "}
+              to{" "}
+              {certificateData.certificateData &&
+                moment(certificateData.certificateData.endDate).format(
+                  "MM/DD/YYYY"
+                )}
+            </Text> */}
           </View>
           <View style={styles.section1}>
             <Text style={styles.sectionText}>

@@ -316,11 +316,11 @@ const MyTreks = forwardRef((props, ref) => {
               <table className="table table-dashboard-profile-style-1">
                 <thead>
                   <tr className="header-bg">
-                    <th className="w-20per">participants</th>
+                    <th className="w-20per">Participants</th>
                     <th className="w-20per">Phone</th>
-                    <th className="w-15per">email ID</th>
-                    <th className="w-15per">pickup & location</th>
-                    <th className="w-15per">Drop & Location</th>
+                    <th className="w-15per">Email ID</th>
+                    <th className="w-15per">Pickup & location</th>
+                    <th className="w-15per">Drop & location</th>
                     <th className="w-15per">Fitness status</th>
                   </tr>
                 </thead>

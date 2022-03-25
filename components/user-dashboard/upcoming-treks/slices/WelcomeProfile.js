@@ -440,7 +440,7 @@ const WelcomeProfile = () => {
                       <div id="detailView">
                         <h5 className="p-text-2-fg b-left-3px">
                           {bookings !== undefined ? (
-                            <p>your upcoming Indiahikes trek</p>
+                            <p>Your upcoming Indiahikes trek</p>
                           ) : (
                             <p className="p-text-2-fg text-decoration-underline">
                               <a
@@ -520,7 +520,7 @@ const WelcomeProfile = () => {
                                       <div className="d-flex flex-wrap align-items-center justify-content-between py-4 mb-2">
                                         <div className="m-col-12">
                                           <p className="m-0 p-text-small-fg m-col-3">
-                                            batch dates
+                                            Batch dates
                                           </p>
                                           <p className="m-0 p-text-2-fg-f16">
                                             {upComingTrek && (
@@ -538,16 +538,16 @@ const WelcomeProfile = () => {
                                         </div>
                                         <div className="m-col-12">
                                           <p className="m-0 p-text-small-fg m-col-3">
-                                            participants
+                                            Participants
                                           </p>
                                           <p className="m-0 p-text-2-fg-f16">
                                             {upComingTrek?.participantsCount}{" "}
-                                            trekkers
+                                            Trekkers
                                           </p>
                                         </div>
                                         <div className="m-col-12">
                                           <p className="m-0 p-text-small-fg m-col-3 m-d-none">
-                                            Experience Coordinator
+                                            Experience coordinator
                                             <span className="exp-co-icons">
                                               <i
                                                 className="fa fa-phone"
@@ -732,7 +732,7 @@ const WelcomeProfile = () => {
                       <div className="my-5">
                         <div>
                           <h5 className="p-text-2-fg-f16 b-left-3px">
-                            your Next Indiahikes treks
+                            Your Next Indiahikes treks
                           </h5>
 
                           {indexes?.map(index => {

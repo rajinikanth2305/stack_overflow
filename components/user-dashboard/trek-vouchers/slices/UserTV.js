@@ -126,7 +126,7 @@ const UserTV = () => {
                     )}
                   </div>
 
-                  <h5 className="p-text-2-fg b-left-3px mb-4">trek vouchers</h5>
+                  <h5 className="p-text-2-fg b-left-3px mb-4">Trek vouchers</h5>
 
                   <div className="col-lg-11 col-md-12">
                     <div className="card px-3 mb-5">
@@ -134,12 +134,12 @@ const UserTV = () => {
                         <table className="table table-dashboard-profile-style-1">
                           <thead>
                             <tr className="header-bg">
-                              <th>voucher code</th>
+                              <th>Voucher code</th>
                               <th>Voucher amount</th>
                               <th>Amount used</th>
-                              <th>balance amount</th>
-                              <th>valid till</th>
-                              <th>voucher status</th>
+                              <th>Balance amount</th>
+                              <th>Valid till</th>
+                              <th>Voucher status</th>
                             </tr>
                           </thead>
                           <tbody>{vouchetListTr}</tbody>
