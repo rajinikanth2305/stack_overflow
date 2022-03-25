@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Modal from "react-bootstrap/Modal";
 import { getTrekReviews } from "../../../services/queries";
+import moment from "moment";
 
 import { Controller, useForm } from "react-hook-form";
 import { Checkbox } from "primereact/checkbox";
@@ -60,6 +61,10 @@ const TrekReviews = ({ slice }) => {
     let title = "";
     let desc = "";
 
+    const check = moment(data?.batchStartDate, 'YYYY/MM/DD');
+    var month = check.format('MMM');
+    var year  = check.format('YYYY');
+
     if (data?.reviewAnswers?.length > 0) {
       const answers = data?.reviewAnswers.filter(
         y => y.questionType === "Question::Descriptive"
@@ -92,27 +97,18 @@ const TrekReviews = ({ slice }) => {
                 <div>
                   <div className="mb-4">
                     <h6>
-                      <b>{data.name}</b>
+                      <b>{data?.trekUserName}</b>
                     </h6>
-                    <p className="m-0 p-display-2">Group of</p>
-                    <p className="m-0 p-display-2">{data.batchName}</p>
+                    <p className="m-0 p-display-2">Group of {month} {year}</p>
+                    {/* <p className="m-0 p-display-2"></p> */}
                   </div>
-                  {/* <h3 className="title-diplay-3 ts-lable">
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html:
-                          title?.length > 25
-                            ? `${title?.substring(0, 55)}...`
-                            : title
-                      }}
-                    />
-                  </h3> */}
+                  <h3 className="title-diplay-3 ts-lable">{data?.batchName}</h3>
                   <p className="p-display-2">
                     <div
                       dangerouslySetInnerHTML={{
                         __html:
                           desc?.length > 125
-                            ? `${desc?.substring(0, 195)}...`
+                            ? `${desc?.substring(0, 180)}...`
                             : desc
                       }}
                     />
@@ -209,12 +205,12 @@ const TrekReviews = ({ slice }) => {
                   <div>
                     <div className="mb-4">
                       <h6>
-                        <b>{reveiewInfo && reveiewInfo?.trekName}</b>
+                        <b>{reveiewInfo && reveiewInfo?.trekUserName}</b>
                       </h6>
-                      <p className="m-0 p-display-2">Group of</p>
+                      {/* <p className="m-0 p-display-2">Group of</p>
                       <p className="m-0 p-display-2">
                         {reveiewInfo && reveiewInfo?.batchName}
-                      </p>
+                      </p> */}
                     </div>
                     {/* <h3 className="title-diplay-3 ts-lable">
                       {reveiewInfo && reveiewInfo.title}

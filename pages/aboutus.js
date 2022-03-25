@@ -18,12 +18,15 @@ const AboutUs = ({ doc, articleData }) => {
     return (
       <HomeLayout>
         <Head>
-         <meta charset="utf-8"/>
-         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-         <title>Aboutus - India hikes</title>
+          <meta charset="utf-8" />
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <title>Aboutus - India hikes</title>
         </Head>
-        <HikeHeader/>
+        <HikeHeader />
         <AboutUsSliceZone sliceZone={doc.data.body} articleData={articleData} />
         <IHTrekWithSwathi />
         <IHFooter />
@@ -36,38 +39,36 @@ const AboutUs = ({ doc, articleData }) => {
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
+  const { ref } = previewData;
 
-  const { ref } = previewData
+  const client = Client();
 
-  const client = Client()
-
-  const doc = await client.getSingle("aboutih_type", ref ? { ref } : null) || {}
+  const doc =
+    (await client.getSingle("aboutih_type", ref ? { ref } : null)) || {};
 
   const articleData = [];
-  const slice = doc.data?.body?.find(
-    x => x.slice_type === "ih_media"
-  );
+  const slice = doc?.data?.body?.find(x => x?.slice_type === "ih_media");
 
-  if (slice?.items.length > 0) {
+  if (slice?.items?.length > 0) {
     for (var i = 0; i < slice?.items.length; i++) {
       const data = slice?.items[i];
       const slugUrl = data && data?.article_link?.id;
       if (slugUrl !== undefined) {
         const article_details = await Client().getByID(slugUrl);
-        articleData.push(article_details);
+        if (article_details !== undefined && article_details !== null) {
+          articleData.push(article_details);
+        }
       }
     }
-  } else {
-    return false;
   }
 
   return {
     props: {
       doc,
       preview,
-      articleData,
+      articleData
     }
-  }
+  };
 }
 
 export default AboutUs;
