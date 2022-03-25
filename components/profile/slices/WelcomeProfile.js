@@ -47,7 +47,7 @@ const WelcomeProfile = () => {
 
                   <div>
                     <h5 className="p-text-2-fg b-left-3px">
-                      your upcoming Indiahikes trek
+                      Your upcoming Indiahikes trek
                     </h5>
 
                     <div className="row">
@@ -148,7 +148,7 @@ const WelcomeProfile = () => {
                   <div className="my-5">
                     <div>
                       <h5 className="p-text-2-fg b-left-3px">
-                        your Next Indiahikes treks
+                        Your Next Indiahikes treks
                       </h5>
 
                       <div className="row">

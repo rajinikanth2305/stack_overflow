@@ -2551,6 +2551,11 @@ export const customStyles = css.global`
       padding-bottom: 30px !important;
     }
 
+    .mpx-1 {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+
     .card-info-text > div > p {
       font-size: 14px;
       line-height: 16px;
@@ -2772,9 +2777,19 @@ export const customStyles = css.global`
     .table-btn-green,
     .table-btn-maroon,
     .table-btn-blue,
+    .table-btn-yellow,
     .table-btn-green-lg {
       font-size: 14px;
       padding: 0 10px;
+    }
+
+    .table-btn-blue,
+    .table-btn-yellow {
+      line-height: 18px;
+    }
+
+    .m-flex-wrap {
+      flex-wrap: wrap;
     }
 
     .p-text-1 {
@@ -2830,6 +2845,11 @@ export const customStyles = css.global`
 
     .mmb-10 {
       margin-bottom: 20px;
+    }
+
+    .mmx-0 {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
     }
 
     .card.faq-card.mt-4 {

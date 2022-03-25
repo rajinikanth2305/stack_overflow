@@ -347,14 +347,14 @@ const UserPT = () => {
 
                 <div className="d-flex flex-wrap align-items-center justify-content-between py-4 mb-2">
                   <div>
-                    <p className="m-0 p-text-small-fg">batch dates</p>
+                    <p className="m-0 p-text-small-fg">Batch dates</p>
                     <p className="m-0 p-text-2-fg">
                       {moment(data?.startDate).format("DD MMM")} -{" "}
                       {moment(data?.endDate).format("DD MMM YYYY")}
                     </p>
                   </div>
                   <div>
-                    <p className="m-0 p-text-small-fg">participants</p>
+                    <p className="m-0 p-text-small-fg">Participants</p>
                     <p className="m-0 p-text-2-fg">
                       {data?.participantsCount} trekkers
                     </p>
@@ -369,7 +369,7 @@ const UserPT = () => {
                     </p>
                   </div>
                 </div>
-                <div className="d-flex align-items-center flex-wrap">
+                <div className="d-flex align-items-center m-flex-wrap">
                   <div className="flex-grow-1">
                     <p className="m-0 text-decoration-underline p-text-small-fg">
                       <PDFDownloadLink
@@ -386,7 +386,7 @@ const UserPT = () => {
                       View Rented Gear
                     </p>
                   </div>
-                  <div>
+                  <div className="d-flex mmt-10">
                     {data.trekStatus === "COMPLETED" && (
                       <PDFDownloadLink
                         document={
@@ -415,7 +415,7 @@ const UserPT = () => {
                     )}
                     {data.trekStatus === "Cancelled" && (
                       <button className="btn table-btn-green-lg hvr-grow">
-                        register again
+                        Register again
                       </button>
                     )}
                   </div>
@@ -435,9 +435,9 @@ const UserPT = () => {
                   id={data.bookingId}
                 >
                   <div className="card">
-                    <div className="py-4 px-5 mx-5 my-5">
+                    <div className="py-4 px-5 mx-5 my-5 mmx-0 mpx-1 mmy-2">
                       <h5 className="p-text-2-fg b-left-3px">
-                        your thoughts on the {data.trekName} expereience
+                        Your thoughts on the {data.trekName} expereience
                       </h5>
                       <p className="p-text-3">
                         At Indiahikes, we take your feedback very seriously.
@@ -654,7 +654,7 @@ const UserPT = () => {
 
                   <div>
                     <h5 className="p-text-2-fg b-left-3px mb-3">
-                      your Previous Indiahikes treks
+                      Your previous Indiahikes treks
                     </h5>
 
                     <div className="row">
