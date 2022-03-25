@@ -486,7 +486,7 @@ async function fetchDocs(page = 1, routes = []) {
     return fetchDocs(page + 1, allRoutes);
   }
   return [...new Set(allRoutes)];
-};
+}
 
 
 export const queryRepeatableDocumentsWithDocTypeFilter = async (filter) => {
