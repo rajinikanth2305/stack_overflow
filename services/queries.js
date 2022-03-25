@@ -338,9 +338,6 @@ const buildTrekMates = (data,primaryUserEmail,stepName='Default') => {
     trekMates.push(userdata);
    }
    else {
-    //const userdata= {
-     // userId: y?.id
-    //}
     trekMates.push(y?.id);
    }
   });
