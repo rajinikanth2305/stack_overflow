@@ -65,26 +65,38 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const slice = doc.data?.body?.find(
     x => x.slice_type === "choose_these_treks"
   );
-  const trekPageData = slice.items;
-  if (trekPageData.length > 0) {
-    for (var i = 0; i < trekPageData.length; i++) {
-      const data = trekPageData[i];
+  // const trekPageData = slice?.items;
+  // if (trekPageData.length > 0) {
+  //   for (var i = 0; i < trekPageData.length; i++) {
+  //     const data = trekPageData[i];
+  //     const slugUrl = data && data?.trek_link?.id;
+  //     if (slugUrl !== undefined) {
+  //       const trek_details = await Client().getByID(slugUrl);
+  //       trekPageData1.push(trek_details);
+  //     }
+  //   }
+  // } else {
+  //   return false;
+  // }
+
+  if (slice?.items?.length > 0) {
+    for (var i = 0; i < slice?.items?.length; i++) {
+      const data = slice?.items[i];
       const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
+        if (trek_details !== undefined && trek_details !== null)
         trekPageData1.push(trek_details);
       }
     }
-  } else {
-    return false;
   }
 
   const experiment_slice = doc.data?.body?.find(
     x => x.slice_type === "experiment_learning"
   );
-  if (experiment_slice.items.length > 0) {
-    for (var i = 0; i < experiment_slice.items.length; i++) {
-      const data = experiment_slice.items[i];
+  if (experiment_slice?.items.length > 0) {
+    for (var i = 0; i < experiment_slice?.items.length; i++) {
+      const data = experiment_slice?.items[i];
       const slugUrl = data && data?.link_url?.id;
       if (slugUrl !== undefined) {
         const article_details = await Client().getByID(slugUrl);
@@ -105,9 +117,9 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const latestUpdate_slice = doc.data?.body?.find(
     x => x.slice_type === "latest_update_trekkings"
   );
-  if (latestUpdate_slice.items.length > 0) {
-    for (var i = 0; i < latestUpdate_slice.items.length; i++) {
-      const data = latestUpdate_slice.items[i];
+  if (latestUpdate_slice?.items.length > 0) {
+    for (var i = 0; i < latestUpdate_slice?.items.length; i++) {
+      const data = latestUpdate_slice?.items[i];
       const slugUrl = data && data?.link_url?.id;
       if (slugUrl !== undefined) {
         const article_details = await Client().getByID(slugUrl);
