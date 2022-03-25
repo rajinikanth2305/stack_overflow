@@ -283,11 +283,11 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     const key = String(e.getDate()).padStart(2, "0");
 
     if (batchDates[key].status === "FULL") {
-      /*toast.current.show({
+      toast.current.show({
         severity: "error",
         summary: "Sorry! Selected  Trek Booking date - seats are filled, Please try other available booking slots",
         detail: "No Seats available"
-      });*/
+      });
       return;
     }
 
