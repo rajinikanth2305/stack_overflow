@@ -60,7 +60,7 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
                   </p>
                   <p className="p-text-5 m-0">
                     {RichText.asText(getArticleHeadingText?.primary?.text)
-                      .length > 25
+                      ?.length > 25
                       ? `${RichText.asText(
                           getArticleHeadingText?.primary?.text
                         ).substring(0, 100)}...`

@@ -113,23 +113,28 @@ const BookYourTrek = ({ slice }) => {
                     )}
                   </div>
                   <div className="pt-3 d-m-none d-flex justify-content-end">
-                    {showSelectedLabel && (
-                      <div>
-                        <p className="m-0 p-text-3-1">
-                          <b>Selected {bookingDate?.trekName}:</b>
-                        </p>
-                        <p className="p-text-2">
-                          <b>
-                            {moment(bookingDate?.startDate).format("Do")} to{" "}
-                            {moment(bookingDate?.endDate).format("Do MMMM")}
-                          </b>
-                        </p>
-                      </div>
-                    )}
+                    <div>
+                      {showSelectedLabel && (
+                        <div>
+                          <p className="m-0 p-text-3-1">
+                            <b>Selected {bookingDate?.trekName}</b>
+                          </p>
+                          <p className="p-text-2">
+                            <b>
+                              {moment(bookingDate?.startDate).format("Do")} to{" "}
+                              {moment(bookingDate?.endDate).format("Do MMMM")}
+                            </b>
+                          </p>
+                        </div>
+                      )}
 
-                    <button className="btn btn-ptr hvr-grow" onClick={register}>
-                      Proceed to registration
-                    </button>
+                      <button
+                        className="btn btn-ptr hvr-grow"
+                        onClick={register}
+                      >
+                        Proceed to registration
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div className="col-lg-1 col-md-12"></div>

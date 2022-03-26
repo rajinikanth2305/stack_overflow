@@ -1139,6 +1139,13 @@ export const trekStyle = css.global`
     font-weight: normal;
   }
 
+  .cal-highlight-red-text {
+    color: rgba(230, 109, 29, 1);
+    font-size: 12px;
+    font-family: Franklin Gothic;
+    font-weight: bold;
+  }
+
   .cal-highlight-yellow {
     background: rgba(255, 193, 0, 1);
     color: #000000;
@@ -2006,6 +2013,11 @@ export const trekStyle = css.global`
     }
 
     .cal-highlight-red {
+      margin-top: -12px !important;
+      font-size: 10px;
+    }
+
+    .cal-highlight-red-text {
       margin-top: -12px !important;
       font-size: 10px;
     }

@@ -263,7 +263,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
                 <p style={{ textAlign: "right" }}>
                   <span>{date.day}</span>
                 </p>
-                <p className="m-0 cal-highlight-red text-center">FULL</p>
+                <p className="m-0 cal-highlight-red-text text-center">FULL</p>
               </>
             )}
 
