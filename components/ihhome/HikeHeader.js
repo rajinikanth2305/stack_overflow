@@ -47,11 +47,9 @@ const HikeHeader = ({ auth = false }) => {
     if (searchText && searchText !== "") {
       const client = Client();
       await client
-        .query(
-          [
-            Prismic.Predicates.fulltext("my.trek.search_keywords", searchText)
-          ]
-        )
+        .query([
+          Prismic.Predicates.fulltext("my.trek.search_keywords", searchText)
+        ])
         .then(function(response) {
           setSearchResults(response?.results);
         });
@@ -184,7 +182,9 @@ const HikeHeader = ({ auth = false }) => {
                   <NavLink
                     href="../../../upcoming-treks"
                     className={
-                      router.pathname == "/upcoming-treks" ? "active-custom" : ""
+                      router.pathname == "/upcoming-treks"
+                        ? "active-custom"
+                        : ""
                     }
                   >
                     Upcoming Treks
@@ -219,7 +219,11 @@ const HikeHeader = ({ auth = false }) => {
                 ) : (
                   <NavLink
                     href="../../../do-it-yourself-treks"
-                    className={router.pathname == "/do-it-yourself-treks" ? "active-custom" : ""}
+                    className={
+                      router.pathname == "/do-it-yourself-treks"
+                        ? "active-custom"
+                        : ""
+                    }
                   >
                     DIY treks
                   </NavLink>
@@ -359,7 +363,7 @@ const HikeHeader = ({ auth = false }) => {
                     href="/"
                     className={router.pathname == "/" ? "active-custom" : ""}
                   >
-                    Visit Indiahikes Website
+                    <button className="btn table-btn-green-lg">Visit Indiahikes Website</button>
                   </NavLink>
                 ) : (
                   ""
@@ -369,48 +373,81 @@ const HikeHeader = ({ auth = false }) => {
                 className="r-nav"
                 onClick={() => setShowSearch(!showSearch)}
               >
-                <NavLink className="view-in-desk">
+                {/* <NavLink className="view-in-desk">
                   <i
                     className="fa fa-search cursor-pointer"
                     aria-hidden="true"
                   ></i>
-                </NavLink>
-              </NavItem>
-              <NavItem className="view-in-desk">
-                <NavLink>
-                  <Link href="../../../user-dashboard/user-upcoming-treks">
+                </NavLink> */}
+                {router.pathname === "/user-dashboard/user-upcoming-treks" ||
+                router.pathname === "/user-dashboard/user-trekvouchers" ||
+                router.pathname === "/user-dashboard/user-myprofile" ||
+                router.pathname === "/user-dashboard/user-previous-treks" ? (
+                  ""
+                ) : (
+                  <NavLink className="view-in-desk">
                     <i
-                      className="fa fa-user-o cursor-pointer"
+                      className="fa fa-search cursor-pointer"
                       aria-hidden="true"
                     ></i>
-                  </Link>
-                </NavLink>
+                  </NavLink>
+                )}
               </NavItem>
-              <UncontrolledDropdown inNavbar nav className="r-nav view-in-desk">
-                <DropdownToggle nav>
-                  <i
-                    className="fa fa-bars cursor-pointer"
-                    aria-hidden="true"
-                  ></i>
-                </DropdownToggle>
-                <DropdownMenu>
-                  <Link href="../../../aboutus">
-                    <DropdownItem>About us</DropdownItem>
-                  </Link>
-                  <Link href="../../../careers">
-                    <DropdownItem>Careers</DropdownItem>
-                  </Link>
-                  <Link href="../../../contact-us">
-                    <DropdownItem>Contact Us</DropdownItem>
-                  </Link>
-                  <Link href="../../../green-trails">
-                    <DropdownItem>Green Trails</DropdownItem>
-                  </Link>
-                  <Link href="../../../articles/latest-updates">
-                    <DropdownItem>Articles</DropdownItem>
-                  </Link>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+
+              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
+              router.pathname === "/user-dashboard/user-trekvouchers" ||
+              router.pathname === "/user-dashboard/user-myprofile" ||
+              router.pathname === "/user-dashboard/user-previous-treks" ? (
+                ""
+              ) : (
+                <NavItem className="view-in-desk">
+                  <NavLink>
+                    <Link href="../../../user-dashboard/user-upcoming-treks">
+                      <i
+                        className="fa fa-user-o cursor-pointer"
+                        aria-hidden="true"
+                      ></i>
+                    </Link>
+                  </NavLink>
+                </NavItem>
+              )}
+
+              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
+              router.pathname === "/user-dashboard/user-trekvouchers" ||
+              router.pathname === "/user-dashboard/user-myprofile" ||
+              router.pathname === "/user-dashboard/user-previous-treks" ? (
+                ""
+              ) : (
+                <UncontrolledDropdown
+                  inNavbar
+                  nav
+                  className="r-nav view-in-desk"
+                >
+                  <DropdownToggle nav>
+                    <i
+                      className="fa fa-bars cursor-pointer"
+                      aria-hidden="true"
+                    ></i>
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <Link href="../../../aboutus">
+                      <DropdownItem>About us</DropdownItem>
+                    </Link>
+                    <Link href="../../../careers">
+                      <DropdownItem>Careers</DropdownItem>
+                    </Link>
+                    <Link href="../../../contact-us">
+                      <DropdownItem>Contact Us</DropdownItem>
+                    </Link>
+                    <Link href="../../../green-trails">
+                      <DropdownItem>Green Trails</DropdownItem>
+                    </Link>
+                    <Link href="../../../articles/latest-updates">
+                      <DropdownItem>Articles</DropdownItem>
+                    </Link>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+              )}
             </Nav>
           </Collapse>
         </Navbar>

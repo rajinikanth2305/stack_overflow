@@ -188,6 +188,21 @@ export const ihheaderStyles = css.global`
     display: none;
   }
 
+  .table-btn-green-lg {
+    background: rgba(57, 114, 41, 1);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.353);
+    border-radius: 3px;
+    line-height: 28px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: none;
+    padding: 0 20px;
+  }
+
   @media only screen and (max-width: 660px) {
     .navbar-expand-lg .navbar-nav .nav-item {
       padding-left: 0 !important;

@@ -252,7 +252,7 @@ const RegHome = ({ slice }) => {
           /// if state is cancelled or completed then block the flow
           //console.log(data);
           if(data.data.state==="COMPLETED") {
-            onDialogShow("Your Booking is already completed for the selected batch");
+            onDialogShow("Your Booking is already completed for the selected group");
             ///Wait for 1 seconds
             router.push(`/user-dashboard/user-upcoming-treks`);
           }
@@ -553,7 +553,7 @@ const renderFooter = (name) => {
 
                   <Tab
                     eventKey="selectbatch"
-                    title="Select Batch"
+                    title="Select Group"
                     disabled={!termAccepted}
                   >
                     <SelectBatch {...selectBatchProps} ref={childRef} />

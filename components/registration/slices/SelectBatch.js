@@ -143,7 +143,7 @@ const SelectBatch = forwardRef((props, ref) => {
             console.log(res.response.data?.message);
             toast.current.show({
               severity: "error",
-              summary: `'Select Batch -  ${res.response.data?.message}'`,
+              summary: `'Select Group -  ${res.response.data?.message}'`,
               detail: "Select Batch"
             });
           }
@@ -323,7 +323,7 @@ function daysBetween(startDate, endDate) {
                         <>
                           <div className="px-4 py-3 border-custom-green">
                             <p className="p-text-1-franklin text-center m-0">
-                              Selected Batch:
+                              Selected Group:
                             </p>
                             <p className="p-text-1-franklin text-center m-0">
                               <span>
@@ -335,7 +335,7 @@ function daysBetween(startDate, endDate) {
                           </div>
                           <div className="mt-2 pt-2">
                             <p className="p-text-3-1-fg text-center">
-                              Choose another batch of Hampta Pass Trek
+                              Choose another group of {bookingDate && bookingDate?.trekName}
                             </p>
 
                             <Accordion

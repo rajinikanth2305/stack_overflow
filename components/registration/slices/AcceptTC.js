@@ -215,14 +215,14 @@ const AcceptTC = ({
                 {RichText.asText(knowAboutYourTrekTitle)}
               </p>
               <p className="text-green mb-2">
-                Trek Fee {RichText.asText(inclusionsHeading)}
+                {RichText.asText(inclusionsHeading)}
               </p>
 
               <div>{inclusionData}</div>
 
               <div className="mt-4">
                 <p className="text-maroon mb-2">
-                  Trek Fee {RichText.asText(exclusionsHeading)}
+                  {RichText.asText(exclusionsHeading)}
                 </p>
                 <div>{exclusionssData}</div>
               </div>

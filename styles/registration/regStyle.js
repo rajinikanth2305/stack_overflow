@@ -663,7 +663,7 @@ export const regStyle = css.global`
   }
 
   .form-check-input[type="checkbox"] {
-    border: 2px solid rgb(255, 224, 127);
+    border: 2px solid rgb(57,114,41);
     border-radius: 0;
   }
 
@@ -675,7 +675,7 @@ export const regStyle = css.global`
   }
 
   .form-check-input:checked {
-    background-color: rgb(255, 224, 127);
+    background-color: rgb(57,114,41);
   }
 
   .p-calendar {
