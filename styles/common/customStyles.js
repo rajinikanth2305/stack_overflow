@@ -285,7 +285,7 @@ export const customStyles = css.global`
   }
 
   .p-text-3 {
-    line-height: 16px;
+    line-height: 21px;
     text-align: left;
     font-family: Lora;
     font-style: normal;
@@ -752,6 +752,7 @@ export const customStyles = css.global`
     font-size: 12px;
     color: rgba(0, 0, 0, 1);
     text-transform: none;
+    white-space: nowrap;
   }
 
   .table.table-dashboard-profile-style-3 > thead > tr > th {
@@ -1124,11 +1125,12 @@ export const customStyles = css.global`
   .p-text-10-fgb {
     text-align: right;
     font-family: Franklin Gothic Book;
-    font-style: italic;
-    font-weight: normal;
-    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
     color: rgba(0, 0, 0, 1);
     text-transform: none;
+    letter-spacing: 0.5px;
   }
 
   .menu-title-bg {
@@ -2048,8 +2050,8 @@ export const customStyles = css.global`
   .pillar-card.card {
     margin: 10px;
     border-radius: 0;
-    max-height: 340px;
-    min-height: 340px;
+    max-height: 355px;
+    min-height: 355px;
   }
 
   .pillar_images {
@@ -2057,6 +2059,12 @@ export const customStyles = css.global`
     height: 50px;
     background-size: cover;
     margin: 0 10px;
+  }
+
+  .p-btn-btm-why {
+    position: absolute;
+    bottom: 20px;
+    width: 90%;
   }
 
   .abt_vid_img {
@@ -2366,6 +2374,10 @@ export const customStyles = css.global`
     background: #ffffff;
   }
 
+  .p-complete-progress.progress > .progress-bar {
+    background: rgb(57, 114, 41);
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -2452,8 +2464,14 @@ export const customStyles = css.global`
     }
 
     .pillar-card.card {
-      max-height: 310px;
-      min-height: 270px;
+      min-height: 100%;
+      height: 100% !important;
+    }
+
+    .p-btn-btm-why {
+      position: relative;
+      bottom: 0;
+      width: 100%;
     }
 
     .trekking_world_image_mobile {
@@ -3019,6 +3037,19 @@ export const customStyles = css.global`
     .mw-100 {
       width: 100% !important;
     }
+
+    .pillar-card.card {
+      max-height: 100%;
+      min-height: 100%;
+    }
+    .p-btn-btm-why {
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+    .table-btn-blue, .table-btn-yellow  {
+      line-height: 18px;
+    }
   }
 
   @media (min-width: 1000px) and (max-width: 1182px) {
@@ -3037,6 +3068,18 @@ export const customStyles = css.global`
     }
     .mw-100 {
       width: 100% !important;
+    }
+    .pillar-card.card {
+      max-height: 100%;
+      min-height: 100%;
+    }
+    .p-btn-btm-why {
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+    .table-btn-blue, .table-btn-yellow  {
+      line-height: 18px;
     }
   }
   .required {

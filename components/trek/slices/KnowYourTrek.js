@@ -124,7 +124,7 @@ const KnowYourTrek = ({ slice, data }) => {
                     <h2 className="title-h2 th-2m pb-08">
                       {RichText.asText(heading1)}
                     </h2>
-                    <div className="p-text-4 mpt4 pt-3">
+                    <div className="p-text-4 mpt4 pt-3" id="how_does_each_day_looks">
                       {RichText.render(heading2)}
                     </div>
                     <div className="my-5 mmt-2">{accordionTabImg}</div>

@@ -806,7 +806,7 @@ const WelcomeProfile = () => {
                                             <Progress value="50" />
                                           ) : trekData.bookingState ===
                                             "COMPLETED" ? (
-                                            <Progress value="100" />
+                                            <Progress className="p-complete-progress" value="100" />
                                           ) : (
                                             <Progress value="25" />
                                           )}
@@ -814,7 +814,7 @@ const WelcomeProfile = () => {
                                           <div className="d-flex flex-wrap align-items-center justify-content-between py-4 mb-2">
                                             <div className="m-col-12">
                                               <p className="m-0 p-text-small-fg m-col-3">
-                                                batch dates
+                                                Batch dates
                                               </p>
                                               <p className="m-0 p-text-2-fg-f16">
                                                 {moment(
@@ -828,16 +828,16 @@ const WelcomeProfile = () => {
                                             </div>
                                             <div className="m-col-12">
                                               <p className="m-0 p-text-small-fg m-col-3">
-                                                participants
+                                                Participants
                                               </p>
                                               <p className="m-0 p-text-2-fg-f16">
                                                 {trekData?.participantsCount}{" "}
-                                                trekkers
+                                                Trekkers
                                               </p>
                                             </div>
                                             <div className="m-col-12">
                                               <p className="m-0 p-text-small-fg m-col-3 m-d-none">
-                                                Experience Coordinator{" "}
+                                                Experience coordinator{" "}
                                                 <span className="exp-co-icons">
                                                   <i
                                                     className="fa fa-phone"

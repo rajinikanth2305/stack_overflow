@@ -112,7 +112,7 @@ const BookYourTrek = ({ slice }) => {
                       />
                     )}
                   </div>
-                  <div className="pt-3 d-m-none px-2">
+                  <div className="pt-3 d-m-none d-flex justify-content-end">
                     {showSelectedLabel && (
                       <div>
                         <p className="m-0 p-text-3-1">

@@ -20,6 +20,7 @@ const WhatWeAre = ({ slice }) => {
   const handleShow = () => setShow(true);
 
   const pillarImages = pillarImagesArray?.map((data, i) => {
+    console.log(data);
     const result = data?.yt_link?.url.split(
       /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
     );
@@ -59,9 +60,9 @@ const WhatWeAre = ({ slice }) => {
                   {RichText.render(data?.pillar_desc)}
                 </div>
               </div>
-              <div className="text-center pt-2 pb-3 p-btn-btm">
+              <div className="text-center pt-2 pb-3 p-btn-btm-why">
                 {/* <Link href={url}> */}
-                <button
+               {data?.button_name?.length > 0 && <button
                   className="btn btn-ih-green"
                   onClick={() => {
                     setTrekVideoUrl(videoUrl);
@@ -69,7 +70,7 @@ const WhatWeAre = ({ slice }) => {
                   }}
                 >
                   {RichText.asText(data?.button_name)}
-                </button>
+                </button> }
                 {/* </Link> */}
               </div>
             </div>
@@ -108,7 +109,8 @@ const WhatWeAre = ({ slice }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
+          arrows: false,
+          adaptiveHeight: true,
         }
       }
     ]

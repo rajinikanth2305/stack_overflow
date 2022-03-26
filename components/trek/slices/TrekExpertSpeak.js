@@ -260,7 +260,7 @@ const TrekExpertSpeak = ({ slice }) => {
                             className="btn btn-ptr hvr-grow"
                             onClick={() => setTrekExpertSecHeight("auto")}
                           >
-                            read more
+                            Read More
                           </button>
                         ) : (
                           <a href="#trekexper-sec">
@@ -268,7 +268,7 @@ const TrekExpertSpeak = ({ slice }) => {
                               className="btn btn-ptr hvr-grow"
                               onClick={() => setTrekExpertSecHeight(375)}
                             >
-                              read less
+                              Read Less
                             </button>
                           </a>
                         )}

@@ -55,11 +55,11 @@ const ThoughtBehind = ({ slice }) => {
                 />
               </div>
             </div>
-            <div className="d-flex justify-content-center">
+            {/* <div className="d-flex justify-content-center">
               <button className="btn btn-lg btn-ih-primary text-capitalized hvr-grow">
                 Read more
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         <style jsx global>
