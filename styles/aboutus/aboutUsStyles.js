@@ -7,6 +7,7 @@ export const aboutUsStyles = css.global`
     background-size: cover;
     position: relative;
     background-position: bottom;
+    z-index: 0;
   }
 
   .bg_overlay {

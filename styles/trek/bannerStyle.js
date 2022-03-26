@@ -7,6 +7,7 @@ export const bannerStyle = css.global`
     background-size: cover;
     position: relative;
     background-position: center;
+    z-index: 0;
   }
 
   .bg_overlay {

@@ -266,6 +266,7 @@ const SelectBatch = forwardRef((props, ref) => {
 
   const onBatchSelect = batchSelected => {
     bookingSelect(batchSelected);
+    window.scrollTo(200, 200);
   };
 
 
@@ -375,6 +376,8 @@ function daysBetween(startDate, endDate) {
                                       <Card.Body>
                                         {trekMonth.data.map(item => {
                                           return (
+                                            <div>
+                                              {item.batchState !== "CLOSED" &&
                                             <div className="row">
                                               <div className="col-lg-7 col-md-12 col-7">
                                                 <p className="p-text-3-1-fg mb-2 pb-1">
@@ -395,10 +398,6 @@ function daysBetween(startDate, endDate) {
 
                                               <div className="col-lg-3 col-md-12 col-3">
                                                 <p className="p-text-3-1-fg mb-2 pb-1">
-                                                  {/* {item.batchState==='ACTIVE' ?
-                                                <span className="text-green-clr">Available</span> ? item.batchState==='FULL' ?
-                                                <span className="text-maroon-clr">Full</span> : <span className="text-maroon-clr">Waitlist</span>
-                                              } */}
                                                   {item.batchState ===
                                                     "ACTIVE" && (
                                                     <span className="text-green-clr">
@@ -434,6 +433,7 @@ function daysBetween(startDate, endDate) {
                                                   </p>
                                                 )}
                                               </div>
+                                            </div>}
                                             </div>
                                           );
                                         })}
@@ -469,7 +469,14 @@ function daysBetween(startDate, endDate) {
         </div>
         <div className="d-flex justify-content-center">
           <div>
-            <div className="my-4 pt-2">
+          <p className="p-text-2-franklin text-center mt-5 mb-3">
+            <span>
+              {moment(bookingDate?.startDate).format("Do")} to{" "}
+              {moment(bookingDate?.endDate).format("Do")}{" "}
+              {moment(bookingDate?.endDate).format("MMMM")}
+            </span>
+          </p>
+            <div className="">
               <button
                 type="button"
                 className="btn btn-ih-green hvr-grow py-2"

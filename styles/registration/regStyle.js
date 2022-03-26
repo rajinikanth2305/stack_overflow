@@ -992,6 +992,10 @@ export const regStyle = css.global`
     transform: scale(1.1);
   }
 
+  .highlihtText {
+    font-weight: bold;
+  }
+
   @media only screen and (max-width: 660px) {
     .m-d-none {
       display: none;
