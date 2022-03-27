@@ -104,7 +104,7 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
                     <div className="p-text-4 trek_card_desc_min_height">
                       {/* {RichText.asText(tData?.primary?.sub_heading)} */}
                       {RichText.asText(tData?.primary?.sub_heading)
-                          .length > 75
+                          ?.length > 75
                           ? `${RichText.asText(
                             tData?.primary?.sub_heading
                             ).substring(0, 75)}...`

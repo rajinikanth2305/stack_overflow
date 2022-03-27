@@ -66,7 +66,7 @@ const Section6 = ({ slice, highAlititudeData }) => {
           </div>
         </div>
       )}
-      {highAlititudeData && highAlititudeData.length && (
+      {highAlititudeData && highAlititudeData?.length && (
         <div className="container">
           <div className="my-5">
             <div className="row">{highAlititudeList}</div>

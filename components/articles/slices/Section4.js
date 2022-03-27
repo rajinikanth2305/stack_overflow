@@ -140,7 +140,7 @@ const Section4 = ({ slice, laPrimaryArticlePrimaryArticleData, latestArticleData
             <div className="col-lg-6 col-md-12">
               {/* {latestArticleData &&
                 latestArticleData.length && { articleLearnMore }} */}
-              {latestArticleData && latestArticleData.length && (
+              {latestArticleData && latestArticleData?.length && (
                 <div className="row">{articleLearnMore}</div>
               )}
             </div>

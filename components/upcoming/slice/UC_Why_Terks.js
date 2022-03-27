@@ -22,7 +22,7 @@ const UCWhyTreks = ({ slice }) => {
               />
             </div>
             <p className="why_trek_box_title mb-2 m-d-none">
-              {data?.uc_why_trek_images_caption[0]?.text.length > 50
+              {data?.uc_why_trek_images_caption[0]?.text?.length > 50
                 ? `${data?.uc_why_trek_images_caption[0]?.text.substring(
                     0,
                     50
@@ -30,7 +30,7 @@ const UCWhyTreks = ({ slice }) => {
                 : data?.uc_why_trek_images_caption[0]?.text}
             </p>
             <p className="why_trek_box_desc m-0">
-              {data?.uc_why_trek_images_caption_desc[0]?.text.length > 125
+              {data?.uc_why_trek_images_caption_desc[0]?.text?.length > 125
                 ? `${data?.uc_why_trek_images_caption_desc[0]?.text.substring(
                     0,
                     125

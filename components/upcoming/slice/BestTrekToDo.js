@@ -99,7 +99,7 @@ const BestTrekToDo = ({ slice, bestTrekToDoData }) => {
                   <div>
                     <p className="title-diplay-3 text-uppercase">
                       <b>
-                        {tData?.primary?.trek_caption.length > 25
+                        {tData?.primary?.trek_caption?.length > 25
                           ? `${tData?.primary?.trek_caption.substring(0, 25)}...`
                           : tData?.primary?.trek_caption}
                       </b>
@@ -165,7 +165,7 @@ const BestTrekToDo = ({ slice, bestTrekToDoData }) => {
             <div className="px-3 py-2">
               <div>
                 <h3 className="m-title-3 text-uppercase">
-                  {tData?.primary?.trek_caption.length > 20
+                  {tData?.primary?.trek_caption?.length > 20
                     ? `${tData?.primary?.trek_caption.substring(0, 20)}...`
                     : tData?.primary?.trek_caption}
                 </h3>

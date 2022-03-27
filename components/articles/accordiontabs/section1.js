@@ -155,7 +155,7 @@ const Section1 = ({ data, section1DataList, primaryArticleData }) => {
               </div>
             </div>
             <div className="row">
-              {section1DataList && section1DataList.length > 0 && (
+              {section1DataList && section1DataList?.length > 0 && (
                 <div className="col-lg-6 col-md-12">
                   <div className="row">{section1Data}</div>
                 </div>

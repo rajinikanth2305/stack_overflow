@@ -113,7 +113,7 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
                         )}
                       </p>
                       <p className="p-text-5 m-0">
-                        {RichText.asText(cardTitle?.primary?.text).length > 25
+                        {RichText.asText(cardTitle?.primary?.text)?.length > 25
                           ? `${RichText.asText(
                               cardTitle?.primary?.text
                             ).substring(0, 110)}...`

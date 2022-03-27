@@ -94,7 +94,7 @@ const LatestGt = ({ slice, latestUpdateAarticleData }) => {
                       : RichText.asText(
                           data?.data?.body?.primary?.text?.text
                         )} */}
-                    {data?.data?.body[0]?.primary?.text[0]?.text.length > 25
+                    {data?.data?.body[0]?.primary?.text[0]?.text?.length > 25
                       ? `${data?.data?.body[0]?.primary?.text[0]?.text.substring(
                           0,
                           100

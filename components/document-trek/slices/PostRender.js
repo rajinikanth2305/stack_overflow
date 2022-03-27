@@ -165,7 +165,7 @@ const PostRender = ({
       setPostComments(comments);
       const arr = Array.from(new Array(comments?.length), (x, i) => i);
       setIndexes(arr);
-      setCounter(arr.length);
+      setCounter(arr?.length);
       //setRender(true);
     }).catch(error => console.log(error));
   };
@@ -643,7 +643,7 @@ const PostRender = ({
           return (
             <div className="border-bottom mb-3">
               <div className="ar_right_side_imgs">
-                {featureImageUrl.length > 0 && <img src={featureImageUrl} />}
+                {featureImageUrl?.length > 0 && <img src={featureImageUrl} />}
               </div>
               <p className="p-text-3-fgc text-uppercase mt-2 mb-1">{title}</p>
               <p className="p-text-small-10-gray mb-0">
@@ -684,7 +684,7 @@ const PostRender = ({
 
     let today = new Date();
 
-    if (replyText.trim().length == 0) {
+    if (replyText.trim()?.length == 0) {
       alert("Reply text should'nt be Empty");
       toast?.current?.show({
         severity: "error",
@@ -693,7 +693,7 @@ const PostRender = ({
       });
       return;
     }
-    if (userName.trim().length == 0) {
+    if (userName.trim()?.length == 0) {
       alert("UserName text should'nt be Empty");
       toast.current.show({
         severity: "error",
@@ -702,7 +702,7 @@ const PostRender = ({
       });
       return;
     }
-    if (email.trim().length == 0) {
+    if (email.trim()?.length == 0) {
       alert("Email text should'nt be Empty");
       toast.current.show({
         severity: "error",
@@ -759,8 +759,8 @@ const PostRender = ({
 
     let today = new Date();
 
-    if (replyText.trim().length === 0) {
-      console.log(replyText.trim().length);
+    if (replyText.trim()?.length === 0) {
+      console.log(replyText.trim()?.length);
       console.log(toast.current);
       alert("Reply text should'nt be Empty");
       toast?.current?.show({
@@ -770,7 +770,7 @@ const PostRender = ({
       });
       return;
     }
-    if (userName.trim().length == 0) {
+    if (userName.trim()?.length == 0) {
       alert("UserName text should'nt be Empty");
       toast.current.show({
         severity: "error",
@@ -779,7 +779,7 @@ const PostRender = ({
       });
       return;
     }
-    if (email.trim().length === 0) {
+    if (email.trim()?.length === 0) {
       alert("Email text should'nt be Empty");
       toast.current.show({
         severity: "error",

@@ -129,7 +129,7 @@ const TrekkersStories = ({ slice }) => {
                       {data?.trekkers_stories_title[0]?.text}
                     </h3>
                     <div className="p-display-2">
-                      {trekkers_stories_desc.length > 125
+                      {trekkers_stories_desc?.length > 125
                         ? `${trekkers_stories_desc.substring(0, 125)}...`
                         : trekkers_stories_desc}
                     </div>
@@ -165,7 +165,7 @@ const TrekkersStories = ({ slice }) => {
                       : data.title}
                   </h3> */}
                   <p className="p-display-2">
-                    {data.desc.length > 125
+                    {data?.desc?.length > 125
                       ? `${data.desc.substring(0, 195)}...`
                       : data.desc}
                   </p>

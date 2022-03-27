@@ -141,7 +141,7 @@ const Section7 = ({ slice, trekkingprimaryArticleData, trekkingArticleData }) =>
             <div className="col-lg-6 col-md-12">
               {/* {trekkingArticleData &&
                 trekkingArticleData.length && { articleLearnMore }} */}
-              {trekkingArticleData && trekkingArticleData.length && (
+              {trekkingArticleData && trekkingArticleData?.length && (
                 <div className="row">{articleLearnMore}</div>
               )}
             </div>

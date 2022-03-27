@@ -585,8 +585,8 @@ export const upcomingTrekPageStyle = css.global`
     transition-property: transform;
   }
   .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
   }
   .cursor-pointer {
     cursor: pointer;

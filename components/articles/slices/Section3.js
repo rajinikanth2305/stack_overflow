@@ -56,7 +56,7 @@ const Section3 = ({ slice, mostReadarticleData }) => {
 
   return (
     <div>
-      {mostReadarticleData && mostReadarticleData.length && (
+      {mostReadarticleData && mostReadarticleData?.length && (
         <div className="my-5">
           <div className="new_titile_bg">
             <div className="container">

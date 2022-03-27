@@ -96,7 +96,7 @@ const Section2 = ({ slice }) => {
 
   return (
     <div>
-      {ihTrekkerVideosImageArray && ihTrekkerVideosImageArray.length > 0 && (
+      {ihTrekkerVideosImageArray && ihTrekkerVideosImageArray?.length > 0 && (
         <div className="mb-4 career_video_sec_grey">
           <div className="trek_video_badge">
             <img src="/trek-badge_badge.png" />

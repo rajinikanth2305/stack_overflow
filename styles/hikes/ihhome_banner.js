@@ -24,7 +24,8 @@ export const ihhomeBannerStyles = css.global`
     height: 600px;
     background-size: cover;
     position: relative;
-    background-position: bottom;
+    background-position: 50% 50%;
+    background-attachment: fixed;
     z-index: 0;
   }
 

@@ -89,7 +89,7 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
                   <div>
                     <h3 className="title-diplay-3 m-d-3 text-uppercase">
                       <b>
-                        {tData?.primary?.trek_caption.length > 25
+                        {tData?.primary?.trek_caption?.length > 25
                           ? `${tData?.primary?.trek_caption.substring(
                               0,
                               25
@@ -99,7 +99,7 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
                     </h3>
                     <p className="p-text-4 mt2 trek_card_desc_min_height">
                       {/* {RichText.asText(tData?.primary?.sub_heading)} */}
-                      {RichText.asText(tData?.primary?.sub_heading).length > 25
+                      {RichText.asText(tData?.primary?.sub_heading)?.length > 25
                         ? `${RichText.asText(
                             tData?.primary?.sub_heading
                           ).substring(0, 75)}...`
@@ -155,7 +155,7 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
                     {data?.trek_title[0]?.text}
                   </h3>
                   <p className="m-display-2">
-                    {data?.trek_desc[0]?.text.length > 125
+                    {data?.trek_desc[0]?.text?.length > 125
                       ? `${data?.trek_desc[0]?.text.substring(0, 125)}...`
                       : data?.trek_desc[0]?.text}
                   </p>

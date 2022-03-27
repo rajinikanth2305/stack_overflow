@@ -117,7 +117,7 @@ const RegHome = ({ slice }) => {
     const batchId = batchKeyVal.split("=")[1];
     ///
     let stepName = "";
-    if (pageUrl.length > 1) {
+    if (pageUrl?.length > 1) {
       let stepKeyVal = pageUrl[1]; //StepKey
       stepName = stepKeyVal.split("=")[1];
     }
@@ -178,7 +178,7 @@ const RegHome = ({ slice }) => {
           Prismic.Predicates.fulltext("my.trek.trek_id", trekId.toString())
         ])
         .then(function(response) {
-          if(response && response.results && response.results.length > 0) {
+          if(response && response.results && response.results?.length > 0) {
             const tt = response.results[0].data.body;
             const slice = tt && tt.find(x => x.slice_type === "book_your_trek");
             setEligibilityCriteria(slice);
@@ -341,7 +341,7 @@ const RegHome = ({ slice }) => {
 
     let vouchers = [];
     vouchers = await getUsersVoucherByBookingId(data.id);
-    if (vouchers.length > 0) {
+    if (vouchers?.length > 0) {
       vouchers = transFormVoucherPayload(vouchers);
     }
 

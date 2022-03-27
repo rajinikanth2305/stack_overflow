@@ -91,7 +91,7 @@ const Section5 = ({ slice, hikesNewsData }) => {
                 </p>
                 <p className="p-text-3 m-0">
                     {RichText.asText(getArticleHeadingText?.primary?.text)
-                      .length > 25
+                      ?.length > 25
                       ? `${RichText.asText(
                           getArticleHeadingText?.primary?.text
                         ).substring(0, 150)}...`
@@ -118,7 +118,7 @@ const Section5 = ({ slice, hikesNewsData }) => {
             </div>
           </div>
         )}
-        {hikesNewsData && hikesNewsData.length > 0 && (
+        {hikesNewsData && hikesNewsData?.length > 0 && (
           <div className="container my-5">
             <Slider className="home-choose-treks" {...settings}>
               {hikesNewsList}

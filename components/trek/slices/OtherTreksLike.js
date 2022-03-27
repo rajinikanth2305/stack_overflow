@@ -136,7 +136,7 @@ const OtherTreksLike = ({ slice, trekPageData1 }) => {
 
   return (
     <div>
-      {trekPageData1 && trekPageData1.length > 0 && (
+      {trekPageData1 && trekPageData1?.length > 0 && (
         <div className="my-5 mmt-0">
           <div className="container">
             <div className="d-flex flex-wrap align-items-center mb-3">

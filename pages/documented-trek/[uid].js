@@ -20,7 +20,7 @@ import IHTrekWithSwathi from "components/Trek_With_Swathi";
  */
 const DocumentTrek = ({ post, authorData,updatesData,upComingData,relatedArticles,related_authors }) => {
   if (post && post.data) {
-    const hasTitle = RichText.asText(post.data.title).length !== 0;
+    const hasTitle = RichText.asText(post.data.title)?.length !== 0;
     const title = hasTitle ? RichText.asText(post.data.title) : "Untitled";
     const meta_title = RichText.asText(post.data?.meta_title);
     const meta_desc = RichText.asText(post.data?.meta_description);
@@ -73,7 +73,7 @@ const relatedArticles=[];
  //console.log(slice);
  
  if(slice!==null && slice!==undefined) {
-   if(slice?.items.length>0) {
+   if(slice?.items?.length>0) {
       for (var i = 0; i < slice?.items?.length; i++) {
             let slug=null;
             let uid=false;
@@ -133,7 +133,7 @@ if(author_lnk_id !== undefined) {
   let upComingData=[]
   const upComingTreks=homePageData.data?.body?.find(x=>x.slice_type==="choose_these_treks");
   if(upComingTreks!==null && upComingTreks!==undefined) {
-    if(upComingTreks?.items.length>0) {
+    if(upComingTreks?.items?.length>0) {
        for (var i = 0; i < upComingTreks?.items?.length; i++) {
              if(i<=6) {
              let slug=null;
@@ -154,7 +154,7 @@ if(author_lnk_id !== undefined) {
     const updatesData =homePageData.data?.body?.find(x=>x.slice_type==="latest_trekking_world");
 
  let related_authors=[];
-  for(var i = 0; i < relatedArticles.length; i++) {
+  for(var i = 0; i < relatedArticles?.length; i++) {
     const article=relatedArticles[i];
     const author_lnk_id=article?.data?.author_link?.id;
     //console.log("139" + article?.data?.author_link?.id);

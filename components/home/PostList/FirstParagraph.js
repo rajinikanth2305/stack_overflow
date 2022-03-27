@@ -12,7 +12,7 @@ const FirstParagraph = ({ sliceZone, textLimit = 300 }) => {
     const text = RichText.asText(firstTextSlice.primary.text)
     let limitedText = text.substring(0, textLimit)
 
-    if (text.length > textLimit) {
+    if (text?.length > textLimit) {
       // Cut only up to the last word and attach '...' for readability
       limitedText = `${limitedText.substring(0, limitedText.lastIndexOf(' '))}...`
     }

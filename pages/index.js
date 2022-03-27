@@ -94,8 +94,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const experiment_slice = doc.data?.body?.find(
     x => x.slice_type === "experiment_learning"
   );
-  if (experiment_slice?.items.length > 0) {
-    for (var i = 0; i < experiment_slice?.items.length; i++) {
+  if (experiment_slice?.items?.length > 0) {
+    for (var i = 0; i < experiment_slice?.items?.length; i++) {
       const data = experiment_slice?.items[i];
       const slugUrl = data && data?.link_url?.id;
       if (slugUrl !== undefined) {
@@ -117,8 +117,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const latestUpdate_slice = doc.data?.body?.find(
     x => x.slice_type === "latest_update_trekkings"
   );
-  if (latestUpdate_slice?.items.length > 0) {
-    for (var i = 0; i < latestUpdate_slice?.items.length; i++) {
+  if (latestUpdate_slice?.items?.length > 0) {
+    for (var i = 0; i < latestUpdate_slice?.items?.length; i++) {
       const data = latestUpdate_slice?.items[i];
       const slugUrl = data && data?.link_url?.id;
       if (slugUrl !== undefined) {

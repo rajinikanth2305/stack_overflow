@@ -101,7 +101,7 @@ const UCOpenForSmallGroup = ({ slice, ucOpenData }) => {
                   <div>
                     <p className="title-diplay-3 m-t-d3 text-uppercase">
                       <b>
-                        {tData?.primary?.trek_caption.length > 25
+                        {tData?.primary?.trek_caption?.length > 25
                           ? `${tData?.primary?.trek_caption.substring(
                               0,
                               25

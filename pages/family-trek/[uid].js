@@ -80,8 +80,8 @@ export async function getStaticProps({
     x => x.slice_type === "multi_day_trek_list"
   );
 
-  if (multitrek_slice?.items.length > 0) {
-    for (var i = 0; i < multitrek_slice?.items.length; i++) {
+  if (multitrek_slice?.items?.length > 0) {
+    for (var i = 0; i < multitrek_slice?.items?.length; i++) {
       const data = multitrek_slice?.items[i];
       const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
@@ -96,8 +96,8 @@ export async function getStaticProps({
     x => x.slice_type === "weekend_treks"
   );
 
-  if (weekendtrek_slice?.items.length > 0) {
-    for (var i = 0; i < weekendtrek_slice?.items.length; i++) {
+  if (weekendtrek_slice?.items?.length > 0) {
+    for (var i = 0; i < weekendtrek_slice?.items?.length; i++) {
       const data = weekendtrek_slice?.items[i];
       const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
@@ -112,7 +112,7 @@ export async function getStaticProps({
     x => x.slice_type === "fam_trek_stories"
   );
   if (latestUpdate_slice?.items?.length > 0) {
-    for (var i = 0; i < latestUpdate_slice?.items.length; i++) {
+    for (var i = 0; i < latestUpdate_slice?.items?.length; i++) {
       const data = latestUpdate_slice?.items[i];
       const slugUrl = data && data?.link_url?.id;
       if (slugUrl !== undefined) {
@@ -137,7 +137,7 @@ export async function getStaticProps({
 export async function getStaticPaths() {
   //const documents = await queryRepeatableDocuments((doc) => doc.type === 'trek')
   const documents = await queryRepeatableDocumentsWithDocTypeFilter("family_trek");
-  console.log(documents.length);
+  console.log(documents?.length);
 
   /*const response = await Client().query(
     Prismic.Predicates.at("document.type", "family_trek")

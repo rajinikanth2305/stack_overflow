@@ -87,7 +87,7 @@ const Testimonoials = ({ slice }) => {
               <div className="mt-4 mb-2">
                 <p className="p-text-4">
                   {/* {RichText.render(data?.content)} */}
-                  {RichText.asText(data?.content).length > 25
+                  {RichText.asText(data?.content)?.length > 25
                     ? `${RichText.asText(data?.content).substring(0, 200)}...`
                     : RichText.asText(data?.content)}
                 </p>

@@ -54,8 +54,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     x => x.slice_type === "learn_more_sec"
   );
 
-  if (slice?.items.length > 0) {
-    for (var i = 0; i < slice?.items.length; i++) {
+  if (slice?.items?.length > 0) {
+    for (var i = 0; i < slice?.items?.length; i++) {
       const data = slice?.items[i];
       const slugUrl = data && data?.article_link?.id;
       if (slugUrl !== undefined) {

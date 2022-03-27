@@ -474,7 +474,7 @@ const HikeHeader = ({ auth = false }) => {
               />
             </div>
           </div>
-          {searchResults && searchResults.length > 0 && (
+          {searchResults && searchResults?.length > 0 && (
             <div className="search-box-section">
               <div className="d-flex justify-content-end p-1">
                 <i

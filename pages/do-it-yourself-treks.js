@@ -64,8 +64,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const slice = doc.data?.body?.find(x => x.slice_type === "best_post_treks");
 
-  if (slice.items.length > 0) {
-    for (var i = 0; i < slice.items.length; i++) {
+  if (slice.items?.length > 0) {
+    for (var i = 0; i < slice.items?.length; i++) {
       const data = slice.items[i];
       const slugUrl = data && data?.diy_article_link?.id;
       if (slugUrl !== undefined) {
@@ -80,8 +80,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     x => x.slice_type === "diy_trek_categories"
   );
 
-  if (dtcslice?.items.length > 0) {
-    for (var i = 0; i < dtcslice?.items.length; i++) {
+  if (dtcslice?.items?.length > 0) {
+    for (var i = 0; i < dtcslice?.items?.length; i++) {
       const data = dtcslice?.items[i];
       const slugUrl = data && data?.diy_trek_link?.id;
       if (slugUrl !== undefined) {
@@ -96,8 +96,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     x => x.slice_type === "diy_resources"
   );
 
-  if (dtResourceslice?.items.length > 0) {
-    for (var i = 0; i < dtResourceslice?.items.length; i++) {
+  if (dtResourceslice?.items?.length > 0) {
+    for (var i = 0; i < dtResourceslice?.items?.length; i++) {
       const data = dtResourceslice?.items[i];
       const slugUrl = data && data?.diy_article_link?.id;
       if (slugUrl !== undefined) {
