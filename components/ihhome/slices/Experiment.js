@@ -30,10 +30,11 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
   }
 
   const artData = articleData.map(function(data, i) {
+    console.log(data);
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
-      url = `/blog/${slugUrl}`;
+      url = `/family-trek/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.find(
       x => x.slice_type === "feature_image"
@@ -47,8 +48,8 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
           <Link href={url ? url : "#"}>
             <div>
               <div className="expImage">
-                {getArticleImage?.primary?.feature_image?.url ? <img
-                  src={getArticleImage?.primary?.feature_image?.url}
+                {data?.data?.body[0]?.primary?.banner_image?.url ? <img
+                  src={data?.data?.body[0]?.primary?.banner_image?.url}
                   alt="articleImage"
                   className="expImage"
                 /> : <img src="./ip.png" className="expImage" /> }
@@ -56,15 +57,15 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
               <div className="p-3">
                 <div className="">
                   <p className="p-text-3 m-0">
-                    {RichText.asText(data?.data?.title)}
+                    {RichText.asText(data?.data?.body[0]?.primary?.heading1)}
                   </p>
                   <p className="p-text-5 m-0">
-                    {RichText.asText(getArticleHeadingText?.primary?.text)
-                      ?.length > 25
+                    {RichText.asText(data?.data?.body[0]?.primary?.heading2)
+                      ?.length > 50
                       ? `${RichText.asText(
-                          getArticleHeadingText?.primary?.text
-                        ).substring(0, 100)}...`
-                      : RichText.asText(getArticleHeadingText?.primary?.text)}
+                        data?.data?.body[0]?.primary?.heading2
+                        ).substring(0, 50)}...`
+                      : RichText.asText(data?.data?.body[0]?.primary?.heading2)}
                   </p>
                 </div>
               </div>
