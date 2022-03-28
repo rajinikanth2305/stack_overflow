@@ -30,7 +30,7 @@ const MyTreks = forwardRef((props, ref) => {
   const [bookingState, setBookingState] = useState(false);
 
   const [trekPageData, setTrekPageData] = useState(undefined);
-  
+
   const [essentialData, setEssentialData] = useState(undefined);
   const [videoData, setVideoData] = useState(undefined);
 
@@ -94,10 +94,8 @@ const MyTreks = forwardRef((props, ref) => {
     ]
   };
 
-  
-
   const essentialsArraydetails = essentialIndexes?.map(function(i) {
-    const data=essentialData && essentialData[i];
+    const data = essentialData && essentialData[i];
     return (
       <div className="col-lg-3 col-md-6 col-12" key={i}>
         <p className="m-0 text-decoration-underline">
@@ -115,13 +113,15 @@ const MyTreks = forwardRef((props, ref) => {
   });
 
   const trekVideosArrayDetails = videoIndexes?.map(function(i) {
-    const data=videoData && videoData[i];
-    const result = data?.video_url?.url?.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+    const data = videoData && videoData[i];
+    const result = data?.video_url?.url?.split(
+      /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
+    );
     const videoIdWithParams = result && result[2];
-  
+
     const cleanVideoId =
-    videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
-  
+      videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
+
     const videoUrl =
       "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
     const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
@@ -170,33 +170,47 @@ const MyTreks = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     async changeState(trekData) {
       //// Get Trek locations
-       if(trekData===null) {
+      if (trekData === null) {
         setIndexes([]);
         setCounter(0);
-          //setRender(false);
-          return;
-       }
-       setRender(false);
+        //setRender(false);
+        return;
+      }
+      setRender(false);
       //  console.log(trekData);
-       const data=trekData?.data;
-       /// Get the prismic trek contents
-      const trekName = data.backOfficeTrekLabel.replaceAll(" ", "-").toLowerCase();
+      const data = trekData?.data;
+      /// Get the prismic trek contents
+      const trekName = data.backOfficeTrekLabel
+        .replaceAll(" ", "-")
+        .toLowerCase();
       // console.log(trekName);
-      const result=trekData.prismicContents?.results?.find(x=>x.uid.toLowerCase()===trekName.toLowerCase());
+      const result = trekData.prismicContents?.results?.find(
+        x => x.uid.toLowerCase() === trekName.toLowerCase()
+      );
       // console.log(result);
       setTrekPageData(result);
 
       fillPrismicContents(result);
 
       const trekId = data?.trekId;
-      const bookState= data?.bookingState==="COMPLETED";
+      const bookState = data?.bookingState === "COMPLETED";
       // console.log( data );
       setBookingState(bookState);
 
-      if(bookState) {
-      getTrekLocations(trekId).then(res => {
-        console.log("location - get" + res);
-        setLocations(res);
+      if (bookState) {
+        getTrekLocations(trekId).then(res => {
+          console.log("location - get" + res);
+          setLocations(res);
+          setParticipantData(data);
+          const arr = Array.from(
+            new Array(data?.userTrekBookingParticipants?.length),
+            (x, i) => i
+          );
+          setIndexes(arr);
+          setCounter(arr.length);
+          setRender(true);
+        });
+      } else {
         setParticipantData(data);
         const arr = Array.from(
           new Array(data?.userTrekBookingParticipants?.length),
@@ -205,80 +219,70 @@ const MyTreks = forwardRef((props, ref) => {
         setIndexes(arr);
         setCounter(arr.length);
         setRender(true);
-      });
-    }
-    else {
-      setParticipantData(data);
-      const arr = Array.from(
-        new Array(data?.userTrekBookingParticipants?.length),
-        (x, i) => i
-      );
-      setIndexes(arr);
-      setCounter(arr.length);
-      setRender(true);
-      //setLocations(null);
-    }
+        //setLocations(null);
+      }
     }
   }));
 
-
-  const fillPrismicContents=(result)=> {
-    const essentialDownloads = result?.data?.body.find(x => x.slice_type === "essentials_downloads"); 
+  const fillPrismicContents = result => {
+    const essentialDownloads = result?.data?.body.find(
+      x => x.slice_type === "essentials_downloads"
+    );
     //  console.log(essentialDownloads);
 
-    if(essentialDownloads!==undefined) {
-    const essentialsArray = essentialDownloads && essentialDownloads?.items;
-    setEssentialData(essentialsArray);
+    if (essentialDownloads !== undefined) {
+      const essentialsArray = essentialDownloads && essentialDownloads?.items;
+      setEssentialData(essentialsArray);
 
-    const arr = Array.from(new Array(essentialsArray?.length),(x, i) => i);
-    setEssentialIndexes(arr);
-    setEssentialCounter(arr.length);
-    }
-    else {
+      const arr = Array.from(new Array(essentialsArray?.length), (x, i) => i);
+      setEssentialIndexes(arr);
+      setEssentialCounter(arr.length);
+    } else {
       setEssentialIndexes([]);
       setEssentialCounter(0);
     }
 
-    const trekVideoData = result?.data?.body?.find( x => x.slice_type === "trek_videos");
-    if(trekVideoData!==undefined) {
-    const trekVideosArray = trekVideoData && trekVideoData?.items;
-    setVideoData(trekVideosArray);
+    const trekVideoData = result?.data?.body?.find(
+      x => x.slice_type === "trek_videos"
+    );
+    if (trekVideoData !== undefined) {
+      const trekVideosArray = trekVideoData && trekVideoData?.items;
+      setVideoData(trekVideosArray);
 
-    const arr1 = Array.from(new Array(trekVideosArray.length),(x, i) => i);
-    setVideoIndexes(arr1);
-    setVideoCounter(arr1.length);
-    }
-    else {
+      const arr1 = Array.from(new Array(trekVideosArray.length), (x, i) => i);
+      setVideoIndexes(arr1);
+      setVideoCounter(arr1.length);
+    } else {
       setVideoIndexes([]);
       setVideoCounter(0);
     }
-  }
-
+  };
 
   const getVideoHeading = () => {
-    let trekVideoData = trekPageData.data.body.find(x => x.slice_type === "trek_videos");
+    let trekVideoData = trekPageData.data.body.find(
+      x => x.slice_type === "trek_videos"
+    );
     const trekVideoHeading = trekVideoData && trekVideoData?.primary?.heading1;
     return trekVideoHeading;
-  }
+  };
 
   const getEssentialHeading = () => {
     const essentialsHeading = trekPageData && trekPageData?.primary?.heading1;
     return essentialsHeading;
-  }
+  };
 
   const onSubmit = formData => {
     const userLocations = [];
 
     participantData?.userTrekBookingParticipants?.map((user, index) => {
-
       let locid1 = formData.locs[index]?.pickupLocation;
       let locid2 = formData.locs[index]?.dropLocation;
 
-      if(locid1==null || locid1==undefined) {
-        locid1 = user?.pickupLocationId ;
+      if (locid1 == null || locid1 == undefined) {
+        locid1 = user?.pickupLocationId;
       }
-      if(locid2==null || locid2==undefined) {
-        locid2 =user?.dropOffLocationId ;
+      if (locid2 == null || locid2 == undefined) {
+        locid2 = user?.dropOffLocationId;
       }
 
       if (locid1 !== undefined && locid2 !== undefined) {
@@ -311,10 +315,11 @@ const MyTreks = forwardRef((props, ref) => {
           <div>
             <h5 className="p-text-3-fg b-left-blue-3px">Participant Details</h5>
           </div>
-          <div className="table-responsive">
-            <form onSubmit={handleSubmit(onSubmit)} onReset={() => reset}>
-              <table className="table table-dashboard-profile-style-1">
-                <thead>
+
+          <form onSubmit={handleSubmit(onSubmit)} onReset={() => reset}>
+            <div className="table-responsive">
+              <table className="table table-dashboard-profile-style-1 ctb">
+                <thead className="m-d-none ">
                   <tr className="header-bg">
                     <th className="w-20per">Participants</th>
                     <th className="w-20per">Phone</th>
@@ -329,7 +334,7 @@ const MyTreks = forwardRef((props, ref) => {
                     const pdata =
                       participantData?.userTrekBookingParticipants[index];
                     const fieldName = `locs[${index}]`;
-                     console.log(JSON.stringify(pdata));
+                    console.log(JSON.stringify(pdata));
 
                     const name =
                       pdata?.userDetailsForDisplay?.email ===
@@ -359,67 +364,138 @@ const MyTreks = forwardRef((props, ref) => {
 
                     const state =
                       pdata?.bookingParticipantState === "CANCELLED";
-                     console.log(currentPickupLocation + name);
-                     console.log(currentDropLocation +  name);
-                     console.log(state);
+                    console.log(currentPickupLocation + name);
+                    console.log(currentDropLocation + name);
+                    console.log(state);
 
                     return (
                       <tr>
-                        <td>{name} </td>
-                        <td>{pdata?.userDetailsForDisplay?.phone}</td>
-                        <td>{pdata?.userDetailsForDisplay?.email}</td>
                         <td>
-
-                          {state == false && (
-                            <FormGroup className="ud-dropwon-1">
-                              {bookingState && (
-                              <Controller
-                                name={`${fieldName}.pickupLocation`}
-                                control={control}
-                                defaultValue={currentPickupLocation}
-                                render={({ onChange, value }) => (
-                                  <Dropdown
-                                    optionLabel="name"
-                                    optionValue="locationId"
-                                    options={locations.filter(x => x.type === "PICKUP" )}
-                                    value={(value==null || value==undefined) ? currentPickupLocation:value}
-                                    onChange={e => {
-                                      onChange(e.value);
-                                    }}
-                                    placeholder="Select a Pickup location"
-                                  />
-                                )}
-                              />
-                              )}
-                            </FormGroup>
-                          )}
+                          <div className="d-flex align-items-center">
+                            <div className="m-col-3">
+                              <span className="m-d-block m-col-text p-text-small-fg">
+                                Participants: &nbsp;
+                              </span>
+                            </div>
+                            <div className="p-text-2-fg-f16-mb">{name}</div>
+                          </div>
                         </td>
                         <td>
-                          {state == false && (
-                            <FormGroup className="ud-dropwon-1">
-                              {bookingState && (
-                              <Controller
-                                name={`${fieldName}.dropLocation`}
-                                control={control}
-                                defaultValue={currentDropLocation}
-                                render={({ onChange, value }) => (
-                                  <Dropdown
-                                    optionLabel="name"
-                                    optionValue="locationId"
-                                    value={(value==null || value==undefined) ? currentDropLocation : value}
-                                    options={locations.filter(x => x.type === "DROP_OFF" )}
-                                    onChange={e => {
-                                      onChange(e.value);
-                                    }}
-                                    placeholder="Select a Drop Off location"
-                                  />
-                                )}
-                              />
-                              )}
-                            </FormGroup>
-                          )}
+                          <div className="d-flex align-items-center">
+                            <div className="m-col-3">
+                              <span className="m-d-block m-col-text p-text-small-fg">
+                                Phone: &nbsp;
+                              </span>
+                            </div>
+                            <div className="p-text-2-fg-f16-mb">
+                              {pdata?.userDetailsForDisplay?.phone}
+                            </div>
+                          </div>
                         </td>
-                        <td>{pdata?.bookingParticipantState}</td>
+                        <td>
+                          <div className="d-flex align-items-center">
+                            <div className="m-col-3">
+                              <span className="m-d-block m-col-text p-text-small-fg">
+                                Email Id: &nbsp;
+                              </span>
+                            </div>
+                            <div className="p-text-2-fg-f16-mb">
+                              {pdata?.userDetailsForDisplay?.email}
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div className="d-flex align-items-center">
+                            <div className="m-col-3">
+                              <span className="m-d-block m-col-text p-text-small-fg">
+                                Pickup & location: &nbsp;
+                              </span>
+                            </div>
+                            <div>
+                              {state == false && (
+                                <FormGroup className="ud-dropwon-1">
+                                  {bookingState && (
+                                    <Controller
+                                      name={`${fieldName}.pickupLocation`}
+                                      control={control}
+                                      defaultValue={currentPickupLocation}
+                                      render={({ onChange, value }) => (
+                                        <Dropdown
+                                          optionLabel="name"
+                                          optionValue="locationId"
+                                          options={locations.filter(
+                                            x => x.type === "PICKUP"
+                                          )}
+                                          value={
+                                            value == null || value == undefined
+                                              ? currentPickupLocation
+                                              : value
+                                          }
+                                          onChange={e => {
+                                            onChange(e.value);
+                                          }}
+                                          placeholder="Select a Pickup location"
+                                        />
+                                      )}
+                                    />
+                                  )}
+                                </FormGroup>
+                              )}
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div className="d-flex align-items-center">
+                            <div className="m-col-3">
+                              <span className="m-d-block m-col-text p-text-small-fg">
+                                Drop & location: &nbsp;
+                              </span>
+                            </div>
+                            <div>
+                              {state == false && (
+                                <FormGroup className="ud-dropwon-1">
+                                  {bookingState && (
+                                    <Controller
+                                      name={`${fieldName}.dropLocation`}
+                                      control={control}
+                                      defaultValue={currentDropLocation}
+                                      render={({ onChange, value }) => (
+                                        <Dropdown
+                                          optionLabel="name"
+                                          optionValue="locationId"
+                                          value={
+                                            value == null || value == undefined
+                                              ? currentDropLocation
+                                              : value
+                                          }
+                                          options={locations.filter(
+                                            x => x.type === "DROP_OFF"
+                                          )}
+                                          onChange={e => {
+                                            onChange(e.value);
+                                          }}
+                                          placeholder="Select a Drop Off location"
+                                        />
+                                      )}
+                                    />
+                                  )}
+                                </FormGroup>
+                              )}
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div className="d-flex align-items-center">
+                            <div className="m-col-3">
+                              <span className="m-d-block m-col-text p-text-small-fg">
+                                Fitness status: &nbsp;
+                              </span>
+                            </div>
+                            <div className="p-text-2-fg-f16-mb">
+                              {pdata?.bookingParticipantState}
+                            </div>
+                          </div>
+                        </td>
                       </tr>
                     );
                   })}
@@ -439,24 +515,29 @@ const MyTreks = forwardRef((props, ref) => {
                 </div>
                 <div>
                   {bookingState && (
-                  <button type="submit" className="btn table-btn-blue-sm hvr-grow">
-                    <span className="px-2">Save details</span>
-                  </button>
+                    <button
+                      type="submit"
+                      className="btn table-btn-blue-sm hvr-grow"
+                    >
+                      <span className="px-2">Save details</span>
+                    </button>
                   )}
                 </div>
               </div>
-            </form>
-          </div>
-
-          <div className="my-5">
-            <div>
-              <h5 className="p-text-3-fg b-left-blue-3px">
-                {RichText.asText(getEssentialHeading)}
-              </h5>
-
-              <div className="row mt-3">{essentialsArraydetails}</div>
             </div>
-          </div>
+          </form>
+
+          {essentialIndexes && essentialIndexes?.length > 0 && (
+            <div className="my-5 mmy-2">
+              <div>
+                <h5 className="p-text-3-fg b-left-blue-3px">
+                  {RichText.asText(getEssentialHeading)}
+                </h5>
+
+                <div className="row mt-3">{essentialsArraydetails}</div>
+              </div>
+            </div>
+          )}
 
           {/* <div>
             <div>

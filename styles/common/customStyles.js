@@ -997,6 +997,10 @@ export const customStyles = css.global`
     padding: 0 20px;
   }
 
+  .table-btn-green-lg:hover {
+    color: #ffffff;
+  }
+
   .table-btn-green-sm {
     background: rgba(57, 114, 41, 1);
     border-radius: 0;
@@ -2409,6 +2413,14 @@ export const customStyles = css.global`
       line-height: 15px;
     }
 
+    .table.table-dashboard-profile-style-1.ctb > tbody > tr > td {
+      white-space: normal;
+    }
+
+    .user-dashboard-tab > .nav {
+      overflow: auto;
+    }
+
     .sustainable_img {
       height: 100%;
     }
@@ -2798,9 +2810,29 @@ export const customStyles = css.global`
       width: 25%;
     }
 
+    .m-col-4 {
+      width: 33.3%;
+    }
+
     .m-col-3.p-text-small-fg {
       font-size: 10px;
       line-height: 10px;
+    }
+
+    .m-col-text.p-text-small-fg {
+      font-size: 10px;
+      line-height: 10px;
+    }
+
+    .p-text-2-fg-f16-mb {
+      line-height: 24px;
+      text-align: left;
+      font-family: Franklin Gothic;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      color: rgba(0,0,0,1);
+      text-transform: none;
     }
 
     .trek-card-inner-box {

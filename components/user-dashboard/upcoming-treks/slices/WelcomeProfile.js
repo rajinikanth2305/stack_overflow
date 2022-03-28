@@ -683,19 +683,19 @@ const WelcomeProfile = () => {
                                 unmountOnExit={false}
                               >
                                 <Tab eventKey="mytrek" title="My trek">
-                                  <div className="m-d-none">
+                                  <div>
                                     <MyTreks
                                       ref={myTrekRef}
                                       {...callBackProps}
                                       data={trekPageData}
                                     />
                                   </div>
-                                  <div className="m-d-block">
+                                  {/* <div className="m-d-block">
                                     <MyTrekMobileView
                                       ref={myTrekMobileRef}
                                       {...callBackProps}
                                     />
-                                  </div>
+                                  </div> */}
                                 </Tab>
                                 <Tab eventKey="rentgear" title="Rent gear">
                                   <RentGear ref={rentGearRef} />
@@ -1199,26 +1199,26 @@ const WelcomeProfile = () => {
                               </td>
                               <td>
                                 <div className="d-flex align-items-center">
-                                    <div><span className="m-d-block p-text-small-fg">Participants: &nbsp;</span></div>
-                                    <div>{index + 1}. {name}</div>
+                                    <div className="m-col-3"><span className="m-d-block m-col-text p-text-small-fg">Participants: &nbsp;</span></div>
+                                    <div className="p-text-2-fg-f16-mb">{index + 1}. {name}</div>
                                 </div>
                               </td>
                               <td>
                                 <div className="d-flex align-items-center">
-                                    <div><span className="m-d-block p-text-small-fg">Email: &nbsp;</span></div>
-                                    <div>{sdata?.userDetailsForDisplay?.email}</div>
+                                    <div className="m-col-3"><span className="m-d-block m-col-text p-text-small-fg">Email: &nbsp;</span></div>
+                                    <div className="p-text-2-fg-f16-mb">{sdata?.userDetailsForDisplay?.email}</div>
                                 </div>
                               </td>
                               <td>
                                 <div className="d-flex align-items-center">
-                                    <div><span className="m-d-block p-text-small-fg">Phone: &nbsp;</span></div>
-                                    <div>{sdata?.userDetailsForDisplay?.phone}</div>
+                                    <div className="m-col-3"><span className="m-d-block m-col-text p-text-small-fg">Phone: &nbsp;</span></div>
+                                    <div className="p-text-2-fg-f16-mb">{sdata?.userDetailsForDisplay?.phone}</div>
                                 </div>
                               </td>
                               <td>
                                 <div className="d-flex align-items-center">
-                                    <div><span className="m-d-block p-text-small-fg">Booking state: &nbsp;</span></div>
-                                    <div>{sdata?.bookingParticipantState}</div>
+                                    <div className="m-col-3"><span className="m-d-block m-col-text p-text-small-fg">Booking state: &nbsp;</span></div>
+                                    <div className="p-text-2-fg-f16-mb">{sdata?.bookingParticipantState}</div>
                                 </div>
                               </td>
                             </tr>
