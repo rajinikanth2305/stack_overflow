@@ -201,7 +201,8 @@ const UserPT = () => {
         reviewStatus: "no",
         trekDifficulty: book.trekDifficulty,
         trekDuration: book.trekDuration,
-        trekAltitude: book.trekAltitude
+        trekAltitude: book.trekAltitude,
+        trekLocation: book.trekLocation
       });
     }
     setStates(bookTrekContents);

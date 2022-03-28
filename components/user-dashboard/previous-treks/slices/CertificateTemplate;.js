@@ -149,10 +149,9 @@ const CertificateTemplate = certificateData => {
             <Text style={styles.header22}>
               &nbsp;in{" "}
               {
-                certificateData?.certificateData?.userTrekBookingParticipants[0]
-                  ?.userDetailsForDisplay?.state
+                certificateData?.certificateData?.trekLocation
               }
-              from{" "}
+              &nbsp;from{" "}
               {certificateData.certificateData &&
                 moment(certificateData.certificateData.startDate).format(
                   "MM/DD/YYYY"
