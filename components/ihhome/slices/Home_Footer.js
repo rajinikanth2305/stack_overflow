@@ -132,7 +132,7 @@ const HomeFooter = ({ slice }) => {
                   </div>
                   <div className="mx-4">
                     <p className="footer_text contact_number m-0">
-                      +91 080 468 01269
+                      080 468 01269
                     </p>
                   </div>
                 </div>
@@ -156,7 +156,7 @@ const HomeFooter = ({ slice }) => {
               </div>
               <div className="col-lg-6 col-md-12">
                 <div className="copy_rights_section">
-                  <p className="copy_rights_text m-0">© 2020 indiahikes.com</p>
+                  <p className="copy_rights_text m-0">© 2022 Indiahikes.com</p>
                   <p className="copy_rights_text m-0">
                     All images are copyrighted by their respective authors.
                   </p>

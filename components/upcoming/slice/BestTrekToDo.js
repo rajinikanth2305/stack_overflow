@@ -149,7 +149,7 @@ const BestTrekToDo = ({ slice, bestTrekToDoData }) => {
     const getFamiltTrek = data?.tags?.find(x => x === "FamilyTrek");
     return (
       <div className="col-6" key={j}>
-        <div className="card_sec">
+        <div className="card_sec hvr-grow">
           <div className="card trek_card_mb">
             <div className="m-uc_open_for_small_group_images">
               {tData?.primary?.trek_banner_image?.url && (

@@ -12,7 +12,7 @@ const OtherTreksLike = ({ slice, trekPageData1 }) => {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -22,7 +22,7 @@ const OtherTreksLike = ({ slice, trekPageData1 }) => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          infinite: true,
+          infinite: false,
           dots: true
         }
       },
@@ -57,7 +57,7 @@ const OtherTreksLike = ({ slice, trekPageData1 }) => {
     const getFamiltTrek = data?.tags?.find(x => x === "FamilyTrek");
     return (
       <div key={i}>
-        <div className="mx-4 m-mx-0">
+        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer">
           <div className="card_sec">
             <div className="card trek_card">
               <div alt="imgs" className="image-view imgaview-view">
@@ -97,7 +97,7 @@ const OtherTreksLike = ({ slice, trekPageData1 }) => {
                   <p className="title-diplay-3-18px text-uppercase frg-mob">
                     <b>{tData?.primary?.trek_caption}</b>
                   </p>
-                  <div className="p-text-4">
+                  <div className="p-text-4 trek_card_desc_min_height">
                     {RichText.asText(tData?.primary?.sub_heading)}
                   </div>
                   {/* <div className="pt-2 pb-2 p-btn-btm">

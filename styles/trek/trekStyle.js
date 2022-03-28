@@ -714,6 +714,10 @@ export const trekStyle = css.global`
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
   }
 
+  .trek_card_desc_min_height {
+    min-height: 42px;
+  }
+
   .trek_card.review_card {
     min-height: 38vh;
     height: 100%;
@@ -2021,6 +2025,29 @@ export const trekStyle = css.global`
     .cal-highlight-red-text {
       margin-top: -12px !important;
       font-size: 10px;
+    }
+  }
+  @media (min-width: 1182px) and (max-width: 1400px) {
+    .trek_card  {
+      min-height: 450px;
+    }
+
+    .p-btn-btm {
+      position: absolute !important;
+      bottom: 20px !important;
+      width: 90% !important;
+    }
+  }
+
+  @media (min-width: 1000px) and (max-width: 1182px) {
+    .trek_card  {
+      min-height: 485px;
+    }
+
+    .p-btn-btm {
+      position: absolute !important;
+      bottom: 20px !important;
+      width: 90% !important;
     }
   }
 `;

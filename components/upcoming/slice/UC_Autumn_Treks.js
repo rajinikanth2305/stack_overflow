@@ -136,7 +136,7 @@ const UCAutnumTreks = ({ slice, autumnData }) => {
         </div>
 
         <div className="m-d-block mb-3 border-bottom pb-3">
-          <div className="row d-flex aling-items-center">
+          <div className="row d-flex aling-items-center hvr-grow">
             <div className="col-5">
               <div className="mob-autumn-img">
                 {tData?.primary?.trek_banner_image?.url && (
