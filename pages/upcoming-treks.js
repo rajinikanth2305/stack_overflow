@@ -27,7 +27,8 @@ const UpcomingTreks = ({
   moderateTreks,
   difficultTreks,
   familyTreks,
-  diyTreks
+  diyTreks,
+  allTreksData
 }) => {
   if (doc && doc.data) {
     return (
@@ -54,6 +55,7 @@ const UpcomingTreks = ({
           difficultTreks={difficultTreks}
           familyTreks={familyTreks}
           diyTreks={diyTreks}
+          allTreksData={allTreksData}
         />
         {/* <IHTrekWithSwathi /> */}
         <IHFooter />
@@ -96,6 +98,12 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     Prismic.Predicates.at("document.type", "trek"),
     Prismic.Predicates.at("document.tags", ["DIY"])
   ]);
+
+  const allTreksData = await client.query([
+    Prismic.Predicates.at("document.type", "trek")], {
+      pageSize: 250
+    }
+  );
 
   const bestTrekToDoData = [];
   const ucOpenData = [];
@@ -200,7 +208,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       moderateTreks,
       difficultTreks,
       familyTreks,
-      diyTreks
+      diyTreks,
+      allTreksData
     }
   };
 }

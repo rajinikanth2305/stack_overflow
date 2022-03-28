@@ -15,7 +15,8 @@ const AllIndiaHikes = ({
   moderateTreks,
   difficultTreks,
   familyTreks,
-  diyTreks
+  diyTreks,
+  allTreksData
 }) => {
   const heading1 = slice?.primary?.heading1;
   const heading2 = slice?.primary?.heading2;
@@ -31,6 +32,8 @@ const AllIndiaHikes = ({
   const difficultTrekImage = slice?.primary?.difficult_trek_image?.url;
   const difficultTrekTitleMobile = slice?.primary?.difficult_trek_title_mobile;
   const difficultTrekDescMobile = slice?.primary?.difficult_trek_desc_mobile;
+
+  console.log(allTreksData);
 
   const easyMordatesTreksList = easyMordatesTreks?.results?.map(function(
     data1,
@@ -145,6 +148,51 @@ const AllIndiaHikes = ({
     );
   });
 
+  const treks = allTreksData?.results?.map(function(data, i) {
+    let url;
+    const slugUrl = data?.uid;
+    if (slugUrl) {
+      url = `/trek/${slugUrl}`;
+    }
+    console.log(data);
+    return (
+      <div key={i} className="col-lg-4 col-md-6">
+        <Link href={url ? url : "#"}>
+          <div className="d-flex align-items-center cursor-pointer">
+            <div>
+              <p
+                className={
+                  data?.data?.body[0]?.primary?.difficulty[0]?.text === "Easy"
+                    ? "badge-green-diy"
+                    : data?.data?.body[0]?.primary?.difficulty[0]?.text === "Easy-Moderate"
+                    ? "badge-green-diy"
+                    : data?.data?.body[0]?.primary?.difficulty[0]?.text === "Easy - Moderate"
+                    ? "badge-green-diy"
+                    : data?.data?.body[0]?.primary?.difficulty[0]?.text === "Moderate"
+                    ? "badge-yellow-diy"
+                    : data?.data?.body[0]?.primary?.difficulty[0]?.text === "Moderate-Difficult"
+                    ? "badge-yellow-diy"
+                    : data?.data?.body[0]?.primary?.difficulty[0]?.text === "Moderate - Difficult"
+                    ? "badge-yellow-diy"
+                    : data?.data?.body[0]?.primary?.difficulty[0]?.text === "Moderate Difficult"
+                    ? "badge-yellow-diy"
+                    : data?.data?.body[0]?.primary?.difficulty[0]?.text === "Difficult"
+                    ? "badge-red-diy"
+                    : "badge-blue-diy"
+                }
+              ></p>
+            </div>
+            <div className="mx-3">
+              <p className="p-display-3 p-display-3-md cursor-pointer">{RichText.asText(data?.data?.trek_title)}
+              {data?.tags[0].match(/Family/g) ? <span className="text-small text-blue">( Family trek )</span> : ''}
+              </p>
+            </div>
+          </div>
+        </Link>
+      </div>
+    );
+  });
+
   return (
     <>
       <div className="mb-5 ucOpenForSmallGroup_sec">
@@ -158,40 +206,43 @@ const AllIndiaHikes = ({
             </div>
           </div>
           <div>
-            <div className="slots-bg mb-2 m-d-none">
+            <div className="slots-bg mb-2">
               <div className="d-flex align-items-center">
                 <div className="mx-2">
-                  <p className="p-text-3-1 mb-0">
+                  <p className="p-text-3-1 mt-3-1 mb-0">
                     <span className="badge-green-lg mx-2"></span> Easy Moderate
                     trek
                   </p>
                 </div>
                 <div className="mx-2">
-                  <p className="p-text-3-1 mb-0">
-                    <span className="badge-red-lg mx-2"></span>
+                  <p className="p-text-3-1 mt-3-1 mb-0">
+                    <span className="badge-yellow-lg mx-2"></span>
                     Moderate trek{" "}
                   </p>
                 </div>
                 <div className="mx-2">
-                  <p className="p-text-3-1 mb-0">
-                    <span className="badge-yellow-lg mx-2"></span> Difficult
+                  <p className="p-text-3-1 mt-3-1 mb-0">
+                    <span className="badge-red-lg mx-2"></span> Difficult
                     trek
                   </p>
                 </div>
                 <div className="mx-2">
-                  <p className="p-text-3-1 mb-0">
+                  <p className="p-text-3-1 mt-3-1 mb-0">
                     <span className="badge-blue-lg mx-2"></span> Family Trek{" "}
                   </p>
                 </div>
-                <div className="flex-grow-1 mx-2">
-                  <p className="p-text-3-1 mb-0">
+                {/* <div className="flex-grow-1 mx-2">
+                  <p className="p-text-3-1 mt-3-1 mb-0">
                     <span className="badge-blue-lg mx-2"></span> DIY Trek{" "}
                   </p>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
-          <div className="m-d-none">
+          <div className="container my-3">
+            <div className="row">{treks}</div>
+          </div>
+          {/* <div className="m-d-none">
             <div className="row">
               <div className="col-lg-4 col-md-12">
                 <h3 className="title-dispaly-4 my-3">Easy Moderate Treks</h3>
@@ -211,20 +262,12 @@ const AllIndiaHikes = ({
                     <h3 className="title-dispaly-4 my-3">Difficult Treks</h3>
                     {difficultTreksList}
                   </div>
-                  {/* <div className="col-lg-6 col-md-12">
-                    <h3 className="title-dispaly-4 my-3">Family Treks</h3>
-                    {familyTreksList}
-                  </div> */}
-                  {/* <div className="col-lg-6 col-md-12">
-                    <h3 className="title-dispaly-4 my-3">DIY Treks</h3>
-                    {diyTreks}
-                  </div> */}
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div className="m-d-block">
+          {/* <div className="m-d-block">
             <Accordion defaultActiveKey="0" className="allindia-mob-accordion">
               <Card>
                 <Card.Header>
@@ -329,7 +372,7 @@ const AllIndiaHikes = ({
                 </Accordion.Collapse>
               </Card>
             </Accordion>
-          </div>
+          </div> */}
         </div>
         <style jsx global>
           {upcomingTrekPageStyle}

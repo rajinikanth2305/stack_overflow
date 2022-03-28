@@ -217,7 +217,7 @@ const BestTrekToDo = ({ slice, bestTrekToDoData }) => {
           </div>
           <div className="row">
             <div className="col-md-6">
-              <p className="p-display-1 m-d-1 mb-4 pl-custom">
+              <p className="p-display-1 m-d-1 mb-4">
                 {RichText.asText(heading2)}
               </p>
             </div>

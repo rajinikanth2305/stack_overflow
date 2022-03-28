@@ -82,6 +82,9 @@ const TrekTrevia = ({ slice }) => {
                   </>
                 ) : (
                   <>
+                  <div className="h-100">
+                    {data?.yt_link?.url && 
+                    <>
                     <div className="d-flex align-items-center justify-content-center w-100 h-100">
                       <div className="text-center">
                         <img
@@ -105,6 +108,9 @@ const TrekTrevia = ({ slice }) => {
                         setShow1(true);
                       }}
                     />
+                    </>
+                    }
+                    </div>
                   </>
                 )}
               </div>

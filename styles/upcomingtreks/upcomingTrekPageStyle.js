@@ -599,6 +599,39 @@ export const upcomingTrekPageStyle = css.global`
     padding-left: 20px;
   }
 
+  .badge-green-diy {
+    border-radius: 50%;
+    background: rgba(91, 133, 70, 1);
+    height: 10px;
+    width: 10px;
+  }
+
+  .badge-red-diy {
+    border-radius: 50%;
+    background: rgba(230, 109, 29, 1);
+    height: 10px;
+    width: 10px;
+  }
+
+  .badge-yellow-diy {
+    border-radius: 50%;
+    background: rgba(255, 193, 0, 1);
+    height: 10px;
+    width: 10px;
+  }
+
+  .badge-blue-diy {
+    border-radius: 50%;
+    background: rgba(0, 66, 141, 1);
+    height: 10px;
+    width: 10px;
+  }
+
+  .text-blue {
+    color: rgba(0,66,141,1);
+    font-size: 12px;
+  }
+
   @media only screen and (max-width: 660px) {
     .fam_trek {
       font-size: 12px;
@@ -630,6 +663,15 @@ export const upcomingTrekPageStyle = css.global`
 
     .title-display-2 {
       font-size: 36px;
+    }
+
+    .p-text-3-1.mt-3-1 {
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .slots-bg {
+      overflow: auto;
     }
 
     .desc-dispaly-1 {

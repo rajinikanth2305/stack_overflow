@@ -29,7 +29,8 @@ const UpComingTreksSliceZone = ({
   moderateTreks,
   difficultTreks,
   familyTreks,
-  diyTreks
+  diyTreks,
+  allTreksData,
 }) =>
   sliceZone.map((slice, index) => {
     switch (slice.slice_type) {
@@ -95,6 +96,7 @@ const UpComingTreksSliceZone = ({
             difficultTreks={difficultTreks}
             familyTreks={familyTreks}
             diyTreks={diyTreks}
+            allTreksData={allTreksData}
           />
         );
       default:

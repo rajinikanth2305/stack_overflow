@@ -40,7 +40,7 @@ const OtherTreksLike = ({ slice, trekPageData1 }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          centerMode: true,
+          // centerMode: true,
           adaptiveHeight: true
         }
       }

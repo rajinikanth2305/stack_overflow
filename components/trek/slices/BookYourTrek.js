@@ -140,7 +140,7 @@ const BookYourTrek = ({ slice }) => {
                 <div className="col-lg-1 col-md-12"></div>
                 <div className="col-12 col-lg-5 col-md-12">
                   <div className="mt-5 pt-5 mmt-0 m-p-t-2">
-                    <div className="pt-2 pb-2 mb-4 d-m-block">
+                    {/* <div className="pt-2 pb-2 mb-4 d-m-block">
                       {showSelectedLabel && (
                         <div>
                           <p className="m-0 p-text-3-1">
@@ -161,7 +161,7 @@ const BookYourTrek = ({ slice }) => {
                       >
                         Proceed to registration
                       </button>
-                    </div>
+                    </div> */}
                     <p className="p-text-1 b-left">
                       <b>{RichText.asText(cancelInfoHeading)}</b>
                     </p>
