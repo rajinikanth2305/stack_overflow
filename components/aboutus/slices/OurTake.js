@@ -4,6 +4,8 @@ import { customStyles } from "styles";
 import Image from "next/image";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
+import { linkResolver } from "prismic-configuration";
+import Link from "next/link";
 
 const OurTake = ({ slice }) => {
   const heading1 = slice?.primary?.heading1;
@@ -11,6 +13,12 @@ const OurTake = ({ slice }) => {
   const tabsDataArray = slice.items;
 
   const tabsData = tabsDataArray?.map(function(data, i) {
+    const linkType = data?.target_link?.link_type;
+    let url = linkType == "Web" ? data?.target_link?.url : "";
+    const slugUrl =
+      linkType == "Document" ? data?.target_link?.slug : undefined;
+
+    if (slugUrl) url = linkResolver(data?.target_link);
     return (
       <Tab
         eventKey={`tab` + data?.tab_name[0]?.text}
@@ -36,9 +44,11 @@ const OurTake = ({ slice }) => {
               <div className="p-text-3">{RichText.render(data?.content1)}</div>
               {data?.target_link?.uid && (
                 <div className="mt-5 mb-4 mmb-0">
+                <Link href={url ? url : "#"}>
                   <button className="btn btn-bihtn-yellow text-capitalize hvr-grow">
                     Read more
                   </button>
+                  </Link>
                 </div>
               )}
             </div>

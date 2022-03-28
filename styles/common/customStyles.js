@@ -2378,6 +2378,11 @@ export const customStyles = css.global`
     background: rgb(57, 114, 41);
   }
 
+  .c-modal-header.modal-header > button {
+    border: 0;
+    color: #333333;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -2387,6 +2392,21 @@ export const customStyles = css.global`
 
     .ft-how-do-tabs > .nav {
       overflow: auto;
+    }
+
+    .table-dashboard-profile-style-1.ctb > thead > tr,
+    .table-dashboard-profile-style-1.ctb > tbody > tr {
+      display: grid;
+    }
+
+    .table-dashboard-profile-style-1.ctb > tbody > tr {
+      border-bottom: 1px solid #d3d3d3;
+    }
+
+    .table-dashboard-profile-style-1.ctb > tbody > tr > td {
+      border: 0;
+      padding: 5px 0;
+      line-height: 15px;
     }
 
     .sustainable_img {

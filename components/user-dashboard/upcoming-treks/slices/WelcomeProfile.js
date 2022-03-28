@@ -1131,8 +1131,8 @@ const WelcomeProfile = () => {
             style={modalStyles}
             className="c-modal"
           >
-            <Modal.Header closeButton>
-              <Modal.Title>Cancel Trek Booking</Modal.Title>
+            <Modal.Header closeButton className="c-modal-header">
+              <Modal.Title className="p-text-1-fgt">Cancel Trek Booking</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <div>
@@ -1140,8 +1140,9 @@ const WelcomeProfile = () => {
                   onSubmit={handleSubmit(onCancelSubmit)}
                   onReset={() => reset}
                 >
-                  <table className="table table-dashboard-profile-style-1">
-                    <thead>
+                <div className="table-responsive">
+                  <table className="table table-dashboard-profile-style-1 ctb">
+                    <thead className="m-d-none">
                       <tr className="header-bg">
                         <th style={{ width: "2%" }}>&nbsp;</th>
                         <th className="w-20per">Participants</th>
@@ -1197,17 +1198,36 @@ const WelcomeProfile = () => {
                                 </div>
                               </td>
                               <td>
-                                {index + 1}. {name}
+                                <div className="d-flex align-items-center">
+                                    <div><span className="m-d-block p-text-small-fg">Participants: &nbsp;</span></div>
+                                    <div>{index + 1}. {name}</div>
+                                </div>
                               </td>
-                              <td>{sdata?.userDetailsForDisplay?.email}</td>
-                              <td>{sdata?.userDetailsForDisplay?.phone}</td>
-                              <td>{sdata?.bookingParticipantState}</td>
+                              <td>
+                                <div className="d-flex align-items-center">
+                                    <div><span className="m-d-block p-text-small-fg">Email: &nbsp;</span></div>
+                                    <div>{sdata?.userDetailsForDisplay?.email}</div>
+                                </div>
+                              </td>
+                              <td>
+                                <div className="d-flex align-items-center">
+                                    <div><span className="m-d-block p-text-small-fg">Phone: &nbsp;</span></div>
+                                    <div>{sdata?.userDetailsForDisplay?.phone}</div>
+                                </div>
+                              </td>
+                              <td>
+                                <div className="d-flex align-items-center">
+                                    <div><span className="m-d-block p-text-small-fg">Booking state: &nbsp;</span></div>
+                                    <div>{sdata?.bookingParticipantState}</div>
+                                </div>
+                              </td>
                             </tr>
                           </>
                         );
                       })}
                     </tbody>
                   </table>
+                  </div>
                   <div className="d-flex justify-content-end">
                     <button
                       type="submit"
