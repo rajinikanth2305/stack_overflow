@@ -134,7 +134,8 @@ const BestTimeToDo = ({ data }) => {
     bestTimeToDo && bestTimeToDo?.primary?.important_note_title;
   const importantNoteContent =
     bestTimeToDo && bestTimeToDo?.primary?.important_note_content;
-    const highlightMonths = bestTimeToDo && bestTimeToDo?.primary?.highlight_months;
+  const highlightMonths =
+    bestTimeToDo && bestTimeToDo?.primary?.highlight_months;
 
   const htext = highlightMonths?.map(function(data, i) {
     return (
@@ -146,20 +147,32 @@ const BestTimeToDo = ({ data }) => {
     );
   });
 
-  const highlightTextFilter1 = htext && htext?.find(x => x.props?.children?.props?.children === "1");
-  const highlightTextFilter2 = htext && htext?.find(x => x.props?.children?.props?.children === "2");
-  const highlightTextFilter3 = htext && htext?.find(x => x.props?.children?.props?.children === "3");
-  const highlightTextFilter4 = htext && htext?.find(x => x.props?.children?.props?.children === "4");
-  const highlightTextFilter5 = htext && htext?.find(x => x.props?.children?.props?.children === "5");
+  const highlightTextFilter1 =
+    htext && htext?.find(x => x.props?.children?.props?.children === "1");
+  const highlightTextFilter2 =
+    htext && htext?.find(x => x.props?.children?.props?.children === "2");
+  const highlightTextFilter3 =
+    htext && htext?.find(x => x.props?.children?.props?.children === "3");
+  const highlightTextFilter4 =
+    htext && htext?.find(x => x.props?.children?.props?.children === "4");
+  const highlightTextFilter5 =
+    htext && htext?.find(x => x.props?.children?.props?.children === "5");
 
-  const highlightTextFilter6 = htext && htext?.find(x => x.props?.children?.props?.children === "6");
-  const highlightTextFilter7 = htext && htext?.find(x => x.props?.children?.props?.children === "7");
-  const highlightTextFilter8 = htext && htext?.find(x => x.props?.children?.props?.children === "8");
-  const highlightTextFilter9 = htext && htext?.find(x => x.props?.children?.props?.children === "9");
-  const highlightTextFilter10 = htext && htext?.find(x => x.props?.children?.props?.children === "10");
+  const highlightTextFilter6 =
+    htext && htext?.find(x => x.props?.children?.props?.children === "6");
+  const highlightTextFilter7 =
+    htext && htext?.find(x => x.props?.children?.props?.children === "7");
+  const highlightTextFilter8 =
+    htext && htext?.find(x => x.props?.children?.props?.children === "8");
+  const highlightTextFilter9 =
+    htext && htext?.find(x => x.props?.children?.props?.children === "9");
+  const highlightTextFilter10 =
+    htext && htext?.find(x => x.props?.children?.props?.children === "10");
 
-  const highlightTextFilter11 = htext && htext?.find(x => x.props?.children?.props?.children === "11");
-  const highlightTextFilter12 = htext && htext?.find(x => x.props?.children?.props?.children === "12");
+  const highlightTextFilter11 =
+    htext && htext?.find(x => x.props?.children?.props?.children === "11");
+  const highlightTextFilter12 =
+    htext && htext?.find(x => x.props?.children?.props?.children === "12");
 
   return (
     <>
@@ -169,48 +182,160 @@ const BestTimeToDo = ({ data }) => {
             <div className="col-md-12 mp-0">
               <div className="d-flex mb-4">
                 <div>
-                  <span className={highlightTextFilter1 && highlightTextFilter1.props?.children?.props?.children === "1" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>Jan</span>
+                  <span
+                    className={
+                      highlightTextFilter1 &&
+                      highlightTextFilter1.props?.children?.props?.children ===
+                        "1"
+                        ? "bt-year-tabs bt-highlight-year-tabs"
+                        : "bt-year-tabs"
+                    }
+                  >
+                    Jan
+                  </span>
                 </div>
                 <div>
-                  <span className={highlightTextFilter2 && highlightTextFilter2.props?.children?.props?.children === "2" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>Feb</span>
+                  <span
+                    className={
+                      highlightTextFilter2 &&
+                      highlightTextFilter2.props?.children?.props?.children ===
+                        "2"
+                        ? "bt-year-tabs bt-highlight-year-tabs"
+                        : "bt-year-tabs"
+                    }
+                  >
+                    Feb
+                  </span>
                 </div>
                 <div>
-                  <span className={highlightTextFilter3 && highlightTextFilter3.props?.children?.props?.children === "3" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>Mar</span>
+                  <span
+                    className={
+                      highlightTextFilter3 &&
+                      highlightTextFilter3.props?.children?.props?.children ===
+                        "3"
+                        ? "bt-year-tabs bt-highlight-year-tabs"
+                        : "bt-year-tabs"
+                    }
+                  >
+                    Mar
+                  </span>
                 </div>
                 <div>
-                  <span className={highlightTextFilter4 && highlightTextFilter4.props?.children?.props?.children === "4" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>Apr</span>
+                  <span
+                    className={
+                      highlightTextFilter4 &&
+                      highlightTextFilter4.props?.children?.props?.children ===
+                        "4"
+                        ? "bt-year-tabs bt-highlight-year-tabs"
+                        : "bt-year-tabs"
+                    }
+                  >
+                    Apr
+                  </span>
                 </div>
                 <div>
-                  <span className={highlightTextFilter5 && highlightTextFilter5.props?.children?.props?.children === "5" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>May</span>
+                  <span
+                    className={
+                      highlightTextFilter5 &&
+                      highlightTextFilter5.props?.children?.props?.children ===
+                        "5"
+                        ? "bt-year-tabs bt-highlight-year-tabs"
+                        : "bt-year-tabs"
+                    }
+                  >
+                    May
+                  </span>
                 </div>
                 <div>
-                  <span className={highlightTextFilter6 && highlightTextFilter6.props?.children?.props?.children === "6" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>
+                  <span
+                    className={
+                      highlightTextFilter6 &&
+                      highlightTextFilter6.props?.children?.props?.children ===
+                        "6"
+                        ? "bt-year-tabs bt-highlight-year-tabs"
+                        : "bt-year-tabs"
+                    }
+                  >
                     Jun
                   </span>
                 </div>
                 <div>
-                  <span className={highlightTextFilter7 && highlightTextFilter7.props?.children?.props?.children === "7" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>
+                  <span
+                    className={
+                      highlightTextFilter7 &&
+                      highlightTextFilter7.props?.children?.props?.children ===
+                        "7"
+                        ? "bt-year-tabs bt-highlight-year-tabs"
+                        : "bt-year-tabs"
+                    }
+                  >
                     Jul
                   </span>
                 </div>
                 <div>
-                  <span className={highlightTextFilter8 && highlightTextFilter8.props?.children?.props?.children === "8" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>
+                  <span
+                    className={
+                      highlightTextFilter8 &&
+                      highlightTextFilter8.props?.children?.props?.children ===
+                        "8"
+                        ? "bt-year-tabs bt-highlight-year-tabs"
+                        : "bt-year-tabs"
+                    }
+                  >
                     Aug
                   </span>
                 </div>
                 <div>
-                  <span className={highlightTextFilter9 && highlightTextFilter9.props?.children?.props?.children === "9" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>
+                  <span
+                    className={
+                      highlightTextFilter9 &&
+                      highlightTextFilter9.props?.children?.props?.children ===
+                        "9"
+                        ? "bt-year-tabs bt-highlight-year-tabs"
+                        : "bt-year-tabs"
+                    }
+                  >
                     Sep
                   </span>
                 </div>
                 <div>
-                  <span className={highlightTextFilter10 && highlightTextFilter10.props?.children?.props?.children === "10" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>Oct</span>
+                  <span
+                    className={
+                      highlightTextFilter10 &&
+                      highlightTextFilter10.props?.children?.props?.children ===
+                        "10"
+                        ? "bt-year-tabs bt-highlight-year-tabs"
+                        : "bt-year-tabs"
+                    }
+                  >
+                    Oct
+                  </span>
                 </div>
                 <div>
-                  <span className={highlightTextFilter11 && highlightTextFilter11.props?.children?.props?.children === "11" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>Nov</span>
+                  <span
+                    className={
+                      highlightTextFilter11 &&
+                      highlightTextFilter11.props?.children?.props?.children ===
+                        "11"
+                        ? "bt-year-tabs bt-highlight-year-tabs"
+                        : "bt-year-tabs"
+                    }
+                  >
+                    Nov
+                  </span>
                 </div>
                 <div>
-                  <span className={highlightTextFilter12 && highlightTextFilter12.props?.children?.props?.children === "12" ? 'bt-year-tabs bt-highlight-year-tabs' : 'bt-year-tabs'}>Dec</span>
+                  <span
+                    className={
+                      highlightTextFilter12 &&
+                      highlightTextFilter12.props?.children?.props?.children ===
+                        "12"
+                        ? "bt-year-tabs bt-highlight-year-tabs"
+                        : "bt-year-tabs"
+                    }
+                  >
+                    Dec
+                  </span>
                 </div>
               </div>
               <div>
@@ -242,9 +367,7 @@ const BestTimeToDo = ({ data }) => {
                   </p>
                 )}
                 {/* {content1} */}
-                <div className="p-text-4">
-                  {RichText.render(content1List)}
-                </div>
+                <div className="p-text-4">{RichText.render(content1List)}</div>
                 <div className="row d-flex flex-wrap">
                   {RichText.render(content1Images)}
                 </div>
@@ -279,26 +402,30 @@ const BestTimeToDo = ({ data }) => {
             <p className="p-text-1">
               <b>{RichText.asText(content2Title)}</b>
             </p>
-            {content2Temprature && content2Temprature[0]?.text && (  <p className="p-text-3-1 mb-2">
-              <img src="/Duration.png" alt="img" />{" "}
-              <span className="px-2">
-                {RichText.asText(content2Temprature)}
-              </span>
-            </p> )}
-            {content2Snow && content2Snow[0]?.text && ( <p className="p-text-3-1 mb-2">
-              <img src="/shoes.png" alt="img" />{" "}
-              <span className="px-2">{RichText.asText(content2Snow)}</span>
-            </p> )}
-            {content2WarmLayers && content2WarmLayers[0]?.text && ( <p className="p-text-3-1">
-              <img src="/Offloading.png" alt="img" />{" "}
-              <span className="px-2">
-                {RichText.asText(content2WarmLayers)}
-              </span>
-            </p> )}
+            {content2Temprature && content2Temprature[0]?.text && (
+              <p className="p-text-3-1 mb-2">
+                <img src="/Duration.png" alt="img" />{" "}
+                <span className="px-2">
+                  {RichText.asText(content2Temprature)}
+                </span>
+              </p>
+            )}
+            {content2Snow && content2Snow[0]?.text && (
+              <p className="p-text-3-1 mb-2">
+                <img src="/shoes.png" alt="img" />{" "}
+                <span className="px-2">{RichText.asText(content2Snow)}</span>
+              </p>
+            )}
+            {content2WarmLayers && content2WarmLayers[0]?.text && (
+              <p className="p-text-3-1">
+                <img src="/Offloading.png" alt="img" />{" "}
+                <span className="px-2">
+                  {RichText.asText(content2WarmLayers)}
+                </span>
+              </p>
+            )}
             {/* {content2} */}
-            <div className="p-text-4">
-              {RichText.render(content2List)}
-            </div>
+            <div className="p-text-4">{RichText.render(content2List)}</div>
             <div className="d-flex flex-wrap mb-3">
               {RichText.render(content2Images)}
             </div>
@@ -308,25 +435,29 @@ const BestTimeToDo = ({ data }) => {
             <p className="p-text-1">
               <b>{RichText.asText(content3Title)}</b>
             </p>
-            {content3Temprature && content3Temprature[0]?.text && ( <p className="p-text-3-1 mb-2">
-              <img src="/Duration.png" alt="img" />{" "}
-              <span className="px-2">
-                {RichText.asText(content3Temprature)}
-              </span>
-            </p> )}
-            {content3Snow && content3Snow[0]?.text && ( <p className="p-text-3-1 mb-2">
-              <img src="/shoes.png" alt="img" />{" "}
-              <span className="px-2">{RichText.asText(content3Snow)}</span>
-            </p> )}
-            {content3WarmLayers && content3WarmLayers[0]?.text && ( <p className="p-text-3-1">
-              <img src="/Offloading.png" alt="img" />{" "}
-              <span className="px-2">
-                {RichText.asText(content3WarmLayers)}
-              </span>
-            </p> )}
-            <div className="p-text-4">
-              {RichText.render(content3List)}
-            </div>
+            {content3Temprature && content3Temprature[0]?.text && (
+              <p className="p-text-3-1 mb-2">
+                <img src="/Duration.png" alt="img" />{" "}
+                <span className="px-2">
+                  {RichText.asText(content3Temprature)}
+                </span>
+              </p>
+            )}
+            {content3Snow && content3Snow[0]?.text && (
+              <p className="p-text-3-1 mb-2">
+                <img src="/shoes.png" alt="img" />{" "}
+                <span className="px-2">{RichText.asText(content3Snow)}</span>
+              </p>
+            )}
+            {content3WarmLayers && content3WarmLayers[0]?.text && (
+              <p className="p-text-3-1">
+                <img src="/Offloading.png" alt="img" />{" "}
+                <span className="px-2">
+                  {RichText.asText(content3WarmLayers)}
+                </span>
+              </p>
+            )}
+            <div className="p-text-4">{RichText.render(content3List)}</div>
             <div className="d-flex flex-wrap mb-3">
               {RichText.render(content3Images)}
             </div>
@@ -336,53 +467,63 @@ const BestTimeToDo = ({ data }) => {
             <p className="p-text-1">
               <b>{RichText.asText(content4Title)}</b>
             </p>
-            {content4Temprature && content4Temprature[0]?.text && ( <p className="p-text-3-1 mb-2">
-              <img src="/Duration.png" alt="img" />{" "}
-              <span className="px-2">
-                {RichText.asText(content4Temprature)}
-              </span>
-            </p> )}
-            {content4Snow && content4Snow[0]?.text && (<p className="p-text-3-1 mb-2">
-              <img src="/shoes.png" alt="img" />{" "}
-              <span className="px-2">{RichText.asText(content4Snow)}</span>
-            </p> )}
-            {content4WarmLayers && content4WarmLayers[0]?.text && (<p className="p-text-3-1">
-              <img src="/Offloading.png" alt="img" />{" "}
-              <span className="px-2">
-                {RichText.asText(content4WarmLayers)}
-              </span>
-            </p> )}
-            <div className="p-text-4">
-              {RichText.render(content4List)}
-            </div>
-            <div className="d-flex flex-wrap mb-3">
-              {RichText.render(content4Images)}
-            </div>
+            {content4Temprature && content4Temprature[0]?.text && (
+              <p className="p-text-3-1 mb-2">
+                <img src="/Duration.png" alt="img" />{" "}
+                <span className="px-2">
+                  {RichText.asText(content4Temprature)}
+                </span>
+              </p>
+            )}
+            {content4Snow && content4Snow[0]?.text && (
+              <p className="p-text-3-1 mb-2">
+                <img src="/shoes.png" alt="img" />{" "}
+                <span className="px-2">{RichText.asText(content4Snow)}</span>
+              </p>
+            )}
+            {content4WarmLayers && content4WarmLayers[0]?.text && (
+              <p className="p-text-3-1">
+                <img src="/Offloading.png" alt="img" />{" "}
+                <span className="px-2">
+                  {RichText.asText(content4WarmLayers)}
+                </span>
+              </p>
+            )}
+            <div className="p-text-4">{RichText.render(content4List)}</div>
+            {content4Images && (
+              <div className="d-flex flex-wrap mb-3">
+                {RichText.render(content4Images)}
+              </div>
+            )}
           </div>
 
           <div>
             <p className="p-text-1">
               <b>{RichText.asText(content5Title)}</b>
             </p>
-            {content5Temprature && content5Temprature[0]?.text && ( <p className="p-text-3-1 mb-2">
-              <img src="/Duration.png" alt="img" />{" "}
-              <span className="px-2">
-                {RichText.asText(content5Temprature)}
-              </span>
-            </p> )}
-            {content5Snow && content5Snow[0]?.text&& (<p className="p-text-3-1 mb-2">
-              <img src="/shoes.png" alt="img" />{" "}
-              <span className="px-2">{RichText.asText(content5Snow)}</span>
-            </p> )}
-            {content5WarmLayers && content5WarmLayers[0]?.text && (<p className="p-text-3-1">
-              <img src="/Offloading.png" alt="img" />{" "}
-              <span className="px-2">
-                {RichText.asText(content5WarmLayers)}
-              </span>
-            </p> )}
-            <div className="p-text-4">
-              {RichText.render(content5List)}
-            </div>
+            {content5Temprature && content5Temprature[0]?.text && (
+              <p className="p-text-3-1 mb-2">
+                <img src="/Duration.png" alt="img" />{" "}
+                <span className="px-2">
+                  {RichText.asText(content5Temprature)}
+                </span>
+              </p>
+            )}
+            {content5Snow && content5Snow[0]?.text && (
+              <p className="p-text-3-1 mb-2">
+                <img src="/shoes.png" alt="img" />{" "}
+                <span className="px-2">{RichText.asText(content5Snow)}</span>
+              </p>
+            )}
+            {content5WarmLayers && content5WarmLayers[0]?.text && (
+              <p className="p-text-3-1">
+                <img src="/Offloading.png" alt="img" />{" "}
+                <span className="px-2">
+                  {RichText.asText(content5WarmLayers)}
+                </span>
+              </p>
+            )}
+            <div className="p-text-4">{RichText.render(content5List)}</div>
             <div className="d-flex flex-wrap mb-3">
               {RichText.render(content5Images)}
             </div>

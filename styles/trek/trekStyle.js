@@ -142,7 +142,7 @@ export const trekStyle = css.global`
   }
 
   .p-text-3-2 {
-    line-height: 16px;
+    line-height: 21px;
     text-align: left;
     font-family: Lora;
     font-style: normal;
@@ -872,6 +872,7 @@ export const trekStyle = css.global`
 
   .nav.card-header-tabs.nav-tabs {
     margin-bottom: 20px;
+    overflow: auto;
   }
 
   .nav-item.nav-link.active {
@@ -1557,6 +1558,14 @@ export const trekStyle = css.global`
 
   .m-mt-15 {
     margin: 0 30px;
+  }
+
+  .seasons-img-sec > div > img {
+    height: 20px;
+  }
+
+  .seasons-img-sec > div > p {
+    margin: 0;
   }
 
   @media only screen and (max-width: 660px) {

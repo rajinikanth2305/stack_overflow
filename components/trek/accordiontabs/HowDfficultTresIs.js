@@ -97,7 +97,11 @@ const HowDifficultTrekIs = ({ data }) => {
       );
     });
     return (
-      <Tab eventKey={`tab` + data?.title[0]?.text} title={data?.title[0]?.text} key={i}>
+      <Tab
+        eventKey={`tab` + data?.title[0]?.text}
+        title={data?.title[0]?.text}
+        key={i}
+      >
         {data?.title[0]?.text === "Safety – Altitude Wise" ? (
           <div className="hd-tab2-iamge mb-4">
             {data?.heading1_image?.url && (
@@ -146,18 +150,20 @@ const HowDifficultTrekIs = ({ data }) => {
                 <div>{content2_title}</div>
                 {content2_data}
               </div>
-              <div className="w-100 d-m-none">
-                <div className="hd-tab2-iamge position-change mb-4">
-                  {data?.heading1_image?.url && (
+              {data?.heading1_image?.url && (
+                <div className="w-100 d-m-none">
+                  <div className="hd-tab2-iamge position-change mb-4">
+                    {/* {data?.heading1_image?.url && ( */}
                     <Image
                       src={data?.heading1_image?.url}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"
                     />
-                  )}
+                    {/* )} */}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
             {/* <div className="row">
               <div className="col-lg-6 col-md-12">
@@ -238,7 +244,7 @@ const HowDifficultTrekIs = ({ data }) => {
               <div className="p-text-4">{RichText.render(hdTextList)}</div>
             </div>
             <div className="col-md-12">
-              <div className="my-5 mmt-2">
+              <div className="my-4 mmt-2">
                 <p className="p-text-1 border-bottom-green">
                   <b>{RichText.asText(howSafeTitle)}</b>
                 </p>

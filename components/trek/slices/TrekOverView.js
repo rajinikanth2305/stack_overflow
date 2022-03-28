@@ -94,7 +94,7 @@ const TrekOverView = ({ slice, data }) => {
                 </p>
                 {/* <p className="p-text-2 pb-4 mpt-0 mpb-0"> */}
                 {/* {RichText.asText(heading2)} */}
-                <div className="p-text-2">{RichText.render(heading2)}</div>
+                <div className="p-text-4">{RichText.render(heading2)}</div>
                 {/* </p> */}
               </div>
               {/* <div>

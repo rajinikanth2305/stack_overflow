@@ -131,7 +131,7 @@ const TrekVideosComponent = ({ slice }) => {
                   <Image
                     src={imageURL}
                     layout="fill"
-                    objectFit="cover"
+                    objectFit="fill"
                     objectPosition="center"
                     onClick={() => {
                       setTrekVideoUrl(videoUrl);

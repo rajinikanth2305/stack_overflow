@@ -92,7 +92,7 @@ const HowDoesEachDayLooks = ({ data }) => {
         );
         return (
           <div key={i}>
-            <div className="my-5 mmt-0">
+            <div className="my-4 mmt-0">
               <div className="mb-4 d-m-block">
                 <Slider className="home-choose-treks" {...settings}>
                   {daysIt?.image1?.url && (
@@ -131,28 +131,44 @@ const HowDoesEachDayLooks = ({ data }) => {
                 </p>
               )}
               {daysIt?.duration[0]?.text && (
-                <p className="p-text-3-1">
-                  <img src="/Duration.png" alt="img" />{" "}
-                  <span className="px-2">{daysIt?.duration[0]?.text}</span>
-                </p>
+                // <p className="p-text-3-1">
+                //   <img src="/Duration.png" alt="img" />{" "}
+                //   <span className="px-2">{RichText.render(daysIt?.duration)}</span>
+                // </p>
+                <div className="d-flex align-items-center seasons-img-sec mb-2">
+                  <div><img src="/Duration.png" alt="img" /></div>
+                  <div className="p-text-3-1 px-2">{RichText.render(daysIt?.duration)}</div>
+                </div>
               )}
               {daysIt?.altitude[0]?.text && (
-                <p className="p-text-3-1">
-                  <img src="/shoes.png" alt="img" />{" "}
-                  <span className="px-2">{daysIt?.altitude[0]?.text}</span>
-                </p>
+                // <p className="p-text-3-1">
+                //   <img src="/shoes.png" alt="img" />{" "}
+                //   <span className="px-2">{daysIt?.altitude[0]?.text}</span>
+                // </p>
+                <div className="d-flex align-items-center seasons-img-sec mb-2">
+                  <div><img src="/shoes.png" alt="img" /></div>
+                  <div className="p-text-3-1 px-2">{RichText.render(daysIt?.altitude)}</div>
+                </div>
               )}
               {daysIt?.difficulty[0]?.text && (
-                <p className="p-text-3-1">
-                  <img src="/Offloading.png" alt="img" />{" "}
-                  <span className="px-2">{daysIt?.difficulty[0]?.text}</span>
-                </p>
+                // <p className="p-text-3-1">
+                //   <img src="/Offloading.png" alt="img" />{" "}
+                //   <span className="px-2">{daysIt?.difficulty[0]?.text}</span>
+                // </p>
+                <div className="d-flex align-items-center seasons-img-sec mb-2">
+                  <div><img src="/Offloading.png" alt="img" /></div>
+                  <div className="p-text-3-1 px-2">{RichText.render(daysIt?.difficulty)}</div>
+                </div>
               )}
               {daysIt?.water_sources[0]?.text && (
-                <p className="p-text-3-1">
-                  <img src="/Offloading.png" alt="img" />{" "}
-                  <span className="px-2">{daysIt?.water_sources[0]?.text}</span>
-                </p>
+                // <p className="p-text-3-1">
+                //   <img src="/Offloading.png" alt="img" />{" "}
+                //   <span className="px-2">{daysIt?.water_sources[0]?.text}</span>
+                // </p>
+                <div className="d-flex align-items-center seasons-img-sec mb-2">
+                  <div><img src="/Offloading.png" alt="img" /></div>
+                  <div className="p-text-3-1 px-2">{RichText.render(daysIt?.water_sources)}</div>
+                </div>
               )}
               <div className="my-4 d-m-block">
                 {daysItieneryArray &&

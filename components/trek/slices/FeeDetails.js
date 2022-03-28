@@ -114,7 +114,7 @@ const FeeDetails = ({ data }) => {
                 {RichText.asText(descriptions)}
               </p>
               <p className="trek-info-detail text-decoration-underline cursor-pointer">
-                <a onClick={handleShow}>See Inclusions and Exclusions</a>
+                <a onClick={handleShow}>See cancellation policy</a>
               </p>
               <div className="my-3">
                 <button className="btn btn-block btn-ih-green-trek-fee hvr-grow">
