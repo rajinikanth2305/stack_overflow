@@ -10,6 +10,7 @@ import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
 import { Client } from "utils/prismicHelpers";
 import { ihbodyStyles } from "styles";
+import ScrollToTop from "react-scroll-to-top";
 
 /**
  * Homepage component
@@ -24,6 +25,7 @@ const HikeHome = ({
 }) => {
   if (doc && doc.data) {
     return (
+      <>
       <HomeLayout>
         <Head>
           <title>India Hikes</title>
@@ -41,6 +43,8 @@ const HikeHome = ({
           }
         />
       </HomeLayout>
+      <ScrollToTop smooth color="#000000" />
+      </>
     );
   }
 

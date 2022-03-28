@@ -11,6 +11,7 @@ import IHFooter from "components/Footer";
 import IHTrekWithSwathi from "components/Trek_With_Swathi";
 import { ArticlesSliceZone } from "components/articles";
 import { queryRepeatableDocumentsWithDocTypeFilter } from "services/queries";
+import ScrollToTop from "react-scroll-to-top";
 /**
  * UpComing component
  */
@@ -30,6 +31,7 @@ const Articles1 = ({
 }) => {
   if (doc && doc.data) {
     return (
+      <>
       <HomeLayout>
         <Head>
           <meta charset="utf-8" />
@@ -58,6 +60,8 @@ const Articles1 = ({
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
+      <ScrollToTop smooth color="#000000" />
+      </>
     );
   }
 

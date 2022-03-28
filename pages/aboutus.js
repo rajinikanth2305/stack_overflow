@@ -9,6 +9,7 @@ import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import { AboutUsSliceZone } from "../components/aboutus";
+import ScrollToTop from "react-scroll-to-top";
 
 /**
  * Aboutus component
@@ -16,6 +17,7 @@ import { AboutUsSliceZone } from "../components/aboutus";
 const AboutUs = ({ doc, articleData }) => {
   if (doc && doc.data) {
     return (
+      <>
       <HomeLayout>
         <Head>
           <meta charset="utf-8" />
@@ -31,6 +33,8 @@ const AboutUs = ({ doc, articleData }) => {
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
+      <ScrollToTop smooth color="#000000" />
+      </>
     );
   }
 

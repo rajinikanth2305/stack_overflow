@@ -11,6 +11,7 @@ import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import { RegistrationSliceZone } from "../components/registration";
 import { Provider } from 'react-redux';
 import store from '../components/reduxstate/store';
+import ScrollToTop from "react-scroll-to-top";
 /**
  * Registration component
  * <script src="https://www.paynimo.com/paynimocheckout/client/lib/jquery.min.js" type="text/javascript"></script>
@@ -20,6 +21,7 @@ import store from '../components/reduxstate/store';
 const Registration = ({ doc }) => {
   if (doc && doc.data) {
     return (
+      <>
       <HomeLayout>
         <Head>
          <meta charset="utf-8"/>
@@ -38,6 +40,8 @@ const Registration = ({ doc }) => {
         </div> */}
         <IHFooter />
       </HomeLayout>
+      <ScrollToTop smooth color="#000000" />
+      </>
     );
   }
 

@@ -13,6 +13,7 @@ import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import { DIYSliceZone } from "../components/diytreks";
+import ScrollToTop from "react-scroll-to-top";
 
 /**
  * UpComing component
@@ -20,6 +21,7 @@ import { DIYSliceZone } from "../components/diytreks";
 const DIY = ({ doc, trekData, dtcData, diyResourceData, alldiyTreks }) => {
   if (doc && doc.data) {
     return (
+      <>
       <HomeLayout>
         <Head>
           <meta charset="utf-8" />
@@ -45,6 +47,8 @@ const DIY = ({ doc, trekData, dtcData, diyResourceData, alldiyTreks }) => {
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
+      <ScrollToTop smooth color="#000000" />
+      </>
     );
   }
 

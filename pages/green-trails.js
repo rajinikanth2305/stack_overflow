@@ -12,6 +12,7 @@ import { HikeHeader } from "components/ihhome";
 import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
+import ScrollToTop from "react-scroll-to-top";
 
 /**
  * UpComing component
@@ -19,6 +20,7 @@ import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 const GreenTrails = ({ doc, latestUpdateAarticleData, articleData, latestUpdateAarticleData1 }) => {
   if (doc && doc.data) {
     return (
+      <>
       <HomeLayout>
         <Head>
           <meta charset="utf-8" />
@@ -39,6 +41,8 @@ const GreenTrails = ({ doc, latestUpdateAarticleData, articleData, latestUpdateA
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
+      <ScrollToTop smooth color="#000000" />
+      </>
     );
   }
 

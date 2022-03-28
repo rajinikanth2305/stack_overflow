@@ -13,6 +13,7 @@ import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import FaqSliceZone from "../components/faq/FaqSliceZone";
+import ScrollToTop from "react-scroll-to-top";
 
 /**
  * UpComing component
@@ -20,6 +21,7 @@ import FaqSliceZone from "../components/faq/FaqSliceZone";
 const FAQ = ({ doc, articleData }) => {
   if (doc && doc.data) {
     return (
+      <>
       <HomeLayout>
         <Head>
          <meta charset="utf-8"/>
@@ -32,6 +34,8 @@ const FAQ = ({ doc, articleData }) => {
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
+      <ScrollToTop smooth color="#000000" />
+      </>
     );
   }
 

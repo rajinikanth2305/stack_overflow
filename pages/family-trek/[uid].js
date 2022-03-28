@@ -15,6 +15,7 @@ import IHTrekWithSwathi from "components/Trek_With_Swathi";
 import { FamilyTrekSliceZone } from "components/familytrek";
 import { queryRepeatableDocuments } from "services/queries";
 import { queryRepeatableDocumentsWithDocTypeFilter } from "services/queries";
+import ScrollToTop from "react-scroll-to-top";
 
 /**
  * UpComing component
@@ -27,6 +28,7 @@ const FamilyTrek = ({
 }) => {
   if (doc && doc.data) {
     return (
+      <>
       <HomeLayout>
         <Head>
           <meta charset="utf-8" />
@@ -47,6 +49,8 @@ const FamilyTrek = ({
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
+      <ScrollToTop smooth color="#000000" />
+      </>
     );
   }
    console.log("called here");

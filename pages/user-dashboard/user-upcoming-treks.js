@@ -11,6 +11,7 @@ import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
 import { Client } from "utils/prismicHelpers";
 import { UserUpcomingTreksSliceZone } from "../../components/user-dashboard/upcoming-treks";
+import ScrollToTop from "react-scroll-to-top";
 
 /**
  * UpComing component
@@ -18,6 +19,7 @@ import { UserUpcomingTreksSliceZone } from "../../components/user-dashboard/upco
 const UserUpcomingTreks = ({ doc }) => {
   if (doc && doc.data) {
     return (
+      <>
       <HomeLayout>
         <Head>
           <meta charset="utf-8" />
@@ -32,6 +34,8 @@ const UserUpcomingTreks = ({ doc }) => {
         <HikeHeader />
         <UserUpcomingTreksSliceZone sliceZone={doc.data.body} />
       </HomeLayout>
+      <ScrollToTop smooth color="#000000" />
+      </>
     );
   }
 

@@ -12,6 +12,7 @@ import { HikeHeader } from "components/ihhome";
 import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
+import ScrollToTop from "react-scroll-to-top";
 
 /**
  * UpComing component
@@ -19,6 +20,7 @@ import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 const Careers = ({ doc, articleData }) => {
   if (doc && doc.data) {
     return (
+      <>
       <HomeLayout>
         <Head>
           <meta charset="utf-8" />
@@ -34,6 +36,8 @@ const Careers = ({ doc, articleData }) => {
         <IHTrekWithSwathi />
         <IHFooter />
       </HomeLayout>
+      <ScrollToTop smooth color="#000000" />
+      </>
     );
   }
 
