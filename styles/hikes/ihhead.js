@@ -213,6 +213,10 @@ export const ihheaderStyles = css.global`
       display: block;
     }
 
+    .m-d-none {
+      display: none;
+    }
+
     .mw-100 {
       width: 100%;
     }

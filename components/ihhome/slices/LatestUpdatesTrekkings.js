@@ -167,7 +167,7 @@ const LatestUpdatesTrekkings = ({
               </div>
             </Link>
           </div>
-          <div className="m-d-none">
+          <div className="">
             <div className="row">
               <div className="col-lg-6 col-md-12">
                 <div className="row">{latestTrekWorld}</div>
@@ -205,7 +205,7 @@ const LatestUpdatesTrekkings = ({
               )}
             </div>
           </div>
-          <div className="m-d-block">
+          {/* <div className="m-d-block">
             <div className="d-flex align-items-center mb-3 bg-white p-2 bg-shadow-1">
               <div>
                 <img src="/Mask_Group_10.png" alt="img" />
@@ -247,7 +247,7 @@ const LatestUpdatesTrekkings = ({
                 <p className="name_editor m-0">24 Jan 2020 | 6 min read</p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <style jsx global>
           {latestUpdatesTrekkingsStyles}

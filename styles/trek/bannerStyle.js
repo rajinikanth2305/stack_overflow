@@ -107,7 +107,7 @@ export const bannerStyle = css.global`
 
     .short-info-sec {
       background: linear-gradient(#fff0, black);
-      margin-top: -68px;
+      margin-top: -50px;
       position: relative;
       padding: 10px 0;
       margin-bottom: 20px;
@@ -121,6 +121,7 @@ export const bannerStyle = css.global`
 
     .short-info-text.m-tex {
       font-weight: bold;
+      white-space: nowrap;
     }
 
     .mmx-0 {

@@ -177,7 +177,7 @@ const TrekBannerWithCaption = ({ slice }) => {
                       <p className="short-info-text m-tex m-0">Highest Altitude</p>
                     </div>
                     <div className="mx-3">
-                      <p className="short-info-text m-0">
+                      <p className="short-info-text m-tex m-0">
                         {RichText.asText(altitude)}
                       </p>
                     </div>

@@ -15,6 +15,7 @@ import IHFooter from "components/Footer";
 import IHTrekWithSwathi from "components/Trek_With_Swathi";
 import WhyTrekWithIH from "../../components/WhyTrekWithIH";
 import CrossTrekCommon from "../../components/CrossTrekCommon";
+import ScrollToTop from "react-scroll-to-top";
 /**
  * Trek page component
  */
@@ -25,6 +26,7 @@ const Trek = ({ trekData, trekPageData1 }) => {
     const meta_desc = RichText.asText(trekData.data?.meta_description);
 
     return (
+      <>
       <HomeLayout>
         <Head>
           <meta charset="utf-8" />
@@ -46,6 +48,8 @@ const Trek = ({ trekData, trekPageData1 }) => {
         <CrossTrekCommon />
         <IHFooter />
       </HomeLayout>
+      <ScrollToTop smooth color="#000000" />
+      </>
     );
   }
 

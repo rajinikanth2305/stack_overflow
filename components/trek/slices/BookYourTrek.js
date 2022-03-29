@@ -70,7 +70,7 @@ const BookYourTrek = ({ slice }) => {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-12">
-              <div className="row my-5 pt-4 mpt-0">
+              <div className="row mb-5 pt-1 mpt-0">
                 <div className="col-12 col-lg-6 col-md-12">
                   <div>
                     <h2 className="title-h2 th-2m pb-08 mb-0">

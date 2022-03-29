@@ -30,7 +30,6 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
   }
 
   const artData = articleData.map(function(data, i) {
-    console.log(data);
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {

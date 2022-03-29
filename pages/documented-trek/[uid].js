@@ -14,6 +14,7 @@ import { postStyles } from "styles";
 import { HikeHeader } from "components/ihhome";
 import IHFooter from "components/Footer";
 import IHTrekWithSwathi from "components/Trek_With_Swathi";
+import ScrollToTop from "react-scroll-to-top";
 
 /**
  * Post page component
@@ -52,6 +53,7 @@ const DocumentTrek = ({ post, authorData,updatesData,upComingData,relatedArticle
         </style> */}
         <IHTrekWithSwathi />
         <IHFooter />
+        <ScrollToTop smooth color="#000000" />
       </DefaultLayout>
     );
   }

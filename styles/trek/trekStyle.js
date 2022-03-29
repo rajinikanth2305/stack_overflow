@@ -873,6 +873,7 @@ export const trekStyle = css.global`
   .nav.card-header-tabs.nav-tabs {
     margin-bottom: 20px;
     overflow: auto;
+    padding: 0 0 3px 0;
   }
 
   .nav-item.nav-link.active {
@@ -880,6 +881,7 @@ export const trekStyle = css.global`
     border: 0 !important;
     border-radius: 0 !important;
     color: #000000;
+    box-shadow: 1px 1px 3px rgb(91, 133, 70);
   }
 
   .nav-item.nav-link {
@@ -1454,12 +1456,12 @@ export const trekStyle = css.global`
   }
 
   .tt-content {
-    line-height: 18px;
+    line-height: 21px;
     text-align: left;
     font-family: Lora;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 16px;
     color: rgba(0, 0, 0, 1);
   }
 
@@ -1598,6 +1600,9 @@ export const trekStyle = css.global`
     }
     .terk-videos-promary-image {
       height: 175px;
+    }
+    .terk-videos-promary-image.mpi {
+      height: 200px;
     }
     .title-h2.th-2m {
       border-bottom: 2px solid rgb(255, 193, 0);
@@ -1795,9 +1800,9 @@ export const trekStyle = css.global`
       font-family: Franklin Gothic;
       font-style: normal;
       font-weight: normal;
-      font-size: 14px;
-      padding: 5px 10px;
-      text-transform: uppercase;
+      font-size: 12px;
+      padding: 3px;
+      text-transform: capitalize;
     }
 
     .m-p-t-2 {
@@ -1992,6 +1997,7 @@ export const trekStyle = css.global`
     .m-fee-details-card {
       position: fixed;
       bottom: 0;
+      left: 0;
       width: 100%;
     }
 

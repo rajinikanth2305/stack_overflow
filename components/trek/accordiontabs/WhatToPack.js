@@ -96,7 +96,7 @@ const WhatToPack = ({ data }) => {
             <>
               {primaryVideoUrl && (
                 <div className="card card-box-shadow border-0 mb-5">
-                  <div className="terk-videos-promary-image">
+                  <div className="terk-videos-promary-image mpi">
                     <div className="d-flex align-items-center justify-content-center w-100 h-100">
                       <div className="text-center">
                         <img

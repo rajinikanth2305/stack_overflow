@@ -276,7 +276,7 @@ const HowDoesEachDayLooks = ({ data }) => {
                 </div>
               </div>
               <div
-                className={daysIt?.image4?.url ? "my-5 d-m-none" : "d-m-none"}
+                className={daysIt?.image4?.url ? "mt-4 mb-1 d-m-none" : "d-m-none"}
               >
                 {/* <p className="p-text-4">{place_description_editor}</p> */}
                 <div className="p-text-4">

@@ -421,13 +421,13 @@ const HikeHeader = ({ auth = false }) => {
                 <UncontrolledDropdown
                   inNavbar
                   nav
-                  className="r-nav view-in-desk"
+                  className="r-nav"
                 >
                   <DropdownToggle nav>
                     <i
-                      className="fa fa-bars cursor-pointer"
+                      className="fa fa-bars cursor-pointer m-d-none"
                       aria-hidden="true"
-                    ></i>
+                    ></i> <span className="m-d-block">More</span>
                   </DropdownToggle>
                   <DropdownMenu>
                     <Link href="../../../aboutus">

@@ -153,13 +153,13 @@ const TrekOverView = ({ slice, data }) => {
                       </p>
                     </div>
                   </a> */}
-                  <a href="#goToSustainabilty">
+                  {/* <a href="#goToSustainabilty">
                     <div>
                       <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
                         Sustainabilty
                       </p>
                     </div>
-                  </a>
+                  </a> */}
                   <a href="#KYT">
                     <div>
                       <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
@@ -167,13 +167,13 @@ const TrekOverView = ({ slice, data }) => {
                       </p>
                     </div>
                   </a>
-                  <a href="#GoToPT">
+                  {/* <a href="#GoToPT">
                     <div>
                       <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">
                         Travel Pro Tips
                       </p>
                     </div>
-                  </a>
+                  </a> */}
                   <a href="#GoToTrekTrivia">
                     <div>
                       <p className="quick-info-bage-outline mb-2 hvr-sweep-to-right">

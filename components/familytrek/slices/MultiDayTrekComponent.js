@@ -183,14 +183,14 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
     <>
       <div className="my-5 pt-4 mmy-2 mpt-0 mpb-2">
         <div className="container">
-          <div className="d-flex flex-wrap align-items-end border-bottom-custom mb-4 pb-08">
+          <div className="d-flex flex-wrap align-items-center border-bottom-custom mb-4">
             <div className="col-lg-7 col-md-12">
               <h2 className="title-h2 border-0 mb-0">
                 {RichText.asText(heading1)}
               </h2>
             </div>
             <div className="col-lg-5 col-md-12">
-              <div className="p-display-1 m-d-1 mmb-0 mb-4 pl-custom">
+              <div className="p-display-1 m-d-1 mmb-0 pl-custom">
                 {RichText.render(heading2)}
               </div>
             </div>

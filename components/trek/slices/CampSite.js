@@ -98,7 +98,7 @@ const CampSite = ({ slice }) => {
               <div className="p-text-4 mmb-0">{RichText.render(heading2)}</div>
             </div>
           </div>
-          <div className="mt-4 mb-5 pb-5 mmt-0 mmb-0">
+          <div className="mt-4 mb-4 pb-5 mmt-0 mmb-0">
             <Slider {...settings}>{campsitesImages}</Slider>
           </div>
         </div>

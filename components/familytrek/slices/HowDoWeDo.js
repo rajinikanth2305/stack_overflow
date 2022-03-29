@@ -5,6 +5,8 @@ import Image from "next/image";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Modal from "react-bootstrap/Modal";
+import { linkResolver } from "prismic-configuration";
+import Link from "next/link";
 /**
  * FT Slice Components
  */
@@ -19,6 +21,12 @@ const HowDoWeDo = ({ slice }) => {
   const handleShow = () => setShow(true);
 
   const tabsData = tabsDataArray?.map(function(data, i) {
+    const linkType = data?.target_link?.link_type;
+    let url = linkType == "Web" ? data?.target_link?.url : "";
+    const slugUrl =
+      linkType == "Document" ? data?.target_link?.slug : undefined;
+
+    if (slugUrl) url = linkResolver(data?.target_link);
     return (
       <Tab
         eventKey={`tab` + data?.tab_title[0]?.text}
@@ -45,12 +53,14 @@ const HowDoWeDo = ({ slice }) => {
           </p>
           <div className="row">
             <div className="col-lg-6 col-md-12">
-              <div className="p-text-3">{RichText.render(data?.content)}</div>
+              <div className="p-text-3">{RichText.render(data?.content, linkResolver)}</div>
               {data?.target_link?.url && (
                 <div className="mt-5 mb-4 mmb-0">
-                  <button className="btn btn-bihtn-yellow text-capitalize hvr-grow">
-                    Read more
-                  </button>
+                  <Link href={url ? url : "#"}>
+                    <button className="btn btn-bihtn-yellow text-capitalize hvr-grow">
+                      Read more
+                    </button>
+                  </Link>
                 </div>
               )}
             </div>
