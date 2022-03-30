@@ -220,7 +220,7 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
           toast.current.show({
             severity: "info",
             summary: `'Cancelled successfully'`,
-            detail: "Cancel-Booking"
+            detail: "Cancellation"
           });
           router.push(`/user-dashboard/user-upcoming-treks`);
           //fetchAndBindUserBookings(upComingTrek.email);
@@ -231,7 +231,7 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
       toast.current.show({
         severity: "error",
         summary: `'None of the participant selected for cancellation'`,
-        detail: "Cancel-Booking"
+        detail: "Cancellation"
       });
     }
   };
@@ -592,7 +592,10 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                     <div className="d-flex justify-content-center my-4 pt-1">
                       {computedValue?.credited>0 && (
                       <button className="btn table-btn-maroon-lg" onClick={e => {onCancelSubmit()}}>
-                        Cancel Booking
+                        {flagValue==='trek-p-cancel' ? (
+                         <span>Cancel Booking</span>
+                        ): <span>Cancel Offload Booking</span> 
+                        }
                       </button>
                       )}
                     </div>

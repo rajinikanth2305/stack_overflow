@@ -42,7 +42,8 @@ const Offloading = forwardRef((props, ref) => {
   const [saveState, setSaveState] = useState(false);
   const toast = useRef(null);
   const router = useRouter();
-  React.useEffect(() => {}, [indexes, offLoadings]);
+
+  //React.useEffect(() => {}, []);
 
   // The component instance will be extended
   // with whatever you return from the callback passed
@@ -65,7 +66,7 @@ const Offloading = forwardRef((props, ref) => {
 
   const initData = async data => {
     //  console.log(data);
-
+    setRender(false);
     if (deriveBookingState(data) == true) {
       // console.log("Called here");
 
@@ -88,9 +89,7 @@ const Offloading = forwardRef((props, ref) => {
       getBackPackOffloadingUserStatus(data.bookingId).then(resData => {
         //console.log(resData);
         data?.userTrekBookingParticipants.map(pdata => {
-          const offloadUser = resData?.find(
-            x => x.participantId === pdata.participantId
-          );
+          const offloadUser = resData?.find(x => x.participantId === pdata.participantId);
 
           if (pdata?.bookingParticipantState !== "CANCELLED") {
             offLoadingList.push({
@@ -112,16 +111,13 @@ const Offloading = forwardRef((props, ref) => {
               voucherId: "",
               selected: false,
               email: pdata?.userDetailsForDisplay.email,
-              offloadingParticipantStatus:
-                offloadUser == undefined || false
-                  ? "N/A"
-                  : offloadUser.offloadingState,
+              offloadingParticipantStatus:offloadUser == undefined || false? "N/A": offloadUser.offloadingState,
               bookingParticipantState: pdata?.bookingParticipantState
             });
           }
         });
         setOffLoadings(offLoadingList);
-        // console.log(offLoadingList);
+        //console.log(offLoadingList);
         // console.log(offLoadingList.length);
 
         const arr = Array.from(new Array(offLoadingList?.length), (x, i) => i);
@@ -265,6 +261,18 @@ const Offloading = forwardRef((props, ref) => {
     );
   };
 
+  const checkAnyPaidStatus = () => {
+
+    let paids=[];
+    offLoadings?.map(x=> {
+      if(x?.offloadingParticipantStatus === "PAID") {
+        paids.push(x);
+      }
+    }
+    );
+    return paids.length>0;
+  }
+
   return (
     <>
       <Toast ref={toast} />
@@ -297,16 +305,7 @@ const Offloading = forwardRef((props, ref) => {
             <div>
               <p>Applicable tax: {headerData?.backPackOffloadingTax}%</p>
             </div>
-            {headerData?.userTrekBookingParticipants?.filter(
-              x => x?.backpackOffloadingAmountPaid != null
-            ).length > 0 && (
-              <button
-                className="btn table-btn-maroon"
-                onClick={e => onCancelButtonClick()}
-              >
-                Cancel trek
-              </button>
-            )}
+         
           </div>
           <div>
             <table className="table table-dashboard-profile-style-1">
@@ -429,11 +428,12 @@ const Offloading = forwardRef((props, ref) => {
                         <td>{sdata?.youPay}</td>
                         <td>
                           <span>{sdata?.offloadingParticipantStatus}</span>
-                          {sdata?.offloadingParticipantStatus === "Paid" && (
+                          { /*sdata?.offloadingParticipantStatus === "Paid" && (
                             <span className="mx-2 p-text-small-fg-red text-decoration-underline">
                               Cancel
                             </span>
-                          )}
+                          )*/
+                          }
                         </td>
                       </tr>
                     </>
@@ -445,6 +445,15 @@ const Offloading = forwardRef((props, ref) => {
               <div className="flex-grow-1">
                 <p className="m-0 p-text-small-brown">* Primary participant</p>
               </div>
+              {checkAnyPaidStatus()  && (
+              <button
+                className="btn table-btn-maroon"
+                onClick={e => onCancelButtonClick()}
+              >
+                Cancel Offloading
+              </button>
+            )}
+            &nbsp;
               <div>
                 <button
                   className="btn table-btn-blue-sm hvr-grow"
