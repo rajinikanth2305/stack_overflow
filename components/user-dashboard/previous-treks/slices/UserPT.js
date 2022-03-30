@@ -645,7 +645,7 @@ const UserPT = () => {
                 <div className="col-lg-10 col-md-12 bg-gray border-right b-right-2px">
                   <div className="mb-2 py-4">
                     <p className="p-text-1 font-weight-bold m-0">
-                      Hi {bookingOwner?.userDetailsForDisplay.firstName} -{" "}
+                      Hi {bookingOwner?.userDetailsForDisplay.firstName}&nbsp;
                       {bookingOwner?.userDetailsForDisplay.lastName}
                     </p>
                     {/* <p className="p-text-1 font-weight-bold">

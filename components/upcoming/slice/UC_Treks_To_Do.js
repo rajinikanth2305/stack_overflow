@@ -144,7 +144,7 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
 
   return (
     <>
-      <div className="mb-5 ucOpenForSmallGroup_sec">
+      <div className="mb-2 pt-3 ucOpenForSmallGroup_sec">
         <div className="container">
           <div className="d-flex flex-wrap align-items-center border-bottom-4 mb-3">
             <div className="col-lg-6 col-md-12">

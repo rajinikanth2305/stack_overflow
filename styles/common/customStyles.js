@@ -2387,6 +2387,10 @@ export const customStyles = css.global`
     color: #333333;
   }
 
+  .s-icons {
+    width: 20px;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

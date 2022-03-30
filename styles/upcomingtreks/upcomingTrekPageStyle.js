@@ -249,7 +249,7 @@ export const upcomingTrekPageStyle = css.global`
   }
 
   .ucOpenForSmallGroup_sec {
-    padding-top: 60px;
+    padding-top: 45px;
   }
 
   .trek_card {

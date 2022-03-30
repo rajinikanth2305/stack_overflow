@@ -9,18 +9,26 @@ const FollowUsIh = ({ slice }) => {
   const followUsIh = slice?.items;
 
   const followUsIhDetails = followUsIh?.map(function(data, k) {
-    const url = data?.target_url;
+    console.log(data);
+    const url = data?.target_url?.url;
     return (
       <div className="flex-fill mx-2" key={k}>
-        <Link href={url ? url : "#"}>
-          <div className="card faq-card mt-4 cursor-pointer">
+        <a href={url ? url : "#"} target="_blank">
+          <div className="card faq-card mt-4 cursor-pointer hvr-grow">
             <div className="p-3">
-              <p className="p-text-1 m-0">
-                <b>{RichText.asText(data?.title)}</b>
-              </p>
+              <div className="d-flex align-items-center">
+                <div>
+                  <img src={data?.image?.url} className="s-icons" />
+                </div>
+                <div className="mx-2">
+                  <p className="p-text-1 m-0">
+                    <b>{RichText.asText(data?.title)}</b>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-        </Link>
+        </a>
       </div>
     );
   });

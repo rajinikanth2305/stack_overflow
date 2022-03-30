@@ -107,7 +107,7 @@ const UserTV = () => {
                 <div className="col-lg-10 col-md-12 bg-gray border-right b-right-2px">
                   <div className="mb-2 py-4">
                     <p className="p-text-1 font-weight-bold m-0">
-                      Hi {bookingOwner?.firstName} - {bookingOwner?.lastName}
+                      Hi {bookingOwner?.firstName}&nbsp;{bookingOwner?.lastName}
                     </p>
                     {vouchers?.length > 0 ? (
                       <p className="col-md-8 p-text-4 mt-2">

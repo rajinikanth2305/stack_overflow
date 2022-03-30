@@ -422,7 +422,7 @@ const WelcomeProfile = () => {
                     <div className="col-lg-10 col-md-12 bg-gray border-right b-right-2px">
                       <div className="mb-2 py-4">
                         <p className="p-text-1 font-weight-bold m-0">
-                          Hi {bookingOwner?.userDetailsForDisplay.firstName} -{" "}
+                          Hi {bookingOwner?.userDetailsForDisplay.firstName}&nbsp;
                           {bookingOwner?.userDetailsForDisplay.lastName}
                         </p>
                         <p className="p-text-1 font-weight-bold">
@@ -476,8 +476,8 @@ const WelcomeProfile = () => {
                                   <div className="col-lg-8 col-md-12">
                                     <div className="trek-card-inner-box">
                                       <div className="d-flex justify-content-between align-items-end flex-wrap">
-                                        <div className="m-col-12">
-                                          <h3 className="title-h3-f28">
+                                        <div className="m-col-12 w-100">
+                                          <h3 className="title-h3-f28 m-0">
                                             {upComingTrek?.trekName}
                                           </h3>
                                         </div>
@@ -513,7 +513,7 @@ const WelcomeProfile = () => {
                                         <Progress value="50" />
                                       ) : upComingTrek?.bookingState ===
                                         "COMPLETED" ? (
-                                        <Progress value="100" />
+                                        <Progress value="100" className="p-complete-progress" />
                                       ) : (
                                         <Progress value="25" />
                                       )}

@@ -592,7 +592,7 @@ const renderFooter = (name) => {
                     return (
                       <div>
                         <p className="quick-info-bage-outline mb-2">
-                          {data?.firstName}-{data?.lastName}
+                          {data?.firstName} {data?.lastName}
                           <a href="#" onClick={() => remove(index)}>
                             <span className="px-2">x</span>
                           </a>

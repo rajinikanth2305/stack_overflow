@@ -266,7 +266,6 @@ const SelectBatch = forwardRef((props, ref) => {
 
   const onBatchSelect = batchSelected => {
     bookingSelect(batchSelected);
-    window.scrollTo(200, 200);
   };
 
 
@@ -422,7 +421,7 @@ function daysBetween(startDate, endDate) {
                                                 {item.batchState !== "FULL" && (
                                                   <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
                                                     <a
-                                                      href="javascript:;"
+                                                      href="#proceed"
                                                       onClick={e =>
                                                         onBatchSelect(item)
                                                       }
@@ -468,8 +467,8 @@ function daysBetween(startDate, endDate) {
           </div>
         </div>
         <div className="d-flex justify-content-center">
-          <div>
-          <p className="p-text-2-franklin text-center mt-5 mb-3">
+          <div id="proceed">
+          <p className="p-text-2-franklin text-center mt-5 pt-4 mb-3">
             <span>
               {moment(bookingDate?.startDate).format("Do")} to{" "}
               {moment(bookingDate?.endDate).format("Do")}{" "}

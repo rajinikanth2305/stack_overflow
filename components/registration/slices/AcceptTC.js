@@ -87,7 +87,7 @@ const AcceptTC = ({
     return (
       <div className="pb-1" key={i}>
         <p className="p-text-3-1-fg mb-1">
-          {i + 1} {data?.inclusion_title[0]?.text}
+          {i + 1}<span>.</span> {data?.inclusion_title[0]?.text}
         </p>
         <p className="p-text-3">{data?.inclusion_desc[0]?.text}</p>
       </div>
@@ -98,7 +98,7 @@ const AcceptTC = ({
     return (
       <div className="pb-1" key={i}>
         <p className="p-text-3-1-fg mb-1">
-          {i + 1} {data?.trek_exclusion_title[0]?.text}
+          {i + 1}<span>.</span> {data?.trek_exclusion_title[0]?.text}
         </p>
         <p className="p-text-3">{data?.trek_exclusion_desc[0]?.text}</p>
       </div>
@@ -163,7 +163,8 @@ const AcceptTC = ({
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>
-              <p className="p-text-4">{data?.details[0]?.text}</p>
+              {/* <p className="p-text-4">{data?.details[0]?.text}</p> */}
+              <div  className="p-text-4">{RichText.render(data?.details)}</div>
             </Card.Body>
           </Accordion.Collapse>
         </Card>

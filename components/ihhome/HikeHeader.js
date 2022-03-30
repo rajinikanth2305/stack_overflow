@@ -27,11 +27,12 @@ import Prismic from "@prismicio/client";
 import { Client } from "utils/prismicHelpers";
 import Image from "next/image";
 import { DebounceInput } from "react-debounce-input";
+import auth from "../../services/Authenticate";
 
 /**
  * Homepage header component
  */
-const HikeHeader = ({ auth = false }) => {
+const HikeHeader = (auth = false) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -68,6 +69,16 @@ const HikeHeader = ({ auth = false }) => {
       //     });
     }
   };
+
+  // React.useEffect(() => {
+  //   auth.keycloak().then(([userTokenObject, loggedInUserEmail]) => {
+  //     setUserServiceObject(userTokenObject);
+  //   });
+  // }, []);
+
+  // const onLogout = () => {
+  //   userServiceObject.doLogout();
+  // };
 
   // React Render
   const postAuthenticAction = () => {
@@ -349,6 +360,26 @@ const HikeHeader = ({ auth = false }) => {
                     }
                   >
                     Trek vouchers
+                  </NavLink>
+                ) : (
+                  ""
+                )}
+              </NavItem>
+              <NavItem className="m-d-block">
+                {router.pathname === "/user-dashboard/user-upcoming-treks" ||
+                router.pathname === "/user-dashboard/user-trekvouchers" ||
+                router.pathname === "/user-dashboard/user-myprofile" ||
+                router.pathname === "/user-dashboard/user-previous-treks" ? (
+                  <NavLink
+                    href=""
+                    // onClick={onLogout}
+                    className={
+                      router.pathname == "/"
+                        ? "active-custom"
+                        : ""
+                    }
+                  >
+                    Logout
                   </NavLink>
                 ) : (
                   ""

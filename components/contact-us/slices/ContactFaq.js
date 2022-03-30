@@ -32,7 +32,10 @@ const ContactFaq = ({ slice }) => {
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>
-              <p className="p-text-4">{data?.q_answer[0]?.text}</p>
+              {/* <p>{data?.q_answer[0]?.text}</p> */}
+              <div className="p-text-4">
+                {RichText.asText(data?.q_answer)}
+              </div>
             </Card.Body>
           </Accordion.Collapse>
         </Card>
