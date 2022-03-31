@@ -340,10 +340,10 @@ const MyTreks = forwardRef((props, ref) => {
                       pdata?.userDetailsForDisplay?.email ===
                       participantData.email
                         ? " * " +
-                          pdata?.userDetailsForDisplay?.firstName +
+                          pdata?.userDetailsForDisplay?.firstName + " " +
                           pdata?.userDetailsForDisplay?.lastName +
                           " (You) "
-                        : pdata?.userDetailsForDisplay?.firstName +
+                        : pdata?.userDetailsForDisplay?.firstName + " " +
                           pdata?.userDetailsForDisplay?.lastName;
 
                     const pickupLocations = locations.filter(

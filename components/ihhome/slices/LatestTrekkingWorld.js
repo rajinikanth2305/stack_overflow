@@ -58,20 +58,26 @@ const LatestTrekkingWorld = ({ slice }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false,
+          arrows: false
         }
       }
     ]
   };
 
-  const trekkingWorldImage = trekkingWorldImageArray.map(function(data, i) {
-    let url;
-    const slugUrl = data?.button_link?.slug;
-    if (slugUrl) {
-      url = linkResolver(data?.button_link);
-    } else {
-      url = data?.button_link?.url;
-    }
+  const trekkingWorldImage = trekkingWorldImageArray?.map(function(data, i) {
+    // let url;
+    // const slugUrl = data?.button_link?.slug;
+    // if (slugUrl) {
+    //   url = linkResolver(data?.button_link);
+    // } else {
+    //   url = data?.button_link?.url;
+    // }
+    const linkType = data?.button_link?.link_type;
+    let url = linkType == "Web" ? data?.button_link?.url : "";
+    const slugUrl =
+      linkType == "Document" ? data?.button_link?.slug : undefined;
+      if (slugUrl) url = linkResolver(data?.button_link);
+
     const result = data?.yt_link?.url?.split(
       /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
     );
@@ -95,17 +101,23 @@ const LatestTrekkingWorld = ({ slice }) => {
                 {RichText.render(data?.trekking_world_desc)}
               </div>
               <div className="text-center mt-4">
-                {/* <Link href={url ? url : "#"}> */}
-                <button
-                  className="btn btn-lg btn-ih-primary text-capitalized hvr-grow"
-                  onClick={() => {
-                    setImgUrl(videoUrl);
-                    setShow(true);
-                  }}
-                >
-                  {data?.button_name[0]?.text}
-                </button>
-                {/* </Link> */}
+                {url ? (
+                  <Link href={url ? url : "#"}>
+                    <button className="btn btn-lg btn-ih-primary text-capitalized hvr-grow">
+                      {data?.button_name[0]?.text}
+                    </button>
+                  </Link>
+                ) : (
+                  <button
+                    className="btn btn-lg btn-ih-primary text-capitalized hvr-grow"
+                    onClick={() => {
+                      setImgUrl(videoUrl);
+                      setShow(true);
+                    }}
+                  >
+                    {data?.button_name[0]?.text}
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -138,16 +150,16 @@ const LatestTrekkingWorld = ({ slice }) => {
                 </>
               ) : (
                 <Image
-                    src={data?.trekking_world_image?.url}
-                    layout="fill"
-                    objectFit="contain"
-                    objectPosition="left top"
-                    alt="imgs"
-                    onClick={() => {
-                      setImgUrl1(data?.trekking_world_image?.url);
-                      setShow1(true);
-                    }}
-                  />
+                  src={data?.trekking_world_image?.url}
+                  layout="fill"
+                  objectFit="contain"
+                  objectPosition="left top"
+                  alt="imgs"
+                  onClick={() => {
+                    setImgUrl1(data?.trekking_world_image?.url);
+                    setShow1(true);
+                  }}
+                />
               )}
             </div>
             {/* <div className="trekking_world_image_mobile">

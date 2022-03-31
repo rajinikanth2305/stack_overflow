@@ -761,7 +761,7 @@ export const customStyles = css.global`
     font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
-    font-size: 10px;
+    font-size: 12px;
     color: rgba(0, 0, 0, 1);
     text-transform: none;
     background: rgba(255, 193, 0, 1);

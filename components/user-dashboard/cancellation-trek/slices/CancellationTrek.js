@@ -362,14 +362,14 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                         <thead>
                           <tr className="header-bg">
                             <th style={{ width: "2%" }}>&nbsp;</th>
-                            <th>trekker name</th>
-                            <th>fee paid</th>
-                            <th>cancellation (-{cancelPercentage}%)</th>
+                            <th>Trekker name</th>
+                            <th>Fee paid</th>
+                            <th>Cancellation (-{cancelPercentage}%)</th>
                             {moneytaryRefund==false && (
-                            <th>voucher credited ({100-cancelPercentage}%)</th>
+                            <th>Voucher credited ({100-cancelPercentage}%)</th>
                             )}
                               {moneytaryRefund && (
-                            <th>monetary refund ({100-cancelPercentage}%)</th>
+                            <th>Monetary refund ({100-cancelPercentage}%)</th>
                               )}
                           </tr>
                         </thead>
@@ -382,10 +382,10 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                         const fieldName = `${sdata?.participantId}`;
                         const name =sdata?.email === userEmail
                             ? " * " +
-                              sdata?.firstName +
+                              sdata?.firstName + " " +
                               sdata?.lastName +
                               " (You) "
-                            : sdata?.firstName +
+                            : sdata?.firstName + " " +
                               sdata?.lastName;
 
                         const state =sdata?.bookingParticipantState === "CANCELLED";

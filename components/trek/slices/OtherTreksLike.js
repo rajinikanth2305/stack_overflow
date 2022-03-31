@@ -95,10 +95,24 @@ const OtherTreksLike = ({ slice, trekPageData1 }) => {
 
                 <div>
                   <p className="title-diplay-3-18px text-uppercase frg-mob">
-                    <b>{tData?.primary?.trek_caption}</b>
+                    {/* <b>{tData?.primary?.trek_caption}</b> */}
+                    <b>
+                        {tData?.primary?.trek_caption?.length > 25
+                          ? `${tData?.primary?.trek_caption?.substring(
+                              0,
+                              25
+                            )}...`
+                          : tData?.primary?.trek_caption}
+                      </b>
                   </p>
                   <div className="p-text-4 trek_card_desc_min_height">
-                    {RichText.asText(tData?.primary?.sub_heading)}
+                    {/* {RichText.asText(tData?.primary?.sub_heading)} */}
+                    {RichText.asText(tData?.primary?.sub_heading)
+                          ?.length > 75
+                          ? `${RichText.asText(
+                            tData?.primary?.sub_heading
+                            ).substring(0, 75)}...`
+                          : RichText.asText(tData?.primary?.sub_heading)}
                   </div>
                   {/* <div className="pt-2 pb-2 p-btn-btm">
                     <div className="float-right">

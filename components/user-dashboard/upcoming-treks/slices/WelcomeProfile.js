@@ -476,13 +476,13 @@ const WelcomeProfile = () => {
                                   <div className="col-lg-8 col-md-12">
                                     <div className="trek-card-inner-box">
                                       <div className="d-flex justify-content-between align-items-end flex-wrap">
-                                        <div className="m-col-12 w-100">
+                                        <div className="m-col-12">
                                           <h3 className="title-h3-f28 m-0">
                                             {upComingTrek?.trekName}
                                           </h3>
                                         </div>
 
-                                        <div className="m-col-12">
+                                        <div className="m-col-12 w-100">
                                           {upComingTrek?.bookingState ===
                                             "PAYMENT" ||
                                           upComingTrek?.bookingState ===
