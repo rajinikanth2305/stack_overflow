@@ -262,7 +262,6 @@ const Offloading = forwardRef((props, ref) => {
   };
 
   const checkAnyPaidStatus = () => {
-
     let paids=[];
     offLoadings?.map(x=> {
       if(x?.offloadingParticipantStatus === "PAID") {
@@ -445,15 +444,18 @@ const Offloading = forwardRef((props, ref) => {
               <div className="flex-grow-1">
                 <p className="m-0 p-text-small-brown">* Primary participant</p>
               </div>
+              <div>
               {checkAnyPaidStatus()  && (
               <button
-                className="btn table-btn-maroon"
+                className="btn table-btn-maroon-sm"
                 onClick={e => onCancelButtonClick()}
               >
                 Cancel Offloading
               </button>
             )}
             &nbsp;
+          </div>
+
               <div>
                 <button
                   className="btn table-btn-blue-sm hvr-grow"

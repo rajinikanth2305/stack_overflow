@@ -155,18 +155,34 @@ const CancellationTrek = () => {
 
     if(tflagValue==='trek-p-cancel') {
       totalPaid = userData?.amountPaid;
-     }
+    }
  else {
   totalPaid = userData?.backpackOffloadingAmountPaid;
  }
+
  amountPaid=totalPaid;
  console.log(totalPaid);
 
-const actualRefundPercentage=(100-tcancelCharge);
-const percentage=(actualRefundPercentage/100);
-// console.log(percentage);
-const refundValue = (percentage * totalPaid);
-const cancelCharge= ((tcancelCharge/100) * totalPaid);
+ let actualRefundPercentage=0;
+ let percentage=0;
+ let refundValue=0;
+ let cancelCharge=0;
+
+ if(moneytaryRefund==true) {
+       actualRefundPercentage=(100-tcancelCharge);
+       percentage=(actualRefundPercentage/100);
+      // console.log(percentage);
+       refundValue = (percentage * totalPaid);
+       cancelCharge= ((tcancelCharge/100) * totalPaid);
+ }
+ else {
+  actualRefundPercentage=(100);
+  percentage=(actualRefundPercentage/100);
+ // console.log(percentage);
+  refundValue = (percentage * totalPaid);
+  cancelCharge= 0;//((tcancelCharge/100) * totalPaid);
+}
+ 
 // console.log(refundValue);
 
     const participants = {
@@ -257,14 +273,36 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
       }
      });
 
-     const actualRefundPercentage=100-cancelPercentage;
-     const percentage=(actualRefundPercentage/100);
 
-     const refundValue = (percentage * totalPaid);
+ let actualRefundPercentage=0;
+ let percentage=0;
+ let refundValue=0;
+ let cancelCharge=0;
+
+ if(moneytaryRefund==true) {
+       actualRefundPercentage=(100-cancelPercentage);
+       percentage=(actualRefundPercentage/100);
+      // console.log(percentage);
+       refundValue = (percentage * totalPaid);
+       cancelCharge= ((cancelPercentage/100) * totalPaid);
+ }
+ else {
+  actualRefundPercentage=(100);
+  percentage=(actualRefundPercentage/100);
+ // console.log(percentage);
+  refundValue = (percentage * totalPaid);
+  cancelCharge= 0;//((tcancelCharge/100) * totalPaid);
+}
+
+   //  const actualRefundPercentage=100-cancelPercentage;
+    // const percentage=(actualRefundPercentage/100);
+
+   //  const refundValue = (percentage * totalPaid);
+
      const compvalue={
            totalAmountPaid:totalPaid,
            credited:refundValue
-      }
+     }
       setComputedValue(compvalue);
 
     // const selectedCount=upComingTrek.userTrekBookingParticipants.filter(u => u.selected === true).length;
@@ -272,12 +310,54 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
   };
 
   const ontoggle=()=> {
+    let tmoneytaryRefund=moneytaryRefund;
     if(moneytaryRefund) {
+      tmoneytaryRefund=false;
       setMoneytaryRefund(false);
     }
     else if (moneytaryRefund==false) {
+      tmoneytaryRefund=true;
       setMoneytaryRefund(true);
     }
+
+ let totalPaid=0;
+ let actualRefundPercentage=0;
+ let percentage=0;
+ let refundValue=0;
+ let cancelCharge=0;
+
+ participants.filter(x=>x.cancelled===true).map(p=>{
+  if(flagValue==='trek-p-cancel') {
+       totalPaid = totalPaid + p?.amountPaid;
+  }
+  else {
+   totalPaid = totalPaid + p?.backpackOffloadingAmountPaid;
+ }
+});
+
+
+ if(tmoneytaryRefund===true) {
+       actualRefundPercentage=(100-cancelPercentage);
+       percentage=(actualRefundPercentage/100);
+      // console.log(percentage);
+       refundValue = (percentage * totalPaid);
+       cancelCharge= ((cancelPercentage/100) * totalPaid);
+ }
+ else {
+  actualRefundPercentage=100;
+  percentage=(actualRefundPercentage/100);
+ // console.log(percentage);
+  refundValue = (percentage * totalPaid);
+  cancelCharge= 0;//((tcancelCharge/100) * totalPaid);
+}
+
+     const compvalue={
+           totalAmountPaid:totalPaid,
+           credited:refundValue
+      }
+      setComputedValue(compvalue);
+
+    // const selectedCoun
   }
 
   const onClearSelection =()=> {
@@ -364,9 +444,19 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                             <th style={{ width: "2%" }}>&nbsp;</th>
                             <th>Trekker name</th>
                             <th>Fee paid</th>
-                            <th>Cancellation (-{cancelPercentage}%)</th>
+
+                            <th>
+                             {moneytaryRefund==true &&
+                              (<span>Cancellation - ({cancelPercentage} % )</span>)
+                              }
+                               {moneytaryRefund==false &&
+                              (<span>Cancellation - (0 % )</span>)
+                              }
+                              
+                              </th>
+
                             {moneytaryRefund==false && (
-                            <th>Voucher credited ({100-cancelPercentage}%)</th>
+                            <th>Voucher credited ({100}%)</th>
                             )}
                               {moneytaryRefund && (
                             <th>Monetary refund ({100-cancelPercentage}%)</th>
@@ -387,6 +477,26 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                               " (You) "
                             : sdata?.firstName + " " +
                               sdata?.lastName;
+
+                              let actualRefundPercentage=0;
+                              let percentage=0;
+                              let refundValue=0;
+                              let cancelCharge=0;
+                             
+                              if(moneytaryRefund===true) {
+                                    actualRefundPercentage=(100-cancelPercentage);
+                                    percentage=(actualRefundPercentage/100);
+                                   // console.log(percentage);
+                                    refundValue = (percentage * sdata?.amountPaid);
+                                    cancelCharge= ((cancelPercentage/100) * sdata?.amountPaid);
+                              }
+                              else {
+                               actualRefundPercentage=(100);
+                               percentage=(actualRefundPercentage/100);
+                              // console.log(percentage);
+                               refundValue = (percentage * sdata?.amountPaid);
+                               cancelCharge= 0;//((tcancelCharge/100) * totalPaid);
+                             }
 
                         const state =sdata?.bookingParticipantState === "CANCELLED";
                         console.log(sdata?.cancelled);
@@ -423,17 +533,20 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                               </td>
                               <td>
                                 { flagValue==='trek-p-cancel' ?
-                                   sdata?.amountPaid : sdata?.backpackOffloadingAmountPaid
+                                  sdata?.amountPaid : sdata?.backpackOffloadingAmountPaid
                                 }
-                                </td>
-                              <td>{sdata?.cancellationCharge}</td>
+                              </td>
+                              <td>
+                                {cancelCharge}
+                              </td>
+
 
                               {moneytaryRefund==false && (
                               <td>{sdata?.voucherCredited}</td>
                               )}
 
                               {moneytaryRefund==true && (
-                              <td>{sdata?.moneyCredited}</td>
+                              <td>{refundValue}</td>
                               )}
                             </tr>
                           </>
@@ -531,7 +644,7 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                         <div className="d-flex justify-content-between">
                           <div>
                             <p className="p-text-3-1-2 mb-3">
-                              Voucher Credited ({100-cancelPercentage}%)
+                              Voucher Credited (100%)
                             </p>
                           </div>
                           <div>

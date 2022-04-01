@@ -96,7 +96,7 @@ const WelcomeProfile = () => {
   function fetchAndBindUserBookings(email) {
     getdashBoardUserBooking(email).then(bookingsData => {
       if (bookingsData.length > 0) {
-        const bookingOwner = bookingsData.map(element => {
+          const bookingOwner = bookingsData.map(element => {
           const mainuser = element.trekMates.find(
             subElement => subElement.userDetailsForDisplay?.email === email
           );
@@ -196,6 +196,9 @@ const WelcomeProfile = () => {
         trekCaptions = slice.primary?.trek_caption;
       }
 
+
+     const cnt= book?.trekMates?.filter(x=>x?.bookingParticipantState!=="CANCELLED").length;
+
       bookTrekContents.push({
         trekId: book.trekId,
         batchId: book.batchId,
@@ -209,13 +212,14 @@ const WelcomeProfile = () => {
         trekCoordinator: book.trekCoordinator,
         trekWhatsappLink: book.trekWhatsappLink,
         bookingParticipantState: book.bookingParticipantState,
-        participantsCount: book.trekMates.length,
+        participantsCount: cnt,
         userTrekBookingParticipants: book.trekMates,
         bookingState: book.bookingState,
         backPackOffloadingDays: book.backPackOffloadingDays,
         backPackOffloadingCostPerDay: book.backPackOffloadingCostPerDay,
         backPackOffloadingTax: book.backPackOffloadingTax,
-        waitListNumber: book.waitListNumber
+        waitListNumber: book.waitListNumber,
+
       });
     }
     setStates(bookTrekContents, bookingId, prismicResults);
@@ -408,6 +412,20 @@ const WelcomeProfile = () => {
     overlay: { zIndex: 1000 }
   };
 
+  const isStringOrNullEmpty = (state,value) => {
+    if(state ==="COMPLETED") {
+         if(value==="" || value==="undefined" || value===null) {
+           return false;
+         }
+         else {
+          return true;
+         }
+        }
+  else {
+    return false;
+  }
+};
+
   return (
     <>
       {render && (
@@ -422,7 +440,7 @@ const WelcomeProfile = () => {
                     <div className="col-lg-10 col-md-12 bg-gray border-right b-right-2px">
                       <div className="mb-2 py-4">
                         <p className="p-text-1 font-weight-bold m-0">
-                          Hi {bookingOwner?.userDetailsForDisplay.firstName}&nbsp;
+                          Hi {bookingOwner?.userDetailsForDisplay?.firstName}&nbsp;
                           {bookingOwner?.userDetailsForDisplay.lastName}
                         </p>
                         <p className="p-text-1 font-weight-bold">
@@ -605,10 +623,8 @@ const WelcomeProfile = () => {
                                             </button>
                                           </div>
                                         )}
-                                        {upComingTrek?.bookingState ===
-                                          "COMPLETED" &&
-                                          upComingTrek?.trekWhatsappLink !==
-                                            null && (
+                                        {isStringOrNullEmpty(upComingTrek?.bookingState,upComingTrek?.trekWhatsappLink)
+                                             && (
                                             <>
                                               <a
                                                 href={

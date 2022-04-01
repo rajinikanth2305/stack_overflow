@@ -107,16 +107,16 @@ const UserMP = () => {
     });
   };
 
-  const chooseOptions = { label: "Choose", icon: "pi pi-fw pi-plus" };
+  const chooseOptions = { label: "Select", icon: "pi pi-fw pi-plus" };
 
   const uploadOptions = {
-    label: "Upload",
+    label: "Submit",
     icon: "pi pi-upload",
     className: "p-button-success"
   };
 
   const cancelOptions = {
-    label: "Cancel",
+    label: "Remove",
     icon: "pi pi-times",
     className: "p-button-danger"
   };

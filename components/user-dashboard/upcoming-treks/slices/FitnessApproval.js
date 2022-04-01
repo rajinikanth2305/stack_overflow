@@ -65,16 +65,16 @@ const FitnessApproval = forwardRef((props, ref) => {
     );
   });
 
-  const chooseOptions = { label: "Choose", icon: "pi pi-fw pi-plus" };
+  const chooseOptions = { label: "Select File", icon: "pi pi-fw pi-plus" };
 
   const uploadOptions = {
-    label: "Upload",
+    label: "Submit",
     icon: "pi pi-upload",
     className: "p-button-success"
   };
 
   const cancelOptions = {
-    label: "Cancel",
+    label: "Remove",
     icon: "pi pi-times",
     className: "p-button-danger"
   };
