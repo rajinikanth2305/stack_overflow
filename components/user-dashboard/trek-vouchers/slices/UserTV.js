@@ -63,34 +63,90 @@ const UserTV = () => {
   const vouchetListTr = vouchers.map(function(data, i) {
     return (
       <tr key={data?.id}>
-        <td>{data?.title}</td>
         <td>
           <div className="d-flex align-items-center">
-            <div className="flex-grow-1">Rs. {data?.amount} </div>
-            <div className="tv-download-link">
-              <p className="m-0 text-decoration-underline p-text-small-fg-blue">
-                <PDFDownloadLink
-                  document={<VoucherTemplate voucher={data} />}
-                  fileName={data.title}
-                >
-                  <i className="pi pi-download p-pr-2"></i>
-                  <span className="">Download</span>
-                </PDFDownloadLink>
-              </p>
+            <div className="m-col-3">
+              <span className="m-d-block m-col-text p-text-small-fg">
+                Voucher code: &nbsp;
+              </span>
+            </div>
+            <div className="p-text-2-fg-f16-mb">{data?.title}</div>
+          </div>
+        </td>
+        <td>
+          <div className="d-flex align-items-center">
+            <div className="m-col-4">
+              <span className="m-d-block m-col-text p-text-small-fg">
+                Voucher amount: &nbsp;
+              </span>
+            </div>
+            <div className="p-text-2-fg-f16-mb w-100">
+              <div className="d-flex align-items-center">
+                <div className="flex-grow-1">Rs. {data?.amount} </div>
+                <div className="tv-download-link">
+                  <p className="m-0 text-decoration-underline p-text-small-fg-blue">
+                    <PDFDownloadLink
+                      document={<VoucherTemplate voucher={data} />}
+                      fileName={data.title}
+                    >
+                      <i className="pi pi-download p-pr-2"></i>
+                      <span className="">Download</span>
+                    </PDFDownloadLink>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </td>
-        <td>Rs. {data?.amountAvailed}</td>
-        <td>Rs. {data?.amount - data?.amountAvailed}</td>
-        <td>{data?.validTill}</td>
         <td>
-          <p
-            className={
-              data?.voucherStatus === "Available" ? "text-green m-0" : "m-0"
-            }
-          >
-            {data?.voucherStatus}
-          </p>
+          <div className="d-flex align-items-center">
+            <div className="m-col-3">
+              <span className="m-d-block m-col-text p-text-small-fg">
+                Amount used: &nbsp;
+              </span>
+            </div>
+            <div className="p-text-2-fg-f16-mb">Rs. {data?.amountAvailed}</div>
+          </div>
+        </td>
+        <td>
+          <div className="d-flex align-items-center">
+            <div className="m-col-3">
+              <span className="m-d-block m-col-text p-text-small-fg">
+                Balance amount: &nbsp;
+              </span>
+            </div>
+            <div className="p-text-2-fg-f16-mb">
+              Rs. {data?.amount - data?.amountAvailed}
+            </div>
+          </div>
+        </td>
+        <td>
+          <div className="d-flex align-items-center">
+            <div className="m-col-3">
+              <span className="m-d-block m-col-text p-text-small-fg">
+                Valid till: &nbsp;
+              </span>
+            </div>
+            <div className="p-text-2-fg-f16-mb">{data?.validTill}</div>
+          </div>
+        </td>
+        <td>
+          <div className="d-flex align-items-center">
+            <div className="m-col-3">
+              <span className="m-d-block m-col-text p-text-small-fg">
+                Voucher status: &nbsp;
+              </span>
+            </div>
+            <div className="p-text-2-fg-f16-mb">
+              <p
+                className={
+                  data?.voucherStatus === "Available" ? "text-green m-0" : "m-0"
+                }
+              >
+                {data?.voucherStatus}
+              </p>
+            </div>
+          </div>
         </td>
       </tr>
     );
@@ -129,10 +185,10 @@ const UserTV = () => {
                   <h5 className="p-text-2-fg b-left-3px mb-4">Trek vouchers</h5>
 
                   <div className="col-lg-11 col-md-12">
-                    <div className="card px-3 mb-5">
-                      <div>
-                        <table className="table table-dashboard-profile-style-1">
-                          <thead>
+                    {vouchers && vouchers?.length > 0 ? <div className="card px-3 mb-5">
+                      <div className="table-responsive">
+                        <table className="table table-dashboard-profile-style-1 ctb">
+                          <thead className="m-d-none">
                             <tr className="header-bg">
                               <th>Voucher code</th>
                               <th>Voucher amount</th>
@@ -145,7 +201,7 @@ const UserTV = () => {
                           <tbody>{vouchetListTr}</tbody>
                         </table>
                       </div>
-                    </div>
+                    </div> : <p>No records found..</p> }
                   </div>
                 </div>
                 <div className="col-lg-2 col-md-12 bg-white p-0">
