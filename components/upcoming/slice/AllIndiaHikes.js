@@ -33,7 +33,11 @@ const AllIndiaHikes = ({
   const difficultTrekTitleMobile = slice?.primary?.difficult_trek_title_mobile;
   const difficultTrekDescMobile = slice?.primary?.difficult_trek_desc_mobile;
 
-  console.log(allTreksData);
+  allTreksData?.results?.sort(function(a, b){
+    if(a?.uid < b?.uid) { return -1; }
+    if(a?.uid > b?.uid) { return 1; }
+    return 0;
+  });
 
   const easyMordatesTreksList = easyMordatesTreks?.results?.map(function(
     data1,
@@ -154,7 +158,6 @@ const AllIndiaHikes = ({
     if (slugUrl) {
       url = `/trek/${slugUrl}`;
     }
-    console.log(data);
     return (
       <div key={i} className="col-lg-4 col-md-6">
         <Link href={url ? url : "#"}>
@@ -206,7 +209,7 @@ const AllIndiaHikes = ({
             </div>
           </div>
           <div>
-            <div className="slots-bg mb-2">
+            <div className="slots-bg">
               <div className="d-flex align-items-center">
                 <div className="mx-2">
                   <p className="p-text-3-1 mt-3-1 mb-0">

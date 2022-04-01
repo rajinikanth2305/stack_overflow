@@ -56,7 +56,7 @@ const TrekGallery = ({ slice }) => {
               src={data?.discovery_trek_gallery?.url}
               layout="fill"
               objectFit="cover"
-              objectPosition="top"
+              objectPosition="50% 50%"
             />
           )}
         </div>

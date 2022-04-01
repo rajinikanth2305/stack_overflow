@@ -56,6 +56,17 @@ export const diyStyles = css.global`
     display: none;
   }
 
+  .p-display-3 {
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic Medium;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0,0,0,1);
+    text-transform: uppercase;
+  }
+
   .banner-text-sec {
     line-height: 56px;
     text-align: center;
@@ -588,6 +599,46 @@ export const diyStyles = css.global`
     top: -4px;
     left: 1px;
     box-shadow: 1px 1px 1px #242424;
+  }
+
+  .badge-green-lg {
+    border-radius: 50%;
+    background: rgba(91, 133, 70, 1);
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+  }
+
+  .badge-yellow-lg {
+    border-radius: 50%;
+    background: rgba(255, 193, 0, 1);
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+  }
+
+  .badge-red-lg {
+    border-radius: 50%;
+    background: rgba(230, 109, 29, 1);
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+  }
+
+  .badge-blue-lg {
+    border-radius: 50%;
+    background: rgba(0, 66, 141, 1);
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
   }
 
   @media only screen and (max-width: 660px) {
