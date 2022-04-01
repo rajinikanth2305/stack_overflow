@@ -139,11 +139,11 @@ const UserTV = () => {
             </div>
             <div className="p-text-2-fg-f16-mb">
               <p
-                className={
-                  data?.voucherStatus === "Available" ? "text-green m-0" : "m-0"
-                }
+                  className={
+                    data?.voucherStatus === "ALLOCATED" ? "text-green m-0" : "m-0"
+                  }
               >
-                {data?.voucherStatus}
+                {data?.voucherStatus === "ALLOCATED" ? "Available" : "Used"}
               </p>
             </div>
           </div>
