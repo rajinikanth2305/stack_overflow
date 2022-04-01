@@ -173,7 +173,7 @@ const renderFooter = (name) => {
     }
 
     const sdata = JSON.parse(JSON.stringify(stateData.data));
-    sdata.trekUsers.push({
+    sdata?.trekUsers?.push({
       id: newUserData.id,
       firstName: data.firstName,
       lastName: data.lastName,
@@ -391,7 +391,7 @@ const renderFooter = (name) => {
     //   x => x.userId === udata.id
     // );
 
-    //const sdata = JSON.parse(JSON.stringify(stateData.data));
+    const sdata = JSON.parse(JSON.stringify(stateData.data));
     sdata.trekUsers.push({
       firstName: udata.firstName,
       lastName: udata.lastName,
