@@ -458,7 +458,7 @@ export const regStyle = css.global`
   .btn-ih-green {
     background: rgb(57, 114, 41) none repeat scroll 0% 0%;
     border: 0;
-    box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 35%) !important;
     border-radius: 3px !important;
     padding: 3px 30px;
     border-radius: 0;
@@ -923,7 +923,7 @@ export const regStyle = css.global`
     background-color: rgba(112, 112, 112, 1);
     border-radius: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-    padding: 0 15px;
+    padding: 6px 15px;
   }
 
   .reg-selectbatch-tabs > .card > div > .card-body {
@@ -994,6 +994,34 @@ export const regStyle = css.global`
 
   .highlihtText {
     font-weight: bold;
+  }
+
+  .card-header > button::after {
+    color: rgb(255, 193, 0);
+    content: "\f068";
+    font-family: "FontAwesome" !important;
+    font-size: 16px;
+    float: right;
+    margin-top: -3px;
+    position: relative;
+    top: 4px;
+    font-weight: normal;
+  }
+
+  .card-header > button:not(.show)::after {
+    color: rgb(255, 193, 0);
+    content: "\f067";
+    font-family: "FontAwesome" !important;
+    font-size: 16px;
+    float: right;
+    margin-top: -3px;
+    position: relative;
+    top: 4px;
+    font-weight: normal;
+  }
+
+  a {
+    text-decoration: underline;
   }
 
   @media only screen and (max-width: 660px) {

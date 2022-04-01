@@ -30,7 +30,7 @@ const CommunityContentPitch = ({ slice }) => {
     <>
       <div className="my-5 pt-3">
         <div className="container">
-          <div className="d-flex align-items-center mt-4 mb-4 border-bottom-custom flex-wrap">
+          <div className="d-flex align-items-center mt-4 mb-4 border-bottom-custom flex-wrap pb-2">
             <div className="col-lg-6 col-md-12">
               <h2 className="title-h2 border-0">
                 <b>{RichText.asText(heading1)}</b>

@@ -32,7 +32,6 @@ import {
   getTrekOpenBatches
 } from "../../../services/queries";
 
-
 const localizer = momentLocalizer(moment);
 
 const SelectBatch = forwardRef((props, ref) => {
@@ -52,15 +51,13 @@ const SelectBatch = forwardRef((props, ref) => {
   const [defaultActiveKey, setDefaultActiveKey] = useState([]);
   const [itineraryDates, setItineraryDates] = useState([]);
 
-
   const [tripDaysIndexes, setTripDaysIndexes] = React.useState([]);
   const [tripDayCounter, setTripDatCounter] = React.useState(0);
-
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [isActive, setActive] = useState(false);
 
   useEffect(() => {
-
     //findquickItinerary();
-
   }, []);
 
   function getBatchStartDate() {
@@ -74,38 +71,34 @@ const SelectBatch = forwardRef((props, ref) => {
   }
 
   async function findquickItinerary(itrekName) {
-
     const client = Client();
     const trekName = itrekName.replaceAll(" ", "-").toLowerCase();
     const result = await Client().getByUID("trek", trekName);
-    console.log(result);
-    const slice = result && result.data.body.find(x => x.slice_type === "quick_itinerary");
+    const slice =
+      result && result.data.body.find(x => x.slice_type === "quick_itinerary");
     setquickItinerary(slice);
     const arr = Array.from(new Array(slice.items.length), (x, i) => i);
     setTripDaysIndexes(arr);
     setTripDatCounter(arr.length);
 
-   /* const doc = await client
+    /* const doc = await client
       .query([Prismic.Predicates.at("document.type", "trek")])
       .then(function(response) {
         const tt = response.results[0].data.body;
         const slice = tt && tt.find(x => x.slice_type === "quick_itinerary");
         setquickItinerary(slice);
       });*/
-
   }
   const heading1 = quickItinerary && quickItinerary.primary.heading1;
- // const dayNumberTextArray = quickItinerary && quickItinerary.items;
+  // const dayNumberTextArray = quickItinerary && quickItinerary.items;
 
   const dayNumberText = tripDaysIndexes?.map(function(i) {
-    const data=quickItinerary?.items[i];
+    const data = quickItinerary?.items[i];
     return (
       <>
         <div className="d-flex align-items-start">
           <div className="col-lg-2 col-md-12">
-            <p className="p-text-3 text-brown-shade">
-              { itineraryDates[i]}
-            </p>
+            <p className="p-text-3 text-brown-shade">{itineraryDates[i]}</p>
           </div>
           <div className="col-lg-10 col-md-12">
             <p className="p-text-3 mb-0">
@@ -126,7 +119,7 @@ const SelectBatch = forwardRef((props, ref) => {
     window.scrollTo(0, 0);
   };
 
-  const bookingSelect = async (selectedBatch) => {
+  const bookingSelect = async selectedBatch => {
     const sdata = JSON.parse(JSON.stringify(stateData.data));
 
     if (sdata.batchId !== selectedBatch.id) {
@@ -140,7 +133,6 @@ const SelectBatch = forwardRef((props, ref) => {
         })
         .catch(res => {
           if (res.response?.data?.message) {
-            console.log(res.response.data?.message);
             toast.current.show({
               severity: "error",
               summary: `'Select Group -  ${res.response.data?.message}'`,
@@ -158,7 +150,7 @@ const SelectBatch = forwardRef((props, ref) => {
       startDate: selectedBatch.startDate,
       endDate: selectedBatch.endDate,
       trekName: selectedBatch.trek,
-      batchState:selectedBatch.batchState
+      batchState: selectedBatch.batchState
     };
     setBookingDate(bookingDates);
     await dispatch(addOrUpdateState(sdata));
@@ -172,7 +164,6 @@ const SelectBatch = forwardRef((props, ref) => {
     let url =
       location.href.substring(0, index) + "?batchId=" + selectedBatch.id;
     router.push(url, undefined, { shallow: true });
-
   };
 
   // The component instance will be extended
@@ -188,7 +179,7 @@ const SelectBatch = forwardRef((props, ref) => {
         startDate: data.startDate,
         endDate: data.endDate,
         trekName: data.trekName,
-        batchState:data.batchState
+        batchState: data.batchState
       };
 
       setBookingDate(bookingDates);
@@ -268,91 +259,104 @@ const SelectBatch = forwardRef((props, ref) => {
     bookingSelect(batchSelected);
   };
 
-
-  const prepareDates=(batchInfo)=>{
-    const days=[];
-    const noOfDays=daysBetween(batchInfo.startDate,batchInfo.endDate);
-    let dt=moment(batchInfo.startDate,'YYYY-MM-DD').toDate();
+  const prepareDates = batchInfo => {
+    const days = [];
+    const noOfDays = daysBetween(batchInfo.startDate, batchInfo.endDate);
+    let dt = moment(batchInfo.startDate, "YYYY-MM-DD").toDate();
     days.push(moment(dt).format("Do") + " " + moment(dt).format("MMMM"));
-      for(let i=1;i<=noOfDays;i++) {
-        dt=   addDays(dt,1);
-        days.push(moment(dt).format("Do") + " " + moment(dt).format("MMMM"));
-      }
-      setItineraryDates(days);
-      console.log(days);
+    for (let i = 1; i <= noOfDays; i++) {
+      dt = addDays(dt, 1);
+      days.push(moment(dt).format("Do") + " " + moment(dt).format("MMMM"));
     }
+    setItineraryDates(days);
+  };
 
-    function addDays(date, days) {
-      var result = new Date(date);
-      result.setDate(result.getDate() + days);
-      return result;
-    }
+  function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
 
-function datediff(first, second) {
+  function datediff(first, second) {
     // Take the difference between the dates and divide by milliseconds per day.
     // Round to nearest whole number to deal with DST.
-    console.log(first);
-    console.log(second);
-    return Math.round((second-first)/(1000*60*60*24));
-}
+    return Math.round((second - first) / (1000 * 60 * 60 * 24));
+  }
 
-function treatAsUTC(date) {
-  var result = new Date(date);
-  result.setMinutes(result.getMinutes() - result.getTimezoneOffset());
-  return result;
-}
+  function treatAsUTC(date) {
+    var result = new Date(date);
+    result.setMinutes(result.getMinutes() - result.getTimezoneOffset());
+    return result;
+  }
 
-function daysBetween(startDate, endDate) {
-  var millisecondsPerDay = 24 * 60 * 60 * 1000;
-  return (treatAsUTC(endDate) - treatAsUTC(startDate)) / millisecondsPerDay;
-}
-
+  function daysBetween(startDate, endDate) {
+    var millisecondsPerDay = 24 * 60 * 60 * 1000;
+    return (treatAsUTC(endDate) - treatAsUTC(startDate)) / millisecondsPerDay;
+  }
 
   return (
     <>
       <Toast ref={toast} />
       <div className="my-5 m-mt-0 ">
-        <div className="row">
-          <div className="col-lg-6 col-md-12 pr-custom-9">
+        {quickItinerary && quickItinerary ? (
+          <div>
             <div className="row">
-              <div className="col-12 col-md-12">
-                <div className="row mpt-0">
-                  <div className="col-12 col-lg-12 col-md-12">
-                    <div>
-                      {typeof window !== "undefined" && renderControl && (
-                        <>
-                          <div className="px-4 py-3 border-custom-green">
-                            <p className="p-text-1-franklin text-center m-0">
-                              Selected Group:
-                            </p>
-                            <p className="p-text-1-franklin text-center m-0">
-                              <span>
-                                {moment(bookingDate?.startDate).format("Do")} to{" "}
-                                {moment(bookingDate?.endDate).format("Do")}{" "}
-                                {moment(bookingDate?.endDate).format("MMMM")}
-                              </span>
-                            </p>
-                          </div>
-                          <div className="mt-2 pt-2">
-                            <p className="p-text-3-1-fg text-center">
-                              Choose another group of {bookingDate && bookingDate?.trekName}
-                            </p>
+              <div className="col-lg-6 col-md-12 pr-custom-9">
+                <div className="row">
+                  <div className="col-12 col-md-12">
+                    <div className="row mpt-0">
+                      <div className="col-12 col-lg-12 col-md-12">
+                        <div>
+                          {typeof window !== "undefined" && renderControl && (
+                            <>
+                              <div className="px-4 py-3 border-custom-green">
+                                <p className="p-text-1-franklin text-center m-0">
+                                  Selected Group:
+                                </p>
+                                <p className="p-text-1-franklin text-center m-0">
+                                  <span>
+                                    {moment(bookingDate?.startDate).format(
+                                      "Do"
+                                    )}{" "}
+                                    to{" "}
+                                    {moment(bookingDate?.endDate).format("Do")}{" "}
+                                    {moment(bookingDate?.endDate).format(
+                                      "MMMM"
+                                    )}
+                                  </span>
+                                </p>
+                              </div>
+                              <div className="mt-2 pt-2">
+                                <p className="p-text-3-1-fg text-center">
+                                  Choose another group of{" "}
+                                  {bookingDate && bookingDate?.trekName}
+                                </p>
 
-                            <Accordion
-                              defaultActiveKey={`${defaultActiveKey}`}
-                              className="reg-selectbatch-tabs"
-                            >
-                              {indexes.map(index => {
-                                const trekMonth = trekOpenBatches[index];
+                                <Accordion
+                                  defaultActiveKey={`${defaultActiveKey}`}
+                                  className="reg-selectbatch-tabs"
+                                >
+                                  {indexes.map(index => {
+                                    const trekMonth = trekOpenBatches[index];
 
-                                return (
-                                  <Card>
-                                    <Card.Header>
-                                      <Accordion.Toggle
-                                        variant="link"
-                                        eventKey={`${trekMonth.groupKey}`}
-                                      >
-                                        <div className="d-flex align-items-center">
+                                    return (
+                                      <Card>
+                                        <Card.Header>
+                                          <Accordion.Toggle
+                                            variant="link"
+                                            eventKey={`${trekMonth.groupKey}`}
+                                            className={
+                                              activeIndex &&
+                                              activeIndex === index + 1
+                                                ? "show"
+                                                : ""
+                                            }
+                                            onClick={() => {
+                                              setActiveIndex(index + 1);
+                                              setActive(!isActive);
+                                            }}
+                                          >
+                                            {/* <div className="d-flex align-items-center">
                                           <div className="flex-grow-1">
                                             {trekMonth.headingText}
                                           </div>
@@ -366,126 +370,151 @@ function daysBetween(startDate, endDate) {
                                               </h2>
                                             </div>
                                           </div>
-                                        </div>
-                                      </Accordion.Toggle>
-                                    </Card.Header>
-                                    <Accordion.Collapse
-                                      eventKey={`${trekMonth.groupKey}`}
-                                    >
-                                      <Card.Body>
-                                        {trekMonth.data.map(item => {
-                                          return (
-                                            <div>
-                                              {item.batchState !== "CLOSED" &&
-                                            <div className="row">
-                                              <div className="col-lg-7 col-md-12 col-7">
-                                                <p className="p-text-3-1-fg mb-2 pb-1">
-                                                  <span>
-                                                    {moment(
-                                                      item?.startDate
-                                                    ).format("Do")}{" "}
-                                                    to{" "}
-                                                    {moment(
-                                                      item?.endDate
-                                                    ).format("Do")}{" "}
-                                                    {moment(
-                                                      item?.endDate
-                                                    ).format("MMMM")}
-                                                  </span>
-                                                </p>
-                                              </div>
+                                        </div> */}
+                                            {trekMonth.headingText}
+                                          </Accordion.Toggle>
+                                        </Card.Header>
+                                        <Accordion.Collapse
+                                          eventKey={`${trekMonth.groupKey}`}
+                                        >
+                                          <Card.Body>
+                                            {trekMonth.data.map(item => {
+                                              return (
+                                                <div>
+                                                  {item.batchState !==
+                                                    "CLOSED" && (
+                                                    <div className="row">
+                                                      <div className="col-lg-7 col-md-12 col-7">
+                                                        <p className="p-text-3-1-fg mb-2 pb-1">
+                                                          <span>
+                                                            {moment(
+                                                              item?.startDate
+                                                            ).format("Do")}{" "}
+                                                            to{" "}
+                                                            {moment(
+                                                              item?.endDate
+                                                            ).format("Do")}{" "}
+                                                            {moment(
+                                                              item?.endDate
+                                                            ).format("MMMM")}
+                                                          </span>
+                                                        </p>
+                                                      </div>
 
-                                              <div className="col-lg-3 col-md-12 col-3">
-                                                <p className="p-text-3-1-fg mb-2 pb-1">
-                                                  {item.batchState ===
-                                                    "ACTIVE" && (
-                                                    <span className="text-green-clr">
-                                                      Available
-                                                    </span>
+                                                      <div className="col-lg-3 col-md-12 col-3">
+                                                        <p className="p-text-3-1-fg mb-2 pb-1">
+                                                          {item.batchState ===
+                                                            "ACTIVE" && (
+                                                            <span className="text-green-clr">
+                                                              Available
+                                                            </span>
+                                                          )}
+                                                          {item.batchState ===
+                                                            "FULL" && (
+                                                            <span className="text-maroon-clr">
+                                                              Full
+                                                            </span>
+                                                          )}
+                                                          {item.batchState ===
+                                                            "WAITING_LIST" && (
+                                                            <span className="text-warning-clr">
+                                                              Waitlist
+                                                            </span>
+                                                          )}
+                                                        </p>
+                                                      </div>
+                                                      <div className="col-lg-2 col-md-12 col-2">
+                                                        {item.batchState !==
+                                                          "FULL" && (
+                                                          <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
+                                                            <a
+                                                              href="#proceed"
+                                                              onClick={e =>
+                                                                onBatchSelect(
+                                                                  item
+                                                                )
+                                                              }
+                                                              tooltip="Click here to select the batch"
+                                                            >
+                                                              Select
+                                                            </a>
+                                                          </p>
+                                                        )}
+                                                      </div>
+                                                    </div>
                                                   )}
-                                                  {item.batchState ===
-                                                    "FULL" && (
-                                                    <span className="text-maroon-clr">
-                                                      Full
-                                                    </span>
-                                                  )}
-                                                  {item.batchState ===
-                                                    "WAITING_LIST" && (
-                                                    <span className="text-warning-clr">
-                                                      Waitlist
-                                                    </span>
-                                                  )}
-                                                </p>
-                                              </div>
-                                              <div className="col-lg-2 col-md-12 col-2">
-                                                {item.batchState !== "FULL" && (
-                                                  <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
-                                                    <a
-                                                      href="#proceed"
-                                                      onClick={e =>
-                                                        onBatchSelect(item)
-                                                      }
-                                                      tooltip="Click here to select the batch"
-                                                    >
-                                                      Select
-                                                    </a>
-                                                  </p>
-                                                )}
-                                              </div>
-                                            </div>}
-                                            </div>
-                                          );
-                                        })}
-                                      </Card.Body>
-                                    </Accordion.Collapse>
-                                  </Card>
-                                );
-                              })}
-                            </Accordion>
-                          </div>
-                        </>
-                      )}
+                                                </div>
+                                              );
+                                            })}
+                                          </Card.Body>
+                                        </Accordion.Collapse>
+                                      </Card>
+                                    );
+                                  })}
+                                </Accordion>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-6 col-md-12">
+                <div>
+                  <div>
+                    <div className="bg-light-gray-shade p-3">
+                      <p className="p-text-2 mb-4 pb-1">
+                        <span className="border-bottom-custom-1 pb-2">
+                          <b>{RichText.asText(heading1)}</b>
+                        </span>
+                      </p>
+                      {dayNumberText}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="col-lg-6 col-md-12">
-            <div>
-              <div>
-                <div className="bg-light-gray-shade p-3">
-                  <p className="p-text-2 mb-4 pb-1">
-                    <span className="border-bottom-custom-1 pb-2">
-                      <b>{RichText.asText(heading1)}</b>
-                    </span>
-                  </p>
-                  {dayNumberText}
+            <div className="d-flex justify-content-center">
+              <div id="proceed">
+                <p className="p-text-2-franklin text-center mt-5 pt-4 mb-3">
+                  <span>
+                    {moment(bookingDate?.startDate).format("Do")} to{" "}
+                    {moment(bookingDate?.endDate).format("Do")}{" "}
+                    {moment(bookingDate?.endDate).format("MMMM")}
+                  </span>
+                </p>
+                <div className="">
+                  <button
+                    type="button"
+                    className="btn btn-ih-green hvr-grow py-2"
+                    onClick={nextTabNav}
+                  >
+                    Proceed to next step of registration
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="d-flex justify-content-center">
-          <div id="proceed">
-          <p className="p-text-2-franklin text-center mt-5 pt-4 mb-3">
-            <span>
-              {moment(bookingDate?.startDate).format("Do")} to{" "}
-              {moment(bookingDate?.endDate).format("Do")}{" "}
-              {moment(bookingDate?.endDate).format("MMMM")}
-            </span>
-          </p>
-            <div className="">
-              <button
-                type="button"
-                className="btn btn-ih-green hvr-grow py-2"
-                onClick={nextTabNav}
-              >
-                Proceed to next step of registration
-              </button>
+        ) : (
+          <>
+            <div className="d-flex align-items-center justify-content-center mt-5 mb-3">
+              <div className="spinner-grow text-warning" role="status">
+                <span className="sr-only">Loading...</span>
+              </div>
+              <div className="spinner-grow text-warning mx-2" role="status">
+                <span className="sr-only">Loading...</span>
+              </div>
+              <div className="spinner-grow text-warning" role="status">
+                <span className="sr-only">Loading...</span>
+              </div>
             </div>
-          </div>
-        </div>
+            <div className="text-center">
+              <p>Loading please wait...</p>
+            </div>
+          </>
+        )}
       </div>
     </>
   );
