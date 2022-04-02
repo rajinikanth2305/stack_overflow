@@ -441,7 +441,7 @@ const UserPT = () => {
                   <div className="card">
                     <div className="py-4 px-5 mx-5 my-5 mmx-0 mpx-1 mmy-2">
                       <h5 className="p-text-2-fg b-left-3px">
-                        Your thoughts on the {data.trekName} expereience
+                        Your thoughts on the {data.trekName} experience
                       </h5>
                       <p className="p-text-3">
                         At Indiahikes, we take your feedback very seriously.
