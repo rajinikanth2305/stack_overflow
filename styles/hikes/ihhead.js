@@ -115,31 +115,32 @@ export const ihheaderStyles = css.global`
     font-size: 14px;
     // padding: 3px 15px;
     position: fixed;
-    width: 25%;
-    right: 8%;
+    // width: 25%;
+    right: 0;
+    z-index: 99;
   }
 
   .g-search > input {
-    width: 100%;
+    width: 400px;
     padding: 3px 15px;
     border-radius: 50px;
   }
 
-  .searchHs {
-    position: fixed;
-    z-index: 99;
-    right: 8%;
-  }
+  // .searchHs {
+  //   position: fixed;
+  //   z-index: 99;
+  //   right: 8%;
+  // }
 
   .search-box-section {
     background: #ffffff;
     border: 1px solid rgb(255, 193, 0);
-    position: absolute;
+    position: fixed;
     // right: 7%;
     // width: 25%;
     right: 0;
-    width: 30%;
-    top: 40px;
+    width: 400px;
+    top: 100px;
     z-index: 99;
   }
 
@@ -228,9 +229,12 @@ export const ihheaderStyles = css.global`
     }
 
     .search-box-section {
-      position: relative;
       width: 100%;
       right: 0;
+    }
+
+    .g-search > input {
+      width: 360px;
     }
 
     .searchHs {

@@ -158,9 +158,9 @@ const BestPostTreks = ({ slice, trekData }) => {
             <Slider {...settings}>{bestPostTreks}</Slider>
           </div>
         </div>
-        <div className="m-mt-5">
+        {/* <div className="m-mt-5">
           <TrekkersVideoCommon />
-        </div>
+        </div> */}
         <style jsx global>
           {diyStyles}
         </style>
