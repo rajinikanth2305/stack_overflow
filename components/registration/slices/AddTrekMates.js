@@ -376,8 +376,12 @@ const renderFooter = (name) => {
       gender: "",
       vouchers: vouchers,
       optedVoucherId: 0,
-      trekFeeForTheUser: 0
+      trekFeeForTheUser: 0,
+      insuranceAmount:stdata?.trekUsers[0].insuranceAmount
     });
+
+    console.log(stdata);
+    console.log( stdata?.trekUsers[0].insuranceAmount);
 
     // let responseData;
     // try {
