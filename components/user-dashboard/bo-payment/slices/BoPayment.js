@@ -179,6 +179,7 @@ const BoPayment = forwardRef((props, ref) => {
       (a, v) => (a = a + v.offloadingFee),
       0
     );
+    
     const gst = 5;
     const gstValue = Math.round((gst / 100) * totalTrekFee);
     const total = totalTrekFee + gstValue;

@@ -82,10 +82,12 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       ref ? { ref } : null
     )) || {};
 
-  const easyMordatesTreks = await client.query([
+  /*const easyMordatesTreks = await client.query([
     Prismic.Predicates.at("document.type", "trek"),
     Prismic.Predicates.at("document.tags", ["Easy - Moderate"])
   ]);
+
+  
   const moderateTreks = await client.query([
     Prismic.Predicates.at("document.type", "trek"),
     Prismic.Predicates.at("document.tags", ["Moderate"])
@@ -101,7 +103,13 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const diyTreks = await client.query([
     Prismic.Predicates.at("document.type", "trek"),
     Prismic.Predicates.at("document.tags", ["DIY"])
-  ]);
+  ]);*/
+
+  const easyMordatesTreks =null;
+  const moderateTreks=null;
+  const difficultTreks=null;
+  const familyTreks =null;
+  const diyTreks=null;
 
   const allTreksData = await client.query([
     Prismic.Predicates.at("document.type", "trek")], {
