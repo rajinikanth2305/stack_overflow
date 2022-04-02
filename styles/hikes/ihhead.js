@@ -109,18 +109,24 @@ export const ihheaderStyles = css.global`
 
   .g-search {
     border-radius: 20px;
-    border: 1px solid #cccccc;
+    // border: 1px solid #cccccc;
     margin-top: 5px;
     margin-bottom: 0;
     font-size: 14px;
+    // padding: 3px 15px;
+    position: fixed;
+    width: 25%;
+    right: 8%;
+  }
+
+  .g-search > input {
+    width: 100%;
     padding: 3px 15px;
-    position: absolute;
-    width: 30%;
-    right: 0;
+    border-radius: 50px;
   }
 
   .searchHs {
-    position: absolute;
+    position: fixed;
     z-index: 99;
     right: 8%;
   }
@@ -175,7 +181,7 @@ export const ihheaderStyles = css.global`
     background: #ffd62b;
     padding: 0 5px;
     font-size: 14px;
-    text-transform: none;
+    text-transform: capitalize;
     box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
     font-family: Franklin Gothic;
   }

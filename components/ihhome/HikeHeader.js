@@ -523,7 +523,7 @@ const HikeHeader = (auth = false) => {
       {showSearch === true && (
         <div className="container searchHs">
           <div className="d-flex justify-content-end">
-            <div className="flex-fill">
+            <div>
               {/*<input*/}
               {/*  type="text"*/}
               {/*  placeholder="Find your trek here?"*/}
@@ -546,6 +546,7 @@ const HikeHeader = (auth = false) => {
                               value={selectedTreks}
                               onChange={(e) => setSelectedTreks(e.value)}
                               completeMethod={autoSearchTreks}
+                              className="g-search mw-100"
                 />
 
             </div>
