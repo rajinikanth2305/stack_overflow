@@ -21,6 +21,10 @@ import { Client } from "../../../../utils/prismicHelpers";
 import { confirmPopup } from "primereact/confirmpopup"; // To use confirmPopup method
 import Image from "next/image";
 import { Toast } from "primereact/toast";
+import "primeicons/primeicons.css";
+import "primereact/resources/themes/saga-blue/theme.css";
+import "primereact/resources/primereact.css";
+import "primeflex/primeflex.css";
 import BoPayment from "../../bo-payment/slices/BoPayment";
 import { useForm, Controller } from "react-hook-form";
 
@@ -234,7 +238,7 @@ const CancellationTrek = () => {
       cancelParticipantBooking(bookings.id,moneytaryRefund,offloadingPath, participantList).then(
         res => {
           toast.current.show({
-            severity: "info",
+            severity: "success",
             summary: `'Cancelled successfully'`,
             detail: "Cancellation"
           });
@@ -576,13 +580,13 @@ const CancellationTrek = () => {
                       </div> */}
                       <div className="d-flex align-items-center">
                         <div className="mt-2 flex-grow-1">
-                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline" onClick={e => {onClearSelection()}}>
+                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline cursor-poniter" onClick={e => {onClearSelection()}}>
                             Clear Selection
                           </p>
                         </div>
                         <div>
                         <div className="mt-2 flex-grow-1">
-                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline" onClick={e => {ontoggle()}}>
+                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline cursor-poniter" onClick={e => {ontoggle()}}>
                             I want refund 
                           </p>
                         </div>

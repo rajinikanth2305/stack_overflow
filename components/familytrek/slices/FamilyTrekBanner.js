@@ -22,11 +22,11 @@ const FamilyTrekBanner = ({ slice }) => {
                   <div className="banner-text-2 mb-0">
                     {RichText.render(heading2)}
                   </div>
-                  <div className="my-3">
+                  {/* <div className="my-3">
                     <button type="button" className="btn btn-ih-primary hvr-grow">
                       View trek and dates
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
