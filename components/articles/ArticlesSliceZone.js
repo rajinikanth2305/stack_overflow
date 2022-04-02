@@ -21,7 +21,7 @@ const ArticlesSliceZone = ({
   mostReadarticleData,
   latestPrimaryArticleData,
   latestArticleData,
-  hikesNewsData,
+  ihnews,
   trekkingprimaryArticleData,
   trekkingArticleData,
   highAlititudeData,
@@ -64,7 +64,7 @@ const ArticlesSliceZone = ({
           <Section5
             slice={slice}
             key={`slice-${index}`}
-            hikesNewsData={hikesNewsData}
+            hikesNewsData={ihnews?.find(x=>x?.key===slice?.primary?.heading1[0].text)?.value}
           />
         );
       case "high_altitude_research":

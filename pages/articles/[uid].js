@@ -23,7 +23,7 @@ const Articles1 = ({
   mostReadarticleData,
   latestPrimaryArticleData,
   latestArticleData,
-  hikesNewsData,
+  ihnews,
   trekkingprimaryArticleData,
   trekkingArticleData,
   highAlititudeData,
@@ -51,7 +51,7 @@ const Articles1 = ({
           mostReadarticleData={mostReadarticleData}
           latestPrimaryArticleData={latestPrimaryArticleData}
           latestArticleData={latestArticleData}
-          hikesNewsData={hikesNewsData}
+          ihnews={ihnews}
           trekkingprimaryArticleData={trekkingprimaryArticleData}
           trekkingArticleData={trekkingArticleData}
           highAlititudeData={highAlititudeData}
@@ -180,23 +180,47 @@ export async function getStaticProps({
   laPrimaryArticlePrimaryArticleData.push(article_details);
 }
 
-  const hikesNewsSlice =
-    doc && doc?.data?.body?.find(x => x.slice_type === "hike_news_articles");
 
-  if (hikesNewsSlice?.items?.length > 0) {
-    for (var i = 0; i < hikesNewsSlice?.items?.length; i++) {
-      const data = hikesNewsSlice?.items[i];
-      const slugUrl = data && data?.article_link?.id;
-      if (slugUrl !== undefined) {
-        const hikesnews_article_details = await Client().getByID(slugUrl);
-        if (
-          hikesnews_article_details !== undefined &&
-          hikesnews_article_details !== null
-        )
-          hikesNewsData.push(hikesnews_article_details);
+ let ihnews =[];
+
+  const hikesNewsSlice = doc && doc?.data?.body?.filter(x => x.slice_type === "hike_news_articles");
+
+  console.log(  hikesNewsSlice.length);
+
+  if (hikesNewsSlice?.length > 0) {
+
+    for (var i = 0; i < hikesNewsSlice?.length; i++) {
+
+      let  linkedArticles=[];
+     // console.log(  hikesNewsSlice[i]);
+    //  console.log(  hikesNewsSlice[i].primary?.heading1[0].text);
+
+      const data = hikesNewsSlice[i]; 
+
+      for (var k = 0; k < data?.items?.length; k++) {
+        const slugUrl = data && data?.items[k].article_link?.id;
+        if (slugUrl !== undefined) {
+          const hikesnews_article_details = await Client().getByID(slugUrl);
+          if (
+            hikesnews_article_details !== undefined &&
+            hikesnews_article_details !== null
+          )
+          linkedArticles.push(hikesnews_article_details);
+        }
       }
+
+      if(linkedArticles.length > 0) {
+          ihnews.push({
+            key: hikesNewsSlice[i].primary?.heading1[0].text,
+            value:linkedArticles
+          });
+       }
     }
   }
+
+  //console.log("printing-ih-news");
+
+ // console.log(ihnews);
 
   const trekkingPrimarySlice =
     doc && doc?.data?.body?.find(x => x.slice_type === "trekking_tips");
@@ -256,7 +280,7 @@ export async function getStaticProps({
       mostReadarticleData,
       latestPrimaryArticleData,
       latestArticleData,
-      hikesNewsData,
+      ihnews,
       trekkingprimaryArticleData,
       trekkingArticleData,
       highAlititudeData,
