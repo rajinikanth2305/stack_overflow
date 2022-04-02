@@ -255,7 +255,13 @@ const RegHome = ({ slice }) => {
           if(data.data.state==="COMPLETED") {
             onDialogShow("Your Booking is already completed for the selected group");
             ///Wait for 1 seconds
-            router.push(`/user-dashboard/user-upcoming-treks`);
+
+            const timer = setTimeout(() => {
+              router.push(`/user-dashboard/user-upcoming-treks`);
+            }, 2000);
+        
+            return () => clearTimeout(timer);
+           
           }
           setTermAccepted(true);
           setKey("selectbatch");

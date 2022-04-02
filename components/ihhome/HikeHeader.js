@@ -28,6 +28,9 @@ import { Client } from "utils/prismicHelpers";
 import Image from "next/image";
 import { DebounceInput } from "react-debounce-input";
 import auth from "../../services/Authenticate";
+import { AutoComplete } from 'primereact/autocomplete';
+
+
 
 /**
  * Homepage header component
@@ -44,14 +47,22 @@ const HikeHeader = (auth = false) => {
 
   const [showSearch, setShowSearch] = useState(false);
 
-  const fetchData = async () => {
-    if (searchText && searchText !== "") {
+  const [selectedTreks, setSelectedTreks] = useState([]);
+  
+
+  const fetchData = async (stext) => {
+
+   // console.log(stext);
+
+      if (stext && stext !== "") {
+   //if (searchText && searchText !== "") {
       const client = Client();
       await client
         .query([
-          Prismic.Predicates.fulltext("my.trek.search_keywords", searchText)
+          Prismic.Predicates.fulltext("my.trek.search_keywords", stext)
         ])
         .then(function(response) {
+         // console.log(response);
           setSearchResults(response?.results);
         });
 
@@ -90,6 +101,12 @@ const HikeHeader = (auth = false) => {
     setSearchText(nextValue);
     fetchData();
   };
+
+  const autoSearchTreks = (event) => {
+   // console.log(event.query.toLowerCase());
+    fetchData(event.query.toLowerCase());
+  };
+  
 
   const resultListing =
     searchResults &&
@@ -160,7 +177,15 @@ const HikeHeader = (auth = false) => {
                 <i
                   className="fa fa-search cursor-pointer"
                   aria-hidden="true"
-                  onClick={() => setShowSearch(!showSearch)}
+                  onClick={() => {
+                    setShowSearch(!showSearch);
+                    
+                    if(document.getElementById("ac-search"))
+                       document.getElementById("ac-search").value="";
+  
+                       setSearchResults([]);
+                    }
+                  }
                 ></i>
               </div>
             </div>
@@ -402,7 +427,16 @@ const HikeHeader = (auth = false) => {
               </NavItem>
               <NavItem
                 className="r-nav"
-                onClick={() => setShowSearch(!showSearch)}
+                onClick={() => {
+                  setShowSearch(!showSearch);
+
+                  if(document.getElementById("ac-search"))
+                     document.getElementById("ac-search").value="";
+
+                     setSearchResults([]);
+                  }
+                 
+                }
               >
                 {/* <NavLink className="view-in-desk">
                   <i
@@ -496,13 +530,24 @@ const HikeHeader = (auth = false) => {
               {/*  className="g-search mw-100"*/}
               {/*  onChange={onChange}*/}
               {/*/>*/}
-              <DebounceInput
-                minLength={1}
-                debounceTimeout={300}
+              
+             {/*} <DebounceInput
+                minLength={3}
+                debounceTimeout={100}
                 className="g-search mw-100"
                 onChange={onChange}
                 placeholder="Find your trek here?"
-              />
+             />*/}
+
+                <AutoComplete
+                       id="ac-search"
+                              minLength={3}
+                              autoFocus
+                              value={selectedTreks}
+                              onChange={(e) => setSelectedTreks(e.value)}
+                              completeMethod={autoSearchTreks}
+                />
+
             </div>
           </div>
           {searchResults && searchResults?.length > 0 && (
@@ -511,7 +556,7 @@ const HikeHeader = (auth = false) => {
                 <i
                   class="fa fa-window-close cursor-pointer"
                   aria-hidden="true"
-                  onClick={() => setSearchResults([])}
+                  onClick={() =>  {setShowSearch(!showSearch); setSearchResults([])}}
                 ></i>
               </div>
               <div className="s-r-height">{resultListing}</div>
