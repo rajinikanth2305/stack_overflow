@@ -31,11 +31,11 @@ const DIYTreksGuide = ({ slice, alldiyTreks }) => {
             <div>
               <p
                 className={
-                  data?.data?.categories.match(/Easy/g)
+                  data?.data?.categories?.match(/Easy/g)
                     ? "badge-green-diy"
-                    : data?.data?.categories.match(/Moderate/g)
+                    : data?.data?.categories?.match(/Moderate/g)
                     ? "badge-yellow-diy"
-                    : data?.data?.categories.match(/Difficult/g)
+                    : data?.data?.categories?.match(/Difficult/g)
                     ? "badge-red-diy"
                     : "badge-blue-diy"
                 }
