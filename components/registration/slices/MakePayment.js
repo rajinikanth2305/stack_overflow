@@ -163,11 +163,14 @@ const MakePayment = forwardRef((props, ref) => {
     const taxPercentage=usersData[0]?.taxPercentage;
    // console.log(taxPercentage);
 
-    const insuranceAmount = usersData.reduce(
+   /* const insuranceAmount = usersData.reduce(
       (a, v) => (a = a + v?.insuranceAmount),
       0
-    );
+    );*/
 
+   const inAmount= usersData[0].insuranceAmount;
+
+ const insuranceAmount=inAmount * usersData.length;
  console.log(insuranceAmount);
  
     totalTrekFee=parseFloat(Number(totalTrekFee).toFixed(2));
@@ -195,7 +198,7 @@ const MakePayment = forwardRef((props, ref) => {
       }
     });
 
-    //console.log(youpay);
+    console.log(computeFields);
     return youpay;
   };
 
@@ -235,12 +238,12 @@ const MakePayment = forwardRef((props, ref) => {
 
       const totalTrekFee=user?.trekFeeForTheUser;
       const taxPercentage=user?.taxPercentage;
-      const insuranceAmount = user?.insuranceAmount;
+      const insuranceAmount = sdata.trekUsers[0]?.insuranceAmount;
       const gst = taxPercentage;
       const gstValue =parseFloat( Number((gst / 100) * totalTrekFee).toFixed(2));
       const total = (totalTrekFee + gstValue + insuranceAmount);
 
-
+      console.log(total);
 
       const youPay = total;//user.trekFeeForTheUser  ; //computeTotal(sdata.trekUsers);
 
@@ -261,6 +264,7 @@ const MakePayment = forwardRef((props, ref) => {
       }
       //console.log(JSON.stringify(sdata));
       await dispatch(addOrUpdateState(sdata));
+
       computeTotal(sdata.trekUsers);
     }
   };
