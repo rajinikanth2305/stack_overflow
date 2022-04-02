@@ -264,7 +264,7 @@ const UserPT = () => {
         alert("Review submitted succesfully.");
         window.scrollTo(0, 0);
         toast?.current?.show({
-          severity: "info",
+          severity: "success",
           summary: `' Thanks for your review submission'`,
           detail: "Review Submission"
         });

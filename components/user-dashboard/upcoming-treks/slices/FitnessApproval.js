@@ -87,7 +87,7 @@ const FitnessApproval = forwardRef((props, ref) => {
     });
 
     toast.current.show({
-      severity: "info",
+      severity: "success",
       summary: `'File uploaded successfull'`,
       detail: "Fitness Approval"
     });
