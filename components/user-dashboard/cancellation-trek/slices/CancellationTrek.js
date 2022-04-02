@@ -238,7 +238,7 @@ const CancellationTrek = () => {
             summary: `'Cancelled successfully'`,
             detail: "Cancellation"
           });
-          router.push(`/user-dashboard/user-upcoming-treks`);
+         // router.push(`/user-dashboard/user-upcoming-treks`);
           //fetchAndBindUserBookings(upComingTrek.email);
           //handleClose();
         }
@@ -300,8 +300,8 @@ const CancellationTrek = () => {
    //  const refundValue = (percentage * totalPaid);
 
      const compvalue={
-           totalAmountPaid:totalPaid,
-           credited:refundValue
+           totalAmountPaid:parseFloat(Number(roundToTwo(totalPaid)).toFixed(2)),
+           credited:parseFloat(Number(roundToTwo(refundValue)).toFixed(2))
      }
       setComputedValue(compvalue);
 
@@ -352,13 +352,14 @@ const CancellationTrek = () => {
 }
 
      const compvalue={
-           totalAmountPaid:totalPaid,
-           credited:refundValue
-      }
+           totalAmountPaid:parseFloat(Number(roundToTwo(totalPaid)).toFixed(2)),
+           credited:parseFloat(Number(roundToTwo(refundValue)).toFixed(2))
+     }
+
       setComputedValue(compvalue);
 
     // const selectedCoun
-  }
+    }
 
   const onClearSelection =()=> {
    
@@ -382,7 +383,9 @@ const CancellationTrek = () => {
     setComputedValue(compvalue);
   }
 
-
+  function roundToTwo(num) {
+    return +(Math.round(num + "e+2")  + "e-2");
+   }
 
   return (
     <>
@@ -627,7 +630,7 @@ const CancellationTrek = () => {
                             <p className="p-text-3-1-2 mb-3">Trek Fee Paid</p>
                           </div>
                           <div>
-                            <p className="p-text-3-1-2 mb-3">Rs. {computedValue?.totalAmountPaid}</p>
+                            <p className="p-text-3-1-2 mb-3">Rs. {Number(computedValue?.totalAmountPaid).toFixed(2)}</p>
                           </div>
                         </div>
 
@@ -648,7 +651,7 @@ const CancellationTrek = () => {
                             </p>
                           </div>
                           <div>
-                            <p className="p-text-3-1-2 mb-3">Rs. {computedValue?.credited}</p>
+                            <p className="p-text-3-1-2 mb-3">Rs. {Number(computedValue?.credited).toFixed(2)}</p>
                           </div>
                         </div>
                          )}
@@ -661,7 +664,7 @@ const CancellationTrek = () => {
                             </p>
                           </div>
                           <div>
-                            <p className="p-text-3-1-2 mb-3">Rs. {computedValue?.credited}</p>
+                            <p className="p-text-3-1-2 mb-3">Rs. {Number(computedValue?.credited).toFixed()}</p>
                           </div>
                         </div>
                     )}
@@ -673,7 +676,7 @@ const CancellationTrek = () => {
                             </p>
                           </div>
                           <div>
-                            <p className="p-text-3-1-2 mb-2">Rs. {computedValue?.credited}</p>
+                            <p className="p-text-3-1-2 mb-2">Rs. {Number(computedValue?.credited).toFixed(2)}</p>
                           </div>
                         </div>
                           )}
@@ -685,7 +688,7 @@ const CancellationTrek = () => {
                             </p>
                           </div>
                           <div>
-                            <p className="p-text-3-1-2 mb-3">- Rs.{computedValue?.credited}</p>
+                            <p className="p-text-3-1-2 mb-3">- Rs.{Number(computedValue?.credited).toFixed(2)}</p>
                           </div>
                         </div>
                     )}
@@ -697,7 +700,7 @@ const CancellationTrek = () => {
                             </p>
                           </div>
                           <div>
-                            <p className="p-text-3-fg mb-3">Rs.{computedValue?.credited}</p>
+                            <p className="p-text-3-fg mb-3">Rs.{Number(computedValue?.credited).toFixed(2)}</p>
                           </div>
                         </div>
                       </div>
