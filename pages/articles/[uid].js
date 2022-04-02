@@ -22,11 +22,11 @@ const Articles1 = ({
   primaryArticleData,
   mostReadarticleData,
   latestPrimaryArticleData,
-  latestArticleData,
+  ihLatestArticles,
   ihnews,
   trekkingprimaryArticleData,
   trekkingArticleData,
-  highAlititudeData,
+  ihAlitudeResaerch,
   laPrimaryArticlePrimaryArticleData,
 }) => {
   if (doc && doc.data) {
@@ -50,11 +50,11 @@ const Articles1 = ({
           primaryArticleData={primaryArticleData}
           mostReadarticleData={mostReadarticleData}
           latestPrimaryArticleData={latestPrimaryArticleData}
-          latestArticleData={latestArticleData}
+          ihLatestArticles={ihLatestArticles}
           ihnews={ihnews}
           trekkingprimaryArticleData={trekkingprimaryArticleData}
           trekkingArticleData={trekkingArticleData}
-          highAlititudeData={highAlititudeData}
+          ihAlitudeResaerch={ihAlitudeResaerch}
           laPrimaryArticlePrimaryArticleData={laPrimaryArticlePrimaryArticleData}
         />
         <IHTrekWithSwathi />
@@ -155,21 +155,54 @@ export async function getStaticProps({
     latestPrimaryArticleData.push(article_details);
   }
 
-  const latestArticleSlice =
-    doc && doc?.data?.body?.find(x => x.slice_type === "latest_articles");
+  // const latestArticleSlice =
+  //   doc && doc?.data?.body?.find(x => x.slice_type === "latest_articles");
 
-  if (latestArticleSlice?.items?.length > 0) {
-    for (var i = 0; i < latestArticleSlice?.items?.length; i++) {
-      const data = latestArticleSlice?.items[i];
-      const slugUrl = data && data?.article_link?.id;
-      if (slugUrl !== undefined) {
-        const latestarticle_article_details = await Client().getByID(slugUrl);
-        if (
-          latestarticle_article_details !== undefined &&
-          latestarticle_article_details !== null
-        )
-          latestArticleData.push(latestarticle_article_details);
+  // if (latestArticleSlice?.items?.length > 0) {
+  //   for (var i = 0; i < latestArticleSlice?.items?.length; i++) {
+  //     const data = latestArticleSlice?.items[i];
+  //     const slugUrl = data && data?.article_link?.id;
+  //     if (slugUrl !== undefined) {
+  //       const latestarticle_article_details = await Client().getByID(slugUrl);
+  //       if (
+  //         latestarticle_article_details !== undefined &&
+  //         latestarticle_article_details !== null
+  //       )
+  //         latestArticleData.push(latestarticle_article_details);
+  //     }
+  //   }
+  // }
+
+  let ihLatestArticles =[];
+
+  const latestArticleSlice = doc && doc?.data?.body?.filter(x => x.slice_type === "latest_articles");
+
+  if (latestArticleSlice?.length > 0) {
+
+    for (var i = 0; i < latestArticleSlice?.length; i++) {
+
+      let  linkedLatestArticles=[];
+
+      const data = latestArticleSlice[i]; 
+
+      for (var k = 0; k < data?.items?.length; k++) {
+        const slugUrl = data && data?.items[k].article_link?.id;
+        if (slugUrl !== undefined) {
+          const hikesnews_article_details = await Client().getByID(slugUrl);
+          if (
+            hikesnews_article_details !== undefined &&
+            hikesnews_article_details !== null
+          )
+          linkedLatestArticles.push(hikesnews_article_details);
+        }
       }
+
+      if(linkedLatestArticles.length > 0) {
+        ihLatestArticles.push({
+            key: latestArticleSlice[i].primary?.heading1[0].text,
+            value:linkedLatestArticles
+          });
+       }
     }
   }
 
@@ -181,19 +214,15 @@ export async function getStaticProps({
 }
 
 
- let ihnews =[];
+  let ihnews =[];
 
   const hikesNewsSlice = doc && doc?.data?.body?.filter(x => x.slice_type === "hike_news_articles");
-
-  console.log(  hikesNewsSlice.length);
 
   if (hikesNewsSlice?.length > 0) {
 
     for (var i = 0; i < hikesNewsSlice?.length; i++) {
 
       let  linkedArticles=[];
-     // console.log(  hikesNewsSlice[i]);
-    //  console.log(  hikesNewsSlice[i].primary?.heading1[0].text);
 
       const data = hikesNewsSlice[i]; 
 
@@ -217,10 +246,6 @@ export async function getStaticProps({
        }
     }
   }
-
-  //console.log("printing-ih-news");
-
- // console.log(ihnews);
 
   const trekkingPrimarySlice =
     doc && doc?.data?.body?.find(x => x.slice_type === "trekking_tips");
@@ -251,22 +276,55 @@ export async function getStaticProps({
     }
   }
 
-  const highAltiSlice =
-    doc &&
-    doc?.data?.body?.find(x => x.slice_type === "high_altitude_research");
+  // const highAltiSlice =
+  //   doc &&
+  //   doc?.data?.body?.find(x => x.slice_type === "high_altitude_research");
 
-  if (highAltiSlice?.items?.length > 0) {
-    for (var i = 0; i < highAltiSlice?.items?.length; i++) {
-      const data = highAltiSlice?.items[i];
-      const slugUrl = data && data?.article_link?.id;
-      if (slugUrl !== undefined) {
-        const highAlti_article_details = await Client().getByID(slugUrl);
-        if (
-          highAlti_article_details !== undefined &&
-          highAlti_article_details !== null
-        )
-          highAlititudeData.push(highAlti_article_details);
+  // if (highAltiSlice?.items?.length > 0) {
+  //   for (var i = 0; i < highAltiSlice?.items?.length; i++) {
+  //     const data = highAltiSlice?.items[i];
+  //     const slugUrl = data && data?.article_link?.id;
+  //     if (slugUrl !== undefined) {
+  //       const highAlti_article_details = await Client().getByID(slugUrl);
+  //       if (
+  //         highAlti_article_details !== undefined &&
+  //         highAlti_article_details !== null
+  //       )
+  //         highAlititudeData.push(highAlti_article_details);
+  //     }
+  //   }
+  // }
+
+  let ihAlitudeResaerch = [];
+
+  const highAltiSlice = doc && doc?.data?.body?.filter(x => x.slice_type === "high_altitude_research");
+
+  if (highAltiSlice?.length > 0) {
+
+    for (var i = 0; i < highAltiSlice?.length; i++) {
+
+      let  linkedAlitudeArticles=[];
+
+      const data = highAltiSlice[i]; 
+
+      for (var k = 0; k < data?.items?.length; k++) {
+        const slugUrl = data && data?.items[k].article_link?.id;
+        if (slugUrl !== undefined) {
+          const hikesnews_article_details = await Client().getByID(slugUrl);
+          if (
+            hikesnews_article_details !== undefined &&
+            hikesnews_article_details !== null
+          )
+          linkedAlitudeArticles.push(hikesnews_article_details);
+        }
       }
+
+      if(linkedAlitudeArticles.length > 0) {
+        ihAlitudeResaerch.push({
+            key: highAltiSlice[i]?.primary?.heading1[0].text,
+            value:linkedAlitudeArticles
+          });
+       }
     }
   }
 
@@ -279,11 +337,11 @@ export async function getStaticProps({
       primaryArticleData,
       mostReadarticleData,
       latestPrimaryArticleData,
-      latestArticleData,
+      ihLatestArticles,
       ihnews,
       trekkingprimaryArticleData,
       trekkingArticleData,
-      highAlititudeData,
+      ihAlitudeResaerch,
       laPrimaryArticlePrimaryArticleData,
     }
   };

@@ -2402,6 +2402,10 @@ export const customStyles = css.global`
       overflow: auto;
     }
 
+    #checkoutmodal .checkout-detail-box-outer {
+      height: 300px !important;
+    }
+
     .table-dashboard-profile-style-1.ctb > thead > tr,
     .table-dashboard-profile-style-1.ctb > tbody > tr {
       display: grid;
