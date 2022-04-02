@@ -238,7 +238,9 @@ const CancellationTrek = () => {
             summary: `'Cancelled successfully'`,
             detail: "Cancellation"
           });
-         // router.push(`/user-dashboard/user-upcoming-treks`);
+
+
+          router.push(`/user-dashboard/user-upcoming-treks`);
           //fetchAndBindUserBookings(upComingTrek.email);
           //handleClose();
         }
@@ -311,6 +313,7 @@ const CancellationTrek = () => {
 
   const ontoggle=()=> {
     let tmoneytaryRefund=moneytaryRefund;
+
     if(moneytaryRefund) {
       tmoneytaryRefund=false;
       setMoneytaryRefund(false);
@@ -335,7 +338,6 @@ const CancellationTrek = () => {
  }
 });
 
-
  if(tmoneytaryRefund===true) {
        actualRefundPercentage=(100-cancelPercentage);
        percentage=(actualRefundPercentage/100);
@@ -352,7 +354,7 @@ const CancellationTrek = () => {
 }
 
      const compvalue={
-           totalAmountPaid:parseFloat(Number(roundToTwo(totalPaid)).toFixed(2)),
+           totalAmountPaid:parseFloat(Number((totalPaid)).toFixed(2)),
            credited:parseFloat(Number(roundToTwo(refundValue)).toFixed(2))
      }
 
@@ -491,7 +493,7 @@ const CancellationTrek = () => {
                                     percentage=(actualRefundPercentage/100);
                                    // console.log(percentage);
                                     refundValue = (percentage * sdata?.amountPaid);
-                                    cancelCharge= ((cancelPercentage/100) * sdata?.amountPaid);
+                                    cancelCharge= Number((cancelPercentage/100) * sdata?.amountPaid).toFixed(2);
                               }
                               else {
                                actualRefundPercentage=(100);
@@ -535,21 +537,18 @@ const CancellationTrek = () => {
                                 {index + 1}. {name}
                               </td>
                               <td>
-                                { flagValue==='trek-p-cancel' ?
-                                  sdata?.amountPaid : sdata?.backpackOffloadingAmountPaid
-                                }
+                                 { Number(sdata?.amountPaid).toFixed(2) }
                               </td>
                               <td>
-                                {cancelCharge}
+                                {Number(cancelCharge).toFixed(2)}
                               </td>
-
 
                               {moneytaryRefund==false && (
                               <td>{sdata?.voucherCredited}</td>
                               )}
 
                               {moneytaryRefund==true && (
-                              <td>{refundValue}</td>
+                              <td>{Number(refundValue).toFixed(2)}</td>
                               )}
                             </tr>
                           </>
@@ -664,7 +663,7 @@ const CancellationTrek = () => {
                             </p>
                           </div>
                           <div>
-                            <p className="p-text-3-1-2 mb-3">Rs. {Number(computedValue?.credited).toFixed()}</p>
+                            <p className="p-text-3-1-2 mb-3">Rs. {Number(computedValue?.credited).toFixed(2)}</p>
                           </div>
                         </div>
                     )}
@@ -672,7 +671,7 @@ const CancellationTrek = () => {
                         <div className="d-flex">
                           <div className="flex-grow-1 px-5">
                             <p className="p-text-3-1-2 text-align-right mb-2">
-                              total Refund Applicable
+                              Total Refund Applicable
                             </p>
                           </div>
                           <div>

@@ -61,10 +61,7 @@ const UserMP = () => {
                }
               </p>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequa
+               Success! Congratulations on booking a trek! We have mailed you a payment receipt.
               </p>
               <p className="p-text-3-fg">You will be redirected to the Indiahikes dashboard in 5 seconds</p>
               <p className="h-text"><a href="/user-dashboard/user-upcoming-treks">Click here if you are not redirected.</a></p>
