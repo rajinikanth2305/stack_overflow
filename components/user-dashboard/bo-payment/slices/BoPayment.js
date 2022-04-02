@@ -179,6 +179,7 @@ const BoPayment = forwardRef((props, ref) => {
       (a, v) => (a = a + v.offloadingFee),
       0
     );
+    
     const gst = 5;
     const gstValue = Math.round((gst / 100) * totalTrekFee);
     const total = totalTrekFee + gstValue;
@@ -191,21 +192,31 @@ const BoPayment = forwardRef((props, ref) => {
     return youpay;
   };
 
+  function roundToTwo(num) {
+    return +(Math.round(num + "e+2")  + "e-2");
+   }
+
   const computeTotal = (usersData, sdata) => {
     const totalTrekFee = usersData.reduce(
       (a, v) => (a = a + v.offloadingFee),
       0
     );
+
+
+    const taxPercentage=usersData[0]?.taxPercentage;
+    console.log(usersData[0]);
+
     const gst = 5;
-    const gstValue = Math.round((gst / 100) * totalTrekFee);
-    const total = totalTrekFee + gstValue;
+
+    const gstValue = ((gst / 100) * totalTrekFee);
+    const total = roundToTwo(totalTrekFee + gstValue);
 
     const totalVoucherAmount = usersData.reduce(
       (a, v) => (a = a + v.voucherAmount),
       0
     );
 
-    const youpay = Math.round(total - totalVoucherAmount);
+    const youpay =roundToTwo(total - totalVoucherAmount);
 
     setComputeFields({
       ...computeFields,
@@ -217,6 +228,7 @@ const BoPayment = forwardRef((props, ref) => {
         youpay: youpay
       }
     });
+    console.log(youpay);
     return youpay;
   };
 
@@ -500,7 +512,7 @@ const BoPayment = forwardRef((props, ref) => {
                         </div>
                         <div>
                           <p className="p-text-3-1-2 mb-3">
-                            Rs.{computeFields.computations.totalTrekFee}
+                            Rs.{Number(computeFields.computations.totalTrekFee).toFixed(2)}
                           </p>
                         </div>
                       </div>
@@ -510,7 +522,7 @@ const BoPayment = forwardRef((props, ref) => {
                         </div>
                         <div>
                           <p className="p-text-3-1-2 mb-3">
-                            Rs.{computeFields.computations.totaltax}
+                            Rs.{Number(computeFields.computations.totaltax).toFixed(2)}
                           </p>
                         </div>
                       </div>
@@ -522,7 +534,7 @@ const BoPayment = forwardRef((props, ref) => {
                         </div>
                         <div>
                           <p className="p-text-3-1-2 mb-2">
-                            Rs. {computeFields.computations.total}
+                            Rs. {Number(computeFields.computations.total).toFixed(2)}
                           </p>
                         </div>
                       </div>
@@ -534,7 +546,7 @@ const BoPayment = forwardRef((props, ref) => {
                         </div>
                         <div>
                           <p className="p-text-3-1-2 mb-3">
-                            - Rs. {computeFields.computations.voucherDeduction}
+                            - Rs. {Number(computeFields.computations.voucherDeduction).toFixed(2)}
                           </p>
                         </div>
                       </div>
@@ -546,7 +558,7 @@ const BoPayment = forwardRef((props, ref) => {
                         </div>
                         <div>
                           <p className="p-text-3-fg mb-3">
-                            Rs. {computeFields.computations.youpay}
+                            Rs. {Number(computeFields.computations.youpay).toFixed(2)}
                           </p>
                         </div>
                       </div>

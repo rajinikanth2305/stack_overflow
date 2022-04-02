@@ -109,31 +109,38 @@ export const ihheaderStyles = css.global`
 
   .g-search {
     border-radius: 20px;
-    border: 1px solid #cccccc;
+    // border: 1px solid #cccccc;
     margin-top: 5px;
     margin-bottom: 0;
     font-size: 14px;
-    padding: 3px 15px;
-    position: absolute;
-    width: 30%;
+    // padding: 3px 15px;
+    position: fixed;
+    // width: 25%;
     right: 0;
+    z-index: 99;
   }
 
-  .searchHs {
-    position: absolute;
-    z-index: 99;
-    right: 8%;
+  .g-search > input {
+    width: 400px;
+    padding: 3px 15px;
+    border-radius: 50px;
   }
+
+  // .searchHs {
+  //   position: fixed;
+  //   z-index: 99;
+  //   right: 8%;
+  // }
 
   .search-box-section {
     background: #ffffff;
     border: 1px solid rgb(255, 193, 0);
-    position: absolute;
+    position: fixed;
     // right: 7%;
     // width: 25%;
     right: 0;
-    width: 30%;
-    top: 40px;
+    width: 400px;
+    top: 100px;
     z-index: 99;
   }
 
@@ -175,7 +182,7 @@ export const ihheaderStyles = css.global`
     background: #ffd62b;
     padding: 0 5px;
     font-size: 14px;
-    text-transform: none;
+    text-transform: capitalize;
     box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
     font-family: Franklin Gothic;
   }
@@ -222,9 +229,12 @@ export const ihheaderStyles = css.global`
     }
 
     .search-box-section {
-      position: relative;
       width: 100%;
       right: 0;
+    }
+
+    .g-search > input {
+      width: 360px;
     }
 
     .searchHs {

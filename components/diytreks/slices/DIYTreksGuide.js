@@ -8,6 +8,16 @@ const DIYTreksGuide = ({ slice, alldiyTreks }) => {
   const heading2 = slice?.primary?.heading2;
   const treksArray = slice?.items;
 
+  alldiyTreks?.results?.sort(function(a, b) {
+    if (a?.uid < b?.uid) {
+      return -1;
+    }
+    if (a?.uid > b?.uid) {
+      return 1;
+    }
+    return 0;
+  });
+
   const treks = alldiyTreks?.results?.map(function(data, i) {
     let url;
     const slugUrl = data?.uid;
@@ -21,18 +31,20 @@ const DIYTreksGuide = ({ slice, alldiyTreks }) => {
             <div>
               <p
                 className={
-                  data?.data?.categories.match(/Easy/g)
+                  data?.data?.categories?.match(/Easy/g)
                     ? "badge-green-diy"
-                    : data?.data?.categories.match(/Moderate/g)
+                    : data?.data?.categories?.match(/Moderate/g)
                     ? "badge-yellow-diy"
-                    : data?.data?.categories.match(/Difficult/g)
+                    : data?.data?.categories?.match(/Difficult/g)
                     ? "badge-red-diy"
                     : "badge-blue-diy"
                 }
               ></p>
             </div>
             <div className="mx-3">
-              <p className="p-text-3">{RichText.asText(data?.data?.title)}</p>
+              <p className="p-display-3 p-display-3-md cursor-pointer">
+                {RichText.asText(data?.data?.title)}
+              </p>
             </div>
           </div>
         </Link>
@@ -118,6 +130,41 @@ const DIYTreksGuide = ({ slice, alldiyTreks }) => {
             </div>
           </div>
         </div> */}
+        <div>
+          <div className="slots-bg mb-3">
+            <div className="container p-0">
+              <div className="d-flex align-items-center">
+                <div className="mx-2">
+                  <p className="mt-3-1 mb-0">
+                    <span className="badge-green-lg mx-2"></span> Easy Moderate
+                    trek
+                  </p>
+                </div>
+                <div className="mx-2">
+                  <p className="mt-3-1 mb-0">
+                    <span className="badge-yellow-lg mx-2"></span>
+                    Moderate trek{" "}
+                  </p>
+                </div>
+                <div className="mx-2">
+                  <p className="mt-3-1 mb-0">
+                    <span className="badge-red-lg mx-2"></span> Difficult trek
+                  </p>
+                </div>
+                {/* <div className="mx-2">
+                  <p className="p-text-3-1 mt-3-1 mb-0">
+                    <span className="badge-blue-lg mx-2"></span> Family Trek{" "}
+                  </p>
+                </div> */}
+                {/* <div className="flex-grow-1 mx-2">
+                  <p className="p-text-3-1 mt-3-1 mb-0">
+                    <span className="badge-blue-lg mx-2"></span> DIY Trek{" "}
+                  </p>
+                </div> */}
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="container my-3">
           <div className="row">{treks}</div>
         </div>

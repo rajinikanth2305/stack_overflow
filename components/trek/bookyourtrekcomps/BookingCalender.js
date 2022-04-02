@@ -369,6 +369,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
         reject: e => {}
       });
     } else {
+      
       if (batchDates !== undefined && batchDates[key] !== undefined) {
         setOnceSelectClicked(true);
         onBookingSelect(batchDates[key]);

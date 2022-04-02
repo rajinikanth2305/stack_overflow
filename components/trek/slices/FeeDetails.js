@@ -10,6 +10,7 @@ import Prismic from "@prismicio/client";
 import Modal from "react-bootstrap/Modal";
 import { hrefResolver, linkResolver } from "prismic-configuration";
 import InclusionsAndExclusions from "../accordiontabs/InclusionsAndExclusions";
+import Link from "next/link";
 
 /**
  * Trek Banner Slice Components
@@ -117,9 +118,11 @@ const FeeDetails = ({ data }) => {
                 <a onClick={handleShow}>See cancellation policy</a>
               </p>
               <div className="my-3">
-                <button className="btn btn-block btn-ih-green-trek-fee hvr-grow">
-                  <a href="#goToBookTicket">View Dates / Register</a>
-                </button>
+                <Link href="#goToBookTicket">
+                  <button className="btn btn-block btn-ih-green-trek-fee hvr-grow">
+                    View Dates / Register
+                  </button>
+                </Link>
               </div>
             </div>
             <div className="p-3">

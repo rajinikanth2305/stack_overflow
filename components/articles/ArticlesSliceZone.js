@@ -21,10 +21,11 @@ const ArticlesSliceZone = ({
   mostReadarticleData,
   latestPrimaryArticleData,
   latestArticleData,
-  hikesNewsData,
+  ihLatestArticles,
+  ihnews,
   trekkingprimaryArticleData,
   trekkingArticleData,
-  highAlititudeData,
+  ihAlitudeResaerch,
   laPrimaryArticlePrimaryArticleData,
 }) =>
   sliceZone.map((slice, index) => {
@@ -56,7 +57,7 @@ const ArticlesSliceZone = ({
             slice={slice}
             key={`slice-${index}`}
             laPrimaryArticlePrimaryArticleData={laPrimaryArticlePrimaryArticleData}
-            latestArticleData={latestArticleData}
+            latestArticleData={ihLatestArticles?.find(x=>x?.key===slice?.primary?.heading1[0].text)?.value}
           />
         );
       case "hike_news_articles":
@@ -64,7 +65,7 @@ const ArticlesSliceZone = ({
           <Section5
             slice={slice}
             key={`slice-${index}`}
-            hikesNewsData={hikesNewsData}
+            hikesNewsData={ihnews?.find(x=>x?.key===slice?.primary?.heading1[0].text)?.value}
           />
         );
       case "high_altitude_research":
@@ -72,7 +73,7 @@ const ArticlesSliceZone = ({
           <Section6
             slice={slice}
             key={`slice-${index}`}
-            highAlititudeData={highAlititudeData}
+            highAlititudeData={ihAlitudeResaerch?.find(x=>x?.key===slice?.primary?.heading1[0].text)?.value}
           />
         );
       case "trekking_tips":
@@ -81,7 +82,7 @@ const ArticlesSliceZone = ({
             slice={slice}
             key={`slice-${index}`}
             trekkingprimaryArticleData={trekkingprimaryArticleData}
-            latestArticleData={latestArticleData}
+            latestArticleData={ihLatestArticles?.find(x=>x?.key===slice?.primary?.heading1[0].text)?.value}
             trekkingArticleData={trekkingArticleData}
           />
         );

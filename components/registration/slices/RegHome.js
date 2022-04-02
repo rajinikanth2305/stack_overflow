@@ -161,6 +161,7 @@ const RegHome = ({ slice }) => {
     // const tt = response.data.body;///response.results.data.body;
     // const slice = tt && tt.find(x => x.slice_type === "book_your_trek");
     // setEligibilityCriteria(slice);
+    
     getBatchInfo(batchId).then(res=>{
       const trekName = res.trekName.replaceAll(" ", "-").toLowerCase();
       getTrekContentsFromPrismic(res.trekId);
@@ -254,7 +255,13 @@ const RegHome = ({ slice }) => {
           if(data.data.state==="COMPLETED") {
             onDialogShow("Your Booking is already completed for the selected group");
             ///Wait for 1 seconds
-            router.push(`/user-dashboard/user-upcoming-treks`);
+
+            const timer = setTimeout(() => {
+              router.push(`/user-dashboard/user-upcoming-treks`);
+            }, 2000);
+        
+            return () => clearTimeout(timer);
+           
           }
           setTermAccepted(true);
           setKey("selectbatch");
@@ -389,6 +396,7 @@ const RegHome = ({ slice }) => {
   };
 
   const buildParticipants = async userData => {
+
     const participants = {
       firstName: userData.userDetailsForDisplay?.firstName,
       lastName: userData.userDetailsForDisplay?.lastName,
@@ -407,10 +415,10 @@ const RegHome = ({ slice }) => {
       optedVoucherId: 0,
       trekFeeForTheUser: userData.trekFeeForTheUser,
       taxPercentage: userData.taxPercentage,
-      insuranceAmount: userData.insuranceAmount
+      insuranceAmount: userData?.insuranceAmount ==null ? 0 : userData?.insuranceAmount
     };
-
     return participants;
+
   };
 
   const getVoucher = async userEmail => {

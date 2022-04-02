@@ -28,6 +28,9 @@ import { Client } from "utils/prismicHelpers";
 import Image from "next/image";
 import { DebounceInput } from "react-debounce-input";
 import auth from "../../services/Authenticate";
+import { AutoComplete } from 'primereact/autocomplete';
+
+
 
 /**
  * Homepage header component
@@ -44,16 +47,38 @@ const HikeHeader = (auth = false) => {
 
   const [showSearch, setShowSearch] = useState(false);
 
-  const fetchData = async () => {
-    if (searchText && searchText !== "") {
+  const [selectedTreks, setSelectedTreks] = useState([]);
+  
+
+  const fetchData = async (stext) => {
+      if (stext && stext !== "") {
+        const searchResultContext = [];
       const client = Client();
       await client
         .query([
-          Prismic.Predicates.fulltext("my.trek.search_keywords", searchText)
+          Prismic.Predicates.fulltext("my.trek.search_keywords", stext),
         ])
         .then(function(response) {
-          setSearchResults(response?.results);
+          response?.results.forEach(result => searchResultContext.push(result));
         });
+
+      await client
+        .query([
+          Prismic.Predicates.fulltext("my.post.search_keywords", stext)
+        ])
+        .then(function(response) {
+          response?.results.forEach(result => searchResultContext.push(result));
+        });
+
+      await client
+        .query([
+          Prismic.Predicates.fulltext("my.document_trek_type.search_keywords", stext)
+        ])
+        .then(function(response) {
+          response?.results.forEach(result => searchResultContext.push(result));
+        });
+
+        setSearchResults(searchResultContext);
 
       // await client
       //     .query(
@@ -91,6 +116,13 @@ const HikeHeader = (auth = false) => {
     fetchData();
   };
 
+
+  const autoSearchTreks = (event) => {
+   // console.log(event.query.toLowerCase());
+    fetchData(event.query.toLowerCase());
+  };
+  
+
   const resultListing =
     searchResults &&
     searchResults?.map(function(data, i) {
@@ -124,7 +156,8 @@ const HikeHeader = (auth = false) => {
                 </div>
                 <div className="col-7 px-2">
                   <p className="search-result-title">
-                    {data?.data?.trek_title[0]?.text}
+                    {data?.data?.trek_title ? data?.data?.trek_title[0]?.text : ""}
+                    {data?.data?.title ? data?.data?.title[0]?.text : ""}
                   </p>
                 </div>
               </div>
@@ -160,7 +193,15 @@ const HikeHeader = (auth = false) => {
                 <i
                   className="fa fa-search cursor-pointer"
                   aria-hidden="true"
-                  onClick={() => setShowSearch(!showSearch)}
+                  onClick={() => {
+                    setShowSearch(!showSearch);
+                    
+                    if(document.getElementById("ac-search"))
+                       document.getElementById("ac-search").value="";
+  
+                       setSearchResults([]);
+                    }
+                  }
                 ></i>
               </div>
             </div>
@@ -210,9 +251,9 @@ const HikeHeader = (auth = false) => {
                   ""
                 ) : (
                   <NavLink
-                    href="../../../family-trek/family-trek"
+                    href="../../../family-trek/family-trek-page"
                     className={
-                      router.asPath == "/family-trek/family-trek"
+                      router.asPath == "/family-trek/family-trek-page"
                         ? "active-custom"
                         : ""
                     }
@@ -402,7 +443,16 @@ const HikeHeader = (auth = false) => {
               </NavItem>
               <NavItem
                 className="r-nav"
-                onClick={() => setShowSearch(!showSearch)}
+                onClick={() => {
+                  setShowSearch(!showSearch);
+
+                  if(document.getElementById("ac-search"))
+                     document.getElementById("ac-search").value="";
+
+                     setSearchResults([]);
+                  }
+                 
+                }
               >
                 {/* <NavLink className="view-in-desk">
                   <i
@@ -473,7 +523,7 @@ const HikeHeader = (auth = false) => {
                     <Link href="../../../green-trails">
                       <DropdownItem>Green Trails</DropdownItem>
                     </Link>
-                    <Link href="../../../articles/latest-updates">
+                    <Link href="../../../articles/transformation-stories">
                       <DropdownItem>Articles</DropdownItem>
                     </Link>
                   </DropdownMenu>
@@ -489,20 +539,32 @@ const HikeHeader = (auth = false) => {
       {showSearch === true && (
         <div className="container searchHs">
           <div className="d-flex justify-content-end">
-            <div className="flex-fill">
+            <div>
               {/*<input*/}
               {/*  type="text"*/}
               {/*  placeholder="Find your trek here?"*/}
               {/*  className="g-search mw-100"*/}
               {/*  onChange={onChange}*/}
               {/*/>*/}
-              <DebounceInput
-                minLength={1}
-                debounceTimeout={300}
+              
+             {/*} <DebounceInput
+                minLength={3}
+                debounceTimeout={100}
                 className="g-search mw-100"
                 onChange={onChange}
                 placeholder="Find your trek here?"
-              />
+             />*/}
+
+                <AutoComplete
+                       id="ac-search"
+                              minLength={3}
+                              autoFocus
+                              value={selectedTreks}
+                              onChange={(e) => setSelectedTreks(e.value)}
+                              completeMethod={autoSearchTreks}
+                              className="g-search mw-100"
+                />
+
             </div>
           </div>
           {searchResults && searchResults?.length > 0 && (
@@ -511,7 +573,7 @@ const HikeHeader = (auth = false) => {
                 <i
                   class="fa fa-window-close cursor-pointer"
                   aria-hidden="true"
-                  onClick={() => setSearchResults([])}
+                  onClick={() =>  {setShowSearch(!showSearch); setSearchResults([])}}
                 ></i>
               </div>
               <div className="s-r-height">{resultListing}</div>

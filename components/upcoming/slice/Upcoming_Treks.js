@@ -272,11 +272,12 @@ const UpComingTreks = ({ slice }) => {
                         id="exampleFormControlSelect1"
                         ref={season}
                       >
-                        <option>Winter</option>
-                        <option>Summer</option>
-                        <option>Autumn</option>
-                        <option>Rainy</option>
-                        <option>Spring</option>
+
+                        <option>Winter (Dec, Jan, Feb)</option>
+                        <option>Spring (Mar, Apr)</option>
+                        <option>Summer (May, Jun)</option>
+                        <option>Monsoon (Jul, Aug, Mid-Sep) </option>
+                        <option>Autumn (Mid-Sep, Oct, Nov)</option>
                       </select>
                     </div>
 
@@ -287,9 +288,10 @@ const UpComingTreks = ({ slice }) => {
                         id="exampleFormControlSelect1"
                         ref={difficulty}
                       >
-                        <option>Beginner</option>
+                        <option>Easy-moderate</option>
                         <option>Moderate</option>
-                        <option>Difficult</option>
+                        <option>Moderate-Difficult </option>
+                        <option>Difficult </option>
                       </select>
                     </div>
                   </div>

@@ -78,10 +78,9 @@ export async function getStaticProps({
   previewData = {}
 }) {
   const { ref } = previewData;
-  const post = {};
-    //(await Client().getByUID("post", params.uid, ref ? { ref } : null)) || {};
+  const post = (await Client().getByUID("post", params.uid, ref ? { ref } : null)) || {};
 
-  //console.log(JSON.stringify(post));
+  console.log(JSON.stringify(post));
 
   //const author=post.data.author_first_name + "-" + post.data.author_last_name;
   const author_lnk_id = post?.data?.author_link?.id;
@@ -209,9 +208,12 @@ export async function getStaticPaths() {
   const documents = await queryRepeatableDocumentsWithDocTypeFilter("post");
   //const doc    =    await Client().getByUID("post", "how-to-choose-trek-pants-the-ultimate-trekking-pants-guide-2021");
 
+  
   //const documents=[];
-  //documents.push(doc);
+ //documents.push(doc);
 
+  console.log("Total-Posts" + documents.length);
+  
   return {
     paths: documents.map(doc => `/blog/${doc?.uid}`),
     fallback: true

@@ -148,31 +148,51 @@ const MakePayment = forwardRef((props, ref) => {
     setCounter(arr.length);
   };
 
+  function roundToTwo(num) {
+    return +(Math.round(num + "e+2")  + "e-2");
+   }
+
   const computeTotal = (usersData, sdata) => {
-    const totalTrekFee = usersData.reduce(
+
+    let totalTrekFee = usersData.reduce(
       (a, v) => (a = a + v.trekFeeForTheUser),
       0
     );
-    const gst = 5;
-    const gstValue = Math.round((gst / 100) * totalTrekFee);
-    const total = Math.round(totalTrekFee + gstValue);
+
+    const taxPercentage=usersData[0]?.taxPercentage;
+   // console.log(taxPercentage);
+
+    const insuranceAmount = usersData.reduce(
+      (a, v) => (a = a + v?.insuranceAmount),
+      0
+    );
+ 
+    totalTrekFee=parseFloat(Number(totalTrekFee).toFixed(2));
+
+    const gst = taxPercentage;
+    const gstValue =parseFloat( Number((gst / 100) * totalTrekFee).toFixed(2));
+    const total = (totalTrekFee + gstValue + insuranceAmount);
 
     const totalVoucherAmount = usersData.reduce(
       (a, v) => (a = a + v.voucherAmount),
       0
     );
-    const youpay = Math.round(total - totalVoucherAmount);
+
+    const youpay =parseFloat(Number(total - totalVoucherAmount).toFixed(2));
 
     setComputeFields({
       ...computeFields,
       computations: {
         totalTrekFee: totalTrekFee,
+        insuranceAmount: parseFloat(Number(insuranceAmount).toFixed(2)),
         totaltax: gstValue,
         total: total,
-        voucherDeduction: totalVoucherAmount,
+        voucherDeduction: parseFloat(Number(totalVoucherAmount).toFixed(2)),
         youpay: youpay
       }
     });
+
+     console.log(youpay);
     return youpay;
   };
 
@@ -662,20 +682,39 @@ const MakePayment = forwardRef((props, ref) => {
                     </div>
                     <div>
                       <p className="p-text-3-1-2 mb-3">
-                        Rs. {computeFields.computations.totalTrekFee}
+                        Rs. {Number(computeFields.computations.totalTrekFee).toFixed(2)}
                       </p>
                     </div>
                   </div>
+                
+
                   <div className="d-flex justify-content-between">
                     <div>
                       <p className="p-text-3-1-2 mb-3">GST 5%</p>
                     </div>
                     <div>
                       <p className="p-text-3-1-2 mb-3">
-                        Rs. {computeFields.computations.totaltax}
+                        Rs. {Number(computeFields.computations.totaltax).toFixed(2)}
                       </p>
                     </div>
                   </div>
+
+                  {computeFields?.computations?.insuranceAmount > 0 && (
+                  <div className="d-flex justify-content-between mt-4 pt-2">
+                    <div>
+                      <p className="p-text-3-1-2 mb-3">
+                        Insurance {bookingInformation?.trekkersCount}{" "}
+                        trekkers
+                      </p>
+                    </div>
+                    <div>
+                      <p className="p-text-3-1-2 mb-3">
+                        Rs. {Number(computeFields.computations.insuranceAmount).toFixed(2)}
+                      </p>
+                    </div>
+                  </div>
+                  )} 
+                  
                   <div className="d-flex justify-content-end">
                     <div className="d-flex border-top-custom-1 pt-2">
                       <div className="flex-grow-1 px-5">
@@ -685,7 +724,7 @@ const MakePayment = forwardRef((props, ref) => {
                       </div>
                       <div>
                         <p className="p-text-3-1-2 mb-2">
-                          Rs. {computeFields.computations.total}
+                          Rs. {Number(computeFields.computations.total).toFixed(2)}
                         </p>
                       </div>
                     </div>
@@ -698,7 +737,7 @@ const MakePayment = forwardRef((props, ref) => {
                     </div>
                     <div>
                       <p className="p-text-3-1-2 mb-3">
-                        Rs. {computeFields.computations.voucherDeduction}
+                        Rs. {Number(computeFields.computations.voucherDeduction).toFixed(2)}
                       </p>
                     </div>
                   </div>
@@ -710,7 +749,7 @@ const MakePayment = forwardRef((props, ref) => {
                     </div>
                     <div>
                       <p className="p-text-2-franklin-g mb-3">
-                        Rs. {computeFields.computations.youpay}
+                        Rs. {Number(computeFields.computations.youpay).toFixed(2)}
                       </p>
                     </div>
                   </div>

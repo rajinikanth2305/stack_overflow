@@ -23,11 +23,18 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
       x => x.slice_type === "text"
     );
 
-  let primary_url;
-  const slugUrl = slice?.primary?.link_url_primary?.slug;
-  if (slugUrl) {
-    primary_url = linkResolver(slice?.primary?.link_url_primary);
-  }
+  // let primary_url;
+  // const slugUrl = slice?.primary?.link_url_primary?.slug;
+  // if (slugUrl) {
+  //   primary_url = linkResolver(slice?.primary?.link_url_primary);
+  // }
+
+  const linkType = slice?.primary?.link_url_primary?.link_type;
+  let primary_url =
+    linkType == "Web" ? slice?.primary?.link_url_primary?.url : "";
+  const slugUrl =
+    linkType == "Document" ? slice?.primary?.link_url_primary?.slug : undefined;
+  if (slugUrl) primary_url = linkResolver(slice?.primary?.link_url_primary);
 
   const artData = articleData.map(function(data, i) {
     let url;
@@ -47,11 +54,15 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
           <Link href={url ? url : "#"}>
             <div>
               <div className="expImage">
-                {data?.data?.body[0]?.primary?.banner_image?.url ? <img
-                  src={data?.data?.body[0]?.primary?.banner_image?.url}
-                  alt="articleImage"
-                  className="expImage"
-                /> : <img src="./ip.png" className="expImage" /> }
+                {data?.data?.body[0]?.primary?.banner_image?.url ? (
+                  <img
+                    src={data?.data?.body[0]?.primary?.banner_image?.url}
+                    alt="articleImage"
+                    className="expImage"
+                  />
+                ) : (
+                  <img src="./ip.png" className="expImage" />
+                )}
               </div>
               <div className="p-3">
                 <div className="">
@@ -62,7 +73,7 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
                     {RichText.asText(data?.data?.body[0]?.primary?.heading2)
                       ?.length > 50
                       ? `${RichText.asText(
-                        data?.data?.body[0]?.primary?.heading2
+                          data?.data?.body[0]?.primary?.heading2
                         ).substring(0, 50)}...`
                       : RichText.asText(data?.data?.body[0]?.primary?.heading2)}
                   </p>
@@ -96,28 +107,46 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
               <Link href={primary_url ? primary_url : "#"}>
                 <div className="card exp-card mt-5 mx-0 mmt-0 mb-4 cursor-pointer">
                   <div className="expirimentMainImage">
-                    <img
-                      src={
-                        expirimentMainImage &&
-                        expirimentMainImage?.primary?.feature_image?.url
-                      }
-                      alt="articleImage"
-                      className="expirimentMainImage"
-                    />
+                    {expLearningPrimaryArticleData &&
+                      expLearningPrimaryArticleData[0]?.data?.body[0]?.primary
+                        ?.banner_image?.url && (
+                        <img
+                          src={
+                            expLearningPrimaryArticleData &&
+                            expLearningPrimaryArticleData[0]?.data?.body[0]
+                              ?.primary?.banner_image?.url
+                          }
+                          alt="articleImage"
+                          className="expirimentMainImage"
+                        />
+                      )}
                   </div>
                   <div className="p-3">
                     <div className="">
                       <p className="p-text-3 m-0">
                         {RichText.asText(
-                          expLearningPrimaryArticleData[0]?.data?.title
+                          expLearningPrimaryArticleData[0]?.data?.body[0]
+                            ?.primary?.heading1
                         )}
                       </p>
                       <p className="p-text-5 m-0">
-                        {RichText.asText(cardTitle?.primary?.text)?.length > 25
+                        {/* {RichText.asText(cardTitle?.primary?.text)?.length > 25
                           ? `${RichText.asText(
                               cardTitle?.primary?.text
                             ).substring(0, 110)}...`
-                          : RichText.asText(cardTitle?.primary?.text)}
+                          : RichText.asText(cardTitle?.primary?.text)} */}
+                        {RichText.asText(
+                          expLearningPrimaryArticleData[0]?.data?.body[0]
+                            ?.primary?.heading2
+                        )?.length > 100
+                          ? `${RichText.asText(
+                              expLearningPrimaryArticleData[0]?.data?.body[0]
+                                ?.primary?.heading2
+                            ).substring(0, 100)}...`
+                          : RichText.asText(
+                              expLearningPrimaryArticleData[0]?.data?.body[0]
+                                ?.primary?.heading2
+                            )}
                       </p>
                     </div>
                   </div>

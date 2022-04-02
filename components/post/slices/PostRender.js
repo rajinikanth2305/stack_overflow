@@ -735,7 +735,7 @@ const PostRender = ({
 
     saveWebComments(postName, postData).then(res => {
       toast?.current?.show({
-        severity: "info",
+        severity: "success",
         summary: `' Successfully saved'`,
         detail: "Post-Comments"
       });
@@ -811,7 +811,7 @@ const PostRender = ({
 
     saveWebComments(postName, postData).then(res => {
       toast?.current?.show({
-        severity: "info",
+        severity: "success",
         summary: `' Successfully saved'`,
         detail: "Post-Comments"
       });

@@ -108,10 +108,8 @@ const BestPostTreks = ({ slice, trekData }) => {
 
                   <div>
                     <p className="p-text-4">
+                      {data?.data?.sub_title}
                       {/* {RichText.asText(
-                        getArticleImage && getArticleImage[0]?.primary?.caption
-                      )} */}
-                      {RichText.asText(
                         getArticleImage && getArticleImage[0]?.primary?.caption
                       )?.length > 120
                         ? `${RichText.asText(
@@ -121,7 +119,7 @@ const BestPostTreks = ({ slice, trekData }) => {
                         : RichText.asText(
                             getArticleImage &&
                               getArticleImage[0]?.primary?.caption
-                          )}
+                          )} */}
                     </p>
                   </div>
                   <div className="d-flex align-items-center mb-3 p-btn-btm">
@@ -158,9 +156,9 @@ const BestPostTreks = ({ slice, trekData }) => {
             <Slider {...settings}>{bestPostTreks}</Slider>
           </div>
         </div>
-        <div className="m-mt-5">
+        {/* <div className="m-mt-5">
           <TrekkersVideoCommon />
-        </div>
+        </div> */}
         <style jsx global>
           {diyStyles}
         </style>

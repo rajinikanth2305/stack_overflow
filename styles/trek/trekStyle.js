@@ -356,6 +356,10 @@ export const trekStyle = css.global`
     padding: 0;
   }
 
+  .btn-ih-green-trek-fee:hover {
+    color: rgba(255, 255, 255, 1);
+  }
+
   .btn-ih-green-trek-fee > a {
     color: #ffffff;
     text-decoration: none;

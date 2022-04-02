@@ -21,6 +21,10 @@ import { Client } from "../../../../utils/prismicHelpers";
 import { confirmPopup } from "primereact/confirmpopup"; // To use confirmPopup method
 import Image from "next/image";
 import { Toast } from "primereact/toast";
+import "primeicons/primeicons.css";
+import "primereact/resources/themes/saga-blue/theme.css";
+import "primereact/resources/primereact.css";
+import "primeflex/primeflex.css";
 import BoPayment from "../../bo-payment/slices/BoPayment";
 import { useForm, Controller } from "react-hook-form";
 
@@ -155,18 +159,34 @@ const CancellationTrek = () => {
 
     if(tflagValue==='trek-p-cancel') {
       totalPaid = userData?.amountPaid;
-     }
+    }
  else {
   totalPaid = userData?.backpackOffloadingAmountPaid;
  }
+
  amountPaid=totalPaid;
  console.log(totalPaid);
 
-const actualRefundPercentage=(100-tcancelCharge);
-const percentage=(actualRefundPercentage/100);
-// console.log(percentage);
-const refundValue = (percentage * totalPaid);
-const cancelCharge= ((tcancelCharge/100) * totalPaid);
+ let actualRefundPercentage=0;
+ let percentage=0;
+ let refundValue=0;
+ let cancelCharge=0;
+
+ if(moneytaryRefund==true) {
+       actualRefundPercentage=(100-tcancelCharge);
+       percentage=(actualRefundPercentage/100);
+      // console.log(percentage);
+       refundValue = (percentage * totalPaid);
+       cancelCharge= ((tcancelCharge/100) * totalPaid);
+ }
+ else {
+  actualRefundPercentage=(100);
+  percentage=(actualRefundPercentage/100);
+ // console.log(percentage);
+  refundValue = (percentage * totalPaid);
+  cancelCharge= 0;//((tcancelCharge/100) * totalPaid);
+}
+ 
 // console.log(refundValue);
 
     const participants = {
@@ -218,10 +238,12 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
       cancelParticipantBooking(bookings.id,moneytaryRefund,offloadingPath, participantList).then(
         res => {
           toast.current.show({
-            severity: "info",
+            severity: "success",
             summary: `'Cancelled successfully'`,
             detail: "Cancellation"
           });
+
+
           router.push(`/user-dashboard/user-upcoming-treks`);
           //fetchAndBindUserBookings(upComingTrek.email);
           //handleClose();
@@ -257,14 +279,36 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
       }
      });
 
-     const actualRefundPercentage=100-cancelPercentage;
-     const percentage=(actualRefundPercentage/100);
 
-     const refundValue = (percentage * totalPaid);
+ let actualRefundPercentage=0;
+ let percentage=0;
+ let refundValue=0;
+ let cancelCharge=0;
+
+ if(moneytaryRefund==true) {
+       actualRefundPercentage=(100-cancelPercentage);
+       percentage=(actualRefundPercentage/100);
+      // console.log(percentage);
+       refundValue = (percentage * totalPaid);
+       cancelCharge= ((cancelPercentage/100) * totalPaid);
+ }
+ else {
+  actualRefundPercentage=(100);
+  percentage=(actualRefundPercentage/100);
+ // console.log(percentage);
+  refundValue = (percentage * totalPaid);
+  cancelCharge= 0;//((tcancelCharge/100) * totalPaid);
+}
+
+   //  const actualRefundPercentage=100-cancelPercentage;
+    // const percentage=(actualRefundPercentage/100);
+
+   //  const refundValue = (percentage * totalPaid);
+
      const compvalue={
-           totalAmountPaid:totalPaid,
-           credited:refundValue
-      }
+           totalAmountPaid:parseFloat(Number(roundToTwo(totalPaid)).toFixed(2)),
+           credited:parseFloat(Number(roundToTwo(refundValue)).toFixed(2))
+     }
       setComputedValue(compvalue);
 
     // const selectedCount=upComingTrek.userTrekBookingParticipants.filter(u => u.selected === true).length;
@@ -272,13 +316,56 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
   };
 
   const ontoggle=()=> {
+    let tmoneytaryRefund=moneytaryRefund;
+
     if(moneytaryRefund) {
+      tmoneytaryRefund=false;
       setMoneytaryRefund(false);
     }
     else if (moneytaryRefund==false) {
+      tmoneytaryRefund=true;
       setMoneytaryRefund(true);
     }
+
+ let totalPaid=0;
+ let actualRefundPercentage=0;
+ let percentage=0;
+ let refundValue=0;
+ let cancelCharge=0;
+
+ participants.filter(x=>x.cancelled===true).map(p=>{
+  if(flagValue==='trek-p-cancel') {
+       totalPaid = totalPaid + p?.amountPaid;
   }
+  else {
+   totalPaid = totalPaid + p?.backpackOffloadingAmountPaid;
+ }
+});
+
+ if(tmoneytaryRefund===true) {
+       actualRefundPercentage=(100-cancelPercentage);
+       percentage=(actualRefundPercentage/100);
+      // console.log(percentage);
+       refundValue = (percentage * totalPaid);
+       cancelCharge= ((cancelPercentage/100) * totalPaid);
+ }
+ else {
+  actualRefundPercentage=100;
+  percentage=(actualRefundPercentage/100);
+ // console.log(percentage);
+  refundValue = (percentage * totalPaid);
+  cancelCharge= 0;//((tcancelCharge/100) * totalPaid);
+}
+
+     const compvalue={
+           totalAmountPaid:parseFloat(Number((totalPaid)).toFixed(2)),
+           credited:parseFloat(Number(roundToTwo(refundValue)).toFixed(2))
+     }
+
+      setComputedValue(compvalue);
+
+    // const selectedCoun
+    }
 
   const onClearSelection =()=> {
    
@@ -302,7 +389,9 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
     setComputedValue(compvalue);
   }
 
-
+  function roundToTwo(num) {
+    return +(Math.round(num + "e+2")  + "e-2");
+   }
 
   return (
     <>
@@ -364,9 +453,19 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                             <th style={{ width: "2%" }}>&nbsp;</th>
                             <th>Trekker name</th>
                             <th>Fee paid</th>
-                            <th>Cancellation (-{cancelPercentage}%)</th>
+
+                            <th>
+                             {moneytaryRefund==true &&
+                              (<span>Cancellation - ({cancelPercentage} % )</span>)
+                              }
+                               {moneytaryRefund==false &&
+                              (<span>Cancellation - (0 % )</span>)
+                              }
+                              
+                              </th>
+
                             {moneytaryRefund==false && (
-                            <th>Voucher credited ({100-cancelPercentage}%)</th>
+                            <th>Voucher credited ({100}%)</th>
                             )}
                               {moneytaryRefund && (
                             <th>Monetary refund ({100-cancelPercentage}%)</th>
@@ -387,6 +486,26 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                               " (You) "
                             : sdata?.firstName + " " +
                               sdata?.lastName;
+
+                              let actualRefundPercentage=0;
+                              let percentage=0;
+                              let refundValue=0;
+                              let cancelCharge=0;
+                             
+                              if(moneytaryRefund===true) {
+                                    actualRefundPercentage=(100-cancelPercentage);
+                                    percentage=(actualRefundPercentage/100);
+                                   // console.log(percentage);
+                                    refundValue = (percentage * sdata?.amountPaid);
+                                    cancelCharge= Number((cancelPercentage/100) * sdata?.amountPaid).toFixed(2);
+                              }
+                              else {
+                               actualRefundPercentage=(100);
+                               percentage=(actualRefundPercentage/100);
+                              // console.log(percentage);
+                               refundValue = (percentage * sdata?.amountPaid);
+                               cancelCharge= 0;//((tcancelCharge/100) * totalPaid);
+                             }
 
                         const state =sdata?.bookingParticipantState === "CANCELLED";
                         console.log(sdata?.cancelled);
@@ -422,18 +541,18 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                                 {index + 1}. {name}
                               </td>
                               <td>
-                                { flagValue==='trek-p-cancel' ?
-                                   sdata?.amountPaid : sdata?.backpackOffloadingAmountPaid
-                                }
-                                </td>
-                              <td>{sdata?.cancellationCharge}</td>
+                                 { Number(sdata?.amountPaid).toFixed(2) }
+                              </td>
+                              <td>
+                                {Number(cancelCharge).toFixed(2)}
+                              </td>
 
                               {moneytaryRefund==false && (
                               <td>{sdata?.voucherCredited}</td>
                               )}
 
                               {moneytaryRefund==true && (
-                              <td>{sdata?.moneyCredited}</td>
+                              <td>{Number(refundValue).toFixed(2)}</td>
                               )}
                             </tr>
                           </>
@@ -461,13 +580,13 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                       </div> */}
                       <div className="d-flex align-items-center">
                         <div className="mt-2 flex-grow-1">
-                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline" onClick={e => {onClearSelection()}}>
+                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline cursor-poniter" onClick={e => {onClearSelection()}}>
                             Clear Selection
                           </p>
                         </div>
                         <div>
                         <div className="mt-2 flex-grow-1">
-                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline" onClick={e => {ontoggle()}}>
+                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline cursor-poniter" onClick={e => {ontoggle()}}>
                             I want refund 
                           </p>
                         </div>
@@ -514,7 +633,7 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                             <p className="p-text-3-1-2 mb-3">Trek Fee Paid</p>
                           </div>
                           <div>
-                            <p className="p-text-3-1-2 mb-3">Rs. {computedValue?.totalAmountPaid}</p>
+                            <p className="p-text-3-1-2 mb-3">Rs. {Number(computedValue?.totalAmountPaid).toFixed(2)}</p>
                           </div>
                         </div>
 
@@ -531,11 +650,11 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                         <div className="d-flex justify-content-between">
                           <div>
                             <p className="p-text-3-1-2 mb-3">
-                              Voucher Credited ({100-cancelPercentage}%)
+                              Voucher Credited (100%)
                             </p>
                           </div>
                           <div>
-                            <p className="p-text-3-1-2 mb-3">Rs. {computedValue?.credited}</p>
+                            <p className="p-text-3-1-2 mb-3">Rs. {Number(computedValue?.credited).toFixed(2)}</p>
                           </div>
                         </div>
                          )}
@@ -548,7 +667,7 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                             </p>
                           </div>
                           <div>
-                            <p className="p-text-3-1-2 mb-3">Rs. {computedValue?.credited}</p>
+                            <p className="p-text-3-1-2 mb-3">Rs. {Number(computedValue?.credited).toFixed(2)}</p>
                           </div>
                         </div>
                     )}
@@ -556,11 +675,11 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                         <div className="d-flex">
                           <div className="flex-grow-1 px-5">
                             <p className="p-text-3-1-2 text-align-right mb-2">
-                              total Refund Applicable
+                              Total Refund Applicable
                             </p>
                           </div>
                           <div>
-                            <p className="p-text-3-1-2 mb-2">Rs. {computedValue?.credited}</p>
+                            <p className="p-text-3-1-2 mb-2">Rs. {Number(computedValue?.credited).toFixed(2)}</p>
                           </div>
                         </div>
                           )}
@@ -572,7 +691,7 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                             </p>
                           </div>
                           <div>
-                            <p className="p-text-3-1-2 mb-3">- Rs.{computedValue?.credited}</p>
+                            <p className="p-text-3-1-2 mb-3">- Rs.{Number(computedValue?.credited).toFixed(2)}</p>
                           </div>
                         </div>
                     )}
@@ -584,7 +703,7 @@ const cancelCharge= ((tcancelCharge/100) * totalPaid);
                             </p>
                           </div>
                           <div>
-                            <p className="p-text-3-fg mb-3">Rs.{computedValue?.credited}</p>
+                            <p className="p-text-3-fg mb-3">Rs.{Number(computedValue?.credited).toFixed(2)}</p>
                           </div>
                         </div>
                       </div>

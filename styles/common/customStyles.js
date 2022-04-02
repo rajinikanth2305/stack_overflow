@@ -2402,6 +2402,10 @@ export const customStyles = css.global`
       overflow: auto;
     }
 
+    #checkoutmodal .checkout-detail-box-outer {
+      height: 300px !important;
+    }
+
     .table-dashboard-profile-style-1.ctb > thead > tr,
     .table-dashboard-profile-style-1.ctb > tbody > tr {
       display: grid;
@@ -3194,5 +3198,20 @@ export const customStyles = css.global`
   }
   .ih-bg-color-gold {
     color: #ffd700 !important;
+  }
+
+  .table-btn-maroon-sm {
+    background: rgba(157, 58, 11, 1);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
+    border-radius: 0;
+    line-height: 20px;
+    text-align: center;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 1);
+    text-transform: none;
+    padding: 0 10px;
   }
 `;

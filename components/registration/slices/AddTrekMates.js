@@ -54,6 +54,7 @@ const AddTrekMates = forwardRef((props, ref) => {
 
   const onDialogShow = (status) => {
     if(status === "DIFFICULT_TREK") {
+      setDisplayBasic(false);
       setDisplayDifficultTrek(true);
     }
     else{
@@ -173,7 +174,7 @@ const renderFooter = (name) => {
     }
 
     const sdata = JSON.parse(JSON.stringify(stateData.data));
-    sdata.trekUsers.push({
+    sdata?.trekUsers?.push({
       id: newUserData.id,
       firstName: data.firstName,
       lastName: data.lastName,
@@ -299,12 +300,24 @@ const renderFooter = (name) => {
     try {
       responseData = await saveDraft(stateData.data);
       console.log(responseData);
-      if(responseData.data.bookingState==="WAITING_LIST" || responseData.data.bookingState==="DIFFICULT_TREK") {
+      if(responseData.data.state==="WAITING_LIST" || responseData.data.state==="DIFFICULT_TREK") {
         /// DISABLE THE PAYMENT TAB
         // props.onNextTabEvent("makepayment",WAITING_LIST);
-        onDialogShow(responseData.data.bookingState);
+        onDialogShow(responseData.data.state);
       }
       else {
+
+       const sdata = JSON.parse(JSON.stringify(stateData.data));
+        let vouchers = await getUsersVoucherByBookingId(sdata.bookingId);
+        if (vouchers.length > 0) {
+          vouchers = transFormVoucherPayload(vouchers);
+        }
+
+        //console.log(vouchers);
+        sdata.voucherDetails = vouchers;
+        await dispatch(addOrUpdateState(sdata));
+        //add();
+        props.trekUsersChange();
         props.onNextTabEvent("makepayment");
       }
 
@@ -411,11 +424,15 @@ const renderFooter = (name) => {
       trekFeeForTheUser: 0
     });
 
-    vouchers = await getUsersVoucherByBookingId(stdata.bookingId);
+   /* vouchers = await getUsersVoucherByBookingId(stdata.bookingId);
     if (vouchers.length > 0) {
       vouchers = transFormVoucherPayload(vouchers);
     }
-    sdata.voucherDetails = vouchers;
+
+    console.log(vouchers);
+
+    sdata.voucherDetails = vouchers;*/
+
     await dispatch(addOrUpdateState(sdata));
     add();
     setFindUserData(undefined);
