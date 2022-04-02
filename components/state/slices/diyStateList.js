@@ -102,11 +102,8 @@ const DiyStateList = ({ slice }) => {
 
                     <div>
                       <p className="p-text-4">
+                        {data?.data?.sub_title}
                         {/* {RichText.asText(
-                          getArticleImage &&
-                            getArticleImage[0]?.primary?.caption
-                        )} */}
-                        {RichText.asText(
                           getArticleImage &&
                             getArticleImage[0]?.primary?.caption
                         )?.length > 120
@@ -117,7 +114,7 @@ const DiyStateList = ({ slice }) => {
                           : RichText.asText(
                               getArticleImage &&
                                 getArticleImage[0]?.primary?.caption
-                            )}
+                            )} */}
                       </p>
                     </div>
                     <div className="d-flex align-items-center mb-3 p-btn-btm">
