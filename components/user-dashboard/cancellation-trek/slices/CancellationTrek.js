@@ -108,6 +108,14 @@ const CancellationTrek = () => {
           setCancelPercentage(cancelPercent);
           console.log(cancelPercent);
         }
+
+        const compvalue={
+          totalAmountPaid:0.00,
+          credited:0.00
+         };
+          setComputedValue(compvalue);
+        
+
         setParticipants(lparticipants);
         const arr = Array.from(new Array(lparticipants.length), (x, i) => i);
        // console.log(arr.length);
@@ -139,6 +147,13 @@ const CancellationTrek = () => {
           //}
         //});
 
+        const compvalue={
+          totalAmountPaid:0.00,
+          credited:0.00
+         };
+          setComputedValue(compvalue);
+        
+
         setParticipants(lparticipants);
         const arr = Array.from(new Array(lparticipants.length), (x, i) => i);
        // console.log(arr.length);
@@ -146,7 +161,9 @@ const CancellationTrek = () => {
         setCounter(arr.length);
         setRender(true);
      // });
-    }
+
+        }
+
   };
 
   //"backpackOffloadingAmountPaid": 0,

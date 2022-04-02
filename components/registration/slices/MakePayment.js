@@ -120,7 +120,9 @@ const MakePayment = forwardRef((props, ref) => {
   }));
 
   const setChangeStateData = async (sdata, trekFee) => {
+    
     sdata.trekFee = trekFee;
+
     sdata.trekUsers.map(x => {
       if (x.trekFeeForTheUser == 0) {
         x.trekFeeForTheUser = trekFee;
@@ -153,7 +155,6 @@ const MakePayment = forwardRef((props, ref) => {
    }
 
   const computeTotal = (usersData, sdata) => {
-
     let totalTrekFee = usersData.reduce(
       (a, v) => (a = a + v.trekFeeForTheUser),
       0
@@ -162,10 +163,15 @@ const MakePayment = forwardRef((props, ref) => {
     const taxPercentage=usersData[0]?.taxPercentage;
    // console.log(taxPercentage);
 
-    const insuranceAmount = usersData.reduce(
+   /* const insuranceAmount = usersData.reduce(
       (a, v) => (a = a + v?.insuranceAmount),
       0
-    );
+    );*/
+
+   const inAmount= usersData[0].insuranceAmount;
+
+ const insuranceAmount=inAmount * usersData.length;
+ console.log(insuranceAmount);
  
     totalTrekFee=parseFloat(Number(totalTrekFee).toFixed(2));
 
@@ -192,7 +198,7 @@ const MakePayment = forwardRef((props, ref) => {
       }
     });
 
-     console.log(youpay);
+    console.log(computeFields);
     return youpay;
   };
 
@@ -230,7 +236,16 @@ const MakePayment = forwardRef((props, ref) => {
         vid => vid.id == user.optedVoucherId
       );
 
-      const youPay = user.trekFeeForTheUser; //computeTotal(sdata.trekUsers);
+      const totalTrekFee=user?.trekFeeForTheUser;
+      const taxPercentage=user?.taxPercentage;
+      const insuranceAmount = sdata.trekUsers[0]?.insuranceAmount;
+      const gst = taxPercentage;
+      const gstValue =parseFloat( Number((gst / 100) * totalTrekFee).toFixed(2));
+      const total = (totalTrekFee + gstValue + insuranceAmount);
+
+      console.log(total);
+
+      const youPay = total;//user.trekFeeForTheUser  ; //computeTotal(sdata.trekUsers);
 
       if (youPay > 0) {
         const currentAvailableAmount = selectedVoucher.amountAvailable;
@@ -239,7 +254,7 @@ const MakePayment = forwardRef((props, ref) => {
           /// If Vocuher has available amount
           const amountToDeductInVocuher =
             youPay > currentAvailableAmount ? currentAvailableAmount : youPay;
-          console.log(amountToDeductInVocuher);
+          //console.log(amountToDeductInVocuher);
           sdata.trekUsers.find(u => u.id === id).voucherId =user.optedVoucherId;
           sdata.trekUsers.find(u => u.id === id).voucherAmount = amountToDeductInVocuher;
          // const availableAmt= sdata.voucherDetails.find(vid => vid.id == user.optedVoucherId).amountAvailable;
@@ -249,6 +264,7 @@ const MakePayment = forwardRef((props, ref) => {
       }
       //console.log(JSON.stringify(sdata));
       await dispatch(addOrUpdateState(sdata));
+
       computeTotal(sdata.trekUsers);
     }
   };
@@ -546,8 +562,16 @@ const MakePayment = forwardRef((props, ref) => {
                           </td>
                           <td>
                             Rs.{" "}
-                            {data?.trekFeeForTheUser -
-                              Number(data?.voucherAmount)}
+                             {
+                              (data?.trekFeeForTheUser -Number(data?.voucherAmount)) <= 0 && (
+                                0
+                              )
+                              }
+                              {
+                              (data?.trekFeeForTheUser - Number(data?.voucherAmount)) > 0 && (
+                                data?.trekFeeForTheUser -Number(data?.voucherAmount)
+                              )
+                              }
                           </td>
                         </tr>
                       );
