@@ -52,13 +52,20 @@ export const blogLinkResolver =(doc)=>{
     else if (doc.type === 'trek') {
       return '/trek/'+ doc.uid;
     }
+    else if (doc.type === 'family_trek') {
+      return `/family-trek/${doc.uid}`;
+    }
+   else  if (doc.type === 'document_trek_type') {
+      return `/documented-trek/${doc.uid}`;
+    }
+   else  if (doc.type === 'articles_landing_type') {
+      return `/articles/${doc.uid}`;
+    }
     return doc.uid;
-  }else {
+  }
+  else {
     return doc.url;
   }
- 
- 
-  
 }
 
 // Additional helper function for Next/Link components

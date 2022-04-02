@@ -54,6 +54,7 @@ const AddTrekMates = forwardRef((props, ref) => {
 
   const onDialogShow = (status) => {
     if(status === "DIFFICULT_TREK") {
+      setDisplayBasic(false);
       setDisplayDifficultTrek(true);
     }
     else{
@@ -302,7 +303,7 @@ const renderFooter = (name) => {
       if(responseData.data.state==="WAITING_LIST" || responseData.data.state==="DIFFICULT_TREK") {
         /// DISABLE THE PAYMENT TAB
         // props.onNextTabEvent("makepayment",WAITING_LIST);
-        onDialogShow(responseData.data.bookingState);
+        onDialogShow(responseData.data.state);
       }
       else {
 
