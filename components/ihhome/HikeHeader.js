@@ -51,20 +51,34 @@ const HikeHeader = (auth = false) => {
   
 
   const fetchData = async (stext) => {
-
-   // console.log(stext);
-
       if (stext && stext !== "") {
-   //if (searchText && searchText !== "") {
+        const searchResultContext = [];
       const client = Client();
       await client
         .query([
-          Prismic.Predicates.fulltext("my.trek.search_keywords", stext)
+          Prismic.Predicates.fulltext("my.trek.search_keywords", stext),
         ])
         .then(function(response) {
-         // console.log(response);
-          setSearchResults(response?.results);
+          response?.results.forEach(result => searchResultContext.push(result));
         });
+
+      await client
+        .query([
+          Prismic.Predicates.fulltext("my.post.search_keywords", stext)
+        ])
+        .then(function(response) {
+          response?.results.forEach(result => searchResultContext.push(result));
+        });
+
+      await client
+        .query([
+          Prismic.Predicates.fulltext("my.document_trek_type.search_keywords", stext)
+        ])
+        .then(function(response) {
+          response?.results.forEach(result => searchResultContext.push(result));
+        });
+
+        setSearchResults(searchResultContext);
 
       // await client
       //     .query(
@@ -101,6 +115,7 @@ const HikeHeader = (auth = false) => {
     setSearchText(nextValue);
     fetchData();
   };
+
 
   const autoSearchTreks = (event) => {
    // console.log(event.query.toLowerCase());
@@ -141,7 +156,8 @@ const HikeHeader = (auth = false) => {
                 </div>
                 <div className="col-7 px-2">
                   <p className="search-result-title">
-                    {data?.data?.trek_title[0]?.text}
+                    {data?.data?.trek_title ? data?.data?.trek_title[0]?.text : ""}
+                    {data?.data?.title ? data?.data?.title[0]?.text : ""}
                   </p>
                 </div>
               </div>
