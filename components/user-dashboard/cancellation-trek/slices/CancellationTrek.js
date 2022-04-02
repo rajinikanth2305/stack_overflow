@@ -21,6 +21,10 @@ import { Client } from "../../../../utils/prismicHelpers";
 import { confirmPopup } from "primereact/confirmpopup"; // To use confirmPopup method
 import Image from "next/image";
 import { Toast } from "primereact/toast";
+import "primeicons/primeicons.css";
+import "primereact/resources/themes/saga-blue/theme.css";
+import "primereact/resources/primereact.css";
+import "primeflex/primeflex.css";
 import BoPayment from "../../bo-payment/slices/BoPayment";
 import { useForm, Controller } from "react-hook-form";
 
@@ -234,11 +238,13 @@ const CancellationTrek = () => {
       cancelParticipantBooking(bookings.id,moneytaryRefund,offloadingPath, participantList).then(
         res => {
           toast.current.show({
-            severity: "info",
+            severity: "success",
             summary: `'Cancelled successfully'`,
             detail: "Cancellation"
           });
-         // router.push(`/user-dashboard/user-upcoming-treks`);
+
+
+          router.push(`/user-dashboard/user-upcoming-treks`);
           //fetchAndBindUserBookings(upComingTrek.email);
           //handleClose();
         }
@@ -311,6 +317,7 @@ const CancellationTrek = () => {
 
   const ontoggle=()=> {
     let tmoneytaryRefund=moneytaryRefund;
+
     if(moneytaryRefund) {
       tmoneytaryRefund=false;
       setMoneytaryRefund(false);
@@ -335,7 +342,6 @@ const CancellationTrek = () => {
  }
 });
 
-
  if(tmoneytaryRefund===true) {
        actualRefundPercentage=(100-cancelPercentage);
        percentage=(actualRefundPercentage/100);
@@ -352,7 +358,7 @@ const CancellationTrek = () => {
 }
 
      const compvalue={
-           totalAmountPaid:parseFloat(Number(roundToTwo(totalPaid)).toFixed(2)),
+           totalAmountPaid:parseFloat(Number((totalPaid)).toFixed(2)),
            credited:parseFloat(Number(roundToTwo(refundValue)).toFixed(2))
      }
 
@@ -491,7 +497,7 @@ const CancellationTrek = () => {
                                     percentage=(actualRefundPercentage/100);
                                    // console.log(percentage);
                                     refundValue = (percentage * sdata?.amountPaid);
-                                    cancelCharge= ((cancelPercentage/100) * sdata?.amountPaid);
+                                    cancelCharge= Number((cancelPercentage/100) * sdata?.amountPaid).toFixed(2);
                               }
                               else {
                                actualRefundPercentage=(100);
@@ -535,21 +541,18 @@ const CancellationTrek = () => {
                                 {index + 1}. {name}
                               </td>
                               <td>
-                                { flagValue==='trek-p-cancel' ?
-                                  sdata?.amountPaid : sdata?.backpackOffloadingAmountPaid
-                                }
+                                 { Number(sdata?.amountPaid).toFixed(2) }
                               </td>
                               <td>
-                                {cancelCharge}
+                                {Number(cancelCharge).toFixed(2)}
                               </td>
-
 
                               {moneytaryRefund==false && (
                               <td>{sdata?.voucherCredited}</td>
                               )}
 
                               {moneytaryRefund==true && (
-                              <td>{refundValue}</td>
+                              <td>{Number(refundValue).toFixed(2)}</td>
                               )}
                             </tr>
                           </>
@@ -577,13 +580,13 @@ const CancellationTrek = () => {
                       </div> */}
                       <div className="d-flex align-items-center">
                         <div className="mt-2 flex-grow-1">
-                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline" onClick={e => {onClearSelection()}}>
+                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline cursor-poniter" onClick={e => {onClearSelection()}}>
                             Clear Selection
                           </p>
                         </div>
                         <div>
                         <div className="mt-2 flex-grow-1">
-                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline" onClick={e => {ontoggle()}}>
+                          <p className="m-0 p-text-10-fgb text-center text-decoration-underline cursor-poniter" onClick={e => {ontoggle()}}>
                             I want refund 
                           </p>
                         </div>
@@ -664,7 +667,7 @@ const CancellationTrek = () => {
                             </p>
                           </div>
                           <div>
-                            <p className="p-text-3-1-2 mb-3">Rs. {Number(computedValue?.credited).toFixed()}</p>
+                            <p className="p-text-3-1-2 mb-3">Rs. {Number(computedValue?.credited).toFixed(2)}</p>
                           </div>
                         </div>
                     )}
@@ -672,7 +675,7 @@ const CancellationTrek = () => {
                         <div className="d-flex">
                           <div className="flex-grow-1 px-5">
                             <p className="p-text-3-1-2 text-align-right mb-2">
-                              total Refund Applicable
+                              Total Refund Applicable
                             </p>
                           </div>
                           <div>

@@ -298,7 +298,7 @@ const WelcomeProfile = () => {
       accept: () => {
         cancelUserBooking(trekData.email, trekData.bookingId).then(res => {
           toast.current.show({
-            severity: "info",
+            severity: "success",
             summary: `'Cancelled   ${trekData.trekName} Booking successfully'`,
             detail: "Cancel-Trek-Booking"
           });
@@ -371,7 +371,7 @@ const WelcomeProfile = () => {
         participantList
       ).then(res => {
         toast.current.show({
-          severity: "info",
+          severity: "success",
           summary: `'Cancelled successfully'`,
           detail: "Cancel-Trek-Booking"
         });
@@ -389,7 +389,7 @@ const WelcomeProfile = () => {
 
   const onLogout = () => {
     /*toast.current.show({
-    severity: "info",
+    severity: "success",
     summary: `'Logout successfully'`,
     detail: "Logout"
   });*/
@@ -567,7 +567,7 @@ const WelcomeProfile = () => {
                                         <div className="m-col-12">
                                           <p className="m-0 p-text-small-fg m-col-3 m-d-none">
                                             Experience coordinator
-                                            <span className="exp-co-icons">
+                                            {/* <span className="exp-co-icons">
                                               <i
                                                 className="fa fa-phone"
                                                 aria-hidden="true"
@@ -584,7 +584,7 @@ const WelcomeProfile = () => {
                                                 className="fa fa-envelope"
                                                 aria-hidden="true"
                                               ></i>
-                                            </span>
+                                            </span> */}
                                           </p>
                                           <p className="m-0 p-text-small-fg m-col-3 m-d-block">
                                             Experience Coordinator
@@ -854,7 +854,7 @@ const WelcomeProfile = () => {
                                             <div className="m-col-12">
                                               <p className="m-0 p-text-small-fg m-col-3 m-d-none">
                                                 Experience coordinator{" "}
-                                                <span className="exp-co-icons">
+                                                {/* <span className="exp-co-icons">
                                                   <i
                                                     className="fa fa-phone"
                                                     aria-hidden="true"
@@ -871,7 +871,7 @@ const WelcomeProfile = () => {
                                                     className="fa fa-envelope"
                                                     aria-hidden="true"
                                                   ></i>
-                                                </span>
+                                                </span> */}
                                               </p>
                                               <p className="m-0 p-text-small-fg m-col-3 m-d-block">
                                                 Experience Coordinator

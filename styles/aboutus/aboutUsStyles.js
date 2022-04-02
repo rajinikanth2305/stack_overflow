@@ -258,6 +258,11 @@ export const aboutUsStyles = css.global`
       line-height: 24px;
     }
 
+    .founder_image {
+      height: 190px;
+      width: 140px;
+    }
+
     // .banner-image-mobile {
     //   display: block;
     //   width: 100%;

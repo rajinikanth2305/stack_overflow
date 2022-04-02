@@ -251,9 +251,9 @@ const HikeHeader = (auth = false) => {
                   ""
                 ) : (
                   <NavLink
-                    href="../../../family-trek/family-trek"
+                    href="../../../family-trek/family-trek-page"
                     className={
-                      router.asPath == "/family-trek/family-trek"
+                      router.asPath == "/family-trek/family-trek-page"
                         ? "active-custom"
                         : ""
                     }
@@ -523,7 +523,7 @@ const HikeHeader = (auth = false) => {
                     <Link href="../../../green-trails">
                       <DropdownItem>Green Trails</DropdownItem>
                     </Link>
-                    <Link href="../../../articles/latest-updates">
+                    <Link href="../../../articles/transformation-stories">
                       <DropdownItem>Articles</DropdownItem>
                     </Link>
                   </DropdownMenu>
