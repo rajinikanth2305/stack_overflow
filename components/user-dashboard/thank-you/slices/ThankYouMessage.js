@@ -48,7 +48,9 @@ const UserMP = () => {
             <div className="col-md-6 col-12">
               <p className="p-text-1-fgt mb-4">
                { status==="success" && (
-                <span className="border-bottom-custom-1 pb-1">  Payment received! </span>
+                <span className="border-bottom-custom-1 pb-1">  Payment received! 
+                 Success! Congratulations on booking a trek! We have mailed you a payment receipt.
+                </span>
                  )
                }
                    { status==="failed" && (
@@ -60,9 +62,7 @@ const UserMP = () => {
                  )
                }
               </p>
-              <p>
-               Success! Congratulations on booking a trek! We have mailed you a payment receipt.
-              </p>
+             
               <p className="p-text-3-fg">You will be redirected to the Indiahikes dashboard in 5 seconds</p>
               <p className="h-text"><a href="/user-dashboard/user-upcoming-treks">Click here if you are not redirected.</a></p>
             </div>
