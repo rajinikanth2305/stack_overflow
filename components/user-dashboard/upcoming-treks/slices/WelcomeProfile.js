@@ -905,10 +905,7 @@ const WelcomeProfile = () => {
                                               </p>
                                             </div>
                                             <div className="d-flex justify-content-end w-100 m-m-t-10">
-                                              {trekData?.bookingState ===
-                                                "PAYMENT" ||
-                                                (trekData?.bookingState ===
-                                                  "ADD_PARTICIPANTS" && (
+                                              {(trekData?.bookingState ==="PAYMENT" || trekData?.bookingState === "ADD_PARTICIPANTS") && (
                                                   <>
                                                     <button
                                                       className="btn table-btn-blue mx-3 hvr-grow"
@@ -933,7 +930,7 @@ const WelcomeProfile = () => {
                                                       Make payment
                                                     </button>
                                                   </>
-                                                ))}
+                                                )}
                                             </div>
                                             <div>
                                               {trekData?.bookingState ===

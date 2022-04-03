@@ -232,16 +232,18 @@ const MakePayment = forwardRef((props, ref) => {
     const user = sdata.trekUsers.find(u => u.id === id);
 
     if (user.optedVoucherId > 0) {
-      const selectedVoucher = sdata.voucherDetails.find(
-        vid => vid.id == user.optedVoucherId
-      );
+      const selectedVoucher = sdata.voucherDetails.find(vid => vid.id == user.optedVoucherId);
+
+      console.log(selectedVoucher);
 
       const totalTrekFee=user?.trekFeeForTheUser;
-      const taxPercentage=user?.taxPercentage;
+      const taxPercentage=sdata.trekUsers[0]?.taxPercentage;
       const insuranceAmount = sdata.trekUsers[0]?.insuranceAmount;
       const gst = taxPercentage;
       const gstValue =parseFloat( Number((gst / 100) * totalTrekFee).toFixed(2));
       const total = (totalTrekFee + gstValue + insuranceAmount);
+
+    
 
       console.log(total);
 
@@ -569,8 +571,8 @@ const MakePayment = forwardRef((props, ref) => {
                               }
                               {
                               (data?.trekFeeForTheUser - Number(data?.voucherAmount)) > 0 && (
-                                data?.trekFeeForTheUser -Number(data?.voucherAmount)
-                              )
+                                Number(data?.trekFeeForTheUser -Number(data?.voucherAmount)).toFixed(2)
+                                )
                               }
                           </td>
                         </tr>
