@@ -2391,6 +2391,27 @@ export const customStyles = css.global`
     width: 20px;
   }
 
+  .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+    border-color: transparent;
+  }
+
+  .mob-drop-down.dropdown > button.dropdown-toggle.btn.btn-success {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    color: #000000;
+  }
+
+  .mob-drop-down.dropdown > button.dropdown-toggle.btn.btn-success:focus {
+    box-shadow: none;
+  }
+
+  .mob-drop-down.dropdown > .dropdown-menu.show {
+    width: 100%;
+    height: 150px;
+    overflow: auto;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
