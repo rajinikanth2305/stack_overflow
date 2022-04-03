@@ -359,6 +359,7 @@ const MakePayment = forwardRef((props, ref) => {
 
   const buildVouchers = data => {
     const vouchers = [];
+    console.log(data?.trekUsers);
     data?.trekUsers?.map(u => {
       ///if (u.voucherAmount > 0) {
         vouchers.push({

@@ -104,7 +104,6 @@ const CancellationTrek = () => {
         });
 
         if(lparticipants.length > 0) {
-          
           const percentages={
             cashCancellationPercentage:lparticipants[0].cashCancellationPercentage,
             voucherCancellationPercentage:lparticipants[0].voucherCancellationPercentage,
@@ -113,13 +112,14 @@ const CancellationTrek = () => {
           setHeaderPercentage(percentages);
           }
 
-          const compvalue={
+        const compvalue={
             totalFeePaid:0,
             voucherCredit:0,
             cashCredit:0,
             youReceive:0,
           }
-          setComputedValue(compvalue);
+
+        setComputedValue(compvalue);
         
 
         setParticipants(lparticipants);

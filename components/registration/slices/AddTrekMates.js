@@ -308,7 +308,10 @@ const renderFooter = (name) => {
       else {
 
        const sdata = JSON.parse(JSON.stringify(stateData.data));
-        let vouchers = await getUsersVoucherByBookingId(sdata.bookingId);
+
+        
+
+       let vouchers = await getUsersVoucherByBookingId(sdata.bookingId);
         if (vouchers.length > 0) {
           vouchers = transFormVoucherPayload(vouchers);
         }
@@ -380,8 +383,8 @@ const renderFooter = (name) => {
       insuranceAmount:stdata?.trekUsers[0].insuranceAmount
     });
 
-    console.log(stdata);
-    console.log( stdata?.trekUsers[0].insuranceAmount);
+   // console.log(stdata);
+   // console.log( stdata?.trekUsers[0].insuranceAmount);
 
     // let responseData;
     // try {
@@ -414,7 +417,7 @@ const renderFooter = (name) => {
       lastName: udata.lastName,
       email: udata.email,
       id: udata.id,
-      participantsId: udata.id,
+      participantsId: udata.id, /// userid;
       primaryUser: false,
       trekFee: 0,
       voucherId: "",
