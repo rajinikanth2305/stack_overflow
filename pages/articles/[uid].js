@@ -27,7 +27,7 @@ const Articles1 = ({
   trekkingprimaryArticleData,
   trekkingArticleData,
   ihAlitudeResaerch,
-  laPrimaryArticlePrimaryArticleData,
+  ihLaPrimaryArticlePrimaryArticleData,
 }) => {
   if (doc && doc.data) {
     return (
@@ -55,7 +55,7 @@ const Articles1 = ({
           trekkingprimaryArticleData={trekkingprimaryArticleData}
           trekkingArticleData={trekkingArticleData}
           ihAlitudeResaerch={ihAlitudeResaerch}
-          laPrimaryArticlePrimaryArticleData={laPrimaryArticlePrimaryArticleData}
+          ihLaPrimaryArticlePrimaryArticleData={ihLaPrimaryArticlePrimaryArticleData}
         />
         <IHTrekWithSwathi />
         <IHFooter />
@@ -99,7 +99,7 @@ export async function getStaticProps({
   const trekkingArticleData = [];
 
   const highAlititudeData = [];
-  const laPrimaryArticlePrimaryArticleData = [];
+  // const laPrimaryArticlePrimaryArticleData = [];
 
   const articleTabsList = await client.query([
     Prismic.Predicates.at("document.type", "articles_landing_type")
@@ -206,12 +206,43 @@ export async function getStaticProps({
     }
   }
 
-  const laPrimaryArticlePrimaryArticle =
-  latestArticleSlice && latestArticleSlice?.primary?.primary_article_link?.id;
-  if (laPrimaryArticlePrimaryArticle !== undefined) {
-  const article_details = await Client().getByID(laPrimaryArticlePrimaryArticle);
-  laPrimaryArticlePrimaryArticleData.push(article_details);
-}
+  let ihLaPrimaryArticlePrimaryArticleData = [];
+
+  if (latestArticleSlice?.length > 0) {
+
+    for (var i = 0; i < latestArticleSlice?.length; i++) {
+
+      let  linkedLatestPrimaryArticles=[];
+
+      const data = latestArticleSlice[i]; 
+
+      // for (var k = 0; k < data?.length; k++) {
+        const slugUrl = data && data?.primary?.primary_article_link?.id;
+        if (slugUrl !== undefined) {
+          const hikesnews_article_details = await Client().getByID(slugUrl);
+          if (
+            hikesnews_article_details !== undefined &&
+            hikesnews_article_details !== null
+          )
+          linkedLatestPrimaryArticles.push(hikesnews_article_details);
+        }
+      // }
+
+      if(linkedLatestPrimaryArticles.length > 0) {
+        ihLaPrimaryArticlePrimaryArticleData.push({
+            key: latestArticleSlice[i].primary?.heading1[0].text,
+            value:linkedLatestPrimaryArticles
+          });
+       }
+    }
+  }
+
+//   const laPrimaryArticlePrimaryArticle =
+//   latestArticleSlice && latestArticleSlice?.primary?.primary_article_link?.id;
+//   if (laPrimaryArticlePrimaryArticle !== undefined) {
+//   const article_details = await Client().getByID(laPrimaryArticlePrimaryArticle);
+//   laPrimaryArticlePrimaryArticleData.push(article_details);
+// }
 
 
   let ihnews =[];
@@ -342,7 +373,7 @@ export async function getStaticProps({
       trekkingprimaryArticleData,
       trekkingArticleData,
       ihAlitudeResaerch,
-      laPrimaryArticlePrimaryArticleData,
+      ihLaPrimaryArticlePrimaryArticleData,
     }
   };
 }
