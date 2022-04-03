@@ -19,7 +19,7 @@ const ArticleHome = ({
   const router = useRouter();
   const heading1 = slice?.primary?.heading1;
 
-  const tabsList = articleTabsList?.results?.map(function(data, i) {
+  const tabsList = articleTabsList?.results?.slice(0, 6)?.map(function(data, i) {
     const slice = data?.data?.body;
     const slice1Data =
       slice && slice?.filter(x => x.slice_type === "articles_tab");

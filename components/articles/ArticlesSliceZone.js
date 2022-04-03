@@ -26,7 +26,7 @@ const ArticlesSliceZone = ({
   trekkingprimaryArticleData,
   trekkingArticleData,
   ihAlitudeResaerch,
-  laPrimaryArticlePrimaryArticleData,
+  ihLaPrimaryArticlePrimaryArticleData,
 }) =>
   sliceZone.map((slice, index) => {
     switch (slice.slice_type) {
@@ -56,7 +56,7 @@ const ArticlesSliceZone = ({
           <Section4
             slice={slice}
             key={`slice-${index}`}
-            laPrimaryArticlePrimaryArticleData={laPrimaryArticlePrimaryArticleData}
+            laPrimaryArticlePrimaryArticleData={ihLaPrimaryArticlePrimaryArticleData?.find(x=>x?.key===slice?.primary?.heading1[0].text)?.value}
             latestArticleData={ihLatestArticles?.find(x=>x?.key===slice?.primary?.heading1[0].text)?.value}
           />
         );
