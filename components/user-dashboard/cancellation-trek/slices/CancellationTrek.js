@@ -213,6 +213,8 @@ const CancellationTrek = () => {
 let userInsuranceAmount=(userData.insuranceAmount==null ? 0: userData.insuranceAmount);
 let userVoucherAppliedAmount=(userData.voucherAmountApplied==null? 0:userData.voucherAmountApplied);
 
+console.log(userVoucherAppliedAmount);
+
 let insuranceRefund= 0;
 
     if(userInsuranceAmount>0 && userData.insuranceCancellationPercentage >0 ) {
@@ -231,6 +233,12 @@ if(userData.amountPaid>0 && userData.cashCancellationPercentage >0) {
 else {
   cashRefund=userData.amountPaid- (userInsuranceAmount + userVoucherAppliedAmount);
 }
+
+console.log(userData.amountPaid);
+console.log( (userData.amountPaid-(userInsuranceAmount + 0)));
+
+console.log((100-userData.cashCancellationPercentage)/100);
+console.log(cashRefund);
 
 let voucherRefund= 0;
 if(userData.amountPaid>0 && userData.voucherCancellationPercentage >0 ) {
@@ -592,7 +600,7 @@ setComputedValue(compvalue);
                               { Number(sdata?.insuranceAmount).toFixed(2) }
                               </td>
                               <td>
-                              { Number(sdata?.voucherAmountApplied==null ? 0 : sdata?.voucherAmountApplied ).toFixed(2) }
+                              { Number(sdata?.voucherUsed ).toFixed(2) }
                               </td>
                               {moneytaryRefund==true && (
                               <td>
@@ -699,13 +707,21 @@ setComputedValue(compvalue);
                             <p className="p-text-3-1-2 mb-3">Rs. 200</p>
                           </div>
                         </div>*/}
-                         {computedValue?.voucherCredit >0  && (
+                         {computedValue?.voucherCredit > 0  && (
                         <div className="d-flex justify-content-between">
+                          { computedValue?.cashCredit > 0 ? (
                           <div>
                             <p className="p-text-3-1-2 mb-3">
-                              Voucher Credited ({100-headerPercentages?.voucherCancellationPercentage}%)
+                              Voucher Credited 
                             </p>
                           </div>
+                          ):
+                          <div>
+                          <p className="p-text-3-1-2 mb-3">
+                            Voucher Credited ({100-headerPercentages?.voucherCancellationPercentage}%)
+                          </p>
+                        </div>
+                          }
                           <div>
                             <p className="p-text-3-1-2 mb-3">Rs. {Number(computedValue?.voucherCredit).toFixed(2)}</p>
                           </div>
@@ -764,7 +780,7 @@ setComputedValue(compvalue);
                       </div>
                     </div>
                     <div className="d-flex justify-content-center my-4 pt-1">
-                      {computedValue?.credited>0 && (
+                      {computedValue?.youReceive>0 && (
                       <button className="btn table-btn-maroon-lg" onClick={e => {onCancelSubmit()}}>
                         {flagValue==='trek-p-cancel' ? (
                          <span>Cancel Booking</span>

@@ -309,6 +309,13 @@ const renderFooter = (name) => {
 
        const sdata = JSON.parse(JSON.stringify(stateData.data));
 
+        sdata.trekUsers.map(p=> {
+          console.log(p);
+          const participant=responseData?.data?.participants.find(y=>y.userId===p.id);
+          console.log(participant);
+          p.participantsId=participant.id;
+          p.insuranceAmount=sdata.trekUsers[0].insuranceAmount;
+        });
         
 
        let vouchers = await getUsersVoucherByBookingId(sdata.bookingId);
@@ -417,7 +424,7 @@ const renderFooter = (name) => {
       lastName: udata.lastName,
       email: udata.email,
       id: udata.id,
-      participantsId: udata.id, /// userid;
+      participantsId:  udata.id, //// this needs to be check
       primaryUser: false,
       trekFee: 0,
       voucherId: "",
