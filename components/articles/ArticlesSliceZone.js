@@ -18,7 +18,7 @@ const ArticlesSliceZone = ({
   articleTabsList,
   section1DataList,
   primaryArticleData,
-  mostReadarticleData,
+  ihMoreReadArticles,
   latestPrimaryArticleData,
   latestArticleData,
   ihLatestArticles,
@@ -48,7 +48,7 @@ const ArticlesSliceZone = ({
           <Section3
             slice={slice}
             key={`slice-${index}`}
-            mostReadarticleData={mostReadarticleData}
+            mostReadarticleData={ihMoreReadArticles?.find(x=>x?.key===slice?.primary?.heading1[0].text)?.value}
           />
         );
       case "latest_articles":

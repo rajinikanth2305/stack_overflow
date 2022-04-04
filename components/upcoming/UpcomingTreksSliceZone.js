@@ -22,7 +22,7 @@ const UpComingTreksSliceZone = ({
   sliceZone,
   bestTrekToDoData,
   ucOpenData,
-  autumnData,
+  ihautumnData,
   winterData,
   treksToDoData,
   easyMordatesTreks,
@@ -61,7 +61,7 @@ const UpComingTreksSliceZone = ({
           <UCAutnumTreks
             slice={slice}
             key={`slice-${index}`}
-            autumnData={autumnData}
+            autumnData={ihautumnData?.find(x=>x?.key===slice?.primary?.uc_autumn_treks_title[0].text)?.value}
           />
         );
       case "uc_family_treks":
