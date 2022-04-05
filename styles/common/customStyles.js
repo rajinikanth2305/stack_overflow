@@ -2412,6 +2412,10 @@ export const customStyles = css.global`
     overflow: auto;
   }
 
+  .cursor-poniter {
+    cursor: pointer;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -2443,6 +2447,25 @@ export const customStyles = css.global`
     }
 
     .table.table-dashboard-profile-style-1.ctb > tbody > tr > td {
+      white-space: normal;
+    }
+    
+    .table-dashboard-profile-style-3.ctb > thead > tr,
+    .table-dashboard-profile-style-3.ctb > tbody > tr {
+      display: grid;
+    }
+
+    .table-dashboard-profile-style-3.ctb > tbody > tr {
+      border-bottom: 1px solid #d3d3d3;
+    }
+
+    .table-dashboard-profile-style-3.ctb > tbody > tr > td {
+      border: 0;
+      padding: 5px 0;
+      line-height: 15px;
+    }
+
+    .table.table-dashboard-profile-style-3.ctb > tbody > tr > td {
       white-space: normal;
     }
 
