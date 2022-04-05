@@ -28,6 +28,10 @@ import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import ReactStars from "react-rating-stars-component";
 import { Toast } from "primereact/toast";
+// import "primeicons/primeicons.css";
+import "primereact/resources/themes/saga-blue/theme.css";
+import "primereact/resources/primereact.css";
+// import "primeflex/primeflex.css";
 
 const UserPT = () => {
   const [activeTab, setActiveTab] = useState(null);
@@ -261,13 +265,14 @@ const UserPT = () => {
     saveUserReviews(saveObject)
       .then(res => {
         console.log("review saved successfully");
-        alert("Review submitted succesfully.");
+        // alert("Review submitted succesfully.");
         window.scrollTo(0, 0);
         toast?.current?.show({
           severity: "success",
           summary: `' Thanks for your review submission'`,
           detail: "Review Submission"
         });
+        setActiveTab(null);
       })
       .catch(res => {
         toast.current.show({

@@ -50,23 +50,24 @@ const BookYourTrek = ({ slice }) => {
     setBookingDate(value);
     setShowSelectedLabel(true);
     /// focus button
-   // if(document.getElementById("procregister"))
-      // document.getElementById("procregister").focus();
+    // if(document.getElementById("procregister"))
+    // document.getElementById("procregister").focus();
+    setTimeout(() => {
+      const element = document.getElementById('procregister');
+      const offset = 15;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top - 43;
+      const elementPosition = (elementRect - bodyRect);
+      const offsetPosition = elementPosition - offset;
+      document.getElementById("procregister").focus();
 
-const element = document.getElementById('procregister');
-const offset = 15;
-const bodyRect = document.body.getBoundingClientRect().top;
-const elementRect = element.getBoundingClientRect().top - 43;
-const elementPosition = (elementRect - bodyRect);
-const offsetPosition = elementPosition - offset;
-document.getElementById("procregister").focus();
 
-
-window.scrollTo({
-  top: offsetPosition-10,
-  behavior: 'smooth'
-});
-};
+      window.scrollTo({
+        top: offsetPosition - 10,
+        behavior: 'smooth'
+      });
+    }, 1000);
+  };
 
   const register = () => {
     if (bookingDate == undefined) {

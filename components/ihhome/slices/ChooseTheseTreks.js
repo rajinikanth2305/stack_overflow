@@ -146,7 +146,7 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
             </div>
           </div>
           <div>
-            <Slider className="home-choose-treks" {...settings}>
+            <Slider className="home-choose-treks btn-ul" {...settings}>
               {chooseTrekImage}
             </Slider>
           </div>
