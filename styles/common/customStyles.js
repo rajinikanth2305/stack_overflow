@@ -2473,6 +2473,10 @@ export const customStyles = css.global`
       overflow: auto;
     }
 
+    .faq_video_img {
+      height: 265px;
+    }
+
     .sustainable_img {
       height: 100%;
     }

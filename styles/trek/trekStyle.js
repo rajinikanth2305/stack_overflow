@@ -1839,7 +1839,7 @@ export const trekStyle = css.global`
     .bg-transparent-text-effect {
       background: rgba(255, 255, 255, 0.68);
       padding: 40px 0 0;
-      margin-top: -25px;
+      margin-top: -17px;
       z-index: 99;
       position: relative;
     }
