@@ -56,7 +56,7 @@ const UCAutnumTreks = ({ slice, autumnData }) => {
     }
   };
 
-  const ucAutumnTreksImages = autumnData?.map(function(data, i) {
+  const ucAutumnTreksImages = autumnData?.map(function (data, i) {
     const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
     let url;
     const slugUrl = data?.uid;
@@ -108,8 +108,8 @@ const UCAutnumTreks = ({ slice, autumnData }) => {
                       {/* {RichText.asText(tData?.primary?.sub_heading)} */}
                       {RichText.asText(tData?.primary?.sub_heading)?.length > 75
                         ? `${RichText.asText(
-                            tData?.primary?.sub_heading
-                          ).substring(0, 75)}...`
+                          tData?.primary?.sub_heading
+                        ).substring(0, 75)}...`
                         : RichText.asText(tData?.primary?.sub_heading)}
                     </div>
                     <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
@@ -136,67 +136,69 @@ const UCAutnumTreks = ({ slice, autumnData }) => {
         </div>
 
         <div className="m-d-block mb-3 border-bottom pb-3">
-          <div className="row d-flex aling-items-center hvr-grow">
-            <div className="col-5">
-              <div className="mob-autumn-img">
-                {tData?.primary?.trek_banner_image?.url && (
-                  <Image
-                    src={tData?.primary?.trek_banner_image?.url}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="50% 50%"
-                    alt="imgs"
-                  />
-                )}
-              </div>
-            </div>
-            <div className="col-7">
-              <div>
-                <h3 className="m-title-3">{tData?.primary?.trek_caption}</h3>
-                <p className="m-display-2">
-                  {RichText.asText(tData?.primary?.sub_heading)}
-                </p>
-                <div>
-                  <div>
-                    <p className="m-card-info-text m-0">
-                      <span className="list-dot-style-mob"></span>{" "}
-                      {tData?.primary?.duration[0]?.text} Days
-                    </p>
-                  </div>
-                  <div>
-                    <p className="m-card-info-text m-0">
-                      <span className="list-dot-style-mob"></span>{" "}
-                      {tData?.primary?.altitude[0]?.text}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="m-card-info-text m-0">
-                      <span className="list-dot-style-mob"></span>{" "}
-                      {tData?.primary?.difficulty[0]?.text}
-                    </p>
-                  </div>
+          <Link href={url ? url : "#"}>
+            <div className="row d-flex aling-items-center hvr-grow">
+              <div className="col-5">
+                <div className="mob-autumn-img">
+                  {tData?.primary?.trek_banner_image?.url && (
+                    <Image
+                      src={tData?.primary?.trek_banner_image?.url}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="50% 50%"
+                      alt="imgs"
+                    />
+                  )}
                 </div>
-                <div className="mt-3">
-                  {data?.uc_autumn_treks_family_trek === true ? (
+              </div>
+              <div className="col-7">
+                <div>
+                  <h3 className="m-title-3">{tData?.primary?.trek_caption}</h3>
+                  <p className="m-display-2">
+                    {RichText.asText(tData?.primary?.sub_heading)}
+                  </p>
+                  <div>
                     <div>
                       <p className="m-card-info-text m-0">
-                        <span className="color-yellow">*</span> family trek
+                        <span className="list-dot-style-mob"></span>{" "}
+                        {tData?.primary?.duration[0]?.text} Days
                       </p>
                     </div>
-                  ) : (
-                    ""
-                  )}
-                  <div className="flex-grow-1">
-                    <Link href={url ? url : "#"}>
+                    <div>
+                      <p className="m-card-info-text m-0">
+                        <span className="list-dot-style-mob"></span>{" "}
+                        {tData?.primary?.altitude[0]?.text}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="m-card-info-text m-0">
+                        <span className="list-dot-style-mob"></span>{" "}
+                        {tData?.primary?.difficulty[0]?.text}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="mt-3">
+                    {data?.uc_autumn_treks_family_trek === true ? (
+                      <div>
+                        <p className="m-card-info-text m-0">
+                          <span className="color-yellow">*</span> family trek
+                        </p>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    <div className="flex-grow-1">
+                      {/* <Link href={url ? url : "#"}> */}
                       <button className="btn m-btn-ih-green">
                         View dates / Register
                       </button>
-                    </Link>
+                      {/* </Link> */}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     );

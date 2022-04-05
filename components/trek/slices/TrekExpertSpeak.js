@@ -30,7 +30,7 @@ const TrekExpertSpeak = ({ slice }) => {
   const whatILikeImageView = whatILikeImageArray?.map((data, i) => {
     return (
       <div key={i}>
-        <div className="row d-flex align-items-center">
+        <div className="row d-flex align-items-center border-bottom mb-4">
           <div className="col-lg-7 col-md-12 mb-2 pb-3">
             <div>
               {data.what_i_like_content_title?.map((tit, index) => {

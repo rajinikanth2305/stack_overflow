@@ -149,6 +149,7 @@ const BestTrekToDo = ({ slice, bestTrekToDoData }) => {
     const getFamiltTrek = data?.tags?.find(x => x === "FamilyTrek");
     return (
       <div className="col-6" key={j}>
+        <Link href={url ? url : "#"}>
         <div className="card_sec hvr-grow">
           <div className="card trek_card_mb">
             <div className="m-uc_open_for_small_group_images">
@@ -191,17 +192,18 @@ const BestTrekToDo = ({ slice, bestTrekToDoData }) => {
                     )}
                   </div>
                   <div className="p-abs-btn pb-3">
-                    <Link href={url ? url : "#"}>
+                    {/* <Link href={url ? url : "#"}> */}
                       <button className="btn m-btn-ih-green px-2">
                         View Dates / Register
                       </button>
-                    </Link>
+                    {/* </Link> */}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        </Link>
       </div>
     );
   });

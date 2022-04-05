@@ -714,9 +714,9 @@ export const upcomingTrekPageStyle = css.global`
       padding: 0 20px;
     }
 
-    .ucOpenForSmallGroup_sec {
-      padding-top: 0;
-    }
+    // .ucOpenForSmallGroup_sec {
+    //   padding-top: 0;
+    // }
 
     .card_sec {
       margin: 5px 0;
