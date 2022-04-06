@@ -246,6 +246,12 @@ export const aboutUsStyles = css.global`
     border: 0;
   }
 
+  .nav.teams_tab {
+    overflow: auto;
+    flex-wrap: initial;
+    white-space: nowrap;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

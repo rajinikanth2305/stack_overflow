@@ -308,7 +308,17 @@ const renderFooter = (name) => {
       else {
 
        const sdata = JSON.parse(JSON.stringify(stateData.data));
-        let vouchers = await getUsersVoucherByBookingId(sdata.bookingId);
+
+        sdata.trekUsers.map(p=> {
+          console.log(p);
+          const participant=responseData?.data?.participants.find(y=>y.userId===p.id);
+          console.log(participant);
+          p.participantsId=participant.id;
+          p.insuranceAmount=sdata.trekUsers[0].insuranceAmount;
+        });
+        
+
+       let vouchers = await getUsersVoucherByBookingId(sdata.bookingId);
         if (vouchers.length > 0) {
           vouchers = transFormVoucherPayload(vouchers);
         }
@@ -380,8 +390,8 @@ const renderFooter = (name) => {
       insuranceAmount:stdata?.trekUsers[0].insuranceAmount
     });
 
-    console.log(stdata);
-    console.log( stdata?.trekUsers[0].insuranceAmount);
+   // console.log(stdata);
+   // console.log( stdata?.trekUsers[0].insuranceAmount);
 
     // let responseData;
     // try {
@@ -414,7 +424,7 @@ const renderFooter = (name) => {
       lastName: udata.lastName,
       email: udata.email,
       id: udata.id,
-      participantsId: udata.id,
+      participantsId:  udata.id, //// this needs to be check
       primaryUser: false,
       trekFee: 0,
       voucherId: "",

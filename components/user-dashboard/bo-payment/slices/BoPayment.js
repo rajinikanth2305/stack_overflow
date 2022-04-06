@@ -105,6 +105,9 @@ const BoPayment = forwardRef((props, ref) => {
 
   const onVoucherApply = (id, index) => {
     const sdata = offSelectedData.participants;
+
+    console.log(sdata);
+
     const user = sdata.find(u => u.id === id);
     console.log(user?.optedVoucherId);
 
@@ -112,7 +115,20 @@ const BoPayment = forwardRef((props, ref) => {
       const selectedVoucher = offSelectedData?.userVouchers?.find(
         vid => vid.id === user.optedVoucherId
       );
-      const youPay = user.youPay; //computeTotal(sdata);//computeWithExcludedVoucherId(user.optedVoucherId,sdata);
+
+      
+      const totalTrekFee=user?.offloadingFee;
+      const taxPercentage=user.taxPercentage;
+      //const insuranceAmount = user.insuranceAmount;
+      const gst = 5;
+      const gstValue =parseFloat( Number((gst / 100) * totalTrekFee).toFixed(2));
+      const total = (totalTrekFee + gstValue );
+
+      console.log(total);
+
+      const youPay = total;//user.trekFeeForTheUser  ; //computeTotal(sdata.trekUsers);
+
+     // const youPay = user.youPay; //computeTotal(sdata);//computeWithExcludedVoucherId(user.optedVoucherId,sdata);
       //console.log(youPay);
       if (youPay > 0) {
         const currentAvailableAmount = selectedVoucher.amountAvailable;
@@ -455,8 +471,26 @@ const BoPayment = forwardRef((props, ref) => {
                                     </div>
                                   </div>
                                 </td>
-                                <td>{sdata.offloadingFee}</td>
-                                <td>{sdata.youPay}</td>
+
+                                <td>
+                                  {sdata.offloadingFee}
+                                  </td>
+
+                                <td>
+
+                             {
+                              (sdata?.offloadingFee -Number(sdata?.voucherAmount)) <= 0 && (
+                                0
+                              )
+                              }
+                              {
+                              (sdata?.offloadingFee - Number(sdata?.voucherAmount)) > 0 && (
+                                Number(sdata?.offloadingFee -Number(sdata?.voucherAmount)).toFixed(2)
+                                )
+                              }
+
+                                  </td>
+
                               </tr>
                             </>
                           );

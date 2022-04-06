@@ -48,17 +48,17 @@ const HikeHeader = (auth = false) => {
   const [showSearch, setShowSearch] = useState(false);
 
   const [selectedTreks, setSelectedTreks] = useState([]);
-  
+
 
   const fetchData = async (stext) => {
-      if (stext && stext !== "") {
-        const searchResultContext = [];
+    if (stext && stext !== "") {
+      const searchResultContext = [];
       const client = Client();
       await client
         .query([
           Prismic.Predicates.fulltext("my.trek.search_keywords", stext),
         ])
-        .then(function(response) {
+        .then(function (response) {
           response?.results.forEach(result => searchResultContext.push(result));
         });
 
@@ -66,7 +66,7 @@ const HikeHeader = (auth = false) => {
         .query([
           Prismic.Predicates.fulltext("my.post.search_keywords", stext)
         ])
-        .then(function(response) {
+        .then(function (response) {
           response?.results.forEach(result => searchResultContext.push(result));
         });
 
@@ -74,11 +74,11 @@ const HikeHeader = (auth = false) => {
         .query([
           Prismic.Predicates.fulltext("my.document_trek_type.search_keywords", stext)
         ])
-        .then(function(response) {
+        .then(function (response) {
           response?.results.forEach(result => searchResultContext.push(result));
         });
 
-        setSearchResults(searchResultContext);
+      setSearchResults(searchResultContext);
 
       // await client
       //     .query(
@@ -118,14 +118,14 @@ const HikeHeader = (auth = false) => {
 
 
   const autoSearchTreks = (event) => {
-   // console.log(event.query.toLowerCase());
+    // console.log(event.query.toLowerCase());
     fetchData(event.query.toLowerCase());
   };
-  
+
 
   const resultListing =
     searchResults &&
-    searchResults?.map(function(data, i) {
+    searchResults?.map(function (data, i) {
       let url;
       const slugUrl = data?.uid;
       if (slugUrl) {
@@ -169,7 +169,7 @@ const HikeHeader = (auth = false) => {
 
   return (
     <>
-      <div className="border-bottom-custom-header position-sticky">
+      <div className="border-bottom-custom-header">
         <Navbar light expand="lg" className="container">
           <NavbarBrand href="/">
             <img
@@ -195,12 +195,12 @@ const HikeHeader = (auth = false) => {
                   aria-hidden="true"
                   onClick={() => {
                     setShowSearch(!showSearch);
-                    
-                    if(document.getElementById("ac-search"))
-                       document.getElementById("ac-search").value="";
-  
-                       setSearchResults([]);
-                    }
+
+                    if (document.getElementById("ac-search"))
+                      document.getElementById("ac-search").value = "";
+
+                    setSearchResults([]);
+                  }
                   }
                 ></i>
               </div>
@@ -210,9 +210,9 @@ const HikeHeader = (auth = false) => {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-              router.pathname === "/user-dashboard/user-trekvouchers" ||
-              router.pathname === "/user-dashboard/user-myprofile" ||
-              router.pathname === "/user-dashboard/user-previous-treks" ? (
+                router.pathname === "/user-dashboard/user-trekvouchers" ||
+                router.pathname === "/user-dashboard/user-myprofile" ||
+                router.pathname === "/user-dashboard/user-previous-treks" ? (
                 ""
               ) : (
                 <NavItem>
@@ -226,9 +226,9 @@ const HikeHeader = (auth = false) => {
               )}
               <NavItem>
                 {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
+                  router.pathname === "/user-dashboard/user-trekvouchers" ||
+                  router.pathname === "/user-dashboard/user-myprofile" ||
+                  router.pathname === "/user-dashboard/user-previous-treks" ? (
                   ""
                 ) : (
                   <NavLink
@@ -245,9 +245,9 @@ const HikeHeader = (auth = false) => {
               </NavItem>
               <NavItem>
                 {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
+                  router.pathname === "/user-dashboard/user-trekvouchers" ||
+                  router.pathname === "/user-dashboard/user-myprofile" ||
+                  router.pathname === "/user-dashboard/user-previous-treks" ? (
                   ""
                 ) : (
                   <NavLink
@@ -264,9 +264,9 @@ const HikeHeader = (auth = false) => {
               </NavItem>
               <NavItem>
                 {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
+                  router.pathname === "/user-dashboard/user-trekvouchers" ||
+                  router.pathname === "/user-dashboard/user-myprofile" ||
+                  router.pathname === "/user-dashboard/user-previous-treks" ? (
                   ""
                 ) : (
                   <NavLink
@@ -283,9 +283,9 @@ const HikeHeader = (auth = false) => {
               </NavItem>
               <NavItem>
                 {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
+                  router.pathname === "/user-dashboard/user-trekvouchers" ||
+                  router.pathname === "/user-dashboard/user-myprofile" ||
+                  router.pathname === "/user-dashboard/user-previous-treks" ? (
                   ""
                 ) : (
                   <NavLink
@@ -298,9 +298,9 @@ const HikeHeader = (auth = false) => {
               </NavItem>
               <NavItem>
                 {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
+                  router.pathname === "/user-dashboard/user-trekvouchers" ||
+                  router.pathname === "/user-dashboard/user-myprofile" ||
+                  router.pathname === "/user-dashboard/user-previous-treks" ? (
                   ""
                 ) : (
                   <NavLink
@@ -332,9 +332,9 @@ const HikeHeader = (auth = false) => {
             </NavItem> */}
               <NavItem className="m-d-block">
                 {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
+                  router.pathname === "/user-dashboard/user-trekvouchers" ||
+                  router.pathname === "/user-dashboard/user-myprofile" ||
+                  router.pathname === "/user-dashboard/user-previous-treks" ? (
                   <NavLink
                     href="../../../user-dashboard/user-upcoming-treks"
                     className={
@@ -351,9 +351,9 @@ const HikeHeader = (auth = false) => {
               </NavItem>
               <NavItem className="m-d-block">
                 {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
+                  router.pathname === "/user-dashboard/user-trekvouchers" ||
+                  router.pathname === "/user-dashboard/user-myprofile" ||
+                  router.pathname === "/user-dashboard/user-previous-treks" ? (
                   <NavLink
                     href="../../../user-dashboard/user-previous-treks"
                     className={
@@ -370,9 +370,9 @@ const HikeHeader = (auth = false) => {
               </NavItem>
               <NavItem className="m-d-block">
                 {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
+                  router.pathname === "/user-dashboard/user-trekvouchers" ||
+                  router.pathname === "/user-dashboard/user-myprofile" ||
+                  router.pathname === "/user-dashboard/user-previous-treks" ? (
                   <NavLink
                     href="../../../user-dashboard/user-myprofile"
                     className={
@@ -389,9 +389,9 @@ const HikeHeader = (auth = false) => {
               </NavItem>
               <NavItem className="m-d-block">
                 {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
+                  router.pathname === "/user-dashboard/user-trekvouchers" ||
+                  router.pathname === "/user-dashboard/user-myprofile" ||
+                  router.pathname === "/user-dashboard/user-previous-treks" ? (
                   <NavLink
                     href="../../../user-dashboard/user-trekvouchers"
                     className={
@@ -408,9 +408,9 @@ const HikeHeader = (auth = false) => {
               </NavItem>
               <NavItem className="m-d-block">
                 {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
+                  router.pathname === "/user-dashboard/user-trekvouchers" ||
+                  router.pathname === "/user-dashboard/user-myprofile" ||
+                  router.pathname === "/user-dashboard/user-previous-treks" ? (
                   <NavLink
                     href=""
                     // onClick={onLogout}
@@ -428,9 +428,9 @@ const HikeHeader = (auth = false) => {
               </NavItem>
               <NavItem>
                 {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
+                  router.pathname === "/user-dashboard/user-trekvouchers" ||
+                  router.pathname === "/user-dashboard/user-myprofile" ||
+                  router.pathname === "/user-dashboard/user-previous-treks" ? (
                   <NavLink
                     href="/"
                     className={router.pathname == "/" ? "active-custom" : ""}
@@ -446,12 +446,12 @@ const HikeHeader = (auth = false) => {
                 onClick={() => {
                   setShowSearch(!showSearch);
 
-                  if(document.getElementById("ac-search"))
-                     document.getElementById("ac-search").value="";
+                  if (document.getElementById("ac-search"))
+                    document.getElementById("ac-search").value = "";
 
-                     setSearchResults([]);
-                  }
-                 
+                  setSearchResults([]);
+                }
+
                 }
               >
                 {/* <NavLink className="view-in-desk">
@@ -461,9 +461,9 @@ const HikeHeader = (auth = false) => {
                   ></i>
                 </NavLink> */}
                 {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
+                  router.pathname === "/user-dashboard/user-trekvouchers" ||
+                  router.pathname === "/user-dashboard/user-myprofile" ||
+                  router.pathname === "/user-dashboard/user-previous-treks" ? (
                   ""
                 ) : (
                   <NavLink className="view-in-desk">
@@ -476,9 +476,9 @@ const HikeHeader = (auth = false) => {
               </NavItem>
 
               {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-              router.pathname === "/user-dashboard/user-trekvouchers" ||
-              router.pathname === "/user-dashboard/user-myprofile" ||
-              router.pathname === "/user-dashboard/user-previous-treks" ? (
+                router.pathname === "/user-dashboard/user-trekvouchers" ||
+                router.pathname === "/user-dashboard/user-myprofile" ||
+                router.pathname === "/user-dashboard/user-previous-treks" ? (
                 ""
               ) : (
                 <NavItem className="view-in-desk">
@@ -494,40 +494,87 @@ const HikeHeader = (auth = false) => {
               )}
 
               {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-              router.pathname === "/user-dashboard/user-trekvouchers" ||
-              router.pathname === "/user-dashboard/user-myprofile" ||
-              router.pathname === "/user-dashboard/user-previous-treks" ? (
+                router.pathname === "/user-dashboard/user-trekvouchers" ||
+                router.pathname === "/user-dashboard/user-myprofile" ||
+                router.pathname === "/user-dashboard/user-previous-treks" ? (
                 ""
               ) : (
-                <UncontrolledDropdown
-                  inNavbar
-                  nav
-                  className="r-nav"
-                >
-                  <DropdownToggle nav>
-                    <i
-                      className="fa fa-bars cursor-pointer m-d-none"
-                      aria-hidden="true"
-                    ></i> <span className="m-d-block">More</span>
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    <Link href="../../../aboutus">
-                      <DropdownItem>About us</DropdownItem>
-                    </Link>
-                    <Link href="../../../careers">
-                      <DropdownItem>Careers</DropdownItem>
-                    </Link>
-                    <Link href="../../../contact-us">
-                      <DropdownItem>Contact Us</DropdownItem>
-                    </Link>
-                    <Link href="../../../green-trails">
-                      <DropdownItem>Green Trails</DropdownItem>
-                    </Link>
-                    <Link href="../../../articles/transformation-stories">
-                      <DropdownItem>Articles</DropdownItem>
-                    </Link>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
+                <>
+                  <UncontrolledDropdown
+                    inNavbar
+                    nav
+                    className="r-nav m-d-none"
+                  >
+                    <DropdownToggle nav>
+                      <i
+                        className="fa fa-bars cursor-pointer m-d-none"
+                        aria-hidden="true"
+                      ></i> <span className="m-d-block">More</span>
+                    </DropdownToggle>
+                    <DropdownMenu>
+                      <Link href="../../../aboutus">
+                        <DropdownItem>About us</DropdownItem>
+                      </Link>
+                      <Link href="../../../careers">
+                        <DropdownItem>Careers</DropdownItem>
+                      </Link>
+                      <Link href="../../../contact-us">
+                        <DropdownItem>Contact Us</DropdownItem>
+                      </Link>
+                      <Link href="../../../green-trails">
+                        <DropdownItem>Green Trails</DropdownItem>
+                      </Link>
+                      <Link href="../../../articles/transformation-stories">
+                        <DropdownItem>Articles</DropdownItem>
+                      </Link>
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
+                  <NavItem className="view-in-mob">
+                    <NavLink href="../../../aboutus" className={
+                      router.pathname == "/aboutus"
+                        ? "active-custom"
+                        : ""
+                    }>
+                      About us
+                    </NavLink>
+                  </NavItem>
+                  <NavItem className="view-in-mob">
+                    <NavLink href="../../../careers" className={
+                      router.pathname == "/careers"
+                        ? "active-custom"
+                        : ""
+                    }>
+                      Careers
+                    </NavLink>
+                  </NavItem>
+                  <NavItem className="view-in-mob">
+                    <NavLink href="../../../contact-us" className={
+                      router.pathname == "/contact-us"
+                        ? "active-custom"
+                        : ""
+                    }>
+                      Contact Us
+                    </NavLink>
+                  </NavItem>
+                  <NavItem className="view-in-mob">
+                    <NavLink href="../../../green-trails" className={
+                      router.pathname == "/green-trails"
+                        ? "active-custom"
+                        : ""
+                    }>
+                      Green Trails
+                    </NavLink>
+                  </NavItem>
+                  <NavItem className="view-in-mob">
+                    <NavLink href="../../../articles/transformation-stories" className={
+                      router.pathname == "/articles/transformation-stories"
+                        ? "active-custom"
+                        : ""
+                    }>
+                      Articles
+                    </NavLink>
+                  </NavItem>
+                </>
               )}
             </Nav>
           </Collapse>
@@ -546,8 +593,8 @@ const HikeHeader = (auth = false) => {
               {/*  className="g-search mw-100"*/}
               {/*  onChange={onChange}*/}
               {/*/>*/}
-              
-             {/*} <DebounceInput
+
+              {/*} <DebounceInput
                 minLength={3}
                 debounceTimeout={100}
                 className="g-search mw-100"
@@ -555,15 +602,15 @@ const HikeHeader = (auth = false) => {
                 placeholder="Find your trek here?"
              />*/}
 
-                <AutoComplete
-                       id="ac-search"
-                              minLength={3}
-                              autoFocus
-                              value={selectedTreks}
-                              onChange={(e) => setSelectedTreks(e.value)}
-                              completeMethod={autoSearchTreks}
-                              className="g-search mw-100"
-                />
+              <AutoComplete
+                id="ac-search"
+                minLength={3}
+                autoFocus
+                value={selectedTreks}
+                onChange={(e) => setSelectedTreks(e.value)}
+                completeMethod={autoSearchTreks}
+                className="g-search mw-100"
+              />
 
             </div>
           </div>
@@ -573,7 +620,7 @@ const HikeHeader = (auth = false) => {
                 <i
                   class="fa fa-window-close cursor-pointer"
                   aria-hidden="true"
-                  onClick={() =>  {setShowSearch(!showSearch); setSearchResults([])}}
+                  onClick={() => { setShowSearch(!showSearch); setSearchResults([]) }}
                 ></i>
               </div>
               <div className="s-r-height">{resultListing}</div>

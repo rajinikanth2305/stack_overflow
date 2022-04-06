@@ -1489,6 +1489,8 @@ export const customStyles = css.global`
     background: transparent none repeat scroll 0% 0%;
     border: 0px none;
     color: #ffffff;
+    font-size: 28px;
+    padding: 0;
   }
 
   .article_banner_img {
@@ -2140,6 +2142,9 @@ export const customStyles = css.global`
     // padding: 0 50px;
     border: 0;
     box-shadow: none;
+    flex-wrap: initial;
+    overflow-x: auto;
+    white-space: nowrap;
   }
 
   .article_tabs > .nav.card-header-tabs.article_tabs.nav-tabs {
@@ -2391,6 +2396,31 @@ export const customStyles = css.global`
     width: 20px;
   }
 
+  .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+    border-color: transparent;
+  }
+
+  .mob-drop-down.dropdown > button.dropdown-toggle.btn.btn-success {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    color: #000000;
+  }
+
+  .mob-drop-down.dropdown > button.dropdown-toggle.btn.btn-success:focus {
+    box-shadow: none;
+  }
+
+  .mob-drop-down.dropdown > .dropdown-menu.show {
+    width: 100%;
+    height: 150px;
+    overflow: auto;
+  }
+
+  .cursor-poniter {
+    cursor: pointer;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -2424,9 +2454,32 @@ export const customStyles = css.global`
     .table.table-dashboard-profile-style-1.ctb > tbody > tr > td {
       white-space: normal;
     }
+    
+    .table-dashboard-profile-style-3.ctb > thead > tr,
+    .table-dashboard-profile-style-3.ctb > tbody > tr {
+      display: grid;
+    }
+
+    .table-dashboard-profile-style-3.ctb > tbody > tr {
+      border-bottom: 1px solid #d3d3d3;
+    }
+
+    .table-dashboard-profile-style-3.ctb > tbody > tr > td {
+      border: 0;
+      padding: 5px 0;
+      line-height: 15px;
+    }
+
+    .table.table-dashboard-profile-style-3.ctb > tbody > tr > td {
+      white-space: normal;
+    }
 
     .user-dashboard-tab > .nav {
       overflow: auto;
+    }
+
+    .faq_video_img {
+      height: 265px;
     }
 
     .sustainable_img {

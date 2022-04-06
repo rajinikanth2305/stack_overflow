@@ -250,6 +250,10 @@ export const ihheaderStyles = css.global`
       display: block;
       width: 33%;
     }
+
+    .view-in-mob.nav-item {
+      width: 100%;
+    }
   }
 
   @media only screen and (max-width: 900px) {

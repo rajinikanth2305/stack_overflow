@@ -117,7 +117,7 @@ export const trekStyle = css.global`
     font-weight: normal;
     font-size: 18px;
     color: rgba(0, 0, 0, 1);
-    text-transform: uppercase;
+    // text-transform: uppercase;
     letter-spacing: 0.5px;
   }
 
@@ -1056,6 +1056,8 @@ export const trekStyle = css.global`
     background: transparent;
     border: 0;
     color: white;
+    font-size: 28px;
+    padding: 0;
   }
 
   .modal-header > button > span {
@@ -1244,7 +1246,7 @@ export const trekStyle = css.global`
     font-family: Franklin Gothic Book;
     font-style: normal;
     font-weight: normal;
-    font-size: 8px;
+    font-size: 10px;
     color: rgba(0, 0, 0, 1);
   }
   .p-text-20size {
@@ -1839,7 +1841,7 @@ export const trekStyle = css.global`
     .bg-transparent-text-effect {
       background: rgba(255, 255, 255, 0.68);
       padding: 40px 0 0;
-      margin-top: -25px;
+      margin-top: -17px;
       z-index: 99;
       position: relative;
     }

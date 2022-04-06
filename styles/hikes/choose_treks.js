@@ -190,7 +190,7 @@ export const ChooseTreks = css.global`
 
   .choose_trek_sec {
     background: rgba(255, 247, 225, 1);
-    padding: 35px 0 20px;
+    padding: 35px 0 40px;
     margin-top: 80px;
   }
 
@@ -274,6 +274,8 @@ export const ChooseTreks = css.global`
     background: transparent;
     border: 0;
     color: #ffffff;
+    font-size: 28px;
+    padding: 0;
   }
 
   .modal-header > button > span {
@@ -384,6 +386,10 @@ export const ChooseTreks = css.global`
   .trek_card.review_card {
     min-height: 38vh;
     height: 100%;
+  }
+
+  .home-choose-treks.btn-ul > .slick-dots {
+    bottom: -25px;
   }
 
   @media only screen and (max-width: 600px) {

@@ -126,7 +126,7 @@ const HowDoesEachDayLooks = ({ data }) => {
                 </Slider>
               </div>
               {daysIt?.place_title[0]?.text && (
-                <p className="p-text-1">
+                <p className="p-text-1" id="howDoeseachday">
                   <b>{daysIt?.place_title[0]?.text}</b>
                 </p>
               )}
@@ -192,12 +192,12 @@ const HowDoesEachDayLooks = ({ data }) => {
                         Read more
                       </button>
                     ) : (
-                      <a href="#trekexper-sec">
+                      <a href="#howDoeseachday">
                         <button
                           className="btn btn-ptr hvr-grow"
                           onClick={() => setReadMoreHeight(200)}
                         >
-                          read less
+                          Read less
                         </button>
                       </a>
                     )}

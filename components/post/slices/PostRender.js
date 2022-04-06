@@ -372,11 +372,11 @@ const PostRender = ({
         <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
           Latest Updates
         </p>
-        {items.map(function(data, i) {
+        {items.map(function (data, i) {
           return (
             <div className="border-bottom mb-3 pb-3">
               <p className="p-text-3-fgc-yellow m-0">{data?.date}</p>
-              <p className="p-text-3 text-uppercase mt-2 mb-1">
+              <p className="p-text-3 mt-2 mb-1">
                 {data.trekking_world_heading[0].text}
               </p>
             </div>
@@ -393,7 +393,7 @@ const PostRender = ({
             <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
               Upcoming Treks
             </p>
-            {upComingData?.map(function(data, i) {
+            {upComingData?.map(function (data, i) {
               const tData = data?.data?.body?.find(
                 x => x.slice_type === "trek_banner"
               );
@@ -432,9 +432,9 @@ const PostRender = ({
                       <b>
                         {tData?.primary?.trek_caption?.length > 25
                           ? `${tData?.primary?.trek_caption?.substring(
-                              0,
-                              25
-                            )}...`
+                            0,
+                            25
+                          )}...`
                           : tData?.primary?.trek_caption}
                       </b>
                     </p>
@@ -534,7 +534,7 @@ const PostRender = ({
                       src="/v-icon.png"
                       alt="playicon'"
                       className="paly-icon icon-size-50"
-                      // onClick={handleShow}
+                    // onClick={handleShow}
                     />
                   </div>
                 </div>
@@ -564,57 +564,59 @@ const PostRender = ({
     const slice = data?.body?.find(x => x.slice_type === "youtube_video_lists");
 
     return (
-      <div className="ml-100 my-5 py-5">
-        <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
-          Latest Videos
-        </p>
-        {slice?.items?.map(function(data, i) {
-          //console.log(data.video_image.url);
-          const videoId = data?.video_id?.replace('"', "");
-          const videoUrl =
-            "https://www.youtube.com/embed/" + data.video_id + "?autoplay=1";
-          const imageURL = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-          console.log(imageURL);
-          return (
-            <div
-              className="card border-bottom mb-3"
-              onClick={() => {
-                setTrekVideoUrl(videoUrl);
-                setShow(true);
-              }}
-            >
-              <div className="ar_right_side_imgs">
-                <div className="d-flex align-items-center justify-content-center w-100 h-100">
-                  <div className="text-center">
-                    <img
-                      src="/v-icon.png"
-                      alt="playicon'"
-                      className="paly-icon icon-size-50"
+      <div>
+        {slice?.items?.length > 0 && <div className="ml-100 my-5 py-5">
+          <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
+            Latest Videos
+          </p>
+          {slice?.items?.map(function (data, i) {
+            //console.log(data.video_image.url);
+            const videoId = data?.video_id?.replace('"', "");
+            const videoUrl =
+              "https://www.youtube.com/embed/" + data.video_id + "?autoplay=1";
+            const imageURL = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+            console.log(imageURL);
+            return (
+              <div
+                className="card border-bottom mb-3"
+                onClick={() => {
+                  setTrekVideoUrl(videoUrl);
+                  setShow(true);
+                }}
+              >
+                <div className="ar_right_side_imgs">
+                  <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                    <div className="text-center">
+                      <img
+                        src="/v-icon.png"
+                        alt="playicon'"
+                        className="paly-icon icon-size-50"
                       // onClick={handleShow}
-                    />
+                      />
+                    </div>
                   </div>
+                  {imageURL && (
+                    <Image
+                      src={imageURL}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="50% 50%"
+                      onClick={() => {
+                        setTrekVideoUrl(videoUrl);
+                        setShow(true);
+                      }}
+                    />
+                  )}
                 </div>
-                {imageURL && (
-                  <Image
-                    src={imageURL}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="50% 50%"
-                    onClick={() => {
-                      setTrekVideoUrl(videoUrl);
-                      setShow(true);
-                    }}
-                  />
-                )}
+                <div className="p-2">
+                  <p className="p-text-3-fgc text-uppercase mt-2 mb-1">
+                    {RichText.asText(data?.video_title)}
+                  </p>
+                </div>
               </div>
-              <div className="p-2">
-                <p className="p-text-3-fgc text-uppercase mt-2 mb-1">
-                  {RichText.asText(data?.video_title)}
-                </p>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>}
       </div>
     );
   };
@@ -625,7 +627,7 @@ const PostRender = ({
         <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
           Latest Articles
         </p>
-        {relatedArticles?.map(function(article, i) {
+        {relatedArticles?.map(function (article, i) {
           let featureImageUrl = "";
           const featureSlice = article?.data?.body?.find(
             x => x.slice_type == "feature_image"
@@ -641,7 +643,7 @@ const PostRender = ({
               <div className="ar_right_side_imgs">
                 {featureImageUrl.length > 0 && <img src={featureImageUrl} />}
               </div>
-              <p className="p-text-3-fgc text-uppercase mt-2 mb-1">{title}</p>
+              <p className="p-text-3-fgc mt-2 mb-1">{title}</p>
               <p className="p-text-small-10-gray mb-0">
                 By <strong>{author}</strong>
               </p>
@@ -988,11 +990,11 @@ const PostRender = ({
                       <LinkedinIcon size={28} round />
                     </LinkedinShareButton>
                     <TwitterShareButton
-                                url={shareUrl}
-                                className="social-share-icons "
-                              >
-                                <TwitterIcon size={28} round />
-                              </TwitterShareButton>
+                      url={shareUrl}
+                      className="social-share-icons "
+                    >
+                      <TwitterIcon size={28} round />
+                    </TwitterShareButton>
                     <WhatsappShareButton
                       url={shareUrl}
                       className="social-share-icons "
@@ -1352,9 +1354,9 @@ const PostRender = ({
 
                           {/*nested replies */
 
-                          sdata?.replies?.map(rep => {
-                            return recursiveReplyrender(rep);
-                          })}
+                            sdata?.replies?.map(rep => {
+                              return recursiveReplyrender(rep);
+                            })}
                         </div>
                       </div>
                     );
@@ -1366,7 +1368,7 @@ const PostRender = ({
                     {renderAuthorSlice()}
                   </div>
                   {renderUpComingTreks()}
-                  {renderRelatedArticles()}
+                  {relatedArticles?.length > 0 && renderRelatedArticles()}
                   {renderLatestVideos()}
                   {renderLatestUpdates()}
                 </div>
@@ -1397,7 +1399,7 @@ const PostRender = ({
         </div>
       </div> */}
         </div>
-      
+
       </div>
       <Modal size="lg" show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
@@ -1416,8 +1418,8 @@ const PostRender = ({
         </Modal.Body>
       </Modal>
       <style jsx global>
-          {customStyles}
-        </style>
+        {customStyles}
+      </style>
     </>
   );
 };

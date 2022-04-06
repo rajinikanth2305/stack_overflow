@@ -174,11 +174,11 @@ const AllIndiaHikes = ({
                     : data?.data?.body[0]?.primary?.difficulty[0]?.text === "Moderate"
                     ? "badge-yellow-diy"
                     : data?.data?.body[0]?.primary?.difficulty[0]?.text === "Moderate-Difficult"
-                    ? "badge-yellow-diy"
+                    ? "badge-blue-diy"
                     : data?.data?.body[0]?.primary?.difficulty[0]?.text === "Moderate - Difficult"
-                    ? "badge-yellow-diy"
+                    ? "badge-blue-diy"
                     : data?.data?.body[0]?.primary?.difficulty[0]?.text === "Moderate Difficult"
-                    ? "badge-yellow-diy"
+                    ? "badge-blue-diy"
                     : data?.data?.body[0]?.primary?.difficulty[0]?.text === "Difficult"
                     ? "badge-red-diy"
                     : "badge-blue-diy"
@@ -186,9 +186,10 @@ const AllIndiaHikes = ({
               ></p>
             </div>
             <div className="mx-3">
-              <p className="p-display-3 p-display-3-md cursor-pointer">{RichText.asText(data?.data?.trek_title)}
+              {/* <p className="p-display-3 p-display-3-md cursor-pointer">{RichText.asText(data?.data?.trek_title)}
               {data?.tags[0].match(/Family/g) ? <span className="text-small text-blue">( Family trek )</span> : ''}
-              </p>
+              </p> */}
+              <p className="p-display-3 p-display-3-md cursor-pointer">{RichText.asText(data?.data?.trek_title)}</p>
             </div>
           </div>
         </Link>
@@ -213,14 +214,18 @@ const AllIndiaHikes = ({
               <div className="d-flex align-items-center">
                 <div className="mx-2">
                   <p className="p-text-3-1 mt-3-1 mb-0">
-                    <span className="badge-green-lg mx-2"></span> Easy Moderate
-                    trek
+                    <span className="badge-green-lg mx-2"></span> Easy-Moderate
                   </p>
                 </div>
                 <div className="mx-2">
                   <p className="p-text-3-1 mt-3-1 mb-0">
                     <span className="badge-yellow-lg mx-2"></span>
-                    Moderate trek{" "}
+                    Moderate{" "}
+                  </p>
+                </div>
+                <div className="mx-2">
+                  <p className="p-text-3-1 mt-3-1 mb-0">
+                    <span className="badge-blue-lg mx-2"></span>Moderate-Difficult{" "}
                   </p>
                 </div>
                 <div className="mx-2">
@@ -229,11 +234,11 @@ const AllIndiaHikes = ({
                     trek
                   </p>
                 </div>
-                <div className="mx-2">
+                {/* <div className="mx-2">
                   <p className="p-text-3-1 mt-3-1 mb-0">
                     <span className="badge-blue-lg mx-2"></span> Family Trek{" "}
                   </p>
-                </div>
+                </div> */}
                 {/* <div className="flex-grow-1 mx-2">
                   <p className="p-text-3-1 mt-3-1 mb-0">
                     <span className="badge-blue-lg mx-2"></span> DIY Trek{" "}

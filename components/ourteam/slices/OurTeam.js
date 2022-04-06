@@ -97,7 +97,7 @@ const OurTeam = () => {
         <div className="container">
           {/* <h5>{RichText.asText(heading1)}</h5> */}
           <div>
-            <Tabs>{membersList}</Tabs>
+            <Tabs className="teams_tab">{membersList}</Tabs>
           </div>
         </div>
         <style jsx global>
