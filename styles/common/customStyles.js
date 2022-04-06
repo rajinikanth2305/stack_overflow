@@ -1489,6 +1489,8 @@ export const customStyles = css.global`
     background: transparent none repeat scroll 0% 0%;
     border: 0px none;
     color: #ffffff;
+    font-size: 28px;
+    padding: 0;
   }
 
   .article_banner_img {

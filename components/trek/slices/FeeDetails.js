@@ -59,7 +59,7 @@ const FeeDetails = ({ data }) => {
   const insurance = feeDetails && feeDetails?.primary?.insurance;
   const optionalAdditionsArray = feeDetails && feeDetails?.items;
 
-  const optionalAdditions = optionalAdditionsArray?.map(function(data, i) {
+  const optionalAdditions = optionalAdditionsArray?.map(function (data, i) {
     return (
       <div className="d-flex align-items-start" key={i}>
         <div>
@@ -111,11 +111,14 @@ const FeeDetails = ({ data }) => {
                   </p>
                 </div>
               </div>
-              <p className="trek-info-detail m-0">
+              {/* <p className="trek-info-detail m-0">
                 {RichText.asText(descriptions)}
+              </p> */}
+              <p className="trek-info-detail text-decoration-underline cursor-pointer mb-0">
+                <a onClick={handleShow}>See Inclusions and Exclusions</a>
               </p>
               <p className="trek-info-detail text-decoration-underline cursor-pointer">
-                <a onClick={handleShow}>See cancellation policy</a>
+                <a href="/blog/cancellation-policy" target="_blank">See cancellation policy</a>
               </p>
               <div className="my-3">
                 <Link href="#goToBookTicket">
@@ -136,10 +139,12 @@ const FeeDetails = ({ data }) => {
           <div className="row">
             <div className="col-3 p-0">
               <div>
-                <div className="text-center">
-                  <p className="p-xs-text m-0">Know your trek</p>
-                  <img src="/kn.png" alt="img" />
-                </div>
+                <a href="#KYT">
+                  <div className="text-center">
+                    <p className="p-xs-text m-0">Know your trek</p>
+                    <img src="/kn.png" alt="img" />
+                  </div>
+                </a>
               </div>
             </div>
             <div className="col-5 p-0">
