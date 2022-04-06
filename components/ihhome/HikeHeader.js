@@ -169,7 +169,7 @@ const HikeHeader = (auth = false) => {
 
   return (
     <>
-      <div className="border-bottom-custom-header">
+      <div className="border-bottom-custom-header position-sticky">
         <Navbar light expand="lg" className="container">
           <NavbarBrand href="/">
             <img
