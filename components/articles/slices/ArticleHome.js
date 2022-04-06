@@ -47,18 +47,15 @@ const ArticleHome = ({
     const slice1Data =
       slice && slice?.filter(x => x.slice_type === "articles_tab");
     return (
-      <>
-        <Nav.Item key={i} className="m-d-none">
-          <Nav.Link
-            href={data?.uid}
-            eventKey={slice1Data[0]?.primary?.tab_name[0]?.text}
-            className={router?.query?.uid == data?.uid ? "active" : ""}
-          >
-            {slice1Data[0]?.primary?.tab_name[0]?.text}
-          </Nav.Link>
-        </Nav.Item>
-        <Dropdown.Item className="m-d-block" href={data?.uid}>{slice1Data[0]?.primary?.tab_name[0]?.text}</Dropdown.Item>
-      </>
+      <Nav.Item key={i}>
+        <Nav.Link
+          href={data?.uid}
+          eventKey={slice1Data[0]?.primary?.tab_name[0]?.text}
+          className={router?.query?.uid == data?.uid ? "active" : ""}
+        >
+          {slice1Data[0]?.primary?.tab_name[0]?.text}
+        </Nav.Link>
+      </Nav.Item>
     );
   });
 
@@ -67,12 +64,9 @@ const ArticleHome = ({
     const slice1Data =
       slice && slice?.filter(x => x.slice_type === "articles_tab");
     return (
-      <>
-      <a key={i} href={data?.uid} className="m-d-none">
+      <a key={i} href={data?.uid}>
         <DropdownItem>{slice1Data[0]?.primary?.tab_name[0]?.text}</DropdownItem>
       </a>
-      <Dropdown.Item className="m-d-block" href={data?.uid}>{slice1Data[0]?.primary?.tab_name[0]?.text}</Dropdown.Item>
-      </>
     );
   });
 
@@ -82,7 +76,7 @@ const ArticleHome = ({
         <div className="tab-bg" />
         <div className="container article-tab-content">
           <div>
-            <Nav variant="tabs" defaultActiveKey="/latest-updates" className="article_tabs m-d-none">
+            <Nav variant="tabs" defaultActiveKey="/latest-updates" className="article_tabs">
               {tabsList}
               <UncontrolledDropdown
                 inNavbar
@@ -95,7 +89,7 @@ const ArticleHome = ({
                 <DropdownMenu>{tabsList2}</DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
-            <Dropdown className="mob-drop-down m-d-block">
+            {/* <Dropdown className="mob-drop-down m-d-block">
               <Dropdown.Toggle variant="success" id="dropdown-basic">
                 Articles
               </Dropdown.Toggle>
@@ -103,7 +97,7 @@ const ArticleHome = ({
               <Dropdown.Menu>
                 {tabsList}{tabsList2}
               </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown> */}
             <div className="my-4">
               <Section1
                 data={slice}

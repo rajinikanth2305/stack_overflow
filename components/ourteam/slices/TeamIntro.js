@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { aboutUsStyles } from "styles";
 import Image from "next/image";
 import OurTeam from "./OurTeam";
+import Modal from "react-bootstrap/Modal";
 
 const TeamIntro = ({ slice }) => {
   const heading1 = slice?.primary?.heading1;
@@ -10,17 +11,27 @@ const TeamIntro = ({ slice }) => {
   const teamContentList = slice?.primary?.team_content;
   const founderImageArray = slice?.items;
 
-  const founderImage = founderImageArray?.map(function(data, i) {
+  const [show, setShow] = useState(false);
+  const [memnerInfo, setMemnerInfo] = useState();
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const founderImage = founderImageArray?.map(function (data, i) {
     return (
       <div key={i}>
         <div className="mx-4">
-          <div className="founder_image">
+          <div className="founder_image cursor-pointer">
             {data?.founder_image?.url ? (
               <Image
                 src={data?.founder_image?.url}
                 layout="fill"
                 objectFit="cover"
                 objectPosition="top"
+                onClick={() => {
+                  setMemnerInfo(data);
+                  setShow(true);
+                }}
               />
             ) : (
               <img src="./ip.png" className="founder_image" />
@@ -65,6 +76,80 @@ const TeamIntro = ({ slice }) => {
           {aboutUsStyles}
         </style>
       </div>
+      <Modal
+        size="lg"
+        show={show}
+        onHide={handleClose}
+        animation={false}
+        className="ab_modal"
+      >
+        <Modal.Header className="border-0 py-0" closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="d-flex justify-content-center">
+            <div>
+              <div className="member_image pop_m_image">
+                <Image
+                  src={memnerInfo && memnerInfo?.founder_image?.url}
+                  layout="fill"
+                  objectFit="contain"
+                  objectPosition="top"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="text-center">
+            <p className="p-text-2-franklin text-center mb-0 pt-2">
+              {memnerInfo && memnerInfo?.founder_name[0]?.text}
+            </p>
+            <p className="p-text-3 m-text-3 text-center">
+              {memnerInfo && memnerInfo?.founder_position[0]?.text}
+            </p>
+          </div>
+          <div className="p-text-4">
+            {RichText.render(memnerInfo && memnerInfo?.short_info)}
+          </div>
+          <div className="d-flex align-items-center mb-2">
+            {memnerInfo && memnerInfo?.short_info && (
+              <div className="flex-grow-1">
+                <p className="p-text-4 m-0">
+                  <b>{RichText.asText(memnerInfo && memnerInfo?.email_id)}</b>
+                </p>
+              </div>
+            )}
+            {memnerInfo && memnerInfo?.insta_link?.url && (
+              <div>
+                <a
+                  href={
+                    memnerInfo && memnerInfo?.insta_link?.url
+                      ? memnerInfo?.insta_link?.url
+                      : "#"
+                  }
+                  target="_blank"
+                >
+                  <img src="./insta_sm.png" />
+                </a>
+              </div>
+            )}
+            <div className="mx-1"></div>
+            {memnerInfo && memnerInfo?.linkedin_link?.url && (
+              <div>
+                <a
+                  href={
+                    memnerInfo && memnerInfo?.linkedin_link?.url
+                      ? memnerInfo?.linkedin_link?.url
+                      : "#"
+                  }
+                  target="_blank"
+                >
+                  <img src="./in_sm.png" />
+                </a>
+              </div>
+            )}
+          </div>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

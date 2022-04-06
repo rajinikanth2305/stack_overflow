@@ -63,7 +63,7 @@ const BookYourTrek = ({ slice }) => {
 
 
       window.scrollTo({
-        top: offsetPosition - 10,
+        top: offsetPosition - 450,
         behavior: 'smooth'
       });
     }, 1000);

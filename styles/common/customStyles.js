@@ -2142,6 +2142,9 @@ export const customStyles = css.global`
     // padding: 0 50px;
     border: 0;
     box-shadow: none;
+    flex-wrap: initial;
+    overflow-x: auto;
+    white-space: nowrap;
   }
 
   .article_tabs > .nav.card-header-tabs.article_tabs.nav-tabs {
