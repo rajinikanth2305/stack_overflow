@@ -177,7 +177,7 @@ const CertificateTemplate = certificateData => {
                 certificateData.certificateData.trekName}{" "}
               | Trek Grade: {certificateData.certificateData.trekDifficulty} |
               Duration: {certificateData.certificateData.trekDuration} Days |
-              Max Atitude: {certificateData.certificateData.trekAltitude} ft
+              Max Altitude: {certificateData.certificateData.trekAltitude.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} ft
             </Text>
           </View>
         </Page>
