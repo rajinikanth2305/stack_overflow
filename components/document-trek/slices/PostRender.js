@@ -380,7 +380,7 @@ const PostRender = ({
           return (
             <div className="border-bottom mb-3 pb-3">
               <p className="p-text-3-fgc-yellow m-0">{data?.date}</p>
-              <p className="p-text-3 text-uppercase mt-2 mb-1">
+              <p className="p-text-3 mt-2 mb-1">
                 {data.trekking_world_heading[0].text}
               </p>
             </div>
@@ -612,7 +612,7 @@ const PostRender = ({
                 )}
               </div>
               <div className="p-2">
-                <p className="p-text-3-fgc text-uppercase mt-2 mb-1">
+                <p className="p-text-3-fgc mt-2 mb-1">
                   {RichText.asText(data?.video_title)}
                 </p>
               </div>
@@ -986,9 +986,9 @@ const PostRender = ({
               </div>
             </div>
           </div>
-          {getArticleImage && getArticleImage[0]?.primary?.image?.url && 
+          {featureImageUrl && 
             <Image
-            src={getArticleImage[0]?.primary?.image?.url}
+            src={featureImageUrl}
             layout="fill"
             objectFit="cover"
             objectPosition="bottom"
@@ -1032,16 +1032,16 @@ const PostRender = ({
             <div className="col-lg-9 col-md-12">
               <div className="row">
                 <div className="col-lg-8 col-md-12">
-                  <div>
+                  <div className=" mt-5 mmy-2">
                     <div>
                       {/* <p className="p-text-3-fg">
                         <span className="border-bottom-custom-1 pb-2">
                           {data?.sub_title}
                         </span>
                       </p> */}
-                      <h2 className="title-h2 pb-08 mt-5 mmy-2">
+                      {/* <h2 className="title-h2 pb-08 mt-5 mmy-2">
                         {RichText.asText(data?.title)}
-                      </h2>
+                      </h2> */}
                       {/* <div className="auth_sec">
                         <div className="d-flex align-items-center">
                           <div className="flex-grow-1">
@@ -1135,7 +1135,7 @@ const PostRender = ({
                     })}
                   </div>
 
-                  {/* <div>
+                  <div>
                     <h5 className="p-text-1">
                       <b>LEAVE A REPLY</b>
                     </h5>
@@ -1197,7 +1197,7 @@ const PostRender = ({
                         Post reply
                       </button>
                     </div>
-                  </div> */}
+                  </div>
 
                   {indexes.map(index => {
                     const fieldName = `voucher[${index}]`;

@@ -288,10 +288,10 @@ const UpComingTreks = ({ slice }) => {
                         id="exampleFormControlSelect1"
                         ref={difficulty}
                       >
-                        <option>Easy-moderate</option>
+                        <option>Easy-Moderate</option>
                         <option>Moderate</option>
                         <option>Moderate-Difficult </option>
-                        <option>Difficult </option>
+                        <option>Difficult</option>
                       </select>
                     </div>
                   </div>

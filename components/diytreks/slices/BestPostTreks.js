@@ -48,14 +48,14 @@ const BestPostTreks = ({ slice, trekData }) => {
     ]
   };
 
-  const bestPostTreks = trekData?.map(function(data, i) {
+  const bestPostTreks = trekData?.map(function (data, i) {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
       url = `/documented-trek/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.filter(
-      x => x.slice_type === "image_with_caption"
+      x => x.slice_type === "feature_image"
     );
     const getArticleHeadingText = data?.data?.body?.find(
       x => x.slice_type === "text"
@@ -78,18 +78,14 @@ const BestPostTreks = ({ slice, trekData }) => {
                       </div>
                     </div>
                   </div>
-                  {getArticleImage &&
-                    getArticleImage[0]?.primary?.image?.url && (
-                      <Image
-                        src={
-                          getArticleImage &&
-                          getArticleImage[0]?.primary?.image?.url
-                        }
-                        layout="fill"
-                        objectFit="cover"
-                        objectPosition="50% 50%"
-                      />
-                    )}
+                  {getArticleImage?.primary?.feature_image?.url && (
+                    <Image
+                      src={getArticleImage?.primary?.feature_image?.url}
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="50% 50%"
+                    />
+                  )}
                 </div>
                 <div className="px-3 py-2">
                   {/* <div className="d-flex align-items-center card-info-text">

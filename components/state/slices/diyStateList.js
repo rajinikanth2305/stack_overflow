@@ -40,7 +40,7 @@ const DiyStateList = ({ slice }) => {
         url = `/documented-trek/${slugUrl}`;
       }
       const getArticleImage = data?.data?.body?.filter(
-        x => x.slice_type === "image_with_caption"
+        x => x.slice_type === "feature_image"
       );
       const getArticleHeadingText = data?.data?.body?.find(
         x => x.slice_type === "text"
@@ -72,13 +72,9 @@ const DiyStateList = ({ slice }) => {
                         </div>
                       </div>
                     </div>
-                    {getArticleImage &&
-                      getArticleImage[0]?.primary?.image?.url && (
+                    {getArticleImage?.primary?.feature_image?.url && (
                         <Image
-                          src={
-                            getArticleImage &&
-                            getArticleImage[0]?.primary?.image?.url
-                          }
+                          src={getArticleImage?.primary?.feature_image?.url}
                           layout="fill"
                           objectFit="cover"
                           objectPosition="50% 50%"

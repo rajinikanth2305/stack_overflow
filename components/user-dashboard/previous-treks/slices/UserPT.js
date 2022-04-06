@@ -269,7 +269,7 @@ const UserPT = () => {
         window.scrollTo(0, 0);
         toast?.current?.show({
           severity: "success",
-          summary: `' Thanks for your review submission'`,
+          summary: `'Thank you for writing about your experience. We truly appreciate it.'`,
           detail: "Review Submission"
         });
         setActiveTab(null);
