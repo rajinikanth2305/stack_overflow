@@ -376,6 +376,15 @@ export const cancelParticipantBooking =  async (bookingId,moneyRefund,backPackOf
          .then((res) => res.data);
 };
 
+export const cancelParticipantBackPack =  async (bookingId,moneyRefund,backPackOffloading,data)  => {
+
+  const header=await getTokenHeader();
+  const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
+  let url = `${userApi}/users/my-bookings/${bookingId}/cancel-backpack-for-the-participants?refund=${moneyRefund}&backPackOffloading=${backPackOffloading}`;
+  return axios.patch(url,data,{ headers:  header })
+         .then((res) => res.data);
+};
+
 export const getTrekLocations = async (trekId)  => {
   const header=await getTokenHeader();
   const api = `${REACT_APP_TMS_BACKEND_URL}`;

@@ -112,7 +112,7 @@ const Offloading = forwardRef((props, ref) => {
               voucherId: "",
               selected: false,
               email: pdata?.userDetailsForDisplay.email,
-              offloadingParticipantStatus:offloadUser == undefined || false? "N/A": offloadUser.offloadingState,
+              offloadingParticipantStatus:offloadUser == undefined || false? "N/A": offloadUser.offloadingParticipantStatus,
               bookingParticipantState: pdata?.bookingParticipantState
             });
           }
@@ -270,7 +270,7 @@ const Offloading = forwardRef((props, ref) => {
   const checkAnyPaidStatus = () => {
     let paids=[];
     offLoadings?.map(x=> {
-      if(x?.offloadingParticipantStatus === "PAID") {
+      if(x?.offloadingParticipantStatus === "COMPLETED" || x?.offloadingParticipantStatus === "PAID") {
         paids.push(x);
       }
     }

@@ -12,7 +12,8 @@ import {
   cancelUserBooking,
   findUserByEmail,
   cancelParticipantBooking,
-  getBackPackOffloadingUserStatus
+  getBackPackOffloadingUserStatus,
+  cancelParticipantBackPack
 } from "../../../../services/queries";
 import moment from "moment";
 import { useRouter } from "next/router";
@@ -239,7 +240,7 @@ else {
    
     if (participantList.length > 0) {
       console.log(participantList);
-      cancelParticipantBooking(bookingId,moneytaryRefund,offloadingPath, participantList).then(
+      cancelParticipantBackPack(bookingId,moneytaryRefund,offloadingPath, participantList).then(
         res => {
           toast.current.show({
             severity: "success",
