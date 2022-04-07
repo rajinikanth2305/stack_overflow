@@ -69,11 +69,11 @@ const TrekkingTips = ({ slice, articleData }) => {
           </div>
           <div className="row mt-4 pt-2">
             {articleLearnMore}
-            <div className="d-flex justify-content-end">
+            {/* <div className="d-flex justify-content-end">
               <button type="button" className="btn btn-bihtn-yellow hvr-grow">
                 More Resources
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         <style jsx global>

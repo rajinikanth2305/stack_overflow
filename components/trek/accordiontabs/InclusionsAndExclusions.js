@@ -31,8 +31,8 @@ const InclusionsAndExclusions = ({ data }) => {
     return (
       <div className="col-lg-6 col-md-12" key={i}>
         <p className="p-text-2-franklin mb-2">
-          <img src="/shoes.png" alt="icon" />{" "}
-          <span className="mx-2">{data?.inclusion_title[0]?.text}</span>
+          {/* <img src="/shoes.png" alt="icon" />{" "} */}
+          <span>{data?.inclusion_title[0]?.text}</span>
         </p>
         <p className="p-text-4">{data?.inclusion_desc[0]?.text}</p>
       </div>
@@ -43,8 +43,8 @@ const InclusionsAndExclusions = ({ data }) => {
     return (
       <div className="col-lg-6 col-md-12" key={i}>
         <p className="p-text-2-franklin mb-2">
-          <img src="/shoes.png" alt="icon" />{" "}
-          <span className="mx-2">{data?.trek_exclusion_title[0]?.text}</span>
+          {/* <img src="/shoes.png" alt="icon" />{" "} */}
+          <span>{data?.trek_exclusion_title[0]?.text}</span>
         </p>
         <p className="p-text-4">{data?.trek_exclusion_desc[0]?.text}</p>
       </div>
