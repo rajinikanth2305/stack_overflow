@@ -496,7 +496,7 @@ const renderFooter = (name) => {
     // console.log(fieldRef.current.value);
 
     const userEmail = findEmailRef.current.value; //window.document.getElementById("findemail").value;
-    console.log("hello" + userEmail);
+   // console.log("hello" + userEmail);
 
     if (userEmail === undefined || userEmail === "" || userEmail === null) {
       toast.current.show({
@@ -519,6 +519,18 @@ const renderFooter = (name) => {
       });
       return;
     }
+
+    /// check same email userid is added then give error!
+     console.log(sdata?.trekUsers[0].email);
+     const sdata = JSON.parse(JSON.stringify(stateData.data));
+     if(sdata?.trekUsers[0]?.email===userEmail.toLowerCase()) {
+      toast.current.show({
+        severity: "error",
+        summary: `'Primary Trekker ${userEmail} is a main participant. Add other than main participants emailid'`,
+        detail: "Find Trekker"
+      });
+      return;
+     }
 
     if (userEmail !== undefined) {
       getUserByAutoSearch("CUSTOMER", userEmail.toLowerCase()).then(data => {

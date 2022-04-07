@@ -56,7 +56,7 @@ const Offloading = forwardRef((props, ref) => {
 
   const deriveBookingState = activeBooking => {
     if (activeBooking.bookingState === "COMPLETED") {
-      setShowOffLoadingContents(true);
+      
       return true;
     } else {
       setShowOffLoadingContents(false);
@@ -68,7 +68,8 @@ const Offloading = forwardRef((props, ref) => {
     //  console.log(data);
     setRender(false);
     if (deriveBookingState(data) == true) {
-      // console.log("Called here");
+      console.log("Called here");
+       console.log(data);
 
       let vouchers = [];
       vouchers = await getUsersVoucherByBookingId(data.bookingId);
@@ -78,11 +79,11 @@ const Offloading = forwardRef((props, ref) => {
       }
 
       setHeaderData(data);
+      setShowOffLoadingContents(true);
 
-      const fee =
-        data.backPackOffloadingDays * data.backPackOffloadingCostPerDay;
-      const tax = fee * (data.backPackOffloadingCostPerDay / 100); //backPackOffloadingTax
-      const offLoadingFee = Math.round(fee + tax);
+      const fee =data?.backPackOffloadingDays * data?.backPackOffloadingCostPerDay;
+      const tax = fee * (data?.backPackOffloadingTaxPercentage / 100); //backPackOffloadingTax
+      const offLoadingFee = roundToTwo(fee + tax);
 
       const offLoadingList = [];
 
@@ -170,6 +171,10 @@ const Offloading = forwardRef((props, ref) => {
     return data1;
   };
 
+  function roundToTwo(num) {
+    return +(Math.round(num + "e+2")  + "e-2");
+   }
+
   const onVoucherApply = (id, index) => {
     const sdata = offLoadings;
     const user = sdata.find(u => u.id === id);
@@ -256,8 +261,9 @@ const Offloading = forwardRef((props, ref) => {
   };
 
   const onCancelButtonClick = () => {
+    console.log("onCancelButtonClick");
     router.push(
-      `/user-dashboard/cancellation-trek?batchId=${headerData?.batchId}&flag=offloading-p-cancel`
+      `/user-dashboard/cancellation-bp?bookingId=${headerData?.bookingId}`
     );
   };
 
@@ -302,7 +308,7 @@ const Offloading = forwardRef((props, ref) => {
               </p>
             </div>
             <div>
-              <p>Applicable tax: {headerData?.backPackOffloadingTax}%</p>
+              <p>Applicable tax: {headerData?.backPackOffloadingTaxPercentage}%</p>
             </div>
          
           </div>

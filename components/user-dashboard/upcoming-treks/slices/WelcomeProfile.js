@@ -217,7 +217,7 @@ const WelcomeProfile = () => {
         bookingState: book.bookingState,
         backPackOffloadingDays: book.backPackOffloadingDays,
         backPackOffloadingCostPerDay: book.backPackOffloadingCostPerDay,
-        backPackOffloadingTax: book.backPackOffloadingTax,
+        backPackOffloadingTaxPercentage: book.backPackOffloadingTaxPercentage,
         waitListNumber: book.waitListNumber,
 
       });
