@@ -2142,9 +2142,6 @@ export const customStyles = css.global`
     // padding: 0 50px;
     border: 0;
     box-shadow: none;
-    flex-wrap: initial;
-    overflow-x: auto;
-    white-space: nowrap;
   }
 
   .article_tabs > .nav.card-header-tabs.article_tabs.nav-tabs {
@@ -2472,6 +2469,13 @@ export const customStyles = css.global`
 
     .table.table-dashboard-profile-style-3.ctb > tbody > tr > td {
       white-space: normal;
+    }
+
+    .article_tabs.nav-tabs {
+      box-shadow: none;
+      flex-wrap: initial;
+      overflow-x: auto;
+      white-space: nowrap;
     }
 
     .user-dashboard-tab > .nav {
