@@ -116,7 +116,7 @@ const TrekkersStories = ({ slice }) => {
                   <Image
                     src={data?.trekkers_stories_image?.url}
                     layout="fill"
-                    objectFit="cover"
+                    objectFit="contain"
                     objectPosition="50% 50%"
                     alt="imgs"
                     // width={350}

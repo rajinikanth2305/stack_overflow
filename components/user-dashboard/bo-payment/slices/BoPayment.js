@@ -76,27 +76,15 @@ const BoPayment = forwardRef((props, ref) => {
     }
   }));
 
-  const deriveBookingState = activeBooking => {
-    if (activeBooking.bookingState === "COMPLETED") {
-      setShowOffLoadingContents(true);
-      return true;
-    } else {
-      setShowOffLoadingContents(false);
-      return false;
-    }
-  };
-
-  const initData = offLoadData => {
+  const initData =(offLoadData) => {
+    setRender(false);
     console.log(offLoadData);
     setOffSelectedData(offLoadData);
-    console.log("called-once");
-    console.log(JSON.stringify(offLoadData.participants));
-
     const sdata = offLoadData.participants;
     const arr = Array.from(new Array(sdata?.length), (x, i) => i);
 
     // console.log(offLoadings);
-    computeTotal(sdata);
+    computeTotal(sdata,offLoadData);
 
     setIndexes(arr);
     setCounter(arr.length);
@@ -117,16 +105,17 @@ const BoPayment = forwardRef((props, ref) => {
       );
 
       
-      const totalTrekFee=user?.offloadingFee;
-      const taxPercentage=user.taxPercentage;
+      const totalTrekFee=offSelectedData?.header?.backPackOffloadingCostPerDay*offSelectedData?.header?.backPackOffloadingDays ;
+     
+      const taxPercentage=offSelectedData?.header?.backPackOffloadingTaxPercentage;
       //const insuranceAmount = user.insuranceAmount;
-      const gst = 5;
+      const gst = taxPercentage;
       const gstValue =parseFloat( Number((gst / 100) * totalTrekFee).toFixed(2));
       const total = (totalTrekFee + gstValue );
 
-      console.log(total);
+      console.log(totalTrekFee);
 
-      const youPay = total;//user.trekFeeForTheUser  ; //computeTotal(sdata.trekUsers);
+      const youPay = totalTrekFee;//user.trekFeeForTheUser  ; //computeTotal(sdata.trekUsers);
 
      // const youPay = user.youPay; //computeTotal(sdata);//computeWithExcludedVoucherId(user.optedVoucherId,sdata);
       //console.log(youPay);
@@ -149,9 +138,8 @@ const BoPayment = forwardRef((props, ref) => {
           // Math.abs(Number(actRowPay));
         }
       }
-      console.log(sdata);
-
-      computeTotal(sdata);
+   
+      computeTotal(sdata,offSelectedData);
       const arr = Array.from(new Array(sdata.length), (x, i) => i);
 
       setIndexes(arr);
@@ -192,11 +180,11 @@ const BoPayment = forwardRef((props, ref) => {
 
   const computeWithExcludedVoucherId = (vid, usersData) => {
     const totalTrekFee = usersData.reduce(
-      (a, v) => (a = a + v.offloadingFee),
+      (a, v) => (a = a + offSelectedData?.header?.backPackOffloadingCostPerDay*offSelectedData?.header?.backPackOffloadingDays),
       0
     );
     
-    const gst = 5;
+    const gst = offSelectedData?.header?.backPackOffloadingTaxPercentage;
     const gstValue = Math.round((gst / 100) * totalTrekFee);
     const total = totalTrekFee + gstValue;
 
@@ -204,7 +192,7 @@ const BoPayment = forwardRef((props, ref) => {
       .filter(x => x.optedVoucherId !== vid)
       .reduce((a, v) => (a = a + v.voucherAmount), 0);
 
-    const youpay = Math.round(total - totalVoucherAmount);
+    const youpay = Math.round(totalTrekFee - totalVoucherAmount);
     return youpay;
   };
 
@@ -212,20 +200,22 @@ const BoPayment = forwardRef((props, ref) => {
     return +(Math.round(num + "e+2")  + "e-2");
    }
 
-  const computeTotal = (usersData, sdata) => {
+  const computeTotal = (usersData,offLoadData) => {
     const totalTrekFee = usersData.reduce(
-      (a, v) => (a = a + v.offloadingFee),
+      (a, v) => (a = a + offLoadData?.header?.backPackOffloadingCostPerDay * offLoadData?.header?.backPackOffloadingDays),
       0
     );
 
+    console.log(totalTrekFee);
 
-    const taxPercentage=usersData[0]?.taxPercentage;
-    console.log(usersData[0]);
-
-    const gst = 5;
-
+   const taxPercentage=offLoadData?.header?.backPackOffloadingTaxPercentage;
+    const gst = taxPercentage;
     const gstValue = ((gst / 100) * totalTrekFee);
-    const total = roundToTwo(totalTrekFee + gstValue);
+    const total =roundToTwo(totalTrekFee + gstValue);
+
+    console.log(gst);
+    console.log(gstValue);
+    console.log(total);
 
     const totalVoucherAmount = usersData.reduce(
       (a, v) => (a = a + v.voucherAmount),
@@ -377,15 +367,15 @@ const BoPayment = forwardRef((props, ref) => {
                   </div>
                   <div className="d-flex justify-content-between p-text-3-fg-book">
                     <div>
-                      <p className="m-0">No. of offloading days: 4 days</p>
+                      <p className="m-0">No. of offloading days:  {offSelectedData?.header?.backPackOffloadingDays} days</p>
                       <p className="p-text-small-fg font-italic">
-                        {offSelectedData.header.trekName}
+                        {offSelectedData?.header?.trekName}
                       </p>
                     </div>
                     <div>
                       <p>
                         BO. cost per day: Rs.{" "}
-                        {offSelectedData.header?.backPackOffloadingCostPerDay}
+                        {offSelectedData?.header?.backPackOffloadingCostPerDay}
                       </p>
                     </div>
                     <div style={{ visibility: "hidden" }}>
@@ -425,6 +415,7 @@ const BoPayment = forwardRef((props, ref) => {
                                 });
                               });
                           }
+                       //   console.log(offSelectedData?.header?.bac);
 
                           return (
                             <>
@@ -473,22 +464,21 @@ const BoPayment = forwardRef((props, ref) => {
                                 </td>
 
                                 <td>
-                                  {sdata.offloadingFee}
+                                  {sdata?.offloadingFee}
                                   </td>
 
                                 <td>
 
                              {
-                              (sdata?.offloadingFee -Number(sdata?.voucherAmount)) <= 0 && (
+                              (( sdata?.offloadingFee) -Number(sdata?.voucherAmount)) <= 0 && (
                                 0
                               )
                               }
                               {
-                              (sdata?.offloadingFee - Number(sdata?.voucherAmount)) > 0 && (
-                                Number(sdata?.offloadingFee -Number(sdata?.voucherAmount)).toFixed(2)
+                              ((sdata?.offloadingFee) - Number(sdata?.voucherAmount)) > 0 && (
+                                Number((sdata?.offloadingFee)-Number(sdata?.voucherAmount)).toFixed(2)
                                 )
                               }
-
                                   </td>
 
                               </tr>

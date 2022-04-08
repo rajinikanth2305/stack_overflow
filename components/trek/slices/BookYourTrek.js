@@ -51,21 +51,23 @@ const BookYourTrek = ({ slice }) => {
     setShowSelectedLabel(true);
     /// focus button
     // if(document.getElementById("procregister"))
-    // document.getElementById("procregister").focus();
+    document.getElementById("procregister1").focus();
     setTimeout(() => {
-      const element = document.getElementById('procregister');
-      const offset = 15;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top - 43;
-      const elementPosition = (elementRect - bodyRect);
-      const offsetPosition = elementPosition - offset;
+      // const element = document.getElementById('procregister');
+      // const offset = 15;
+      // const bodyRect = document.body.getBoundingClientRect().top;
+      // const elementRect = element.getBoundingClientRect().top - 43;
+      // const elementPosition = (elementRect - bodyRect);
+      // const offsetPosition = elementPosition - offset;
+      const objDiv = document.getElementById('procregister');
+      objDiv.scrollTop = objDiv.scrollHeight;
       document.getElementById("procregister").focus();
 
 
-      window.scrollTo({
-        top: offsetPosition - 450,
-        behavior: 'smooth'
-      });
+      // window.scrollTo({
+      //   top: offsetPosition - 450,
+      //   behavior: 'smooth'
+      // });
     }, 1000);
   };
 
@@ -176,6 +178,7 @@ const BookYourTrek = ({ slice }) => {
                       )}
 
                       <button
+                        id="procregister1"
                         className="btn btn-ptr hvr-grow"
                         onClick={register}
                       >
