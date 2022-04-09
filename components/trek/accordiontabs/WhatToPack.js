@@ -112,6 +112,7 @@ const WhatToPack = ({ data }) => {
                         src={youtube_imageURL}
                         layout="fill"
                         onClick={handlePrimary}
+                        objectFit="cover"
                       />
                     )}
                   </div>
