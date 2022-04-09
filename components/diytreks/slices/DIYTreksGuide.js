@@ -136,19 +136,23 @@ const DIYTreksGuide = ({ slice, alldiyTreks }) => {
               <div className="d-flex align-items-center">
                 <div className="mx-2">
                   <p className="mt-3-1 mb-0">
-                    <span className="badge-green-lg mx-2"></span> Easy Moderate
-                    trek
+                    <span className="badge-green-lg mx-2"></span> Easy-Moderate
                   </p>
                 </div>
                 <div className="mx-2">
                   <p className="mt-3-1 mb-0">
                     <span className="badge-yellow-lg mx-2"></span>
-                    Moderate trek{" "}
+                    Moderate{" "}
+                  </p>
+                </div>
+                <div className="mx-2">
+                  <p className="p-text-3-1 mt-3-1 mb-0">
+                    <span className="badge-blue-lg mx-2"></span>Moderate-Difficult{" "}
                   </p>
                 </div>
                 <div className="mx-2">
                   <p className="mt-3-1 mb-0">
-                    <span className="badge-red-lg mx-2"></span> Difficult trek
+                    <span className="badge-red-lg mx-2"></span> Difficult
                   </p>
                 </div>
                 {/* <div className="mx-2">

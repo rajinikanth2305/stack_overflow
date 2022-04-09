@@ -641,6 +641,12 @@ export const diyStyles = css.global`
     top: 3px;
   }
 
+  .slots-bg {
+    background: rgba(255, 193, 0, 0.102);
+    padding: 5px 0;
+    overflow: auto;
+  }
+
   @media only screen and (max-width: 660px) {
     .p-text-1 {
       line-height: 24px;

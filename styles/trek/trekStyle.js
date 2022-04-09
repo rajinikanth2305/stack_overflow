@@ -1608,7 +1608,7 @@ export const trekStyle = css.global`
       height: 175px;
     }
     .terk-videos-promary-image.mpi {
-      height: 200px;
+      height: 165px;
     }
     .title-h2.th-2m {
       border-bottom: 2px solid rgb(255, 193, 0);
