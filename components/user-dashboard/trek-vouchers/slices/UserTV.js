@@ -7,6 +7,7 @@ import auth from "../../../../services/Authenticate";
 import { getUserVoucher, findUserByEmail } from "../../../../services/queries";
 import VoucherTemplate from "./VoucherTemplate";
 import { PDFDownloadLink } from "@react-pdf/renderer";
+import moment from "moment";
 
 const UserTV = () => {
   const [show, setShow] = useState(false);
@@ -140,10 +141,10 @@ const UserTV = () => {
             <div className="p-text-2-fg-f16-mb">
               <p
                   className={
-                    data?.validTill < Date() ? "text-red m-0" : data?.voucherStatus === "ALLOCATED" ? "text-green m-0" : "m-0"
+                    moment(data?.validTill) < new Date() ? "text-red m-0" : data?.voucherStatus === "ALLOCATED" ? "text-green m-0" : "m-0"
                   }
               >
-                {data?.validTill < Date() ? "Expired" : data?.voucherStatus === "ALLOCATED" ? "Available" : "Used"}
+                {moment(data?.validTill) < new Date() ? "Expired" : data?.voucherStatus === "ALLOCATED" ? "Available" : "Used"}
               </p>
             </div>
           </div>
