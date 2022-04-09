@@ -425,7 +425,7 @@ const PostRender = ({
                         <img src="../ip.png" />
                       )}
                     </div>
-                    <p className="p-text-3-fgc text-uppercase mt-2 mb-1">
+                    <p className="p-text-3-fgc mt-2 mb-1">
                       {RichText.asText(data?.primary?.heading1)}
                     </p>
                     <p className="p-text-small">
@@ -609,7 +609,7 @@ const PostRender = ({
                   )}
                 </div>
                 <div className="p-2">
-                  <p className="p-text-3-fgc text-uppercase mt-2 mb-1">
+                  <p className="p-text-3-fgc mt-2 mb-1">
                     {RichText.asText(data?.video_title)}
                   </p>
                 </div>

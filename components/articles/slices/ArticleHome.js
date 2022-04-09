@@ -76,28 +76,40 @@ const ArticleHome = ({
         <div className="tab-bg" />
         <div className="container article-tab-content">
           <div>
-            <Nav variant="tabs" defaultActiveKey="/latest-updates" className="article_tabs">
+            {/* <Nav variant="tabs" defaultActiveKey="/latest-updates" className="article_tabs">
               {tabsList}
               <UncontrolledDropdown
                 inNavbar
                 nav
-                className="r-nav"
+                className="more-nav"
               >
                 <DropdownToggle nav>
                   <span>More +</span>
                 </DropdownToggle>
                 <DropdownMenu>{tabsList2}</DropdownMenu>
               </UncontrolledDropdown>
-            </Nav>
-            {/* <Dropdown className="mob-drop-down m-d-block">
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Articles
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu>
-                {tabsList}{tabsList2}
-              </Dropdown.Menu>
-            </Dropdown> */}
+            </Nav> */}
+            <div className="d-flex align-items-center">
+              <div className="flex-grow-1" style={{ overflowX: "auto" }}>
+                <Nav variant="tabs" defaultActiveKey="/latest-updates" className="article_tabs ofw">
+                  {tabsList}
+                </Nav>
+              </div>
+              <div>
+                <Nav variant="tabs" className="article_tabs">
+                  <UncontrolledDropdown
+                    inNavbar
+                    nav
+                    className="more-nav"
+                  >
+                    <DropdownToggle nav>
+                      <span>More +</span>
+                    </DropdownToggle>
+                    <DropdownMenu>{tabsList2}</DropdownMenu>
+                  </UncontrolledDropdown>
+                </Nav>
+              </div>
+            </div>
             <div className="my-4">
               <Section1
                 data={slice}

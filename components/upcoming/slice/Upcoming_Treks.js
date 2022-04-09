@@ -74,7 +74,7 @@ const UpComingTreks = ({ slice }) => {
           pageSize: vpageSize,
           page: pageNo
         })
-        .then(function(response) {
+        .then(function (response) {
           // response is the response object, response.results holds the documents
           // console.log(JSON.stringify(response));
           setFilterResult(true);
@@ -97,7 +97,7 @@ const UpComingTreks = ({ slice }) => {
           ],
           { pageSize: vpageSize, page: pageNo }
         )
-        .then(function(response) {
+        .then(function (response) {
           // response is the response object, response.results holds the documents
           // console.log(JSON.stringify(response));
           setFilterResult(true);
@@ -123,7 +123,7 @@ const UpComingTreks = ({ slice }) => {
           ],
           { pageSize: vpageSize, page: pageNo }
         )
-        .then(function(response) {
+        .then(function (response) {
           // response is the response object, response.results holds the documents
           // console.log(JSON.stringify(response));
           setFilterResult(true);
@@ -299,9 +299,14 @@ const UpComingTreks = ({ slice }) => {
                   <div>
                     <div className="d-flex align-items-center justify-content-between my-3">
                       <div>
-                        <p className="m-0 link_text" onClick={findAll}>
-                          See All Treks
-                        </p>
+                        <a href="#allTreks">
+                          {/* <p className="m-0 link_text" onClick={findAll}>
+                            See All Treks
+                          </p> */}
+                          <p className="m-0 link_text">
+                            See All Treks
+                          </p>
+                        </a>
                       </div>
                       <div>
                         <button className="btn btn-ih-green hvr-grow" onClick={find}>
@@ -315,7 +320,7 @@ const UpComingTreks = ({ slice }) => {
             </div>
             {filterResult === true ? (
               <>
-                {results.map(function(result, i) {
+                {results.map(function (result, i) {
                   // const slice = result.data.body.find(
                   //   x => x.slice_type === "trek_banner"
                   // );
@@ -400,11 +405,11 @@ const UpComingTreks = ({ slice }) => {
                                 {RichText.asText(tData?.primary?.sub_heading)
                                   ?.length > 75
                                   ? `${RichText.asText(
-                                      tData?.primary?.sub_heading
-                                    ).substring(0, 75)}...`
+                                    tData?.primary?.sub_heading
+                                  ).substring(0, 75)}...`
                                   : RichText.asText(
-                                      tData?.primary?.sub_heading
-                                    )}
+                                    tData?.primary?.sub_heading
+                                  )}
                               </div>
                               <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
                                 <div className="flex-grow-1">
@@ -481,7 +486,7 @@ const UpComingTreks = ({ slice }) => {
             <div className="mt-3 mb-5 m-d-block">
               <div className="container">
                 <div className="row">
-                  {results.map(function(result, i) {
+                  {results.map(function (result, i) {
                     const slice = result?.data?.body?.find(
                       x => x.slice_type === "trek_banner"
                     );
@@ -496,7 +501,7 @@ const UpComingTreks = ({ slice }) => {
                             objectFit="cover"
                             objectPosition="50% 50%"
                             alt="imgs"
-                          /> }
+                          />}
                           <div className="image_overlay_text_area_layout4">
                             <div className="p-absolute">
                               <p className="image_overlay_text_title mb-1">

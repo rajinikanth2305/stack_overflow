@@ -429,7 +429,7 @@ const PostRender = ({
                         <img src="../ip.png" />
                       )}
                     </div>
-                    <p className="p-text-3-fgc text-uppercase mt-2 mb-1">
+                    <p className="p-text-3-fgc mt-2 mb-1">
                       {RichText.asText(data?.primary?.heading1)}
                     </p>
                     <p className="p-text-small">
@@ -645,7 +645,7 @@ const PostRender = ({
               <div className="ar_right_side_imgs">
                 {featureImageUrl?.length > 0 && <img src={featureImageUrl} />}
               </div>
-              <p className="p-text-3-fgc text-uppercase mt-2 mb-1">{title}</p>
+              <p className="p-text-3-fgc mt-2 mb-1">{title}</p>
               <p className="p-text-small-10-gray mb-0">
                 By <strong>{author}</strong>
               </p>
