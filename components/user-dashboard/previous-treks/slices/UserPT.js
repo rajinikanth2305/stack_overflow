@@ -270,7 +270,8 @@ const UserPT = () => {
         toast?.current?.show({
           severity: "success",
           summary: `'Thank you for writing about your experience. We truly appreciate it.'`,
-          detail: "Review Submission"
+          detail: "",
+          life: 6000
         });
         setActiveTab(null);
       })
@@ -278,7 +279,8 @@ const UserPT = () => {
         toast.current.show({
           severity: "error",
           summary: `'Error occurred in your review submission - Error ${res?.response?.data?.message}'`,
-          detail: "Review Submission"
+          detail: "",
+          life: 6000
         });
       });
   };

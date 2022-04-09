@@ -252,6 +252,15 @@ export const aboutUsStyles = css.global`
     white-space: nowrap;
   }
 
+  .modal-header > button {
+    font-size: 28px;
+    padding: 0;
+  }
+
+  .modal-header > button > span {
+    padding: 5px;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

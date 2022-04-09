@@ -2418,6 +2418,40 @@ export const customStyles = css.global`
     cursor: pointer;
   }
 
+  .more-nav.nav-item {
+    background: #000000;
+  }
+
+  .more-nav.nav-item > a.nav-link {
+    color: #ffffff;
+  }
+
+  .more-nav.nav-item.show > a.nav-link {
+    color: #ffffff !important;
+  }
+
+  .more-nav.nav-item > .nav-link.active {
+    color: #ffffff !important;
+  }
+
+  .article_tabs.nav-tabs.ofw {
+    box-shadow: none;
+    flex-wrap: initial;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .article_tabs.nav-tabs {
+    box-shadow: none;
+    flex-wrap: initial;
+    white-space: nowrap;
+  }
+
+  .article_tabs.nav-tabs > li > .dropdown-menu.show {
+    right: 0;
+    z-index: 9;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -2471,11 +2505,15 @@ export const customStyles = css.global`
       white-space: normal;
     }
 
-    .article_tabs.nav-tabs {
+    .article_tabs.nav-tabs.ofw {
       box-shadow: none;
       flex-wrap: initial;
       overflow-x: auto;
       white-space: nowrap;
+    }
+
+    .article_tabs > .nav-item > .nav-link {
+      padding: 5px 15px !important;
     }
 
     .user-dashboard-tab > .nav {
