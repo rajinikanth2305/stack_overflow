@@ -1236,6 +1236,11 @@ export const customStyles = css.global`
     color: rgba(57, 114, 41, 1);
     font-family: Franklin Gothic;
   }
+  
+  .text-red {
+    color: red;
+    font-family: Franklin Gothic;
+  }
 
   .q-border {
     border-top: 2px solid rgba(255, 193, 0, 1);

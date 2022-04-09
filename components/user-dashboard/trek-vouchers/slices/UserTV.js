@@ -140,10 +140,10 @@ const UserTV = () => {
             <div className="p-text-2-fg-f16-mb">
               <p
                   className={
-                    data?.voucherStatus === "ALLOCATED" ? "text-green m-0" : "m-0"
+                    data?.validTill < Date() ? "text-red m-0" : data?.voucherStatus === "ALLOCATED" ? "text-green m-0" : "m-0"
                   }
               >
-                {data?.voucherStatus === "ALLOCATED" ? "Available" : "Used"}
+                {data?.validTill < Date() ? "Expired" : data?.voucherStatus === "ALLOCATED" ? "Available" : "Used"}
               </p>
             </div>
           </div>
