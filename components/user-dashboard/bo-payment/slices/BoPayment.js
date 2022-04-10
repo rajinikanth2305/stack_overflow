@@ -113,9 +113,9 @@ const BoPayment = forwardRef((props, ref) => {
       const gstValue =parseFloat( Number((gst / 100) * totalTrekFee).toFixed(2));
       const total = (totalTrekFee + gstValue );
 
-      console.log(totalTrekFee);
+      console.log(total);
 
-      const youPay = totalTrekFee;//user.trekFeeForTheUser  ; //computeTotal(sdata.trekUsers);
+      const youPay = total;//user.trekFeeForTheUser  ; //computeTotal(sdata.trekUsers);
 
      // const youPay = user.youPay; //computeTotal(sdata);//computeWithExcludedVoucherId(user.optedVoucherId,sdata);
       //console.log(youPay);
@@ -133,7 +133,7 @@ const BoPayment = forwardRef((props, ref) => {
           sdata.find(u => u.id === id).youPay = Number(
             youPay - amountToDeductInVocuher
           );
-          console.log(amountToDeductInVocuher);
+          //console.log(amountToDeductInVocuher);
           // sdata.find(u => u.id === id).youPay =
           // Math.abs(Number(actRowPay));
         }

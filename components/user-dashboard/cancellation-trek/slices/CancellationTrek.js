@@ -325,8 +325,12 @@ const CancellationTrek = () => {
             detail: "Cancellation"
           });
 
-
-          router.push(`/user-dashboard/user-upcoming-treks`);
+          const timer = setTimeout(() => {
+            router.push(`/user-dashboard/user-upcoming-treks`);
+          }, 2000);
+      
+          return () => clearTimeout(timer);
+         // router.push(`/user-dashboard/user-upcoming-treks`);
           //fetchAndBindUserBookings(upComingTrek.email);
           //handleClose();
         }
