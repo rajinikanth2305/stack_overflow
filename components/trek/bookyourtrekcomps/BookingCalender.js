@@ -109,7 +109,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
   }
  
   const fetchTrekMonthBatches = async date => {
-
+    setBatchDates(undefined);
     const actualTrekPageName =  getTrekName();
     const client = Client();
 
@@ -128,8 +128,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
                 date.month + 1,
                 date.year
             );
-
-            setBatchDates(undefined);
+          
             if (data.length > 0) {
               var withoutDuplicates = removeDuplicatesBy(x => x.startDate, data);
               //console.log(withoutDuplicates);
@@ -217,8 +216,46 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     }
   };
 
+
+  const renderSwitch=(status,fillingFast,date,batchDates,key) =>{
+   // console.log("called-here2");
+    switch(status) {
+      case 'WAITING_LIST':
+        return  (
+          <>
+        <p style={{ textAlign: "right" }}>
+          <span>{date.day}</span>
+        </p>
+        <p className="m-0 cal-highlight-yellow text-center">Waitlist</p>
+          </>
+        );
+      case 'ACTIVE':
+        return  (
+          activeOrFillingTemplate(fillingFast, date, batchDates[key].availableSlots)
+        );
+      case 'FULL':
+          return  (
+            <>
+            <p style={{ textAlign: "right" }}>
+              <span>{date.day}</span>
+            </p>
+            <p className="m-0 cal-highlight-red-text text-center">FULL</p>
+          </>
+          );
+      default:
+        return  (
+          <>
+        <p style={{ textAlign: "right" }}>
+          <span>{date.day}</span>
+        </p>
+          </>
+        );
+    }
+  }
   const dateTemplate = date => {
     // console.log(date.day);
+
+    console.log("called" + date.month + date.day);
     if (date.day === 1) {
       const dt = date.day + "-" + date.month + "-" + date.year;
       //console.log(date);
@@ -246,32 +283,23 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
       return (
         <div className="w-100">
           <div className="w-100">
-            {status === "WAITING_LIST" ? (
-              <>
-                <p style={{ textAlign: "right" }}>
-                  <span>{date.day}</span>
-                </p>
-                <p className="m-0 cal-highlight-yellow text-center">Waitlist</p>
-              </>
-            ) : status === "ACTIVE" ? (
-              activeOrFillingTemplate(fillingFast, date, batchDates[key].availableSlots)
-            ) : (
-              // <p className="m-0 ad-highlight-full-list">
-              //   <span> FULL {date.day}</span>
-              // </p>
-              <>
-                <p style={{ textAlign: "right" }}>
-                  <span>{date.day}</span>
-                </p>
-                <p className="m-0 cal-highlight-red-text text-center">FULL</p>
-              </>
-            )}
-
-            {/* <p className="ad-d m-0 d-m-none">
-              {moment(sDate).format("MM/DD")} - {moment(eEdate).format("MM/DD")}
-            </p> */}
+         { 
+          
+         renderSwitch(status,fillingFast,date,batchDates,key)
+         }
           </div>
         </div>
+      );
+    }
+    else {
+      return  (
+     
+        <>
+         //  {console.log("called-here1")}
+      <p style={{ textAlign: "right" }}>
+        <span>{date.day}</span>
+      </p>
+        </>
       );
     }
     // else {

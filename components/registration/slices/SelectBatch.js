@@ -77,7 +77,7 @@ const SelectBatch = forwardRef((props, ref) => {
     const slice =
       result && result.data.body.find(x => x.slice_type === "quick_itinerary");
     setquickItinerary(slice);
-    const arr = Array.from(new Array(slice.items.length), (x, i) => i);
+    const arr = Array.from(new Array(slice?.items?.length), (x, i) => i);
     setTripDaysIndexes(arr);
     setTripDatCounter(arr.length);
 
@@ -89,7 +89,7 @@ const SelectBatch = forwardRef((props, ref) => {
         setquickItinerary(slice);
       });*/
   }
-  const heading1 = quickItinerary && quickItinerary.primary.heading1;
+  const heading1 = quickItinerary && quickItinerary?.primary?.heading1;
   // const dayNumberTextArray = quickItinerary && quickItinerary.items;
 
   const dayNumberText = tripDaysIndexes?.map(function(i) {
