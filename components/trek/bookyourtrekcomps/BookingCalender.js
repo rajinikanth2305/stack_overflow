@@ -421,7 +421,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
                   onSelect={e => onSelect(e.value)}
                   monthNavigator
                   yearNavigator
-                  yearRange="2021:2022"
+                  yearRange="2022:2023"
                   disabledDates={invalidDates}
                   showOtherMonths={false}
                   inline

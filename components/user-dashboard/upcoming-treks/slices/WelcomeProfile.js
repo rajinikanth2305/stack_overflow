@@ -165,6 +165,8 @@ const WelcomeProfile = () => {
 
     const values = [];
 
+   // const eligibleBookings=bookingsData.filter(x=>x.)
+
     for (const book of bookingsData) {
       const trekName = book.trekName.replaceAll(" ", "-").toLowerCase();
       if (values.find(x => x === trekName) == undefined) values.push(trekName);
@@ -199,6 +201,7 @@ const WelcomeProfile = () => {
 
      const cnt= book?.trekMates?.filter(x=>x?.bookingParticipantState!=="CANCELLED").length;
 
+     if(cnt >0 ) {
       bookTrekContents.push({
         trekId: book.trekId,
         batchId: book.batchId,
@@ -221,6 +224,7 @@ const WelcomeProfile = () => {
         waitListNumber: book.waitListNumber,
 
       });
+    }
     }
     setStates(bookTrekContents, bookingId, prismicResults);
   };
