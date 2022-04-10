@@ -30,7 +30,7 @@ import { DebounceInput } from "react-debounce-input";
 import auth from "../../services/Authenticate";
 import { AutoComplete } from 'primereact/autocomplete';
 
-
+import { linkResolver } from "prismic-configuration";
 
 /**
  * Homepage header component
@@ -127,10 +127,14 @@ const HikeHeader = (auth = false) => {
     searchResults &&
     searchResults?.map(function (data, i) {
       let url;
-      const slugUrl = data?.uid;
+     /* const slugUrl = data?.uid;
+
       if (slugUrl) {
         url = `/trek/${slugUrl}`;
-      }
+      }*/
+
+      url= linkResolver(data);
+
       return (
         <div key={i} className="card border-0 px-3 py-1 cursor-pointer">
           <Link href={url ? url : "#"}>
