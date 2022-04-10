@@ -470,7 +470,7 @@ const MakePayment = forwardRef((props, ref) => {
 
                       const sdata = JSON.parse(JSON.stringify(stateData.data));
                       const data = sdata?.trekUsers[index];
-                      console.log(JSON.stringify(JSON.stringify(stateData.data)));
+                     // console.log(JSON.stringify(JSON.stringify(stateData.data)));
 
                       const name = data?.email === bookingInformation.email
                           ? data?.firstName + " (You) "

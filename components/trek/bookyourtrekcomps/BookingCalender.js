@@ -45,7 +45,9 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
 
      client.query([Prismic.Predicates.at("my.trek.uid", actualTrekPageName)])
         .then(async function (response) {
+          console.log(response?.results);
           if (response?.results && response?.results?.length > 0 && response.results[0].data?.trek_id) {
+           
             const trekId = response.results[0].data?.trek_id[0].text;
              console.log(trekId);
             if(viewDt==undefined) {

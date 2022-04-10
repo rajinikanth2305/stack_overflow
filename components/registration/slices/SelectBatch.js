@@ -74,8 +74,11 @@ const SelectBatch = forwardRef((props, ref) => {
     const client = Client();
     const trekName = itrekName.replaceAll(" ", "-").toLowerCase();
     const result = await Client().getByUID("trek", trekName);
+
+    console.log(result);
+
     const slice =
-      result && result.data.body.find(x => x.slice_type === "quick_itinerary");
+      result && result?.data?.body?.find(x => x?.slice_type === "quick_itinerary");
     setquickItinerary(slice);
     const arr = Array.from(new Array(slice?.items?.length), (x, i) => i);
     setTripDaysIndexes(arr);
@@ -181,6 +184,8 @@ const SelectBatch = forwardRef((props, ref) => {
         trekName: data.trekName,
         batchState: data.batchState
       };
+
+      console.log(data);
 
       setBookingDate(bookingDates);
       prepareDates(bookingDates);

@@ -285,8 +285,8 @@ const RegHome = ({ slice }) => {
       promoflag=pbatchResult?.privateBatch;
     }
 
-   console.log(pbatchResult?.privateBatch);
-   console.log(promoflag);
+ //  console.log(pbatchResult?.privateBatch);
+  // console.log(promoflag);
    setPromoterFlag(promoflag);
 
     if (stateEmpty) {
