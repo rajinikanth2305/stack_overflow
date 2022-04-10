@@ -42,7 +42,7 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          centerMode: true
+          // centerMode: true
         }
       }
     ]
