@@ -295,7 +295,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
       return  (
      
         <>
-         //  {console.log("called-here1")}
+          
       <p style={{ textAlign: "right" }}>
         <span>{date.day}</span>
       </p>

@@ -604,12 +604,13 @@ const HikeHeader = (auth = false) => {
 
               <AutoComplete
                 id="ac-search"
-                minLength={3}
+                minLength={2}
                 autoFocus
                 value={selectedTreks}
                 onChange={(e) => setSelectedTreks(e.value)}
                 completeMethod={autoSearchTreks}
                 className="g-search mw-100"
+                delay={30}
               />
 
             </div>
