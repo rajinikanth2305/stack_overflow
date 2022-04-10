@@ -615,6 +615,7 @@ const HikeHeader = (auth = false) => {
                 completeMethod={autoSearchTreks}
                 className="g-search mw-100"
                 delay={30}
+                placeholder="Find your trek here?"
               />
 
             </div>

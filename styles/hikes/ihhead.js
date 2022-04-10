@@ -116,7 +116,7 @@ export const ihheaderStyles = css.global`
     // padding: 3px 15px;
     position: fixed;
     // width: 25%;
-    right: 0;
+    right: 5px;
     z-index: 99;
   }
 
@@ -138,7 +138,7 @@ export const ihheaderStyles = css.global`
     position: fixed;
     // right: 7%;
     // width: 25%;
-    right: 0;
+    right: 5px;
     width: 400px;
     top: 100px;
     z-index: 99;
