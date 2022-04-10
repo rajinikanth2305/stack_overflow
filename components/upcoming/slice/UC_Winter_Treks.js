@@ -193,7 +193,7 @@ const UCWinterTreks = ({ slice, winterData }) => {
                         ""
                       )}
                     </div>
-                    <div className="p-abs-btn pb-3">
+                    <div className="p-abs-btn mmasb">
                       {/* <Link href={url ? url : "#"}> */}
                       <button className="btn m-btn-ih-green px-2">
                         View Dates / Registers
@@ -212,7 +212,7 @@ const UCWinterTreks = ({ slice, winterData }) => {
 
   return (
     <>
-      <div className="mb-5 ucOpenForSmallGroup_sec">
+      <div className="mb-5">
         <div className="container">
           <div className="d-flex flex-wrap align-items-center border-bottom-4 mb-3">
             <div className="col-lg-6 col-md-12">

@@ -640,6 +640,9 @@ export const upcomingTrekPageStyle = css.global`
     .section-padd {
       padding: 15px 0;
     }
+    .filter_box {
+      margin-bottom: 20px;
+    }
     // .trek_card_mb {
     //   min-height: 315px;
     // }
@@ -653,6 +656,9 @@ export const upcomingTrekPageStyle = css.global`
     .p-abs-btn {
       position: absolute;
       bottom: 0;
+    }
+    .p-abs-btn.mmasb {
+      position: relative;
     }
     .title-display-1 {
       font-size: 36px;
@@ -714,9 +720,9 @@ export const upcomingTrekPageStyle = css.global`
       padding: 0 20px;
     }
 
-    // .ucOpenForSmallGroup_sec {
-    //   padding-top: 0;
-    // }
+    .ucOpenForSmallGroup_sec {
+      padding-top: 20px;
+    }
 
     .card_sec {
       margin: 5px 0;
@@ -814,6 +820,10 @@ export const upcomingTrekPageStyle = css.global`
 
     .mmt-4 {
       margin-top: 30px;
+    }
+
+    .mmp-t-0 {
+      padding-top: 0px !important;
     }
 
     .p-display-1.m-d-1 {
