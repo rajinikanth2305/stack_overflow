@@ -272,7 +272,7 @@ const RegHome = ({ slice }) => {
       const sdata = JSON.parse(JSON.stringify(stateData.data));
       stateEmpty = isEmpty(sdata);
     }
-    console.log(stepName);
+   // console.log(stepName);
     // console.log(stateEmpty);
 
     console.log(pbatchResult);
@@ -416,7 +416,7 @@ const RegHome = ({ slice }) => {
 
     //console.log(vouchers);
 
-    const ownnerInfo = data.participants.find(
+    const ownnerInfo = data?.participants?.find(
       user => user.userId === data.ownerUserId
     );
     const isOwnerActing =
@@ -436,10 +436,13 @@ const RegHome = ({ slice }) => {
       trekUsers: [],
       isOwnerActing: isOwnerActing,
       bookingState:data.state,
-      batchState: data.batchState
+      batchState: data.batchState,
+      trekDifficulty:data?.trekDifficulty
     };
 
-    const filteredUsers = data.participants.filter(
+   //   console.log(bookingInformaiton);
+
+    const filteredUsers = data?.participants?.filter(
       x => x.bookingParticipantState !== "CANCELLED"
     );
 
@@ -497,17 +500,17 @@ const RegHome = ({ slice }) => {
     return data1;
   };
 
-  const setStateStoreDataAndTriggerTabChangesState = async bookDetails => {
+  const setStateStoreDataAndTriggerTabChangesState = async (bookDetails) => {
     //console.log(JSON.stringify(bookDetails));
     setBookingState(bookDetails.bookingState);
 
     await dispatch(addOrUpdateState(bookDetails));
 
-    childRef.current.changeState();
+    childRef?.current.changeState();
     // childMobRef.current.changeState();
-    trekMateChildRef.current.changeState();
+    trekMateChildRef?.current.changeState();
     // trekMateChilMobdRef.current.changeState();
-    paymentChildRef.current.changeState();
+    paymentChildRef?.current.changeState();
     // paymentChildMobRef.current.changeState();
 
   };

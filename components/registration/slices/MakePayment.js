@@ -140,8 +140,11 @@ const MakePayment = forwardRef((props, ref) => {
       trekkersCount: sdata.trekUsers?.length,
       trekUsers: sdata.trekUsers,
       batchId: sdata.batchId,
-      email: sdata.primaryUserEmail
+      email: sdata.primaryUserEmail,
+      trekDifficulty:sdata.trekDifficulty
     };
+
+   //  console.log(bookingsInfo);
 
     setBookingInformation(bookingsInfo);
     computeTotal(sdata.trekUsers);
@@ -399,7 +402,7 @@ const MakePayment = forwardRef((props, ref) => {
                         {moment(bookingInformation?.startDate).format("Do")} -{" "}
                         {moment(bookingInformation?.endDate).format("Do MMMM")}
                       </td>
-                      <td className="td-text-fgb">Moderate-Difficult</td>
+                      <td className="td-text-fgb">{bookingInformation?.trekDifficulty}</td>
                       <td>{bookingInformation?.trekkersCount} trekkers</td>
                     </tr>
                   </tbody>

@@ -13,7 +13,8 @@ export const slice = createSlice({
       // console.log(action.type);
        switch (action.type) {
         case 'counter/addOrUpdateState': {
-          const { trekId, batchId,trekName,startDate,endDate,trekUsers,bookingId,primaryUserEmail,voucherDetails,isOwnerActing,bookingState,batchState} = action.payload;
+          const { trekId, batchId,trekName,startDate,endDate,trekUsers,bookingId,primaryUserEmail,
+            voucherDetails,isOwnerActing,bookingState,batchState,trekDifficulty} = action.payload;
           return {
            ...state,
            todos: {
@@ -30,8 +31,8 @@ export const slice = createSlice({
                voucherDetails:voucherDetails,
                isOwnerActing:isOwnerActing,
                bookingState:bookingState,
-               batchState:batchState
-
+               batchState:batchState,
+               trekDifficulty:trekDifficulty
              }
            }
          };
