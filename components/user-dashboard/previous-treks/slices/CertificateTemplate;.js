@@ -14,7 +14,7 @@ import moment from "moment";
 const CertificateTemplate = certificateData => {
   const [selectedReceipts, setselectedReceipts] = useState();
 
-  //console.log(certificateData);
+  // console.log(certificateData);
   //setselectedReceipts(selectedReceiptsData);
 
   const styles = StyleSheet.create({
@@ -151,12 +151,12 @@ const CertificateTemplate = certificateData => {
               &nbsp;from{" "}
               {certificateData.certificateData &&
                 moment(certificateData.certificateData.startDate).format(
-                  "MM/DD/YYYY"
+                  "DD/MM/YYYY"
                 )}{" "}
               to{" "}
               {certificateData.certificateData &&
                 moment(certificateData.certificateData.endDate).format(
-                  "MM/DD/YYYY"
+                  "DD/MM/YYYY"
                 )}
             </Text>
             {/* <Text style={styles.header23}>
@@ -175,7 +175,7 @@ const CertificateTemplate = certificateData => {
             <Text style={styles.sectionText}>
               {certificateData.certificateData &&
                 certificateData.certificateData.trekName}{" "}
-              | Trek Grade: {certificateData.certificateData.trekDifficulty} |
+              | Trek Grade: {certificateData && certificateData.certificateData.trekDifficulty === "EASY" ? "Easy" : certificateData.certificateData.trekDifficulty === "MODERATE" ? "Moderate" : certificateData.certificateData.trekDifficulty === "MODERATE_DIFFICULT" ? "Moderate-Difficult" : certificateData.certificateData.trekDifficulty === "DIFFICULT" ? "Difficult" : ""} |
               Duration: {certificateData.certificateData.trekDuration} Days |
               Max Altitude: {certificateData.certificateData.trekAltitude.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} ft
             </Text>
