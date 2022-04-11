@@ -613,10 +613,26 @@ const WelcomeProfile = () => {
                                         </div>
                                       </div>
                                       <div className="d-flex justify-content-end">
+
                                         {(upComingTrek?.bookingState ===
-                                          "PAYMENT" ||
-                                          upComingTrek?.bookingState ===
                                             "ADD_PARTICIPANTS") && (
+                                          <div>
+                                            <button
+                                              className="btn table-btn-green-lg mx-3 hvr-grow"
+                                              onClick={e =>
+                                                addParticipants(
+                                                  upComingTrek?.batchId
+                                                )
+                                              }
+                                            >
+                                              <span className="px-2">
+                                                Add Participants
+                                              </span>
+                                            </button>
+                                          </div>
+                                        )}
+                                         {(upComingTrek?.bookingState ==="PAYMENT") 
+                                          && (
                                           <div>
                                             <button
                                               className="btn table-btn-green-lg mx-3 hvr-grow"
@@ -632,6 +648,7 @@ const WelcomeProfile = () => {
                                             </button>
                                           </div>
                                         )}
+
                                         {isStringOrNullEmpty(upComingTrek?.bookingState,upComingTrek?.trekWhatsappLink)
                                              && (
                                             <>

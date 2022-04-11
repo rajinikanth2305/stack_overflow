@@ -602,6 +602,21 @@ const renderFooter = (name) => {
     { name: "Female", code: "Female" },
     { name: "Other", code: "Other" }
   ];
+
+  const evaluateState=(stateData)=> {
+
+   return  (stateData?.data?.batchState !== 'WAITING_LIST' 
+    || (stateData?.data?.bookingState !== 'INITIATED' 
+    && stateData?.data?.bookingState !== 'WAITING_LIST')) ;
+
+  };
+
+  const evaluateStateWaiting=(stateData)=> {
+    return   (stateData?.data?.batchState === 'WAITING_LIST'
+    && (stateData?.data?.bookingState === 'INITIATED' 
+    || stateData?.data?.bookingState === 'WAITING_LIST'));
+   };
+ 
   return (
     <>
       <Toast ref={toast} />
@@ -898,28 +913,29 @@ const renderFooter = (name) => {
           </div>
           <div className="col-lg-2 col-md-12"></div>
         </div>
-        { (stateData?.data?.batchState !== 'WAITING_LIST' || (stateData?.data?.bookingState !== 'INITIATED' && stateData?.data?.bookingState !== 'WAITING_LIST')) && (<div className="d-flex justify-content-center">
+        { evaluateState(stateData)===true && (<div className="d-flex justify-content-center">
           <div>
             <div className="mt-5 mb-3">
-              <button
+              <button id="p1"
                 type="button"
                 className="btn btn-ih-green hvr-grow py-2"
                 onClick={nextTabNav}
               >
-                Proceed to next step of registration
+                Proceed to next step of registration 
               </button>
             </div>
-          </div>
+          </div> 
         </div>)}
-        { (stateData?.data?.batchState === 'WAITING_LIST' && (stateData?.data?.bookingState === 'INITIATED' || stateData?.data?.bookingState === 'WAITING_LIST')) && (<div className="d-flex justify-content-center">
+        { evaluateStateWaiting(stateData)===true && (<div className="d-flex justify-content-center">
           <div>
             <div className="mt-5 mb-3">
-              <button
+              <button 
+                  id="p2"
                   type="button"
                   className="btn btn-ih-green hvr-grow py-2"
                   onClick={waitingListConfirmation}
               >
-                Proceed to waiting list registration
+                Proceed to waiting list registration 
               </button>
             </div>
           </div>
