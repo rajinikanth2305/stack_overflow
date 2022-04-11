@@ -1379,8 +1379,8 @@ const PostRender = ({
           <div className="container">
             <div className="row d-flex align-items-center">
               <div className="col-lg-6 col-md-12">
-                <p className="sign_up_text mb-0">GPX File Opt in Lorem Ipsum Dolor sit amet</p>
-                <p class="sign_up_text_desc">We have terrific trekking tips, trek updates and trek talks to look forward to</p>
+                <p className="sign_up_text mb-0">GPX File Opt in</p>
+                <p class="sign_up_text_desc">We go to great lengths to ensure you have a safe trek. So here’s a GPX file of the trail to help you navigate without getting lost.</p>
               </div>
               <div className="col-lg-6 col-md-12">
                 <iframe
