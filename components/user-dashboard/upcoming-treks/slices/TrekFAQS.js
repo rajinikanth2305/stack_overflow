@@ -33,11 +33,11 @@ const TrekFAQS = forwardRef((props, ref) => {
         return;
       }
       const data = trekData?.data;
-      const trekName = data.backOfficeTrekLabel
+      const trekName = data?.backOfficeTrekLabel
         .replaceAll(" ", "-")
         .toLowerCase();
       const result = trekData.prismicContents?.results?.find(
-        x => x.uid.toLowerCase() === trekName.toLowerCase()
+        x => x.uid.toLowerCase() === trekName?.toLowerCase()
       );
       setTrekPageData(result);
       fillPrismicContents(result);

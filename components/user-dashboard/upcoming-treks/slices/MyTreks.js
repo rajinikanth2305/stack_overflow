@@ -180,12 +180,12 @@ const MyTreks = forwardRef((props, ref) => {
       //  console.log(trekData);
       const data = trekData?.data;
       /// Get the prismic trek contents
-      const trekName = data.backOfficeTrekLabel
+      const trekName = data?.backOfficeTrekLabel
         .replaceAll(" ", "-")
         .toLowerCase();
       // console.log(trekName);
-      const result = trekData.prismicContents?.results?.find(
-        x => x.uid.toLowerCase() === trekName.toLowerCase()
+      const result = trekData?.prismicContents?.results?.find(
+        x => x.uid.toLowerCase() === trekName?.toLowerCase()
       );
       // console.log(result);
       setTrekPageData(result);
@@ -364,9 +364,9 @@ const MyTreks = forwardRef((props, ref) => {
 
                     const state =
                       pdata?.bookingParticipantState === "CANCELLED";
-                    console.log(currentPickupLocation + name);
-                    console.log(currentDropLocation + name);
-                    console.log(state);
+                  //  console.log(currentPickupLocation + name);
+                  //  console.log(currentDropLocation + name);
+                  //  console.log(state);
 
                     return (
                       <tr>

@@ -48,10 +48,12 @@ const UserMP = () => {
             <div className="col-md-6 col-12">
               <p className="p-text-1-fgt mb-4">
                { status==="success" && (
-                <span className="border-bottom-custom-1 pb-1">  Payment received! &nbsp; &nbsp;
-                 Success! Congratulations on booking a trek! We have mailed you a payment receipt.
-                </span>
-                 )
+                 <>
+                <span className="border-bottom-custom-1 pb-1">  Payment received! </span>
+                 <span className="border-bottom-custom-1 pb-1">  
+                 Success! Congratulations on booking a trek! We have mailed you a payment receipt. </span>
+                </>
+                )
                }
                    { status==="failed" && (
                 <span className="border-bottom-custom-1 pb-1">  Payment Failed! </span>

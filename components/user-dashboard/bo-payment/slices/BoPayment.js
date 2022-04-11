@@ -239,6 +239,8 @@ const BoPayment = forwardRef((props, ref) => {
   };
 
   const doPayment = () => {
+
+   // let isExecuted = confirm("Are you sure to execute this action?");
     confirmDialog({
       //target: e.currentTarget,
       header: "Backpacks offloading confirmation?",
@@ -262,7 +264,8 @@ const BoPayment = forwardRef((props, ref) => {
     });
   };
 
-  const paymentInitiate = () => {
+  const paymentInitiate = async () => {
+
     const voucherList = buildVouchers(offSelectedData.participants);
     //console.log(JSON.stringify(voucherList));
 
@@ -296,12 +299,12 @@ const BoPayment = forwardRef((props, ref) => {
   const processPayments = voucherList => {
     doSaveOffloadingPayments(offSelectedData.header.bookingId, voucherList)
       .then(res => {
-        // console.log(res.data);
+         console.log(res.data);
         // console.log(res.data.features.enableNewWindowFlow);
         // console.log( window.jQuery===undefined);
-        window.jQuery.pnCheckout(res.data);
-        console.log(res.data.features.enableNewWindowFlow);
-        if (res.data.features.enableNewWindowFlow) {
+        window?.jQuery?.pnCheckout(res.data);
+        console.log(res?.data?.features?.enableNewWindowFlow);
+        if (res?.data?.features?.enableNewWindowFlow) {
           console.log(res.data.features.enableNewWindowFlow);
           pnCheckoutShared.openNewWindow();
         }

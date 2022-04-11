@@ -70,6 +70,7 @@ const WelcomeProfile = () => {
   const [cancelCounter, setCancelCounter] = React.useState(0);
   const [defaultTabKey, setDefaultTabKey] = React.useState("mytrek");
   const [prismicResultState, setPrismicResultState] = React.useState([]);
+
   const {
     register,
     handleSubmit,
@@ -95,10 +96,12 @@ const WelcomeProfile = () => {
 
   function fetchAndBindUserBookings(email) {
     getdashBoardUserBooking(email).then(bookingsData => {
-      if (bookingsData.length > 0) {
-          const bookingOwner = bookingsData.map(element => {
+     // const cnt= bookingsData?.trekMates?.filter(x=>x?.bookingParticipantState!=="CANCELLED").length;
+      if (bookingsData?.length > 0) {
+          console.log()
+          const bookingOwner = bookingsData?.map(element => {
           const mainuser = element.trekMates.find(
-            subElement => subElement.userDetailsForDisplay?.email === email
+            subElement => subElement?.userDetailsForDisplay?.email === email
           );
           if (mainuser !== undefined) return mainuser;
         });
@@ -132,11 +135,13 @@ const WelcomeProfile = () => {
     setUpComingTrek(booking); /// setting the first trek has upcoming trek
     deriveAndSetOffLoadingTabVisible(booking);
 
-    const arr = Array.from(new Array(bookTrekContents.length - 1), (x, i) => i);
+    if(bookTrekContents?.length >0) {
+    const arr = Array.from(new Array(bookTrekContents?.length - 1), (x, i) => i);
     setIndexes(arr);
     setCounter(arr.length);
+    }
 
-    const nextTreks = bookTrekContents.filter(
+    const nextTreks = bookTrekContents?.filter(
       x => x.bookingId !== booking.bookingId
     ); /// Excluding the selected trek;
 
@@ -181,7 +186,7 @@ const WelcomeProfile = () => {
     let index = 0;
     for (const book of bookingsData) {
       index++;
-      const trekName = book.trekName.replaceAll(" ", "-").toLowerCase();
+      const trekName = book?.trekName.replaceAll(" ", "-").toLowerCase();
       const result = prismicResults?.results?.find(x => x.uid === trekName);
 
       if (index == 1) setTrekPageData(result);
@@ -201,7 +206,7 @@ const WelcomeProfile = () => {
 
      const cnt= book?.trekMates?.filter(x=>x?.bookingParticipantState!=="CANCELLED").length;
 
-     if(cnt >0 ) {
+     //if(cnt >0 ) {
       bookTrekContents.push({
         trekId: book.trekId,
         batchId: book.batchId,
@@ -209,7 +214,7 @@ const WelcomeProfile = () => {
         email: userEmail,
         bannerImageUrl: bannerImage,
         trekName: trekCaptions,
-        backOfficeTrekLabel: book.trekName,
+        backOfficeTrekLabel: book?.trekName,
         startDate: book.batchStartDate,
         endDate: book.batchEndDate,
         trekCoordinator: book.trekCoordinator,
@@ -224,7 +229,7 @@ const WelcomeProfile = () => {
         waitListNumber: book.waitListNumber,
 
       });
-    }
+   // }
     }
     setStates(bookTrekContents, bookingId, prismicResults);
   };

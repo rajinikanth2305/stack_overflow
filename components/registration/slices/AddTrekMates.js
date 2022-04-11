@@ -401,6 +401,7 @@ const renderFooter = (name) => {
     //     severity: "error",
     //     summary: `'Batch is full, Sorry! You no more allowed to add the TrekMates'`,
     //     detail: "Add Trekker- Batch is full"
+    
     //   });
     //   return;
     // }

@@ -53,6 +53,7 @@ const UserPT = () => {
   const toast = useRef(null);
 
   const [multiCheckItems, setMultiCheckItems] = useState([]);
+  const [showReviewSubmit, setShowReviewSubmit] = useState(true);
 
   const {
     register,
@@ -110,7 +111,19 @@ const UserPT = () => {
       const arr = Array.from(new Array(resData.length), (x, i) => i);
       setReviewIndexes(arr);
       setReviewCounter(1);
-    });
+    })
+    .catch(res => {
+      setReviewData(undefined);
+      if (res?.response?.data?.message) {
+         console.log(res?.response?.data?.message);
+         toast?.current?.show({
+          severity: "info",
+          summary: `'No Review questions defined for this trek.'`,
+          detail: "",
+          life: 5000
+        });
+      }
+  });
   };
 
   const toggle = tab => {
@@ -276,6 +289,7 @@ const UserPT = () => {
         setActiveTab(null);
       })
       .catch(res => {
+        console.log(res)
         toast.current.show({
           severity: "error",
           summary: `'Error occurred in your review submission - Error ${res?.response?.data?.message}'`,
@@ -463,6 +477,12 @@ const UserPT = () => {
                         {
                           return reviewData?.reviewQuestions.map(
                             (item, index) => {
+
+                             // console.log(reviewData?.reviewQuestions.length);
+                             // console.log(index);
+                            //  if(reviewData?.reviewQuestions.length-1===index) {
+                             //   setShowReviewSubmit(true);
+                             // }
                               const multiple =
                                 item.reviewQuestionType.toLowerCase() ==
                                 "multiple_choice";
@@ -619,7 +639,7 @@ const UserPT = () => {
                           );
                         }
                       })}
-
+                       {reviewData?.reviewQuestions?.length>0 && (
                       <div className="text-center">
                         <button
                           type="submit"
@@ -628,6 +648,7 @@ const UserPT = () => {
                           Submit Review
                         </button>
                       </div>
+                       )}
                     </div>
                   </div>
                 </form>

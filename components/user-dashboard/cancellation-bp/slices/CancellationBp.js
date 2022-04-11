@@ -94,7 +94,10 @@ const CancellationBp = () => {
     });
   };
 
-  const setStates = (bookingData) => {
+  const setStates = (data) => {
+
+   // console.log(bookingData);
+    const bookingData= data?.filter(x=>x.offloadingParticipantStatus!=="CANCELLED");
     setBookings(bookingData);
     setFlagValue(flagValue);
 
