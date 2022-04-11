@@ -15,7 +15,7 @@ import { Text, Quote, ImageWithCaption, IframeTag, EmbedHtml } from "./index";
 import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
 
-import {  saveDocumentComments,getDocumentComments } from "../../../services/queries";
+import { saveDocumentComments, getDocumentComments } from "../../../services/queries";
 /**
  * Post slice component
  */
@@ -176,7 +176,7 @@ const PostRender = ({
     res?.map(y => {
       comments.push({
         id: y.id,
-        oldCommentId: y.oldCommentId==null ?0 : y.oldCommentId,
+        oldCommentId: y.oldCommentId == null ? 0 : y.oldCommentId,
         commentPostId: y.commentPostId,
         commentPostTitle: y.commentPostTitle,
         commentPostName: y.commentPostName,
@@ -273,17 +273,17 @@ const PostRender = ({
               {RichText.asText(authorData?.data?.author_description)}
             </p>
             <div className="text-center">
-            <div className="auth_image">
-              <img src={authorData?.data?.author_photo?.url} />
+              <div className="auth_image">
+                <img src={authorData?.data?.author_photo?.url} />
+              </div>
+              <p className="m-0 p-text-3-fg text-center mt-1">
+                {authorData?.data?.author_first_name}{" "}
+                {authorData?.data?.author_last_name}
+              </p>
+              <p className="m-0 p-text-small-black text-center">
+                {authorData?.data?.designation}
+              </p>
             </div>
-            <p className="m-0 p-text-3-fg text-center mt-1">
-              {authorData?.data?.author_first_name}{" "}
-              {authorData?.data?.author_last_name}
-            </p>
-            <p className="m-0 p-text-small-black text-center">
-              {authorData?.data?.designation}
-            </p>
-          </div>
           </div>
         </div>
       </div>
@@ -376,7 +376,7 @@ const PostRender = ({
         <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
           Latest Updates
         </p>
-        {items.map(function(data, i) {
+        {items.map(function (data, i) {
           return (
             <div className="border-bottom mb-3 pb-3">
               <p className="p-text-3-fgc-yellow m-0">{data?.date}</p>
@@ -397,7 +397,7 @@ const PostRender = ({
             <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
               Upcoming Treks
             </p>
-            {upComingData?.map(function(data, i) {
+            {upComingData?.map(function (data, i) {
               const tData = data?.data?.body?.find(
                 x => x.slice_type === "trek_banner"
               );
@@ -436,9 +436,9 @@ const PostRender = ({
                       <b>
                         {tData?.primary?.trek_caption?.length > 25
                           ? `${tData?.primary?.trek_caption?.substring(
-                              0,
-                              25
-                            )}...`
+                            0,
+                            25
+                          )}...`
                           : tData?.primary?.trek_caption}
                       </b>
                     </p>
@@ -538,7 +538,7 @@ const PostRender = ({
                       src="/v-icon.png"
                       alt="playicon'"
                       className="paly-icon icon-size-50"
-                      // onClick={handleShow}
+                    // onClick={handleShow}
                     />
                   </div>
                 </div>
@@ -572,7 +572,7 @@ const PostRender = ({
         <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
           Latest Videos
         </p>
-        {slice?.items?.map(function(data, i) {
+        {slice?.items?.map(function (data, i) {
           //console.log(data.video_image.url);
           const videoId = data?.video_id?.replace('"', "");
           const videoUrl =
@@ -594,7 +594,7 @@ const PostRender = ({
                       src="/v-icon.png"
                       alt="playicon'"
                       className="paly-icon icon-size-50"
-                      // onClick={handleShow}
+                    // onClick={handleShow}
                     />
                   </div>
                 </div>
@@ -629,7 +629,7 @@ const PostRender = ({
         <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
           DIY Articles
         </p>
-        {relatedArticles?.map(function(article, i) {
+        {relatedArticles?.map(function (article, i) {
           let featureImageUrl = "";
           const featureSlice = article?.data?.body?.find(
             x => x.slice_type == "feature_image"
@@ -986,13 +986,13 @@ const PostRender = ({
               </div>
             </div>
           </div>
-          {featureImageUrl && 
+          {featureImageUrl &&
             <Image
-            src={featureImageUrl}
-            layout="fill"
-            objectFit="cover"
-            objectPosition="bottom"
-          />
+              src={featureImageUrl}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="bottom"
+            />
           }
         </div>
 
@@ -1330,9 +1330,9 @@ const PostRender = ({
 
                           {/*nested replies */
 
-                          sdata?.replies?.map(rep => {
-                            return recursiveReplyrender(rep);
-                          })}
+                            sdata?.replies?.map(rep => {
+                              return recursiveReplyrender(rep);
+                            })}
                         </div>
                       </div>
                     );
@@ -1375,6 +1375,28 @@ const PostRender = ({
         </div>
       </div> */}
         </div>
+        {data?.gpx_script && <div className="trek_with_swathi_bg p-4">
+          <div className="container">
+            <div className="row d-flex align-items-center">
+              <div className="col-lg-6 col-md-12">
+                <p className="sign_up_text mb-0">GPX File Opt in Lorem Ipsum Dolor sit amet</p>
+                <p class="sign_up_text_desc">We have terrific trekking tips, trek updates and trek talks to look forward to</p>
+              </div>
+              <div className="col-lg-6 col-md-12">
+                <iframe
+                  src={RichText.asText(data?.gpx_script)}
+                  width="100%"
+                  height="350"
+                  frameborder="0"
+                  marginheight="0"
+                  marginwidth="0"
+                >
+                  Loading…
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </div>}
         <style jsx global>
           {customStyles}
         </style>
