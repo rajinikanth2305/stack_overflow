@@ -159,6 +159,9 @@ let insuranceRefund= 0;
 
 
 let cashRefund= 0;
+
+if (userData.offloadingAmountPaid!==userVoucherAppliedAmount) {
+
 if(userData.offloadingAmountPaid>0 && userData.cancellationPercentage >0) {
   cashRefund=(((100-userData.cancellationPercentage)/100) * 
                       (userData.offloadingAmountPaid-userVoucherAppliedAmount));
@@ -166,8 +169,12 @@ if(userData.offloadingAmountPaid>0 && userData.cancellationPercentage >0) {
 else {
   cashRefund=userData.offloadingAmountPaid-  userVoucherAppliedAmount;
 }
+}
+else {
+  cashRefund=0;
+}
 
-console.log(userData);
+//console.log(userData);
 
 let voucherRefund= 0;
 if(userData.offloadingAmountPaid>0 && userData.cancellationPercentage >0 ) {

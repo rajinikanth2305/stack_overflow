@@ -180,16 +180,9 @@ const CancellationTrek = () => {
     let totalPaid = 0;
     let amountPaid = 0;
 
-    if (tflagValue === 'trek-p-cancel') {
-      totalPaid = userData?.amountPaid;
-    }
-    else {
-      totalPaid = userData?.backpackOffloadingAmountPaid;
-    }
-
+    totalPaid = userData?.amountPaid;
     amountPaid = totalPaid;
-    console.log(totalPaid);
-
+   
     let actualRefundPercentage = 0;
     let percentage = 0;
     let refundValue = 0;
@@ -203,7 +196,7 @@ const CancellationTrek = () => {
       cancelCharge = ((tcancelCharge / 100) * totalPaid);
     }
     else {
-      actualRefundPercentage = (100);
+      actualRefundPercentage = (tcancelCharge);
       percentage = (actualRefundPercentage / 100);
       // console.log(percentage);
       refundValue = (percentage * totalPaid);
@@ -226,13 +219,19 @@ const CancellationTrek = () => {
 
 
     let cashRefund = 0;
-    if (userData.amountPaid > 0 && userData.cashCancellationPercentage > 0) {
-      cashRefund = (((100 - userData.cashCancellationPercentage) / 100) *
-        (userData.amountPaid - (userInsuranceAmount + userVoucherAppliedAmount)));
-    }
-    else {
-      cashRefund = userData.amountPaid - (userInsuranceAmount + userVoucherAppliedAmount);
-    }
+
+    if (userData.amountPaid!==userVoucherAppliedAmount) {
+        if (userData.amountPaid > 0 && userData.cashCancellationPercentage > 0) {
+          cashRefund = (((100 - userData.cashCancellationPercentage) / 100) *
+            (userData.amountPaid - (userInsuranceAmount + userVoucherAppliedAmount)));
+        }
+        else {
+          cashRefund = userData.amountPaid - (userInsuranceAmount + userVoucherAppliedAmount);
+        }
+      }
+      else {
+        cashRefund=0;
+      }
 
     console.log(userData.amountPaid);
     console.log((userData.amountPaid - (userInsuranceAmount + 0)));
@@ -366,35 +365,19 @@ const CancellationTrek = () => {
 
     if (moneytaryRefund === true) {
       participants.filter(x => x.cancelled === true).map(p => {
-        if (flagValue === 'trek-p-cancel') {
-          totalPaid = totalPaid + p?.cashRefund;
-          console.log(totalPaid);
-          totalFeePaid = totalFeePaid + p?.amountPaid;
-          partAmount = partAmount + p?.voucherPartAmount;
-          insuredAmount = insuredAmount + p?.insuranceRefund;
-        }
-        else {
+     
           totalPaid = totalPaid + p?.cashRefund;
           totalFeePaid = totalFeePaid + p?.amountPaid;
           partAmount = partAmount + p?.voucherPartAmount;
-          insuredAmount = insuredAmount + p?.insuranceRefund;
-        }
+          insuredAmount = insuredAmount +  (p?.voucherPartAmount == p?.amountPaid) ? 0  : p?.insuranceRefund;
       });
     }
     else {
       participants.filter(x => x.cancelled === true).map(p => {
-        if (flagValue === 'trek-p-cancel') {
           totalPaid = totalPaid + p?.voucherRefund;
           totalFeePaid = totalFeePaid + p?.amountPaid;
           partAmount = partAmount + p?.voucherPartAmount;
           insuredAmount = insuredAmount + p?.insuranceRefund;
-        }
-        else {
-          totalPaid = totalPaid + p?.voucherRefund;
-          totalFeePaid = totalFeePaid + p?.amountPaid;
-          partAmount = partAmount + p?.voucherPartAmount;
-          insuredAmount = insuredAmount + p?.insuranceRefund;
-        }
       });
     }
 
@@ -402,6 +385,8 @@ const CancellationTrek = () => {
     let voucherCredit = 0;
     let youReceive = 0;
 
+    console.log(partAmount);
+    
     if (moneytaryRefund === true) {
       if (partAmount > 0) {
         cashCredit = totalPaid;
@@ -537,7 +522,7 @@ const CancellationTrek = () => {
                                   <th style={{ width: "2%" }}>&nbsp;</th>
                                   <th>Trekker name</th>
                                   <th>Fee paid</th>
-                                  <th>Insurance paid</th>
+                                  {/*<th>Insurance paid</th>*/}
                                   <th>Voucher applied</th>
                                   {moneytaryRefund === true && (
                                     <th>Cash Credited- Percentage {100 - headerPercentages?.cashCancellationPercentage}-%</th>
@@ -545,7 +530,7 @@ const CancellationTrek = () => {
                                   {moneytaryRefund === false && (
                                     <th>Voucher Credited- Percentage {100 - headerPercentages?.voucherCancellationPercentage}-%</th>
                                   )}
-                                  <th>Insurance Credited- Percentage {100 - headerPercentages?.insuranceCancellationPercentage}-%</th>
+                                     <th>Insurance Credited- Percentage {100 - headerPercentages?.insuranceCancellationPercentage}-%</th> 
                                 </tr>
                               </thead>
                               <tbody>
@@ -616,17 +601,8 @@ const CancellationTrek = () => {
                                               <div className="p-text-2-fg-f16-mb">{Number(sdata?.amountPaid).toFixed(2)}</div>
                                             </div>
                                           </td>
-                                          <td>
-                                            {/* {Number(sdata?.insuranceAmount).toFixed(2)} */}
-                                            <div className="d-flex align-items-center">
-                                              <div className="m-col-3">
-                                                <span className="m-d-block m-col-text p-text-small-fg">
-                                                  Insurance paid: &nbsp;
-                                                </span>
-                                              </div>
-                                              <div className="p-text-2-fg-f16-mb">{Number(sdata?.insuranceAmount).toFixed(2)}</div>
-                                            </div>
-                                          </td>
+                                           
+                                          
                                           <td>
                                             {/* {Number(sdata?.voucherUsed).toFixed(2)} */}
                                             <div className="d-flex align-items-center">
