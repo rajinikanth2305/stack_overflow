@@ -498,6 +498,21 @@ async function fetchDocs(page = 1, routes = []) {
 }
 
 
+export const saveDocumentComments =   (postname,payload)  => {
+  const api = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}`;
+  let url = `${api}/document-comments`;
+  return axios.post(url,payload)
+         .then((res) => res.data);
+};
+
+export const getDocumentComments =  (postName)  => {
+  const api = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}`;
+  let url = `${api}/document-comments?post-name=${postName}`;
+  return axios.get(url).then((res) => res.data);
+};
+
+
+
 export const queryRepeatableDocumentsWithDocTypeFilter = async (filter) => {
   const allRoutes = await fetchDocsWithFilter(1,filter);
   return allRoutes; // allRoutes.filter(filter)

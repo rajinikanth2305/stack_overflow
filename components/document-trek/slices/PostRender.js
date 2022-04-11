@@ -15,7 +15,7 @@ import { Text, Quote, ImageWithCaption, IframeTag, EmbedHtml } from "./index";
 import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
 
-import { saveWebComments, getPostComments } from "../../../services/queries";
+import {  saveDocumentComments,getDocumentComments } from "../../../services/queries";
 /**
  * Post slice component
  */
@@ -159,7 +159,7 @@ const PostRender = ({
   };
 
   const getPostCommentsByPostName = postName => {
-    getPostComments(postName).then(res => {
+    getDocumentComments(postName).then(res => {
       // console.log(res);
       var comments = getPreparedData(res);
       setPostComments(comments);
@@ -176,7 +176,7 @@ const PostRender = ({
     res?.map(y => {
       comments.push({
         id: y.id,
-        oldCommentId: y.oldCommentId,
+        oldCommentId: y.oldCommentId==null ?0 : y.oldCommentId,
         commentPostId: y.commentPostId,
         commentPostTitle: y.commentPostTitle,
         commentPostName: y.commentPostName,
@@ -737,7 +737,7 @@ const PostRender = ({
       parentId: formData
     };
 
-    saveWebComments(postName, postData).then(res => {
+    saveDocumentComments(postName, postData).then(res => {
       toast?.current?.show({
         severity: "success",
         summary: `' Successfully saved'`,
@@ -813,7 +813,7 @@ const PostRender = ({
       parentId: 0
     };
 
-    saveWebComments(postName, postData).then(res => {
+    saveDocumentComments(postName, postData).then(res => {
       toast?.current?.show({
         severity: "success",
         summary: `' Successfully saved'`,
