@@ -35,16 +35,6 @@ module.exports = {
   async redirects() {
     return [
         {
-            "source": "/upcoming/",
-            "destination": "/upcoming",
-            "permanent": true
-        },
-        {
-            "source": "/careers/",
-            "destination": "/careers",
-            "permanent": true
-        },
-        {
             "source": "/knowledge-base/",
             "destination": "/knowledge-base",
             "permanent": true
@@ -62,11 +52,6 @@ module.exports = {
         {
             "source": "/indiahikes-trek-safety/",
             "destination": "/blog/indiahikes-trek-safety",
-            "permanent": true
-        },
-        {
-            "source": "/green-trails/",
-            "destination": "/green-trails",
             "permanent": true
         },
         {
@@ -176,12 +161,12 @@ module.exports = {
         },
         {
             "source": "/experiential-learning/",
-            "destination": "/blog/experiential-learning",
+            "destination": "/family-trek-page",
             "permanent": true
         },
         {
             "source": "/for-families-and-junior-youth/",
-            "destination": "/familytrek",
+            "destination": "/family-trek-page",
             "permanent": true
         },
         {
@@ -411,7 +396,7 @@ module.exports = {
         },
         {
             "source": "/pangarchulla/",
-            "destination": "/trek/pangarchulla",
+            "destination": "/trek/pangarchulla-peak-trek",
             "permanent": true
         },
         {
@@ -1186,297 +1171,297 @@ module.exports = {
         },
         {
             "source": "/documented-trek/huliyurdurga-trek-bangalore/",
-            "destination": "/trek/huliyurdurga-trek-bangalore",
+            "destination": "/documented-trek/huliyurdurga-trek-bangalore",
             "permanent": true
         },
         {
             "source": "/documented-trek/varlakonda-fort-trek/",
-            "destination": "/trek/varlakonda-fort-trek",
+            "destination": "/documented-trek/varlakonda-fort-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/aane-gudda-trek-elephant-hill-trek/",
-            "destination": "/trek/aane-gudda-trek-elephant-hill-trek",
+            "destination": "/documented-trek/aane-gudda-trek-elephant-hill-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/halu-chilume-ganga-temple-doddaballapur/",
-            "destination": "/trek/halu-chilume-ganga-temple-doddaballapur",
+            "destination": "/documented-trek/halu-chilume-ganga-temple-doddaballapur",
             "permanent": true
         },
         {
             "source": "/documented-trek/channagiri-channakeshava-trek/",
-            "destination": "/trek/channagiri-channakeshava-trek",
+            "destination": "/documented-trek/channagiri-channakeshava-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/kudremukh-trek-2/",
-            "destination": "/trek/kudremukh-trek-2",
+            "destination": "/documented-trek/kudremukh-trek-2",
             "permanent": true
         },
         {
             "source": "/documented-trek/kumara-parvatha-trek/",
-            "destination": "/trek/kumara-parvatha-trek",
+            "destination": "/documented-trek/kumara-parvatha-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/kumta-gokarna-beach-trek/",
-            "destination": "/trek/kumta-gokarna-beach-trek",
+            "destination": "/documented-trek/kumta-gokarna-beach-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/makalidurga-trek/",
-            "destination": "/trek/makalidurga-trek",
+            "destination": "/documented-trek/makalidurga-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/nandi-hills-trek-brahmagiri/",
-            "destination": "/trek/nandi-hills-trek-brahmagiri",
+            "destination": "/documented-trek/nandi-hills-trek-brahmagiri",
             "permanent": true
         },
         {
             "source": "/documented-trek/balekallu-and-kodekallu-peak-trek/",
-            "destination": "/trek/balekallu-and-kodekallu-peak-trek",
+            "destination": "/documented-trek/balekallu-and-kodekallu-peak-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/kodachadri-trek/",
-            "destination": "/trek/kodachadri-trek",
+            "destination": "/documented-trek/kodachadri-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/kothaligad-peth-fort-trek/",
-            "destination": "/trek/kothaligad-peth-fort-trek",
+            "destination": "/documented-trek/kothaligad-peth-fort-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/devkund-waterfall-trek/",
-            "destination": "/trek/devkund-waterfall-trek",
+            "destination": "/documented-trek/devkund-waterfall-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/sarasgad-fort-trek/",
-            "destination": "/trek/sarasgad-fort-trek",
+            "destination": "/documented-trek/sarasgad-fort-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/sudhagad-trek/",
-            "destination": "/trek/sudhagad-trek",
+            "destination": "/documented-trek/sudhagad-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/ratangad-trek/",
-            "destination": "/trek/ratangad-trek",
+            "destination": "/documented-trek/ratangad-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/andharban-trek/",
-            "destination": "/trek/andharban-trek",
+            "destination": "/documented-trek/andharban-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/rohida-vichitragad-trek/",
-            "destination": "/trek/rohida-vichitragad-trek",
+            "destination": "/documented-trek/rohida-vichitragad-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/tandulwadi-trek/",
-            "destination": "/trek/tandulwadi-trek",
+            "destination": "/documented-trek/tandulwadi-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/kalavantin-fort-trek/",
-            "destination": "/trek/kalavantin-fort-trek",
+            "destination": "/documented-trek/kalavantin-fort-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/madhu-makrandgad-trek/",
-            "destination": "/trek/madhu-makrandgad-trek",
+            "destination": "/documented-trek/madhu-makrandgad-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/bhimashankar-trek/",
-            "destination": "/trek/bhimashankar-trek",
+            "destination": "/documented-trek/bhimashankar-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/kalsubai-peak-trek/",
-            "destination": "/trek/kalsubai-peak-trek",
+            "destination": "/documented-trek/kalsubai-peak-trek",
             "permanent": true
         },
         {
             "source": "/regions/maharashtra/page/2/",
-            "destination": "/trek/regions/maharashtra/page/2",
+            "destination": "/",
             "permanent": true
         },
         {
             "source": "/documented-trek/ooty-trek/",
-            "destination": "/trek/ooty-trek",
+            "destination": "/documented-trek/ooty-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/kolli-hills-trek/",
-            "destination": "/trek/kolli-hills-trek",
+            "destination": "/documented-trek/kolli-hills-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/yelagiri-trek/",
-            "destination": "/trek/yelagiri-trek",
+            "destination": "/documented-trek/yelagiri-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/nilgiris-green-lake-trek/",
-            "destination": "/trek/nilgiris-green-lake-trek",
+            "destination": "/documented-trek/nilgiris-green-lake-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/paithalmala-trek/",
-            "destination": "/trek/paithalmala-trek",
+            "destination": "/documented-trek/paithalmala-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/banasura-trek/",
-            "destination": "/trek/banasura-trek",
+            "destination": "/documented-trek/banasura-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/meesapulimala-peak-trek/",
-            "destination": "/trek/meesapulimala-peak-trek",
+            "destination": "/documented-trek/meesapulimala-peak-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/bekal-beach-trek/",
-            "destination": "/trek/bekal-beach-trek",
+            "destination": "/documented-trek/bekal-beach-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/parunthumala-trek/",
-            "destination": "/trek/parunthumala-trek",
+            "destination": "/documented-trek/parunthumala-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/chembra-peak-trek/",
-            "destination": "/trek/chembra-peak-trek",
+            "destination": "/documented-trek/chembra-peak-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/pakshipathalam-trek/",
-            "destination": "/trek/pakshipathalam-trek",
+            "destination": "/documented-trek/pakshipathalam-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/bagji-bugyal-trek/",
-            "destination": "/trek/bagji-bugyal-trek",
+            "destination": "/documented-trek/bagji-bugyal-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/ajan-top/",
-            "destination": "/trek/ajan-top",
+            "destination": "/documented-trek/ajan-top",
             "permanent": true
         },
         {
             "source": "/documented-trek/panch-kedar-trek/",
-            "destination": "/trek/panch-kedar-trek",
+            "destination": "/documented-trek/panch-kedar-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/bansi-narayan-trek/",
-            "destination": "/trek/bansi-narayan-trek",
+            "destination": "/documented-trek/bansi-narayan-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/kasar-devi-binsar-trek/",
-            "destination": "/trek/kasar-devi-binsar-trek",
+            "destination": "/documented-trek/kasar-devi-binsar-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/nanda-devi-national-park-trek/",
-            "destination": "/trek/nanda-devi-national-park-trek",
+            "destination": "/documented-trek/nanda-devi-national-park-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/satopanth-lake-trek/",
-            "destination": "/trek/satopanth-lake-trek",
+            "destination": "/documented-trek/satopanth-lake-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/warwan-valley-trek-the-greatest-adventure-in-kashmir/",
-            "destination": "/trek/warwan-valley-trek-the-greatest-adventure-in-kashmir",
+            "destination": "/documented-trek/warwan-valley-trek-the-greatest-adventure-in-kashmir",
             "permanent": true
         },
         {
             "source": "/documented-trek/kalpeshwar-rudranath/",
-            "destination": "/trek/kalpeshwar-rudranath",
+            "destination": "/documented-trek/kalpeshwar-rudranath",
             "permanent": true
         },
         {
             "source": "/documented-trek/kanari-khal-trek/",
-            "destination": "/trek/kanari-khal-trek",
+            "destination": "/documented-trek/kanari-khal-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/bagini-glacier-trek/",
-            "destination": "/trek/bagini-glacier-trek",
+            "destination": "/documented-trek/bagini-glacier-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/tirath-trek-source-tirthan-river/",
-            "destination": "/trek/tirath-trek-source-tirthan-river",
+            "destination": "/documented-trek/tirath-trek-source-tirthan-river",
             "permanent": true
         },
         {
             "source": "/documented-trek/jiwa-nala-parvati-valley-trek/",
-            "destination": "/trek/jiwa-nala-parvati-valley-trek",
+            "destination": "/documented-trek/jiwa-nala-parvati-valley-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/miyar-valley-trek/",
-            "destination": "/trek/miyar-valley-trek",
+            "destination": "/documented-trek/miyar-valley-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/kali-cho-pass/",
-            "destination": "/trek/kali-cho-pass",
+            "destination": "/documented-trek/kali-cho-pass",
             "permanent": true
         },
         {
             "source": "/documented-trek/gwaru-pass/",
-            "destination": "/trek/gwaru-pass",
+            "destination": "/documented-trek/gwaru-pass",
             "permanent": true
         },
         {
             "source": "/documented-trek/kugti-pass-trek/",
-            "destination": "/trek/kugti-pass-trek",
+            "destination": "/documented-trek/kugti-pass-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/bashal-peak-trek/",
-            "destination": "/trek/bashal-peak-trek",
+            "destination": "/documented-trek/bashal-peak-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/charang-ghati/",
-            "destination": "/trek/charang-ghati",
+            "destination": "/documented-trek/charang-ghati",
             "permanent": true
         },
         {
             "source": "/documented-trek/siraj-valley-trek/",
-            "destination": "/trek/siraj-valley-trek",
+            "destination": "/documented-trek/siraj-valley-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/hatu-pass-trek/",
-            "destination": "/trek/hatu-pass-trek",
+            "destination": "/documented-trek/hatu-pass-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/pandava-cave-trek/",
-            "destination": "/trek/pandava-cave-trek",
+            "destination": "/documented-trek/pandava-cave-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/kuppar-bugyal-trek/",
-            "destination": "/trek/kuppar-bugyal-trek",
+            "destination": "/documented-trek/kuppar-bugyal-trek",
             "permanent": true
         },
         {
@@ -1486,12 +1471,12 @@ module.exports = {
         },
         {
             "source": "/documented-trek/tulian-lake-trek/",
-            "destination": "/trek/tulian-lake-trek",
+            "destination": "/documented-trek/tulian-lake-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/rohil-basmai-valley-trek/",
-            "destination": "/trek/rohil-basmai-valley-trek",
+            "destination": "/documented-trek/rohil-basmai-valley-trek",
             "permanent": true
         },
         {
@@ -1501,57 +1486,57 @@ module.exports = {
         },
         {
             "source": "/documented-trek/markha-valley-trek/",
-            "destination": "/trek/markha-valley-trek",
+            "destination": "/documented-trek/markha-valley-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/sarchu-circuit-trek/",
-            "destination": "/trek/sarchu-circuit-trek",
+            "destination": "/documented-trek/sarchu-circuit-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/rumtse-to-tso-moriri-lake-trek/",
-            "destination": "/trek/rumtse-to-tso-moriri-lake-trek",
+            "destination": "/documented-trek/rumtse-to-tso-moriri-lake-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/darcha-padum-trek/",
-            "destination": "/trek/darcha-padum-trek",
+            "destination": "/documented-trek/darcha-padum-trek",
             "permanent": true
         },
         {
             "source": "/author/rupankar-mahanta/",
-            "destination": "/trek/author/rupankar-mahanta",
+            "destination": "/documented-trek/author/rupankar-mahanta",
             "permanent": true
         },
         {
             "source": "/documented-trek/chatakpur-tiger-hill-trek/",
-            "destination": "/trek/chatakpur-tiger-hill-trek",
+            "destination": "/documented-trek/chatakpur-tiger-hill-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/ayodhya-hills-trek/",
-            "destination": "/trek/ayodhya-hills-trek",
+            "destination": "/documented-trek/ayodhya-hills-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/biharinath-hill-trek/",
-            "destination": "/trek/biharinath-hill-trek",
+            "destination": "/documented-trek/biharinath-hill-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/bhardwaj-lake-trek/",
-            "destination": "/trek/bhardwaj-lake-trek",
+            "destination": "/documented-trek/bhardwaj-lake-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/qila-lal-kot-trek/",
-            "destination": "/trek/qila-lal-kot-trek",
+            "destination": "/documented-trek/qila-lal-kot-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/mulkarkha-lake-trek/",
-            "destination": "/trek/mulkarkha-lake-trek",
+            "destination": "/documented-trek/mulkarkha-lake-trek",
             "permanent": true
         },
         {
@@ -1581,7 +1566,7 @@ module.exports = {
         },
         {
             "source": "/tag/family-treks/",
-            "destination": "/familytrek",
+            "destination": "/family-trek-page",
             "permanent": true
         },
         {
@@ -1621,12 +1606,12 @@ module.exports = {
         },
         {
             "source": "/tag/recommended-trek/",
-            "destination": "/upcoming/#winter",
+            "destination": "/upcoming-treks/#winter",
             "permanent": true
         },
         {
             "source": "/tag/treks-in-uttarakhand/",
-            "destination": "/",
+            "destination": "/upcoming-treks/#winter",
             "permanent": true
         },
         {
@@ -1661,7 +1646,7 @@ module.exports = {
         },
         {
             "source": "/tag/family-treks-in-himalayas/",
-            "destination": "/familytrek",
+            "destination": "/family-trek-page",
             "permanent": true
         },
         {
@@ -1671,22 +1656,22 @@ module.exports = {
         },
         {
             "source": "/tag/treks-for-families/",
-            "destination": "/familytrek",
+            "destination": "/family-trek-page",
             "permanent": true
         },
         {
             "source": "/documented-trek/bali-pass-ruinsara-lake-trek/",
-            "destination": "/trek/bali-pass-ruinsara-lake-trek",
+            "destination": "/documented-trek/trek/bali-pass-ruinsara-lake-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/borasu-pass-trek/",
-            "destination": "/trek/borasu-pass-trek",
+            "destination": "/documented-trek/borasu-pass-trek",
             "permanent": true
         },
         {
             "source": "/documented-trek/bharadsar-lake-trek/",
-            "destination": "/trek/bharadsar-lake-trek",
+            "destination": "/documented-trek/bharadsar-lake-trek",
             "permanent": true
         },
         {
@@ -1706,17 +1691,17 @@ module.exports = {
         },
         {
             "source": "/tag/himalayas/",
-            "destination": "/trek/himalayas",
+            "destination": "/trek/himalayan-trek",
             "permanent": true
         },
         {
             "source": "/tag/moderate-trek/",
-            "destination": "/upcoming/#winter",
+            "destination": "/upcoming-treks/#winter",
             "permanent": true
         },
         {
             "source": "/tag/trek/",
-            "destination": "/",
+            "destination": "/upcoming-treks/#winter",
             "permanent": true
         },
         {
@@ -1726,7 +1711,7 @@ module.exports = {
         },
         {
             "source": "/family-children-trek/",
-            "destination": "/familytrek",
+            "destination": "/family-trek-page",
             "permanent": true
         },
         {
@@ -1766,7 +1751,7 @@ module.exports = {
         },
         {
             "source": "/tag/moderate/",
-            "destination": "/upcoming/#winter",
+            "destination": "/upcoming-treks/#winter",
             "permanent": true
         },
         {
@@ -1776,7 +1761,7 @@ module.exports = {
         },
         {
             "source": "/tag/trekking/",
-            "destination": "/",
+            "destination": "/upcoming-treks/#winter",
             "permanent": true
         },
         {
@@ -1851,7 +1836,7 @@ module.exports = {
         },
         {
             "source": "/tag/himalayan-winter-treks/",
-            "destination": "/upcoming/#winter",
+            "destination": "/blog/himalayan-winter-treks",
             "permanent": true
         },
         {
@@ -1876,7 +1861,7 @@ module.exports = {
         },
         {
             "source": "/tag/indiahikes-winter-treks/",
-            "destination": "/upcoming/#winter",
+            "destination": "/blog/indiahikes-winter-treks",
             "permanent": true
         },
         {
@@ -1886,7 +1871,7 @@ module.exports = {
         },
         {
             "source": "/tag/open-dates-to-winter-treks/",
-            "destination": "/upcoming/#winter",
+            "destination": "/blog/open-dates-to-winter-treks",
             "permanent": true
         },
         {
@@ -1896,7 +1881,7 @@ module.exports = {
         },
         {
             "source": "/tag/winter-treks/",
-            "destination": "/upcoming/#winter",
+            "destination": "/upcoming-treks/#winter",
             "permanent": true
         },
         {
