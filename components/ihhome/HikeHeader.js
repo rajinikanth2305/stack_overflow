@@ -64,7 +64,7 @@ const HikeHeader = (auth = false) => {
 
       await client
         .query([
-          Prismic.Predicates.fulltext("my.post.search_keywords", stext)
+          Prismic.Predicates.fulltext("my.post.title", stext)
         ])
         .then(function (response) {
           response?.results.forEach(result => searchResultContext.push(result));
@@ -72,7 +72,7 @@ const HikeHeader = (auth = false) => {
 
       await client
         .query([
-          Prismic.Predicates.fulltext("my.document_trek_type.search_keywords", stext)
+          Prismic.Predicates.fulltext("my.document_trek_type.title", stext)
         ])
         .then(function (response) {
           response?.results.forEach(result => searchResultContext.push(result));
