@@ -473,7 +473,7 @@ const HikeHeader = (auth = false) => {
                   <NavLink className="view-in-desk">
                     <i
                       className="fa fa-search cursor-pointer"
-                      aria-hidden="true"
+                      aria-hidden="true" title="Search"
                     ></i>
                   </NavLink>
                 )}
@@ -490,7 +490,7 @@ const HikeHeader = (auth = false) => {
                     <Link href="../../../user-dashboard/user-upcoming-treks">
                       <i
                         className="fa fa-user-o cursor-pointer"
-                        aria-hidden="true"
+                        aria-hidden="true" title="User dashboard"
                       ></i>
                     </Link>
                   </NavLink>
@@ -512,7 +512,7 @@ const HikeHeader = (auth = false) => {
                     <DropdownToggle nav>
                       <i
                         className="fa fa-bars cursor-pointer m-d-none"
-                        aria-hidden="true"
+                        aria-hidden="true" title="More"
                       ></i> <span className="m-d-block">More</span>
                     </DropdownToggle>
                     <DropdownMenu>

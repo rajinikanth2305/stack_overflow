@@ -2457,6 +2457,22 @@ export const customStyles = css.global`
     z-index: 9;
   }
 
+  .p-button.p-component.p-button-danger {
+    display: none;
+  }
+
+  .p-button, .p-button-success {
+    background: rgba(255,193,0,1) !important;
+    border: none !important;
+    color: #000000 !important;
+  }
+
+  .p-button:hover, .p-button-success:hover {
+    background: rgba(255,193,0,1) !important;
+    border: none !important;
+    color: #000000 !important;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -2515,6 +2531,11 @@ export const customStyles = css.global`
       flex-wrap: initial;
       overflow-x: auto;
       white-space: nowrap;
+    }
+
+    .ws-now {
+      white-space: nowrap;
+      margin-bottom: 10px;
     }
 
     .article_tabs > .nav-item > .nav-link {

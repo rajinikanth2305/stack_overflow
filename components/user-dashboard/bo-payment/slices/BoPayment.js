@@ -60,7 +60,7 @@ const BoPayment = forwardRef((props, ref) => {
     script.src =
       "https://www.paynimo.com/paynimocheckout/server/lib/checkout.js";
     script.async = true;
-    script.onload = function(script) {
+    script.onload = function (script) {
       console.log(script + " loaded!");
     };
     document.body.appendChild(script);
@@ -76,7 +76,7 @@ const BoPayment = forwardRef((props, ref) => {
     }
   }));
 
-  const initData =(offLoadData) => {
+  const initData = (offLoadData) => {
     setRender(false);
     console.log(offLoadData);
     setOffSelectedData(offLoadData);
@@ -84,7 +84,7 @@ const BoPayment = forwardRef((props, ref) => {
     const arr = Array.from(new Array(sdata?.length), (x, i) => i);
 
     // console.log(offLoadings);
-    computeTotal(sdata,offLoadData);
+    computeTotal(sdata, offLoadData);
 
     setIndexes(arr);
     setCounter(arr.length);
@@ -104,20 +104,20 @@ const BoPayment = forwardRef((props, ref) => {
         vid => vid.id === user.optedVoucherId
       );
 
-      
-      const totalTrekFee=offSelectedData?.header?.backPackOffloadingCostPerDay*offSelectedData?.header?.backPackOffloadingDays ;
-     
-      const taxPercentage=offSelectedData?.header?.backPackOffloadingTaxPercentage;
+
+      const totalTrekFee = offSelectedData?.header?.backPackOffloadingCostPerDay * offSelectedData?.header?.backPackOffloadingDays;
+
+      const taxPercentage = offSelectedData?.header?.backPackOffloadingTaxPercentage;
       //const insuranceAmount = user.insuranceAmount;
       const gst = taxPercentage;
-      const gstValue =parseFloat( Number((gst / 100) * totalTrekFee).toFixed(2));
-      const total = (totalTrekFee + gstValue );
+      const gstValue = parseFloat(Number((gst / 100) * totalTrekFee).toFixed(2));
+      const total = (totalTrekFee + gstValue);
 
       console.log(total);
 
       const youPay = total;//user.trekFeeForTheUser  ; //computeTotal(sdata.trekUsers);
 
-     // const youPay = user.youPay; //computeTotal(sdata);//computeWithExcludedVoucherId(user.optedVoucherId,sdata);
+      // const youPay = user.youPay; //computeTotal(sdata);//computeWithExcludedVoucherId(user.optedVoucherId,sdata);
       //console.log(youPay);
       if (youPay > 0) {
         const currentAvailableAmount = selectedVoucher.amountAvailable;
@@ -138,8 +138,8 @@ const BoPayment = forwardRef((props, ref) => {
           // Math.abs(Number(actRowPay));
         }
       }
-   
-      computeTotal(sdata,offSelectedData);
+
+      computeTotal(sdata, offSelectedData);
       const arr = Array.from(new Array(sdata.length), (x, i) => i);
 
       setIndexes(arr);
@@ -180,10 +180,10 @@ const BoPayment = forwardRef((props, ref) => {
 
   const computeWithExcludedVoucherId = (vid, usersData) => {
     const totalTrekFee = usersData.reduce(
-      (a, v) => (a = a + offSelectedData?.header?.backPackOffloadingCostPerDay*offSelectedData?.header?.backPackOffloadingDays),
+      (a, v) => (a = a + offSelectedData?.header?.backPackOffloadingCostPerDay * offSelectedData?.header?.backPackOffloadingDays),
       0
     );
-    
+
     const gst = offSelectedData?.header?.backPackOffloadingTaxPercentage;
     const gstValue = Math.round((gst / 100) * totalTrekFee);
     const total = totalTrekFee + gstValue;
@@ -197,10 +197,10 @@ const BoPayment = forwardRef((props, ref) => {
   };
 
   function roundToTwo(num) {
-    return +(Math.round(num + "e+2")  + "e-2");
-   }
+    return +(Math.round(num + "e+2") + "e-2");
+  }
 
-  const computeTotal = (usersData,offLoadData) => {
+  const computeTotal = (usersData, offLoadData) => {
     const totalTrekFee = usersData.reduce(
       (a, v) => (a = a + offLoadData?.header?.backPackOffloadingCostPerDay * offLoadData?.header?.backPackOffloadingDays),
       0
@@ -208,10 +208,10 @@ const BoPayment = forwardRef((props, ref) => {
 
     console.log(totalTrekFee);
 
-   const taxPercentage=offLoadData?.header?.backPackOffloadingTaxPercentage;
+    const taxPercentage = offLoadData?.header?.backPackOffloadingTaxPercentage;
     const gst = taxPercentage;
     const gstValue = ((gst / 100) * totalTrekFee);
-    const total =roundToTwo(totalTrekFee + gstValue);
+    const total = roundToTwo(totalTrekFee + gstValue);
 
     console.log(gst);
     console.log(gstValue);
@@ -222,7 +222,7 @@ const BoPayment = forwardRef((props, ref) => {
       0
     );
 
-    const youpay =roundToTwo(total - totalVoucherAmount);
+    const youpay = roundToTwo(total - totalVoucherAmount);
 
     setComputeFields({
       ...computeFields,
@@ -240,16 +240,12 @@ const BoPayment = forwardRef((props, ref) => {
 
   const doPayment = () => {
 
-   // let isExecuted = confirm("Are you sure to execute this action?");
+    // let isExecuted = confirm("Are you sure to execute this action?");
     confirmDialog({
       //target: e.currentTarget,
       header: "Backpacks offloading confirmation?",
-      message: `
-    We don't usually encourage offloading of backpacks. These backpacks are carried by mules or porters. Having too many mules on a trail isn't good for the ecosystem and as for porters, they are hard to find.
-    Besides, when you complete a trek by carrying your own backpack, the self-sufficient and confidence that you get at the end of the trek is incomparable!
-    So try and reconsider offloading your backpack. I'll leave you with a few quick tips to carry your backpack easily .
-    
-    But if you have a genuine reason, I'll understand if you want to offload it.'`,
+      message: `We don't usually encourage offloading of backpacks. It is not environmentally friendly and it makes trekkers dependent on external resources. 
+      Do you still want to proceed?`,
       icon: "pi pi-exclamation-triangle",
       acceptLabel: "Accept",
       rejectLabel: "Cancel",
@@ -299,7 +295,7 @@ const BoPayment = forwardRef((props, ref) => {
   const processPayments = voucherList => {
     doSaveOffloadingPayments(offSelectedData.header.bookingId, voucherList)
       .then(res => {
-         console.log(res.data);
+        console.log(res.data);
         // console.log(res.data.features.enableNewWindowFlow);
         // console.log( window.jQuery===undefined);
         window?.jQuery?.pnCheckout(res.data);
@@ -418,7 +414,7 @@ const BoPayment = forwardRef((props, ref) => {
                                 });
                               });
                           }
-                       //   console.log(offSelectedData?.header?.bac);
+                          //   console.log(offSelectedData?.header?.bac);
 
                           return (
                             <>
@@ -468,21 +464,21 @@ const BoPayment = forwardRef((props, ref) => {
 
                                 <td>
                                   {sdata?.offloadingFee}
-                                  </td>
+                                </td>
 
                                 <td>
 
-                             {
-                              (( sdata?.offloadingFee) -Number(sdata?.voucherAmount)) <= 0 && (
-                                0
-                              )
-                              }
-                              {
-                              ((sdata?.offloadingFee) - Number(sdata?.voucherAmount)) > 0 && (
-                                Number((sdata?.offloadingFee)-Number(sdata?.voucherAmount)).toFixed(2)
-                                )
-                              }
-                                  </td>
+                                  {
+                                    ((sdata?.offloadingFee) - Number(sdata?.voucherAmount)) <= 0 && (
+                                      0
+                                    )
+                                  }
+                                  {
+                                    ((sdata?.offloadingFee) - Number(sdata?.voucherAmount)) > 0 && (
+                                      Number((sdata?.offloadingFee) - Number(sdata?.voucherAmount)).toFixed(2)
+                                    )
+                                  }
+                                </td>
 
                               </tr>
                             </>

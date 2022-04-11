@@ -36,7 +36,7 @@ const FitnessApproval = forwardRef((props, ref) => {
   const faqArray = faqData && faqData?.items;
   const toast = useRef(null);
 
-  const faqArrayDetails = faqArray?.map(function(data, k) {
+  const faqArrayDetails = faqArray?.map(function (data, k) {
     return (
       <div className="col-md-6" key={k}>
         <Card>
@@ -194,13 +194,13 @@ const FitnessApproval = forwardRef((props, ref) => {
                           participantData.email;
                         const name =
                           pdata?.userDetailsForDisplay?.email ===
-                          participantData.email
+                            participantData.email
                             ? " * " +
-                              pdata?.userDetailsForDisplay?.firstName +
-                              pdata?.userDetailsForDisplay?.lastName +
-                              " (You) "
+                            pdata?.userDetailsForDisplay?.firstName +
+                            pdata?.userDetailsForDisplay?.lastName +
+                            " (You) "
                             : pdata?.userDetailsForDisplay?.firstName +
-                              pdata?.userDetailsForDisplay?.lastName;
+                            pdata?.userDetailsForDisplay?.lastName;
 
                         return (
                           <tr>
@@ -209,8 +209,8 @@ const FitnessApproval = forwardRef((props, ref) => {
                         <td>{pdata?.userDetailsForDisplay?.email}</td> */}
                             <td>
                               {loggedUser &&
-                              pdata.participantDocuments &&
-                              pdata.participantDocuments.length > 0 ? (
+                                pdata.participantDocuments &&
+                                pdata.participantDocuments.length > 0 ? (
                                 <div>
                                   {pdata?.participantDocuments?.map(doc => {
                                     return (
@@ -267,20 +267,22 @@ const FitnessApproval = forwardRef((props, ref) => {
                     <strong>Here is what you have to do:</strong>
                   </p>
                   <p className="mb-1">
-                    1. Install a Nike/Strava running app on your phone.
+                    1. Install a running app like Nike Run or Strava on your phone.
                   </p>
                   <p className="mb-1">
-                    2. Record the run on the app and upload the screenshots on
-                    your dashboard.
+                    2. Record your run on the app and take a screenshot.
                   </p>
                   <p className="mb-1">
-                    3. Take screenshot of the summary of your run of one month.
-                    We will need a detailed split of each kilometer of your run.
-                    This is usually integrated into all running apps
+                    3. Upload the screenshot on your dashboard.
                   </p>
                   <p className="mb-1">
-                    You need to upload these two screenshots 15 days before the
-                    start of the trek.
+                    4. After one month, take another screenshot with a summary of your month's run.
+                  </p>
+                  <p className="mb-1">
+                    5. Upload these two screenshots 15 days before the start of the trek, not later than that. 
+                  </p>
+                  <p className="mb-1">
+                    6. Our Experience Coordinators will review your fitness and approve it or advise you further. 
                   </p>
                 </div>
               </div>

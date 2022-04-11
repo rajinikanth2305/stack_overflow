@@ -321,13 +321,13 @@ const CancellationTrek = () => {
         res => {
           toast.current.show({
             severity: "success",
-            summary: `'Cancelled successfully'`,
+            summary: `'We have cancelled the trek as requested. Please check your email for further instructions.'`,
             detail: "Cancellation"
           });
 
           const timer = setTimeout(() => {
             router.push(`/user-dashboard/user-upcoming-treks`);
-          }, 2000);
+          }, 4000);
       
           return () => clearTimeout(timer);
          // router.push(`/user-dashboard/user-upcoming-treks`);

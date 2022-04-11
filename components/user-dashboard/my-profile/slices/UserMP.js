@@ -329,7 +329,7 @@ const UserMP = () => {
                                   Modify
                                 </button>
                                 <div className="mx-4" />
-                                <button className="btn btn-ih-green hvr-grow">
+                                <button className="btn btn-ih-green hvr-grow ws-now">
                                   Save changes
                                 </button>
                               </div>
@@ -733,7 +733,7 @@ const UserMP = () => {
                                   </button>
                                   <div className="mx-4" />
                                   <button
-                                    className="btn btn-ih-green hvr-grow"
+                                    className="btn btn-ih-green hvr-grow ws-now"
                                     type="submit"
                                   >
                                     Save changes

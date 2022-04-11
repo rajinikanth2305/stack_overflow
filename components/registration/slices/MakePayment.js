@@ -332,7 +332,8 @@ const MakePayment = forwardRef((props, ref) => {
           if (res.response?.data?.message) {
             toast.current.show({
               severity: "error",
-              summary: `'Make payment is not succeeded' ${res.response?.data?.message}`,
+              // summary: `'Make payment is not succeeded' ${res.response?.data?.message}`,
+              summary: `'Payment Failed!'`,
               detail: "Make Booking Payment"
             });
           }
