@@ -2473,14 +2473,6 @@ export const customStyles = css.global`
     color: #000000 !important;
   }
 
-  .reg-dropdown.form-group > . p-multiselect {
-    border: 1px solid #aeaeae;
-    border-radius: 2px;
-    width: 100%;
-    margin: 2px 0;
-    border-radius: 0;
-  }
-
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

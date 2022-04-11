@@ -745,7 +745,7 @@ export const regStyle = css.global`
     width: 100%;
     margin: 2px 0;
     border-radius: 0;
-  } 
+  }
 
   .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
     padding: 0.1rem 0.5rem;
@@ -755,18 +755,6 @@ export const regStyle = css.global`
     font-size: 12px;
     color: rgba(112, 112, 112, 1);
     text-transform: none;
-  }
-
-  .reg-dropdown.form-group > .p-multiselect {
-    border: 1px solid #aeaeae;
-    border-radius: 2px;
-    width: 100%;
-    margin: 2px 0;
-    border-radius: 0;
-  }
-
-  .p-multiselect-label {
-    padding: 0 8px !important;
   }
 
   .p-dropdown:not(.p-disabled).p-focus {
