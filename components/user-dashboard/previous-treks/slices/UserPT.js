@@ -214,7 +214,7 @@ const UserPT = () => {
         bookingParticipantState: book.bookingParticipantState,
         participantsCount: book.trekMates.length,
         userTrekBookingParticipants: book.trekMates,
-        trekStatus: "COMPLETED", //book.bookingState,
+        trekStatus: book.bookingState,
         reviewStatus: "no",
         trekDifficulty: book.trekDifficulty,
         trekDuration: book.trekDuration,
@@ -222,6 +222,7 @@ const UserPT = () => {
         trekLocation: book.trekLocation
       });
     }
+    setStates(bookTrekContents);
     setStates(bookTrekContents);
   };
 
@@ -329,7 +330,6 @@ const UserPT = () => {
   };
 
   const prevTrekData = bookings?.map(function(data, i) {
-    //console.log(data);
     return (
       <div key={data.id}>
         <div className="card mb-4">
