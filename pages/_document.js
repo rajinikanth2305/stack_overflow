@@ -4,6 +4,7 @@ import { reset, globals } from 'styles';
 
 import { apiEndpoint } from "./../prismic-configuration"; // import the endpoint name from where it's defined
 const prismicRepoName = /([a-zA-Z0-9-]+)?(\.cdn)?\.prismic\.io/.exec(apiEndpoint)[1] //Regex to get repo ID
+const tagcode= process.env.NEXT_GTAG_ID;
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -23,19 +24,17 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
           <link rel="icon" href="/fav1.png" />
-        
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-LGZ3DX2PW1"></script>
 
-            {/* <!-- Google Tag Manager --> */}
-          <script dangerouslySetInnerHTML={{ __html: `  window.dataLayer = window.dataLayer || [];
+        
+          <script async src={`"https://www.googletagmanager.com/gtag/js?id=${tagcode}"`}></script>
+
+           
+          <script dangerouslySetInnerHTML={{ __html: `window.dataLayer = window.dataLayer || [];
                     function gtag(){dataLayer.push(arguments);}
                     gtag('js', new Date());
-                    gtag('config', 'G-LGZ3DX2PW1');
+                    gtag('config', '${tagcode}');
                             `}}></script>
-           {/* <!-- End Google Tag Manager --> */}
-
- 
-
+          
            {/* <!-- end Heat Map --> 
              <script async defer src={`//static.cdn.prismic.io/prismic.js?repo=${prismicRepoName}&new=true`} /> 
            */}
@@ -45,7 +44,7 @@ class MyDocument extends Document {
         </Head>
         <body>
         {/* <!-- Google Tag Manager (noscript) --> */}
-        <noscript dangerouslySetInnerHTML={{ __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=G-LGZ3DX2PW1"
+        <noscript dangerouslySetInnerHTML={{ __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=${tagcode}"
             height="0" width="0" style="display:none;visibility:hidden"></iframe>`}}></noscript> 
           <Main />
           <NextScript />
