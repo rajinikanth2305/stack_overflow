@@ -514,7 +514,7 @@ const PostRender = ({
     //console.log(data.video_image.url);
     const videoId = slice?.primary?.youtube_id?.replace('"', "");
     const videoUrl =
-      "https://www.youtube.com/embed/" + data.video_id + "?autoplay=1";
+      "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
     const imageURL = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
     return (
