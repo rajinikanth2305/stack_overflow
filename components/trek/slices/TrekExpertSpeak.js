@@ -50,7 +50,7 @@ const TrekExpertSpeak = ({ slice }) => {
             </div>
           </div>
           <div className="col-lg-1 col-md-12"></div>
-          <div className="col-lg-4 col-md-12 mb-4">
+          {data?.what_i_like_image?.url !== undefined && <div className="col-lg-4 col-md-12 mb-4">
             <div className="what_i_like_image cursor-pointer">
               {data?.what_i_like_image?.url !== undefined && (
                 <Image
@@ -70,7 +70,7 @@ const TrekExpertSpeak = ({ slice }) => {
                 {RichText.render(data?.what_i_like_image_desc)}
               </div>
             </div>
-          </div>
+          </div>}
         </div>
       </div>
     );
@@ -85,11 +85,13 @@ const TrekExpertSpeak = ({ slice }) => {
               <div>
                 {data?.what_i_dont_like_content_title?.map((tit, index) => {
                   return (
-                    <h5 key={index} className="p-text-2 mb-3">
-                      <b>
-                        {i + 1}. {tit?.text}
-                      </b>
-                    </h5>
+                    <div>
+                      {tit?.text !== "" && <h5 key={index} className="p-text-2 mb-3">
+                        <b>
+                          {i + 1}. {tit?.text}
+                        </b>
+                      </h5>}
+                    </div>
                   );
                 })}
               </div>
@@ -103,7 +105,7 @@ const TrekExpertSpeak = ({ slice }) => {
           {data?.what_i_dont_like_content_desc?.length !== 0 && (
             <div className="col-lg-1 col-md-12"></div>
           )}
-          {data?.what_i_dont_like_content_desc?.length !== 0 && (
+          {data?.what_i_dontlike_image?.url !== undefined && (
             <div className="col-lg-4 col-md-12 mb-4">
               <div className="what_i_like_image cursor-pointer">
                 {data?.what_i_dontlike_image?.url !== undefined && (
@@ -123,7 +125,7 @@ const TrekExpertSpeak = ({ slice }) => {
             </div>
           )}
         </div>
-      </div>
+      </div >
     );
   });
 
