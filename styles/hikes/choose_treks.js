@@ -462,6 +462,14 @@ export const ChooseTreks = css.global`
       padding: 40px 0 20px;
     }
 
+    .mmp-1 {
+      padding: 0 2px !important;
+    }
+
+    .border-bottom-4.mbbordrer-0 {
+      border: 0 !important;
+    }
+
     // .mpt-3-ltw {
     //   padding: 25px 0 20px;
     // }
@@ -471,6 +479,7 @@ export const ChooseTreks = css.global`
     // }
 
     .trekking_world_image_desktop {
+      border-top: 2px solid rgb(255, 193, 0);
       position: relative;
       display: block;
       min-height: 240px;

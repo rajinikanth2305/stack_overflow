@@ -90,7 +90,7 @@ const LatestTrekkingWorld = ({ slice }) => {
       "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
     const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
     return (
-      <div key={`latesttrekking` + i} className="py-3 mx-2 mm-0 mp-0">
+      <div key={`latesttrekking` + i} className="py-3 mx-2 mm-0 mmp-1">
         <div className="row d-flex">
           <div className="col-lg-6 col-md-12 order-1">
             <div className="m-card-pd">
@@ -189,7 +189,7 @@ const LatestTrekkingWorld = ({ slice }) => {
     <>
       <div className="my-5">
         <div className="container">
-          <div className="d-flex align-items-center flex-wrap border-bottom-4 mb-3 mm-0">
+          <div className="d-flex align-items-center flex-wrap border-bottom-4 mbbordrer-0 mb-3 mm-0">
             <div className="col-md-12">
               <h2 className="title-display-2 pb-08">
                 {RichText.asText(heading1)}
