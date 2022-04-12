@@ -64,33 +64,33 @@ const TrekkersStories = ({ slice }) => {
 
   const sampleData = [
     {
-      name: "Harshini Ramesh",
+      name: "Ishani Ghotikar",
       batch: "January 2022",
       title: "Kedarkantha – The Trek That Transformed Indian Trekking",
       desc:
-        "To say the trek was magical is a small word. Being in this trek has helped me realise that this saying Be the change you wish to see in the world is true, how India hikes was created, has been soaring and has been changing and impacting individuals is remarkable."
+        "“Kedarkantha was my first trek and it was the most amazing experience. I couldn’t imagine that a trek could be that good! It was my first experience trekking, in snow, travelling alone, without connectivity, just with friends I made on the trek, it was amazing! The Indiahikes team even made a cake for a friend, whose birthday it was! Now all my trek friends and I can talk about are treks!”"
     },
     {
-      name: "Deya Bhattacharjee",
+      name: "Anirudh Gargi",
       batch: "January 2021",
       title:
-        "Rupin Pass – One Of The Flagship Treks Of Indiahikes And Of Trekkers In Our Country.",
+        "IH the safe and they care for you.",
       desc:
-        "To say the trek was magical is a small word. Being in this trek has helped me realise that this saying Be the change you wish to see in the world is true, how India hikes was created, has been soaring and has been changing and impacting individuals is remarkable."
+        "“We all try to seek adventure ( and memories) often unprepared, whenever we book a trek. It’s this your (IH’s) attitude to keep our safety foremost, somewhere assures me deep down, that whenever I leave for a trek or tell my loved ones that I am off for trekking, I am ‘covered’. I have heard stories of evacuations, forced returns, staying put for long and incomplete treks, keeping the safety above all needs an attitude which I see is embedded enough in the trek leaders, slope managers, and all through your website. I refer everyone saying, go take a trek with IH, they safe, and will care for you. Keep this as your motto. This trust makes IH different from others.” – "
     },
     {
       name: "Pruthvi mj",
-      batch: "December 2021",
+      batch: "November 2021",
       title: "Kedarkantha – The Trek That Transformed Indian Trekking",
       desc:
         "To say the trek was magical is a small word. Being in this trek has helped me realise that this saying Be the change you wish to see in the world is true, how India hikes was created, has been soaring and has been changing and impacting individuals is remarkable."
     },
     {
-      name: "Pruthvi mj",
+      name: "Sanjay Saliyan",
       batch: "December 2021",
-      title: "Kedarkantha – The Trek That Transformed Indian Trekking",
+      title: "Mountain-Trek, Kudos to Indiahikes for making this an unforgettable experience in our life",
       desc:
-        "To say the trek was magical is a small word. Being in this trek has helped me realise that this saying Be the change you wish to see in the world is true, how India hikes was created, has been soaring and has been changing and impacting individuals is remarkable."
+        "“The trek went really well, Indiahikes made sure that we had an amazing 6 days in the mountains. All the arrangements were spot on. While our trek lead Krupa made sure that the health of the trekkers were in good condition by continuously monitoring oxygen level, pulse rate, the other two leaders sai pavan and leo lifted up the trek experience.&nbsp;Kudos to Indiahikes for making this an unforgettable experience in our life, thank you very much!” "
     }
   ];
 
