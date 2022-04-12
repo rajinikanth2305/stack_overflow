@@ -120,7 +120,7 @@ const UserPT = () => {
           severity: "info",
           summary: `'No Review questions defined for this trek.'`,
           detail: "",
-          life: 5000
+          life: 6000
         });
       }
   });

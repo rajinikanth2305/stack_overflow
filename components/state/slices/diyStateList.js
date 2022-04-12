@@ -133,7 +133,7 @@ const DiyStateList = ({ slice }) => {
     <>
       <div className="container my-4">
         <h2 className="title-h2">
-          <b>DYI in {stateName && stateName}</b>
+          <b>DIY in {stateName && stateName}</b>
         </h2>
         {stateList && stateList?.results?.length > 0 ? (
           <div className="row">{stateDiyListTreks}</div>

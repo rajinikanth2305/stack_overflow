@@ -1089,6 +1089,15 @@ export const regStyle = css.global`
       font-size: 14px;
     }
 
+    .p-toast {
+      width: 20rem;
+      font-size: 12px;
+    }
+
+    .p-toast-top-right {
+      right: 5px;
+    }
+
     .p-text-2 {
       font-size: 16px;
       line-height: 24px;

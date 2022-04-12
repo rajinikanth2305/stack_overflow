@@ -2572,6 +2572,15 @@ export const customStyles = css.global`
       background-position: -425px 0;
     }
 
+    .p-toast {
+      width: 20rem;
+      font-size: 12px;
+    }
+
+    .p-toast-top-right {
+      right: 5px;
+    }
+
     .latestLrekImage_bg {
       height: 200px;
       margin: 0;

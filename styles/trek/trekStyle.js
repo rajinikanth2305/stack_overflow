@@ -1621,7 +1621,14 @@ export const trekStyle = css.global`
     .pr-3 {
       padding-right: 0;
     }
+    .p-toast {
+      width: 20rem;
+      font-size: 12px;
+    }
 
+    .p-toast-top-right {
+      right: 5px;
+    }
     .p-text-1 {
       font-size: 18px;
       line-height: 24px;

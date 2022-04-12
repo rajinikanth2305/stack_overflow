@@ -690,7 +690,8 @@ const PostRender = ({
       toast?.current?.show({
         severity: "error",
         summary: `'Reply text should'nt be Empty!'`,
-        detail: "Post Comments"
+        detail: "Post Comments",
+        life: 6000
       });
       return;
     }
@@ -699,7 +700,8 @@ const PostRender = ({
       toast.current.show({
         severity: "error",
         summary: `'Reply UserName should'nt be Empty!'`,
-        detail: "Post Comments"
+        detail: "Post Comments",
+        life: 6000
       });
       return;
     }
@@ -742,7 +744,8 @@ const PostRender = ({
       toast?.current?.show({
         severity: "success",
         summary: `' Successfully saved'`,
-        detail: "Post-Comments"
+        detail: "Post-Comments",
+        life: 6000
       });
       alert("Thank you very much for your comments");
       setActiveReply(0);
@@ -767,7 +770,8 @@ const PostRender = ({
       toast?.current?.show({
         severity: "error",
         summary: `'Reply text should'nt be Empty!'`,
-        detail: "Post Comments"
+        detail: "Post Comments",
+        life: 6000
       });
       return;
     }
@@ -818,7 +822,8 @@ const PostRender = ({
       toast?.current?.show({
         severity: "success",
         summary: `' Successfully saved'`,
-        detail: "Post-Comments"
+        detail: "Post-Comments",
+        life: 6000
       });
       alert("Thank you very much for your comments");
       document.getElementById("userName").value = "";
