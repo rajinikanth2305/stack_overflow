@@ -28,8 +28,29 @@ const HikeHome = ({
       <>
       <HomeLayout>
         <Head>
-          <title>India Hikes</title>
+          <title>Indiahikes - India's Safest and  Largest Trekking Organisation</title>
           <meta content="width=device-width, initial-scale=1" name="viewport" />
+<meta name="description" content="India&#039;s Largest and Safest Trekking Organisation, running over 35 Himalayan treks. Known for safety, information and a sustainable style of trekking." />
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<link rel="canonical" href="https://indiahikes.com/" />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Indiahikes - India&#039;s Safest &amp; Largest Trekking Organisation" />
+<meta property="og:description" content="India&#039;s Largest and Safest Trekking Organisation, running over 35 Himalayan treks. Known for safety, information and a sustainable style of trekking." />
+<meta property="og:url" content="https://indiahikes.com/" />
+<meta property="og:site_name" content="Indiahikes" />
+<meta property="article:publisher" content="https://www.facebook.com/indiahikes/" />
+<meta property="article:author" content="https://www.facebook.com/" />
+<meta property="article:modified_time" content="2022-04-01T10:00:26+00:00" />
+<meta property="og:image:width" content="2200" />
+<meta property="og:image:height" content="1469" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:creator" content="@Indiahikes" />
+<meta name="twitter:site" content="@Indiahikes" />
+<meta name="msvalidate.01" content="82A6A87B6FEAD9111A6D8A62D4B7AD62" />
+<meta name="google-site-verification" content="M4DXghH9F30K_X5ox_M6F-DwbI6HtOqWD8RHFFWdEjE" />
         </Head>
         <HikeHeader />
         <SliceZone
