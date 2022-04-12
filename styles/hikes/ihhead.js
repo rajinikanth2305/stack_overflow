@@ -26,7 +26,7 @@ export const ihheaderStyles = css.global`
     font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 13px;
     color: rgba(0, 0, 0, 1);
     padding-left: 0;
     padding-right: 0;
@@ -73,7 +73,7 @@ export const ihheaderStyles = css.global`
   }
 
   .navbar-light .navbar-nav a.active-custom.dd-menu.nav-link > button {
-    border-bottom: 3px solid rgb(255,193,0);
+    // border-bottom: 3px solid rgb(255,193,0);
     // padding-bottom: 5px;
   }
 
@@ -172,7 +172,7 @@ export const ihheaderStyles = css.global`
     font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 13px;
     color: rgba(0, 0, 0, 1);
   }
 

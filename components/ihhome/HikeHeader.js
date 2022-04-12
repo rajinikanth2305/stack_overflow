@@ -370,6 +370,26 @@ const HikeHeader = (auth = false) => {
                 </>
               )}
 
+              <NavItem>
+                {router.pathname === "/user-dashboard/user-upcoming-treks" ||
+                  router.pathname === "/user-dashboard/user-trekvouchers" ||
+                  router.pathname === "/user-dashboard/user-myprofile" ||
+                  router.pathname === "/user-dashboard/user-previous-treks" ? (
+                  ""
+                ) : (
+                  <NavLink
+                    href="../../../careers"
+                    className={
+                      router.asPath == "/careers"
+                        ? "active-custom"
+                        : ""
+                    }
+                  >
+                    Careers
+                  </NavLink>
+                )}
+              </NavItem>
+
               {/* <NavItem> */}
               {router.pathname === "/user-dashboard/user-upcoming-treks" ||
                 router.pathname === "/user-dashboard/user-trekvouchers" ||
@@ -383,7 +403,7 @@ const HikeHeader = (auth = false) => {
                     nav
                   >
                     <DropdownToggle nav>
-                      About Indiahikes &nbsp;
+                      About us &nbsp;
                       <i
                         className="fa fa-caret-down cursor-pointer"
                         aria-hidden="true" title="More"
@@ -635,20 +655,20 @@ const HikeHeader = (auth = false) => {
                       ></i> <span className="m-d-block">More</span>
                     </DropdownToggle>
                     <DropdownMenu>
-                      <NavLink href="../../../careers"
+                      {/* <NavLink href="../../../careers"
                         className={
                           router.pathname == "/careers"
                             ? "active-custom dd-menu"
                             : "dd-menu"
                         }>
                         <DropdownItem>Work with us</DropdownItem>
-                      </NavLink>
+                      </NavLink> */}
                       <a href="https://store.indiahikes.com/rent-gear/" target="_blank">
                         <DropdownItem>Rent/Buy Gear</DropdownItem>
                       </a>
                     </DropdownMenu>
                   </UncontrolledDropdown>
-                  <NavItem className="view-in-mob">
+                  {/* <NavItem className="view-in-mob">
                     <NavLink href="../../../careers" className={
                       router.pathname == "/careers"
                         ? "active-custom"
@@ -656,7 +676,7 @@ const HikeHeader = (auth = false) => {
                     }>
                       Work with us
                     </NavLink>
-                  </NavItem>
+                  </NavItem> */}
                   <NavItem className="view-in-mob">
                     <NavLink href="https://store.indiahikes.com/rent-gear/">
                       Rent/Buy Gear
