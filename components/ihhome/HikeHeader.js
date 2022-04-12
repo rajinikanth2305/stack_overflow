@@ -127,13 +127,13 @@ const HikeHeader = (auth = false) => {
     searchResults &&
     searchResults?.map(function (data, i) {
       let url;
-     /* const slugUrl = data?.uid;
+      /* const slugUrl = data?.uid;
+ 
+       if (slugUrl) {
+         url = `/trek/${slugUrl}`;
+       }*/
 
-      if (slugUrl) {
-        url = `/trek/${slugUrl}`;
-      }*/
-
-      url= linkResolver(data);
+      url = linkResolver(data);
 
       return (
         <div key={i} className="card border-0 px-3 py-1 cursor-pointer">
@@ -213,7 +213,7 @@ const HikeHeader = (auth = false) => {
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
-              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
+              {/* {router.pathname === "/user-dashboard/user-upcoming-treks" ||
                 router.pathname === "/user-dashboard/user-trekvouchers" ||
                 router.pathname === "/user-dashboard/user-myprofile" ||
                 router.pathname === "/user-dashboard/user-previous-treks" ? (
@@ -227,8 +227,8 @@ const HikeHeader = (auth = false) => {
                     Home
                   </NavLink>
                 </NavItem>
-              )}
-              <NavItem>
+              )} */}
+              {/* <NavItem>
                 {router.pathname === "/user-dashboard/user-upcoming-treks" ||
                   router.pathname === "/user-dashboard/user-trekvouchers" ||
                   router.pathname === "/user-dashboard/user-myprofile" ||
@@ -246,26 +246,50 @@ const HikeHeader = (auth = false) => {
                     Upcoming Treks
                   </NavLink>
                 )}
-              </NavItem>
-              <NavItem>
-                {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                  router.pathname === "/user-dashboard/user-trekvouchers" ||
-                  router.pathname === "/user-dashboard/user-myprofile" ||
-                  router.pathname === "/user-dashboard/user-previous-treks" ? (
-                  ""
-                ) : (
-                  <NavLink
-                    href="../../../family-trek/family-trek-page"
-                    className={
-                      router.asPath == "/family-trek/family-trek-page"
-                        ? "active-custom"
-                        : ""
-                    }
-                  >
-                    Experiential Learning
-                  </NavLink>
-                )}
-              </NavItem>
+              </NavItem> */}
+              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
+                router.pathname === "/user-dashboard/user-trekvouchers" ||
+                router.pathname === "/user-dashboard/user-myprofile" ||
+                router.pathname === "/user-dashboard/user-previous-treks" ? "" :
+                <UncontrolledDropdown
+                  inNavbar
+                  nav
+                >
+                  <DropdownToggle nav>
+                    Upcoming Treks &nbsp;
+                    <i
+                      className="fa fa-caret-down cursor-pointer"
+                      aria-hidden="true" title="More"
+                    ></i>
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <NavLink href="../../../upcoming-treks"
+                      className={
+                        router.pathname == "/upcoming-treks"
+                          ? "active-custom dd-menu"
+                          : "dd-menu"
+                      }>
+                      <DropdownItem>All upcoming treks</DropdownItem>
+                    </NavLink>
+                    <NavLink href="../../../family-trek/family-trek-page"
+                      className={
+                        router.asPath == "/family-trek/family-trek-page"
+                          ? "active-custom dd-menu"
+                          : "dd-menu"
+                      }>
+                      <DropdownItem>Family treks</DropdownItem>
+                    </NavLink>
+                    <NavLink href="../../../family-trek/do-it-yourself-treks"
+                      className={
+                        router.asPath == "/family-trek/do-it-yourself-treks"
+                          ? "active-custom dd-menu"
+                          : "dd-menu"
+                      }>
+                      <DropdownItem>DIY treks</DropdownItem>
+                    </NavLink>
+                  </DropdownMenu>
+                </UncontrolledDropdown>}
+
               <NavItem>
                 {router.pathname === "/user-dashboard/user-upcoming-treks" ||
                   router.pathname === "/user-dashboard/user-trekvouchers" ||
@@ -281,10 +305,11 @@ const HikeHeader = (auth = false) => {
                         : ""
                     }
                   >
-                    DIY treks
+                    Trek Library
                   </NavLink>
                 )}
               </NavItem>
+
               <NavItem>
                 {router.pathname === "/user-dashboard/user-upcoming-treks" ||
                   router.pathname === "/user-dashboard/user-trekvouchers" ||
@@ -293,30 +318,124 @@ const HikeHeader = (auth = false) => {
                   ""
                 ) : (
                   <NavLink
-                    href="../../../faq"
-                    className={router.pathname == "/faq" ? "active-custom" : ""}
-                  >
-                    FAQs
-                  </NavLink>
-                )}
-              </NavItem>
-              <NavItem>
-                {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                  router.pathname === "/user-dashboard/user-trekvouchers" ||
-                  router.pathname === "/user-dashboard/user-myprofile" ||
-                  router.pathname === "/user-dashboard/user-previous-treks" ? (
-                  ""
-                ) : (
-                  <NavLink
-                    href="../../../ourteam"
+                    href="../../../articles/latest"
                     className={
-                      router.pathname == "/ourteam" ? "active-custom" : ""
+                      router.asPath == "/articles/latest"
+                        ? "active-custom"
+                        : ""
                     }
                   >
-                    Our Story
+                    Articles & Resources
                   </NavLink>
                 )}
               </NavItem>
+
+              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
+                router.pathname === "/user-dashboard/user-trekvouchers" ||
+                router.pathname === "/user-dashboard/user-myprofile" ||
+                router.pathname === "/user-dashboard/user-previous-treks" ? (
+                ""
+              ) : (
+                <>
+                  <UncontrolledDropdown
+                    inNavbar
+                    nav
+                  >
+                    <DropdownToggle nav>
+                      Experiential Learning &nbsp;
+                      <i
+                        className="fa fa-caret-down cursor-pointer"
+                        aria-hidden="true" title="More"
+                      ></i>
+                    </DropdownToggle>
+                    <DropdownMenu>
+                      <NavLink href="../../../family-trek/collaborative-leadership-program"
+                        className={
+                          router.asPath == "/family-trek/collaborative-leadership-program"
+                            ? "active-custom dd-menu"
+                            : "dd-menu"
+                        }>
+                        <DropdownItem>For Colleges</DropdownItem>
+                      </NavLink>
+                      <NavLink href="../../../family-trek/family-trek-page"
+                        className={
+                          router.asPath == "/family-trek/family-trek-page"
+                            ? "active-custom dd-menu"
+                            : "dd-menu"
+                        }>
+                        <DropdownItem>For Schools</DropdownItem>
+                      </NavLink>
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
+                </>
+              )}
+
+              {/* <NavItem> */}
+              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
+                router.pathname === "/user-dashboard/user-trekvouchers" ||
+                router.pathname === "/user-dashboard/user-myprofile" ||
+                router.pathname === "/user-dashboard/user-previous-treks" ? (
+                ""
+              ) : (
+                <>
+                  <UncontrolledDropdown
+                    inNavbar
+                    nav
+                  >
+                    <DropdownToggle nav>
+                      About Indiahikes &nbsp;
+                      <i
+                        className="fa fa-caret-down cursor-pointer"
+                        aria-hidden="true" title="More"
+                      ></i>
+                    </DropdownToggle>
+                    <DropdownMenu>
+                      <NavLink href="../../../aboutus"
+                        className={
+                          router.pathname == "/aboutus"
+                            ? "active-custom dd-menu"
+                            : "dd-menu"
+                        }>
+                        <DropdownItem>Our Story</DropdownItem>
+                      </NavLink>
+                      <NavLink href="../../../ourteam"
+                        className={
+                          router.pathname == "/ourteam"
+                            ? "active-custom dd-menu"
+                            : "dd-menu"
+                        }>
+                        <DropdownItem>Meet the team</DropdownItem>
+                      </NavLink>
+                      <NavLink href="../../../green-trails"
+                        className={
+                          router.pathname == "/green-trails"
+                            ? "active-custom dd-menu"
+                            : "dd-menu"
+                        }>
+                        <DropdownItem>Green Trails</DropdownItem>
+                      </NavLink>
+                      <NavLink href="../../../contact-us"
+                        className={
+                          router.pathname == "/contact-us"
+                            ? "active-custom dd-menu"
+                            : "dd-menu"
+                        }>
+                        <DropdownItem>Contact Us</DropdownItem>
+                      </NavLink>
+                      <NavLink href="../../../faq"
+                        className={
+                          router.pathname == "/faq"
+                            ? "active-custom dd-menu"
+                            : "dd-menu"
+                        }>
+                        <DropdownItem>FAQ</DropdownItem>
+                      </NavLink>
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
+                </>
+              )}
+              {/* </NavItem> */}
+
               {/* <NavItem>
               {router.pathname === "/user-dashboard/user-upcoming-treks" ||
               router.pathname === "/user-dashboard/user-trekvouchers" ||
@@ -516,66 +635,31 @@ const HikeHeader = (auth = false) => {
                       ></i> <span className="m-d-block">More</span>
                     </DropdownToggle>
                     <DropdownMenu>
-                      <Link href="../../../aboutus">
-                        <DropdownItem>About us</DropdownItem>
-                      </Link>
-                      <Link href="../../../careers">
-                        <DropdownItem>Careers</DropdownItem>
-                      </Link>
-                      <Link href="../../../contact-us">
-                        <DropdownItem>Contact Us</DropdownItem>
-                      </Link>
-                      <Link href="../../../green-trails">
-                        <DropdownItem>Green Trails</DropdownItem>
-                      </Link>
-                      <Link href="../../../articles/transformation-stories">
-                        <DropdownItem>Articles</DropdownItem>
-                      </Link>
+                      <NavLink href="../../../careers"
+                        className={
+                          router.pathname == "/careers"
+                            ? "active-custom dd-menu"
+                            : "dd-menu"
+                        }>
+                        <DropdownItem>Work with us</DropdownItem>
+                      </NavLink>
+                      <a href="https://store.indiahikes.com/rent-gear/" target="_blank">
+                        <DropdownItem>Rent/Buy Gear</DropdownItem>
+                      </a>
                     </DropdownMenu>
                   </UncontrolledDropdown>
-                  <NavItem className="view-in-mob">
-                    <NavLink href="../../../aboutus" className={
-                      router.pathname == "/aboutus"
-                        ? "active-custom"
-                        : ""
-                    }>
-                      About us
-                    </NavLink>
-                  </NavItem>
                   <NavItem className="view-in-mob">
                     <NavLink href="../../../careers" className={
                       router.pathname == "/careers"
                         ? "active-custom"
                         : ""
                     }>
-                      Careers
+                      Work with us
                     </NavLink>
                   </NavItem>
                   <NavItem className="view-in-mob">
-                    <NavLink href="../../../contact-us" className={
-                      router.pathname == "/contact-us"
-                        ? "active-custom"
-                        : ""
-                    }>
-                      Contact Us
-                    </NavLink>
-                  </NavItem>
-                  <NavItem className="view-in-mob">
-                    <NavLink href="../../../green-trails" className={
-                      router.pathname == "/green-trails"
-                        ? "active-custom"
-                        : ""
-                    }>
-                      Green Trails
-                    </NavLink>
-                  </NavItem>
-                  <NavItem className="view-in-mob">
-                    <NavLink href="../../../articles/transformation-stories" className={
-                      router.pathname == "/articles/transformation-stories"
-                        ? "active-custom"
-                        : ""
-                    }>
-                      Articles
+                    <NavLink href="https://store.indiahikes.com/rent-gear/">
+                      Rent/Buy Gear
                     </NavLink>
                   </NavItem>
                 </>

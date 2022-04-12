@@ -33,8 +33,8 @@ export const ihheaderStyles = css.global`
   }
 
   .navbar-expand-lg .navbar-nav .nav-item {
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
+    padding-right: 1.2rem;
+    padding-left: 1.2rem;
   }
 
   .navbar-expand-lg .navbar-nav .nav-item.r-nav {
@@ -58,6 +58,23 @@ export const ihheaderStyles = css.global`
   .navbar-light .navbar-nav a.active-custom.nav-link {
     border-bottom: 3px solid rgb(255, 193, 0);
     padding-bottom: 5px;
+  }
+
+  .navbar-light .navbar-nav a.active-custom.dd-menu.nav-link {
+    border-bottom: 0;
+    padding-top: 3px !important;
+    padding-bottom: 3px !important;
+  }
+
+  .navbar-light .navbar-nav a.dd-menu.nav-link {
+    border-bottom: 0;
+    padding-top: 3px !important;
+    padding-bottom: 3px !important;
+  }
+
+  .navbar-light .navbar-nav a.active-custom.dd-menu.nav-link > button {
+    border-bottom: 3px solid rgb(255,193,0);
+    // padding-bottom: 5px;
   }
 
   .border-bottom-custom-header {
@@ -214,6 +231,10 @@ export const ihheaderStyles = css.global`
     .navbar-expand-lg .navbar-nav .nav-item {
       padding-left: 0 !important;
       padding-right: 0 !important;
+    }
+
+    .navbar-expand-lg .navbar-nav .dropdown-menu {
+      border: 0;
     }
 
     .m-d-block {
