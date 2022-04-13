@@ -133,6 +133,10 @@ const HikeHeader = (auth = false) => {
          url = `/trek/${slugUrl}`;
        }*/
 
+      const getArticleImage = data?.data?.body?.find(
+        x => x.slice_type === "feature_image"
+      );
+
       url = linkResolver(data);
 
       return (
@@ -141,7 +145,7 @@ const HikeHeader = (auth = false) => {
             <div className="mw-100">
               <div className="d-flex align-items-start border-bottom pb-2 mb-2">
                 <div className="col-5">
-                  <span className="type-highlight">{data?.type}</span>
+                  <span className="type-highlight">{data?.type === "document_trek_type" ? "DIY" : data?.type}</span>
                   <div className="s_r_image">
                     {data?.data?.body[0]?.primary?.trek_banner_image?.url ? (
                       <Image
@@ -154,7 +158,20 @@ const HikeHeader = (auth = false) => {
                         alt="imgs"
                       />
                     ) : (
-                      <img src="./ip.png" className="s_r_image" />
+                      ""
+                    )}
+                    {getArticleImage?.primary?.feature_image?.url ? (
+                      <Image
+                        src={
+                          getArticleImage?.primary?.feature_image?.url
+                        }
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="50% 50%"
+                        alt="imgs"
+                      />
+                    ) : (
+                      ""
                     )}
                   </div>
                 </div>

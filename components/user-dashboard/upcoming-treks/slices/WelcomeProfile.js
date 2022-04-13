@@ -296,7 +296,7 @@ const WelcomeProfile = () => {
   };
 
   const navigateToUpComingTreks = () => {
-    router.push(`/upcoming`);
+    router.push(`/upcoming-treks`);
   };
 
   const onCancelUserBooking = (e, trekData) => {
