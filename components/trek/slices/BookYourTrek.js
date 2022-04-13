@@ -75,8 +75,9 @@ const BookYourTrek = ({ slice }) => {
     if (bookingDate == undefined) {
       toast.current.show({
         severity: "error",
-        summary: "Seelct your Trek Booking date to proceed for registration",
-        detail: "No Booking date is selected"
+        summary: "Please select a date to continue",
+        detail: "",
+        life: 6000
       });
       return;
     }

@@ -942,7 +942,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       </div>
       <div className="dialog-demo">
         <Dialog header="Waiting List Confirmed" visible={displayBasic}
-          position={position} modal style={{ width: '40vw' }}
+          position={position} breakpoints={{'960px': '75vw', '640px': '100vw'}} style={{ width: '40vw' }} modal
           footer={renderFooter('displayPosition')} onHide={() => onHide()}
           draggable={false} resizable={false}>
           <p className="p-m-0">Your waiting list booking is confirmed.</p>
@@ -950,16 +950,12 @@ const AddTrekMates = forwardRef((props, ref) => {
       </div>
       <div className="dialog-demo">
         <Dialog header="Difficult Trek Confirmed" visible={displayDifficultTrek}
-          position={position} modal style={{ width: '40vw' }}
+          position={position} breakpoints={{'960px': '75vw', '640px': '100vw'}} style={{ width: '40vw' }}
           footer={renderFooter('displayPosition')} onHide={() => onHide()}
           draggable={false} resizable={false}>
-          <p className="p-m-0">You’re trying to register for the trek, which we classify as a difficult trek.
-
-            Before you go ahead with the payment, we need some crucial information from you. This is with regard to your past high altitude experience and fitness.
-
-            We have sent you a mail with a few questions. Please respond to those and we’ll take this further.
-
-            .</p>
+          <p className="p-m-0">"You are trying to register for a difficult trek. Before you proceed, 
+          we need some crucial information from you. 
+          Please check your email for an email from us and write back to us."</p>
         </Dialog>
       </div>
     </>

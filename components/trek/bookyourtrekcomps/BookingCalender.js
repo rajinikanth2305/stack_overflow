@@ -365,7 +365,8 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
       toast.current.show({
         severity: "error",
         summary: "Sorry! Selected  Trek Booking date - seats are filled, Please try other available booking slots",
-        detail: "No Seats available"
+        detail: "No Seats available",
+        life: 6000
       });
       return;
     }
@@ -373,17 +374,8 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     if (batchDates[key].status === "WAITING_LIST") {
       confirmDialog({
         //target: e.currentTarget,
-        header: "Would you like to be on our waitlist?",
-        message: `
-            You're choosing to go on the waitlist. This comes with a few benefits.
-            
-            You'll be given preference over all others who get on the waitlist after you
-            We'll immediately write to you when a slot opens up so you can register the same day
-            There are a few points you must note though.
-            
-            Considering this is a high altitude trek, a lot of physical and mental preparation goes into it. You need a minimum of 20-30 days to prepare for a trek. So 15 days before the starting date of this trek, we will drop the waitlist. We will not be confirming anyone on the waitlist after that even if there are cancellations.
-            Even though you don't have a confirmed slot, you must start working on your fitness at least a month before the start date of the trek. That way, even if you get confirmed 20 days before the trek, you will be fit enough to do the trek.
-            You will be required to send us a fitness proof when you do get confirmed.'`,
+        header: "Would you like to proceed?",
+        message: `You're choosing to join the waitlist. This is not a confirmed slot. You will be notified only when someone cancels their slot.`,
         icon: "pi pi-exclamation-triangle",
         acceptLabel: "Proceed",
         rejectLabel: "Go Back",

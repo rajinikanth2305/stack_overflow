@@ -1025,6 +1025,18 @@ export const regStyle = css.global`
     text-decoration: underline;
   }
 
+  .p-dialog-footer > button {
+    background: rgba(255,193,0,1);
+    border: 0;
+    color: #000000;
+  }
+
+  .p-dialog-footer > button:active, .p-dialog-footer > button:hover, .p-dialog-footer > button:focus {
+    background: rgba(255,193,0,1);
+    border: 0;
+    color: #000000;
+  }
+
   @media only screen and (max-width: 660px) {
     .m-d-none {
       display: none;

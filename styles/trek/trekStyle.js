@@ -1576,6 +1576,34 @@ export const trekStyle = css.global`
     margin: 0;
   }
 
+  .p-dialog-footer > button {
+    background: rgba(255,193,0,1);
+    border: 0;
+    color: #000000;
+  }
+
+  .p-dialog-footer > button:active, .p-dialog-footer > button:hover, .p-dialog-footer > button:focus {
+    background: rgba(255,193,0,1);
+    border: 0;
+    color: #000000;
+  }
+
+  .p-button:not(a):not(.p-disabled):hover {
+    background: rgba(255,193,0,1);
+    border: 0;
+    color: #000000;
+  }
+
+  .p-button.p-button-text {
+    color: #495057;
+  }
+
+  .p-button.p-button-text:not(a):not(.p-disabled):hover {
+    background: rgba(0, 0, 0, 0.18);
+    color: #495057;
+    border-color: transparent;
+  }
+
   @media only screen and (max-width: 660px) {
     .q-des {
       font-size: 40px;
