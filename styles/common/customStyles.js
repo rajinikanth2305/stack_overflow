@@ -1214,10 +1214,23 @@ export const customStyles = css.global`
     padding: 2px;
   }
 
+  // .p-fileupload-files > div > div > img {
+  //   height: 140px;
+  //   width: 105px;
+  //   object-fit: cover;
+  // }
+
   .p-fileupload-files > div > div > img {
     height: 140px;
-    width: 105px;
-    object-fit: cover;
+    width: 200px;
+  }
+
+  .p-fileupload-files > div > div.p-fileupload-filename {
+    display: none;
+  }
+
+  .p-fileupload-files > div.p-fileupload-row > div:nth-child(3) {
+    display: none;
   }
 
   .trek-completed-progress.progress > .progress-bar {
@@ -2358,13 +2371,13 @@ export const customStyles = css.global`
     border: 1px solid #d3d3d3 !important;
   }
 
-  #frontImage > .p-fileupload-content {
-    display: none;
-  }
+  // #frontImage > .p-fileupload-content {
+  //   display: none;
+  // }
 
-  #backImage > .p-fileupload-content {
-    display: none;
-  }
+  // #backImage > .p-fileupload-content {
+  //   display: none;
+  // }
 
   .gbg-mt-3 {
     margin-top: -16px;
@@ -2593,6 +2606,11 @@ export const customStyles = css.global`
       font-size: 24px;
       line-height: 35px;
       margin: 20px 0 10px;
+    }
+
+    .p-fileupload-files > div > div > img {
+      height: auto;
+      width: 100px;
     }
 
     latest_trek_details {

@@ -157,7 +157,7 @@ const FitnessApproval = forwardRef((props, ref) => {
   return (
     <>
       <Toast ref={toast} />
-      {showContents === true ? (
+      {showContents === false ? (
         <div>
           <div>
             <div>
@@ -261,6 +261,7 @@ const FitnessApproval = forwardRef((props, ref) => {
                   maxFileSize={1000000}
                   accept="image/*,pdf/*"
                   invalidFileSizeMessageDetail="Maximum 10 MB file(s) are allowed to upload"
+                  className="fitnessBox"
                 />
                 <div className="p-text-small-brown mt-2">
                   <p className="mb-1">
