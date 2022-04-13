@@ -157,7 +157,7 @@ const FitnessApproval = forwardRef((props, ref) => {
   return (
     <>
       <Toast ref={toast} />
-      {showContents === false ? (
+      {showContents === true ? (
         <div>
           <div>
             <div>
