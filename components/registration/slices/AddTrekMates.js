@@ -1,12 +1,12 @@
-import React, {forwardRef, useImperativeHandle, useMemo, useRef, useState} from "react";
-import {Controller, useForm} from "react-hook-form";
-import {yupResolver} from "@hookform/resolvers/yup";
+import React, { forwardRef, useImperativeHandle, useMemo, useRef, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 //import { ConfirmPopup } from 'primereact/confirmpopup'; // To use <ConfirmPopup> tag
-import {Toast} from "primereact/toast";
-import {Button, FormGroup} from "reactstrap";
-import {InputText} from "primereact/inputtext";
-import {InputNumber} from "primereact/inputnumber";
+import { Toast } from "primereact/toast";
+import { Button, FormGroup } from "reactstrap";
+import { InputText } from "primereact/inputtext";
+import { InputNumber } from "primereact/inputnumber";
 import {
   createNewUser, findUserByAnyEmail, findUserByEmail,
   getUserByAutoSearch,
@@ -14,15 +14,15 @@ import {
   getUserVoucher,
   saveDraftBooking
 } from "../../../services/queries";
-import {Dropdown} from "primereact/dropdown";
-import {Calendar} from "primereact/calendar";
+import { Dropdown } from "primereact/dropdown";
+import { Calendar } from "primereact/calendar";
 import moment from "moment";
-import {useDispatch, useSelector} from "react-redux";
-import {useRouter} from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
-import {addOrUpdateState, selectStateData} from "../../reduxstate/counterSlice";
-import {data} from "jquery";
-import {Dialog} from 'primereact/dialog';
+import { addOrUpdateState, selectStateData } from "../../reduxstate/counterSlice";
+import { data } from "jquery";
+import { Dialog } from 'primereact/dialog';
 
 
 const AddTrekMates = forwardRef((props, ref) => {
@@ -53,25 +53,25 @@ const AddTrekMates = forwardRef((props, ref) => {
   const [displayPosition, setDisplayPosition] = useState(false);
 
   const onDialogShow = (status) => {
-    if(status === "DIFFICULT_TREK") {
+    if (status === "DIFFICULT_TREK") {
       setDisplayBasic(false);
       setDisplayDifficultTrek(true);
     }
-    else{
+    else {
       setDisplayBasic(true);
     }
-}
+  }
 
-const onHide = () => {
-  setDisplayBasic(false);
-  ///redirect to dashboard
-  router.push(`/user-dashboard/user-upcoming-treks`);
-}
-const renderFooter = (name) => {
-  return (
-          <Button label="Ok"   onClick={() => onHide()} autoFocus>OK</Button>
-  );
-}
+  const onHide = () => {
+    setDisplayBasic(false);
+    ///redirect to dashboard
+    router.push(`/user-dashboard/user-upcoming-treks`);
+  }
+  const renderFooter = (name) => {
+    return (
+      <Button label="Ok" onClick={() => onHide()} autoFocus>OK</Button>
+    );
+  }
 
 
   const validationSchema = useMemo(
@@ -136,7 +136,7 @@ const renderFooter = (name) => {
     }
 
     //// new user first store into server then local store persistence
-     await createNewUser(data);
+    await createNewUser(data);
     const newUserData = await findUserByAnyEmail(data.email);
     //console.log(JSON.stringify(newUserData));
 
@@ -300,25 +300,25 @@ const renderFooter = (name) => {
     try {
       responseData = await saveDraft(stateData.data);
       console.log(responseData);
-      if(responseData.data.state==="WAITING_LIST" || responseData.data.state==="DIFFICULT_TREK") {
+      if (responseData.data.state === "WAITING_LIST" || responseData.data.state === "DIFFICULT_TREK") {
         /// DISABLE THE PAYMENT TAB
         // props.onNextTabEvent("makepayment",WAITING_LIST);
         onDialogShow(responseData.data.state);
       }
       else {
 
-       const sdata = JSON.parse(JSON.stringify(stateData.data));
+        const sdata = JSON.parse(JSON.stringify(stateData.data));
 
-        sdata.trekUsers.map(p=> {
+        sdata.trekUsers.map(p => {
           console.log(p);
-          const participant=responseData?.data?.participants.find(y=>y.userId===p.id);
+          const participant = responseData?.data?.participants.find(y => y.userId === p.id);
           console.log(participant);
-          p.participantsId=participant.id;
-          p.insuranceAmount=sdata.trekUsers[0].insuranceAmount;
+          p.participantsId = participant.id;
+          p.insuranceAmount = sdata.trekUsers[0].insuranceAmount;
         });
-        
 
-       let vouchers = await getUsersVoucherByBookingId(sdata.bookingId);
+
+        let vouchers = await getUsersVoucherByBookingId(sdata.bookingId);
         if (vouchers.length > 0) {
           vouchers = transFormVoucherPayload(vouchers);
         }
@@ -340,7 +340,7 @@ const renderFooter = (name) => {
       return;
     }
 
-   
+
     window.scrollTo(0, 0);
   };
 
@@ -387,11 +387,11 @@ const renderFooter = (name) => {
       vouchers: vouchers,
       optedVoucherId: 0,
       trekFeeForTheUser: 0,
-      insuranceAmount:stdata?.trekUsers[0].insuranceAmount
+      insuranceAmount: stdata?.trekUsers[0].insuranceAmount
     });
 
-   // console.log(stdata);
-   // console.log( stdata?.trekUsers[0].insuranceAmount);
+    // console.log(stdata);
+    // console.log( stdata?.trekUsers[0].insuranceAmount);
 
     // let responseData;
     // try {
@@ -401,7 +401,7 @@ const renderFooter = (name) => {
     //     severity: "error",
     //     summary: `'Batch is full, Sorry! You no more allowed to add the TrekMates'`,
     //     detail: "Add Trekker- Batch is full"
-    
+
     //   });
     //   return;
     // }
@@ -425,7 +425,7 @@ const renderFooter = (name) => {
       lastName: udata.lastName,
       email: udata.email,
       id: udata.id,
-      participantsId:  udata.id, //// this needs to be check
+      participantsId: udata.id, //// this needs to be check
       primaryUser: false,
       trekFee: 0,
       voucherId: "",
@@ -439,14 +439,14 @@ const renderFooter = (name) => {
       trekFeeForTheUser: 0
     });
 
-   /* vouchers = await getUsersVoucherByBookingId(stdata.bookingId);
-    if (vouchers.length > 0) {
-      vouchers = transFormVoucherPayload(vouchers);
-    }
-
-    console.log(vouchers);
-
-    sdata.voucherDetails = vouchers;*/
+    /* vouchers = await getUsersVoucherByBookingId(stdata.bookingId);
+     if (vouchers.length > 0) {
+       vouchers = transFormVoucherPayload(vouchers);
+     }
+ 
+     console.log(vouchers);
+ 
+     sdata.voucherDetails = vouchers;*/
 
     await dispatch(addOrUpdateState(sdata));
     add();
@@ -497,7 +497,7 @@ const renderFooter = (name) => {
     // console.log(fieldRef.current.value);
 
     const userEmail = findEmailRef.current.value; //window.document.getElementById("findemail").value;
-   // console.log("hello" + userEmail);
+    // console.log("hello" + userEmail);
 
     if (userEmail === undefined || userEmail === "" || userEmail === null) {
       toast.current.show({
@@ -522,16 +522,16 @@ const renderFooter = (name) => {
     }
 
     /// check same email userid is added then give error!
-     console.log(sdata?.trekUsers[0].email);
-     const sdata = JSON.parse(JSON.stringify(stateData.data));
-     if(sdata?.trekUsers[0]?.email===userEmail.toLowerCase()) {
+    console.log(sdata?.trekUsers[0].email);
+    const sdata = JSON.parse(JSON.stringify(stateData.data));
+    if (sdata?.trekUsers[0]?.email === userEmail.toLowerCase()) {
       toast.current.show({
         severity: "error",
         summary: `'Primary Trekker ${userEmail} is a main participant. Add other than main participants emailid'`,
         detail: "Find Trekker"
       });
       return;
-     }
+    }
 
     if (userEmail !== undefined) {
       getUserByAutoSearch("CUSTOMER", userEmail.toLowerCase()).then(data => {
@@ -603,20 +603,20 @@ const renderFooter = (name) => {
     { name: "Other", code: "Other" }
   ];
 
-  const evaluateState=(stateData)=> {
+  const evaluateState = (stateData) => {
 
-   return  (stateData?.data?.batchState !== 'WAITING_LIST' 
-    || (stateData?.data?.bookingState !== 'INITIATED' 
-    && stateData?.data?.bookingState !== 'WAITING_LIST')) ;
+    return (stateData?.data?.batchState !== 'WAITING_LIST'
+      || (stateData?.data?.bookingState !== 'INITIATED'
+        && stateData?.data?.bookingState !== 'WAITING_LIST'));
 
   };
 
-  const evaluateStateWaiting=(stateData)=> {
-    return   (stateData?.data?.batchState === 'WAITING_LIST'
-    && (stateData?.data?.bookingState === 'INITIATED' 
-    || stateData?.data?.bookingState === 'WAITING_LIST'));
-   };
- 
+  const evaluateStateWaiting = (stateData) => {
+    return (stateData?.data?.batchState === 'WAITING_LIST'
+      && (stateData?.data?.bookingState === 'INITIATED'
+        || stateData?.data?.bookingState === 'WAITING_LIST'));
+  };
+
   return (
     <>
       <Toast ref={toast} />
@@ -668,8 +668,7 @@ const renderFooter = (name) => {
                   <div className="px-4 py-3">
                     <p className="p-text-1-franklin mb-1">INDIAHIKES Trekker</p>
                     <p className="p-text-small-franklin font-italic">
-                      Add your trekmates who already have an Indiahikes account
-                      here.
+                      Add your trek mates using their email ids
                     </p>
 
                     <div className="login-form-box">
@@ -687,7 +686,7 @@ const renderFooter = (name) => {
                     <div className="mt-4 pt-1">
                       <button
                         type="button"
-                        className="btn btn-yellow-outline"
+                        className="btn btn-yellow-outline hvr-grow"
                         onClick={e => {
                           findUser(e);
                         }}
@@ -899,11 +898,11 @@ const renderFooter = (name) => {
                       <div className="mt-3">
                         <button
                           type="submit"
-                          className="btn btn-yellow-outline"
+                          className="btn btn-yellow-outline hvr-grow"
                         >
                           Create account
                         </button>
-                       
+
                       </div>
                     </form>
                   </div>
@@ -913,7 +912,7 @@ const renderFooter = (name) => {
           </div>
           <div className="col-lg-2 col-md-12"></div>
         </div>
-        { evaluateState(stateData)===true && (<div className="d-flex justify-content-center">
+        {evaluateState(stateData) === true && (<div className="d-flex justify-content-center">
           <div>
             <div className="mt-5 mb-3">
               <button id="p1"
@@ -921,39 +920,39 @@ const renderFooter = (name) => {
                 className="btn btn-ih-green hvr-grow py-2"
                 onClick={nextTabNav}
               >
-                Proceed to next step of registration 
+                Proceed to next step of registration
               </button>
             </div>
-          </div> 
+          </div>
         </div>)}
-        { evaluateStateWaiting(stateData)===true && (<div className="d-flex justify-content-center">
+        {evaluateStateWaiting(stateData) === true && (<div className="d-flex justify-content-center">
           <div>
             <div className="mt-5 mb-3">
-              <button 
-                  id="p2"
-                  type="button"
-                  className="btn btn-ih-green hvr-grow py-2"
-                  onClick={waitingListConfirmation}
+              <button
+                id="p2"
+                type="button"
+                className="btn btn-ih-green hvr-grow py-2"
+                onClick={waitingListConfirmation}
               >
-                Proceed to waiting list registration 
+                Proceed to waiting list registration
               </button>
             </div>
           </div>
         </div>)}
       </div>
       <div className="dialog-demo">
-      <Dialog header="Waiting List Confirmed" visible={displayBasic} 
-      position={position} modal style={{ width: '40vw' }} 
-      footer={renderFooter('displayPosition')} onHide={() => onHide()}
-                    draggable={false} resizable={false}>
-                    <p className="p-m-0">Your waiting list booking is confirmed.</p>
-                </Dialog>
-                </div>
+        <Dialog header="Waiting List Confirmed" visible={displayBasic}
+          position={position} modal style={{ width: '40vw' }}
+          footer={renderFooter('displayPosition')} onHide={() => onHide()}
+          draggable={false} resizable={false}>
+          <p className="p-m-0">Your waiting list booking is confirmed.</p>
+        </Dialog>
+      </div>
       <div className="dialog-demo">
         <Dialog header="Difficult Trek Confirmed" visible={displayDifficultTrek}
-                position={position} modal style={{ width: '40vw' }}
-                footer={renderFooter('displayPosition')} onHide={() => onHide()}
-                draggable={false} resizable={false}>
+          position={position} modal style={{ width: '40vw' }}
+          footer={renderFooter('displayPosition')} onHide={() => onHide()}
+          draggable={false} resizable={false}>
           <p className="p-m-0">You’re trying to register for the trek, which we classify as a difficult trek.
 
             Before you go ahead with the payment, we need some crucial information from you. This is with regard to your past high altitude experience and fitness.

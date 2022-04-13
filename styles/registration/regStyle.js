@@ -477,6 +477,7 @@ export const regStyle = css.global`
   }
 
   .btn-yellow-outline {
+    background: #ffcc00;
     border: 1px solid rgba(255, 193, 0, 1);
     border-radius: 3px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.353);
@@ -485,7 +486,7 @@ export const regStyle = css.global`
     font-family: Franklin Gothic;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 16px;
     color: rgba(0, 0, 0, 1);
     text-transform: none;
     padding: 5px 30px;
