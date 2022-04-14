@@ -27,7 +27,7 @@ import Prismic from "@prismicio/client";
 import { Client } from "utils/prismicHelpers";
 import Image from "next/image";
 import { DebounceInput } from "react-debounce-input";
-import auth from "../../services/Authenticate";
+import auths from "../../services/Authenticate";
 import { AutoComplete } from 'primereact/autocomplete';
 
 import { linkResolver } from "prismic-configuration";
@@ -49,6 +49,14 @@ const HikeHeader = (auth = false) => {
 
   const [selectedTreks, setSelectedTreks] = useState([]);
 
+  const doLogout = () => {
+    auths.keycloak().then(([userTokenObject]) => {
+      userTokenObject.doLogout();
+      router.push(
+        `/`
+      );
+    });
+  }
 
   const fetchData = async (stext) => {
     if (stext && stext !== "") {
@@ -95,16 +103,6 @@ const HikeHeader = (auth = false) => {
     }
   };
 
-  // React.useEffect(() => {
-  //   auth.keycloak().then(([userTokenObject, loggedInUserEmail]) => {
-  //     setUserServiceObject(userTokenObject);
-  //   });
-  // }, []);
-
-  // const onLogout = () => {
-  //   userServiceObject.doLogout();
-  // };
-
   // React Render
   const postAuthenticAction = () => {
     setIsLoggedIn(true);
@@ -116,12 +114,10 @@ const HikeHeader = (auth = false) => {
     fetchData();
   };
 
-
   const autoSearchTreks = (event) => {
     // console.log(event.query.toLowerCase());
     fetchData(event.query.toLowerCase());
   };
-
 
   const resultListing =
     searchResults &&
@@ -572,8 +568,8 @@ const HikeHeader = (auth = false) => {
                   router.pathname === "/user-dashboard/user-myprofile" ||
                   router.pathname === "/user-dashboard/user-previous-treks" ? (
                   <NavLink
-                    href=""
-                    // onClick={onLogout}
+                    // href=""
+                    onClick={doLogout}
                     className={
                       router.pathname == "/"
                         ? "active-custom"
