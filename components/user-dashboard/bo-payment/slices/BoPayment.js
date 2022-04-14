@@ -335,7 +335,7 @@ const BoPayment = forwardRef((props, ref) => {
     <>
       <Toast ref={toast} />
       {render == true && (
-        <div className="my-5">
+        <div className="my-5 mmy-2">
           <div>
             <div className="container">
               <div className="row">
@@ -364,29 +364,29 @@ const BoPayment = forwardRef((props, ref) => {
                       water and snacks.
                     </p>
                   </div>
-                  <div className="d-flex justify-content-between p-text-3-fg-book">
+                  <div className="d-flex justify-content-between flex-wrap p-text-3-fg-book mb-2">
                     <div>
-                      <p className="m-0">No. of offloading days:  {offSelectedData?.header?.backPackOffloadingDays} days</p>
-                      <p className="p-text-small-fg font-italic">
+                      <p className="m-0 p-text-3"><small>No. of offloading days:</small>  {offSelectedData?.header?.backPackOffloadingDays} days</p>
+                      {/* <p className="p-text-small-fg font-italic">
                         {offSelectedData?.header?.trekName}
-                      </p>
+                      </p> */}
                     </div>
                     <div>
-                      <p>
-                        BO. cost per day: Rs.{" "}
+                      <p className="m-0 p-text-3">
+                        <small>BO. cost per day:</small> Rs.{" "}
                         {offSelectedData?.header?.backPackOffloadingCostPerDay}
                       </p>
                     </div>
                     <div style={{ visibility: "hidden" }}>
-                      <p>
-                        Applicable tax:{" "}
+                      <p className="m-0 p-text-3">
+                        <small>Applicable tax:</small>{" "}
                         {offSelectedData.header?.backPackOffloadingTax}%
                       </p>
                     </div>
                   </div>
-                  <div className="mb-5">
-                    <table className="table table-dashboard-profile-style-1">
-                      <thead>
+                  <div className="mb-5 mmy-2 table-responsive">
+                    <table className="table table-dashboard-profile-style-1 ctb">
+                      <thead className="m-d-none">
                         <tr className="header-bg">
                           <th className="w-20per">Participants</th>
                           <th className="w-20per">Applicable voucher</th>
@@ -420,7 +420,15 @@ const BoPayment = forwardRef((props, ref) => {
                             <>
                               <tr key={sdata.id}>
                                 <td>
-                                  {index + 1}. {sdata.name}
+                                  {/* {index + 1}. {sdata.name} */}
+                                  <div className="d-flex align-items-center">
+                                    <div className="m-col-3">
+                                      <span className="m-d-block m-col-text p-text-small-fg">
+                                        Participants: &nbsp;
+                                      </span>
+                                    </div>
+                                    <div className="p-text-2-fg-f16-mb">{index + 1}. {sdata?.name}</div>
+                                  </div>
                                 </td>
                                 <td>
                                   <div className="d-flex alifn-items-center">
@@ -463,21 +471,36 @@ const BoPayment = forwardRef((props, ref) => {
                                 </td>
 
                                 <td>
-                                  {sdata?.offloadingFee}
+                                  <div className="d-flex align-items-center">
+                                    <div className="m-col-3">
+                                      <span className="m-d-block m-col-text p-text-small-fg">
+                                        Offloading fee: &nbsp;
+                                      </span>
+                                    </div>
+                                    <div className="p-text-2-fg-f16-mb">{sdata?.offloadingFee}</div>
+                                  </div>
                                 </td>
 
                                 <td>
-
-                                  {
-                                    ((sdata?.offloadingFee) - Number(sdata?.voucherAmount)) <= 0 && (
-                                      0
-                                    )
-                                  }
-                                  {
-                                    ((sdata?.offloadingFee) - Number(sdata?.voucherAmount)) > 0 && (
-                                      Number((sdata?.offloadingFee) - Number(sdata?.voucherAmount)).toFixed(2)
-                                    )
-                                  }
+                                  <div className="d-flex align-items-center">
+                                    <div className="m-col-3">
+                                      <span className="m-d-block m-col-text p-text-small-fg">
+                                        You pay: &nbsp;
+                                      </span>
+                                    </div>
+                                    <div className="p-text-2-fg-f16-mb">
+                                      {
+                                        ((sdata?.offloadingFee) - Number(sdata?.voucherAmount)) <= 0 && (
+                                          0
+                                        )
+                                      }
+                                      {
+                                        ((sdata?.offloadingFee) - Number(sdata?.voucherAmount)) > 0 && (
+                                          Number((sdata?.offloadingFee) - Number(sdata?.voucherAmount)).toFixed(2)
+                                        )
+                                      }
+                                    </div>
+                                  </div>
                                 </td>
 
                               </tr>
@@ -576,7 +599,7 @@ const BoPayment = forwardRef((props, ref) => {
                       <div className="d-flex mt-2">
                         <div className="flex-grow-1 px-5">
                           <p className="p-text-3-fg text-align-right mb-3">
-                            you pay
+                            You pay
                           </p>
                         </div>
                         <div>

@@ -56,7 +56,7 @@ const Offloading = forwardRef((props, ref) => {
 
   const deriveBookingState = activeBooking => {
     if (activeBooking.bookingState === "COMPLETED") {
-      
+
       return true;
     } else {
       setShowOffLoadingContents(false);
@@ -69,7 +69,7 @@ const Offloading = forwardRef((props, ref) => {
     setRender(false);
     if (deriveBookingState(data) == true) {
       console.log("Called here");
-       console.log(data);
+      console.log(data);
 
       let vouchers = [];
       vouchers = await getUsersVoucherByBookingId(data.bookingId);
@@ -81,7 +81,7 @@ const Offloading = forwardRef((props, ref) => {
       setHeaderData(data);
       setShowOffLoadingContents(true);
 
-      const fee =data?.backPackOffloadingDays * data?.backPackOffloadingCostPerDay;
+      const fee = data?.backPackOffloadingDays * data?.backPackOffloadingCostPerDay;
       const tax = fee * (data?.backPackOffloadingTaxPercentage / 100); //backPackOffloadingTax
       const offLoadingFee = roundToTwo(fee + tax);
 
@@ -98,11 +98,11 @@ const Offloading = forwardRef((props, ref) => {
               name:
                 pdata?.userDetailsForDisplay.email === data.email
                   ? " * " +
-                    pdata?.userDetailsForDisplay.firstName +
-                    pdata?.userDetailsForDisplay.lastName +
-                    " (You) "
+                  pdata?.userDetailsForDisplay.firstName +
+                  pdata?.userDetailsForDisplay.lastName +
+                  " (You) "
                   : pdata?.userDetailsForDisplay.firstName +
-                    pdata?.userDetailsForDisplay.lastName,
+                  pdata?.userDetailsForDisplay.lastName,
               //voucher: vouchers,
               offloadingFee: offLoadingFee,
               youPay: offLoadingFee,
@@ -112,7 +112,7 @@ const Offloading = forwardRef((props, ref) => {
               voucherId: "",
               selected: false,
               email: pdata?.userDetailsForDisplay.email,
-              offloadingParticipantStatus:offloadUser == undefined || false? "N/A": offloadUser.offloadingParticipantStatus,
+              offloadingParticipantStatus: offloadUser == undefined || false ? "N/A" : offloadUser.offloadingParticipantStatus,
               bookingParticipantState: pdata?.bookingParticipantState
             });
           }
@@ -172,8 +172,8 @@ const Offloading = forwardRef((props, ref) => {
   };
 
   function roundToTwo(num) {
-    return +(Math.round(num + "e+2")  + "e-2");
-   }
+    return +(Math.round(num + "e+2") + "e-2");
+  }
 
   const onVoucherApply = (id, index) => {
     const sdata = offLoadings;
@@ -268,14 +268,14 @@ const Offloading = forwardRef((props, ref) => {
   };
 
   const checkAnyPaidStatus = () => {
-    let paids=[];
-    offLoadings?.map(x=> {
-      if(x?.offloadingParticipantStatus === "COMPLETED" || x?.offloadingParticipantStatus === "PAID") {
+    let paids = [];
+    offLoadings?.map(x => {
+      if (x?.offloadingParticipantStatus === "COMPLETED" || x?.offloadingParticipantStatus === "PAID") {
         paids.push(x);
       }
     }
     );
-    return paids.length>0;
+    return paids.length > 0;
   }
 
   return (
@@ -292,29 +292,29 @@ const Offloading = forwardRef((props, ref) => {
             trail isn't good for the eco system. Unless you have a genuine
             issue, avoid offloading your backpack.
           </p>
-          <div className="d-flex justify-content-between p-text-3-fg-book">
+          <div className="d-flex justify-content-between flex-wrap p-text-3-fg-book mb-2">
             <div>
-              <p className="m-0">
-                No. of offloading days: {headerData?.backPackOffloadingDays}{" "}
+              <p className="m-0 p-text-3">
+                <small>No. of offloading days:</small> {headerData?.backPackOffloadingDays}{" "}
                 days
               </p>
-              <p className="p-text-small-fg font-italic">
-                headerData?.trekName
+              {/* <p className="p-text-small-fg font-italic">
+                {headerData?.trekName}
+              </p> */}
+            </div>
+            <div>
+              <p className="m-0 p-text-3">
+                <small>BO. cost per day:</small> Rs. {headerData?.backPackOffloadingCostPerDay}
               </p>
             </div>
             <div>
-              <p>
-                BO. cost per day: Rs. {headerData?.backPackOffloadingCostPerDay}
-              </p>
+              <p className="m-0 p-text-3"><small>Applicable tax:</small> {headerData?.backPackOffloadingTaxPercentage}%</p>
             </div>
-            <div>
-              <p>Applicable tax: {headerData?.backPackOffloadingTaxPercentage}%</p>
-            </div>
-         
+
           </div>
-          <div>
-            <table className="table table-dashboard-profile-style-1">
-              <thead>
+          <div className="table-responsive">
+            <table className="table table-dashboard-profile-style-1 ctb">
+              <thead className="m-d-none">
                 <tr className="header-bg">
                   <th className="w-20per">Select</th>
                   <th className="w-20per">Participants</th>
@@ -392,7 +392,14 @@ const Offloading = forwardRef((props, ref) => {
                         </td>
 
                         <td>
-                          {index + 1}. {sdata?.name}
+                          <div className="d-flex align-items-center">
+                            <div className="m-col-3">
+                              <span className="m-d-block m-col-text p-text-small-fg">
+                                Participants: &nbsp;
+                              </span>
+                            </div>
+                            <div className="p-text-2-fg-f16-mb">{index + 1}. {sdata?.name}</div>
+                          </div>
                         </td>
                         {/*
                             <td>
@@ -429,16 +436,42 @@ const Offloading = forwardRef((props, ref) => {
                               </div>
                             </td>
                                   */}
-                        <td>{sdata?.offloadingFee}</td>
-                        <td>{sdata?.youPay}</td>
                         <td>
-                          <span>{sdata?.offloadingParticipantStatus}</span>
+                          <div className="d-flex align-items-center">
+                            <div className="m-col-3">
+                              <span className="m-d-block m-col-text p-text-small-fg">
+                                Offloading fee: &nbsp;
+                              </span>
+                            </div>
+                            <div className="p-text-2-fg-f16-mb">{sdata?.offloadingFee}</div>
+                          </div>
+                        </td>
+                        <td>
+                          <div className="d-flex align-items-center">
+                            <div className="m-col-3">
+                              <span className="m-d-block m-col-text p-text-small-fg">
+                                You pay: &nbsp;
+                              </span>
+                            </div>
+                            <div className="p-text-2-fg-f16-mb">{sdata?.youPay}</div>
+                          </div>
+                        </td>
+                        <td>
+                          {/* <span>{sdata?.offloadingParticipantStatus}</span> */}
                           { /*sdata?.offloadingParticipantStatus === "Paid" && (
                             <span className="mx-2 p-text-small-fg-red text-decoration-underline">
                               Cancel
                             </span>
                           )*/
                           }
+                          <div className="d-flex align-items-center">
+                            <div className="m-col-3">
+                              <span className="m-d-block m-col-text p-text-small-fg">
+                                Offloading status: &nbsp;
+                              </span>
+                            </div>
+                            <div className="p-text-2-fg-f16-mb">{sdata?.offloadingParticipantStatus}</div>
+                          </div>
                         </td>
                       </tr>
                     </>
@@ -448,23 +481,23 @@ const Offloading = forwardRef((props, ref) => {
             </table>
             <div className="d-flex align-items-center">
               <div className="flex-grow-1">
-                <p className="m-0 p-text-small-brown">* Primary participant</p>
+                <p className="m-0 p-text-small-brown ws-nowrap">* Primary participant</p>
               </div>
               <div>
-              {checkAnyPaidStatus()  && (
-              <button
-                className="btn table-btn-maroon-sm"
-                onClick={e => onCancelButtonClick()}
-              >
-                Cancel Offloading
-              </button>
-            )}
-            &nbsp;
-          </div>
+                {checkAnyPaidStatus() && (
+                  <button
+                    className="btn table-btn-maroon-sm ws-nowrap"
+                    onClick={e => onCancelButtonClick()}
+                  >
+                    Cancel Offloading
+                  </button>
+                )}
+                &nbsp;
+              </div>
 
               <div>
                 <button
-                  className="btn table-btn-blue-sm hvr-grow"
+                  className="btn table-btn-blue-sm hvr-grow ws-nowrap"
                   disabled={!showSaveButton}
                   onClick={e => navigateTo()}
                 >

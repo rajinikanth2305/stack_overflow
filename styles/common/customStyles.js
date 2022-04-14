@@ -2486,6 +2486,16 @@ export const customStyles = css.global`
     color: #000000 !important;
   }
 
+  .p-text-3-1-2 {
+    line-height: 18px;
+    text-align: left;
+    font-family: Franklin Gothic Book;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -2549,6 +2559,10 @@ export const customStyles = css.global`
     .ws-now {
       white-space: nowrap;
       margin-bottom: 10px;
+    }
+
+    .ws-nowrap {
+      white-space: nowrap;
     }
 
     .article_tabs > .nav-item > .nav-link {

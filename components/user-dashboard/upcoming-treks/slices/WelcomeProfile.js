@@ -658,7 +658,7 @@ const WelcomeProfile = () => {
                                                 }
                                                 target="new"
                                               >
-                                                <button className="btn table-btn-green mx-3 hvr-grow">
+                                                <button className="btn table-btn-green mx-3 hvr-grow ws-nowrap">
                                                   <i
                                                     className="fa fa-whatsapp"
                                                     aria-hidden="true"
@@ -674,7 +674,7 @@ const WelcomeProfile = () => {
                                           "WAITING_LIST" && (
                                           <>
                                             <div className="mx-2" />
-                                            <button className="btn table-btn-yellow hvr-grow">
+                                            <button className="btn table-btn-yellow hvr-grow ws-nowrap">
                                               Waiting List #{" "}
                                               {upComingTrek.waitListNumber}
                                             </button>
@@ -685,7 +685,7 @@ const WelcomeProfile = () => {
                                           "IN_ACTIVE" && (
                                           <>
                                             <button
-                                              className="btn table-btn-maroon hvr-grow"
+                                              className="btn table-btn-maroon hvr-grow ws-nowrap"
                                               // onClick={e =>
                                               //   onCancelUserBooking(
                                               //     e,
