@@ -325,10 +325,10 @@ const UserMP = () => {
                               </div>
 
                               <div className="d-flex align-items-center justify-content-end mt-4 mb-3">
-                                <button className="btn btn-bihtn-yellow text-capitalize hvr-grow">
+                                {/* <button className="btn btn-bihtn-yellow text-capitalize hvr-grow">
                                   Modify
                                 </button>
-                                <div className="mx-4" />
+                                <div className="mx-4" /> */}
                                 <button className="btn btn-ih-green hvr-grow ws-now">
                                   Save changes
                                 </button>
@@ -728,10 +728,10 @@ const UserMP = () => {
                                 </div>
 
                                 <div className="d-flex align-items-center justify-content-end mt-4 mb-3">
-                                  <button className="btn btn-bihtn-yellow text-capitalize hvr-grow">
+                                  {/* <button className="btn btn-bihtn-yellow text-capitalize hvr-grow">
                                     Modify
                                   </button>
-                                  <div className="mx-4" />
+                                  <div className="mx-4" /> */}
                                   <button
                                     className="btn btn-ih-green hvr-grow ws-now"
                                     type="submit"

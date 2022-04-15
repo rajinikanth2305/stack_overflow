@@ -450,14 +450,14 @@ const MakePayment = forwardRef((props, ref) => {
                 </table>
               </div>
 
-              <div className="table-responsive my-4 pt-2 m-d-none">
+              <div className="table-responsive my-4 pt-2">
                 <p className="p-text-1-franklin text-capitalize mb-4 pb-1">
                   <span className="border-bottom-custom-1 pb-2">
                     No. of participants [{bookingInformation?.trekkersCount}]
                   </span>
                 </p>
-                <table className="table table-secondar-main">
-                  <thead>
+                <table className="table table-secondar-main ctb">
+                  <thead className="m-d-none">
                     <tr>
                       <th>Trekker</th>
                       <th>Applicable Voucher</th>
@@ -522,7 +522,14 @@ const MakePayment = forwardRef((props, ref) => {
                       return (
                         <tr>
                           <td className="text-capitalize">
-                            {index + 1}. {name}
+                            <div className="d-flex align-items-center">
+                              <div className="m-col-3">
+                                <span className="m-d-block m-col-text p-text-small-fg">
+                                  Trekker: &nbsp;
+                                </span>
+                              </div>
+                              <div className="p-text-2-fg-f16-mb">{index + 1}. {name}</div>
+                            </div>
                           </td>
                           <td>
                             <div className="d-flex align-items-center">
@@ -565,20 +572,34 @@ const MakePayment = forwardRef((props, ref) => {
                             </div>
                           </td>
                           <td className="td-text-fgb">
-                            Rs. {data?.trekFeeForTheUser}
+                            <div className="d-flex align-items-center">
+                              <div className="m-col-3">
+                                <span className="m-d-block m-col-text p-text-small-fg">
+                                  Trek fee: &nbsp;
+                                </span>
+                              </div>
+                              <div className="p-text-2-fg-f16-mb">Rs. {data?.trekFeeForTheUser}</div>
+                            </div>
                           </td>
                           <td>
-                            Rs.{" "}
-                            {
-                              (data?.trekFeeForTheUser - Number(data?.voucherAmount)) <= 0 && (
-                                0
-                              )
-                            }
-                            {
-                              (data?.trekFeeForTheUser - Number(data?.voucherAmount)) > 0 && (
-                                Number(data?.trekFeeForTheUser - Number(data?.voucherAmount)).toFixed(2)
-                              )
-                            }
+                            <div className="d-flex align-items-center mb-2">
+                              <div className="m-col-3">
+                                <span className="m-d-block m-col-text p-text-small-fg">
+                                  You pay: &nbsp;
+                                </span>
+                              </div>
+                              <div className="p-text-2-fg-f16-mb">Rs.{" "}
+                                {
+                                  (data?.trekFeeForTheUser - Number(data?.voucherAmount)) <= 0 && (
+                                    0
+                                  )
+                                }
+                                {
+                                  (data?.trekFeeForTheUser - Number(data?.voucherAmount)) > 0 && (
+                                    Number(data?.trekFeeForTheUser - Number(data?.voucherAmount)).toFixed(2)
+                                  )
+                                }</div>
+                            </div>
                           </td>
                         </tr>
                       );
@@ -587,17 +608,15 @@ const MakePayment = forwardRef((props, ref) => {
                 </table>
               </div>
 
-              <div className="m-d-block mb-4">
+              {/* <div className="m-d-block mb-4">
                 {indexes.map(index => {
                   const fieldName = `voucher[${index}]`;
                   const sdata = JSON.parse(JSON.stringify(stateData.data));
                   const data = sdata?.trekUsers[index];
-                  //console.log(JSON.stringify(data));
                   const name =
                     data?.email === bookingInformation.email
                       ? data?.firstName + " (You) "
                       : data?.firstName;
-                  //const isPrimaryUser=(data.email===bookingDate.email);
                   const vouchers = [];
                   if (sdata?.voucherDetails?.length > 0) {
                     sdata?.voucherDetails.map(v => {
@@ -676,7 +695,7 @@ const MakePayment = forwardRef((props, ref) => {
                     </div>
                   );
                 })}
-              </div>
+              </div> */}
             </div>
 
             <div className="col-lg-1 col-md-12"></div>

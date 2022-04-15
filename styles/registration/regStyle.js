@@ -1065,6 +1065,39 @@ export const regStyle = css.global`
       white-space: nowrap;
     }
 
+    .table.table-secondar-main.ctb > tbody > tr > td {
+      white-space: normal;
+    }
+  
+    .table-secondar-main.ctb > thead > tr,
+    .table-secondar-main.ctb > tbody > tr {
+      display: grid;
+    }
+  
+    .table-secondar-main.ctb > tbody > tr {
+      border-bottom: 1px solid #d3d3d3;
+    }
+  
+    .table-secondar-main.ctb > tbody > tr > td {
+      border: 0;
+      padding: 5px 0;
+      line-height: 15px;
+    }
+  
+    .table.table-secondar-main.ctb > tbody > tr > td {
+      white-space: normal;
+    }
+
+    .m-col-text.p-text-small-fg {
+      color: rgba(112, 112, 112, 1);
+      font-size: 10px;
+      line-height: 10px;
+    }
+
+    .m-col-3 {
+      width: 25%;
+    }
+
     // .nav-item.nav-link.active:nth-child(1)::before,
     // .nav-item.nav-link.active:nth-child(2)::before,
     // .nav-item.nav-link.active:nth-child(3)::before,

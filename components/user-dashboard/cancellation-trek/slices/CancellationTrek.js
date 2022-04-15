@@ -528,7 +528,7 @@ const CancellationTrek = () => {
                                     <th>Cash Credited- Percentage {100 - headerPercentages?.cashCancellationPercentage}%</th>
                                   )}
                                   {moneytaryRefund === false && (
-                                    <th>Voucher Credited- Percentage {100 - headerPercentages?.voucherCancellationPercentage}%</th>
+                                    <th>Voucher Credited - Percentage {100 - headerPercentages?.voucherCancellationPercentage}%</th>
                                   )}
                                      <th>Insurance Credited</th> 
                                 </tr>
