@@ -16,7 +16,7 @@ import { ThankYouSlizeZone } from "../../components/user-dashboard/thank-you";
  * UpComing component
  */
 const ThankYou = ({ doc }) => {
-  if (doc && doc.data) {
+  if (doc ) {
     return (
       <HomeLayout>
         <Head>
@@ -26,10 +26,10 @@ const ThankYou = ({ doc }) => {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <title>Profile</title>
+          <title>Payment status</title>
         </Head>
         <HikeHeader />
-        <ThankYouSlizeZone sliceZone={doc.data.body} />
+        <ThankYouSlizeZone sliceZone={doc} />
       </HomeLayout>
     );
   }
@@ -43,11 +43,11 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const client = Client();
 
-  const doc =
-    (await client.getSingle(
+  const doc = {test:"value"};
+   /* (await client.getSingle(
       "hike_team",
       ref ? { ref } : null
-    )) || {};
+    )) || {};*/
 
   /*const doc = await client.query(
     Prismic.Predicates.at("document.type", "hike_home_ctype"), {

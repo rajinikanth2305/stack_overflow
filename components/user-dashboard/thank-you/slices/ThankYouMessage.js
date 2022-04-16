@@ -13,6 +13,9 @@ const UserMP = () => {
 
   useEffect(() => {
 
+   // https://dev.apstage.co.in/user-dashboard/thank-you?booking_id=187780&status=CANCELLED
+   // http://localhost:3000/user-dashboard/thank-you?booking_id=187780&status=CANCELLED
+
     let url = location.href.replace(location.origin, "");
     let pageUrl = url.split("&");
     let bookingIdKeyVal = pageUrl[0]; //booking-id
@@ -27,10 +30,11 @@ const UserMP = () => {
     setStatus(valStatus.toLowerCase());
     setRender(true);
      //const res=await
-     auth.keycloak()
-     .then(([userTokenObject, userEmail]) => {
+
+    // auth.keycloak()
+    // .then(([userTokenObject, userEmail]) => {
       // return userEmail;
-    });
+   // });
 
     const timer = setTimeout(() => {
       router.push(`/user-dashboard/user-upcoming-treks`);
