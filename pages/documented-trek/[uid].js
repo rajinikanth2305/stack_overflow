@@ -196,6 +196,7 @@ export async function getStaticPaths() {
   //documents.push(doc);
 
   const fastBuild= process.env.NEXT_FAST_BUILD;
+  
  // console.log(fastBuild);
   if(fastBuild==="TRUE") {
   let limitDocs=[];
