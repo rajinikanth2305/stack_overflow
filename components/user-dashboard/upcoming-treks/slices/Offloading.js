@@ -86,9 +86,9 @@ const Offloading = forwardRef((props, ref) => {
       const offLoadingFee = roundToTwo(fee + tax);
 
       const offLoadingList = [];
-
+      console.log(data);
       getBackPackOffloadingUserStatus(data.bookingId).then(resData => {
-        //console.log(resData);
+       
         data?.userTrekBookingParticipants.map(pdata => {
           const offloadUser = resData?.find(x => x.participantId === pdata.participantId);
 
@@ -271,6 +271,17 @@ const Offloading = forwardRef((props, ref) => {
     let paids = [];
     offLoadings?.map(x => {
       if (x?.offloadingParticipantStatus === "COMPLETED" || x?.offloadingParticipantStatus === "PAID") {
+        paids.push(x);
+      }
+    }
+    );
+    return paids.length > 0;
+  }
+
+  const checkAnyNAStatus = () => {
+    let paids = [];
+    offLoadings?.map(x => {
+      if (x?.offloadingParticipantStatus === "N/A" || x?.offloadingParticipantStatus === "INITIATED") {
         paids.push(x);
       }
     }
@@ -495,6 +506,7 @@ const Offloading = forwardRef((props, ref) => {
                 &nbsp;
               </div>
 
+              {checkAnyNAStatus() && (
               <div>
                 <button
                   className="btn table-btn-blue-sm hvr-grow ws-nowrap"
@@ -504,6 +516,8 @@ const Offloading = forwardRef((props, ref) => {
                   <span className="px-2">Pay offloading fee</span>
                 </button>
               </div>
+              )}
+
             </div>
           </div>
         </div>
