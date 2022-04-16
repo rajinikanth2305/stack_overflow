@@ -229,7 +229,7 @@ export async function getStaticPaths() {
 }
 }
 else {
-  console.log(fastBuild);
+  console.log(fastBuild + "POST");
   return {
     paths: documents.map(doc => `/blog/${doc?.uid}`),
     fallback: true,

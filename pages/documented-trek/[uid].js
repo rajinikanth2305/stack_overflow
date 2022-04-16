@@ -196,7 +196,7 @@ export async function getStaticPaths() {
   //documents.push(doc);
 
   const fastBuild= process.env.NEXT_FAST_BUILD;
-  
+
  // console.log(fastBuild);
   if(fastBuild==="TRUE") {
   let limitDocs=[];
@@ -211,7 +211,7 @@ export async function getStaticPaths() {
 }
 }
 else {
-  console.log(fastBuild);
+  console.log(fastBuild + "DOCUMENTED-TREK");
   return {
     paths: documents.map(doc => `/documented-trek/${doc?.uid}`),
     fallback: true,
