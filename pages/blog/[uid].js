@@ -214,22 +214,27 @@ export async function getStaticPaths() {
 
   console.log("Total-Posts" + documents.length);
 
+  const fastBuild= process.env.NEXT_FAST_BUILD;
+ // console.log(fastBuild);
+  if(fastBuild==="TRUE") {
   let limitDocs=[];
   const limit=5;
 
  for( let i=0;i<limit; i++) {
   limitDocs.push(documents[i]);
  }
-
- //for( i=0;i<limit; i++) {
-  //console.log(limitDocs[i].
- //}
-
-  
+ return {
+  paths: limitDocs.map(doc => `/blog/${doc?.uid}`),
+  fallback: true,
+}
+}
+else {
+  console.log(fastBuild);
   return {
-    paths: limitDocs.map(doc => `/blog/${doc?.uid}`),
-    fallback: true
-  };
+    paths: documents.map(doc => `/blog/${doc?.uid}`),
+    fallback: true,
+  }
+}
 }
 
 export default Post;

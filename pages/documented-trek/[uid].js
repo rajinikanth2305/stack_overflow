@@ -195,19 +195,30 @@ export async function getStaticPaths() {
   //const documents=[];
   //documents.push(doc);
 
-  
+  const fastBuild= process.env.NEXT_FAST_BUILD;
+ // console.log(fastBuild);
+  if(fastBuild==="TRUE") {
   let limitDocs=[];
   const limit=5;
 
  for( let i=0;i<limit; i++) {
   limitDocs.push(documents[i]);
  }
-
-
+ return {
+  paths: limitDocs.map(doc => `/documented-trek/${doc?.uid}`),
+  fallback: true,
+}
+}
+else {
+  console.log(fastBuild);
   return {
-    paths: limitDocs.map(doc => `/documented-trek/${doc?.uid}`),
+    paths: documents.map(doc => `/documented-trek/${doc?.uid}`),
     fallback: true,
   }
+}
+
+
+ 
 }
 
 export default DocumentTrek;
