@@ -80,7 +80,7 @@ export async function getStaticProps({
   const { ref } = previewData;
   const post = (await Client().getByUID("post", params.uid, ref ? { ref } : null)) || {};
 
-  console.log(JSON.stringify(post));
+  console.log(post?.data?.title);
 
   //const author=post.data.author_first_name + "-" + post.data.author_last_name;
   const author_lnk_id = post?.data?.author_link?.id;
@@ -213,9 +213,21 @@ export async function getStaticPaths() {
  //documents.push(doc);
 
   console.log("Total-Posts" + documents.length);
+
+  let limitDocs=[];
+  const limit=5;
+
+ for( let i=0;i<limit; i++) {
+  limitDocs.push(documents[i]);
+ }
+
+ //for( i=0;i<limit; i++) {
+  //console.log(limitDocs[i].
+ //}
+
   
   return {
-    paths: documents.map(doc => `/blog/${doc?.uid}`),
+    paths: limitDocs.map(doc => `/blog/${doc?.uid}`),
     fallback: true
   };
 }

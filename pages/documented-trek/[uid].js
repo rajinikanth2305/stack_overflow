@@ -195,8 +195,17 @@ export async function getStaticPaths() {
   //const documents=[];
   //documents.push(doc);
 
+  
+  let limitDocs=[];
+  const limit=5;
+
+ for( let i=0;i<limit; i++) {
+  limitDocs.push(documents[i]);
+ }
+
+
   return {
-    paths: documents.map(doc => `/documented-trek/${doc?.uid}`),
+    paths: limitDocs.map(doc => `/documented-trek/${doc?.uid}`),
     fallback: true,
   }
 }
