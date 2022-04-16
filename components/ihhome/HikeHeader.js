@@ -138,7 +138,7 @@ const HikeHeader = (auth = false) => {
       return (
         <div key={i} className="card border-0 px-3 py-1 cursor-pointer">
           <Link href={url ? url : "#"}>
-            <div className="mw-100">
+            <div className="mw-100" onClick={() => { setShowSearch(!showSearch); setSearchResults([]); setSelectedTreks(""); }}>
               <div className="d-flex align-items-start border-bottom pb-2 mb-2">
                 <div className="col-5">
                   <span className="type-highlight">{data?.type === "document_trek_type" ? "DIY" : data?.type}</span>
@@ -743,7 +743,7 @@ const HikeHeader = (auth = false) => {
                 <i
                   class="fa fa-window-close cursor-pointer"
                   aria-hidden="true"
-                  onClick={() => { setShowSearch(!showSearch); setSearchResults([]) }}
+                  onClick={() => { setShowSearch(!showSearch); setSearchResults([]); setSelectedTreks(""); }}
                 ></i>
               </div>
               <div className="s-r-height">{resultListing}</div>

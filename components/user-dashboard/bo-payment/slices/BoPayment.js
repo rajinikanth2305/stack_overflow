@@ -243,7 +243,7 @@ const BoPayment = forwardRef((props, ref) => {
     // let isExecuted = confirm("Are you sure to execute this action?");
     confirmDialog({
       //target: e.currentTarget,
-      header: "Backpacks offloading confirmation?",
+      header: "Are you sure about offloading?",
       message: `We don't usually encourage offloading of backpacks. It is not environmentally friendly and it makes trekkers dependent on external resources. 
       Do you still want to proceed?`,
       icon: "pi pi-exclamation-triangle",
