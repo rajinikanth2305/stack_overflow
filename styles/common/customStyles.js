@@ -1765,6 +1765,10 @@ export const customStyles = css.global`
     width: 100% !important;
   }
 
+  .img-ctrl > .block-img > a > img {
+    width: 100% !important;
+  }
+
   .post-part.single {
     font-family: Lora;
   }
@@ -2973,7 +2977,7 @@ export const customStyles = css.global`
     .trek-card-inner-box > div > div > p.p-text-10-fgb {
       margin-top: -15px !important;
       position: relative;
-      top: 20px;
+      top: 25px;
     }
 
     .m-col-3 {

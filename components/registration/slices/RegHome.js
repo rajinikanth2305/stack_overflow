@@ -689,8 +689,8 @@ const getSelectTabVisibleFlag =() => {
           </div>
         </div>
         <div className="dialog-demo">
-      <Dialog header="Registration-Page-Message" visible={displayBasic} 
-      position={position} modal style={{ width: '40vw' }} 
+      <Dialog header="Your dates are clashing" visible={displayBasic} 
+      position={position} modal breakpoints={{ '960px': '75vw', '640px': '100vw' }} style={{ width: '40vw' }} 
       footer={renderFooter('displayPosition')} onHide={() => onHide()}
                     draggable={false} resizable={false}>
                     <p className="p-m-0">{dialogMessage}</p>
