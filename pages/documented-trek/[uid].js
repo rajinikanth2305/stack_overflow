@@ -52,6 +52,9 @@ const DocumentTrek = ({ post, authorData,updatesData,upComingData,relatedArticle
           {postStyles}
         </style> */}
         {/* <IHTrekWithSwathi /> */}
+        <div style={{display: "none" }}>
+          <IHTrekWithSwathi />
+        </div>
         <IHFooter />
         <ScrollToTop smooth color="#000000" />
       </DefaultLayout>

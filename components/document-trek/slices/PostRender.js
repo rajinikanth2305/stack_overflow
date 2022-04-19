@@ -1381,7 +1381,7 @@ const PostRender = ({
         </div>
       </div> */}
         </div>
-        {data?.gpx_script && <div className="trek_with_swathi_bg p-4">
+        {data?.gpx_script[0]?.text !== undefined && <div className="trek_with_swathi_bg p-4">
           <div className="container">
             <div className="row d-flex align-items-center">
               <div className="col-lg-6 col-md-12">

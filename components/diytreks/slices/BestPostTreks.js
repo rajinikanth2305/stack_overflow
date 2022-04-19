@@ -78,9 +78,9 @@ const BestPostTreks = ({ slice, trekData }) => {
                       </div>
                     </div>
                   </div>
-                  {getArticleImage?.primary?.feature_image?.url && (
+                  {getArticleImage[0]?.primary?.feature_image?.url && (
                     <Image
-                      src={getArticleImage?.primary?.feature_image?.url}
+                      src={getArticleImage[0]?.primary?.feature_image?.url}
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"
