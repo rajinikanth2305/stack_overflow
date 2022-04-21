@@ -149,11 +149,13 @@ const CancellationTrek = () => {
     let cancelCharge = 0;
     let userInsuranceAmount=0;
    
+   const  userInsuranceAmountOriginal = (userData.insuranceAmount === null ? 0 : userData.insuranceAmount);
+
     if(!userData.insuranceRefundAllowed) {
-      userInsuranceAmount = (userData.insuranceAmount === null ? 0 : userData.insuranceAmount);
+      userInsuranceAmount=0;
     }
     else {
-      userInsuranceAmount=0;
+      userInsuranceAmount=userInsuranceAmountOriginal;
     }
     
     let userVoucherAppliedAmount = (userData.voucherAmountApplied == null ? 0 : userData.voucherAmountApplied);
@@ -163,11 +165,16 @@ const CancellationTrek = () => {
    
     if (userData.amountPaid > 0 && userData.cashCancellationPercentage > 0) {
         cashRefund = (((100 - userData.cashCancellationPercentage) / 100) *
-            (userData.amountPaid - userInsuranceAmount ));
+            (userData.amountPaid - userInsuranceAmountOriginal ));
+
+            console.log(cashRefund);
+            console.log(userInsuranceAmount);
+            cashRefund= cashRefund + userInsuranceAmount;
         }
         else {
-          cashRefund =  (userData.amountPaid - userInsuranceAmount);
+          cashRefund =  (userData.amountPaid - userInsuranceAmountOriginal) + userInsuranceAmount;
         }
+
       if(userVoucherAppliedAmount>0) {
         cashRefund=0;
       }
@@ -177,12 +184,13 @@ const CancellationTrek = () => {
     let voucherRefund = 0;
     if (userData.amountPaid > 0 && userData.voucherCancellationPercentage > 0) {
       const  voucherPercentage=(100 - userData.voucherCancellationPercentage);
-      voucherPaidAmount = (userData.amountPaid - userInsuranceAmount) ;
+      voucherPaidAmount = (userData.amountPaid - userInsuranceAmountOriginal) ;
       voucherRefund = (voucherPercentage * voucherPaidAmount);
+      voucherRefund=voucherRefund + userInsuranceAmount;
       console.log(voucherRefund);
     }
     else {
-      voucherRefund = (userData.amountPaid - userInsuranceAmount );
+      voucherRefund = (userData.amountPaid - userInsuranceAmountOriginal) + userInsuranceAmount;
     }
 
 
