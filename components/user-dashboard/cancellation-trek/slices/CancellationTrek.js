@@ -137,60 +137,61 @@ const CancellationTrek = () => {
   //"backpackOffloadingCancellationPercentage": 0
 
   const buildParticipants = (userData, tcancelCharge, tflagValue) => {
-    let totalPaid = 0;
     let amountPaid = 0;
 
-    totalPaid = userData?.amountPaid;
+    let totalPaid = userData?.amountPaid;
     amountPaid = totalPaid;
    
     let actualRefundPercentage = 0;
     let percentage = 0;
     let refundValue = 0;
     let cancelCharge = 0;
-    let userInsuranceAmount=0;
+    //let userInsuranceAmount=0;
    
-   const  userInsuranceAmountOriginal = (userData.insuranceAmount === null ? 0 : userData.insuranceAmount);
+   const userInsuranceAmountOriginal = (userData.insuranceAmount === null ? 0 : userData.insuranceAmount);
 
     if(!userData.insuranceRefundAllowed) {
-      userInsuranceAmount=0;
+        totalPaid = totalPaid - userInsuranceAmountOriginal;
     }
-    else {
-      userInsuranceAmount=userInsuranceAmountOriginal;
-    }
+    // else {
+    //   userInsuranceAmount=userInsuranceAmountOriginal;
+    // }
     
     let userVoucherAppliedAmount = (userData.voucherAmountApplied == null ? 0 : userData.voucherAmountApplied);
     console.log(userVoucherAppliedAmount);
 
     let cashRefund = 0;
    
-    if (userData.amountPaid > 0 && userData.cashCancellationPercentage > 0) {
-        cashRefund = (((100 - userData.cashCancellationPercentage) / 100) *
-            (userData.amountPaid - userInsuranceAmountOriginal ));
+    if (totalPaid > 0 && userData.cashCancellationPercentage !== 100) {
+        cashRefund = (((100 - userData.cashCancellationPercentage) / 100) * totalPaid);
 
             console.log(cashRefund);
-            console.log(userInsuranceAmount);
-            cashRefund= cashRefund + userInsuranceAmount;
+            // console.log(userInsuranceAmount);
+            // cashRefund= cashRefund + userInsuranceAmount;
         }
         else {
-          cashRefund =  (userData.amountPaid - userInsuranceAmountOriginal) + userInsuranceAmount;
+        if(userData.insuranceRefundAllowed) {
+            cashRefund = userInsuranceAmountOriginal;
+        }
         }
 
       if(userVoucherAppliedAmount>0) {
         cashRefund=0;
       }
-  
-   // console.log(userData);
 
     let voucherRefund = 0;
-    if (userData.amountPaid > 0 && userData.voucherCancellationPercentage > 0) {
-      const  voucherPercentage=(100 - userData.voucherCancellationPercentage);
-      voucherPaidAmount = (userData.amountPaid - userInsuranceAmountOriginal) ;
-      voucherRefund = (voucherPercentage * voucherPaidAmount);
-      voucherRefund=voucherRefund + userInsuranceAmount;
+    if (userData.amountPaid > 0 && userData.voucherCancellationPercentage !== 100) {
+      voucherRefund = (((100 - userData.voucherCancellationPercentage) / 100) * totalPaid);
+      // const  voucherPercentage=(100 - userData.voucherCancellationPercentage);
+      // const voucherPaidAmount = (userData.amountPaid - userInsuranceAmountOriginal) ;
+      // voucherRefund = (voucherPercentage * voucherPaidAmount);
+      // voucherRefund=voucherRefund + userInsuranceAmount;
       console.log(voucherRefund);
     }
     else {
-      voucherRefund = (userData.amountPaid - userInsuranceAmountOriginal) + userInsuranceAmount;
+      if(userData.insuranceRefundAllowed) {
+          voucherRefund = userInsuranceAmountOriginal;
+      }
     }
 
 
