@@ -503,6 +503,20 @@ export const saveUserLocations =  async (bookingId,payload)  => {
     return axios.get(url,{ headers:  header }).then((res) => res.data);
   };
 
+  export const getParticipantDocumentList = async (participantId)  => {
+    const header=await getTokenHeader();
+    const api = `${REACT_APP_TMS_BACKEND_URL}`;
+    let url = `${api}/participants/${participantId}/documents`;
+    return axios.get(url,{ headers:  header }).then((res) => res.data);
+  };
+
+
+  export const getDocumentContent = async (participantId,documentid)  => {
+    const header=await getTokenHeader();
+    const api = `${REACT_APP_TMS_BACKEND_URL}`;
+    let url = `${api}/participants/${participantId}/fitness-documents/${documentid}`;
+    return axios.get(url,{ headers:  header, responseType: 'blob'  }).then((res) => res.data);
+  };
 
 
 async function fetchDocs(page = 1, routes = []) {

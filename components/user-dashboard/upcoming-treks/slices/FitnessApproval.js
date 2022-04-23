@@ -14,9 +14,12 @@ import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import {
   uploadUserFitness,
-  getUserFitnessDocuments
+  getUserFitnessDocuments,
+  getParticipantDocumentList,
+  getDocumentContent
 } from "../../../../services/queries";
 import { Toast } from "primereact/toast";
+import { Image } from "react-bootstrap";
 
 const FitnessApproval = forwardRef((props, ref) => {
   const [participantId, setParticipantId] = useState();
@@ -28,6 +31,11 @@ const FitnessApproval = forwardRef((props, ref) => {
   const [showContents, setShowContents] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
   const [isActive, setActive] = useState(false);
+
+  const [imageIndexs, setImageIndexes] = React.useState([]);
+  const [previewDocuments, setPreviewDocuments] = React.useState([]);
+
+
   const faqData = props.data?.data?.body.find(
     x => x.slice_type === "faq_about_trek"
   );
@@ -118,28 +126,67 @@ const FitnessApproval = forwardRef((props, ref) => {
   // with whatever you return from the callback passed
   // as the second argument
   useImperativeHandle(ref, () => ({
+
     async changeState(data) {
       //// Get Trek locations
 
       if (!deriveBookingState(data)) return;
+
+      const participantId = data?.userTrekBookingParticipants.find(
+        x => x?.userDetailsForDisplay?.email === data.email
+      ).participantId;
+      /// Get user documents 
+    
+      getUploadedDocumentContents(participantId);
 
       const trekId = data.trekId;
       const arr = Array.from(
         new Array(data?.userTrekBookingParticipants?.length),
         (x, i) => i
       );
+
       setParticipantData(data);
       setIndexes(arr);
       setCounter(arr.length);
-      const participantId = data?.userTrekBookingParticipants.find(
-        x => x?.userDetailsForDisplay?.email === data.email
-      ).participantId;
+    
       const documentType = "FITNESS_APPROVAL";
       setParticipantId(participantId);
       setDocumentType("FITNESS_APPROVAL");
       setRender(true);
     }
   }));
+
+
+  const getUploadedDocumentContents =  (participantId) => {
+
+    getParticipantDocumentList(participantId).then(result=> {
+      console.log(participantId);
+      console.log(result);
+        const contents=[];
+        if(result.length > 0) {
+           const contents=  getParticipantDocumentContents(result);
+        }
+   });
+
+  };
+
+ const  getParticipantDocumentContents  = async(result)=> {
+    const contents=[];
+    for(let i=0;i<result?.length;i++) {
+      const res=result[i];
+      const content=  await getDocumentContent(res?.participantId,res?.documentId);
+   //   console.log(content);
+      contents.push(content);
+    };
+    setPreviewDocuments(contents);
+    const arr = Array.from(
+      new Array(contents?.length),
+      (x, i) => i
+    );
+    setImageIndexes(arr);
+    //return contents;
+  };
+
 
   const downloadFitnessDocument = (participantId, documentName) => {
     getUserFitnessDocuments(participantId, documentType, documentName).then(
@@ -275,7 +322,29 @@ const FitnessApproval = forwardRef((props, ref) => {
                   invalidFileSizeMessageDetail="Maximum 10 MB file(s) are allowed to upload"
                   className="fitnessBox"
                 />
-                
+                    {imageIndexs?.map(index => {
+                      const pdata=previewDocuments?.[index];
+                      const url = window.URL.createObjectURL(pdata);
+                       console.log(pdata);
+                      if(pdata===undefined) {
+                         console.log("No image content");
+                      }
+                      else {
+                        console.log(pdata);
+                      }
+                      
+                      return (
+                      <div className="col-lg-12 col-md-12 col-12">            
+                                        <Image
+                                          src={url}
+                                          alt="Image"
+                                          className="id-card-img"
+                                          preview
+                                        />
+                        </div>
+                      )
+                      }) }
+                      
                 <div className="p-text-small-brown mt-2">
                   <p className="mb-1">
                     <strong>Here is what you have to do:</strong>
@@ -317,6 +386,9 @@ const FitnessApproval = forwardRef((props, ref) => {
           Fitness approval action will enable after the trek-payment
         </p>
       )}
+       <style jsx global>
+          {customStyles}
+        </style>
     </>
   );
 });
