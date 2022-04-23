@@ -39,7 +39,7 @@ const CancellationBp = () => {
   const router = useRouter();
   const [render, setRender] = useState(false);
   const [participants, setParticipants] = useState([]);
-  const [moneytaryRefund,setMoneytaryRefund]=useState(false);
+  const [moneytaryRefund,setMoneytaryRefund]=useState(true);
   const [computedValue,setComputedValue]=useState({
     totalFeePaid:0.00,
     voucherCredit:0.00,
@@ -290,6 +290,7 @@ else {
 
 const reCompute =(moneytaryRefund) => {
 
+  moneytaryRefund=true;
  let totalFeePaid=0;
  let partAmount=0;
  let totalPaid=0;
@@ -437,13 +438,7 @@ setComputedValue(compvalue);
                             <th style={{ width: "2%" }}>&nbsp;</th>
                             <th>Trekker name</th>
                             <th>Fee paid</th>
-                            <th>Voucher applied</th>
-                            {moneytaryRefund===true && (
                             <th>Cash Credited- Percentage {100-headerPercentages?.cashCancellationPercentage}%</th>
-                            )}
-                             {moneytaryRefund===false && (
-                            <th>Voucher Credited- Percentage {100-headerPercentages?.voucherCancellationPercentage}%</th>
-                            )}
                           </tr>
                         </thead>
                         <tbody>
@@ -491,18 +486,9 @@ setComputedValue(compvalue);
                                  { Number(sdata?.amountPaid).toFixed(2) }
                               </td>
                               <td>
-                              { Number(sdata?.voucherUsed ).toFixed(2) }
-                              </td>
-                              {moneytaryRefund==true && (
-                              <td>
                               { Number(sdata?.cashRefund).toFixed(2) }
                               </td>
-                               )}
-                              {moneytaryRefund===false && (
-                                <td>
-                                  { Number(sdata?.voucherRefund).toFixed(2) }
-                               </td>
-                              )}
+                                                        
                             </tr>
                           </>
                         );
@@ -534,11 +520,13 @@ setComputedValue(compvalue);
                           </p>
                         </div>
                         <div>
+                          {/*
                         <div className="mt-2 flex-grow-1">
                           <p className="m-0 p-text-10-fgb text-center text-decoration-underline cursor-poniter" onClick={e => {ontoggle()}}>
                             I want refund 
                           </p>
                         </div>
+                          */}
                         </div>
                       </div>
                     </div>

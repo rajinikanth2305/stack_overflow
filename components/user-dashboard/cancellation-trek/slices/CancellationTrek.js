@@ -38,7 +38,7 @@ const CancellationTrek = () => {
   const router = useRouter();
   const [render, setRender] = useState(false);
   const [participants, setParticipants] = useState([]);
-  const [moneytaryRefund, setMoneytaryRefund] = useState(false);
+  const [moneytaryRefund, setMoneytaryRefund] = useState(true);
   const [computedValue, setComputedValue] = useState(undefined);
   const [cancelFlag, setCancelFlag] = useState(undefined);
   const [cancelPercentage, setCancelPercentage] = useState(15);
@@ -121,7 +121,7 @@ const CancellationTrek = () => {
         youReceive: 0
       }
 
-      setHasVoucherUsed(true);
+      setHasVoucherUsed(false);
       setComputedValue(compvalue);
       setParticipants(lparticipants);
       const arr = Array.from(new Array(lparticipants.length), (x, i) => i);
@@ -306,11 +306,11 @@ const CancellationTrek = () => {
    //  console.log(hasVoucherAmount);
      setHasVoucherUsed(hasVoucherAmount>0);
      if(hasVoucherAmount>0) {
-      moneytaryRefund=false;
+      moneytaryRefund=true;
      }
 
      if(cancelParticipants?.length===0) {
-      moneytaryRefund=false;
+      moneytaryRefund=true;
       setHasVoucherUsed(true);
      }
 
@@ -449,13 +449,9 @@ const CancellationTrek = () => {
                                   <th>Trekker name</th>
                                   <th>Fee paid</th>
                                   {/*<th>Insurance paid</th>*/}
-                                  <th>Voucher applied</th>
-                                  {moneytaryRefund === true && (
-                                    <th>Cash Credited- Percentage { (100 - headerPercentages?.cashCancellationPercentage)}%</th>
-                                  )}
-                                  {moneytaryRefund === false && (
-                                    <th>Voucher Credited - Percentage {(100 -headerPercentages?.voucherCancellationPercentage)}%</th>
-                                  )}
+                                 
+                                 <th>Cash Credited- Percentage { (100 - headerPercentages?.cashCancellationPercentage)}%</th>
+                                
                                 </tr>
                               </thead>
                               <tbody>
@@ -528,17 +524,7 @@ const CancellationTrek = () => {
                                           </td>
                                            
                                           
-                                          <td>
-                                            {/* {Number(sdata?.voucherUsed).toFixed(2)} */}
-                                            <div className="d-flex align-items-center">
-                                              <div className="m-col-3">
-                                                <span className="m-d-block m-col-text p-text-small-fg">
-                                                  Voucher applied: &nbsp;
-                                                </span>
-                                              </div>
-                                              <div className="p-text-2-fg-f16-mb">{Number(sdata?.voucherUsed).toFixed(2)}</div>
-                                            </div>
-                                          </td>
+                                         
                                           {moneytaryRefund == true && (
                                             <td>
                                               {/* {Number(sdata?.cashRefund).toFixed(2)} */}
@@ -595,6 +581,7 @@ const CancellationTrek = () => {
                                   Clear Selection
                                 </p>
                               </div>
+                              {/*
                               <div>
                                 {hasVoucherUsed===false && (
                                 <div className="mt-2 flex-grow-1">
@@ -604,6 +591,7 @@ const CancellationTrek = () => {
                                 </div>
                                 )}
                               </div>
+                                */}
                             </div>
                           </div>
                         </form>

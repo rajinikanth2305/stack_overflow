@@ -94,6 +94,16 @@ const FitnessApproval = forwardRef((props, ref) => {
     props.onMyTrekSaveDetail(participantData.bookingId, participantData.email);
   };
 
+  const onSelect = async event => {
+    if( event.files.length > 2 ) {
+      toast.current.show({
+        severity: "success",
+        summary: `'File uploaded successfull'`,
+        detail: "Fitness Approval"
+      });
+    }
+  };
+
   const deriveBookingState = activeBooking => {
     if (activeBooking.bookingState === "COMPLETED") {
       setShowContents(true);
@@ -259,10 +269,13 @@ const FitnessApproval = forwardRef((props, ref) => {
                   cancelOptions={cancelOptions}
                   uploadHandler={myUploader}
                   maxFileSize={1000000}
+                  fileLimit={2}
+                  onSelect={onSelect}
                   accept="image/*,pdf/*"
                   invalidFileSizeMessageDetail="Maximum 10 MB file(s) are allowed to upload"
                   className="fitnessBox"
                 />
+                
                 <div className="p-text-small-brown mt-2">
                   <p className="mb-1">
                     <strong>Here is what you have to do:</strong>
