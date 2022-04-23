@@ -420,9 +420,9 @@ const WelcomeProfile = () => {
         else {
           toast.current.show({
             severity: "warn",
-            summary: `'Cancellation is not allowed, Request to contact support team for the more informaitons.'`,
+            summary: `'Since you have used a voucher in this payment, we will personally help you with your cancellation. Please email your Expereince Coordinator with your cancellation details.'`,
             detail: "Cancel-Trek-Booking",
-            life:5000,
+            life:8000,
             closable:true,
             position:"top-left"
           });
