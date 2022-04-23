@@ -483,6 +483,26 @@ export const saveUserLocations =  async (bookingId,payload)  => {
     return axios.get(url).then((res) => res.data);
   };
 
+  export const saveDocumentComments =   (postname,payload)  => {
+    const api = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}`;
+    let url = `${api}/document-comments`;
+    return axios.post(url,payload)
+           .then((res) => res.data);
+  };
+  
+  export const getDocumentComments =  (postName)  => {
+    const api = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}`;
+    let url = `${api}/document-comments?post-name=${postName}`;
+    return axios.get(url).then((res) => res.data);
+  };
+
+  export const getCancellationAllowedStatus = async (bookingId)  => {
+    const header=await getTokenHeader();
+    const api = `${REACT_APP_TMS_BACKEND_URL}`;
+    let url = `${api}/bookings/${bookingId}/allowed-cancellations`;
+    return axios.get(url,{ headers:  header }).then((res) => res.data);
+  };
+
 
 
 async function fetchDocs(page = 1, routes = []) {
@@ -495,18 +515,7 @@ async function fetchDocs(page = 1, routes = []) {
 }
 
 
-export const saveDocumentComments =   (postname,payload)  => {
-  const api = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}`;
-  let url = `${api}/document-comments`;
-  return axios.post(url,payload)
-         .then((res) => res.data);
-};
 
-export const getDocumentComments =  (postName)  => {
-  const api = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}`;
-  let url = `${api}/document-comments?post-name=${postName}`;
-  return axios.get(url).then((res) => res.data);
-};
 
 
 

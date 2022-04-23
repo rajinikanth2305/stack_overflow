@@ -17,7 +17,8 @@ import {
   getdashBoardUserBooking,
   cancelUserBooking,
   findUserByEmail,
-  cancelParticipantBooking
+  cancelParticipantBooking,
+  getCancellationAllowedStatus
 } from "../../../../services/queries";
 import moment from "moment";
 import { useRouter } from "next/router";
@@ -409,9 +410,24 @@ const WelcomeProfile = () => {
     console.log(bookingStatus);
     if (bookingStatus === "COMPLETED") {
       const batchId = upComingTrek?.batchId;
-      router.push(
-        `/user-dashboard/cancellation-trek?batchId=${batchId}&flag=trek-p-cancel`
-      );
+
+      getCancellationAllowedStatus(upComingTrek?.bookingId)
+      .then(res=> {
+        const result=res;
+        if(result?.trekCancellationAllowed===true) {
+          router.push(`/user-dashboard/cancellation-trek?batchId=${batchId}&flag=trek-p-cancel`);
+        }
+        else {
+          toast.current.show({
+            severity: "warn",
+            summary: `'Cancellation is not allowed, Request to contact support team for the more informaitons.'`,
+            detail: "Cancel-Trek-Booking",
+            life:5000,
+            closable:true,
+            position:"top-left"
+          });
+        }
+      })
     } else {
       setShow(true);
     }

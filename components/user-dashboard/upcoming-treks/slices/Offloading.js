@@ -10,7 +10,8 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import {
   getUserVoucher,
   getUsersVoucherByBookingId,
-  getBackPackOffloadingUserStatus
+  getBackPackOffloadingUserStatus,
+  getCancellationAllowedStatus
 } from "../../../../services/queries";
 import { Dropdown } from "primereact/dropdown";
 import { useForm, Controller } from "react-hook-form";
@@ -261,10 +262,26 @@ const Offloading = forwardRef((props, ref) => {
   };
 
   const onCancelButtonClick = () => {
-    console.log("onCancelButtonClick");
-    router.push(
-      `/user-dashboard/cancellation-bp?bookingId=${headerData?.bookingId}`
-    );
+    //console.log("onCancelButtonClick");
+
+    getCancellationAllowedStatus(headerData?.bookingId)
+    .then(res=> {
+      const result=res;
+      console.log(res);
+      if(result?.backPackOffloadingCancellationAllowed===true) {
+       router.push( `/user-dashboard/cancellation-bp?bookingId=${headerData?.bookingId}`);
+      }
+      else {
+        toast.current.show({
+          severity: "warn",
+          summary: `'Cancellation is not allowed, Request to contact support team for the more informaitons.'`,
+          detail: "Cancel-Offload-Booking",
+          life:5000,
+          closable:true,
+          position:"top-left"
+        });
+      }
+    });
   };
 
   const checkAnyPaidStatus = () => {
