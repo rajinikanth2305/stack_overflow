@@ -14,7 +14,7 @@ import moment from "moment";
 const CertificateTemplate = certificateData => {
   const [selectedReceipts, setselectedReceipts] = useState();
 
-  // console.log(certificateData);
+  console.log(certificateData);
   //setselectedReceipts(selectedReceiptsData);
 
   const styles = StyleSheet.create({
@@ -123,6 +123,10 @@ const CertificateTemplate = certificateData => {
     }
   });
 
+  const pName = certificateData && certificateData?.certificateData?.userTrekBookingParticipants?.find(x => x.userDetailsForDisplay.email === certificateData?.certificateData?.email);
+
+  // console.log(certificateData?.certificateData?.email);
+
   return (
     <>
       <Document>
@@ -131,15 +135,12 @@ const CertificateTemplate = certificateData => {
             <Image src="/certificate.png" />
             <Text style={styles.header1}>
               {
-                certificateData?.certificateData?.userTrekBookingParticipants[0]
-                  ?.userDetailsForDisplay?.firstName
+                pName && pName?.userDetailsForDisplay?.firstName
               }
               &nbsp;
               {
-                certificateData?.certificateData?.userTrekBookingParticipants[0]
-                  ?.userDetailsForDisplay?.lastName
+                pName && pName?.userDetailsForDisplay?.lastName
               }
-              {/* Mohammed Ameen arif meeran */}
             </Text>
             <Text style={styles.header2}>
               For successfully completing the{" "}
