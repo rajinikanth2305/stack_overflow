@@ -632,6 +632,10 @@ export const upcomingTrekPageStyle = css.global`
     font-size: 12px;
   }
 
+  .c-modal-dialog > .p-dialog-footer {
+    display: none !important;
+  }
+
   @media only screen and (max-width: 660px) {
     .fam_trek {
       font-size: 12px;

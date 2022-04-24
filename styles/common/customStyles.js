@@ -2500,6 +2500,18 @@ export const customStyles = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .c-modal-dialog > .p-dialog-footer {
+    display: none !important;
+  }
+
+  .info-msg {
+    font-size: 14px;
+    font-family: Franklin Gothic Book;
+    font-style: italic;
+    text-align: center;
+    color: #9d3a0b;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

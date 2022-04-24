@@ -99,38 +99,38 @@ const CancellationTrek = () => {
 
     console.log(bookingData);
 
-      bookingData.participants.map(x => {
-        let tpartcipant = buildParticipants(x, x?.cancellationPercentage, flagValue);
-        lparticipants.push(tpartcipant);
-        cancelPercent = x?.cancellationPercentage;
-      });
+    bookingData.participants.map(x => {
+      let tpartcipant = buildParticipants(x, x?.cancellationPercentage, flagValue);
+      lparticipants.push(tpartcipant);
+      cancelPercent = x?.cancellationPercentage;
+    });
 
-      if (lparticipants.length > 0) {
-        const percentages = {
-          cashCancellationPercentage: lparticipants[0].cashCancellationPercentage,
-          voucherCancellationPercentage: lparticipants[0].voucherCancellationPercentage,
-          insuranceCancellationPercentage: lparticipants[0].insuranceCancellationPercentage,
-        };
-        setHeaderPercentage(percentages);
-      }
-
-      const compvalue = {
-        totalFeePaid: 0,
-        voucherCredit: 0,
-        cashCredit: 0,
-        youReceive: 0
-      }
-
-      setHasVoucherUsed(false);
-      setComputedValue(compvalue);
-      setParticipants(lparticipants);
-      const arr = Array.from(new Array(lparticipants.length), (x, i) => i);
-      // console.log(arr.length);
-      setIndexes(arr);
-      setCounter(arr.length);
-      setRender(true);
+    if (lparticipants.length > 0) {
+      const percentages = {
+        cashCancellationPercentage: lparticipants[0].cashCancellationPercentage,
+        voucherCancellationPercentage: lparticipants[0].voucherCancellationPercentage,
+        insuranceCancellationPercentage: lparticipants[0].insuranceCancellationPercentage,
+      };
+      setHeaderPercentage(percentages);
     }
-  
+
+    const compvalue = {
+      totalFeePaid: 0,
+      voucherCredit: 0,
+      cashCredit: 0,
+      youReceive: 0
+    }
+
+    setHasVoucherUsed(false);
+    setComputedValue(compvalue);
+    setParticipants(lparticipants);
+    const arr = Array.from(new Array(lparticipants.length), (x, i) => i);
+    // console.log(arr.length);
+    setIndexes(arr);
+    setCounter(arr.length);
+    setRender(true);
+  }
+
 
   //"backpackOffloadingAmountPaid": 0,
   //"cancellationPercentage": 0,
@@ -141,43 +141,43 @@ const CancellationTrek = () => {
 
     let totalPaid = userData?.amountPaid;
     amountPaid = totalPaid;
-   
+
     let actualRefundPercentage = 0;
     let percentage = 0;
     let refundValue = 0;
     let cancelCharge = 0;
     //let userInsuranceAmount=0;
-   
-   const userInsuranceAmountOriginal = (userData.insuranceAmount === null ? 0 : userData.insuranceAmount);
 
-    if(!userData.insuranceRefundAllowed) {
-        totalPaid = totalPaid - userInsuranceAmountOriginal;
+    const userInsuranceAmountOriginal = (userData.insuranceAmount === null ? 0 : userData.insuranceAmount);
+
+    if (!userData.insuranceRefundAllowed) {
+      totalPaid = totalPaid - userInsuranceAmountOriginal;
     }
     // else {
     //   userInsuranceAmount=userInsuranceAmountOriginal;
     // }
-    
+
     let userVoucherAppliedAmount = (userData.voucherAmountApplied == null ? 0 : userData.voucherAmountApplied);
     console.log(userVoucherAppliedAmount);
 
     let cashRefund = 0;
-   
+
     if (totalPaid > 0 && userData.cashCancellationPercentage !== 100) {
-        cashRefund = (((100 - userData.cashCancellationPercentage) / 100) * totalPaid);
+      cashRefund = (((100 - userData.cashCancellationPercentage) / 100) * totalPaid);
 
-            console.log(cashRefund);
-            // console.log(userInsuranceAmount);
-            // cashRefund= cashRefund + userInsuranceAmount;
-        }
-        else {
-        if(userData.insuranceRefundAllowed) {
-            cashRefund = userInsuranceAmountOriginal;
-        }
-        }
-
-      if(userVoucherAppliedAmount>0) {
-        cashRefund=0;
+      console.log(cashRefund);
+      // console.log(userInsuranceAmount);
+      // cashRefund= cashRefund + userInsuranceAmount;
+    }
+    else {
+      if (userData.insuranceRefundAllowed) {
+        cashRefund = userInsuranceAmountOriginal;
       }
+    }
+
+    if (userVoucherAppliedAmount > 0) {
+      cashRefund = 0;
+    }
 
     let voucherRefund = 0;
     if (userData.amountPaid > 0 && userData.voucherCancellationPercentage !== 100) {
@@ -189,15 +189,15 @@ const CancellationTrek = () => {
       console.log(voucherRefund);
     }
     else {
-      if(userData.insuranceRefundAllowed) {
-          voucherRefund = userInsuranceAmountOriginal;
+      if (userData.insuranceRefundAllowed) {
+        voucherRefund = userInsuranceAmountOriginal;
       }
     }
 
 
     // console.log(refundValue);
 
-  const participant= {
+    const participant = {
       firstName: userData.userDetailsForDisplay?.firstName,
       lastName: userData.userDetailsForDisplay?.lastName,
       email: userData.userDetailsForDisplay?.email,
@@ -219,8 +219,8 @@ const CancellationTrek = () => {
       insuranceCancellationPercentage: userData.insuranceCancellationPercentage,
       cashRefund: parseFloat(Number(cashRefund).toFixed(2)),
       voucherRefund: parseFloat(Number(voucherRefund).toFixed(2)),
-     // voucherPartAmount: parseFloat(Number(voucherPartAmount).toFixed(2)),
-      insuranceRefundAllowed:userData?.insuranceRefundAllowed
+      // voucherPartAmount: parseFloat(Number(voucherPartAmount).toFixed(2)),
+      insuranceRefundAllowed: userData?.insuranceRefundAllowed
     };
     return participant;
   };
@@ -261,9 +261,9 @@ const CancellationTrek = () => {
           const timer = setTimeout(() => {
             router.push(`/user-dashboard/user-upcoming-treks`);
           }, 4000);
-      
+
           return () => clearTimeout(timer);
-         // router.push(`/user-dashboard/user-upcoming-treks`);
+          // router.push(`/user-dashboard/user-upcoming-treks`);
           //fetchAndBindUserBookings(upComingTrek.email);
           //handleClose();
         }
@@ -297,35 +297,35 @@ const CancellationTrek = () => {
     let totalPaid = 0;
     let insuredAmount = 0;
 
-     //console.log(percentages);
-     const cancelParticipants=participants?.filter(x => x.cancelled === true);
-     const hasVoucherAmount = cancelParticipants?.filter(x=>x.voucherUsed>0)?.length;
-    
-    
+    //console.log(percentages);
+    const cancelParticipants = participants?.filter(x => x.cancelled === true);
+    const hasVoucherAmount = cancelParticipants?.filter(x => x.voucherUsed > 0)?.length;
 
-   //  console.log(hasVoucherAmount);
-     setHasVoucherUsed(hasVoucherAmount>0);
-     if(hasVoucherAmount>0) {
-      moneytaryRefund=true;
-     }
 
-     if(cancelParticipants?.length===0) {
-      moneytaryRefund=true;
+
+    //  console.log(hasVoucherAmount);
+    setHasVoucherUsed(hasVoucherAmount > 0);
+    if (hasVoucherAmount > 0) {
+      moneytaryRefund = true;
+    }
+
+    if (cancelParticipants?.length === 0) {
+      moneytaryRefund = true;
       setHasVoucherUsed(true);
-     }
+    }
 
     if (moneytaryRefund === true) {
       cancelParticipants.map(p => {
-          totalPaid = totalPaid + p?.cashRefund;
-          totalFeePaid = totalFeePaid + p?.amountPaid;
-         // partAmount = partAmount + p?.voucherPartAmount;
-         // insuredAmount = insuredAmount +  (p?.voucherPartAmount == p?.amountPaid) ? 0  : p?.insuranceRefund;
+        totalPaid = totalPaid + p?.cashRefund;
+        totalFeePaid = totalFeePaid + p?.amountPaid;
+        // partAmount = partAmount + p?.voucherPartAmount;
+        // insuredAmount = insuredAmount +  (p?.voucherPartAmount == p?.amountPaid) ? 0  : p?.insuranceRefund;
       });
     }
     else {
       cancelParticipants.map(p => {
-          totalPaid = totalPaid + p?.voucherRefund;
-          totalFeePaid = totalFeePaid + p?.amountPaid;
+        totalPaid = totalPaid + p?.voucherRefund;
+        totalFeePaid = totalFeePaid + p?.amountPaid;
       });
     }
 
@@ -333,14 +333,14 @@ const CancellationTrek = () => {
     let voucherCredit = 0;
     let youReceive = 0;
 
-  //  console.log(partAmount);
-    
+    //  console.log(partAmount);
+
     if (moneytaryRefund === true) {
-        cashCredit = totalPaid ;
-        youReceive = cashCredit;
+      cashCredit = totalPaid;
+      youReceive = cashCredit;
     }
     else {
-      voucherCredit = totalPaid  ;
+      voucherCredit = totalPaid;
       youReceive = voucherCredit;
     }
 
@@ -449,9 +449,9 @@ const CancellationTrek = () => {
                                   <th>Trekker name</th>
                                   <th>Fee paid</th>
                                   {/*<th>Insurance paid</th>*/}
-                                 
-                                 <th>Cash Credited- Percentage { (100 - headerPercentages?.cashCancellationPercentage)}%</th>
-                                
+
+                                  <th>Cash Credited- Percentage {(100 - headerPercentages?.cashCancellationPercentage)}%</th>
+
                                 </tr>
                               </thead>
                               <tbody>
@@ -522,9 +522,9 @@ const CancellationTrek = () => {
                                               <div className="p-text-2-fg-f16-mb">{Number(sdata?.amountPaid).toFixed(2)}</div>
                                             </div>
                                           </td>
-                                           
-                                          
-                                         
+
+
+
                                           {moneytaryRefund == true && (
                                             <td>
                                               {/* {Number(sdata?.cashRefund).toFixed(2)} */}
@@ -722,12 +722,15 @@ const CancellationTrek = () => {
                       <div className="d-flex justify-content-center my-4 pt-1">
                         {computedValue?.youReceive > 0 && (
                           <button className="btn table-btn-maroon-lg" onClick={e => { onCancelSubmit() }}>
-                           
-                              <span>Cancel Booking</span>
-                          
+
+                            <span>Cancel Booking</span>
+
                           </button>
                         )}
                       </div>
+                      {computedValue?.youReceive > 0 && (
+                        <p className="info-msg">Please take a screenshot of this page for future reference</p>
+                      )}
                     </div>
                   </div>
                 </div>
