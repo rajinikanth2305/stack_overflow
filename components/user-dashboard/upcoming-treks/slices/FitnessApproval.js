@@ -88,6 +88,17 @@ const FitnessApproval = forwardRef((props, ref) => {
   };
 
   const myUploader = async event => {
+
+    if(event?.files?.length > 5) {
+      toast.current.show({
+        severity: "error",
+        summary: `'Only 5 File is allowed to upload'`,
+        detail: "File upload warning"
+      });
+      return;
+    }
+
+   
     event.files.map(file => {
       var formData = new FormData();
       formData.append("file", file);
@@ -100,9 +111,11 @@ const FitnessApproval = forwardRef((props, ref) => {
       detail: "Fitness Approval"
     });
     props.onMyTrekSaveDetail(participantData.bookingId, participantData.email);
+  
   };
 
   const onSelect = async event => {
+    console.log(event);
     if( event.files.length > 2 ) {
       toast.current.show({
         severity: "success",
@@ -307,6 +320,7 @@ const FitnessApproval = forwardRef((props, ref) => {
               <div className="col-lg-7 col-md-12">
                 <div>
                   <p className="p-text-4">Upload the screenshots of your runs here.</p>
+                  <p className="m-0 p-text-small-brown">Only 5 files allowed to upload and each file size should be 2MB and total 10 MB.</p>
                 </div>
                 <FileUpload
                   name="demo[]"
@@ -315,13 +329,17 @@ const FitnessApproval = forwardRef((props, ref) => {
                   uploadOptions={uploadOptions}
                   cancelOptions={cancelOptions}
                   uploadHandler={myUploader}
-                  maxFileSize={1000000}
+                  maxFileSize={10000000}
                   fileLimit={2}
                   onSelect={onSelect}
                   accept="image/*,pdf/*"
                   invalidFileSizeMessageDetail="Maximum 10 MB file(s) are allowed to upload"
                   className="fitnessBox"
                 />
+
+                      <div>
+                  <p className="p-text-4">Your uploaded file(s)</p>
+                </div>
                     {imageIndexs?.map(index => {
                       const pdata=previewDocuments?.[index];
                       const url = window.URL.createObjectURL(pdata);
