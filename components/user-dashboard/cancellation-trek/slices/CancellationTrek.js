@@ -426,7 +426,7 @@ const CancellationTrek = () => {
                           {/* <p>cancellation policy applicable</p> */}
                         </div>
                         <div className="mx-3 col-8 m-l-border px-3">
-                          <span>Rs. {bookings?.trekFee} (incl. taxes and mandatory trek insurance)</span>)
+                          <span>Rs. {bookings?.trekFee} (incl. taxes and mandatory trek insurance)</span>
                           <p>{bookings?.trekName}</p>
                           <p>{moment(bookings?.startDate).format("DD MMM YYYY")}</p>
                           <p>{moment(bookings?.endDate).format("DD MMM YYYY")}</p>

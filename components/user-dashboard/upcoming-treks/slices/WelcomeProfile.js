@@ -956,7 +956,7 @@ const WelcomeProfile = () => {
                                                   }
                                                   tooltip="Click here to view the trek-details"
                                                 >
-                                                  view details
+                                                  View Details
                                                 </a>
                                               </p>
                                             </div>

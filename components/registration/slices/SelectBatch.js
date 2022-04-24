@@ -95,7 +95,7 @@ const SelectBatch = forwardRef((props, ref) => {
   const heading1 = quickItinerary && quickItinerary?.primary?.heading1;
   // const dayNumberTextArray = quickItinerary && quickItinerary.items;
 
-  const dayNumberText = tripDaysIndexes?.map(function(i) {
+  const dayNumberText = tripDaysIndexes?.map(function (i) {
     const data = quickItinerary?.items[i];
     return (
       <>
@@ -333,7 +333,7 @@ const SelectBatch = forwardRef((props, ref) => {
                               </div>
                               <div className="mt-2 pt-2">
                                 <p className="p-text-3-1-fg text-center">
-                                  Choose another group of{" "}
+                                  Please reconfirm your trek date for{" "}
                                   {bookingDate && bookingDate?.trekName}
                                 </p>
 
@@ -352,7 +352,7 @@ const SelectBatch = forwardRef((props, ref) => {
                                             eventKey={`${trekMonth.groupKey}`}
                                             className={
                                               activeIndex &&
-                                              activeIndex === index + 1
+                                                activeIndex === index + 1
                                                 ? "show"
                                                 : ""
                                             }
@@ -388,66 +388,66 @@ const SelectBatch = forwardRef((props, ref) => {
                                                 <div>
                                                   {item.batchState !==
                                                     "CLOSED" && (
-                                                    <div className="row">
-                                                      <div className="col-lg-7 col-md-12 col-7">
-                                                        <p className="p-text-3-1-fg mb-2 pb-1">
-                                                          <span>
-                                                            {moment(
-                                                              item?.startDate
-                                                            ).format("Do")}{" "}
-                                                            to{" "}
-                                                            {moment(
-                                                              item?.endDate
-                                                            ).format("Do")}{" "}
-                                                            {moment(
-                                                              item?.endDate
-                                                            ).format("MMMM")}
-                                                          </span>
-                                                        </p>
-                                                      </div>
-
-                                                      <div className="col-lg-3 col-md-12 col-3">
-                                                        <p className="p-text-3-1-fg mb-2 pb-1">
-                                                          {item.batchState ===
-                                                            "ACTIVE" && (
-                                                            <span className="text-green-clr">
-                                                              Available
+                                                      <div className="row">
+                                                        <div className="col-lg-7 col-md-12 col-7">
+                                                          <p className="p-text-3-1-fg mb-2 pb-1">
+                                                            <span>
+                                                              {moment(
+                                                                item?.startDate
+                                                              ).format("Do")}{" "}
+                                                              to{" "}
+                                                              {moment(
+                                                                item?.endDate
+                                                              ).format("Do")}{" "}
+                                                              {moment(
+                                                                item?.endDate
+                                                              ).format("MMMM")}
                                                             </span>
-                                                          )}
-                                                          {item.batchState ===
-                                                            "FULL" && (
-                                                            <span className="text-maroon-clr">
-                                                              Full
-                                                            </span>
-                                                          )}
-                                                          {item.batchState ===
-                                                            "WAITING_LIST" && (
-                                                            <span className="text-warning-clr">
-                                                              Waitlist
-                                                            </span>
-                                                          )}
-                                                        </p>
-                                                      </div>
-                                                      <div className="col-lg-2 col-md-12 col-2">
-                                                        {item.batchState !==
-                                                          "FULL" && (
-                                                          <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
-                                                            <a
-                                                              href="#proceed"
-                                                              onClick={e =>
-                                                                onBatchSelect(
-                                                                  item
-                                                                )
-                                                              }
-                                                              tooltip="Click here to select the batch"
-                                                            >
-                                                              Select
-                                                            </a>
                                                           </p>
-                                                        )}
+                                                        </div>
+
+                                                        <div className="col-lg-3 col-md-12 col-3">
+                                                          <p className="p-text-3-1-fg mb-2 pb-1">
+                                                            {item.batchState ===
+                                                              "ACTIVE" && (
+                                                                <span className="text-green-clr">
+                                                                  Available
+                                                                </span>
+                                                              )}
+                                                            {item.batchState ===
+                                                              "FULL" && (
+                                                                <span className="text-maroon-clr">
+                                                                  Full
+                                                                </span>
+                                                              )}
+                                                            {item.batchState ===
+                                                              "WAITING_LIST" && (
+                                                                <span className="text-warning-clr">
+                                                                  Waitlist
+                                                                </span>
+                                                              )}
+                                                          </p>
+                                                        </div>
+                                                        <div className="col-lg-2 col-md-12 col-2">
+                                                          {item.batchState !==
+                                                            "FULL" && (
+                                                              <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
+                                                                <a
+                                                                  href="#proceed"
+                                                                  onClick={e =>
+                                                                    onBatchSelect(
+                                                                      item
+                                                                    )
+                                                                  }
+                                                                  tooltip="Click here to select the batch"
+                                                                >
+                                                                  Select
+                                                                </a>
+                                                              </p>
+                                                            )}
+                                                        </div>
                                                       </div>
-                                                    </div>
-                                                  )}
+                                                    )}
                                                 </div>
                                               );
                                             })}

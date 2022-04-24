@@ -114,15 +114,15 @@ const BookYourTrek = ({ slice }) => {
                         <div className="col-6 col-lg-3 col-md-6">
                           <p className="p-text-3-1 mb-0">
                             <span className="badge-yellow mx-2"></span>{" "}
-                            Waitlisted Batch
+                            Waitlisted Group
                           </p>
                         </div>
-                        <div className="col-6 col-lg-3 col-md-6">
+                        {/* <div className="col-6 col-lg-3 col-md-6">
                           <p className="p-text-3-1 mb-0">
                             <span className="badge-blue mx-2"></span> Family
                             Trek{" "}
                           </p>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                     {/* reference https://jquense.github.io/react-big-calendar/examples/index.html#api */}

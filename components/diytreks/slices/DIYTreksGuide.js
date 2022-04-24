@@ -146,7 +146,7 @@ const DIYTreksGuide = ({ slice, alldiyTreks }) => {
                   </p>
                 </div>
                 <div className="mx-2">
-                  <p className="p-text-3-1 mt-3-1 mb-0">
+                  <p className="mt-3-1 mb-0">
                     <span className="badge-blue-lg mx-2"></span>Moderate-Difficult{" "}
                   </p>
                 </div>

@@ -50,7 +50,7 @@ const FaqFamily = ({ slice }) => {
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>
               <div className="p-text-4 img-ctrl">
-                {RichText.asText(data?.q_answer)}
+                {RichText.render(data?.q_answer)}
               </div>
               {data?.yt_link?.url && (
                 <div>
