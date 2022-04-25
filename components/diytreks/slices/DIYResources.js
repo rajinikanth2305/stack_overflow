@@ -11,13 +11,14 @@ const DIYResources = ({ slice, diyResourceData }) => {
   console.log(diyResourceData);
 
   const diyResList = diyResourceData?.map(function(data, i) {
+    console.log(data);
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
       url = `/documented-trek/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.filter(
-      x => x.slice_type === "image_with_caption"
+      x => x.slice_type === "feature_image"
     );
     const getArticleHeadingText = data?.data?.body?.find(
       x => x.slice_type === "text"
@@ -27,10 +28,10 @@ const DIYResources = ({ slice, diyResourceData }) => {
         <Link href={url ? url : "#"}>
           <div className="d-flex align-items-center row mb-4 cursor-pointer">
             <div className="diyres_img_bg col-3 col-lg-3 col-md-12">
-              {getArticleImage && getArticleImage[0]?.primary?.image?.url && (
+              {getArticleImage && getArticleImage[0]?.primary?.feature_image?.url && (
                 <Image
                   src={
-                    getArticleImage && getArticleImage[0]?.primary?.image?.url
+                    getArticleImage && getArticleImage[0]?.primary?.feature_image?.url
                   }
                   layout="fill"
                   objectFit="cover"

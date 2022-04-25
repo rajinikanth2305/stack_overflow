@@ -13,7 +13,7 @@ import "primeflex/primeflex.css";
 import { confirmPopup } from "primereact/confirmpopup"; // To use confirmPopup method
 import { confirmDialog } from "primereact/confirmdialog"; // To use <ConfirmDialog> tag
 // Project components & functions
-import {getBatches, getBatchesByTrekId} from "services/queries";
+import { getBatches, getBatchesByTrekId } from "services/queries";
 import { batch } from "react-redux";
 import Prismic from "@prismicio/client";
 import { Client } from "utils/prismicHelpers";
@@ -31,49 +31,49 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
   const [onceSelectClicked, setOnceSelectClicked] = useState();
   const toast = useRef(null);
   const [batchOpenedDataValueSet, setBatchOpenedDataValueSet] = useState(true);
-   const [trekId,setTrekId]=useState();
-   const [render,setRender]=useState(false);
-  
+  const [trekId, setTrekId] = useState();
+  const [render, setRender] = useState(false);
+
 
   React.useEffect(() => {
 
     const client = Client();
 
-    const actualTrekPageName =  getTrekName();
+    const actualTrekPageName = getTrekName();
 
     console.log(actualTrekPageName);
 
-     client.query([Prismic.Predicates.at("my.trek.uid", actualTrekPageName)])
-        .then(async function (response) {
-          console.log(response?.results);
-          if (response?.results && response?.results?.length > 0 && response.results[0].data?.trek_id) {
-           
-            const trekId = response.results[0].data?.trek_id[0].text;
-             console.log(trekId);
-            if(viewDt==undefined) {
-              getBatchesByTrekId(trekId, 0,0).then(bResult=> {
-                console.log(bResult);
-                if(bResult?.length>0) {
-                  console.log(bResult[0].startDate);
-                 
-                  const date = new Date(bResult[0].startDate);
-                            const additionOfMonths = 1;
-                            date.setMonth(date.getMonth())
-                  console.log(date);
-                  //var date = moment(bResult[0].startDate).format('DD-MM-YYYY');
-                  viewDt=date;
-                  console.log(viewDt);
-                  setViewDate(viewDt);
-                  setRender(true);
-                }
-              });
-            }
-            else {
-              setViewDate(viewDt);
-              setRender(true);
-            }
+    client.query([Prismic.Predicates.at("my.trek.uid", actualTrekPageName)])
+      .then(async function (response) {
+        console.log(response?.results);
+        if (response?.results && response?.results?.length > 0 && response.results[0].data?.trek_id) {
+
+          const trekId = response.results[0].data?.trek_id[0].text;
+          console.log(trekId);
+          if (viewDt == undefined) {
+            getBatchesByTrekId(trekId, 0, 0).then(bResult => {
+              console.log(bResult);
+              if (bResult?.length > 0) {
+                console.log(bResult[0].startDate);
+
+                const date = new Date(bResult[0].startDate);
+                const additionOfMonths = 1;
+                date.setMonth(date.getMonth())
+                console.log(date);
+                //var date = moment(bResult[0].startDate).format('DD-MM-YYYY');
+                viewDt = date;
+                console.log(viewDt);
+                setViewDate(viewDt);
+                setRender(true);
+              }
+            });
           }
-        });
+          else {
+            setViewDate(viewDt);
+            setRender(true);
+          }
+        }
+      });
   }, []);
 
 
@@ -89,7 +89,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     return pageUrl[1].split("=")[1];
   }
 
-  const getTrekName =() => {
+  const getTrekName = () => {
     let actualTrekPageName = "";
     if (mode === "inline_page") {
       //console.log(mode);
@@ -109,42 +109,42 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     }
     return actualTrekPageName;
   }
- 
+
   const fetchTrekMonthBatches = async date => {
     setBatchDates(undefined);
-    const actualTrekPageName =  getTrekName();
+    const actualTrekPageName = getTrekName();
     const client = Client();
 
     await client
-        .query(
-            [
-              Prismic.Predicates.at("my.trek.uid", actualTrekPageName)
-            ]
-        )
-        .then(async function (response) {
-          if (response?.results && response?.results?.length > 0 && response.results[0].data?.trek_id) {
+      .query(
+        [
+          Prismic.Predicates.at("my.trek.uid", actualTrekPageName)
+        ]
+      )
+      .then(async function (response) {
+        if (response?.results && response?.results?.length > 0 && response.results[0].data?.trek_id) {
 
-            const trekId = response.results[0].data?.trek_id[0].text;
-            const data = await getBatchesByTrekId(
-                trekId,
-                date.month + 1,
-                date.year
-            );
-          
-            if (data.length > 0) {
-              var withoutDuplicates = removeDuplicatesBy(x => x.startDate, data);
-              //console.log(withoutDuplicates);
-              setBatchData(withoutDuplicates);
-              prepareDateDisableList(date, withoutDuplicates);
-            }
+          const trekId = response.results[0].data?.trek_id[0].text;
+          const data = await getBatchesByTrekId(
+            trekId,
+            date.month + 1,
+            date.year
+          );
+
+          if (data.length > 0) {
+            var withoutDuplicates = removeDuplicatesBy(x => x.startDate, data);
+            //console.log(withoutDuplicates);
+            setBatchData(withoutDuplicates);
+            prepareDateDisableList(date, withoutDuplicates);
           }
-        });
+        }
+      });
 
   };
 
   function removeDuplicatesBy(keyFn, array) {
     var mySet = new Set();
-    return array.filter(function(x) {
+    return array.filter(function (x) {
       var key = keyFn(x),
         isNew = !mySet.has(key);
       if (isNew) mySet.add(key);
@@ -219,37 +219,37 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
   };
 
 
-  const renderSwitch=(status,fillingFast,date,batchDates,key) =>{
-   // console.log("called-here2");
-    switch(status) {
+  const renderSwitch = (status, fillingFast, date, batchDates, key) => {
+    // console.log("called-here2");
+    switch (status) {
       case 'WAITING_LIST':
-        return  (
+        return (
           <>
-        <p style={{ textAlign: "right" }}>
-          <span>{date.day}</span>
-        </p>
-        <p className="m-0 cal-highlight-yellow text-center">Waitlist</p>
+            <p style={{ textAlign: "right" }}>
+              <span>{date.day}</span>
+            </p>
+            <p className="m-0 cal-highlight-yellow text-center">Waitlist</p>
           </>
         );
       case 'ACTIVE':
-        return  (
+        return (
           activeOrFillingTemplate(fillingFast, date, batchDates[key].availableSlots)
         );
       case 'FULL':
-          return  (
-            <>
+        return (
+          <>
             <p style={{ textAlign: "right" }}>
               <span>{date.day}</span>
             </p>
             <p className="m-0 cal-highlight-red-text text-center">FULL</p>
           </>
-          );
+        );
       default:
-        return  (
+        return (
           <>
-        <p style={{ textAlign: "right" }}>
-          <span>{date.day}</span>
-        </p>
+            <p style={{ textAlign: "right" }}>
+              <span>{date.day}</span>
+            </p>
           </>
         );
     }
@@ -285,22 +285,22 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
       return (
         <div className="w-100">
           <div className="w-100">
-         { 
-          
-         renderSwitch(status,fillingFast,date,batchDates,key)
-         }
+            {
+
+              renderSwitch(status, fillingFast, date, batchDates, key)
+            }
           </div>
         </div>
       );
     }
     else {
-      return  (
-     
+      return (
+
         <>
-          
-      <p style={{ textAlign: "right" }}>
-        <span>{date.day}</span>
-      </p>
+
+          <p style={{ textAlign: "right" }}>
+            <span>{date.day}</span>
+          </p>
         </>
       );
     }
@@ -364,8 +364,8 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     if (batchDates[key].status === "FULL") {
       toast.current.show({
         severity: "error",
-        summary: "Sorry! Selected  Trek Booking date - seats are filled, Please try other available booking slots",
-        detail: "No Seats available",
+        summary: "Uh'oh! This group is full and cannot accommodate any more trekkers.",
+        detail: "Try choosing another date?",
         life: 6000
       });
       return;
@@ -388,10 +388,10 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
             router.push(`/registration?batchId=${batchDates[key].batchId}`);
           }
         },
-        reject: e => {}
+        reject: e => { }
       });
     } else {
-      
+
       if (batchDates !== undefined && batchDates[key] !== undefined) {
         setOnceSelectClicked(true);
         onBookingSelect(batchDates[key]);
@@ -406,24 +406,24 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
         <div>
           <div>
             <div>
-            {render && (
-              <div> 
-                <Calendar
-                  id="navigatorstemplate"
-                  onSelect={e => onSelect(e.value)}
-                  monthNavigator
-                  yearNavigator
-                  yearRange="2021:2023"
-                  disabledDates={invalidDates}
-                  showOtherMonths={false}
-                  inline
-                  dateTemplate={dateTemplate}
-                  monthNavigatorTemplate={monthNavigatorTemplate}
-                  yearNavigatorTemplate={yearNavigatorTemplate}
-                  viewDate={viewDate != undefined ? viewDate : new Date()}
-                />
-              </div>
-               )}
+              {render && (
+                <div>
+                  <Calendar
+                    id="navigatorstemplate"
+                    onSelect={e => onSelect(e.value)}
+                    monthNavigator
+                    yearNavigator
+                    yearRange="2021:2023"
+                    disabledDates={invalidDates}
+                    showOtherMonths={false}
+                    inline
+                    dateTemplate={dateTemplate}
+                    monthNavigatorTemplate={monthNavigatorTemplate}
+                    yearNavigatorTemplate={yearNavigatorTemplate}
+                    viewDate={viewDate != undefined ? viewDate : new Date()}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
