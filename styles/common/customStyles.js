@@ -1221,7 +1221,7 @@ export const customStyles = css.global`
   // }
 
   .p-fileupload-files > div > div > img {
-    height: 140px;
+    // height: 140px;
     width: 200px;
   }
 
@@ -2366,8 +2366,9 @@ export const customStyles = css.global`
 
   .id-card-img {
     border: 1px solid #d3d3d3;
-    width: 100% !important;
-    height: 225px;
+    width: 50% !important;
+    margin: 10px 0;
+    // height: 225px;
   }
 
   .p-fileupload .p-fileupload-buttonbar {
@@ -2639,7 +2640,7 @@ export const customStyles = css.global`
     }
 
     .p-fileupload-files > div > div > img {
-      height: auto;
+      // height: auto;
       width: 100px;
     }
 
@@ -2710,6 +2711,10 @@ export const customStyles = css.global`
 
     .latestTrekWorld_bg.ltw_img {
       height: 170px;
+    }
+
+    .id-card-img {
+      width: 100% !important;
     }
 
     .hikesnews-bg {

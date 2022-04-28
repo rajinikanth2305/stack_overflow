@@ -27,6 +27,7 @@ const FamilyTrek = ({
   latestUpdateAarticleData
 }) => {
   if (doc && doc.data) {
+    const pageTitle = doc?.uid.replace(/-/g, " ");
     return (
       <>
       <HomeLayout>
@@ -37,7 +38,7 @@ const FamilyTrek = ({
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <title>Family Trek</title>
+          <title>{doc && pageTitle}</title>
         </Head>
         <HikeHeader />
         <FamilyTrekSliceZone
