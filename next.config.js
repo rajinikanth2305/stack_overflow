@@ -51,11 +51,11 @@ module.exports = {
                     "destination": "\/",
                     "permanent": true
                 },
-                {
-                    "source": "\/green-trails",
-                    "destination": "\/green-trails",
-                    "permanent": true
-                },
+                // {
+                //     "source": "\/green-trails",
+                //     "destination": "\/green-trails",
+                //     "permanent": true
+                // },
                 {
                     "source": "\/category\/latest-updates",
                     "destination": "\/",
