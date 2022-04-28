@@ -10,7 +10,7 @@ import { blogCustomLink } from 'utils/prismicHelpers'
 const Text = ({ slice }) => (
   <div className="post-part single img-ctrl">
     <RichText
-      render={slice.primary.text}
+      render={slice?.primary?.text}
       linkResolver={blogLinkResolver}
       serializeHyperlink={blogCustomLink}
     />

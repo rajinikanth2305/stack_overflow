@@ -15,10 +15,11 @@ export const customLink = (type, element, content, children, index) => (
   
   <Link
     key={index}
-    href={hrefResolver(element.data)}
-    as={linkResolver(element.data)}
+    href={element?.data===undefined ? "/" : hrefResolver(element?.data)}
+    as={linkResolver(element?.data)}
     target="new"
   >
+    {console.log(element.data)}
     <a target="new">{content}</a>
   </Link>
 
@@ -36,10 +37,11 @@ const MyAnchorButton = React.forwardRef(({ content, href }, ref) => {
 
 // Helper function to convert Prismic Rich Text links to Next/Link components
 export const blogCustomLink = (type, element, content, children, index) => (
+  
   <Link
     key={index}
-    href={blogHrefResolver(element.data)}
-    as={blogLinkResolver(element.data)}
+    href={element===undefined ? "/" : (element?.data===undefined ? "/" : blogHrefResolver(element?.data))}
+    as={blogLinkResolver(element?.data)}
     passHref
   >
     <MyAnchorButton content={content}></MyAnchorButton>

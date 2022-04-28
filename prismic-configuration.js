@@ -35,15 +35,6 @@ export const linkResolver = (doc) => {
 
 // Additional helper function for Next/Link components
 export const hrefResolver = (doc) => {
-  if (doc.type === 'post') {
-    return '/blog/[uid]'
-  }
-  return '/'
-}
-
-export const blogLinkResolver =(doc)=>{
-
-  //console.log(JSON.stringify(doc));
 
   if(doc.link_type==="Document") {
     if (doc.type === 'post') {
@@ -61,15 +52,47 @@ export const blogLinkResolver =(doc)=>{
    else  if (doc.type === 'articles_landing_type') {
       return `/articles/${doc.uid}`;
     }
-    return doc.uid;
+    return `/${doc.uid}`;
   }
   else {
     return doc.url;
   }
 }
 
+export const blogLinkResolver =(doc)=>{
+
+  if(doc===undefined){
+    return "/";
+  }
+
+ 
+
+  if(doc?.link_type==="Document") {
+    if (doc.type === 'post') {
+      return '/blog/'+ doc.uid;
+    }
+    else if (doc.type === 'trek') {
+      return '/trek/'+ doc.uid;
+    }
+    else if (doc.type === 'family_trek') {
+      return `/family-trek/${doc.uid}`;
+    }
+   else  if (doc.type === 'document_trek_type') {
+      return `/documented-trek/${doc.uid}`;
+    }
+   else  if (doc.type === 'articles_landing_type') {
+      return `/articles/${doc.uid}`;
+    }
+    return `/${doc.uid}`;
+  }
+  else {
+    return (doc?.url) ? doc.url  : "/";
+  }
+}
+
 // Additional helper function for Next/Link components
 export const blogHrefResolver = (doc) => {
+
   if(doc.link_type==="Document") {
     if (doc.type === 'post') {
       return '/blog/'+ doc.uid;
@@ -77,8 +100,22 @@ export const blogHrefResolver = (doc) => {
     else if (doc.type === 'trek') {
       return '/trek/'+ doc.uid;
     }
-    return doc.uid;
-  }else {
-    return doc.url;
+    else if (doc.type === 'family_trek') {
+      return `/family-trek/${doc.uid}`;
+    }
+   else  if (doc.type === 'document_trek_type') {
+      return `/documented-trek/${doc.uid}`;
+    }
+   else  if (doc.type === 'articles_landing_type') {
+      return `/articles/${doc.uid}`;
+    }
+    return `/${doc.uid}`;
+  }
+  else {
+    if(doc===undefined)
+    return "/";
+
+    const val= (doc?.url) ? doc.url  : "/";
+    return val===undefined? "/" :val;
   }
 }

@@ -8,7 +8,7 @@ import { quoteStyles } from 'styles'
 const Quote = ({ slice }) => (
   <div className="post-part single">
     <blockquote className="block-quotation">
-      {RichText.asText(slice.primary.quote)}
+      {RichText.asText(slice?.primary?.quote)}
     </blockquote>
     <style jsx global>{quoteStyles}</style>
   </div>
