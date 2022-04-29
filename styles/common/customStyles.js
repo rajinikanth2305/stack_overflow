@@ -2505,6 +2505,16 @@ export const customStyles = css.global`
     display: none !important;
   }
 
+  .c-modal-dialog > .p-dialog-header {
+    padding: 15px 1.5rem !important;
+  }
+
+  .c-modal-dialog > .p-dialog-header > .p-dialog-header-icons > button {
+    position: absolute !important;
+    right: 10px !important;
+    top: 5px !important;
+  }
+
   .info-msg {
     font-size: 14px;
     font-family: Franklin Gothic Book;

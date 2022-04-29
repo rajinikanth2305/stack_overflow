@@ -156,8 +156,8 @@ const TrekkersStories = ({ slice }) => {
                     <h6>
                       <b>{data.name}</b>
                     </h6>
-                    <p className="m-0 p-display-2">Group of</p>
-                    <p className="m-0 p-display-2">{data.batch}</p>
+                    <p className="m-0 p-display-2">Group of {data.batch}</p>
+                    {/* <p className="m-0 p-display-2">{data.batch}</p> */}
                   </div>
                   {/* <h3 className="title-diplay-3 ts-lable">
                     {data.title.length > 25
