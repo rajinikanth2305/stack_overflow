@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Image from "next/image";
@@ -6,6 +6,8 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
+import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
+import AccordionContext from 'react-bootstrap/AccordionContext';
 
 const MoreHelpAndSupport = ({ slice }) => {
   const heading1 = slice?.primary?.heading1;
@@ -19,7 +21,28 @@ const MoreHelpAndSupport = ({ slice }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const supportQuostions = supportQuostionsArray?.map(function(data, i) {
+  function ContextAwareToggle({ children, eventKey, callback }) {
+    const currentEventKey = useContext(AccordionContext);
+
+    const decoratedOnClick = useAccordionToggle(
+      eventKey,
+      () => callback && callback(eventKey),
+    );
+
+    const isCurrentEventKey = currentEventKey === eventKey;
+
+    return (
+      <button
+        type="button"
+        className={isCurrentEventKey ? 'show' : ''}
+        onClick={decoratedOnClick}
+      >
+        {children}
+      </button>
+    );
+  }
+
+  const supportQuostions = supportQuostionsArray?.map(function (data, i) {
     const result = data?.video_link?.url?.split(
       /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
     );
@@ -35,7 +58,7 @@ const MoreHelpAndSupport = ({ slice }) => {
       <div className="col-lg-6 col-md-12" key={i}>
         <Card>
           <Card.Header className="mhs-faq">
-            <Accordion.Toggle
+            {/* <Accordion.Toggle
               variant="link"
               eventKey={i + 1}
               className={activeIndex && activeIndex === i + 1 ? "show" : ""}
@@ -53,13 +76,20 @@ const MoreHelpAndSupport = ({ slice }) => {
                     {data?.support_sub_title[0]?.text}
                   </p>
                 </div>
-                {/* <div>
-                  <div>
-                    <img src="/arrow-down.png" />
-                  </div>
-                </div> */}
               </div>
-            </Accordion.Toggle>
+            </Accordion.Toggle> */}
+            <ContextAwareToggle eventKey={i + 1}>
+              <div className="d-flex align-items-center">
+                <div className="flex-grow-1 mhs-title-space">
+                  <p className="p-text-1 mb-1">
+                    {data?.support_title[0]?.text}
+                  </p>
+                  <p className="p-text-3 m-0">
+                    {data?.support_sub_title[0]?.text}
+                  </p>
+                </div>
+              </div>
+            </ContextAwareToggle>
           </Card.Header>
           <Accordion.Collapse eventKey={i + 1}>
             <Card.Body>

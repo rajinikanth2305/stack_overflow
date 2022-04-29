@@ -1666,7 +1666,13 @@ export const trekStyle = css.global`
       font-size: 16px;
       line-height: 24px;
     }
-
+    .hd-tab2-iamge-tabs-mob {
+      position: relative;
+      // min-height: 280px;
+      // height: 100%;
+      height: 180px;
+      width: 100%;
+    }
     .text-adj {
       margin-top: 0;
     }
@@ -1716,6 +1722,14 @@ export const trekStyle = css.global`
 
     .mmt-2 {
       margin-top: 25px !important;
+    }
+
+    .mmt-4 {
+      margin-top: 50px !important;
+    }
+
+    .p-a-b {
+      bottom: -55px;
     }
 
     .mp-0 {

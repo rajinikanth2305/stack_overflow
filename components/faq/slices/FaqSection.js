@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Image from "next/image";
@@ -9,6 +9,8 @@ import classnames from "classnames";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
+import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
+import AccordionContext from 'react-bootstrap/AccordionContext';
 
 const FaqSection = () => {
   const [faqDetails, setFaqDetails] = useState();
@@ -26,6 +28,27 @@ const FaqSection = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  function ContextAwareToggle({ children, eventKey, callback }) {
+    const currentEventKey = useContext(AccordionContext);
+
+    const decoratedOnClick = useAccordionToggle(
+      eventKey,
+      () => callback && callback(eventKey),
+    );
+
+    const isCurrentEventKey = currentEventKey === eventKey;
+
+    return (
+      <button
+        type="button"
+        className={isCurrentEventKey ? 'show' : ''}
+        onClick={decoratedOnClick}
+      >
+        {children}
+      </button>
+    );
+  }
 
   useEffect(() => {
     fintFaqDetails();
@@ -158,7 +181,7 @@ const FaqSection = () => {
           <div className="col-lg-6 col-md-12" key={j}>
             <Card>
               <Card.Header>
-                <Accordion.Toggle
+                {/* <Accordion.Toggle
                   variant="link"
                   eventKey={j + 1}
                   className={activeIndex && activeIndex === j + 1 ? "show" : ""}
@@ -168,7 +191,8 @@ const FaqSection = () => {
                   }}
                 >
                   {faq?.accordion_heading[0]?.text}
-                </Accordion.Toggle>
+                </Accordion.Toggle> */}
+                <ContextAwareToggle eventKey={j + 1}>{faq?.accordion_heading[0]?.text}</ContextAwareToggle>
               </Card.Header>
               <Accordion.Collapse eventKey={j + 1}>
                 <Card.Body>

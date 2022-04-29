@@ -22,7 +22,7 @@ const TrekTrevia = ({ slice }) => {
   const handle1Show = () => setShow1(true);
   const [trekVideoUrl, setTrekVideoUrl] = useState();
 
-  const tabsData = tabsDataArray?.map(function(data, i) {
+  const tabsData = tabsDataArray?.map(function (data, i) {
     let url;
     const slugUrl = data?.read_more_btn_lnk_url?.uid;
     if (slugUrl) {
@@ -49,7 +49,60 @@ const TrekTrevia = ({ slice }) => {
           <p className="p-text-1 border-line-left">
             {RichText.asText(data?.heading1)}
           </p>
-          <div className="d-flex">
+          <div className="w-100 d-m-block mx-2">
+            <div className="hd-tab2-iamge-tabs-mob mb-4 cursor-pointer">
+              {data?.content_image?.url ? (
+                <>
+                  <Image
+                    src={data?.content_image?.url}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="50% 50%"
+                    onClick={() => {
+                      setImageUrl(data?.content_image?.url);
+                      setShow(true);
+                    }}
+                  />
+                  <p className="p-text-small font-italic p-a-b">
+                    {RichText.asText(data?.photo_caption)}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <div className="h-100">
+                    {data?.yt_link?.url &&
+                      <>
+                        <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                          <div className="text-center">
+                            <img
+                              src="/v-icon.png"
+                              alt="playicon'"
+                              className="paly-icon icon-size-50"
+                              onClick={() => {
+                                setTrekVideoUrl(videoUrl);
+                                setShow1(true);
+                              }}
+                            />
+                          </div>
+                        </div>
+                        <Image
+                          src={imageURL}
+                          layout="fill"
+                          objectFit="cover"
+                          objectPosition="center"
+                          onClick={() => {
+                            setTrekVideoUrl(videoUrl);
+                            setShow1(true);
+                          }}
+                        />
+                      </>
+                    }
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+          <div className="d-flex mmt-4">
             <div className="flex-fill">
               <div className="tt-content">{RichText.render(data?.content)}</div>
               {data?.read_more_btn_lnk_url?.url ? (
@@ -82,34 +135,34 @@ const TrekTrevia = ({ slice }) => {
                   </>
                 ) : (
                   <>
-                  <div className="h-100">
-                    {data?.yt_link?.url && 
-                    <>
-                    <div className="d-flex align-items-center justify-content-center w-100 h-100">
-                      <div className="text-center">
-                        <img
-                          src="/v-icon.png"
-                          alt="playicon'"
-                          className="paly-icon icon-size-50"
-                          onClick={() => {
-                            setTrekVideoUrl(videoUrl);
-                            setShow1(true);
-                          }}
-                        />
-                      </div>
-                    </div>
-                    <Image
-                      src={imageURL}
-                      layout="fill"
-                      objectFit="cover"
-                      objectPosition="center"
-                      onClick={() => {
-                        setTrekVideoUrl(videoUrl);
-                        setShow1(true);
-                      }}
-                    />
-                    </>
-                    }
+                    <div className="h-100">
+                      {data?.yt_link?.url &&
+                        <>
+                          <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                            <div className="text-center">
+                              <img
+                                src="/v-icon.png"
+                                alt="playicon'"
+                                className="paly-icon icon-size-50"
+                                onClick={() => {
+                                  setTrekVideoUrl(videoUrl);
+                                  setShow1(true);
+                                }}
+                              />
+                            </div>
+                          </div>
+                          <Image
+                            src={imageURL}
+                            layout="fill"
+                            objectFit="cover"
+                            objectPosition="center"
+                            onClick={() => {
+                              setTrekVideoUrl(videoUrl);
+                              setShow1(true);
+                            }}
+                          />
+                        </>
+                      }
                     </div>
                   </>
                 )}

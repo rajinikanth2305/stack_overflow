@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { RichText } from "prismic-reactjs";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -11,6 +11,8 @@ import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import { Client } from "utils/prismicHelpers";
 import Prismic from "@prismicio/client";
+import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
+import AccordionContext from 'react-bootstrap/AccordionContext';
 
 const AcceptTC = ({
   data,
@@ -29,6 +31,27 @@ const AcceptTC = ({
   const [agree, setAgree] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
   const [isActive, setActive] = useState(false);
+
+  function ContextAwareToggle({ children, eventKey, callback }) {
+    const currentEventKey = useContext(AccordionContext);
+
+    const decoratedOnClick = useAccordionToggle(
+      eventKey,
+      () => callback && callback(eventKey),
+    );
+
+    const isCurrentEventKey = currentEventKey === eventKey;
+
+    return (
+      <button
+        type="button"
+        className={isCurrentEventKey ? 'show' : ''}
+        onClick={decoratedOnClick}
+      >
+        {children}
+      </button>
+    );
+  }
 
   const EligibilityCriteriaTitle =
     eligibilityCriteria &&
@@ -161,7 +184,7 @@ const AcceptTC = ({
       <div className="col-md-12" key={k}>
         <Card>
           <Card.Header>
-            <Accordion.Toggle
+            {/* <Accordion.Toggle
               variant="link"
               eventKey={k + 1}
               className={activeIndex && activeIndex === k + 1 ? "show" : ""}
@@ -171,7 +194,8 @@ const AcceptTC = ({
               }}
             >
               {data.heading1[0].text}
-            </Accordion.Toggle>
+            </Accordion.Toggle> */}
+            <ContextAwareToggle eventKey={k + 1}>{data.heading1[0].text}</ContextAwareToggle>
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>

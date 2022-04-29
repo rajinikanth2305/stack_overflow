@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Link from "next/link";
+import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
+import AccordionContext from 'react-bootstrap/AccordionContext';
 
 const ContactFaq = ({ slice }) => {
   const faqHeading = slice?.primary?.heading1;
@@ -13,12 +15,33 @@ const ContactFaq = ({ slice }) => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [isActive, setActive] = useState(false);
 
+  function ContextAwareToggle({ children, eventKey, callback }) {
+    const currentEventKey = useContext(AccordionContext);
+
+    const decoratedOnClick = useAccordionToggle(
+      eventKey,
+      () => callback && callback(eventKey),
+    );
+
+    const isCurrentEventKey = currentEventKey === eventKey;
+
+    return (
+      <button
+        type="button"
+        className={isCurrentEventKey ? 'show' : ''}
+        onClick={decoratedOnClick}
+      >
+        {children}
+      </button>
+    );
+  }
+
   const faqArrayDetails = faqArray?.map(function(data, k) {
     return (
       <div className="col-md-6" key={k}>
         <Card>
           <Card.Header>
-            <Accordion.Toggle
+            {/* <Accordion.Toggle
               variant="link"
               eventKey={k + 1}
               className={activeIndex && activeIndex === k + 1 ? "show" : ""}
@@ -28,13 +51,14 @@ const ContactFaq = ({ slice }) => {
               }}
             >
               {data?.q_title[0]?.text}
-            </Accordion.Toggle>
+            </Accordion.Toggle> */}
+            <ContextAwareToggle eventKey={k + 1}>{data.q_title[0].text}</ContextAwareToggle>
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>
               {/* <p>{data?.q_answer[0]?.text}</p> */}
               <div className="p-text-4">
-                {RichText.asText(data?.q_answer)}
+                {RichText.render(data?.q_answer)}
               </div>
             </Card.Body>
           </Accordion.Collapse>

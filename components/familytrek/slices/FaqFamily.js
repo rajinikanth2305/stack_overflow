@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Accordion from "react-bootstrap/Accordion";
@@ -6,6 +6,8 @@ import Card from "react-bootstrap/Card";
 import Link from "next/link";
 import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
+import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
+import AccordionContext from 'react-bootstrap/AccordionContext';
 
 const FaqFamily = ({ slice }) => {
   const faqHeading = slice?.primary?.heading1;
@@ -19,7 +21,28 @@ const FaqFamily = ({ slice }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const faqArrayDetails = faqArray?.map(function(data, k) {
+  function ContextAwareToggle({ children, eventKey, callback }) {
+    const currentEventKey = useContext(AccordionContext);
+
+    const decoratedOnClick = useAccordionToggle(
+      eventKey,
+      () => callback && callback(eventKey),
+    );
+
+    const isCurrentEventKey = currentEventKey === eventKey;
+
+    return (
+      <button
+        type="button"
+        className={isCurrentEventKey ? 'show' : ''}
+        onClick={decoratedOnClick}
+      >
+        {children}
+      </button>
+    );
+  }
+
+  const faqArrayDetails = faqArray?.map(function (data, k) {
     const result = data?.yt_link?.url?.split(
       /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
     );
@@ -35,17 +58,7 @@ const FaqFamily = ({ slice }) => {
       <div className="col-md-6" key={k}>
         <Card>
           <Card.Header>
-            <Accordion.Toggle
-              variant="link"
-              eventKey={k + 1}
-              className={activeIndex && activeIndex === k + 1 ? "show" : ""}
-              onClick={() => {
-                setActiveIndex(k + 1);
-                setActive(!isActive);
-              }}
-            >
-              {data?.q_title[0]?.text}
-            </Accordion.Toggle>
+            <ContextAwareToggle eventKey={k + 1}>{data.q_title[0].text}</ContextAwareToggle>
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>

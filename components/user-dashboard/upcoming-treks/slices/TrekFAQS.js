@@ -2,7 +2,8 @@ import React, {
   useState,
   forwardRef,
   useImperativeHandle,
-  useRef
+  useRef,
+  useContext
 } from "react";
 
 import { RichText } from "prismic-reactjs";
@@ -11,6 +12,8 @@ import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
+import AccordionContext from 'react-bootstrap/AccordionContext';
 
 const TrekFAQS = forwardRef((props, ref) => {
   const [faqData, setFaqData] = useState(undefined);
@@ -66,13 +69,34 @@ const TrekFAQS = forwardRef((props, ref) => {
     return faqHeading;
   };
 
+  function ContextAwareToggle({ children, eventKey, callback }) {
+    const currentEventKey = useContext(AccordionContext);
+
+    const decoratedOnClick = useAccordionToggle(
+      eventKey,
+      () => callback && callback(eventKey),
+    );
+
+    const isCurrentEventKey = currentEventKey === eventKey;
+
+    return (
+      <button
+        type="button"
+        className={isCurrentEventKey ? 'show' : ''}
+        onClick={decoratedOnClick}
+      >
+        {children}
+      </button>
+    );
+  }
+
   const faqArrayDetails = Indexes?.map(function(k) {
     const data = faqData && faqData[k];
     return (
       <div className="col-md-6" key={k}>
         <Card>
           <Card.Header>
-            <Accordion.Toggle
+            {/* <Accordion.Toggle
               variant="link"
               eventKey={k + 1}
               className={activeIndex && activeIndex === k + 1 ? "show" : ""}
@@ -81,18 +105,9 @@ const TrekFAQS = forwardRef((props, ref) => {
                 setActive(!isActive);
               }}
             >
-              {/* <div className="d-flex align-items-center">
-                <div className="flex-grow-1">
-                  {data.question_heading[0].text}
-                </div>
-                <div>
-                  <div>
-                    <h2 className="m-0 expand_plus">+</h2>
-                  </div>
-                </div>
-              </div> */}
               {data?.question_heading[0]?.text}
-            </Accordion.Toggle>
+            </Accordion.Toggle> */}
+            <ContextAwareToggle eventKey={k + 1}>{data?.question_heading[0]?.text}</ContextAwareToggle>
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>
