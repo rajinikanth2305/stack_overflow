@@ -10,7 +10,7 @@ const CommunityContentPitch = ({ slice }) => {
   const detail2List = slice?.primary?.detail2;
   const communityMembersArray = slice?.items;
 
-  const communityMembers = communityMembersArray?.map(function(data, k) {
+  const communityMembers = communityMembersArray?.map(function (data, k) {
     return (
       <div key={k} className="mx-3">
         <div className="community_member_image">
@@ -51,9 +51,11 @@ const CommunityContentPitch = ({ slice }) => {
               <div className="p-text-4">{RichText.render(detail2List)}</div>
             </div>
             <div className="d-flex justify-content-end my-4">
-              <button type="button" className="btn btn-bihtn-yellow">
-                I want to contribute
-              </button>
+              <a href="https://forms.gle/iAy8o6VG5uVPCP3RA" target="_blank">
+                <button type="button" className="btn btn-bihtn-yellow">
+                  I want to contribute
+                </button>
+              </a>
             </div>
           </div>
         </div>
