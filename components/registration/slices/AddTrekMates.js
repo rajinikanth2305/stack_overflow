@@ -168,7 +168,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       toast.current.show({
         severity: "error",
         summary: `${err.response?.data?.message}`,
-        detail: "Add Trekker"
+        detail: ""
       });
       return;
     }
@@ -353,7 +353,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       toast.current.show({
         severity: "error",
         summary: `${err.response?.data?.message}`,
-        detail: "Add Trekker"
+        detail: ""
       });
       return;
     }

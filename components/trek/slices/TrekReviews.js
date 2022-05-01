@@ -58,8 +58,10 @@ const TrekReviews = ({ slice }) => {
   };
 
   const trekkersStoriesImage = trekUserReviews?.map(function(data, i) {
+    console.log(data);
     let title = "";
     let desc = "";
+    // console.log(data);
 
     const check = moment(data?.batchStartDate, 'YYYY/MM/DD');
     var month = check.format('MMM');
@@ -155,7 +157,11 @@ const TrekReviews = ({ slice }) => {
 
   const getTrekReviewsByTrekName = trekName => {
     getTrekReviews(trekName).then(res => {
-      setTrekUserReviews(res);
+      // setTrekUserReviews(res);
+
+      const reviewResults = res?.filter( (ele, ind) => ind === res?.findIndex( elem => elem.userId === ele.userId ));
+
+      setTrekUserReviews(reviewResults);
     });
   };
 
