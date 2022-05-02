@@ -34,7 +34,7 @@ const FitnessApproval = forwardRef((props, ref) => {
 
   const [imageIndexs, setImageIndexes] = React.useState([]);
   const [previewDocuments, setPreviewDocuments] = React.useState([]);
-
+  const [noOfDocuments, setNoOfDocuments] = useState(0);
 
   const faqData = props.data?.data?.body.find(
     x => x.slice_type === "faq_about_trek"
@@ -88,6 +88,19 @@ const FitnessApproval = forwardRef((props, ref) => {
   };
 
   const myUploader = async event => {
+
+    const totalFiles= event?.files?.length + noOfDocuments;
+
+    if(totalFiles>5) {
+     toast.current.show({
+       severity: "error",
+       summary: `'Only 5 File is allowed to upload'`,
+       detail: "File upload error"
+     });
+     return;
+    }
+ 
+
 
     if(event?.files?.length > 5) {
       toast.current.show({
@@ -177,6 +190,7 @@ const FitnessApproval = forwardRef((props, ref) => {
       console.log(result);
         const contents=[];
         if(result.length > 0) {
+          setNoOfDocuments(result?.length);
            const contents=  getParticipantDocumentContents(result);
         }
    });

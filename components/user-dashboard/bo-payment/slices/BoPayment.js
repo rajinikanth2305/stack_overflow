@@ -19,6 +19,7 @@ import { Checkbox } from "primereact/checkbox";
 import moment from "moment";
 import { useRouter } from "next/router";
 import { confirmDialog } from "primereact/confirmdialog"; // To use <ConfirmDialog> tag
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 const BoPayment = forwardRef((props, ref) => {
   const [show, setShow] = useState(false);
@@ -32,6 +33,7 @@ const BoPayment = forwardRef((props, ref) => {
   const toast = useRef(null);
   const router = useRouter();
   const [offSelectedData, setOffSelectedData] = useState(null);
+  const [showProgressSpinner, setShowProgressSpinner] = React.useState(false);
 
   const {
     register,
@@ -53,6 +55,8 @@ const BoPayment = forwardRef((props, ref) => {
       youpay: 0
     }
   });
+
+
 
   React.useEffect(() => {
     const script = document.createElement("script");
@@ -293,6 +297,7 @@ const BoPayment = forwardRef((props, ref) => {
   };
 
   const processPayments = voucherList => {
+    setShowProgressSpinner(true);
     doSaveOffloadingPayments(offSelectedData.header.bookingId, voucherList)
       .then(res => {
         console.log(res.data);
@@ -302,6 +307,7 @@ const BoPayment = forwardRef((props, ref) => {
         console.log(res?.data?.features?.enableNewWindowFlow);
         if (res?.data?.features?.enableNewWindowFlow) {
           console.log(res.data.features.enableNewWindowFlow);
+          setShowProgressSpinner(false);
           pnCheckoutShared.openNewWindow();
         }
       })
@@ -309,6 +315,7 @@ const BoPayment = forwardRef((props, ref) => {
         if (res.response?.data?.message) {
           console.log(res.response.data?.message);
         }
+        setShowProgressSpinner(false);
       });
   };
 
@@ -510,6 +517,11 @@ const BoPayment = forwardRef((props, ref) => {
                       </tbody>
                     </table>
                   </div>
+                  {showProgressSpinner && (
+                      <div>
+                      <ProgressSpinner />
+                      </div>
+                      )}
                   <div>
                     {/* <h5 className="p-text-3-fg b-left-blue-3px mb-3">
                       * Backpack Offloading terms and conditions
@@ -519,6 +531,7 @@ const BoPayment = forwardRef((props, ref) => {
                     </p>
                   </div>
                 </div>
+               
                 <div className="col-lg-4 col-md-12">
                   <div className="card box-shadow">
                     <div className="p-3">

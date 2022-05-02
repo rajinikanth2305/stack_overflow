@@ -25,6 +25,7 @@ import {
 } from "../../reduxstate/counterSlice";
 
 import moment from "moment";
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 const MakePayment = forwardRef((props, ref) => {
   const [bookingInformation, setBookingInformation] = useState(undefined);
@@ -38,6 +39,8 @@ const MakePayment = forwardRef((props, ref) => {
   const [indexes, setIndexes] = React.useState([]);
   const [counter, setCounter] = React.useState(0);
   const [batchData, setBatchData] = React.useState(undefined);
+  const [showProgressSpinner, setShowProgressSpinner] = React.useState(false);
+
 
   const [computeFields, setComputeFields] = useState({
     computations: {
@@ -342,22 +345,24 @@ const MakePayment = forwardRef((props, ref) => {
   };
 
   const processPayments = (voucherList, stateData) => {
-
+    setShowProgressSpinner(true);
     doSavePayments(stateData.data.bookingId, voucherList)
       .then(res => {
         console.log(res.data);
         console.log("After payment post respone" + res.data.features.enableNewWindowFlow);
         window.jQuery.pnCheckout(res.data);
-
+        setShowProgressSpinner(false);
         if (res.data.features.enableNewWindowFlow) {
           pnCheckoutShared.openNewWindow();
         }
+       
       })
       .catch(res => {
         console.log(res);
         if (res.response?.data?.message) {
           console.log(res.response.data?.message);
         }
+        setShowProgressSpinner(false);
       });
   };
 
@@ -383,6 +388,7 @@ const MakePayment = forwardRef((props, ref) => {
         <div ref={e1} id="scriptPlaceholder">
           {/* paynimoc script injecting Script is inserted here */}
         </div>
+       
         <Form>
           <div className="row">
             <div className="col-lg-7 col-md-12">
@@ -606,8 +612,13 @@ const MakePayment = forwardRef((props, ref) => {
                     })}
                   </tbody>
                 </table>
+                
               </div>
-
+              {showProgressSpinner && (
+        <div>
+        <ProgressSpinner />
+        </div>
+        )}
               {/* <div className="m-d-block mb-4">
                 {indexes.map(index => {
                   const fieldName = `voucher[${index}]`;
@@ -816,6 +827,7 @@ const MakePayment = forwardRef((props, ref) => {
                     Make Payment
                   </button>
                 </div>
+                
               </div>
             </div>
           </div>
