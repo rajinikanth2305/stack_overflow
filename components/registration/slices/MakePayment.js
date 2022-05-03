@@ -381,6 +381,26 @@ const MakePayment = forwardRef((props, ref) => {
     return vouchers;
   };
 
+  const transFormDifficultyLevel=(value)=> {
+   // let value= "EASY_MODERATE";
+   // console.log(value);
+    let tvalues="";
+   // console.log(typeof(value));
+
+    if(value?.indexOf("_")>0) {
+    const v1= value?.split("_");
+    
+    for(let i=0;i<v1?.length;i++) {
+      let str=v1[i];
+      tvalues=tvalues +  str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() + "-";
+    }
+   return tvalues?.substring(0,tvalues?.length-1);
+  }
+  else {
+   return value?.charAt(0).toUpperCase() + value?.slice(1).toLowerCase() ;
+  }
+}
+
   return (
     <>
       <Toast ref={toast} />
@@ -409,7 +429,7 @@ const MakePayment = forwardRef((props, ref) => {
                         {moment(bookingInformation?.startDate).format("Do")} -{" "}
                         {moment(bookingInformation?.endDate).format("Do MMMM")}
                       </td>
-                      <td className="td-text-fgb">{bookingInformation?.trekDifficulty}</td>
+                      <td className="td-text-fgb">{transFormDifficultyLevel(bookingInformation?.trekDifficulty)}</td>
                       <td>{bookingInformation?.trekkersCount} trekkers</td>
                     </tr>
                   </tbody>
@@ -443,7 +463,7 @@ const MakePayment = forwardRef((props, ref) => {
                     <tr>
                       <td className="reg-mp-mob-table-td">Difficulty</td>
                       <td className="reg-mp-mob-table-td-1">
-                        {bookingInformation?.trekDifficulty}
+                        {transFormDifficultyLevel(bookingInformation?.trekDifficulty)}
                       </td>
                     </tr>
                     <tr>
