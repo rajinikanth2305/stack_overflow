@@ -48,9 +48,10 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
         console.log(response?.results);
         if (response?.results && response?.results?.length > 0 && response.results[0].data?.trek_id) {
 
-          const trekId = response.results[0].data?.trek_id[0].text;
+          let trekId = response.results[0].data?.trek_id[0].text;
+          setTrekId(trekId);
           console.log(trekId);
-          if (viewDt == undefined) {
+          if (viewDt === undefined) {
             getBatchesByTrekId(trekId, 0, 0).then(bResult => {
               console.log(bResult);
               if (bResult?.length > 0) {
@@ -345,17 +346,44 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
       <Dropdown
         value={e.value}
         options={e.options}
-        onChange={event => e.onChange(event.originalEvent, event.value)}
+        onChange={(event) => { onYearChange(e,event.value),
+          setRender(false);
+          e.onChange(event.originalEvent, event.value);
+        }}
         className="p-ml-2"
         style={{ lineHeight: 1 }}
       />
     );
+    //e.onChange(event.originalEvent, event.value);
   };
 
   const onMonthChange = e => {
-    //console.log(e);
+    console.log("ON MONTH CHANGE");
+    console.log(e);
   };
 
+  const onYearChange =(event, e) => {
+   // console.log(e);
+    getBatchesByTrekId(trekId, 0, e).then(bResult => {
+     // console.log(bResult);
+      if (bResult?.length > 0) {
+       // console.log(bResult[0].startDate);
+
+        const date = new Date(bResult[0].startDate);
+        const additionOfMonths = 1;
+        date.setMonth(date.getMonth())
+       // console.log(date);
+        //var date = moment(bResult[0].startDate).format('DD-MM-YYYY');
+        viewDt = date;
+        setViewDate(viewDt);
+        setRender(true);
+       // event.onChange(event.originalEvent, event.value);
+      }
+    })
+    .catch(res => {
+      setRender(true);
+     });
+  };
   const onSelect = e => {
     // console.log(e);
     ///console.log(e.getDate());
@@ -413,7 +441,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
                     onSelect={e => onSelect(e.value)}
                     monthNavigator
                     yearNavigator
-                    yearRange="2021:2023"
+                    yearRange="2022:2023"
                     disabledDates={invalidDates}
                     showOtherMonths={false}
                     inline

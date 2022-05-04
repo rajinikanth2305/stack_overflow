@@ -30,7 +30,7 @@ const UserMP = () => {
 
     let type = pageUrl[2]; //booking-id
     let typeVal = type.split("=")[1];
-    let backPackTrue=typeVal.startsWith("back");
+    let backPackTrue=typeVal.startsWith("BACKPACK");
     setType(backPackTrue);
    // console.log(backPackTrue);
 

@@ -21,6 +21,9 @@ export const getBatchesByTrekId = async (trekId, month=0,year=0)  => {
     if(month==0 && year==0) {
       url = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}/available-batches/${trekId}`;
     }
+    else if (month===0 && year > 0) {
+      url = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}/available-batches/${trekId}?year=${year}`;
+    }
     else {
        url = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}/available-batches/${trekId}?month=${month}&year=${year}`;
     }
