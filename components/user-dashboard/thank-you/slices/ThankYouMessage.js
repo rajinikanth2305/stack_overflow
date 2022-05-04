@@ -10,6 +10,7 @@ const UserMP = () => {
   const router = useRouter();
   const [status, setStatus] = useState(undefined);
   const [render, setRender] = useState(false);
+  const [type, setType] = useState(false);
 
   useEffect(() => {
 
@@ -17,6 +18,8 @@ const UserMP = () => {
    // http://localhost:3000/user-dashboard/thank-you?booking_id=187780&status=CANCELLED
 
     let url = location.href.replace(location.origin, "");
+    console.log(url);
+
     let pageUrl = url.split("&");
     let bookingIdKeyVal = pageUrl[0]; //booking-id
     const bookingId = bookingIdKeyVal.split("=")[1];
@@ -24,6 +27,12 @@ const UserMP = () => {
     let statusKeyVal = pageUrl[1]; //booking-id
     let bookingStatus = statusKeyVal.split("=")[1];
     bookingStatus=bookingStatus.replace("#state","");
+
+    let type = pageUrl[2]; //booking-id
+    let typeVal = type.split("=")[1];
+    let backPackTrue=typeVal.startsWith("back");
+    setType(backPackTrue);
+   // console.log(backPackTrue);
 
     console.log(bookingStatus);
     const valStatus=bookingStatus.toLowerCase();
@@ -51,11 +60,17 @@ const UserMP = () => {
           <div className="d-flex justify-content-center">
             <div className="col-md-6 col-12">
               <p className="p-text-1-fgt mb-4">
-               { status==="success" && (
+               { (status==="success" && type===true) && (
                  <>
-                <span className="border-bottom-custom-1 pb-1">  Payment received! </span>
                  <span className="border-bottom-custom-1 pb-1">  
-                 Success! Congratulations on booking a trek! We have mailed you a payment receipt. </span>
+                 Success! Your payment for backpack offloading is confirmed . We have mailed you a payment receipt. </span>
+                </>
+                )
+               }
+                { (status==="success" && type===false) && (
+                 <>
+                 <span className="border-bottom-custom-1 pb-1">  
+                 Success! Your payment for trek booking is confirmed . We have mailed you a payment receipt. </span>
                 </>
                 )
                }
