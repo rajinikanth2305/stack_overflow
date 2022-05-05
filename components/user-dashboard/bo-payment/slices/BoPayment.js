@@ -281,7 +281,7 @@ const BoPayment = forwardRef((props, ref) => {
           /// redirect to booking confirmation page
           console.log("redirect called");
           router.push(
-            `/user-dashboard/thank-you?booking_id=${offSelectedData.header.bookingId}&status=SUCCESS`
+            `/user-dashboard/thank-you?booking_id=${offSelectedData.header.bookingId}&status=SUCCESS&type=BACKPACK`
           );
         })
         .catch(res => {
