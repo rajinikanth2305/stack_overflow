@@ -112,18 +112,18 @@ const UserPT = () => {
       setReviewIndexes(arr);
       setReviewCounter(1);
     })
-    .catch(res => {
-      setReviewData(undefined);
-      if (res?.response?.data?.message) {
-         console.log(res?.response?.data?.message);
-         toast?.current?.show({
-          severity: "info",
-          summary: `'No Review questions defined for this trek.'`,
-          detail: "",
-          life: 6000
-        });
-      }
-  });
+      .catch(res => {
+        setReviewData(undefined);
+        if (res?.response?.data?.message) {
+          console.log(res?.response?.data?.message);
+          toast?.current?.show({
+            severity: "info",
+            summary: `'No Review questions defined for this trek.'`,
+            detail: "",
+            life: 6000
+          });
+        }
+      });
   };
 
   const toggle = tab => {
@@ -329,7 +329,7 @@ const UserPT = () => {
     userServiceObject.doLogout();
   };
 
-  const prevTrekData = bookings?.map(function(data, i) {
+  const prevTrekData = bookings?.map(function (data, i) {
     return (
       <div key={data.id}>
         <div className="card mb-4">
@@ -381,7 +381,8 @@ const UserPT = () => {
                   <div>
                     <p className="m-0 p-text-small-fg">Participants</p>
                     <p className="m-0 p-text-2-fg">
-                      {data?.participantsCount} trekkers
+                      {data?.participantsCount}
+                      {data?.participantsCount === 1 ? " Trekker" : " Trekkers"}
                     </p>
                   </div>
                   <div>
@@ -478,11 +479,11 @@ const UserPT = () => {
                           return reviewData?.reviewQuestions.map(
                             (item, index) => {
 
-                             // console.log(reviewData?.reviewQuestions.length);
-                             // console.log(index);
-                            //  if(reviewData?.reviewQuestions.length-1===index) {
-                             //   setShowReviewSubmit(true);
-                             // }
+                              // console.log(reviewData?.reviewQuestions.length);
+                              // console.log(index);
+                              //  if(reviewData?.reviewQuestions.length-1===index) {
+                              //   setShowReviewSubmit(true);
+                              // }
                               const multiple =
                                 item.reviewQuestionType.toLowerCase() ==
                                 "multiple_choice";
@@ -639,16 +640,16 @@ const UserPT = () => {
                           );
                         }
                       })}
-                       {reviewData?.reviewQuestions?.length>0 && (
-                      <div className="text-center">
-                        <button
-                          type="submit"
-                          className="btn table-btn-green-lg hvr-grow"
-                        >
-                          Submit Review
-                        </button>
-                      </div>
-                       )}
+                      {reviewData?.reviewQuestions?.length > 0 && (
+                        <div className="text-center">
+                          <button
+                            type="submit"
+                            className="btn table-btn-green-lg hvr-grow"
+                          >
+                            Submit Review
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </form>

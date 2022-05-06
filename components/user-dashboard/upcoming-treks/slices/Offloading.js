@@ -274,7 +274,7 @@ const Offloading = forwardRef((props, ref) => {
       else {
         toast.current.show({
           severity: "warn",
-          summary: `'Since you have used a voucher in this payment, we will personally help you with your cancellation. Please email your Expereince Coordinator with your cancellation details.'`,
+          summary: `'Since you have used a voucher in this payment, we will personally help you with your cancellation. Please email your Experience Coordinator with your cancellation details.'`,
           detail: "Cancel-Offload-Booking",
           life:8000,
           closable:true,

@@ -30,7 +30,7 @@ const DIY = ({ doc, trekData, dtcData, diyResourceData, alldiyTreks }) => {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <title>Do it yourself</title>
+          <title>Trek Library</title>
         </Head>
         <HikeHeader />
         <DIYSliceZone

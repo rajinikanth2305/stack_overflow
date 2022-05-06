@@ -136,6 +136,7 @@ const WelcomeProfile = () => {
     setBookings(bookTrekContents);
     setUpComingTrek(booking); /// setting the first trek has upcoming trek
     deriveAndSetOffLoadingTabVisible(booking);
+    console.log(booking);
 
     if (bookTrekContents?.length > 0) {
       const arr = Array.from(new Array(bookTrekContents?.length - 1), (x, i) => i);
@@ -430,7 +431,7 @@ const WelcomeProfile = () => {
             confirmDialog({
               //target: e.currentTarget,
               header: "",
-              message: `Since you have used a voucher in this payment, we will personally help you with your cancellation. Please email your Expereince Coordinator with your cancellation details.`,
+              message: `Since you have used a voucher in this payment, we will personally help you with your cancellation. Please email your Experience Coordinator with your cancellation details.`,
               icon: "pi pi-exclamation-triangle",
               acceptLabel: "Ok",
               rejectLabel: "Ok",
@@ -600,7 +601,7 @@ const WelcomeProfile = () => {
                                           </p>
                                           <p className="m-0 p-text-2-fg-f16">
                                             {upComingTrek?.participantsCount}{" "}
-                                            Trekkers
+                                            {upComingTrek?.participantsCount === 1 ? "Trekker" : "Trekkers" }
                                           </p>
                                         </div>
                                         <div className="m-col-12">
@@ -904,7 +905,7 @@ const WelcomeProfile = () => {
                                               </p>
                                               <p className="m-0 p-text-2-fg-f16">
                                                 {trekData?.participantsCount}{" "}
-                                                Trekkers
+                                                {trekData?.participantsCount === 1 ? "Trekker" : "Trekkers" }
                                               </p>
                                             </div>
                                             <div className="m-col-12">
