@@ -674,6 +674,7 @@ export const trekStyle = css.global`
   .slots-bg {
     background: rgba(255, 193, 0, 0.102);
     padding: 5px 0;
+    white-space: nowrap;
   }
 
   .badge-green {

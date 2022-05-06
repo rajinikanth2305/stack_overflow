@@ -14,7 +14,9 @@ const DIYResources = ({ slice, diyResourceData }) => {
     console.log(data);
     let url;
     const slugUrl = data?.uid;
-    if (slugUrl) {
+    if (slugUrl && data?.type === "post") {
+      url = `/blog/${slugUrl}`;
+    } else {
       url = `/documented-trek/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.filter(
