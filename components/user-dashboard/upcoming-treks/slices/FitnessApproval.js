@@ -95,7 +95,7 @@ const FitnessApproval = forwardRef((props, ref) => {
      toast.current.show({
        severity: "error",
        summary: `'Only 5 File is allowed to upload'`,
-       detail: "File upload error"
+       detail: ""
      });
      return;
     }
@@ -106,7 +106,7 @@ const FitnessApproval = forwardRef((props, ref) => {
       toast.current.show({
         severity: "error",
         summary: `'Only 5 File is allowed to upload'`,
-        detail: "File upload warning"
+        detail: ""
       });
       return;
     }
@@ -121,7 +121,7 @@ const FitnessApproval = forwardRef((props, ref) => {
     toast.current.show({
       severity: "success",
       summary: `'File uploaded successfull'`,
-      detail: "Fitness Approval"
+      detail: ""
     });
     props.onMyTrekSaveDetail(participantData.bookingId, participantData.email);
   
@@ -133,7 +133,7 @@ const FitnessApproval = forwardRef((props, ref) => {
       toast.current.show({
         severity: "success",
         summary: `'File uploaded successfull'`,
-        detail: "Fitness Approval"
+        detail: ""
       });
     }
   };

@@ -165,7 +165,7 @@ const BoPayment = forwardRef((props, ref) => {
       toast.current.show({
         severity: "error",
         summary: `'The selected Voucher is already applied'`,
-        detail: "Make payment"
+        detail: ""
       });
 
       /// Resetting the old selected voucher values;
@@ -289,7 +289,7 @@ const BoPayment = forwardRef((props, ref) => {
             toast.current.show({
               severity: "error",
               summary: `'Make payment is not succeeded' ${res.response?.data?.message}`,
-              detail: "Offloading Make payment"
+              detail: ""
             });
           }
         });

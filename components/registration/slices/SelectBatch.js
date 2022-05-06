@@ -139,7 +139,7 @@ const SelectBatch = forwardRef((props, ref) => {
             toast.current.show({
               severity: "error",
               summary: `'Select Group -  ${res.response.data?.message}'`,
-              detail: "Select Batch"
+              detail: ""
             });
           }
         });

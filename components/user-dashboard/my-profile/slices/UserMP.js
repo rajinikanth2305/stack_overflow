@@ -130,7 +130,7 @@ const UserMP = () => {
         toast.current.show({
           severity: "success",
           summary: `'Id proof uploaded successfully'`,
-          detail: "Id Proof"
+          detail: ""
         });
         getUserIdProof(fileId === "frontImage").then(data =>
           fileId === "frontImage" ? setFrontImage(data) : setBackImage(data)

@@ -225,7 +225,7 @@ const Offloading = forwardRef((props, ref) => {
       toast.current.show({
         severity: "error",
         summary: `'The selected Voucher is already applied'`,
-        detail: "Make payment"
+        detail: ""
       });
       /// Resetting the old selected voucher values;
       sdata.find(u => u.id === id).optedVoucherId = "";
@@ -275,7 +275,7 @@ const Offloading = forwardRef((props, ref) => {
         toast.current.show({
           severity: "warn",
           summary: `'Since you have used a voucher in this payment, we will personally help you with your cancellation. Please email your Experience Coordinator with your cancellation details.'`,
-          detail: "Cancel-Offload-Booking",
+          detail: "",
           life:8000,
           closable:true,
           position:"top-left"

@@ -312,7 +312,7 @@ const WelcomeProfile = () => {
           toast.current.show({
             severity: "success",
             summary: `'Cancelled   ${trekData.trekName} Booking successfully'`,
-            detail: "Cancel-Trek-Booking"
+            detail: ""
           });
           fetchAndBindUserBookings(trekData.email);
         });
@@ -385,7 +385,7 @@ const WelcomeProfile = () => {
         toast.current.show({
           severity: "success",
           summary: `'Cancelled successfully'`,
-          detail: "Cancel-Trek-Booking"
+          detail: ""
         });
         fetchAndBindUserBookings(upComingTrek.email);
         handleClose();
@@ -394,7 +394,7 @@ const WelcomeProfile = () => {
       toast.current.show({
         severity: "error",
         summary: `'None of the participant selected for cancellation'`,
-        detail: "Cancel-Trek-Booking"
+        detail: ""
       });
     }
   };

@@ -255,7 +255,7 @@ const CancellationTrek = () => {
           toast.current.show({
             severity: "success",
             summary: `'We have cancelled the trek as requested. Please check your email for further instructions.'`,
-            detail: "Cancellation"
+            detail: ""
           });
 
           const timer = setTimeout(() => {
@@ -272,7 +272,7 @@ const CancellationTrek = () => {
       toast.current.show({
         severity: "error",
         summary: `'None of the participant selected for cancellation'`,
-        detail: "Cancellation"
+        detail: ""
       });
     }
   };

@@ -130,7 +130,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       toast.current.show({
         severity: "error",
         summary: `'Create Trekmate ${data.email} is already added'`,
-        detail: "Create Trekker"
+        detail: ""
       });
       return;
     }
@@ -503,7 +503,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       toast.current.show({
         severity: "error",
         summary: `'Find Trekker email should not be empty'`,
-        detail: "Find Trekker"
+        detail: ""
       });
       return;
     }
@@ -516,7 +516,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       toast.current.show({
         severity: "error",
         summary: `'Find Trekker ${userEmail} is already added'`,
-        detail: "Find Trekker"
+        detail: ""
       });
       return;
     }
@@ -528,7 +528,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       toast.current.show({
         severity: "error",
         summary: `'Primary Trekker ${userEmail} is a main participant. Add other than main participants emailid'`,
-        detail: "Find Trekker"
+        detail: ""
       });
       return;
     }
@@ -545,7 +545,7 @@ const AddTrekMates = forwardRef((props, ref) => {
             toast.current.show({
               severity: "error",
               summary: `'Find Trekker ${userEmail.toLowerCase()} is not registered in  India hikes, Create new account'`,
-              detail: "Find Trekker"
+              detail: ""
             });
           }
           /*confirmPopup({
@@ -561,7 +561,7 @@ const AddTrekMates = forwardRef((props, ref) => {
           toast.current.show({
             severity: "error",
             summary: `'Find Trekker ${userEmail.toLowerCase()} is not registered in  India hikes, Create new account'`,
-            detail: "Find Trekker"
+            detail: ""
           });
         }
       });

@@ -255,7 +255,7 @@ else {
           toast.current.show({
             severity: "success",
             summary: `'Cancelled successfully'`,
-            detail: "Cancellation"
+            detail: ""
           });
 
           const timer = setTimeout(() => {
@@ -272,7 +272,7 @@ else {
       toast.current.show({
         severity: "error",
         summary: `'None of the participant selected for cancellation'`,
-        detail: "Cancellation"
+        detail: ""
       });
     }
   };
