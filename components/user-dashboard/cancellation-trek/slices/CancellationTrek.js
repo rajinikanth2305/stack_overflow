@@ -47,6 +47,8 @@ const CancellationTrek = () => {
   const [headerPercentages, setHeaderPercentage] = useState(undefined);
   const [hasVoucherUsed, setHasVoucherUsed] = useState(false);
 
+  const [showCancelButton, setShowCancelButton] = React.useState(true);
+
   const {
     register,
     handleSubmit,
@@ -228,6 +230,7 @@ const CancellationTrek = () => {
 
   const onCancelSubmit = formData => {
     // console.log(formData);
+    setShowCancelButton(false);
 
     const participantList = [];
     participants.filter(x => x.cancelled === true).map(p => {
@@ -260,7 +263,7 @@ const CancellationTrek = () => {
 
           const timer = setTimeout(() => {
             router.push(`/user-dashboard/user-upcoming-treks`);
-          }, 4000);
+          }, 3000);
 
           return () => clearTimeout(timer);
           // router.push(`/user-dashboard/user-upcoming-treks`);
@@ -274,6 +277,7 @@ const CancellationTrek = () => {
         summary: `'None of the participant selected for cancellation'`,
         detail: ""
       });
+      setShowCancelButton(true);
     }
   };
 
@@ -487,6 +491,7 @@ const CancellationTrek = () => {
                                                         <input
                                                           type="checkbox"
                                                           name="category"
+                                                          disabled={!showCancelButton}
                                                           onClick={e => {
                                                             onChange(e.checked);
                                                             onChecked(sdata.id, e.target.value);
@@ -721,7 +726,10 @@ const CancellationTrek = () => {
                       </div>
                       <div className="d-flex justify-content-center my-4 pt-1">
                         {computedValue?.youReceive > 0 && (
-                          <button className="btn table-btn-maroon-lg" onClick={e => { onCancelSubmit() }}>
+                          <button 
+                          className="btn table-btn-maroon-lg" 
+                          disabled={!showCancelButton}
+                          onClick={e => { onCancelSubmit() }}>
 
                             <span>Cancel Booking</span>
 

@@ -35,6 +35,8 @@ const BoPayment = forwardRef((props, ref) => {
   const [offSelectedData, setOffSelectedData] = useState(null);
   const [showProgressSpinner, setShowProgressSpinner] = React.useState(false);
 
+  const [showPaymentButton, setShowPaymentButton] = React.useState(true);
+
   const {
     register,
     handleSubmit,
@@ -243,6 +245,8 @@ const BoPayment = forwardRef((props, ref) => {
   };
 
   const doPayment = () => {
+ setShowPaymentButton(false);
+
 
     // let isExecuted = confirm("Are you sure to execute this action?");
     confirmDialog({
@@ -292,6 +296,7 @@ const BoPayment = forwardRef((props, ref) => {
               detail: ""
             });
           }
+          setShowPaymentButton(true);
         });
     }
   };
@@ -629,6 +634,7 @@ const BoPayment = forwardRef((props, ref) => {
                         type="button"
                         className="btn btn-ih-green py-2"
                         onClick={doPayment}
+                        disabled={!showPaymentButton}
                       >
                         Make Payment
                       </button>

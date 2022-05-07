@@ -40,7 +40,7 @@ const MakePayment = forwardRef((props, ref) => {
   const [counter, setCounter] = React.useState(0);
   const [batchData, setBatchData] = React.useState(undefined);
   const [showProgressSpinner, setShowProgressSpinner] = React.useState(false);
-
+  const [showPaymentButton, setShowPaymentButton] = React.useState(true);
 
   const [computeFields, setComputeFields] = useState({
     computations: {
@@ -318,11 +318,12 @@ const MakePayment = forwardRef((props, ref) => {
   };
 
   const doPayment = () => {
+    setShowPaymentButton(false);
     const voucherList = buildVouchers(stateData.data);
 
     if (computeFields.computations.youpay > 0) {
       /// call the paymentgateway
-      console.log("computeFields.computations.youpay > 0");
+     // console.log("computeFields.computations.youpay > 0");
       processPayments(voucherList, stateData);
 
     } else {
@@ -340,6 +341,7 @@ const MakePayment = forwardRef((props, ref) => {
               detail: ""
             });
           }
+          setShowPaymentButton(true);
         });
     }
   };
@@ -363,6 +365,7 @@ const MakePayment = forwardRef((props, ref) => {
           console.log(res.response.data?.message);
         }
         setShowProgressSpinner(false);
+        setShowPaymentButton(true);
       });
   };
 
@@ -843,6 +846,8 @@ const MakePayment = forwardRef((props, ref) => {
                     className="btn btn-ih-green hvr-grow py-2"
                     id="btnSubmit"
                     onClick={doPayment}
+                    disabled={!showPaymentButton}
+                    
                   >
                     Make Payment
                   </button>

@@ -51,6 +51,7 @@ const CancellationBp = () => {
   const [flagValue,setFlagValue]=useState('trek-p-cancel');
   const toast = useRef(null);
   const [headerPercentages,setHeaderPercentage]=useState(undefined);
+  const [showCancelButton, setShowCancelButton] = React.useState(true);
 
   const {
     register,
@@ -228,7 +229,8 @@ else {
 
 
   const onCancelSubmit = formData => {
-    // console.log(formData);
+        setShowCancelButton(false);
+  
 
     const participantList = [];
     participants.filter(x=>x.cancelled===true).map(p=>{
@@ -274,6 +276,7 @@ else {
         summary: `'None of the participant selected for cancellation'`,
         detail: ""
       });
+      setShowCancelButton(true);
     }
   };
 
@@ -466,6 +469,7 @@ setComputedValue(compvalue);
                                             <input
                                               type="checkbox"
                                               name="category"
+                                              disabled={!showCancelButton}
                                               onClick={e => {
                                                 onChange(e.checked);
                                                 onChecked(sdata.id, e.target.value);
@@ -657,7 +661,7 @@ setComputedValue(compvalue);
                     </div>
                     <div className="d-flex justify-content-center my-4 pt-1">
                       {computedValue?.youReceive>0 && (
-                      <button className="btn table-btn-maroon-lg" onClick={e => {onCancelSubmit()}}>
+                      <button className="btn table-btn-maroon-lg"   disabled={!showCancelButton} onClick={e => {onCancelSubmit()}}>
                         {flagValue==='trek-p-cancel' ? (
                          <span>Cancel Booking</span>
                         ): <span>Cancel Offload Booking</span> 
