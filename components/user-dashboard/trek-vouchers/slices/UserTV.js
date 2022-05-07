@@ -83,7 +83,7 @@ const UserTV = () => {
             </div>
             <div className="p-text-2-fg-f16-mb w-100">
               <div className="d-flex align-items-center">
-                <div className="flex-grow-1">Rs. {data?.amount} </div>
+                <div className="flex-grow-1">Rs. {data?.amount} &nbsp;&nbsp;</div>
                 <div className="tv-download-link">
                   <p className="m-0 text-decoration-underline p-text-small-fg-blue">
                     <PDFDownloadLink

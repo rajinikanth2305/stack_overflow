@@ -145,13 +145,13 @@ const VoucherTemplate = voucher => {
           </View>
           <View style={styles.section}>
             <Text style={styles.header1}>Your Indiahikes Trek Voucher</Text>
-            <Text style={styles.header2}>Trek Name</Text>
-            <Text style={styles.header2}>From date - To date</Text>
+            {/* <Text style={styles.header2}>Trek Name</Text>
+            <Text style={styles.header2}>From date - To date</Text> */}
           </View>
-          <View style={styles.sectionMain1}>
+          {/* <View style={styles.sectionMain1}>
             <Text style={styles.header2}>Particulars:</Text>
-          </View>
-          <View style={styles.voucherRow}>
+          </View> */}
+          {/* <View style={styles.voucherRow}>
             <View style={styles.voucherColAllnew}>
               <View>
                 <Text style={styles.voucherParticularTableLabel}>
@@ -180,7 +180,7 @@ const VoucherTemplate = voucher => {
                 <Text style={styles.voucherParticularTableValue}>-</Text>
               </View>
             </View>
-          </View>
+          </View> */}
           <View style={styles.voucherRow}>
             <View style={styles.voucherCol1}>
               <View>
@@ -240,7 +240,8 @@ const VoucherTemplate = voucher => {
               </View>
               <View>
                 <Text style={styles.voucherTableValue}>
-                  {voucher && voucher.voucher.voucherStatus}
+                  {/* {voucher && voucher.voucher.voucherStatus} */}
+                  {moment(voucher && voucher.voucher?.validTill) < new Date() ? "Expired" : voucher && voucher.voucher.voucherStatus === "ALLOCATED" ? "Available" : "Used"}
                 </Text>
               </View>
             </View>
@@ -256,7 +257,7 @@ const VoucherTemplate = voucher => {
               at the time of booking
             </Text>
             <Text style={styles.headernotes2}>
-              - Cancellation fee is applied to both voucher and trek fee paid.
+              - Indiahikes Trek Vouchers are usually non-refundable, not transferable to others or extendable
             </Text>
             <Text style={styles.headernotes2}>
               - No refunds for vouchers. If voucher is used for booking, it will

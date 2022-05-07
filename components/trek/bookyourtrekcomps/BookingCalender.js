@@ -346,8 +346,9 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
       <Dropdown
         value={e.value}
         options={e.options}
-        onChange={(event) => { onYearChange(e,event.value),
-          setRender(false);
+        onChange={(event) => {
+          onYearChange(e, event.value),
+            setRender(false);
           e.onChange(event.originalEvent, event.value);
         }}
         className="p-ml-2"
@@ -362,27 +363,27 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     console.log(e);
   };
 
-  const onYearChange =(event, e) => {
-   // console.log(e);
+  const onYearChange = (event, e) => {
+    // console.log(e);
     getBatchesByTrekId(trekId, 0, e).then(bResult => {
-     // console.log(bResult);
+      // console.log(bResult);
       if (bResult?.length > 0) {
-       // console.log(bResult[0].startDate);
+        // console.log(bResult[0].startDate);
 
         const date = new Date(bResult[0].startDate);
         const additionOfMonths = 1;
         date.setMonth(date.getMonth())
-       // console.log(date);
+        // console.log(date);
         //var date = moment(bResult[0].startDate).format('DD-MM-YYYY');
         viewDt = date;
         setViewDate(viewDt);
         setRender(true);
-       // event.onChange(event.originalEvent, event.value);
+        // event.onChange(event.originalEvent, event.value);
       }
     })
-    .catch(res => {
-      setRender(true);
-     });
+      .catch(res => {
+        setRender(true);
+      });
   };
   const onSelect = e => {
     // console.log(e);
@@ -452,6 +453,8 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
                   />
                 </div>
               )}
+              {render === false && <p className="p-text-3 text-center">We will open up dates shortly. <a href="/upcoming-treks">Click here</a> to see other treks that might have dates.
+              </p>}
             </div>
           </div>
         </div>
