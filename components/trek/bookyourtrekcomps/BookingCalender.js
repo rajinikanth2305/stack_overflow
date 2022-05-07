@@ -453,8 +453,8 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
                   />
                 </div>
               )}
-              {render === false && <p className="p-text-3 text-center">We will open up dates shortly. <a href="/upcoming-treks">Click here</a> to see other treks that might have dates.
-              </p>}
+              {render === false && <h3 className="p-text-1 my-5">We will open up dates shortly. <a href="/upcoming-treks">Click here</a> to see other treks that might have dates.
+              </h3>}
             </div>
           </div>
         </div>

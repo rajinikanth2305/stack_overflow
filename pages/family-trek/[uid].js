@@ -28,6 +28,7 @@ const FamilyTrek = ({
 }) => {
   if (doc && doc.data) {
     const pageTitle = doc?.uid.replace(/-/g, " ");
+    const str = pageTitle.charAt(0).toUpperCase() + pageTitle.slice(1);
     return (
       <>
       <HomeLayout>
@@ -38,7 +39,7 @@ const FamilyTrek = ({
             name="viewport"
             content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no;user-scalable=0;"
           />
-          <title>{doc && pageTitle}</title>
+          <title>{doc && str}</title>
         </Head>
         <HikeHeader />
         <FamilyTrekSliceZone
