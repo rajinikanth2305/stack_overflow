@@ -560,7 +560,7 @@ const AddTrekMates = forwardRef((props, ref) => {
         } else {
           toast.current.show({
             severity: "error",
-            summary: `'Find Trekker ${userEmail.toLowerCase()} is not registered in  India hikes, Create new account'`,
+            summary: `Looks like trekker with ${userEmail.toLowerCase()} has not registered with us. Please create a new account for them.`,
             detail: ""
           });
         }
