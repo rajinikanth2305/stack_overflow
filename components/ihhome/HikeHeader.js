@@ -370,9 +370,9 @@ const HikeHeader = (auth = false) => {
                         }>
                         <DropdownItem>For Colleges</DropdownItem>
                       </NavLink>
-                      <NavLink href="../../../family-trek/family-trek-page"
+                      <NavLink href="../../../family-trek/experiential-learning-programs-for-schools"
                         className={
-                          router.asPath == "/family-trek/family-trek-page"
+                          router.asPath == "/family-trek/fexperiential-learning-programs-for-schools"
                             ? "active-custom dd-menu"
                             : "dd-menu"
                         }>
