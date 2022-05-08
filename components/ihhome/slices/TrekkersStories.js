@@ -266,7 +266,7 @@ const TrekkersStories = ({ slice }) => {
       desc: "Definitely it was one my best experience and for sure I am coming back to this trek with better preparation from my side. Green Trails : One of the greatest initiative, i saw my friend changing in",
       details: [
         { data: "Definitely it was one my best experience and for sure I am coming back to this trek with better preparation from my side." },
-        { data: "Green Trails : One of the greatest initiative, i saw my friend changing in front of me understanding the value of nature, respecting the gods that lies in each elements of earth. Now I am more proud and confident to make other aware of this initiative." },
+        { data: "Green Trails: One of the greatest initiative, i saw my friend changing in front of me understanding the value of nature, respecting the gods that lies in each elements of earth. Now I am more proud and confident to make other aware of this initiative." },
       ]
     },
   ];
