@@ -56,7 +56,7 @@ const PostRender = ({
   //console.log(upComingData);
 
   const router = useRouter();
-  const shareUrl = `https://apstage.co.in${router?.asPath}`;
+  const shareUrl = `https://indiahikes.com${router?.asPath}`;
 
   const featureSlice = data.body.find(x => x.slice_type == "feature_image");
   if (featureSlice != null) {

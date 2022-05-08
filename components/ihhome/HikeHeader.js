@@ -137,7 +137,7 @@ const HikeHeader = (auth = false) => {
 
       return (
         <div key={i} className="card border-0 px-3 py-1 cursor-pointer">
-          <Link href={url ? url : "#"}>
+          <a href={url ? url : "#"}>
             <div className="mw-100" onClick={() => { setShowSearch(!showSearch); setSearchResults([]); setSelectedTreks(""); }}>
               <div className="d-flex align-items-start border-bottom pb-2 mb-2">
                 <div className="col-5">
@@ -179,7 +179,7 @@ const HikeHeader = (auth = false) => {
                 </div>
               </div>
             </div>
-          </Link>
+          </a>
         </div>
       );
     });
