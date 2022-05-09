@@ -974,7 +974,7 @@ const PostRender = ({
         <div className="container">
           <div className="row my-3">
             <div className="col-lg-3 col-md-12 pr-5p pt-4">
-              <div className="position-sticky border-0">
+              <div className="position-sticky ps-custom border-0">
                 <p className="p-text-3-fgc border-bottom-0 m-0">
                   <span>{RichText.asText(data?.title)}</span>
                 </p>

@@ -2523,6 +2523,11 @@ export const customStyles = css.global`
     color: #9d3a0b;
   }
 
+  .position-sticky.ps-custom {
+    top: 10px;
+    padding: 10px 0;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
