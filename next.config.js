@@ -34,7 +34,7 @@ module.exports = {
   },
 
 
-  async rewrites() {
+  async redirects() {
     return [
                 {
                     "source": "\/knowledge-base",
