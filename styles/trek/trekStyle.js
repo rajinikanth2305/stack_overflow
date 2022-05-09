@@ -1605,6 +1605,10 @@ export const trekStyle = css.global`
     border-color: transparent;
   }
 
+  .hvr-grow.cursor-pointer > a {
+    text-decoration: none;
+  }
+
   @media only screen and (max-width: 660px) {
     .q-des {
       font-size: 40px;

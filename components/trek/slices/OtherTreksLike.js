@@ -58,7 +58,7 @@ const OtherTreksLike = ({ slice, trekPageData1 }) => {
     return (
       <div key={i}>
         <div className="mx-4 m-mx-0 hvr-grow cursor-pointer">
-          <Link href={url ? url : "#"}>
+          <a href={url ? url : "#"}>
             <div className="card_sec">
               <div className="card trek_card">
                 <div alt="imgs" className="image-view imgaview-view">
@@ -144,7 +144,7 @@ const OtherTreksLike = ({ slice, trekPageData1 }) => {
                 </div>
               </div>
             </div>
-          </Link>
+          </a>
         </div>
       </div>
     );
