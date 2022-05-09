@@ -143,7 +143,7 @@ const HikeHeader = (auth = false) => {
                 <div className="col-5">
                   <span className="type-highlight">{data?.type === "document_trek_type" ? "DIY" : data?.type}</span>
                   <div className="s_r_image">
-                    {data?.data?.body[0]?.primary?.trek_banner_image?.url ? (
+                    {data?.data?.body && data?.data?.body[0]?.primary?.trek_banner_image?.url ? (
                       <Image
                         src={
                           data?.data?.body[0]?.primary?.trek_banner_image?.url
