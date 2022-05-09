@@ -32,10 +32,10 @@ module.exports = {
       },
     ];
   },
-  async redirects() {
+
+
+  async rewrites() {
     return [
-        
-            
                 {
                     "source": "\/knowledge-base",
                     "destination": "\/",
