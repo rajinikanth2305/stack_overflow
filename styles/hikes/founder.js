@@ -140,6 +140,10 @@ export const founderStyles = css.global`
       margin-bottom: 25px;
     }
 
+    .mob-video-iframe {
+      height: 240px !important;
+    }
+
     .img-margin {
       margin-top: 0;
       height: 200px;

@@ -2558,6 +2558,10 @@ export const customStyles = css.global`
       line-height: 15px;
     }
 
+    .mob-video-iframe {
+      height: 240px !important;
+    }
+
     .table.table-dashboard-profile-style-1.ctb > tbody > tr > td {
       white-space: normal;
     }

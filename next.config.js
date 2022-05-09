@@ -121,11 +121,11 @@ module.exports = {
                     "destination": "\/family-trek-page",
                     "permanent": true
                 },
-                {
-                    "source": "\/careers-new",
-                    "destination": "\/careers",
-                    "permanent": true
-                },
+                // {
+                //     "source": "\/careers-new",
+                //     "destination": "\/careers",
+                //     "permanent": true
+                // },
                 {
                     "source": "\/tag\/career",
                     "destination": "\/careers",
@@ -3861,8 +3861,8 @@ module.exports = {
  {"source": "\/tag\/december-2015-photo-contest-results", "destination": "\/blog\/december-2015-photo-contest-results",   "permanent" : true },
  {"source": "\/october-photo-contest",  "destination": "\/blog\/october-photo-contest",   "permanent" : true },
  {"source": "\/tag\/october-photo-contest", "destination": "\/blog\/october-photo-contest",   "permanent" : true },
- {"source": "\/careers",  "destination": "\/blog\/careers",   "permanent" : true },
- {"source": "\/tag\/careers", "destination": "\/blog\/careers",   "permanent" : true },
+//  {"source": "\/careers",  "destination": "\/blog\/careers",   "permanent" : true },
+//  {"source": "\/tag\/careers", "destination": "\/blog\/careers",   "permanent" : true },
  {"source": "\/a-new-year-in-sandakphu",  "destination": "\/blog\/a-new-year-in-sandakphu",   "permanent" : true },
  {"source": "\/tag\/a-new-year-in-sandakphu", "destination": "\/blog\/a-new-year-in-sandakphu",   "permanent" : true },
  {"source": "\/best-winter-treks-december-january-february",  "destination": "\/blog\/best-winter-treks-december-january-february",   "permanent" : true },
@@ -4079,7 +4079,7 @@ module.exports = {
  {"source": "\/tag\/roopkund-trek-reviews-guadrupras", "destination": "\/blog\/roopkund-trek-reviews-guadrupras",   "permanent" : true },
  {"source": "\/pankaj-kashmir-trek-august-2012",  "destination": "\/blog\/pankaj-kashmir-trek-august-2012",   "permanent" : true },
  {"source": "\/tag\/pankaj-kashmir-trek-august-2012", "destination": "\/blog\/pankaj-kashmir-trek-august-2012",   "permanent" : true },
- {"source": "\/green-trails",  "destination": "\/blog\/green-trails",   "permanent" : true },
+//  {"source": "\/green-trails",  "destination": "\/blog\/green-trails",   "permanent" : true },
  {"source": "\/tag\/green-trails", "destination": "\/blog\/green-trails",   "permanent" : true },
  {"source": "\/nag-tibba-photo-story",  "destination": "\/blog\/nag-tibba-photo-story",   "permanent" : true },
  {"source": "\/tag\/nag-tibba-photo-story", "destination": "\/blog\/nag-tibba-photo-story",   "permanent" : true },

@@ -1637,6 +1637,9 @@ export const trekStyle = css.global`
     .title-h2 {
       font-size: 36px;
     }
+    .mob-video-iframe {
+      height: 240px !important;
+    }
     .terk-videos-promary-image {
       height: 175px;
     }

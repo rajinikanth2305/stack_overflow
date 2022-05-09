@@ -131,6 +131,10 @@ export const whyTrekWithStyles = css.global`
       max-height: 300px;
       min-height: 300px;
     }
+
+    .mob-video-iframe {
+      height: 240px !important;
+    }
   }
 
   @media (min-width: 992px) and (max-width: 1185px) {

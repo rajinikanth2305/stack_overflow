@@ -199,6 +199,10 @@ export const latestUpdatesTrekkingsStyles = css.global`
       display: none;
     }
 
+    .mob-video-iframe {
+      height: 240px !important;
+    }
+
     .update_terk_title_text_mobile {
       line-height: 16px;
       text-align: left;

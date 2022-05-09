@@ -423,6 +423,10 @@ export const ChooseTreks = css.global`
     //   margin: 0 20px;
     // }
 
+    .mob-video-iframe {
+      height: 240px !important;
+    }
+
     .card_sec {
       margin: 5px 0;
     }
