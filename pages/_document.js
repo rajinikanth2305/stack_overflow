@@ -26,7 +26,7 @@ class MyDocument extends Document {
           <link rel="icon" href="/fav1.png" />
 
         
-          <script async src={`"https://www.googletagmanager.com/gtag/js?id=${tagcode}"`}></script>
+          <script async src={"https://www.googletagmanager.com/gtag/js?id=${tagcode}"}></script>
 
            
           <script dangerouslySetInnerHTML={{ __html: `window.dataLayer = window.dataLayer || [];
