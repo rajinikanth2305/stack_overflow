@@ -92,7 +92,8 @@ export async function getStaticProps({
       preview,
       trekData,
       trekPageData1
-    }
+    },
+    revalidate: 60
   };
 }
 

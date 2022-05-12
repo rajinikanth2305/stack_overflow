@@ -407,7 +407,8 @@ export async function getStaticProps({
       trekkingArticleData,
       ihAlitudeResaerch,
       ihLaPrimaryArticlePrimaryArticleData,
-    }
+    },
+    revalidate: 60,
   };
 }
 
