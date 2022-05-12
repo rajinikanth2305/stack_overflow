@@ -225,6 +225,7 @@ export async function getStaticPaths() {
  }
  return {
   paths: limitDocs.map(doc => `/blog/${doc?.uid}`),
+  revalidate: 60,
   fallback: true,
 }
 }
@@ -232,6 +233,7 @@ else {
   console.log(fastBuild + "POST");
   return {
     paths: documents.map(doc => `/blog/${doc?.uid}`),
+    revalidate: 60,
     fallback: true,
   }
 }
