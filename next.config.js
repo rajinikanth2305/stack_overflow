@@ -4224,7 +4224,7 @@ module.exports = {
  {"source": "\/tag\/deoriatal-winter-trek", "destination": "\/blog\/deoriatal-winter-trek",   "permanent" : true },
  {"source": "\/how-the-buran-ghati-trek-was-explored",  "destination": "\/blog\/how-the-buran-ghati-trek-was-explored",   "permanent" : true },
  {"source": "\/tag\/how-the-buran-ghati-trek-was-explored", "destination": "\/blog\/how-the-buran-ghati-trek-was-explored",   "permanent" : true },
-
+ {"source": "\/global-crises-affecting-trekking-industry",  "destination": "\/blog\/global-crises-affecting-trekking-industry",   "permanent" : true },
     
     ]
   },
