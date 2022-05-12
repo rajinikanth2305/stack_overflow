@@ -201,7 +201,7 @@ export async function getStaticProps({
       related_authors
     },
     revalidate: 60,
-    fallback: true,
+  
   };
 }
 
@@ -227,12 +227,14 @@ export async function getStaticPaths() {
  }
  return {
   paths: limitDocs.map(doc => `/blog/${doc?.uid}`),
+  fallback: true,
 }
 }
 else {
   console.log(fastBuild + "POST");
   return {
     paths: documents.map(doc => `/blog/${doc?.uid}`),
+    fallback: true,
   }
 }
 }
