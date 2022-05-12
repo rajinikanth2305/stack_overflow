@@ -427,7 +427,7 @@ export const saveUserLocations =  async (bookingId,payload)  => {
     const api = `${REACT_APP_TMS_BACKEND_URL}`;
     ///https://tmsstaging.indiahikes.com/tms-service/api/v1/batches?pageNo=0&pageSize=100&searchQuery=trekId:9 AND startDate>'2021-09-26T00:00:00'
    
-    let url = `${api}/batches?pageNo=0&pageSize=100&searchQuery=trekId:${trekId} AND startDate>'${formattedDate}'&sortField=startDate&sortOrderDescending=false`;
+    let url = `${api}/batches?pageNo=0&pageSize=100&searchQuery=trekId:${trekId} AND startDate>'${formattedDate}' AND privateBatch:false&sortField=startDate&sortOrderDescending=false`;
     return axios.get(url,{ headers:  header }).then((res) => res.data);
   };
 
