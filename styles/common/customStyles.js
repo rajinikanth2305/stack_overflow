@@ -2528,6 +2528,14 @@ export const customStyles = css.global`
     padding: 10px 0;
   }
 
+  .card-header.career-header-tabs-bg {
+    background: #008000;
+  }
+
+  .card-header.career-header-tabs-bg > p {
+    color: #ffffff;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

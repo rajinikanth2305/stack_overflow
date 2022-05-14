@@ -163,7 +163,7 @@ const openPositionsTabs = () => {
       return (
         <div key={i}>
           <Card>
-            <Card.Header>
+            <Card.Header className="career-header-tabs-bg">
               {/* <Accordion.Toggle
                 variant="link"
                 eventKey={i + 1}
