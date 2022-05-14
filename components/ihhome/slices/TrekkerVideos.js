@@ -117,7 +117,7 @@ const TrekkerVideos = ({ slice }) => {
       <div className="mb-4 choose_trek_sec">
         <div className="trek_video_badge">
           <img src="/trek-badge_badge.png" />
-          <span>Trekker Videos</span>
+          <span>Latest Videos</span>
         </div>
         <div className="container container-custom">
           <div className="m-mt-15">

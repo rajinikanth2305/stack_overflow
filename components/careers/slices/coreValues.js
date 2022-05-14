@@ -99,72 +99,86 @@ const CoreValues = ({ slice }) => {
           <div className="row">
             <div className="col-lg-6 col-12">
               <div className="carrer_image_1">
-                <Image
-                  src={img[0]?.images?.url}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="bottom"
-                />
+                {img[0]?.images?.url &&
+                  <Image
+                    src={img[0]?.images?.url}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="bottom"
+                  />
+                }
               </div>
             </div>
             <div className="col-lg-6 col-12">
               <div className="row">
                 <div className="col-lg-8 col-md-8 col-12">
                   <div className="carrer_image_2 mb-2-cus">
-                    <Image
-                      src={img[1]?.images?.url}
-                      layout="fill"
-                      objectFit="cover"
-                      objectPosition="bottom"
-                    />
+                    {img[1]?.images?.url &&
+                      <Image
+                        src={img[1]?.images?.url}
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="bottom"
+                      />
+                    }
                   </div>
                   <div className="row">
                     <div className="col-lg-6 col-12">
                       <div className="carrer_image_3">
-                        <Image
-                          src={img[2]?.images?.url}
-                          layout="fill"
-                          objectFit="cover"
-                          objectPosition="bottom"
-                        />
+                        {img[2]?.images?.url &&
+                          <Image
+                            src={img[2]?.images?.url}
+                            layout="fill"
+                            objectFit="cover"
+                            objectPosition="bottom"
+                          />
+                        }
                       </div>
                     </div>
                     <div className="col-lg-6 col-12">
                       <div className="carrer_image_3">
-                        <Image
-                          src={img[3]?.images?.url}
-                          layout="fill"
-                          objectFit="cover"
-                          objectPosition="bottom"
-                        />
+                        {img[3]?.images?.url &&
+                          <Image
+                            src={img[3]?.images?.url}
+                            layout="fill"
+                            objectFit="cover"
+                            objectPosition="bottom"
+                          />
+                        }
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="col-lg-4 col-md-4 col-12">
                   <div className="carrer_image_3 mb-2-cus">
-                    <Image
-                      src={img[4]?.images?.url}
-                      layout="fill"
-                      objectFit="cover"
-                      objectPosition="bottom"
-                    />
+                    {img[4]?.images?.url &&
+                      <Image
+                        src={img[4]?.images?.url}
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="bottom"
+                      />
+                    }
                   </div>
                   <div className="carrer_image_3 mb-2-cus">
-                    <Image
-                      src={img[5]?.images?.url}
-                      layout="fill"
-                      objectFit="cover"
-                      objectPosition="bottom"
-                    />
+                    {img[5]?.images?.url &&
+                      <Image
+                        src={img[5]?.images?.url}
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="bottom"
+                      />
+                    }
                   </div>
                   <div className="carrer_image_3">
-                    <Image
-                      src={img[6]?.images?.url}
-                      layout="fill"
-                      objectFit="cover"
-                      objectPosition="bottom"
-                    />
+                    {img[6]?.images?.url &&
+                      <Image
+                        src={img[6]?.images?.url}
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="bottom"
+                      />
+                    }
                   </div>
                 </div>
               </div>
