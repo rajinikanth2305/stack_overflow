@@ -314,7 +314,8 @@ const AddTrekMates = forwardRef((props, ref) => {
           const participant = responseData?.data?.participants.find(y => y.userId === p.id);
           console.log(participant);
           p.participantsId = participant.id;
-          p.insuranceAmount = sdata.trekUsers[0].insuranceAmount;
+          p.insuranceAmount = participant.insuranceAmount;
+          p.trekFeeForTheUser = participant.trekFeeForTheUser;
         });
 
 
