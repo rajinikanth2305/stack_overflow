@@ -161,7 +161,7 @@ const UCAutnumTreks = ({ slice, autumnData }) => {
                     <div>
                       <p className="m-card-info-text m-0">
                         <span className="list-dot-style-mob"></span>{" "}
-                        {tData?.primary?.duration[0]?.text} Days
+                        {tData?.primary?.duration[0]?.text}
                       </p>
                     </div>
                     <div>
