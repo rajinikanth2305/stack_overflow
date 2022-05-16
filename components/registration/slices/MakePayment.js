@@ -126,11 +126,11 @@ const MakePayment = forwardRef((props, ref) => {
 
     sdata.trekFee = trekFee;
 
-    sdata.trekUsers.map(x => {
-      if (x.trekFeeForTheUser == 0) {
+   /* sdata.trekUsers.map(x => {
+      if (x.trekFeeForTheUser === 0) {
         x.trekFeeForTheUser = trekFee;
       }
-    });
+    });*/
 
     await dispatch(addOrUpdateState(sdata));
 
@@ -174,9 +174,14 @@ const MakePayment = forwardRef((props, ref) => {
        0
      );*/
 
-    const inAmount = usersData[0].insuranceAmount;
+    //const inAmount = usersData[0].insuranceAmount;
 
-    const insuranceAmount = inAmount * usersData.length;
+    let inAmount = usersData.reduce(
+      (a, v) => (a = a + v.insuranceAmount),
+      0
+    );
+
+    const insuranceAmount = inAmount; //inAmount * usersData.length;
     console.log(insuranceAmount);
 
     totalTrekFee = parseFloat(Number(totalTrekFee).toFixed(2));
