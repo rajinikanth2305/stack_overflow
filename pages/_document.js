@@ -38,9 +38,11 @@ class MyDocument extends Document {
            {/* <!-- end Heat Map --> 
              <script async defer src={`//static.cdn.prismic.io/prismic.js?repo=${prismicRepoName}&new=true`} /> 
            */}
-
+           
+        {/*
          <script async defer src={`//static.cdn.prismic.io/prismic.js?repo=${prismicRepoName}&new=true`} /> 
-         
+        */}
+
         </Head>
         <body>
         {/* <!-- Google Tag Manager (noscript) --> */}
