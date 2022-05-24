@@ -730,7 +730,7 @@ const HikeHeader = (auth = false) => {
                 value={selectedTreks}
                 onChange={(e) => setSelectedTreks(e.value)}
                 completeMethod={autoSearchTreks}
-                className="g-search mw-100"
+                className="g-search smw-100"
                 delay={30}
                 placeholder="Find your trek here?"
               />

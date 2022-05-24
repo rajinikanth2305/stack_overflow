@@ -54,6 +54,7 @@ export const customStyles = css.global`
     background-size: cover;
     position: relative;
     background-position: bottom;
+    z-index: -9;
   }
 
   .bg_overlay {
@@ -2812,6 +2813,10 @@ export const customStyles = css.global`
     }
 
     .mw-100 {
+      width: 100%;
+    }
+
+    .smw-100 {
       width: 100%;
     }
 
