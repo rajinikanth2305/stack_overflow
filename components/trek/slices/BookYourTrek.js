@@ -12,6 +12,8 @@ import { route } from "next/dist/next-server/server/router";
 import { Client } from "utils/prismicHelpers";
 import Prismic from "@prismicio/client";
 
+
+import {TrekReviews} from "../slices";
 //const userService = dynamic(() => import('../../../utils/UserService'),{ ssr: false });
 
 const BookYourTrek = ({ slice }) => {
@@ -21,6 +23,8 @@ const BookYourTrek = ({ slice }) => {
   const [bookingDate, setBookingDate] = useState(undefined);
   const [showSelectedLabel, setShowSelectedLabel] = useState(false);
   const [feeDetails, setFeeDetails] = useState();
+
+
 
   const toast = useRef(null);
   const router = useRouter();
@@ -86,6 +90,8 @@ const BookYourTrek = ({ slice }) => {
 
   return (
     <>
+
+      <TrekReviews slice={slice} key={`slice-${1}`} />;
       <div id="goToBookTicket">
         <Toast ref={toast} />
         <div className="container">

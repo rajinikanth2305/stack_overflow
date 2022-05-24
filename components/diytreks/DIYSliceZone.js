@@ -28,8 +28,8 @@ const DIYSliceZone = ({ sliceZone, trekData, dtcData, diyResourceData, alldiyTre
         return <BestPostTreks slice={slice} key={`slice-${index}`} trekData={trekData} />;
       case "community_content_pitch":
         return <CommunityContentPitch slice={slice} key={`slice-${index}`} />;
-      case "diy_treks_guide":
-        return <DIYTreksGuide slice={slice} key={`slice-${index}`} alldiyTreks={alldiyTreks} />;
+     // case "diy_treks_guide":
+       // return <DIYTreksGuide slice={slice} key={`slice-${index}`} alldiyTreks={alldiyTreks} />;
       default:
         return null;
     }
