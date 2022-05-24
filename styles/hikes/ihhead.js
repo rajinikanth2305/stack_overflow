@@ -249,9 +249,18 @@ export const ihheaderStyles = css.global`
       width: 100%;
     }
 
+    .smw-100 {
+      width: 100%;
+    }
+
     .search-box-section {
       width: 100%;
       right: 0;
+    }
+
+    .g-search {
+      right: 0px;
+      text-align: center;
     }
 
     .g-search > input {
