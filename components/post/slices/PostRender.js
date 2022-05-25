@@ -375,10 +375,12 @@ const PostRender = ({
         {items.map(function (data, i) {
           return (
             <div className="border-bottom mb-3 pb-3">
-              <p className="p-text-3-fgc-yellow m-0">{data?.date}</p>
-              <p className="p-text-3 mt-2 mb-1">
-                {data.trekking_world_heading[0].text}
-              </p>
+              <a href={'/#'+data.trekking_world_heading[0].text}>
+                <p className="p-text-3-fgc-yellow m-0">{data?.date}</p>
+                <p className="p-text-3 mt-2 mb-1">
+                  {data.trekking_world_heading[0].text}
+                </p>
+              </a>
             </div>
           );
         })}
@@ -430,12 +432,12 @@ const PostRender = ({
                     </p>
                     <p className="p-text-small">
                       <b>
-                        {tData?.primary?.trek_caption?.length > 25
-                          ? `${tData?.primary?.trek_caption?.substring(
+                        {data?.data?.trek_title[0].text?.length > 25
+                          ? `${data?.data?.trek_title[0].text?.substring(
                             0,
                             25
                           )}...`
-                          : tData?.primary?.trek_caption}
+                          : data?.data?.trek_title[0].text}
                       </b>
                     </p>
                     {/* <div>
