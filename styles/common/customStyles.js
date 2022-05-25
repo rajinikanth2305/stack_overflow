@@ -29,6 +29,7 @@ export const customStyles = css.global`
     background-size: cover;
     position: relative;
     background-position: bottom;
+    z-index: 9;
   }
 
   .banner-image-desktop.c-us-bg {
@@ -3201,6 +3202,9 @@ export const customStyles = css.global`
     //   top: 230px;
     //   padding: 0px;
     // }
+    .pr-5p {
+      padding-right: 1% !important;
+    }
   }
   .p-rating .p-rating-icon {
     color: ##ffc107;
@@ -3293,10 +3297,16 @@ export const customStyles = css.global`
     // .sustainable_img {
     //   height: 100%;
     // }
+    .pr-5p {
+      padding-right: 1% !important;
+    }
   }
   @media (min-width: 1182px) and (max-width: 1400px) {
     .trek_card {
       min-height: 485px;
+    }
+    .pr-5p {
+      padding-right: 1% !important;
     }
 
     .p-btn-btm {

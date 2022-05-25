@@ -6,6 +6,8 @@ import { linkResolver } from "prismic-configuration";
 const Section7 = ({ slice, trekkingprimaryArticleData, trekkingArticleData }) => {
   const heading1 = slice?.primary?.heading1;
 
+  const authorName = trekkingprimaryArticleData[0]?.data?.author_link?.uid.replace(/-/g, " ");
+
   const latestLrekImage =
     trekkingprimaryArticleData &&
     trekkingprimaryArticleData[0]?.data?.body?.find(
@@ -20,6 +22,7 @@ const Section7 = ({ slice, trekkingprimaryArticleData, trekkingArticleData }) =>
   }
 
   const articleLearnMore = trekkingArticleData?.map(function(data, i) {
+    const authorName = data?.data?.author_link?.uid.replace(/-/g, " ");
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
@@ -51,8 +54,8 @@ const Section7 = ({ slice, trekkingprimaryArticleData, trekkingArticleData }) =>
                 <p className="p-text-2">
                   <b>{RichText.asText(data?.data?.title)}</b>
                 </p>
-                <p className="p-text-small m-0">
-                  <em>By {data?.data?.author_link?.uid}</em>
+                <p className="p-text-small m-0 text-capitalize">
+                  <em>By {authorName}</em>
                 </p>
                 <p className="p-text-small m-0 pt-0">
                   <em>{data?.data?.date}</em>
@@ -116,9 +119,7 @@ const Section7 = ({ slice, trekkingprimaryArticleData, trekkingArticleData }) =>
                             <p className="name_editor m-0 text-capitalize">
                               <i>
                                 By&nbsp;
-                                {trekkingprimaryArticleData &&
-                                  trekkingprimaryArticleData[0]?.data
-                                    ?.author_link?.uid}
+                                {trekkingprimaryArticleData && authorName}
                               </i>
                             </p>
                             <p className="name_editor">

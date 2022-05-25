@@ -8,6 +8,7 @@ import { linkResolver } from "prismic-configuration";
 const Section6 = ({ slice, highAlititudeData }) => {
   const heading1 = slice?.primary?.heading1;
   const highAlititudeList = highAlititudeData?.map(function(data, index) {
+    const authorName = data?.data?.author_link?.uid.replace(/-/g, " ");
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
@@ -42,9 +43,9 @@ const Section6 = ({ slice, highAlititudeData }) => {
               <p className="p-text-2">
                 <b>{RichText.asText(data?.data?.title)}</b>
               </p>
-              <p className="p-text-small m-0">
-                <em>By {data?.data?.author_link?.uid}</em>
-              </p>
+              <p className="p-text-small m-0 text-capitalize">
+                  <em>By {authorName}</em>
+                </p>
               <p className="p-text-small m-0 pt-0">
                 <em>{data?.data?.date}</em>
               </p>
