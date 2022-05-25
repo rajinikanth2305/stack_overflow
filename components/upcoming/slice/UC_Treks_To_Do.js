@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import {AllIndiaHikes} from "../slice";
 
 const UCTreksToDo = ({ slice, treksToDoData }) => {
   const ucTreksToDoTitle = slice?.primary?.uc_treks_to_do_title;
@@ -168,6 +169,14 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
           {upcomingTrekPageStyle}
         </style>
       </div>
+   
+   
+       <div>
+       <AllIndiaHikes
+            slice={slice}
+            key={`slice-${1}`}
+          />
+       </div>
     </>
   );
 };

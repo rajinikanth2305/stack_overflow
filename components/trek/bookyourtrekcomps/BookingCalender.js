@@ -33,7 +33,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
   const [batchOpenedDataValueSet, setBatchOpenedDataValueSet] = useState(true);
   const [trekId, setTrekId] = useState();
   const [render, setRender] = useState(false);
-
+  const [noDates, setNoDates] = useState(false);
 
   React.useEffect(() => {
 
@@ -73,6 +73,9 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
             setViewDate(viewDt);
             setRender(true);
           }
+        }
+        else {
+          setRender(true);
         }
       });
   }, []);
@@ -137,6 +140,10 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
             //console.log(withoutDuplicates);
             setBatchData(withoutDuplicates);
             prepareDateDisableList(date, withoutDuplicates);
+            setNoDates(false);
+          }
+          else {
+           // setNoDates(true);
           }
         }
       });
@@ -296,9 +303,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     }
     else {
       return (
-
         <>
-
           <p style={{ textAlign: "right" }}>
             <span>{date.day}</span>
           </p>
@@ -364,7 +369,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
   };
 
   const onYearChange = (event, e) => {
-    // console.log(e);
+     console.log(e);
     getBatchesByTrekId(trekId, 0, e).then(bResult => {
       // console.log(bResult);
       if (bResult?.length > 0) {
@@ -378,7 +383,18 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
         viewDt = date;
         setViewDate(viewDt);
         setRender(true);
+        setNoDates(false);
         // event.onChange(event.originalEvent, event.value);
+      }
+      else {
+        const dt="01-01-" + e;
+        const date = new Date(dt);
+        const additionOfMonths = 1;
+        date.setMonth(date.getMonth());
+        viewDt = date;
+        setViewDate(viewDt);
+        setRender(true);
+        setNoDates(true);
       }
     })
       .catch(res => {
@@ -435,6 +451,10 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
         <div>
           <div>
             <div>
+            {noDates === true 
+              && <h3 className="p-text-1 my-5">We will open up dates shortly. 
+              <a href="/upcoming-treks">Click here</a> to see other treks that might have dates.
+              </h3>}
               {render && (
                 <div>
                   <Calendar
@@ -453,8 +473,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
                   />
                 </div>
               )}
-              {render === false && <h3 className="p-text-1 my-5">We will open up dates shortly. <a href="/upcoming-treks">Click here</a> to see other treks that might have dates.
-              </h3>}
+             
             </div>
           </div>
         </div>

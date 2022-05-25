@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { upcomingTrekPageStyle } from "styles";
 import Image from "next/image";
@@ -8,151 +8,46 @@ import { Dropdown } from "primereact/dropdown";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Link from "next/link";
+import Prismic from "@prismicio/client";
+import { Client } from "utils/prismicHelpers";
 
 const AllIndiaHikes = ({
   slice,
-  easyMordatesTreks,
-  moderateTreks,
-  difficultTreks,
-  familyTreks,
-  diyTreks,
-  allTreksData
+
 }) => {
-  const heading1 = slice?.primary?.heading1;
-  const heading2 = slice?.primary?.heading2;
 
-  const easyTrekImage = slice?.primary?.easy_trek_image?.url;
-  const easyTrekTitleMobile = slice?.primary?.easy_trek_title_mobile;
-  const easyTrekDescMobile = slice?.primary?.easy_trek_desc_mobile;
+  const heading1 = "All Indiahikes Treks";//slice?.primary?.heading1;
+  const heading2 = "This is a list of all the treks that Indiahikes organises. Click on the trek to read more about it."; //slice?.primary?.heading2;
 
-  const moderateTrekimage = slice?.primary?.moderate_trek_image?.url;
-  const moderateTrekTitleMobile = slice?.primary?.moderate_trek_title_mobile;
-  const moderateTrekDescMobile = slice?.primary?.moderate_trek_desc_mobile;
+  const [treksData, setTreksData] = useState([]);
+  const [render, setRender] = useState(false);
 
-  const difficultTrekImage = slice?.primary?.difficult_trek_image?.url;
-  const difficultTrekTitleMobile = slice?.primary?.difficult_trek_title_mobile;
-  const difficultTrekDescMobile = slice?.primary?.difficult_trek_desc_mobile;
+  useEffect(() => {
+   
+    getAllTrekData();
 
-  allTreksData?.results?.sort(function(a, b){
-    if(a?.uid < b?.uid) { return -1; }
-    if(a?.uid > b?.uid) { return 1; }
-    return 0;
-  });
+   
+  }, []);
 
-  const easyMordatesTreksList = easyMordatesTreks?.results?.map(function(
-    data1,
-    i1
-  ) {
-    let url;
-    const slugUrl = data1?.uid;
-    if (slugUrl) {
-      url = `/trek/${slugUrl}`;
-    }
-    return (
-      <div className="d-flex align-items-center" key={i1}>
-        <div>
-          <p className="badge-green"></p>
-        </div>
-        <div className="mx-3">
-          <Link href={url ? url : "#"}>
-            <p className="p-display-3 p-display-3-md cursor-pointer">
-              {data1?.data?.trek_title[0]?.text}
-            </p>
-          </Link>
-        </div>
-      </div>
+
+   const getAllTrekData= async ()=> {
+    const client = Client();
+    const allTrekData = await client.query([
+      Prismic.Predicates.at("document.type", "trek")], {
+        pageSize: 250
+      }
     );
-  });
 
-  const moderateTreksList = moderateTreks?.results?.map(function(data2, i2) {
-    let url;
-    const slugUrl = data2?.uid;
-    if (slugUrl) {
-      url = `/trek/${slugUrl}`;
-    }
-    return (
-      <div className="d-flex align-items-center" key={i2}>
-        <div>
-          <p className="badge-yellow"></p>
-        </div>
-        <Link href={url ? url : "#"}>
-          <div className="mx-3">
-            <p className="p-display-3 p-display-3-md cursor-pointer">
-              {data2?.data?.trek_title[0]?.text}
-            </p>
-          </div>
-        </Link>
-      </div>
-    );
-  });
+    allTrekData?.results?.sort(function(a, b){
+      if(a?.uid < b?.uid) { return -1; }
+      if(a?.uid > b?.uid) { return 1; }
+      return 0;
+    });
+    setTreksData(allTrekData);
+    setRender(true);
+   }
 
-  const difficultTreksList = difficultTreks?.results?.map(function(data3, i3) {
-    let url;
-    const slugUrl = data3?.uid;
-    if (slugUrl) {
-      url = `/trek/${slugUrl}`;
-    }
-    return (
-      <div className="d-flex align-items-center" key={i3}>
-        <div>
-          <p className="badge-red"></p>
-        </div>
-        <div className="mx-3">
-          <Link href={url ? url : "#"}>
-            <p className="p-display-3 p-display-3-md cursor-pointer">
-              {data3?.data?.trek_title[0]?.text}
-            </p>
-          </Link>
-        </div>
-      </div>
-    );
-  });
-
-  const familyTreksList = familyTreks?.results?.map(function(data4, i4) {
-    let url;
-    const slugUrl = data4?.uid;
-    if (slugUrl) {
-      url = `/trek/${slugUrl}`;
-    }
-    return (
-      <div className="d-flex align-items-center" key={i4}>
-        <div>
-          <p className="badge-blue"></p>
-        </div>
-        <div className="mx-3">
-          <Link href={url ? url : "#"}>
-            <p className="p-display-3 p-display-3-md cursor-pointer">
-              {data4?.data?.trek_title[0]?.text}
-            </p>
-          </Link>
-        </div>
-      </div>
-    );
-  });
-
-  const diyTreksList = diyTreks?.results?.map(function(data5, i5) {
-    let url;
-    const slugUrl = data5?.uid;
-    if (slugUrl) {
-      url = `/trek/${slugUrl}`;
-    }
-    return (
-      <div className="d-flex align-items-center" key={i5}>
-        <div>
-          <p className="badge-blue"></p>
-        </div>
-        <div className="mx-3">
-          <Link href={url ? url : "#"}>
-            <p className="p-display-3 p-display-3-md cursor-pointer">
-              {data5?.data?.trek_title[0]?.text}
-            </p>
-          </Link>
-        </div>
-      </div>
-    );
-  });
-
-  const treks = allTreksData?.results?.map(function(data, i) {
+  const treks = treksData?.results?.map(function(data, i) {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
@@ -203,10 +98,10 @@ const AllIndiaHikes = ({
         <div className="container">
           <div className="d-flex flex-wrap align-items-center border-bottom-4 mb-3">
             <div className="col-lg-6 col-md-12">
-              <h2 className="title-display-2">{RichText.asText(heading1)}</h2>
+              <h2 className="title-display-2">{heading1}</h2>
             </div>
             <div className="col-lg-6 col-md-12">
-              <p className="p-display-1 m-d-1">{RichText.asText(heading2)}</p>
+              <p className="p-display-1 m-d-1">{heading2}</p>
             </div>
           </div>
           <div>
@@ -247,7 +142,9 @@ const AllIndiaHikes = ({
             </div>
           </div>
           <div className="container my-3">
+            { render && (
             <div className="row">{treks}</div>
+             ) }        
           </div>
           {/* <div className="m-d-none">
             <div className="row">

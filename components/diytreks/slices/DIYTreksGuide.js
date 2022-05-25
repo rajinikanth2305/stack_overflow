@@ -1,24 +1,43 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { diyStyles } from "styles";
 import Link from "next/link";
+import Prismic from "@prismicio/client";
+import { Client } from "utils/prismicHelpers";
 
-const DIYTreksGuide = ({ slice, alldiyTreks }) => {
-  const heading1 = slice?.primary?.heading1;
-  const heading2 = slice?.primary?.heading2;
-  const treksArray = slice?.items;
 
-  alldiyTreks?.results?.sort(function(a, b) {
-    if (a?.uid < b?.uid) {
-      return -1;
-    }
-    if (a?.uid > b?.uid) {
-      return 1;
-    }
-    return 0;
-  });
+const DIYTreksGuide = ({ slice }) => {
+  const heading1 = "Complete list of Documented Treks";//slice?.primary?.heading1;
+  const heading2 = "Scroll through our database of 200+ documented treks from all over the country!"; //slice?.primary?.heading2;
+  //const treksArray = slice?.items;
 
-  const treks = alldiyTreks?.results?.map(function(data, i) {
+  const [documentTreksData, setDocumentTreksData] = useState([]);
+  const [render, setRender] = useState(false);
+
+  
+  useEffect(() => {
+    getDocumentTrekData();
+  }, []);
+
+
+   const getDocumentTrekData= async ()=> {
+    const client = Client();
+    const allTrekData = await client.query([
+      Prismic.Predicates.at("document.type", "document_trek_type")], {
+        pageSize: 250
+      }
+    );
+
+    allTrekData?.results?.sort(function(a, b){
+      if(a?.uid < b?.uid) { return -1; }
+      if(a?.uid > b?.uid) { return 1; }
+      return 0;
+    });
+    setDocumentTreksData(allTrekData);
+    setRender(true);
+   }
+
+  const treks = documentTreksData?.results?.map(function(data, i) {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
@@ -60,12 +79,12 @@ const DIYTreksGuide = ({ slice, alldiyTreks }) => {
             <div className="d-flex align-items-center mt-4 mb-4 flex-wrap">
               <div className="col-lg-6 col-md-12">
                 <h2 className="title-h2 border-0 text-white m-0">
-                  <b>{RichText.asText(heading1)}</b>
+                  <b>{heading1}</b>
                 </h2>
               </div>
               <div className="col-lg-6 col-md-12">
                 <p className="p-text-2 text-white m-0">
-                  {RichText.asText(heading2)}
+                  {heading2}
                 </p>
               </div>
             </div>
@@ -169,9 +188,12 @@ const DIYTreksGuide = ({ slice, alldiyTreks }) => {
             </div>
           </div>
         </div>
+        { render && (
         <div className="container my-3">
+      
           <div className="row">{treks}</div>
         </div>
+        )}
         <style jsx global>
           {diyStyles}
         </style>
