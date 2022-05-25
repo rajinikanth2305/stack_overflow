@@ -89,11 +89,12 @@ const LatestTrekkingWorld = ({ slice }) => {
     const videoUrl =
       "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
     const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
+
     return (
       <div key={`latesttrekking` + i} className="py-3 mx-2 mm-0 mmp-1">
         <div className="row d-flex">
           <div className="col-lg-6 col-md-12 order-1">
-            <div className="m-card-pd">
+            <div className="m-card-pd" id={data?.trekking_world_heading[0]?.text}>
               <h3 className="title-diplay-3-ltw mpt-3-ltw">
                 {data?.trekking_world_heading[0]?.text}
               </h3>
