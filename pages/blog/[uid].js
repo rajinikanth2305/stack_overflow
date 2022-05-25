@@ -200,7 +200,7 @@ export async function getStaticProps({
       relatedArticles,
       related_authors
     },
-    revalidate: 60,
+   // revalidate: 60,
   
   };
 }

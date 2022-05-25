@@ -137,7 +137,7 @@ export async function getStaticProps({
       weekendTrekData,
       latestUpdateAarticleData
     },
-    revalidate: 60,
+   // revalidate: 60,
   };
 }
 

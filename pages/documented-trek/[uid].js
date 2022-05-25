@@ -187,7 +187,7 @@ if(author_lnk_id !== undefined) {
       relatedArticles,
       related_authors
     },
-    revalidate: 60,
+   // revalidate: 60,
   }
 }
 

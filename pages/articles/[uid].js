@@ -408,7 +408,7 @@ export async function getStaticProps({
       ihAlitudeResaerch,
       ihLaPrimaryArticlePrimaryArticleData,
     },
-    revalidate: 60,
+    //revalidate: 60,
   };
 }
 
