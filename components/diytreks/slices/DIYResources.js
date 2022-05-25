@@ -11,7 +11,7 @@ const DIYResources = ({ slice, diyResourceData }) => {
   console.log(diyResourceData);
 
   const diyResList = diyResourceData?.map(function(data, i) {
-    console.log(data);
+    const authorName = data?.data?.author_link?.uid.replace(/-/g, " ");
     let url;
     const slugUrl = data?.uid;
     if (slugUrl && data?.type === "post") {
@@ -46,8 +46,8 @@ const DIYResources = ({ slice, diyResourceData }) => {
                 <b>{RichText.asText(data?.data?.title)}</b>
               </p>
               <div>
-                <p className="p-text-small m-0">
-                  <em>By {data?.data?.author_link?.uid}</em>
+                <p className="p-text-small m-0 text-capitalize">
+                  <em>By {authorName}</em>
                 </p>
                 <p className="p-text-small m-0 pt-0">
                   <em>{data?.data?.date}</em>

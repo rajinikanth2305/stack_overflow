@@ -16,6 +16,8 @@ const Section1 = ({ data, section1DataList, primaryArticleData }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const authorName = primaryArticleData[0]?.data?.author_link?.uid.replace(/-/g, " ");
+
   const result = primaryVideoUrl?.split(
     /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
   );
@@ -138,7 +140,7 @@ const Section1 = ({ data, section1DataList, primaryArticleData }) => {
                             <i>
                               By&nbsp;
                               {/* {RichText.asText(nameEditor)} */}
-                              {primaryArticleData[0]?.data?.author_link?.uid}
+                              {authorName}
                             </i>
                           </p>
                           <p className="name_editor">

@@ -19,6 +19,9 @@ const LatestUpdatesTrekkings = ({
   const primaryVideoUrl = slice?.primary?.primary_video_url?.url;
   const [vTitle, setVtitle] = useState();
 
+  const authorName = latestUpdateAarticlePrimaryArticleData[0]?.data
+    ?.author_link?.uid.replace(/-/g, " ");
+
   const result = primaryVideoUrl?.split(
     /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
   );
@@ -31,7 +34,7 @@ const LatestUpdatesTrekkings = ({
     "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
   const youtube_imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
 
-  getYoutubeTitle(cleanVideoId, function(err, title) {
+  getYoutubeTitle(cleanVideoId, function (err, title) {
     setVtitle(title);
   });
 
@@ -54,7 +57,7 @@ const LatestUpdatesTrekkings = ({
     primary_url = linkResolver(slice?.primary?.primary_link_url);
   }
 
-  const latestTrekWorld = latestUpdateAarticleData?.map(function(data, index) {
+  const latestTrekWorld = latestUpdateAarticleData?.map(function (data, index) {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
@@ -144,8 +147,7 @@ const LatestUpdatesTrekkings = ({
                           By&nbsp;
                           {/* {RichText.asText(nameEditor)} */}
                           {
-                            latestUpdateAarticlePrimaryArticleData[0]?.data
-                              ?.author_link?.uid
+                            authorName
                           }
                         </i>
                       </p>

@@ -375,7 +375,7 @@ const PostRender = ({
         {items.map(function (data, i) {
           return (
             <div className="border-bottom mb-3 pb-3">
-              <a href={'/#'+data.trekking_world_heading[0].text}>
+              <a href={'/#' + data.trekking_world_heading[0].text}>
                 <p className="p-text-3-fgc-yellow m-0">{data?.date}</p>
                 <p className="p-text-3 mt-2 mb-1">
                   {data.trekking_world_heading[0].text}
@@ -978,7 +978,15 @@ const PostRender = ({
             <div className="col-lg-3 col-md-12 pr-5p pt-4">
               <div className="position-sticky ps-custom border-0">
                 <p className="p-text-3-fgc border-bottom-0 m-0">
-                  <span>{RichText.asText(data?.title)}</span>
+                  {/* <span>{RichText.asText(data?.title)}</span> */}
+                  <spa>
+                    {data?.title[0].text?.length > 75
+                      ? `${data?.title[0].text?.substring(
+                        0,
+                        70
+                      )}...`
+                      : data?.title[0].text}
+                  </spa>
                 </p>
                 <p className="border-bottom-custom-1 pb-2 mb-2"></p>
                 <p className="p-text-small mb-2">Share this story</p>

@@ -8,7 +8,8 @@ const SustainableGtTreking = ({ slice, articleData }) => {
   const heading1 = slice?.primary?.heading1;
   const heading2 = slice?.primary?.heading2;
 
-  const articleLearnMore = articleData?.map(function(data, i) {
+  const articleLearnMore = articleData?.map(function (data, i) {
+    const authorName = data?.data?.author_link?.uid.replace(/-/g, " ");
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
@@ -40,8 +41,8 @@ const SustainableGtTreking = ({ slice, articleData }) => {
                 <b>{RichText.asText(data?.data?.title)}</b>
               </p>
               <div>
-                <p className="p-text-small m-0">
-                  <em>By {data?.data?.author_link?.uid}</em>
+                <p className="p-text-small m-0 text-capitalize">
+                  <em>By {authorName}</em>
                 </p>
                 <p className="p-text-small m-0 pt-0">
                   <em>{data?.data?.date}</em>

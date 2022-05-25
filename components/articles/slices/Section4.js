@@ -5,6 +5,7 @@ import { linkResolver } from "prismic-configuration";
 
 const Section4 = ({ slice, laPrimaryArticlePrimaryArticleData, latestArticleData }) => {
   const heading1 = slice?.primary?.heading1;
+  const authorName = laPrimaryArticlePrimaryArticleData[0]?.data?.author_link?.uid.replace(/-/g, " ");
 
   const latestLrekImage =
     laPrimaryArticlePrimaryArticleData &&
@@ -19,6 +20,7 @@ const Section4 = ({ slice, laPrimaryArticlePrimaryArticleData, latestArticleData
   }
 
   const articleLearnMore = latestArticleData?.map(function(data, i) {
+    const authorName = data?.data?.author_link?.uid.replace(/-/g, " ");
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
@@ -50,8 +52,8 @@ const Section4 = ({ slice, laPrimaryArticlePrimaryArticleData, latestArticleData
                 <p className="p-text-2">
                   <b>{RichText.asText(data?.data?.title)}</b>
                 </p>
-                <p className="p-text-small m-0">
-                  <em>By {data?.data?.author_link?.uid}</em>
+                <p className="p-text-small m-0 text-capitalize">
+                  <em>By {authorName}</em>
                 </p>
                 <p className="p-text-small m-0 pt-0">
                   <em>{data?.data?.date}</em>
@@ -116,9 +118,7 @@ const Section4 = ({ slice, laPrimaryArticlePrimaryArticleData, latestArticleData
                             <p className="name_editor m-0 text-capitalize">
                               <i>
                                 By&nbsp;
-                                {laPrimaryArticlePrimaryArticleData &&
-                                  laPrimaryArticlePrimaryArticleData[0]?.data?.author_link
-                                    ?.uid}
+                                {laPrimaryArticlePrimaryArticleData && authorName}
                               </i>
                             </p>
                             <p className="name_editor">
