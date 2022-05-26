@@ -102,6 +102,15 @@ export const ihheaderStyles = css.global`
     z-index: 999;
   }
 
+  .p-s {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: block;
+    transition: top 0.3s;
+    background: #ffffff;
+  }
+
   a {
     color: #000;
     text-decoration: none;
