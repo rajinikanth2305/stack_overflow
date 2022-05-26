@@ -119,6 +119,19 @@ const HikeHeader = (auth = false) => {
     fetchData(event.query.toLowerCase());
   };
 
+  useEffect(() => {
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+      var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        document.getElementById("haha").style.top = "0";
+      } else {
+        document.getElementById("haha").style.top = "-60px";
+      }
+      prevScrollpos = currentScrollPos;
+    }
+  }, []);
+
   const resultListing =
     searchResults &&
     searchResults?.map(function (data, i) {
@@ -186,7 +199,7 @@ const HikeHeader = (auth = false) => {
 
   return (
     <>
-      <div className="border-bottom-custom-header position-sticky">
+      <div className="border-bottom-custom-header p-s" id="haha">
         <Navbar light expand="lg" className="container">
           <NavbarBrand href="/">
             <img
