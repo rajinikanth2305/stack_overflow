@@ -119,18 +119,20 @@ const HikeHeader = (auth = false) => {
     fetchData(event.query.toLowerCase());
   };
 
-  useEffect(() => {
-    var prevScrollpos = window.pageYOffset;
-    window.onscroll = function () {
-      var currentScrollPos = window.pageYOffset;
-      if (prevScrollpos > currentScrollPos) {
-        document.getElementById("haha").style.top = "0";
-      } else {
-        document.getElementById("haha").style.top = "-60px";
-      }
-      prevScrollpos = currentScrollPos;
-    }
-  }, []);
+  // useEffect(() => {
+  //   var prevScrollpos = window.pageYOffset;
+  //   window.onscroll = function () {
+  //     var currentScrollPos = window.pageYOffset;
+  //     if (prevScrollpos > currentScrollPos) {
+  //       document.getElementById("haha").style.top = "0";
+  //       showSearch === true ? document.getElementById("ac-search").style.top = "60px" : ''; 
+  //     } else {
+  //       document.getElementById("haha").style.top = "-60px";
+  //       showSearch === true ? document.getElementById("ac-search").style.top = "-2px" : ''
+  //     }
+  //     prevScrollpos = currentScrollPos;
+  //   }
+  // }, []);
 
   const resultListing =
     searchResults &&
@@ -199,7 +201,7 @@ const HikeHeader = (auth = false) => {
 
   return (
     <>
-      <div className="border-bottom-custom-header p-s" id="haha">
+      <div className="border-bottom-custom-header position-sticky" id="ps">
         <Navbar light expand="lg" className="container">
           <NavbarBrand href="/">
             <img
