@@ -68,73 +68,75 @@ const UCWinterTreks = ({ slice, winterData }) => {
       <div key={i}>
         <div className="mx-4 m-mx-0 hvr-grow cursor-pointer">
           <Link href={url ? url : "#"}>
-            <div className="card_sec">
-              <div className="card trek_card">
-                <div className="uc_open_for_small_group_images">
-                  {tData?.primary?.trek_banner_image?.url && (
-                    <Image
-                      src={tData?.primary?.trek_banner_image?.url}
-                      layout="fill"
-                      objectFit="cover"
-                      objectPosition="50% 50%"
-                      alt="imgs"
-                    />
-                  )}
-                </div>
-                <div className="px-3 py-2">
-                  <div className="d-flex align-items-center card-info-text">
-                    <div>
-                      <p>{tData?.primary?.duration[0]?.text}</p>
-                    </div>
-                    <div>
-                      <p className="list-dot-style px-1">
-                        <span>.</span>
-                      </p>
-                    </div>
-                    <div>
-                      <p>{tData?.primary?.difficulty[0]?.text}</p>
-                    </div>
+            <a>
+              <div className="card_sec">
+                <div className="card trek_card">
+                  <div className="uc_open_for_small_group_images">
+                    {tData?.primary?.trek_banner_image?.url && (
+                      <Image
+                        src={tData?.primary?.trek_banner_image?.url}
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="50% 50%"
+                        alt="imgs"
+                      />
+                    )}
                   </div>
-
-                  <div>
-                    <p className="title-diplay-3 text-uppercase">
-                      <b>
-                        {tData?.primary?.trek_caption?.length > 25
-                          ? `${tData?.primary?.trek_caption.substring(
-                            0,
-                            25
-                          )}...`
-                          : tData?.primary?.trek_caption}
-                      </b>
-                    </p>
-                    <div className="p-display-2 trek_card_desc_min_height">
-                      {/* {RichText.asText(tData?.primary?.sub_heading)} */}
-                      {RichText.asText(tData?.primary?.sub_heading)?.length > 75
-                        ? `${RichText.asText(
-                          tData?.primary?.sub_heading
-                        ).substring(0, 75)}...`
-                        : RichText.asText(tData?.primary?.sub_heading)}
-                    </div>
-                    <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
-                      <div className="flex-grow-1">
-                        {getFamiltTrek !== undefined ? (
-                          <p className="m-0 fam_trek">
-                            <span>*</span> Family trek
-                          </p>
-                        ) : (
-                          ""
-                        )}
+                  <div className="px-3 py-2">
+                    <div className="d-flex align-items-center card-info-text">
+                      <div>
+                        <p>{tData?.primary?.duration[0]?.text}</p>
                       </div>
                       <div>
-                        <button className="btn btn-ih-green">
-                          View Details
-                        </button>
+                        <p className="list-dot-style px-1">
+                          <span>.</span>
+                        </p>
+                      </div>
+                      <div>
+                        <p>{tData?.primary?.difficulty[0]?.text}</p>
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="title-diplay-3 text-uppercase">
+                        <b>
+                          {tData?.primary?.trek_caption?.length > 25
+                            ? `${tData?.primary?.trek_caption.substring(
+                              0,
+                              25
+                            )}...`
+                            : tData?.primary?.trek_caption}
+                        </b>
+                      </p>
+                      <div className="p-display-2 trek_card_desc_min_height">
+                        {/* {RichText.asText(tData?.primary?.sub_heading)} */}
+                        {RichText.asText(tData?.primary?.sub_heading)?.length > 75
+                          ? `${RichText.asText(
+                            tData?.primary?.sub_heading
+                          ).substring(0, 75)}...`
+                          : RichText.asText(tData?.primary?.sub_heading)}
+                      </div>
+                      <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
+                        <div className="flex-grow-1">
+                          {getFamiltTrek !== undefined ? (
+                            <p className="m-0 fam_trek">
+                              <span>*</span> Family trek
+                            </p>
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                        <div>
+                          <button className="btn btn-ih-green">
+                            View Details
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
           </Link>
         </div>
       </div>
