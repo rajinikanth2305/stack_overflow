@@ -8,9 +8,6 @@ module.exports = {
     return config;
     
   },
-  images: {
-    domains: ['images.prismic.io','img.youtube.com']
-  },
   prismic: {
     preview: true
   },
