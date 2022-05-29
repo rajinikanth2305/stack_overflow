@@ -52,7 +52,8 @@
     "dev": "next dev",
     "build:staging": "APP_ENV=development next build",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "production": "next build && next start"
   },
   "repository": {
     "type": "git",
