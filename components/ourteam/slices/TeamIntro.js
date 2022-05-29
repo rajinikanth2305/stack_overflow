@@ -32,6 +32,7 @@ const TeamIntro = ({ slice }) => {
                   setMemnerInfo(data);
                   setShow(true);
                 }}
+                unoptimized
               />
             ) : (
               <img src="./ip.png" className="founder_image" />
@@ -95,6 +96,7 @@ const TeamIntro = ({ slice }) => {
                   layout="fill"
                   objectFit="contain"
                   objectPosition="top"
+                  unoptimized
                 />
               </div>
             </div>

@@ -111,6 +111,7 @@ const FtTrekStories = ({ slice, latestUpdateAarticleData }) => {
                     objectFit="cover"
                     objectPosition="center"
                     onClick={handleShow}
+                    unoptimized
                   />
                 </div>
                 {vTitle && (

@@ -54,6 +54,7 @@ const WhatSoDifferent = ({ slice }) => {
                         objectFit="cover"
                         objectPosition="center"
                         onClick={handleShow}
+                        unoptimized
                       />
                     )}
                   </div>
@@ -85,6 +86,7 @@ const WhatSoDifferent = ({ slice }) => {
                       objectFit="cover"
                       objectPosition="center"
                       onClick={handleShow}
+                      unoptimized
                     />
                   </div>
                 </div>

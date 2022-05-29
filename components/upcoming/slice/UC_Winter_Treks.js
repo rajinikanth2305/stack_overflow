@@ -79,6 +79,7 @@ const UCWinterTreks = ({ slice, winterData }) => {
                         objectFit="cover"
                         objectPosition="50% 50%"
                         alt="imgs"
+                        unoptimized
                       />
                     )}
                   </div>
@@ -164,6 +165,7 @@ const UCWinterTreks = ({ slice, winterData }) => {
                     objectFit="cover"
                     objectPosition="50% 50%"
                     alt="imgs"
+                    unoptimized
                   />
                 )}
               </div>

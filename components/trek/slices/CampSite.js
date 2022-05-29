@@ -66,6 +66,7 @@ const CampSite = ({ slice }) => {
                   setImgUrl(data?.campsites_images?.url);
                   setShow(true);
                 }}
+                unoptimized
               />
             ) : (
               <img
@@ -117,6 +118,7 @@ const CampSite = ({ slice }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>

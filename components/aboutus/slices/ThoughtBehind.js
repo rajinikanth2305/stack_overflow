@@ -52,6 +52,7 @@ const ThoughtBehind = ({ slice }) => {
                   objectFit="cover"
                   objectPosition="left"
                   onClick={handleShow}
+                  unoptimized
                 />
               </div>
             </div>

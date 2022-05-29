@@ -60,6 +60,7 @@ const FeaturedTreks = ({ slice }) => {
               height="70px"
               width="170px"
               alt="imgs"
+              unoptimized
               // objectFit="cover"
               // objectPosition="right top"
             />

@@ -632,6 +632,7 @@ const BestTimeToDo = ({ data }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>
@@ -647,6 +648,7 @@ const BestTimeToDo = ({ data }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>
@@ -662,6 +664,7 @@ const BestTimeToDo = ({ data }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>
@@ -677,6 +680,7 @@ const BestTimeToDo = ({ data }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>

@@ -104,6 +104,7 @@ const TrekkersVideoCommon = () => {
                     setTrekVideoUrl(videoUrl);
                     setShow(true);
                   }}
+                  unoptimized
                 />
               </div>
               {/* <div className="px-3 py-2">

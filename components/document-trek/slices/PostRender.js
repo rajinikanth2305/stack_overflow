@@ -416,6 +416,7 @@ const PostRender = ({
                           layout="fill"
                           objectFit="cover"
                           objectPosition="50% 50%"
+                          unoptimized
                         />
                       ) : (
                         <img src="../ip.png" />
@@ -548,6 +549,7 @@ const PostRender = ({
                     setTrekVideoUrl(videoUrl);
                     setShow(true);
                   }}
+                  unoptimized
                 />
               </div>
             )}
@@ -601,6 +603,7 @@ const PostRender = ({
                       setTrekVideoUrl(videoUrl);
                       setShow(true);
                     }}
+                    unoptimized
                   />
                 )}
               </div>
@@ -990,6 +993,7 @@ const PostRender = ({
               layout="fill"
               objectFit="cover"
               objectPosition="bottom"
+              unoptimized
             />
           }
         </div>

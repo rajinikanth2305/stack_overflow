@@ -29,6 +29,7 @@ const FamilyTrek = ({ slice }) => {
                     layout="fill"
                     objectFit="cover"
                     objectPosition="bottom left"
+                    unoptimized
                   />
                 )}
               </div>

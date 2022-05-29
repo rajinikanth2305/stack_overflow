@@ -137,6 +137,7 @@ const TrekVideosComponent = ({ slice }) => {
                       setTrekVideoUrl(videoUrl);
                       setShow(true);
                     }}
+                    unoptimized
                   />
                 )}
               </div>
@@ -188,6 +189,7 @@ const TrekVideosComponent = ({ slice }) => {
                           objectFit="cover"
                           objectPosition="center"
                           onClick={handlePrimary}
+                          unoptimized
                         />
                       )}
                     </div>
@@ -218,6 +220,7 @@ const TrekVideosComponent = ({ slice }) => {
                           objectFit="cover"
                           objectPosition="center"
                           onClick={handleSecondary}
+                          unoptimized
                         />
                       )}
                     </div>

@@ -40,6 +40,7 @@ const DefiningStandards = ({ slice }) => {
               layout="fill"
               objectFit="cover"
               objectPosition="bottom"
+              unoptimized
             />
           )}
         </div>

@@ -62,6 +62,7 @@ const TrekOverView = ({ slice, data }) => {
                 layout="fill"
                 objectFit="contain"
                 objectPosition="left left"
+                unoptimized
               />
             )}
           </div>

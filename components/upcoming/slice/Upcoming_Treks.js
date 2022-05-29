@@ -372,6 +372,7 @@ const UpComingTreks = ({ slice }) => {
                                     objectFit="cover"
                                     objectPosition="50% 50%"
                                     alt="imgs"
+                                    unoptimized
                                   />
                                 )}
                               </div>
@@ -509,6 +510,7 @@ const UpComingTreks = ({ slice }) => {
                             objectFit="cover"
                             objectPosition="50% 50%"
                             alt="imgs"
+                            unoptimized
                           />}
                           <div className="image_overlay_text_area_layout4">
                             <div className="p-absolute">

@@ -85,6 +85,7 @@ const Section2 = ({ slice }) => {
                     setTrekVideoUrl(videoUrl);
                     setShow(true);
                   }}
+                  unoptimized
                 />
               </div>
             </div>

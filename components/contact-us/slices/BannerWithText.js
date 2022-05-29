@@ -31,6 +31,7 @@ const BannerWithText = ({ slice }) => {
             layout="fill"
             objectFit="cover"
             objectPosition="bottom"
+            unoptimized
           />
         </div>
         <style jsx global>

@@ -153,6 +153,7 @@ const MyTreks = forwardRef((props, ref) => {
                     setTrekVideoUrl(videoUrl);
                     setShow(true);
                   }}
+                  unoptimized
                 />
               )}
             </div>

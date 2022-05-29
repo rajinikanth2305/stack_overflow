@@ -56,6 +56,7 @@ const GtOverview = ({ slice }) => {
                     objectFit="cover"
                     objectPosition="bottom"
                     onClick={handleShow}
+                    unoptimized
                   />
                 </div>
               </div>

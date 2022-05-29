@@ -38,6 +38,7 @@ const DIYResources = ({ slice, diyResourceData }) => {
                   layout="fill"
                   objectFit="cover"
                   objectPosition="top"
+                  unoptimized
                 />
               )}
             </div>

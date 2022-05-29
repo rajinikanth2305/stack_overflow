@@ -88,6 +88,7 @@ const FaqFamily = ({ slice }) => {
                         setTrekVideoUrl(videoUrl);
                         setShow(true);
                       }}
+                      unoptimized
                     />
                   </div>
                 </div>

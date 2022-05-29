@@ -30,6 +30,7 @@ const TeamIntro = ({ slice }) => {
               layout="fill"
               objectFit="cover"
               objectPosition="top"
+              unoptimized
             />
           </div>
           <p className="p-text-2-franklin text-center mb-0 pt-2">{data.founder_name[0].text}</p>

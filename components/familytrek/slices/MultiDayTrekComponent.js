@@ -68,6 +68,7 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"
+                      unoptimized
                     />
                   )}
                 </div>
@@ -147,6 +148,7 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
                   layout="fill"
                   objectFit="cover"
                   objectPosition="50% 50%"
+                  unoptimized
                 />
               </div>
               <div className="px-3 py-2">

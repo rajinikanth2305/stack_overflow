@@ -76,6 +76,7 @@ const Gallery = ({ slice }) => {
               objectFit="cover"
               objectPosition="50% 50%"
               alt="imgs"
+              unoptimized
             />
           </div>
         </div>

@@ -296,6 +296,7 @@ const TrekkersStories = ({ slice }) => {
                       objectFit="contain"
                       objectPosition="50% 50%"
                       alt="imgs"
+                      unoptimized
                     // width={350}
                     // height={215}
                     />

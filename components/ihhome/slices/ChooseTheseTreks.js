@@ -70,6 +70,7 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
                       objectFit="cover"
                       objectPosition="50% 50%"
                       alt="imgs"
+                      unoptimized
                     />
                   ) : (
                     <img src="./ip.png" className="choose_trek_image" />

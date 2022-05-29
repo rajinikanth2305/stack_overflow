@@ -60,6 +60,7 @@ const CoreValues = ({ slice }) => {
               layout="fill"
               objectFit="cover"
               objectPosition="bottom"
+              unoptimized
             />
           ) : (
             <img src="./ip.png" />
@@ -105,6 +106,7 @@ const CoreValues = ({ slice }) => {
                     layout="fill"
                     objectFit="cover"
                     objectPosition="bottom"
+                    unoptimized
                   />
                 }
               </div>
@@ -119,6 +121,7 @@ const CoreValues = ({ slice }) => {
                         layout="fill"
                         objectFit="cover"
                         objectPosition="bottom"
+                        unoptimized
                       />
                     }
                   </div>
@@ -131,6 +134,7 @@ const CoreValues = ({ slice }) => {
                             layout="fill"
                             objectFit="cover"
                             objectPosition="bottom"
+                            unoptimized
                           />
                         }
                       </div>
@@ -143,6 +147,7 @@ const CoreValues = ({ slice }) => {
                             layout="fill"
                             objectFit="cover"
                             objectPosition="bottom"
+                            unoptimized
                           />
                         }
                       </div>
@@ -157,6 +162,7 @@ const CoreValues = ({ slice }) => {
                         layout="fill"
                         objectFit="cover"
                         objectPosition="bottom"
+                        unoptimized
                       />
                     }
                   </div>
@@ -167,6 +173,7 @@ const CoreValues = ({ slice }) => {
                         layout="fill"
                         objectFit="cover"
                         objectPosition="bottom"
+                        unoptimized
                       />
                     }
                   </div>
@@ -177,6 +184,7 @@ const CoreValues = ({ slice }) => {
                         layout="fill"
                         objectFit="cover"
                         objectPosition="bottom"
+                        unoptimized
                       />
                     }
                   </div>

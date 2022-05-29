@@ -113,6 +113,7 @@ const WhatToPack = ({ data }) => {
                         layout="fill"
                         onClick={handlePrimary}
                         objectFit="cover"
+                        unoptimized
                       />
                     )}
                   </div>
@@ -133,6 +134,7 @@ const WhatToPack = ({ data }) => {
                     layout="fill"
                     objectFit="contain"
                     objectPosition="left"
+                    unoptimized
                   />
                 </div>
               )}

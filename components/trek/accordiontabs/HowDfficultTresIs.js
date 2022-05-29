@@ -47,7 +47,7 @@ const HowDifficultTrekIs = ({ data }) => {
 
   const howSafeContent = howSafeContentList?.map(function(data, i) {
     return (
-      <p key={i} className="p-text-4" key={i}>
+      <p key={i} className="p-text-4">
         {data?.text}
       </p>
     );
@@ -111,6 +111,7 @@ const HowDifficultTrekIs = ({ data }) => {
                 layout="fill"
                 objectFit="cover"
                 objectPosition="50% 50%"
+                unoptimized
               />
               </div>
             )}
@@ -128,6 +129,7 @@ const HowDifficultTrekIs = ({ data }) => {
                 layout="fill"
                 objectFit="contain"
                 objectPosition="bottom"
+                unoptimized
               />
               </div>
             )}
@@ -144,6 +146,7 @@ const HowDifficultTrekIs = ({ data }) => {
                   layout="fill"
                   objectFit="cover"
                   objectPosition="50% 50%"
+                  unoptimized
                 />
               )}
             </div>
@@ -163,6 +166,7 @@ const HowDifficultTrekIs = ({ data }) => {
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"
+                      unoptimized
                     />
                     {/* )} */}
                   </div>
@@ -230,6 +234,7 @@ const HowDifficultTrekIs = ({ data }) => {
                     layout="fill"
                     objectFit="contain"
                     objectPosition="bottom"
+                    unoptimized
                   />
                 ) : (
                   ""

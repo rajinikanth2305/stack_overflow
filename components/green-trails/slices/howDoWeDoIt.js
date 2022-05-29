@@ -34,6 +34,7 @@ const HowDoWeDoIt = ({ slice }) => {
                   setImageUrl(data?.image?.url);
                   setShow(true);
                 }}
+                unoptimized
               />
             )}
           </div>
@@ -63,6 +64,7 @@ const HowDoWeDoIt = ({ slice }) => {
                       setImageUrl(data?.image?.url);
                       setShow(true);
                     }}
+                    unoptimized
                   />
                 )}
               </div>
@@ -110,6 +112,7 @@ const HowDoWeDoIt = ({ slice }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>

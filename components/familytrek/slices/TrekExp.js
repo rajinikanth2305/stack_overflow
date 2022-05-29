@@ -70,6 +70,7 @@ const TrekExp = ({ slice }) => {
                           objectPosition="50% 50%"
                           onClick={handleShow}
                           alt="imgs"
+                          unoptimized
                         />
                       </div>
                     </div>
@@ -81,6 +82,7 @@ const TrekExp = ({ slice }) => {
                           layout="fill"
                           objectFit="cover"
                           objectPosition="bottom"
+                          unoptimized
                         />
                       ) : (
                         <img src="../ip.png" className="ft-image" />
@@ -112,6 +114,7 @@ const TrekExp = ({ slice }) => {
                         layout="fill"
                         objectFit="cover"
                         objectPosition="bottom"
+                        unoptimized
                       />
                     ) : (
                       <img src="../ip.png" className="ft-image" />

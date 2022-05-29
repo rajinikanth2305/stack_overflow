@@ -77,6 +77,7 @@ const TrekCatagories = ({ slice, dtcData }) => {
                     layout="fill"
                     objectFit="cover"
                     objectPosition="bottom"
+                    unoptimized
                   />
                 )}
               </div>

@@ -195,6 +195,7 @@ const LatestUpdatesTrekkings = ({
                         objectPosition="center"
                         alt="imgs"
                         onClick={handleShow}
+                        unoptimized
                       />
                     </div>
                     {vTitle && (

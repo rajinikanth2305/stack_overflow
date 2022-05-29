@@ -81,6 +81,7 @@ const OurIhVideos = ({ slice }) => {
                     setTrekVideoUrl(videoUrl);
                     setShow(true);
                   }}
+                  unoptimized
                 />
               </div>
             </div>

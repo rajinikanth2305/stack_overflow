@@ -37,6 +37,7 @@ const FamilyTrekBanner = ({ slice }) => {
               layout="fill"
               objectFit="cover"
               objectPosition="bottom"
+              unoptimized
             />
           )}
         </div>

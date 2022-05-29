@@ -84,6 +84,7 @@ const TrekkersStoriesCommon = () => {
                   layout="fill"
                   objectFit="cover"
                   objectPosition="50% 50%"
+                  unoptimized
                   // width={350}
                   // height={215}
                 />

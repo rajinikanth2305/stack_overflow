@@ -56,6 +56,7 @@ const TrekWhatSays = ({ slice }) => {
                 layout="fill"
                 objectFit="contain"
                 objectPosition="left left"
+                unoptimized
               />
             )}
           </div>

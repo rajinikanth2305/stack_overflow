@@ -43,6 +43,7 @@ const FaqBanner = ({ slice }) => {
             layout="fill"
             objectFit="cover"
             objectPosition="bottom"
+            unoptimized
           />
         </div>
         <div>

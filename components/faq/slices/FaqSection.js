@@ -87,6 +87,7 @@ const FaqSection = () => {
                   layout="fill"
                   objectFit="contain"
                   objectPosition="top"
+                  unoptimized
                 />
               ) : (
                 <img src="./ip.png" className="faq_icon_image" />
@@ -144,6 +145,7 @@ const FaqSection = () => {
                       layout="fill"
                       objectFit="contain"
                       objectPosition="top"
+                      unoptimized
                     />
                   ) : (
                     <img src="./ip.png" className="faq_icon_image" />
@@ -222,6 +224,7 @@ const FaqSection = () => {
                             setTrekVideoUrl(videoUrl);
                             setShow(true);
                           }}
+                          unoptimized
                         />
                       </div>
                     </div>

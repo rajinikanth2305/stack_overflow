@@ -84,6 +84,7 @@ const BestPostTreks = ({ slice, trekData }) => {
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"
+                      unoptimized
                     />
                   )}
                 </div>

@@ -55,6 +55,7 @@ const WorkAtih = ({ slice }) => {
                   objectFit="cover"
                   objectPosition="left"
                   onClick={handleShow}
+                  unoptimized
                 />
               </div>
             </div>

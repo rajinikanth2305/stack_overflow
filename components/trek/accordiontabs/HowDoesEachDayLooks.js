@@ -98,28 +98,28 @@ const HowDoesEachDayLooks = ({ data }) => {
                   {daysIt?.image1?.url && (
                     <div>
                       <div className="accordio-sec-images">
-                        <Image src={daysIt?.image1?.url} layout="fill" />
+                        <Image src={daysIt?.image1?.url} layout="fill" unoptimized />
                       </div>
                     </div>
                   )}
                   {daysIt?.image2?.url && (
                     <div>
                       <div className="accordio-sec-images">
-                        <Image src={daysIt?.image2?.url} layout="fill" />
+                        <Image src={daysIt?.image2?.url} layout="fill" unoptimized />
                       </div>
                     </div>
                   )}
                   {daysIt?.image3?.url && (
                     <div>
                       <div className="accordio-sec-images">
-                        <Image src={daysIt?.image3?.url} layout="fill" />
+                        <Image src={daysIt?.image3?.url} layout="fill" unoptimized />
                       </div>
                     </div>
                   )}
                   {daysIt?.image4?.url && (
                     <div>
                       <div className="accordio-sec-images">
-                        <Image src={daysIt?.image4?.url} layout="fill" />
+                        <Image src={daysIt?.image4?.url} layout="fill" unoptimized />
                       </div>
                     </div>
                   )}
@@ -221,6 +221,7 @@ const HowDoesEachDayLooks = ({ data }) => {
                         setImgUrl1(daysIt?.image1?.url);
                         setShow1(true);
                       }}
+                      unoptimized
                     />
                   </div>
                 )}
@@ -237,6 +238,7 @@ const HowDoesEachDayLooks = ({ data }) => {
                         setImgUrl2(daysIt?.image2?.url);
                         setShow2(true);
                       }}
+                      unoptimized
                     />
                   </div>
                 )}
@@ -253,6 +255,7 @@ const HowDoesEachDayLooks = ({ data }) => {
                             setImgUrl3(daysIt?.image3?.url);
                             setShow3(true);
                           }}
+                          unoptimized
                         />
                       </div>
                     )}
@@ -269,6 +272,7 @@ const HowDoesEachDayLooks = ({ data }) => {
                             setImgUrl4(daysIt?.image4?.url);
                             setShow4(true);
                           }}
+                          unoptimized
                         />
                       </div>
                     )}
@@ -323,6 +327,7 @@ const HowDoesEachDayLooks = ({ data }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>
@@ -338,6 +343,7 @@ const HowDoesEachDayLooks = ({ data }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>
@@ -353,6 +359,7 @@ const HowDoesEachDayLooks = ({ data }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>
@@ -368,6 +375,7 @@ const HowDoesEachDayLooks = ({ data }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>

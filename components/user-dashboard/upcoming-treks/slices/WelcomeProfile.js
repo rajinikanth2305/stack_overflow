@@ -527,6 +527,7 @@ const WelcomeProfile = () => {
                                           layout="fill"
                                           objectFit="cover"
                                           objectPosition="50% 50%"
+                                          unoptimized
                                         />
                                       )}
                                     </div>
@@ -824,6 +825,7 @@ const WelcomeProfile = () => {
                                               layout="fill"
                                               objectFit="cover"
                                               objectPosition="50% 50%"
+                                              unoptimized
                                             />
                                           )}
                                         </div>

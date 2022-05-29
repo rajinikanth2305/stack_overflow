@@ -46,6 +46,7 @@ const DIYBanner = ({ slice }) => {
             layout="fill"
             objectFit="cover"
             objectPosition="top"
+            unoptimized
           />
         </div>
         <style jsx global>

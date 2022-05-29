@@ -62,6 +62,7 @@ const TrekExpertSpeak = ({ slice }) => {
                     setImgUrl(data?.what_i_like_image?.url);
                     setShow(true);
                   }}
+                  unoptimized
                 />
               )}
             </div>
@@ -116,6 +117,7 @@ const TrekExpertSpeak = ({ slice }) => {
                       setImgUrl(data?.what_i_dontlike_image?.url);
                       setShow(true);
                     }}
+                    unoptimized
                   />
                 )}
               </div>
@@ -169,6 +171,7 @@ const TrekExpertSpeak = ({ slice }) => {
                           width={90}
                           height={90}
                           className="author_img"
+                          unoptimized
                         />
                       )}
                       <p className="m-0 author-info-text">
@@ -216,6 +219,7 @@ const TrekExpertSpeak = ({ slice }) => {
                                   width={90}
                                   height={90}
                                   className="author_img"
+                                  unoptimized
                                 />
                               )}
                               <p className="m-0 author-info-text">
@@ -297,6 +301,7 @@ const TrekExpertSpeak = ({ slice }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>

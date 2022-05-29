@@ -80,6 +80,7 @@ const FamilyTrekVideos = ({ slice }) => {
                     setTrekVideoUrl(videoUrl);
                     setShow(true);
                   }}
+                  unoptimized
                 />
               </div>
             </div>

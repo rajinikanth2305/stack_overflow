@@ -121,6 +121,7 @@ const IhTimelineStories = ({ slice }) => {
                   setImgUrl(videoUrl);
                   setShow(true);
                 }}
+                unoptimized
               />
             </div>
             <div alt="imgs" className="trekking_world_image_mobile mb-3">
@@ -143,6 +144,7 @@ const IhTimelineStories = ({ slice }) => {
                   setImgUrl(videoUrl);
                   setShow(true);
                 }}
+                unoptimized
               />
             </div>
           </div>

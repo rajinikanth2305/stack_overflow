@@ -79,6 +79,7 @@ const BestTrekToDo = ({ slice, bestTrekToDoData }) => {
                         objectFit="cover"
                         objectPosition="50% 50%"
                         alt="imgs"
+                        unoptimized
                       />
                     )}
                   </div>
@@ -162,6 +163,7 @@ const BestTrekToDo = ({ slice, bestTrekToDoData }) => {
                     objectFit="cover"
                     objectPosition="50% 50%"
                     alt="imgs"
+                    unoptimized
                   />
                 )}
               </div>

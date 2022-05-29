@@ -38,6 +38,7 @@ const GreenTrailBanner = ({ slice }) => {
             layout="fill"
             objectFit="cover"
             objectPosition="bottom"
+            unoptimized
           />
         </div>
         <div className="gt_banner_box">
@@ -50,6 +51,7 @@ const GreenTrailBanner = ({ slice }) => {
                     layout="fill"
                     objectFit="cover"
                     objectPosition="bottom"
+                    unoptimized
                   />
                 </div>
               </div>
@@ -84,6 +86,7 @@ const GreenTrailBanner = ({ slice }) => {
                     layout="fill"
                     objectFit="cover"
                     objectPosition="bottom"
+                    unoptimized
                   />
                 </div>
                 <div className="p-text-2-fg my-4">

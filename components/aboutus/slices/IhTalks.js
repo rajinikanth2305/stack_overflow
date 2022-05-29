@@ -52,6 +52,7 @@ const IhTalks = ({ slice }) => {
                 setTrekVideoUrl(videoUrl);
                 setShow(true);
               }}
+              unoptimized
             />
           </div>
           <div className="p-3">

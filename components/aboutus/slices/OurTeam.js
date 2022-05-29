@@ -57,6 +57,7 @@ const OurTeam = () => {
                   layout="fill"
                   objectFit="cover"
                   objectPosition="top"
+                  unoptimized
                 />
               </div>
               <p className="p-text-2-franklin text-center mb-0 pt-2">
@@ -124,6 +125,7 @@ const OurTeam = () => {
                   layout="fill"
                   objectFit="cover"
                   objectPosition="top"
+                  unoptimized
                 />
               </div>
             </div>

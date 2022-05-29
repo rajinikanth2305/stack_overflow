@@ -54,6 +54,7 @@ const OurTeam = () => {
                   layout="fill"
                   objectFit="contain"
                   objectPosition="top"
+                  unoptimized
                 />
               ) : (
                 <img src="./ip.png" className="founder_image" />
@@ -123,6 +124,7 @@ const OurTeam = () => {
                   layout="fill"
                   objectFit="contain"
                   objectPosition="top"
+                  unoptimized
                 />
               </div>
             </div>

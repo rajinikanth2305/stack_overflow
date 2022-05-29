@@ -182,6 +182,7 @@ const Section1 = ({ data, section1DataList, primaryArticleData }) => {
                         objectFit="cover"
                         objectPosition="center"
                         onClick={handleShow}
+                        unoptimized
                       />
                     </div>
                     {vTitle && (

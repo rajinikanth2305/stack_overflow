@@ -62,6 +62,7 @@ const TrekTrevia = ({ slice }) => {
                       setImageUrl(data?.content_image?.url);
                       setShow(true);
                     }}
+                    unoptimized
                   />
                   <p className="p-text-small font-italic p-a-b">
                     {RichText.asText(data?.photo_caption)}
@@ -94,6 +95,7 @@ const TrekTrevia = ({ slice }) => {
                             setTrekVideoUrl(videoUrl);
                             setShow1(true);
                           }}
+                          unoptimized
                         />
                       </>
                     }
@@ -128,6 +130,7 @@ const TrekTrevia = ({ slice }) => {
                         setImageUrl(data?.content_image?.url);
                         setShow(true);
                       }}
+                      unoptimized
                     />
                     <p className="p-text-small font-italic p-a-b">
                       {RichText.asText(data?.photo_caption)}
@@ -160,6 +163,7 @@ const TrekTrevia = ({ slice }) => {
                               setTrekVideoUrl(videoUrl);
                               setShow1(true);
                             }}
+                            unoptimized
                           />
                         </>
                       }
@@ -214,6 +218,7 @@ const TrekTrevia = ({ slice }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>

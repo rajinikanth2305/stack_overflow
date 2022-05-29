@@ -86,6 +86,7 @@ const FamilyGallery = ({ slice }) => {
                 setImgUrl(data?.image?.url);
                 setShow(true);
               }}
+              unoptimized
             />
           ) : (
             ""
@@ -119,6 +120,7 @@ const FamilyGallery = ({ slice }) => {
                       setImgUrl0(img[0]?.image?.url);
                       setShow0(true);
                     }}
+                    unoptimized
                   />
                 </div>
               </div>
@@ -137,6 +139,7 @@ const FamilyGallery = ({ slice }) => {
                           setImgUrl1(img[1]?.image?.url);
                           setShow1(true);
                         }}
+                        unoptimized
                       />
                     </div>
                   )}
@@ -153,6 +156,7 @@ const FamilyGallery = ({ slice }) => {
                               setImgUrl2(img[2]?.image?.url);
                               setShow2(true);
                             }}
+                            unoptimized
                           />
                         </div>
                       </div>
@@ -169,6 +173,7 @@ const FamilyGallery = ({ slice }) => {
                               setImgUrl3(img[3]?.image?.url);
                               setShow3(true);
                             }}
+                            unoptimized
                           />
                         </div>
                       </div>
@@ -198,6 +203,7 @@ const FamilyGallery = ({ slice }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>
@@ -214,6 +220,7 @@ const FamilyGallery = ({ slice }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>
@@ -230,6 +237,7 @@ const FamilyGallery = ({ slice }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>
@@ -246,6 +254,7 @@ const FamilyGallery = ({ slice }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>
@@ -262,6 +271,7 @@ const FamilyGallery = ({ slice }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>

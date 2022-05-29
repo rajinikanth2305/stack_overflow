@@ -68,6 +68,7 @@ const DoItYourself = ({ slice }) => {
                 objectFit="cover"
                 objectPosition="50% 50%"
                 alt="imgs"
+                unoptimized
               />
             </div>
             <p className="doit_img_caption">

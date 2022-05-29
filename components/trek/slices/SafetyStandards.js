@@ -22,6 +22,7 @@ const SafetyStandards = ({ slice }) => {
                       layout="fill"
                       objectFit="cover"
                       objectPosition="center bottom"
+                      unoptimized
                     />
                   )}
                 </div>

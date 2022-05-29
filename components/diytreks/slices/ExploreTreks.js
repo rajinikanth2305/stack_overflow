@@ -29,6 +29,7 @@ const ExploreTreks = ({ slice }) => {
               objectFit="cover"
               objectPosition="top"
               quality={100}
+              unoptimized
             />
           </div>
         </div>

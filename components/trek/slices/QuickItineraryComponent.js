@@ -88,6 +88,7 @@ const QuickItineraryComponent = ({ slice }) => {
                       layout="fill"
                       objectFit="cover"
                       objectPosition="bottom"
+                      unoptimized
                     />
                   </div>
                   <p className="p-text-small font-italic">
@@ -131,6 +132,7 @@ const QuickItineraryComponent = ({ slice }) => {
                         onClick={() => {
                           setShow(true);
                         }}
+                        unoptimized
                       />
                     </div>
                     <p className="p-text-small font-italic">
@@ -212,6 +214,7 @@ const QuickItineraryComponent = ({ slice }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>

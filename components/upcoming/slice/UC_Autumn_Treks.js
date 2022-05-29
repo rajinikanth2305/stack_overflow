@@ -79,6 +79,7 @@ const UCAutnumTreks = ({ slice, autumnData }) => {
                         objectFit="cover"
                         objectPosition="50% 50%"
                         alt="imgs"
+                        unoptimized
                       />
                     )}
                   </div>
@@ -149,6 +150,7 @@ const UCAutnumTreks = ({ slice, autumnData }) => {
                       objectFit="cover"
                       objectPosition="50% 50%"
                       alt="imgs"
+                      unoptimized
                     />
                   )}
                 </div>

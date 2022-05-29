@@ -68,6 +68,7 @@ const OtherTreksLike = ({ slice, trekPageData1 }) => {
                       layout="fill"
                       objectFit="cover"
                       objectPosition="50% 50%"
+                      unoptimized
                     />
                   )}
                 </div>

@@ -22,6 +22,7 @@ const CommunityContentPitch = ({ slice }) => {
             layout="fill"
             objectFit="contain"
             objectPosition="bottom"
+            unoptimized
           />
         </div>
         <p className="p-text-4 mt-2 mb-0">{data?.name[0]?.text}</p>

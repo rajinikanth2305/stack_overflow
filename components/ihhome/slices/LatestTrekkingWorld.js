@@ -147,6 +147,7 @@ const LatestTrekkingWorld = ({ slice }) => {
                       setImgUrl(videoUrl);
                       setShow(true);
                     }}
+                    unoptimized
                   />
                 </>
               ) : (
@@ -160,6 +161,7 @@ const LatestTrekkingWorld = ({ slice }) => {
                     setImgUrl1(data?.trekking_world_image?.url);
                     setShow1(true);
                   }}
+                  unoptimized
                 />
               )}
             </div>
@@ -234,6 +236,7 @@ const LatestTrekkingWorld = ({ slice }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="top"
+              unoptimized
             />
           </div>
         </Modal.Body>

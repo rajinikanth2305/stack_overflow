@@ -105,6 +105,7 @@ const GtStories = ({ slice, latestUpdateAarticleData1 }) => {
                     objectFit="cover"
                     objectPosition="center"
                     onClick={handleShow}
+                    unoptimized
                   />
                 </div>
                 {/* <div className="p-3">

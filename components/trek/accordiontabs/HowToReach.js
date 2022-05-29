@@ -33,6 +33,7 @@ const HowToReach = ({ data }) => {
               layout="fill"
               objectFit="contain"
               objectPosition="left"
+              unoptimized
             />
           </div>
         )}

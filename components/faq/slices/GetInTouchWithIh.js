@@ -84,6 +84,7 @@ const GetInTouchWithIh = ({ slice }) => {
               layout="fill"
               objectFit="cover"
               objectPosition="bottom"
+              unoptimized
             />
           )}
         </div>
