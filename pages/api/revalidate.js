@@ -24,7 +24,7 @@ export default async function handleWebhook(req, res) {
 
    for (let i=0;i<jsonBody.documents.length;i++) {
 
-    processDocumentData(res,jsonBody.documents[i]);
+   await processDocumentData(res,jsonBody.documents[i]);
 
    };
    return res.status(200).send('Success!');
@@ -110,7 +110,7 @@ async function  processDocumentData  (res,documentId) {
   console.log(documentId);
   const doc = await Client().getByID(documentId);
   
- // console.log(doc);
+ console.log(doc);
   const uid=doc?.uid;
   const type=doc?.type;
   if(uid!==undefined) {
