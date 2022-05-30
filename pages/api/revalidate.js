@@ -7,9 +7,9 @@ import { Client } from "utils/prismicHelpers";
 export default async function handleWebhook(req, res) {
   // verify the webhook signature request against the
   // unmodified, unparsed body
-  const body = await getRawBody(req);
-
-  if (!body) {
+  const jsonBody = await getRawBody(req);
+  console.log(jsonBody);
+  if (!jsonBody) {
     res.status(400).send('Bad request (no body)');
     return;
   }
@@ -59,7 +59,7 @@ export default async function handleWebhook(req, res) {
    for (let i=0;i<jsonBody.documents.length;i++) {
 
     processDocumentData(res,jsonBody.documents[i]);
-    
+
    };
    
    
