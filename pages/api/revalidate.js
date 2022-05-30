@@ -7,28 +7,40 @@ import { Client } from "utils/prismicHelpers";
 export default async function handleWebhook(req, res) {
   // verify the webhook signature request against the
   // unmodified, unparsed body
-  const jsonBody = await getRawBody(req);
-  console.log(jsonBody);
-  if (!jsonBody) {
-    res.status(400).send('Bad request (no body)');
-    return;
-  }
+  //const jsonBody = await getRawBody(req);
+  //console.log(jsonBody);
+  //if (!jsonBody) {
+   // res.status(400).send('Bad request (no body)');
+   // return;
+  //}
+
+  getRawBody(req).then(jsonBody=>{
+
+    if (!jsonBody) {
+       res.status(400).send('Bad request (no body)');
+      return;
+   };
+
+   console.log(jsonBody.documents.length);
+
+   for (let i=0;i<jsonBody.documents.length;i++) {
+
+    processDocumentData(res,jsonBody.documents[i]);
+
+   };
+   return res.status(200).send('Success!');
+
+  });
 
   /*const jsonBody =
-    {
-      "type": "api-update",
-      "masterRef": "X6qn-RIAACMAVge1",
-      "releases": {},
-      "masks": {},
-      "tags": {},
-      "experiments": {},
-      "documents": [
-        "YazBhhEAACMAxPO2",
-        "YazC0BEAACIAxPur"
-      ],
-      "domain": "your-repo-name",
-      "apiUrl": "https://your-repo-name.prismic.io/api",
-      "secret": null
+  {
+    "type":"api-update",
+  "masterRef":"YpT5dBAAAB8AzNgt",
+  "releases":{},"masks":{},
+  "tags":{},"experiments":{},
+  "documents":["YoZqgREAACsAIm8T"],
+  "domain":"indiahike",
+  "apiUrl":"https://indiahike.prismic.io/api","secret":null
   };*/
 
     // JSON.parse(body);
@@ -56,11 +68,6 @@ export default async function handleWebhook(req, res) {
     // comment created or edited
    // console.log('[Next.js] Revalidating /');
 
-   for (let i=0;i<jsonBody.documents.length;i++) {
-
-    processDocumentData(res,jsonBody.documents[i]);
-
-   };
    
    
    // await res.unstable_revalidate('/');
@@ -70,16 +77,17 @@ export default async function handleWebhook(req, res) {
     }*/
 
 
-    return res.status(200).send('Success!');
+  
  // } else {
   //  return res.status(403).send('Forbidden');
  // }
 }
 
 async function  processDocumentData  (res,documentId) {
- // console.log(documentId);
+  console.log(documentId);
   const doc = await Client().getByID(documentId);
- // console.log(doc);
+  
+  console.log(doc);
   const uid=doc?.uid;
   const type=doc?.type;
   if(uid!==undefined) {
