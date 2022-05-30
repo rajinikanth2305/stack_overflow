@@ -7,14 +7,36 @@ import { Client } from "utils/prismicHelpers";
 export default async function handleWebhook(req, res) {
   // verify the webhook signature request against the
   // unmodified, unparsed body
-  //const jsonBody = await getRawBody(req);
-  //console.log(jsonBody);
+  console.log("Request received");
+  const raw = await getRawBody(req);
+
+  console.log("Request raw" + raw);
+
+  const jsonBody=JSON.parse(raw);
+
+  if (!jsonBody) {
+    res.status(400).send('Bad request (no body)');
+     return;
+  }
+
+   console.log("Printing length" + jsonBody?.documents?.length);
+   console.log(jsonBody?.documents?.length);
+
+   for (let i=0;i<jsonBody.documents.length;i++) {
+
+    processDocumentData(res,jsonBody.documents[i]);
+
+   };
+   return res.status(200).send('Success!');
+
+};
+
   //if (!jsonBody) {
    // res.status(400).send('Bad request (no body)');
    // return;
   //}
 
-  getRawBody(req).then(jsonBody=>{
+ /* getRawBody(req).then(jsonBody=>{
 
     if (!jsonBody) {
        res.status(400).send('Bad request (no body)');
@@ -31,6 +53,7 @@ export default async function handleWebhook(req, res) {
    return res.status(200).send('Success!');
 
   });
+  */
 
   /*const jsonBody =
   {
@@ -81,13 +104,13 @@ export default async function handleWebhook(req, res) {
  // } else {
   //  return res.status(403).send('Forbidden');
  // }
-}
+
 
 async function  processDocumentData  (res,documentId) {
   console.log(documentId);
   const doc = await Client().getByID(documentId);
   
-  console.log(doc);
+ // console.log(doc);
   const uid=doc?.uid;
   const type=doc?.type;
   if(uid!==undefined) {
