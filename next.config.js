@@ -14,6 +14,7 @@ module.exports = {
   prismic: {
     preview: true
   },
+
   async headers() {
     return [
       {

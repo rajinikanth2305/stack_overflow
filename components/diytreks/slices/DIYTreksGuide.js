@@ -22,8 +22,19 @@ const DIYTreksGuide = ({ slice }) => {
 
    const getDocumentTrekData= async ()=> {
     const client = Client();
+
+ //https://prismic.io/docs/technologies/graphquery-rest-api#certain-fields-from-a-slice
+    const mySuperGraphQuery = `{
+      document_trek_type {
+        uid
+        title
+        categories
+      }
+    }`;
+
     const allTrekData = await client.query([
       Prismic.Predicates.at("document.type", "document_trek_type")], {
+        'graphQuery': mySuperGraphQuery ,
         pageSize: 250
       }
     );

@@ -111,11 +111,11 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const familyTreks =null;
   const diyTreks=null;
 
-  const allTreksData = await client.query([
+  const allTreksData = null ; /*await client.query([
     Prismic.Predicates.at("document.type", "trek")], {
       pageSize: 250
     }
-  );
+  );*/
 
   const bestTrekToDoData = [];
   const ucOpenData = [];

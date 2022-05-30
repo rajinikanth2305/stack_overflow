@@ -1,6 +1,8 @@
 import React, { forwardRef, useImperativeHandle, useMemo, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+//import { yupResolver } from "@hookform/resolvers/yup";
+
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup.umd';
 import * as Yup from "yup";
 //import { ConfirmPopup } from 'primereact/confirmpopup'; // To use <ConfirmPopup> tag
 import { Toast } from "primereact/toast";

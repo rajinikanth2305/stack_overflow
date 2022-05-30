@@ -1,5 +1,7 @@
 import Prismic from '@prismicio/client'
-import Link from 'next/link'
+import Link from 'next/link';
+import React from 'react';
+
 import {
   apiEndpoint,
   accessToken,
