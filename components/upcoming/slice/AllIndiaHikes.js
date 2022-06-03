@@ -32,11 +32,30 @@ const AllIndiaHikes = ({
 
    const getAllTrekData= async ()=> {
     const client = Client();
+
+
+    const mySuperGraphQuery = `{
+      trek {
+        uid
+        trek_title
+        body {
+        ...on trek_banner {
+          non-repeat {
+            difficulty
+          }
+        }
+       }
+      }
+    }`
+
     const allTrekData = await client.query([
       Prismic.Predicates.at("document.type", "trek")], {
-        pageSize: 250
+        'graphQuery': mySuperGraphQuery ,
+        pageSize: 250,
       }
     );
+
+    console.log(allTrekData);
 
     allTrekData?.results?.sort(function(a, b){
       if(a?.uid < b?.uid) { return -1; }

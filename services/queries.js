@@ -35,7 +35,7 @@ export const getBatchesByTrekId = async (trekId, month=0,year=0)  => {
 
   export const getUserByAutoSearch = async (roleName,nameContains) => {
     const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
-    const url = `${userApi}/lookups/users?profile=${roleName}&nameContains=${nameContains}`;
+    const url = `${userApi}/lookups/search-users/${nameContains}`;
 
     const header=await getTokenHeader();
     return axios.get(url,{headers: header})
@@ -192,7 +192,7 @@ export const getBatchInfo =  async (batchId)  => {
     export const findUserByAnyEmail =  async (email)  => {
         const header=await getTokenHeader();
         const userApi = `${REACT_APP_TMS_BACKEND_URL}`;
-        let url = `${userApi}/lookups/users?profile=CUSTOMER&email=${email}`;
+        let url = `${userApi}/lookups/search-users/${email}`;
         return axios.get(url,{ headers:  header })
             .then((res) => res.data && res.data.length > 0 ? res.data[0] : res.data);
 

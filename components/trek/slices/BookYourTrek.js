@@ -7,10 +7,7 @@ import BookingCalender from "../bookyourtrekcomps/BookingCalender";
 import { Toast } from "primereact/toast";
 //import UserService from '../../../utils/UserService';
 import { useRouter } from "next/router";
-import dynamic from "next/dynamic";
-import { route } from "next/dist/next-server/server/router";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
+
 
 
 import {TrekReviews} from "../slices";

@@ -112,11 +112,11 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     }
   }
 
-  const alldiyTreks = await client.query([
+  const alldiyTreks = null; /*await client.query([
     Prismic.Predicates.at("document.type", "document_trek_type")], {
       pageSize: 250
     }
-  );
+  );*/
 
   return {
     props: {

@@ -1,16 +1,10 @@
 import { customStyles } from "styles";
 import React, { useState, useEffect, useRef } from "react";
 import { RichText } from "prismic-reactjs";
-import { trekStyle } from "styles";
 import moment from "moment";
 import Link from "next/link";
 import { Toast } from "primereact/toast";
 import { useRouter } from "next/router";
-import dynamic from "next/dynamic";
-import { route } from "next/dist/next-server/server/router";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
-import { linkResolver } from "prismic-configuration";
 import { Text, Quote, ImageWithCaption, IframeTag, EmbedHtml } from "./index";
 import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
