@@ -122,7 +122,7 @@ export const ihheaderStyles = css.global`
   }
 
   .logo-Icon {
-    width: 136px;
+    width: 200px;
   }
 
   .cursor-pointer {
@@ -238,6 +238,10 @@ export const ihheaderStyles = css.global`
   }
 
   @media only screen and (max-width: 660px) {
+    .logo-Icon {
+      width: 136px;
+    }
+
     .navbar-expand-lg .navbar-nav .nav-item {
       padding-left: 0 !important;
       padding-right: 0 !important;

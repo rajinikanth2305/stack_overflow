@@ -18,7 +18,7 @@ import ScrollToTop from "react-scroll-to-top";
 /**
  * UpComing component
  */
-const DIY = ({ doc, trekData, dtcData, diyResourceData, alldiyTreks }) => {
+const DIY = ({ doc, bestPostTreksData, dtcData, diyResourceData, alldiyTreks }) => {
   if (doc && doc.data) {
     return (
       <>
@@ -35,7 +35,7 @@ const DIY = ({ doc, trekData, dtcData, diyResourceData, alldiyTreks }) => {
         <HikeHeader />
         <DIYSliceZone
           sliceZone={doc.data.body}
-          trekData={trekData}
+          bestPostTreksData={bestPostTreksData}
           dtcData={dtcData}
           diyResourceData={diyResourceData}
           alldiyTreks={alldiyTreks}
@@ -62,21 +62,51 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = Client();
 
   const doc = (await client.getSingle("diy_trek", ref ? { ref } : null)) || {};
-  const trekData = [];
   const dtcData = [];
   const diyResourceData = [];
 
-  const slice = doc.data?.body?.find(x => x.slice_type === "best_post_treks");
+  // const slice = doc.data?.body?.find(x => x.slice_type === "best_post_treks");
 
-  if (slice.items?.length > 0) {
-    for (var i = 0; i < slice.items?.length; i++) {
-      const data = slice.items[i];
-      const slugUrl = data && data?.diy_article_link?.id;
-      if (slugUrl !== undefined) {
-        const trek_details = await Client().getByID(slugUrl);
-        if (trek_details !== undefined && trek_details !== null)
-          trekData.push(trek_details);
+  // if (slice.items?.length > 0) {
+  //   for (var i = 0; i < slice.items?.length; i++) {
+  //     const data = slice.items[i];
+  //     const slugUrl = data && data?.diy_article_link?.id;
+  //     if (slugUrl !== undefined) {
+  //       const trek_details = await Client().getByID(slugUrl);
+  //       if (trek_details !== undefined && trek_details !== null)
+  //         trekData.push(trek_details);
+  //     }
+  //   }
+  // }
+
+  let bestPostTreksData = [];
+  
+  const bestPostTreksSlice = doc && doc.data?.body?.filter(x => x.slice_type === "best_post_treks");
+
+  if (bestPostTreksSlice?.length > 0) {
+    for (var i = 0; i < bestPostTreksSlice?.length; i++) {
+      let  linkedbestPostTreksData = [];
+
+      const data = bestPostTreksSlice[i]; 
+
+      for (var k = 0; k < data?.items?.length; k++) {
+        const slugUrl = data && data?.items[k].diy_article_link?.id;
+        if (slugUrl !== undefined) {
+          const bestPost_article_details = await Client().getByID(slugUrl);
+          if (
+            bestPost_article_details !== undefined &&
+            bestPost_article_details !== null
+          )
+          linkedbestPostTreksData.push(bestPost_article_details);
+        }
       }
+
+      if(linkedbestPostTreksData?.length > 0) {
+        bestPostTreksData.push({
+            key: bestPostTreksSlice[i].primary?.heading1[0].text,
+            value:linkedbestPostTreksData
+          });
+       }
     }
   }
 
@@ -122,10 +152,10 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     props: {
       doc,
       preview,
-      trekData,
       dtcData,
       diyResourceData,
-      alldiyTreks
+      alldiyTreks,
+      bestPostTreksData
     }
   };
 }
