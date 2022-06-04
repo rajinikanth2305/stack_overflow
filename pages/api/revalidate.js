@@ -4,6 +4,8 @@ import { createHmac } from 'crypto';
 import { linkResolver } from "prismic-configuration";
 import { Client } from "utils/prismicHelpers";
 
+const REACT_APP_TMS_BACKEND_PUBLIC_URL=process.env.NEXT_PUBLIC_TMS_BACKEND_PUBLIC_URL;
+
 export default async function handleWebhook(req, res) {
   // verify the webhook signature request against the
   // unmodified, unparsed body
@@ -19,8 +21,8 @@ export default async function handleWebhook(req, res) {
      return;
   }
 
-   console.log("Printing length" + jsonBody?.documents?.length);
-   console.log(jsonBody?.documents?.length);
+  // console.log("Printing length" + jsonBody?.documents?.length);
+  // console.log(jsonBody?.documents?.length);
 
    for (let i=0;i<jsonBody.documents.length;i++) {
 
@@ -107,14 +109,33 @@ export default async function handleWebhook(req, res) {
 
 
 async function  processDocumentData  (res,documentId) {
-  console.log(documentId);
+ // console.log(documentId);
   const doc = await Client().getByID(documentId);
   
- console.log(doc);
+ //console.log(doc);
   const uid=doc?.uid;
   const type=doc?.type;
+
+
   if(uid!==undefined) {
     console.log(uid + type);
+
+      try {
+      const url = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}/website-content-mappings`;
+      fetch(url, {
+            //method: "GET",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+           body: JSON.stringify({ "uid": uid,"type":type }),
+           method: 'POST',
+          });
+        }
+        catch(e)  {
+           console.log("Error in fetch" + e?.message);
+        }
+
+
     const url=linkResolver(doc);
     console.log(url);
     await res.unstable_revalidate(`${url}`);

@@ -52,7 +52,8 @@ const DIYTreksGuide = ({ slice }) => {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
-      url = `/documented-trek/${slugUrl}`;
+      //url = `/documented-trek/${slugUrl}`;
+       url = `/${slugUrl}`;
     }
     return (
       <div key={i} className="col-lg-4 col-md-6">

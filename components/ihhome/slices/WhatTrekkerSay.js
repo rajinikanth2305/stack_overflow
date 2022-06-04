@@ -6,7 +6,7 @@ import { whatTrekkerSayStyles } from "styles";
  * WhyTrek Slice Components
  */
 const WhyTrek = ({ slice }) => {
-  console.log(JSON.stringify(slice));
+  //console.log(JSON.stringify(slice));
 
   return (
     <>

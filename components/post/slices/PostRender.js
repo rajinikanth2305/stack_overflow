@@ -396,7 +396,8 @@ const PostRender = ({
               let url;
               const slugUrl = data?.uid;
               if (slugUrl) {
-                url = `/trek/${slugUrl}`;
+               // url = `/trek/${slugUrl}`;
+                 url = `/${slugUrl}`;
               }
               return (
                 <div className="border-bottom mb-3">
@@ -627,6 +628,14 @@ const PostRender = ({
           Latest Articles
         </p>
         {relatedArticles?.map(function (article, i) {
+
+            let url;
+            const slugUrl = article?.uid;
+            if (slugUrl) {
+            // url = `/trek/${slugUrl}`;
+              url = `/${slugUrl}`;
+            }
+
           let featureImageUrl = "";
           const featureSlice = article?.data?.body?.find(
             x => x.slice_type == "feature_image"
@@ -638,7 +647,10 @@ const PostRender = ({
           const date = article?.data?.date;
           let author = related_authors && related_authors[i];
           return (
+
+
             <div className="border-bottom mb-3">
+                <a href={url ? url : "#"} target="new">
               <div className="ar_right_side_imgs">
                 {featureImageUrl.length > 0 && <img src={featureImageUrl} />}
               </div>
@@ -649,6 +661,7 @@ const PostRender = ({
               <p className="p-text-small-10-gray">
                 {date} <span className="list-dot-style-mob"></span> 6 min read
               </p>
+              </a>
             </div>
           );
         })}

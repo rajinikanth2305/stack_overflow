@@ -301,7 +301,7 @@ const HikeHeader = (auth = false) => {
                     </NavLink>
                     <NavLink href="../../../family-trek/family-trek-page"
                       className={
-                        router.asPath == "/family-trek/family-trek-page"
+                        router.asPath == "family-trek-page"
                           ? "active-custom dd-menu"
                           : "dd-menu"
                       }>

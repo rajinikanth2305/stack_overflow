@@ -70,7 +70,8 @@ const AllIndiaHikes = ({
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
-      url = `/trek/${slugUrl}`;
+     // url = `/trek/${slugUrl}`;
+       url = `/${slugUrl}`;
     }
     return (
       <div key={i} className="col-lg-4 col-md-6">

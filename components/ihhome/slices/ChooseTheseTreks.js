@@ -53,7 +53,8 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
-      url = `/trek/${slugUrl}`;
+      //url = `/trek/${slugUrl}`;
+      url = `/${slugUrl}`;
     }
     const getFamiltTrek = data?.tags?.find(x => x === "FamilyTrek");
     return (

@@ -54,7 +54,8 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
     const slugUrl = data?.target_url?.slug;
 
     if (slugUrl) {
-      router.push(`/trek/${data?.target_url?.uid}`);
+     // router.push(`/trek/${data?.target_url?.uid}`);
+      router.push(`/${data?.target_url?.uid}`);
     }
   };
 
@@ -63,7 +64,8 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
-      url = `/trek/${slugUrl}`;
+      //url = `/trek/${slugUrl}`;
+      url = `/${slugUrl}`;
     }
     const getFamiltTrek = data?.tags?.find(x => x === "FamilyTrek");
     return (

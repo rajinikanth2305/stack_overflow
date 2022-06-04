@@ -330,7 +330,8 @@ const UpComingTreks = ({ slice }) => {
                   let url;
                   const slugUrl = result?.uid;
                   if (slugUrl) {
-                    url = `/trek/${slugUrl}`;
+                   // url = `/trek/${slugUrl}`;
+                     url = `/${slugUrl}`;
                   }
                   const getFamiltTrek = result?.tags?.find(
                     x => x === "FamilyTrek"

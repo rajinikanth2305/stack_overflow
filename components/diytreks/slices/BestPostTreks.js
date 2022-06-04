@@ -52,7 +52,8 @@ const BestPostTreks = ({ slice, trekData }) => {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
-      url = `/documented-trek/${slugUrl}`;
+     // url = `/documented-trek/${slugUrl}`;
+      url = `/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.filter(
       x => x.slice_type === "feature_image"

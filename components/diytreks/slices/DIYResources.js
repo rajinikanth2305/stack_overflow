@@ -15,9 +15,11 @@ const DIYResources = ({ slice, diyResourceData }) => {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl && data?.type === "post") {
-      url = `/blog/${slugUrl}`;
+     // url = `/blog/${slugUrl}`;
+      url = `/${slugUrl}`;
     } else {
-      url = `/documented-trek/${slugUrl}`;
+      //url = `/documented-trek/${slugUrl}`;
+       url = `/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.filter(
       x => x.slice_type === "feature_image"

@@ -26,7 +26,8 @@ const TrekTrevia = ({ slice }) => {
     let url;
     const slugUrl = data?.read_more_btn_lnk_url?.uid;
     if (slugUrl) {
-      url = `/trek/${slugUrl}`;
+      //url = `/trek/${slugUrl}`;
+       url = `/${slugUrl}`;
     }
     const result = data?.yt_link?.url?.split(
       /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/

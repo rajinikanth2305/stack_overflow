@@ -13,7 +13,8 @@ const SustainableGtTreking = ({ slice, articleData }) => {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
-      url = `/blog/${slugUrl}`;
+      //url = `/blog/${slugUrl}`;
+      url = `/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.find(
       x => x.slice_type === "feature_image"

@@ -225,6 +225,7 @@ export async function getStaticPaths() {
  for( let i=0;i<limit; i++) {
   limitDocs.push(documents[i]);
  }
+ 
  return {
   paths: limitDocs.map(doc => `/blog/${doc?.uid}`),
   fallback: true,

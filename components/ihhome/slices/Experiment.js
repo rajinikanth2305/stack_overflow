@@ -40,7 +40,8 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
-      url = `/family-trek/${slugUrl}`;
+      //url = `/family-trek/${slugUrl}`;
+       url = `/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.find(
       x => x.slice_type === "feature_image"

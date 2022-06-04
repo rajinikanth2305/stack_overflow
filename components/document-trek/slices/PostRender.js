@@ -396,7 +396,8 @@ const PostRender = ({
               let url;
               const slugUrl = data?.uid;
               if (slugUrl) {
-                url = `/trek/${slugUrl}`;
+                //url = `/trek/${slugUrl}`;
+                 url = `/${slugUrl}`;
               }
               return (
                 <div className="border-bottom mb-3">

@@ -11,7 +11,7 @@ export const accessToken = 'MC5ZS0ljT2hJQUFDVUF5Tk5X.EGDvv70577-9Gu-_vX9Y77-9BhF
 // Manages the url links to internal Prismic documents
 export const linkResolver = (doc) => {
   
-  if (doc.type === 'post') {
+  /*if (doc.type === 'post') {
     return `/blog/${doc.uid}`;
   }
   if (doc.type === 'family_trek') {
@@ -22,13 +22,16 @@ export const linkResolver = (doc) => {
   }
   if (doc.type === 'articles_landing_type') {
     return `/articles/${doc.uid}`;
-  }
+  }*/
+
   if (doc.type === 'hike_home_ctype') {
     return `/`;
   }
+
+  /*
   if (doc.type === 'trek') {
     return `/trek/${doc.uid}`;
-  }
+  }*/
  
   return `/${doc.uid}`;
 }
@@ -37,7 +40,8 @@ export const linkResolver = (doc) => {
 export const hrefResolver = (doc) => {
 
   if(doc.link_type==="Document") {
-    if (doc.type === 'post') {
+
+   /* if (doc.type === 'post') {
       return '/blog/'+ doc.uid;
     }
     else if (doc.type === 'trek') {
@@ -51,7 +55,7 @@ export const hrefResolver = (doc) => {
     }
    else  if (doc.type === 'articles_landing_type') {
       return `/articles/${doc.uid}`;
-    }
+    }*/
     return `/${doc.uid}`;
   }
   else {
@@ -68,7 +72,8 @@ export const blogLinkResolver =(doc)=>{
  
 
   if(doc?.link_type==="Document") {
-    if (doc.type === 'post') {
+   
+   /* if (doc.type === 'post') {
       return '/blog/'+ doc.uid;
     }
     else if (doc.type === 'trek') {
@@ -82,7 +87,8 @@ export const blogLinkResolver =(doc)=>{
     }
    else  if (doc.type === 'articles_landing_type') {
       return `/articles/${doc.uid}`;
-    }
+    }*/
+
     return `/${doc.uid}`;
   }
   else {
@@ -94,7 +100,7 @@ export const blogLinkResolver =(doc)=>{
 export const blogHrefResolver = (doc) => {
 
   if(doc.link_type==="Document") {
-    if (doc.type === 'post') {
+   /* if (doc.type === 'post') {
       return '/blog/'+ doc.uid;
     }
     else if (doc.type === 'trek') {
@@ -108,7 +114,7 @@ export const blogHrefResolver = (doc) => {
     }
    else  if (doc.type === 'articles_landing_type') {
       return `/articles/${doc.uid}`;
-    }
+    }*/
     return `/${doc.uid}`;
   }
   else {
