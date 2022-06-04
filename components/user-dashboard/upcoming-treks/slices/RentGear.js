@@ -42,7 +42,8 @@ const RentGear = forwardRef((props, ref) => {
   const initData = data => {
     // console.log(data);
     if (deriveBookingState(data) == true) {
-      if (wooOrders.length == 0) {
+      
+      /*if (wooOrders.length == 0) {
         getWooCustomerId(data.email).then(customerData => {
           if (customerData.length > 0) {
             const customer_id = customerData[0].id;
@@ -62,8 +63,9 @@ const RentGear = forwardRef((props, ref) => {
         const filteredOrder = filterTrek(data, wooOrders);
         preparePresentation(filteredOrder);
       }
-    }
+    }*/
     //// load the rental gear orders....
+  }
   };
 
   const preparePresentation = order => {
