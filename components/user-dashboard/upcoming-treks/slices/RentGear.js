@@ -5,18 +5,6 @@ import React, {
   useImperativeHandle,
   useRef
 } from "react";
-import { customStyles } from "styles";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import {
-  getUserVoucher,
-  getWooCustomerId,
-  getWooCustomerOrders
-} from "../../../../services/queries";
-import { Dropdown } from "primereact/dropdown";
-import { useForm, Controller } from "react-hook-form";
-import Link from "next/link";
-import { Toast } from "primereact/toast";
-import { Checkbox } from "primereact/checkbox";
 import moment from "moment";
 import { useRouter } from "next/router";
 
