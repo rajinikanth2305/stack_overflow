@@ -66,7 +66,7 @@ const KnowYourTrek = ({ slice, data }) => {
                 <InclusionsAndExclusions data={slice_zone} />
               ) : sliceType?.slice_type === "how_difficult_is_trek" ? (
                 <HowDifficultTrekIs data={slice_zone} />
-              ) : sliceType?.slice_type === "kyt_faq" ? (
+              ) : sliceType?.slice_type === "faq_about_trek" ? (
                 <KytFaq data={slice_zone} />
               ) : (
                 <WhatToPack data={slice_zone} />
