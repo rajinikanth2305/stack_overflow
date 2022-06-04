@@ -1609,6 +1609,43 @@ export const trekStyle = css.global`
     text-decoration: none;
   }
 
+  .trek-faq-acc.card-header > button {
+    background: transparent;
+    border: 0;
+    width: 100%;
+    text-align: left;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgba(0,0,0,1);
+    padding-right: 15px;
+  }
+
+  .trek-faq-acc.card-header > button::after {
+    color: rgb(255, 193, 0);
+    content: "\f068";
+    font-family: "FontAwesome" !important;
+    font-size: 16px;
+    float: right;
+    margin-top: -3px;
+    position: relative;
+    top: 4px;
+    font-weight: normal;
+  }
+
+  .trek-faq-acc.card-header > button:not(.show)::after {
+    color: rgb(255, 193, 0);
+    content: "\f067";
+    font-family: "FontAwesome" !important;
+    font-size: 16px;
+    float: right;
+    margin-top: -3px;
+    position: relative;
+    top: 4px;
+    font-weight: normal;
+  }
+
   @media only screen and (max-width: 660px) {
     .q-des {
       font-size: 40px;
