@@ -307,9 +307,9 @@ const HikeHeader = (auth = false) => {
                       }>
                       <DropdownItem>Family treks</DropdownItem>
                     </NavLink>
-                    <NavLink href="../../../family-trek/do-it-yourself-treks"
+                    <NavLink href="../../../family-trek/diy-treks-page"
                       className={
-                        router.asPath == "/family-trek/do-it-yourself-treks"
+                        router.asPath == "/family-trek/diy-treks-page"
                           ? "active-custom dd-menu"
                           : "dd-menu"
                       }>
