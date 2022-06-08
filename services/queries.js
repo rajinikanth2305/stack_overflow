@@ -543,7 +543,7 @@ export const queryRepeatableDocumentsWithDocTypeFilter = async (filter) => {
 
 async function fetchDocsWithFilter(page = 1, document_type,routes = []) {
   const response = await Client().query(
-    Prismic.Predicates.at("document.type", document_type), { pageSize: 50, lang: '*', page });
+    Prismic.Predicates.at("document.type", document_type), { pageSize: 25, lang: '*', page });
   const allRoutes = routes.concat(response.results);
   if (response.results_size + routes.length < response.total_results_size) {
     return fetchDocsWithFilter(page + 1, document_type,allRoutes);
