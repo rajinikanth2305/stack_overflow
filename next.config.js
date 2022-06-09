@@ -3,6 +3,7 @@ const path = require("path");
 module.exports = {
   target: "serverless",
   poweredByHeader: false,
+  optimizeFonts: false,
   webpack(config) {
     config.resolve.modules.push(path.resolve("./"));
     return config;
