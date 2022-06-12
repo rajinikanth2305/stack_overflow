@@ -1037,6 +1037,16 @@ export const regStyle = css.global`
     color: #000000;
   }
 
+  .p-dialog {
+    border: 1px solid #ffc100;
+  }
+
+  .p-dialog .p-dialog-header .p-dialog-title,
+  .p-confirm-dialog-message {
+    color: #000000;
+    font-family: Franklin Gothic;
+  }
+
   @media only screen and (max-width: 660px) {
     .m-d-none {
       display: none;

@@ -2503,6 +2503,16 @@ export const customStyles = css.global`
     color: rgba(0, 0, 0, 1);
   }
 
+  .p-dialog {
+    border: 1px solid #ffc100;
+  }
+
+  .p-dialog .p-dialog-header .p-dialog-title,
+  .p-confirm-dialog-message {
+    color: #000000;
+    font-family: Franklin Gothic;
+  }
+
   .c-modal-dialog > .p-dialog-footer {
     display: none !important;
   }
