@@ -1646,6 +1646,16 @@ export const trekStyle = css.global`
     font-weight: normal;
   }
 
+  .p-dialog {
+    border: 1px solid #ffc100;
+  }
+
+  .p-dialog .p-dialog-header .p-dialog-title,
+  .p-confirm-dialog-message {
+    color: #000000;
+    font-family: Franklin Gothic;
+  }
+
   @media only screen and (max-width: 660px) {
     .q-des {
       font-size: 40px;
