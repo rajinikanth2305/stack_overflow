@@ -48,6 +48,7 @@ const HikeHeader = (auth = false) => {
   const [showSearch, setShowSearch] = useState(false);
 
   const [selectedTreks, setSelectedTreks] = useState([]);
+  const searchURL = `../search-result?name=${selectedTreks}`;
 
   const doLogout = () => {
     auths.keycloak().then(([userTokenObject]) => {
@@ -136,7 +137,7 @@ const HikeHeader = (auth = false) => {
 
   const resultListing =
     searchResults &&
-    searchResults?.map(function (data, i) {
+    searchResults.slice(0, 5)?.map(function (data, i) {
       let url;
       /* const slugUrl = data?.uid;
  
@@ -167,6 +168,7 @@ const HikeHeader = (auth = false) => {
                         objectFit="cover"
                         objectPosition="50% 50%"
                         alt="imgs"
+                        unoptimized
                       />
                     ) : (
                       ""
@@ -761,7 +763,15 @@ const HikeHeader = (auth = false) => {
                   onClick={() => { setShowSearch(!showSearch); setSearchResults([]); setSelectedTreks(""); }}
                 ></i>
               </div>
-              <div className="s-r-height">{resultListing}</div>
+              <div className="s-r-height">{resultListing}
+                {resultListing && resultListing?.length >= 5 &&
+                  <div className="px-3 pb-3">
+                    <a href={searchURL}>
+                      <button className="btn w-100">View More Results</button>
+                    </a>
+                  </div>
+                }
+              </div>
             </div>
           )}
         </div>

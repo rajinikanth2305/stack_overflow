@@ -12,6 +12,9 @@ module.exports = {
   prismic: {
     preview: true
   },
+  images: {
+    domains: ['images.prismic.io'],
+  },
 
   async headers() {
     return [
