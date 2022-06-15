@@ -1547,6 +1547,11 @@ export const customStyles = css.global`
     border: 2px solid #ffc100;
   }
 
+  .auth_image.size-max > img {
+    height: 125px;
+    width: 125px;
+  }
+
   .auth_image_1 > img {
     height: 75px;
     width: 75px;
@@ -1568,6 +1573,11 @@ export const customStyles = css.global`
     font-family: Franklin Gothic;
     padding-top: 3px;
     line-height: 14px;
+  }
+
+  .auth_bx {
+    background: #f2f2f2;
+    padding: 15px 20px;
   }
 
   .text-center {

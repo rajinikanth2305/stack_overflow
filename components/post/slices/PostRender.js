@@ -251,21 +251,25 @@ const PostRender = ({
   };
 
   const renderAuthorSlice = () => {
+    console.log(authorData);
+    const aurhotUrl= `../author?name=${authorData?.uid}`;
     return (
       <div id="sidepanel_author_panel">
         <div className="ml-100">
-          <div className="text-center">
-            <div className="auth_image">
-              <img src={authorData?.data?.author_photo?.url} />
+          <a href={aurhotUrl}>
+            <div className="text-center">
+              <div className="auth_image">
+                <img src={authorData?.data?.author_photo?.url} />
+              </div>
+              <p className="m-0 p-text-3-fg text-center mt-1">
+                {authorData?.data?.author_first_name}{" "}
+                {authorData?.data?.author_last_name}
+              </p>
+              <p className="m-0 p-text-small-black text-center">
+                {authorData?.data?.designation}
+              </p>
             </div>
-            <p className="m-0 p-text-3-fg text-center mt-1">
-              {authorData?.data?.author_first_name}{" "}
-              {authorData?.data?.author_last_name}
-            </p>
-            <p className="m-0 p-text-small-black text-center">
-              {authorData?.data?.designation}
-            </p>
-          </div>
+          </a>
 
           <div className="grey-bg border-top-c">
             <p className="p-text-4 mb-2">
@@ -396,8 +400,8 @@ const PostRender = ({
               let url;
               const slugUrl = data?.uid;
               if (slugUrl) {
-               // url = `/trek/${slugUrl}`;
-                 url = `/${slugUrl}`;
+                // url = `/trek/${slugUrl}`;
+                url = `/${slugUrl}`;
               }
               return (
                 <div className="border-bottom mb-3">
@@ -629,12 +633,12 @@ const PostRender = ({
         </p>
         {relatedArticles?.map(function (article, i) {
 
-            let url;
-            const slugUrl = article?.uid;
-            if (slugUrl) {
+          let url;
+          const slugUrl = article?.uid;
+          if (slugUrl) {
             // url = `/trek/${slugUrl}`;
-              url = `/${slugUrl}`;
-            }
+            url = `/${slugUrl}`;
+          }
 
           let featureImageUrl = "";
           const featureSlice = article?.data?.body?.find(
@@ -650,17 +654,17 @@ const PostRender = ({
 
 
             <div className="border-bottom mb-3">
-                <a href={url ? url : "#"} target="new">
-              <div className="ar_right_side_imgs">
-                {featureImageUrl.length > 0 && <img src={featureImageUrl} />}
-              </div>
-              <p className="p-text-3-fgc mt-2 mb-1">{title}</p>
-              <p className="p-text-small-10-gray mb-0">
-                By <strong>{author}</strong>
-              </p>
-              <p className="p-text-small-10-gray">
-                {date} <span className="list-dot-style-mob"></span> 6 min read
-              </p>
+              <a href={url ? url : "#"} target="new">
+                <div className="ar_right_side_imgs">
+                  {featureImageUrl.length > 0 && <img src={featureImageUrl} />}
+                </div>
+                <p className="p-text-3-fgc mt-2 mb-1">{title}</p>
+                <p className="p-text-small-10-gray mb-0">
+                  By <strong>{author}</strong>
+                </p>
+                <p className="p-text-small-10-gray">
+                  {date} <span className="list-dot-style-mob"></span> 6 min read
+                </p>
               </a>
             </div>
           );
