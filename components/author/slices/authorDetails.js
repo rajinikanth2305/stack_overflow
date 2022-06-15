@@ -47,7 +47,7 @@ const AuthorDetails = ({ slice }) => {
     }, [authorName]);
 
     const articlesByAthorName = authorArticles && authorArticles?.results?.filter(x => x?.data?.author_link?.uid === authorName);
-    const auth = authorName.replace(/-/g, " ");
+    const auth = authorName && authorName?.replace(/-/g, " ");
 
     const articlesByAthorNameSection = articlesByAthorName && articlesByAthorName?.map(function (data, i) {
         const authorName = data?.data?.author_link?.uid.replace(/-/g, " ");
@@ -127,11 +127,26 @@ const AuthorDetails = ({ slice }) => {
                         <div className="col-md-2" />
                     </div>
 
-                    <div className="row my-4">
+                    <div className="my-4">
                         <h2 className="title-h3 mb-5">
                             <span className="border-bottom-custom"><b>Article by {authorName && auth}</b></span>
                         </h2>
-                        {articlesByAthorNameSection}
+                        {articlesByAthorName && articlesByAthorName?.length > 0 ? <div className="row">{articlesByAthorNameSection}</div> :
+                            <>
+                                <div className="d-flex col-lg-12 col-md-12 align-items-center justify-content-center mt-5 mb-3">
+                                    <div className="spinner-grow text-warning" role="status">
+                                        <span className="sr-only">Loading...</span>
+                                    </div>
+                                    <div className="spinner-grow text-warning mx-2" role="status">
+                                        <span className="sr-only">Loading...</span>
+                                    </div>
+                                    <div className="spinner-grow text-warning" role="status">
+                                        <span className="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+                            </>
+                        }
+
                     </div>
                 </div>
                 <style jsx global>
