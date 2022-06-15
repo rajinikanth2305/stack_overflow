@@ -2536,7 +2536,7 @@ export const customStyles = css.global`
   }
 
   .position-sticky.ps-custom {
-    top: 10px;
+    top: 70px;
     padding: 10px 0;
   }
 
