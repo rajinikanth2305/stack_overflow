@@ -979,7 +979,7 @@ const PostRender = ({
     }
   }
 
-  const categortList = data?.categories.split(/[;,]+/);
+  const categortList = data?.categories?.split(/[;,]+/);
 
   const categoryMenu = categortList && categortList?.map(function (data, i) {
     const categoyUrl = `../category?name=${data}`;
