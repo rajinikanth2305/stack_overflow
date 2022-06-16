@@ -2558,6 +2558,17 @@ export const customStyles = css.global`
     color: #ffffff;
   }
 
+  .trek_summary_desc {
+    font-size: 12px;
+    line-height: 16px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: none;
+    color: rgba(112, 112, 112, 1);
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;

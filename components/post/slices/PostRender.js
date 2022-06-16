@@ -252,7 +252,7 @@ const PostRender = ({
 
   const renderAuthorSlice = () => {
     console.log(authorData);
-    const aurhotUrl= `../author?name=${authorData?.uid}`;
+    const aurhotUrl = `../author?name=${authorData?.uid}`;
     return (
       <div id="sidepanel_author_panel">
         <div className="ml-100">
@@ -979,6 +979,15 @@ const PostRender = ({
     }
   }
 
+  const categortList = data?.categories.split(/[;,]+/);
+
+  const categoryMenu = categortList && categortList?.map(function (data, i) {
+    const categoyUrl = `../category?name=${data}`;
+    return (
+      <a className="trek_summary_desc px-1" key={i} href={categoyUrl}>{data} </a>
+    );
+  });
+
   return (
     <>
       <Toast ref={toast} />
@@ -1067,6 +1076,8 @@ const PostRender = ({
                       <h2 className="title-h2 border-0 mb-0 pb-0">
                         {RichText.asText(data?.title)}
                       </h2>
+                      <p className="trek_summary_desc font-italic mt-3">Category <span><i class="fa fa-angle-double-right text-danger" aria-hidden="true"></i>
+                      </span> {categoryMenu}</p>
                       <div className="auth_sec">
                         <div className="d-flex align-items-center">
                           <div className="flex-grow-1">
