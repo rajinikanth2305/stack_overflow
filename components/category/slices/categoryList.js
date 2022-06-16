@@ -35,7 +35,6 @@ const AuthorDetails = ({ slice }) => {
     const articlesByAthorName = authorArticles && authorArticles?.results?.filter(x => x?.data?.categories === categoryName);
 
     const articleLearnMore = articlesByAthorName && articlesByAthorName?.map(function (data, i) {
-        const categoryName = data?.data?.author_link?.uid.replace(/-/g, " ");
         let url;
         const slugUrl = data?.uid;
         if (slugUrl) {
@@ -103,7 +102,7 @@ const AuthorDetails = ({ slice }) => {
                             </div>
                         </>
                     }
-                    {articlesByAthorName && articlesByAthorName?.length <= 0 && <p className="text-center">No record found.!</p>}
+                    {articlesByAthorName && articlesByAthorName?.length <= 0 && <p className="text-center">No article found.!</p>}
                 </div>
                 <style jsx global>
                     {customStyles}
