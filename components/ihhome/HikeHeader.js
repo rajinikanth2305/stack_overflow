@@ -137,7 +137,7 @@ const HikeHeader = (auth = false) => {
 
   const resultListing =
     searchResults &&
-    searchResults.slice(0, 5)?.map(function (data, i) {
+    searchResults.slice(0, 3)?.map(function (data, i) {
       let url;
       /* const slugUrl = data?.uid;
  
@@ -764,7 +764,7 @@ const HikeHeader = (auth = false) => {
                 ></i>
               </div>
               <div className="s-r-height">{resultListing}
-                {resultListing && resultListing?.length >= 5 &&
+                {resultListing && resultListing?.length >= 3 &&
                   <div className="px-3 pb-3">
                     <a href={searchURL}>
                       <button className="btn w-100">View More Results</button>

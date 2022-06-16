@@ -2569,6 +2569,10 @@ export const customStyles = css.global`
     color: rgba(112, 112, 112, 1);
   }
 
+  .t-min-height {
+    min-height: 80px;
+  }
+
   @media only screen and (max-width: 660px) {
     .banner-image-desktop {
       position: relative;
@@ -2614,6 +2618,10 @@ export const customStyles = css.global`
 
     .table-dashboard-profile-style-3.ctb > tbody > tr {
       border-bottom: 1px solid #d3d3d3;
+    }
+
+    .t-min-height {
+      min-height: 50px;
     }
 
     .table-dashboard-profile-style-3.ctb > tbody > tr > td {
