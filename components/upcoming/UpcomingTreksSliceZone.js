@@ -23,7 +23,7 @@ const UpComingTreksSliceZone = ({
   bestTrekToDoData,
   ucOpenData,
   ihautumnData,
-  winterData,
+  ihwinderData,
   treksToDoData,
   easyMordatesTreks,
   moderateTreks,
@@ -72,7 +72,7 @@ const UpComingTreksSliceZone = ({
           <UCWinterTreks
             slice={slice}
             key={`slice-${index}`}
-            winterData={winterData}
+            winterData={ihwinderData?.find(x=>x?.key===slice?.primary?.uc_winter_treks_title[0].text)?.value}
           />
         );
 

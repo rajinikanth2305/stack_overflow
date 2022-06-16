@@ -22,7 +22,7 @@ const UpcomingTreks = ({
   bestTrekToDoData,
   ucOpenData,
   ihautumnData,
-  winterData,
+  ihwinderData,
   treksToDoData,
   easyMordatesTreks,
   moderateTreks,
@@ -50,7 +50,7 @@ const UpcomingTreks = ({
           bestTrekToDoData={bestTrekToDoData}
           ucOpenData={ucOpenData}
           ihautumnData={ihautumnData}
-          winterData={winterData}
+          ihwinderData={ihwinderData}
           treksToDoData={treksToDoData}
           easyMordatesTreks={easyMordatesTreks}
           moderateTreks={moderateTreks}
@@ -120,7 +120,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const bestTrekToDoData = [];
   const ucOpenData = [];
   // const autumnData = [];
-  const winterData = [];
+  // const winterData = [];
   const treksToDoData = [];
 
   const slice = doc.data?.body?.find(x => x.slice_type === "best_treks_to_do");
@@ -202,19 +202,52 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     }
   }
 
-  const winter_slice = doc.data?.body?.find(
-    x => x.slice_type === "uc_winter_treks"
-  );
+  // const winter_slice = doc.data?.body?.find(
+  //   x => x.slice_type === "uc_winter_treks"
+  // );
 
-  if (winter_slice?.items?.length > 0) {
-    for (var i = 0; i < winter_slice?.items?.length; i++) {
-      const data = winter_slice?.items[i];
-      const slugUrl = data && data?.trek_link?.id;
-      if (slugUrl !== undefined) {
-        const trek_details = await Client().getByID(slugUrl);
-        if (trek_details !== undefined && trek_details !== null)
-          winterData.push(trek_details);
+  // if (winter_slice?.items?.length > 0) {
+  //   for (var i = 0; i < winter_slice?.items?.length; i++) {
+  //     const data = winter_slice?.items[i];
+  //     const slugUrl = data && data?.trek_link?.id;
+  //     if (slugUrl !== undefined) {
+  //       const trek_details = await Client().getByID(slugUrl);
+  //       if (trek_details !== undefined && trek_details !== null)
+  //         winterData.push(trek_details);
+  //     }
+  //   }
+  // }
+
+  let ihwinderData =[];
+
+  const winter_slice = doc && doc?.data?.body?.filter(x => x.slice_type === "uc_winter_treks");
+
+  if (winter_slice?.length > 0) {
+
+    for (var i = 0; i < winter_slice?.length; i++) {
+
+      let  linkedTrekData=[];
+
+      const data = winter_slice[i]; 
+
+      for (var k = 0; k < data?.items?.length; k++) {
+        const slugUrl = data && data?.items[k].trek_link?.id;
+        if (slugUrl !== undefined) {
+          const hikesnews_article_details = await Client().getByID(slugUrl);
+          if (
+            hikesnews_article_details !== undefined &&
+            hikesnews_article_details !== null
+          )
+          linkedTrekData.push(hikesnews_article_details);
+        }
       }
+
+      if(linkedTrekData.length > 0) {
+        ihwinderData.push({
+            key: winter_slice[i].primary?.uc_winter_treks_title[0].text,
+            value:linkedTrekData
+          });
+       }
     }
   }
 
@@ -247,7 +280,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       bestTrekToDoData,
       ucOpenData,
       ihautumnData,
-      winterData,
+      ihwinderData,
       treksToDoData,
       easyMordatesTreks,
       moderateTreks,

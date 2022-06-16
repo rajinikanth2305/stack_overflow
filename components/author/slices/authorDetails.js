@@ -63,35 +63,37 @@ const AuthorDetails = ({ slice }) => {
             x => x.slice_type === "text"
         );
         return (
-            <div key={i} className="col-lg-4 col-md-6">
-                <a href={url ? url : "#"}>
-                    <div className="d-flex align-items-center row mb-4 cursor-pointer">
-                        <div className="col-3 col-lg-3 col-md-12">
+            <div key={i} className="col-lg-3 col-md-6 col-12 hvr-grow">
+                <Link href={url ? url : "#"}>
+                    <div className="card tw_trek_card mx-0 my-4 m-mt-0 cursor-pointer">
+                        <div className="col-md-12">
                             {getArticleImage?.primary?.feature_image?.url ? (
                                 <img
                                     src={getArticleImage?.primary?.feature_image?.url}
                                     alt="articleImage"
-                                    className="diyres_img_bg_img"
+                                    className="latest_art_img_bg_img"
                                 />
                             ) : (
-                                <img src="../ip.png" className="diyres_img_bg_img" />
+                                <img src="../ip.png" className="latest_art_img_bg_img" />
                             )}
                         </div>
-                        <div className="col-9 col-lg-9 col-md-12">
-                            <p className="p-text-3">
-                                <b>{RichText.asText(data?.data?.title)}</b>
-                            </p>
-                            <div>
-                                <p className="p-text-small m-0 text-capitalize">
-                                    <em>By {authorName}</em>
+                        <div className="col-md-12">
+                            <div className="p-3">
+                                <p className="p-text-3 t-min-height m-0">
+                                    <b>{RichText.asText(data?.data?.title)}</b>
                                 </p>
-                                <p className="p-text-small m-0 pt-0">
-                                    <em>{data?.data?.date}</em>
-                                </p>
+                                <div>
+                                    <p className="p-text-small m-0 text-capitalize">
+                                        <em>By {authorName}</em>
+                                    </p>
+                                    <p className="p-text-small m-0 pt-0">
+                                        <em>{data?.data?.date}</em>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </a>
+                </Link>
             </div>
         );
     });
@@ -128,8 +130,8 @@ const AuthorDetails = ({ slice }) => {
                     </div>
 
                     <div className="my-4">
-                        <h2 className="title-h3 mb-5">
-                            <span className="border-bottom-custom"><b>Article by {authorName && auth}</b></span>
+                        <h2 className="title-h3">
+                            <span className="border-bottom-custom"><b>Articles by {authorName && auth}</b></span>
                         </h2>
                         {articlesByAthorName && articlesByAthorName?.length > 0 ? <div className="row">{articlesByAthorNameSection}</div> :
                             <>
