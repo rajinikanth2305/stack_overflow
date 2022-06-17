@@ -115,6 +115,12 @@ const HikeHeader = (auth = false) => {
     fetchData();
   };
 
+  const searchOnEnte = event => {
+    if (event.key === 'Enter') {
+      router.push(searchURL);
+    }
+  }
+
   const autoSearchTreks = (event) => {
     // console.log(event.query.toLowerCase());
     fetchData(event.query.toLowerCase());
@@ -746,6 +752,7 @@ const HikeHeader = (auth = false) => {
                 autoFocus
                 value={selectedTreks}
                 onChange={(e) => setSelectedTreks(e.value)}
+                onKeyPress={searchOnEnte}
                 completeMethod={autoSearchTreks}
                 className="g-search smw-100"
                 delay={30}
