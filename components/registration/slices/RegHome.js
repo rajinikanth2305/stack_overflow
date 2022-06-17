@@ -198,7 +198,7 @@ const RegHome = ({ slice }) => {
   }
 
   const getTrekContentsFromPrismic = async (trekId) =>{
-    // console.log(trekName);
+     console.log(trekId);
     // const response =    await Client().getByUID("trek", trekName);
 
     const client = Client();

@@ -89,19 +89,13 @@ const UpComingTreksSliceZone = ({
         
       case "uc_cross_trek":
         return <UcCrossTrek slice={slice} key={`slice-${index}`} />;
-     /* case "uc_allindia_hikes_treks":
+      case "uc_allindia_hikes_treks":
         return (
           <AllIndiaHikes
             slice={slice}
             key={`slice-${index}`}
-            easyMordatesTreks={easyMordatesTreks}
-            moderateTreks={moderateTreks}
-            difficultTreks={difficultTreks}
-            familyTreks={familyTreks}
-            diyTreks={diyTreks}
-            allTreksData={allTreksData}
           />
-        );*/
+        );
       default:
         return null;
     }

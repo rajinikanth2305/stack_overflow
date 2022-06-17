@@ -38,6 +38,8 @@ const AllIndiaHikes = ({
       trek {
         uid
         trek_title
+        family_trek
+        private_trek
         body {
         ...on trek_banner {
           non-repeat {
@@ -48,6 +50,7 @@ const AllIndiaHikes = ({
       }
     }`
 
+
     const allTrekData = await client.query([
       Prismic.Predicates.at("document.type", "trek")], {
         'graphQuery': mySuperGraphQuery ,
@@ -55,18 +58,31 @@ const AllIndiaHikes = ({
       }
     );
 
-    console.log(allTrekData);
+    const res=[];
+    allTrekData?.results?.forEach(result => {
+      console.log(result);
+      if(result?.data?.family_trek===true 
+        ||  result?.data?.private_trek===true) {
+      }
+      else {
+       // res.push(result);
+       res.push(result);
+      }
+    });
 
-    allTrekData?.results?.sort(function(a, b){
+   // allTrekData=res;
+    console.log(res);
+
+   res?.sort(function(a, b){
       if(a?.uid < b?.uid) { return -1; }
       if(a?.uid > b?.uid) { return 1; }
       return 0;
     });
-    setTreksData(allTrekData);
+    setTreksData(res);
     setRender(true);
    }
 
-  const treks = treksData?.results?.map(function(data, i) {
+  const treks = treksData?.map(function(data, i) {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
