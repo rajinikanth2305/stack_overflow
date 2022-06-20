@@ -227,7 +227,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
   };
 
 
-  const renderSwitch = (status, fillingFast, date, batchDates, key) => {
+  const renderSwitch = (status, fillingFast, date, batchDates, key,familyTrekFlag) => {
     // console.log("called-here2");
     switch (status) {
       case 'WAITING_LIST':
@@ -290,12 +290,13 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
       const fillingFast =
         batchDates[key].availableSlots > 0 &&
         batchDates[key].availableSlots <= 5;
+        const familyTrek=batchDates[key].familyTrek;
       return (
         <div className="w-100">
           <div className="w-100">
             {
 
-              renderSwitch(status, fillingFast, date, batchDates, key)
+              renderSwitch(status, fillingFast, date, batchDates, key,familyTrek)
             }
           </div>
         </div>

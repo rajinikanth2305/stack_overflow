@@ -175,13 +175,14 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
         </style>
       </div>
 
-
+       { /*
       <div>
         <AllIndiaHikes
           slice={slice}
           key={`slice-${1}`}
         />
       </div>
+       */}
     </>
   );
 };

@@ -7,6 +7,7 @@ import Prismic from "@prismicio/client";
 import Image from "next/image";
 import ReactPaginate from "react-paginate";
 import Link from "next/link";
+import { responseSymbol } from "next/dist/server/web/spec-compliant/fetch-event";
 
 const UpComingTreks = ({ slice }) => {
   const upcomingTreksTitle = slice?.primary?.upcoming_treks_title;
@@ -127,7 +128,23 @@ const UpComingTreks = ({ slice }) => {
           // response is the response object, response.results holds the documents
           // console.log(JSON.stringify(response));
           setFilterResult(true);
-          setResults(response.results);
+          
+          const res=[];
+          response?.results?.forEach(result => {
+            //console.log(result);
+            if(result?.data?.family_trek===true 
+              ||  result?.data?.private_trek===true) {
+
+            }
+            else {
+             // res.push(result);
+             res.push(result);
+            }
+          });
+
+          //setResults(response.results);
+            setResults(res);
+
           setPageCount(response.total_pages);
         });
     }

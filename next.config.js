@@ -7,7 +7,6 @@ module.exports = {
   webpack(config) {
     config.resolve.modules.push(path.resolve("./"));
     return config;
-    
   },
   prismic: {
     preview: true
@@ -15,6 +14,13 @@ module.exports = {
   images: {
     domains: ['images.prismic.io'],
   },
+
+
+
+  //images: {
+    //domains: ['images.prismic.io','img.youtube.com']
+  //},*/
+
 
   async headers() {
     return [

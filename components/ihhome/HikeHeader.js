@@ -68,7 +68,23 @@ const HikeHeader = (auth = false) => {
           Prismic.Predicates.fulltext("my.trek.search_keywords", stext),
         ])
         .then(function (response) {
-          response?.results.forEach(result => searchResultContext.push(result));
+          const res=[];
+          response?.results?.forEach(result => {
+            console.log(result);
+            if(result?.data?.family_trek===true 
+              ||  result?.data?.private_trek===true) {
+
+            }
+            else {
+             // res.push(result);
+              searchResultContext.push(result);
+            }
+          });
+
+         
+          // response?.results?.filter(f=>fforEach(result => );
+
+          //data?.data?.trek_title
         });
 
       await client
