@@ -201,7 +201,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     setInvalidDates(invalidDatesList);
   };
 
-  const activeOrFillingTemplate = (fillingFast, date, availableSlot) => {
+  const activeOrFillingTemplate = (fillingFast, date, availableSlot, familyTrekStatus) => {
     if (fillingFast) {
       // return (<p className="m-0 ad-highlight">
       // <span>Last 2 SLOTS {date.day}</span>
@@ -212,6 +212,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
             <span>{date.day}</span>
           </p>
           <p className="m-0 cal-highlight-red text-center">Last {availableSlot} slots</p>
+          {familyTrekStatus && <p className="f-trek-style">* Family trek</p>}
         </>
       );
     } else {
@@ -221,6 +222,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
             <span>{date.day}</span>
           </p>
           <p className="m-0 cal-highlight-green text-center">Available</p>
+          {familyTrekStatus && <p className="f-trek-style">* Family trek</p>}
         </>
       );
     }
@@ -237,11 +239,12 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
               <span>{date.day}</span>
             </p>
             <p className="m-0 cal-highlight-yellow text-center">Waitlist</p>
+            {batchDates[key].familyTrek && <p className="f-trek-style">* Family trek</p>}
           </>
         );
       case 'ACTIVE':
         return (
-          activeOrFillingTemplate(fillingFast, date, batchDates[key].availableSlots)
+          activeOrFillingTemplate(fillingFast, date, batchDates[key].availableSlots, batchDates[key].familyTrek)
         );
       case 'FULL':
         return (
@@ -250,6 +253,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
               <span>{date.day}</span>
             </p>
             <p className="m-0 cal-highlight-red-text text-center">FULL</p>
+            {batchDates[key].familyTrek && <p className="f-trek-style">* Family trek</p>}
           </>
         );
       default:

@@ -1656,6 +1656,12 @@ export const trekStyle = css.global`
     font-family: Franklin Gothic;
   }
 
+  .f-trek-style {
+    font-size: 10px;
+    text-align: center;
+    padding: 2px;
+  }
+
   @media only screen and (max-width: 660px) {
     .q-des {
       font-size: 40px;
