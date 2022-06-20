@@ -134,6 +134,7 @@ const HikeHeader = (auth = false) => {
   const searchOnEnte = event => {
     if (event.key === 'Enter') {
       router.push(searchURL);
+      setSearchResults([]); setSelectedTreks("");
     }
   }
 
@@ -204,6 +205,7 @@ const HikeHeader = (auth = false) => {
                         objectFit="cover"
                         objectPosition="50% 50%"
                         alt="imgs"
+                        unoptimized
                       />
                     ) : (
                       ""
