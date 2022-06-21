@@ -136,8 +136,9 @@ async function  processDocumentData  (res,documentId) {
         }
 
 
-    const url=reValidateLinkResolver(doc);(doc);
-    console.log(url);
+    const url=reValidateLinkResolver(doc);
+    //console.log(url);
+    console.log("Revalidated started" + url );
     await res.unstable_revalidate(`${url}`);
     console.log("Revalidated Successfully" + url );
   }
