@@ -1,7 +1,7 @@
 import { createHmac } from 'crypto';
 //https://nextjs.org/docs/upgrading
 //https://vercel.com/docs/concepts/next.js/incremental-static-regeneration
-import { linkResolver } from "prismic-configuration";
+import { reValidateLinkResolver } from "prismic-configuration";
 import { Client } from "utils/prismicHelpers";
 
 const REACT_APP_TMS_BACKEND_PUBLIC_URL=process.env.NEXT_PUBLIC_TMS_BACKEND_PUBLIC_URL;
@@ -136,7 +136,7 @@ async function  processDocumentData  (res,documentId) {
         }
 
 
-    const url=linkResolver(doc);
+    const url=reValidateLinkResolver(doc);(doc);
     console.log(url);
     await res.unstable_revalidate(`${url}`);
     console.log("Revalidated Successfully" + url );

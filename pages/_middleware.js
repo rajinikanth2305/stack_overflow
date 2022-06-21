@@ -24,7 +24,8 @@ const   middleware=async(req)  => {
 
    
  if (!url.pathname.includes('.') && // exclude all files in the public folder
-     !url.pathname.startsWith('/api') // exclude all API routes
+     !url.pathname.startsWith('/api') && // exclude all API routes
+     !req.headers.has("x-prerender-revalidate") 
   ){
 
    // console.log( 32 + url.pathname + url.pathname.length);

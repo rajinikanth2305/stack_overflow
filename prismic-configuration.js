@@ -126,3 +126,29 @@ export const blogHrefResolver = (doc) => {
     return val===undefined? "/" :val;
   }
 }
+
+
+export const reValidateLinkResolver = (doc) => {
+  
+  if (doc.type === 'post') {
+    return `/blog/${doc.uid}`;
+  }
+  if (doc.type === 'family_trek') {
+    return `/family-trek/${doc.uid}`;
+  }
+  if (doc.type === 'document_trek_type') {
+    return `/documented-trek/${doc.uid}`;
+  }
+  if (doc.type === 'articles_landing_type') {
+    return `/articles/${doc.uid}`;
+  }
+
+  if (doc.type === 'hike_home_ctype') {
+    return `/`;
+  }
+  if (doc.type === 'trek') {
+    return `/trek/${doc.uid}`;
+  }
+ 
+  return `/${doc.uid}`;
+}
