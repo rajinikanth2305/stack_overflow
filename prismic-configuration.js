@@ -1,4 +1,5 @@
 // -- Prismic API endpoint
+///-- simple comments
 // Determines which repository to query and fetch data from
 // Configure your site's access point here
 export const apiEndpoint = 'https://indiahike.cdn.prismic.io/api/v2'
