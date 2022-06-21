@@ -139,6 +139,7 @@ async function  processDocumentData  (res,documentId) {
     const url=linkResolver(doc);
     console.log(url);
     await res.unstable_revalidate(`${url}`);
+    console.log("Revalidated Successfully" + url );
   }
   else {
     console.log(documentId + "not found");
