@@ -112,9 +112,11 @@ const FaqFamily = ({ slice }) => {
           </Accordion>
           <div className="text-center mt-4">
             <Link href="../../../faq">
-              <button type="button" className="btn btn-ih-primary">
-                View more FAQs
-              </button>
+              <a>
+                <button type="button" className="btn btn-ih-primary">
+                  View more FAQs
+                </button>
+              </a>
             </Link>
           </div>
           <style jsx global>

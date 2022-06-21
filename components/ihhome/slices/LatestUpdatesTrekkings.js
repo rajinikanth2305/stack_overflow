@@ -62,7 +62,7 @@ const LatestUpdatesTrekkings = ({
     const slugUrl = data?.uid;
     if (slugUrl) {
       //url = `/blog/${slugUrl}`;
-       url = `/${slugUrl}`;
+      url = `/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.find(
       x => x.slice_type === "feature_image"
@@ -73,26 +73,28 @@ const LatestUpdatesTrekkings = ({
     return (
       <div className="col-lg-6 col-md-12" key={index}>
         <Link href={url ? url : "#"}>
-          <div className="card exp-card-blog mx-0 cursor-pointer">
-            <div alt="img" className="latestTrekWorld_bg">
-              {/* <Image
+          <a>
+            <div className="card exp-card-blog mx-0 cursor-pointer">
+              <div alt="img" className="latestTrekWorld_bg">
+                {/* <Image
                 src={data.latest_trekking_world_img.url}
                 layout="fill"
                 objectFit="cover"
                 objectPosition="50% 50%"
               /> */}
-              <img
-                src={getArticleImage?.primary?.feature_image?.url}
-                alt="articleImage"
-                className="latestTrekWorld_bg"
-              />
+                <img
+                  src={getArticleImage?.primary?.feature_image?.url}
+                  alt="articleImage"
+                  className="latestTrekWorld_bg"
+                />
+              </div>
+              <div className="p-3">
+                <p className="latestTrekWorld_caption">
+                  {RichText.asText(data?.data?.title)}
+                </p>
+              </div>
             </div>
-            <div className="p-3">
-              <p className="latestTrekWorld_caption">
-                {RichText.asText(data?.data?.title)}
-              </p>
-            </div>
-          </div>
+          </a>
         </Link>
       </div>
     );
@@ -111,63 +113,65 @@ const LatestUpdatesTrekkings = ({
           </div>
           <div className="card tw_trek_card mx-0 my-4 m-mt-0 cursor-pointer">
             <Link href={primary_url ? primary_url : "#"}>
-              <div className="row">
-                <div className="col-lg-6 col-md-12">
-                  <div className="latestLrekImage_bg">
-                    <img
-                      src={
-                        latestLrekImage &&
-                        latestLrekImage?.primary?.feature_image?.url
-                      }
-                      alt="articleImage"
-                      className="latestLrekImage_bg"
-                    />
+              <a>
+                <div className="row">
+                  <div className="col-lg-6 col-md-12">
+                    <div className="latestLrekImage_bg">
+                      <img
+                        src={
+                          latestLrekImage &&
+                          latestLrekImage?.primary?.feature_image?.url
+                        }
+                        alt="articleImage"
+                        className="latestLrekImage_bg"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="col-lg-6 col-md-12">
-                  <div className="d-flex align-items-center latest_trek_details">
-                    <div>
-                      <p className="day_talk_title">
-                        <span>{RichText.asText(dayTalkTitle)}</span>
-                      </p>
-                      <p className="day_trek_talk_title">
-                        {RichText.asText(
-                          latestUpdateAarticlePrimaryArticleData[0]?.data?.title
-                        )}
-                      </p>
-                      <p className="day_trek_talk_desc">
-                        {/* {RichText.asText(dayTrekTalkDesc?.primary?.text)
+                  <div className="col-lg-6 col-md-12">
+                    <div className="d-flex align-items-center latest_trek_details">
+                      <div>
+                        <p className="day_talk_title">
+                          <span>{RichText.asText(dayTalkTitle)}</span>
+                        </p>
+                        <p className="day_trek_talk_title">
+                          {RichText.asText(
+                            latestUpdateAarticlePrimaryArticleData[0]?.data?.title
+                          )}
+                        </p>
+                        <p className="day_trek_talk_desc">
+                          {/* {RichText.asText(dayTrekTalkDesc?.primary?.text)
                           .length > 25
                           ? `${RichText.asText(
                               dayTrekTalkDesc?.primary?.text
                             ).substring(0, 200)}...`
                           : RichText.asText(dayTrekTalkDesc?.primary?.text)} */}
-                      </p>
-                      <p className="name_editor m-0 text-capitalize">
-                        <i>
-                          By&nbsp;
-                          {/* {RichText.asText(nameEditor)} */}
-                          {
-                            authorName
-                          }
-                        </i>
-                      </p>
-                      <p className="name_editor">
-                        <span>
-                          {
-                            latestUpdateAarticlePrimaryArticleData[0]?.data
-                              ?.date
-                          }{" "}
-                          |{" "}
-                        </span>
-                        <span>
-                          {RichText.asText(durationTrekRead)} min read
-                        </span>
-                      </p>
+                        </p>
+                        <p className="name_editor m-0 text-capitalize">
+                          <i>
+                            By&nbsp;
+                            {/* {RichText.asText(nameEditor)} */}
+                            {
+                              authorName
+                            }
+                          </i>
+                        </p>
+                        <p className="name_editor">
+                          <span>
+                            {
+                              latestUpdateAarticlePrimaryArticleData[0]?.data
+                                ?.date
+                            }{" "}
+                            |{" "}
+                          </span>
+                          <span>
+                            {RichText.asText(durationTrekRead)} min read
+                          </span>
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </a>
             </Link>
           </div>
           <div className="">

@@ -92,6 +92,7 @@ const AllIndiaHikes = ({
     return (
       <div key={i} className="col-lg-4 col-md-6">
         <Link href={url ? url : "#"}>
+          <a>
           <div className="d-flex align-items-center cursor-pointer">
             <div>
               <p
@@ -123,6 +124,7 @@ const AllIndiaHikes = ({
               <p className="p-display-3 p-display-3-md cursor-pointer">{RichText.asText(data?.data?.trek_title)}</p>
             </div>
           </div>
+          </a>
         </Link>
       </div>
     );

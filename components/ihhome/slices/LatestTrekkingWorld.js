@@ -103,11 +103,11 @@ const LatestTrekkingWorld = ({ slice }) => {
               </div>
               <div className="text-center mt-4">
                 {url ? (
-                  <Link href={url ? url : "#"}>
+                  <a href={url ? url : "#"}>
                     <button className="btn btn-lg btn-ih-primary text-capitalized hvr-grow">
                       {data?.button_name[0]?.text}
                     </button>
-                  </Link>
+                  </a>
                 ) : (
                   <button
                     className="btn btn-lg btn-ih-primary text-capitalized hvr-grow"

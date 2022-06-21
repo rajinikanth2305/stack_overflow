@@ -27,7 +27,7 @@ const GtStories = ({ slice, latestUpdateAarticleData1 }) => {
     "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
   const youtube_imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
 
-  const latestTrekWorld = latestUpdateAarticleData1?.map(function(data, index) {
+  const latestTrekWorld = latestUpdateAarticleData1?.map(function (data, index) {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
@@ -43,28 +43,30 @@ const GtStories = ({ slice, latestUpdateAarticleData1 }) => {
     return (
       <div className="col-lg-6 col-md-12" key={index}>
         <Link href={url ? url : "#"}>
-          <div className="card exp-card-blog gt-blog mx-0 cursor-pointer">
-            <div alt="img" className="latestTrekWorld_bg ltw_img">
-              {getArticleImage?.primary?.feature_image?.url ? (
-                <img
-                  src={getArticleImage?.primary?.feature_image?.url}
-                  alt="articleImage"
-                  className="latestTrekWorld_bg ltw_img"
-                />
-              ) : (
-                <img
-                  src="./ip.png"
-                  alt="articleImage"
-                  className="latestTrekWorld_bg ltw_img"
-                />
-              )}
+          <a>
+            <div className="card exp-card-blog gt-blog mx-0 cursor-pointer">
+              <div alt="img" className="latestTrekWorld_bg ltw_img">
+                {getArticleImage?.primary?.feature_image?.url ? (
+                  <img
+                    src={getArticleImage?.primary?.feature_image?.url}
+                    alt="articleImage"
+                    className="latestTrekWorld_bg ltw_img"
+                  />
+                ) : (
+                  <img
+                    src="./ip.png"
+                    alt="articleImage"
+                    className="latestTrekWorld_bg ltw_img"
+                  />
+                )}
+              </div>
+              <div className="p-3">
+                <p className="latestTrekWorld_caption">
+                  {RichText.asText(data?.data?.title)}
+                </p>
+              </div>
             </div>
-            <div className="p-3">
-              <p className="latestTrekWorld_caption">
-                {RichText.asText(data?.data?.title)}
-              </p>
-            </div>
-          </div>
+          </a>
         </Link>
       </div>
     );

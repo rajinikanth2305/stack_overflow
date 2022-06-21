@@ -52,7 +52,7 @@ const BestPostTreks = ({ slice, trekData }) => {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
-     // url = `/documented-trek/${slugUrl}`;
+      // url = `/documented-trek/${slugUrl}`;
       url = `/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.filter(
@@ -65,32 +65,33 @@ const BestPostTreks = ({ slice, trekData }) => {
       <div key={i}>
         <div className="mx-4 m-mx-0 hvr-grow cursor-pointer">
           <Link href={url ? url : "#"}>
-            <div className="card_sec">
-              <div className="card trek_card">
-                <div alt="imgs" className="best_treks_images">
-                  <div className="bg_overlay_trek_image_bg h-100">
-                    <div className="h-100">
-                      <div className="d-flex align-items-end justify-content-center w-100 h-100 px-4 py-3">
-                        <div className="w-100">
-                          <p className="p-text-1-main m-0">
-                            {RichText.asText(data?.data?.title)}
-                          </p>
+            <a>
+              <div className="card_sec">
+                <div className="card trek_card">
+                  <div alt="imgs" className="best_treks_images">
+                    <div className="bg_overlay_trek_image_bg h-100">
+                      <div className="h-100">
+                        <div className="d-flex align-items-end justify-content-center w-100 h-100 px-4 py-3">
+                          <div className="w-100">
+                            <p className="p-text-1-main m-0">
+                              {RichText.asText(data?.data?.title)}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    {getArticleImage[0]?.primary?.feature_image?.url && (
+                      <Image
+                        src={getArticleImage[0]?.primary?.feature_image?.url}
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="50% 50%"
+                        unoptimized
+                      />
+                    )}
                   </div>
-                  {getArticleImage[0]?.primary?.feature_image?.url && (
-                    <Image
-                      src={getArticleImage[0]?.primary?.feature_image?.url}
-                      layout="fill"
-                      objectFit="cover"
-                      objectPosition="50% 50%"
-                      unoptimized
-                    />
-                  )}
-                </div>
-                <div className="px-3 py-2">
-                  {/* <div className="d-flex align-items-center card-info-text">
+                  <div className="px-3 py-2">
+                    {/* <div className="d-flex align-items-center card-info-text">
                     <div>
                       <p>{data?.data[0]?.primary?.duration[0]?.text}</p>
                     </div>
@@ -104,10 +105,10 @@ const BestPostTreks = ({ slice, trekData }) => {
                     </div>
                   </div> */}
 
-                  <div>
-                    <p className="p-text-4">
-                      {data?.data?.sub_title}
-                      {/* {RichText.asText(
+                    <div>
+                      <p className="p-text-4">
+                        {data?.data?.sub_title}
+                        {/* {RichText.asText(
                         getArticleImage && getArticleImage[0]?.primary?.caption
                       )?.length > 120
                         ? `${RichText.asText(
@@ -118,18 +119,19 @@ const BestPostTreks = ({ slice, trekData }) => {
                             getArticleImage &&
                               getArticleImage[0]?.primary?.caption
                           )} */}
-                    </p>
-                  </div>
-                  <div className="d-flex align-items-center mb-3 p-btn-btm">
-                    <div>
-                      <button className="btn btn-bihtn-yellow">
-                        View Trek
-                      </button>
+                      </p>
+                    </div>
+                    <div className="d-flex align-items-center mb-3 p-btn-btm">
+                      <div>
+                        <button className="btn btn-bihtn-yellow">
+                          View Trek
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </a>
           </Link>
         </div>
       </div>

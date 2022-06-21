@@ -36,12 +36,12 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
     linkType == "Document" ? slice?.primary?.link_url_primary?.slug : undefined;
   if (slugUrl) primary_url = linkResolver(slice?.primary?.link_url_primary);
 
-  const artData = articleData.map(function(data, i) {
+  const artData = articleData.map(function (data, i) {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
       //url = `/family-trek/${slugUrl}`;
-       url = `/${slugUrl}`;
+      url = `/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.find(
       x => x.slice_type === "feature_image"
@@ -53,34 +53,36 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
       <div key={i}>
         <div className="card exp-card mb-4 pb-1 mmx-0 cursor-pointer">
           <Link href={url ? url : "#"}>
-            <div>
-              <div className="expImage">
-                {data?.data?.body[0]?.primary?.banner_image?.url ? (
-                  <img
-                    src={data?.data?.body[0]?.primary?.banner_image?.url}
-                    alt="articleImage"
-                    className="expImage"
-                  />
-                ) : (
-                  <img src="./ip.png" className="expImage" />
-                )}
-              </div>
-              <div className="p-3">
-                <div className="">
-                  <p className="p-text-3 m-0">
-                    {RichText.asText(data?.data?.body[0]?.primary?.heading1)}
-                  </p>
-                  <p className="p-text-5 m-0">
-                    {RichText.asText(data?.data?.body[0]?.primary?.heading2)
-                      ?.length > 50
-                      ? `${RichText.asText(
+            <a>
+              <div>
+                <div className="expImage">
+                  {data?.data?.body[0]?.primary?.banner_image?.url ? (
+                    <img
+                      src={data?.data?.body[0]?.primary?.banner_image?.url}
+                      alt="articleImage"
+                      className="expImage"
+                    />
+                  ) : (
+                    <img src="./ip.png" className="expImage" />
+                  )}
+                </div>
+                <div className="p-3">
+                  <div className="">
+                    <p className="p-text-3 m-0">
+                      {RichText.asText(data?.data?.body[0]?.primary?.heading1)}
+                    </p>
+                    <p className="p-text-5 m-0">
+                      {RichText.asText(data?.data?.body[0]?.primary?.heading2)
+                        ?.length > 50
+                        ? `${RichText.asText(
                           data?.data?.body[0]?.primary?.heading2
                         ).substring(0, 50)}...`
-                      : RichText.asText(data?.data?.body[0]?.primary?.heading2)}
-                  </p>
+                        : RichText.asText(data?.data?.body[0]?.primary?.heading2)}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
           </Link>
         </div>
       </div>
@@ -141,13 +143,13 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
                             ?.primary?.heading2
                         )?.length > 100
                           ? `${RichText.asText(
-                              expLearningPrimaryArticleData[0]?.data?.body[0]
-                                ?.primary?.heading2
-                            ).substring(0, 100)}...`
+                            expLearningPrimaryArticleData[0]?.data?.body[0]
+                              ?.primary?.heading2
+                          ).substring(0, 100)}...`
                           : RichText.asText(
-                              expLearningPrimaryArticleData[0]?.data?.body[0]
-                                ?.primary?.heading2
-                            )}
+                            expLearningPrimaryArticleData[0]?.data?.body[0]
+                              ?.primary?.heading2
+                          )}
                       </p>
                     </div>
                   </div>

@@ -25,32 +25,34 @@ const SustainableGtTreking = ({ slice, articleData }) => {
     return (
       <div key={i} className="col-lg-4 col-md-6">
         <Link href={url ? url : "#"}>
-          <div className="d-flex align-items-center row mb-4 cursor-pointer">
-            <div className="col-3 col-lg-3 col-md-12">
-              {getArticleImage?.primary?.feature_image?.url ? (
-                <img
-                  src={getArticleImage?.primary?.feature_image?.url}
-                  alt="articleImage"
-                  className="diyres_img_bg_img"
-                />
-              ) : (
-                <img src="./ip.png" className="diyres_img_bg_img" />
-              )}
-            </div>
-            <div className="col-9 col-lg-9 col-md-12">
-              <p className="p-text-3">
-                <b>{RichText.asText(data?.data?.title)}</b>
-              </p>
-              <div>
-                <p className="p-text-small m-0 text-capitalize">
-                  <em>By {authorName}</em>
+          <a>
+            <div className="d-flex align-items-center row mb-4 cursor-pointer">
+              <div className="col-3 col-lg-3 col-md-12">
+                {getArticleImage?.primary?.feature_image?.url ? (
+                  <img
+                    src={getArticleImage?.primary?.feature_image?.url}
+                    alt="articleImage"
+                    className="diyres_img_bg_img"
+                  />
+                ) : (
+                  <img src="./ip.png" className="diyres_img_bg_img" />
+                )}
+              </div>
+              <div className="col-9 col-lg-9 col-md-12">
+                <p className="p-text-3">
+                  <b>{RichText.asText(data?.data?.title)}</b>
                 </p>
-                <p className="p-text-small m-0 pt-0">
-                  <em>{data?.data?.date}</em>
-                </p>
+                <div>
+                  <p className="p-text-small m-0 text-capitalize">
+                    <em>By {authorName}</em>
+                  </p>
+                  <p className="p-text-small m-0 pt-0">
+                    <em>{data?.data?.date}</em>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
         </Link>
       </div>
     );

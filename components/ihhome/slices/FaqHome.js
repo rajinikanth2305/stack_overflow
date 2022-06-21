@@ -122,11 +122,11 @@ const FaqHome = ({ slice }) => {
           <div className="row">{faqArrayDetails}</div>
         </Accordion>
         <div className="text-center mt-4">
-          <Link href="../../../faq">
+          <a href="../../../faq">
             <button type="button" className="btn btn-ih-primary hvr-grow">
               View more FAQs
             </button>
-          </Link>
+          </a>
         </div>
         <style jsx global>
           {whatTrekkerSayStyles}

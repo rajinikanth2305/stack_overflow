@@ -47,12 +47,12 @@ const LatestGt = ({ slice, latestUpdateAarticleData }) => {
     ]
   };
 
-  const latestTrekWorld = latestUpdateAarticleData?.map(function(data, index) {
+  const latestTrekWorld = latestUpdateAarticleData?.map(function (data, index) {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
       //url = `/blog/${slugUrl}`;
-       url = `/${slugUrl}`;
+      url = `/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.find(
       x => x.slice_type === "feature_image"
@@ -65,28 +65,29 @@ const LatestGt = ({ slice, latestUpdateAarticleData }) => {
         <div className="card_sec mx-4 m-mx-0">
           <div className="card trek_card gt_lt_mob_trek">
             <Link href={url ? url : "#"}>
-              <div className="cursor-pointer">
-                <div alt="img" className="gt_lt_img">
-                  {getArticleImage?.primary?.feature_image?.url ? (
-                    <img
-                      src={getArticleImage?.primary?.feature_image?.url}
-                      alt="articleImage"
-                      className="gt_lt_img"
-                    />
-                  ) : (
-                    <img
-                      src="./ip.png"
-                      alt="articleImage"
-                      className="gt_lt_img"
-                    />
-                  )}
-                </div>
-                <div className="p-3">
-                  <p className="p-text-1 font-weight-bold">
-                    {RichText.asText(data?.data?.title)}
-                  </p>
-                  <p className="p-text-3">
-                    {/* {RichText.asText(
+              <a>
+                <div className="cursor-pointer">
+                  <div alt="img" className="gt_lt_img">
+                    {getArticleImage?.primary?.feature_image?.url ? (
+                      <img
+                        src={getArticleImage?.primary?.feature_image?.url}
+                        alt="articleImage"
+                        className="gt_lt_img"
+                      />
+                    ) : (
+                      <img
+                        src="./ip.png"
+                        alt="articleImage"
+                        className="gt_lt_img"
+                      />
+                    )}
+                  </div>
+                  <div className="p-3">
+                    <p className="p-text-1 font-weight-bold">
+                      {RichText.asText(data?.data?.title)}
+                    </p>
+                    <p className="p-text-3">
+                      {/* {RichText.asText(
                       data?.data?.body?.primary?.text?.text
                     ).length > 25
                       ? `${RichText.asText(
@@ -95,15 +96,16 @@ const LatestGt = ({ slice, latestUpdateAarticleData }) => {
                       : RichText.asText(
                           data?.data?.body?.primary?.text?.text
                         )} */}
-                    {data?.data?.body[0]?.primary?.text[0]?.text?.length > 25
-                      ? `${data?.data?.body[0]?.primary?.text[0]?.text.substring(
+                      {data?.data?.body[0]?.primary?.text[0]?.text?.length > 25
+                        ? `${data?.data?.body[0]?.primary?.text[0]?.text.substring(
                           0,
                           100
                         )}...`
-                      : data?.data?.body[0]?.primary?.text[0]?.text}
-                  </p>
+                        : data?.data?.body[0]?.primary?.text[0]?.text}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </a>
             </Link>
           </div>
         </div>

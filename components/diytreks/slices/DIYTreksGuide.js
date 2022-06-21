@@ -14,16 +14,16 @@ const DIYTreksGuide = ({ slice }) => {
   const [documentTreksData, setDocumentTreksData] = useState([]);
   const [render, setRender] = useState(false);
 
-  
+
   useEffect(() => {
     getDocumentTrekData();
   }, []);
 
 
-   const getDocumentTrekData= async ()=> {
+  const getDocumentTrekData = async () => {
     const client = Client();
 
- //https://prismic.io/docs/technologies/graphquery-rest-api#certain-fields-from-a-slice
+    //https://prismic.io/docs/technologies/graphquery-rest-api#certain-fields-from-a-slice
     const mySuperGraphQuery = `{
       document_trek_type {
         uid
@@ -34,50 +34,52 @@ const DIYTreksGuide = ({ slice }) => {
 
     const allTrekData = await client.query([
       Prismic.Predicates.at("document.type", "document_trek_type")], {
-        'graphQuery': mySuperGraphQuery ,
-        pageSize: 250
-      }
+      'graphQuery': mySuperGraphQuery,
+      pageSize: 250
+    }
     );
 
-    allTrekData?.results?.sort(function(a, b){
-      if(a?.uid < b?.uid) { return -1; }
-      if(a?.uid > b?.uid) { return 1; }
+    allTrekData?.results?.sort(function (a, b) {
+      if (a?.uid < b?.uid) { return -1; }
+      if (a?.uid > b?.uid) { return 1; }
       return 0;
     });
     setDocumentTreksData(allTrekData);
     setRender(true);
-   }
+  }
 
-  const treks = documentTreksData?.results?.map(function(data, i) {
+  const treks = documentTreksData?.results?.map(function (data, i) {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
       //url = `/documented-trek/${slugUrl}`;
-       url = `/${slugUrl}`;
+      url = `/${slugUrl}`;
     }
     return (
       <div key={i} className="col-lg-4 col-md-6">
         <Link href={url ? url : "#"}>
-          <div className="d-flex align-items-center cursor-pointer">
-            <div>
-              <p
-                className={
-                  data?.data?.categories?.match(/Easy/g)
-                    ? "badge-green-diy"
-                    : data?.data?.categories?.match(/Moderate/g)
-                    ? "badge-yellow-diy"
-                    : data?.data?.categories?.match(/Difficult/g)
-                    ? "badge-red-diy"
-                    : "badge-blue-diy"
-                }
-              ></p>
+          <a>
+            <div className="d-flex align-items-center cursor-pointer">
+              <div>
+                <p
+                  className={
+                    data?.data?.categories?.match(/Easy/g)
+                      ? "badge-green-diy"
+                      : data?.data?.categories?.match(/Moderate/g)
+                        ? "badge-yellow-diy"
+                        : data?.data?.categories?.match(/Difficult/g)
+                          ? "badge-red-diy"
+                          : "badge-blue-diy"
+                  }
+                ></p>
+              </div>
+              <div className="mx-3">
+                <p className="p-display-3 p-display-3-md cursor-pointer">
+                  {RichText.asText(data?.data?.title)}
+                </p>
+              </div>
             </div>
-            <div className="mx-3">
-              <p className="p-display-3 p-display-3-md cursor-pointer">
-                {RichText.asText(data?.data?.title)}
-              </p>
-            </div>
-          </div>
+          </a>
         </Link>
       </div>
     );
@@ -200,11 +202,11 @@ const DIYTreksGuide = ({ slice }) => {
             </div>
           </div>
         </div>
-        { render && (
-        <div className="container my-3">
-      
-          <div className="row">{treks}</div>
-        </div>
+        {render && (
+          <div className="container my-3">
+
+            <div className="row">{treks}</div>
+          </div>
         )}
         <style jsx global>
           {diyStyles}
