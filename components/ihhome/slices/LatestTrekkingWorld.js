@@ -156,6 +156,7 @@ const LatestTrekkingWorld = ({ slice }) => {
                   layout="fill"
                   objectFit="contain"
                   objectPosition="left top"
+                  className="tt"
                   alt="imgs"
                   onClick={() => {
                     setImgUrl1(data?.trekking_world_image?.url);

@@ -401,6 +401,10 @@ export const ChooseTreks = css.global`
       font-size: 12px;
     }
 
+    .tt {
+      object-fit: cover !important;
+    }
+
     .p-text-4 {
       font-size: 16px;
       line-height: 24px;
