@@ -107,7 +107,7 @@ const TrekExp = ({ slice }) => {
                   <div className="mt-h2 pb-08">{RichText.render(heading1)}</div>
                 </div>
                 <div className="col-lg-6 col-md-12 pr-5p">
-                  <div className="ft-image mb-4">
+                  {/* <div className="ft-image mb-4">
                     {imageUrl ? (
                       <Image
                         src={imageUrl}
@@ -119,7 +119,46 @@ const TrekExp = ({ slice }) => {
                     ) : (
                       <img src="../ip.png" className="ft-image" />
                     )}
-                  </div>
+                  </div> */}
+                  {primaryVideoUrl ? (
+                    <div className="card card-box-shadow">
+                      <div className="img-margin  cursor-pointer">
+                        <div className="d-flex align-items-center justify-content-center w-100 h-100">
+                          <div className="text-center">
+                            <img
+                              src="/v-icon.png"
+                              alt="playicon'"
+                              className="paly-icon icon-size-50"
+                              onClick={handleShow}
+                            />
+                          </div>
+                        </div>
+                        <Image
+                          src={youtube_imageURL && youtube_imageURL}
+                          layout="fill"
+                          objectFit="cover"
+                          objectPosition="50% 50%"
+                          onClick={handleShow}
+                          alt="imgs"
+                          unoptimized
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="ft-image mt-5 pt-2">
+                      {imageUrl ? (
+                        <Image
+                          src={imageUrl}
+                          layout="fill"
+                          objectFit="cover"
+                          objectPosition="bottom"
+                          unoptimized
+                        />
+                      ) : (
+                        <img src="../ip.png" className="ft-image" />
+                      )}
+                    </div>
+                  )}
                   <div className="p-text-4 fl-style">
                     {RichText.render(detailsList)}
                   </div>

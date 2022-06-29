@@ -64,7 +64,7 @@ const LatestTrekkingWorld = ({ slice }) => {
     ]
   };
 
-  const trekkingWorldImage = trekkingWorldImageArray?.map(function(data, i) {
+  const trekkingWorldImage = trekkingWorldImageArray?.map(function (data, i) {
     // let url;
     // const slugUrl = data?.button_link?.slug;
     // if (slugUrl) {
@@ -76,7 +76,7 @@ const LatestTrekkingWorld = ({ slice }) => {
     let url = linkType == "Web" ? data?.button_link?.url : "";
     const slugUrl =
       linkType == "Document" ? data?.button_link?.slug : undefined;
-      if (slugUrl) url = linkResolver(data?.button_link);
+    if (slugUrl) url = linkResolver(data?.button_link);
 
     const result = data?.yt_link?.url?.split(
       /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
@@ -104,20 +104,22 @@ const LatestTrekkingWorld = ({ slice }) => {
               <div className="text-center mt-4">
                 {url ? (
                   <a href={url ? url : "#"}>
-                    <button className="btn btn-lg btn-ih-primary text-capitalized hvr-grow">
+                    {data?.button_name[0]?.text && <button className="btn btn-lg btn-ih-primary text-capitalized hvr-grow">
                       {data?.button_name[0]?.text}
-                    </button>
+                    </button>}
                   </a>
                 ) : (
-                  <button
-                    className="btn btn-lg btn-ih-primary text-capitalized hvr-grow"
-                    onClick={() => {
-                      setImgUrl(videoUrl);
-                      setShow(true);
-                    }}
-                  >
-                    {data?.button_name[0]?.text}
-                  </button>
+                  <>
+                    {data?.button_name[0]?.text && <button
+                      className="btn btn-lg btn-ih-primary text-capitalized hvr-grow"
+                      onClick={() => {
+                        setImgUrl(videoUrl);
+                        setShow(true);
+                      }}
+                    >
+                      {data?.button_name[0]?.text}
+                    </button>}
+                  </>
                 )}
               </div>
             </div>
