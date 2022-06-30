@@ -392,6 +392,27 @@ export const ChooseTreks = css.global`
     bottom: -25px;
   }
 
+  .font-italic {
+    font-style: italic !important;
+  }
+
+  .p-text-small {
+    line-height: 16px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(112,112,112,1);
+    padding-top: 7px;
+  }
+
+  .campsites_images {
+    position: relative;
+    width: 100%;
+    height: 200px;
+  }
+
   @media only screen and (max-width: 600px) {
     .btn-ih-green {
       font-size: 14px;
@@ -399,6 +420,14 @@ export const ChooseTreks = css.global`
 
     .fam_trek {
       font-size: 12px;
+    }
+
+    .campsites_images {
+      height: 360px;
+    }
+
+    .mpb-5 {
+      padding-bottom: 3rem !important;
     }
 
     .tt {

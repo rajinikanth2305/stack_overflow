@@ -13,42 +13,81 @@ const DIYTreksGuide = ({ slice }) => {
 
   const [documentTreksData, setDocumentTreksData] = useState([]);
   const [render, setRender] = useState(false);
+  const [haha, setHaha] = useState([]);
 
 
   useEffect(() => {
-    getDocumentTrekData();
+    // getDocumentTrekData();
+    getPages();
   }, []);
 
 
-  const getDocumentTrekData = async () => {
+  // const getDocumentTrekData = async () => {
+  //   const client = Client();
+  //   const mySuperGraphQuery = `{
+  //     document_trek_type {
+  //       uid
+  //       title
+  //       categories
+  //     }
+  //   }`;
+
+  //   const allTrekData = await client.query([
+  //     Prismic.Predicates.at("document.type", "document_trek_type")], {
+  //     'graphQuery': mySuperGraphQuery,
+  //     pageSize: 250
+  //   }
+  //   );
+
+  //   allTrekData?.results?.sort(function (a, b) {
+  //     if (a?.uid < b?.uid) { return -1; }
+  //     if (a?.uid > b?.uid) { return 1; }
+  //     return 0;
+  //   });
+  //   setDocumentTreksData(allTrekData);
+  //   setRender(true);
+  // }
+
+  const getPages = async () => {
     const client = Client();
-
-    //https://prismic.io/docs/technologies/graphquery-rest-api#certain-fields-from-a-slice
     const mySuperGraphQuery = `{
-      document_trek_type {
-        uid
-        title
-        categories
+          document_trek_type {
+            uid
+            title
+            categories
+          }
+        }`;
+    const data = []
+    let pageNum = 1
+    const fetch = async () => {
+      const resp = await client.query([
+        Prismic.Predicates.at("document.type", "document_trek_type")],
+        {
+          'graphQuery': mySuperGraphQuery,
+          pageSize: 100,
+          page: pageNum
+        }
+      )
+      data.push(...resp.results);
+      if (resp.next_page) {
+        pageNum++
+        await fetch()
       }
-    }`;
-
-    const allTrekData = await client.query([
-      Prismic.Predicates.at("document.type", "document_trek_type")], {
-      'graphQuery': mySuperGraphQuery,
-      pageSize: 250
     }
-    );
-
-    allTrekData?.results?.sort(function (a, b) {
+    await fetch()
+    data?.sort(function (a, b) {
       if (a?.uid < b?.uid) { return -1; }
       if (a?.uid > b?.uid) { return 1; }
       return 0;
     });
-    setDocumentTreksData(allTrekData);
+    setDocumentTreksData(data);
     setRender(true);
+    // return data
   }
 
-  const treks = documentTreksData?.results?.map(function (data, i) {
+  console.log(documentTreksData);
+
+  const treks = documentTreksData?.map(function (data, i) {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {

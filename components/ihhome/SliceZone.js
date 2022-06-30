@@ -18,7 +18,8 @@ import {
   TrekkersStories,
   TrekkerVideos,
   CrossTrek,
-  FaqHome
+  FaqHome,
+  PhotoContest
 } from "./slices";
 /**
  * Post slice zone component
@@ -85,8 +86,8 @@ const SliceZone = ({
         return <DoItYourself slice={slice} key={`slice-${index}`} />;
       case "cross_trek":
         return <CrossTrek slice={slice} key={`slice-${index}`} />;
-      // case "home_photo_gallery":
-      //   return <Gallery slice={slice} key={`slice-${index}`} />;
+      case "photo_contest":
+        return <PhotoContest slice={slice} key={`slice-${index}`} />;
       // case "featured_treks":
       //   return <FeaturedTreks slice={slice} key={`slice-${index}`} />;
       case "home_footer":

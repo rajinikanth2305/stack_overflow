@@ -35,7 +35,7 @@ const UCFamilyTreks = ({ slice }) => {
                   {RichText.render(ucFamilyTreksDesc)}
                 </div>
                 <div className="mt-5 pt-3 m-text-center">
-                  <Link href="../../../familytrek">
+                  <Link href="../../../family-trek/family-trek-page">
                     <button className="btn btn-bihtn-yellow hvr-grow">Read More</button>
                   </Link>
                 </div>
