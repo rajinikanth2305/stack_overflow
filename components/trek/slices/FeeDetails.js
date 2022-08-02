@@ -121,7 +121,7 @@ const FeeDetails = ({ data }) => {
                 <a href="/blog/cancellation-policy" target="_blank">See cancellation policy</a>
               </p>
               <div className="my-3">
-                <Link href="#goToBookTicket">
+                <Link href="#view-dates">
                   <button className="btn btn-block btn-ih-green-trek-fee hvr-grow">
                     View Dates / Register
                   </button>
@@ -181,7 +181,7 @@ const FeeDetails = ({ data }) => {
             </div>
             <div className="col-4">
               <button className="btn btn-block btn-ih-green-trek-fee hvr-grow">
-                <a href="#goToBookTicket">View Dates</a>
+                <a href="#view-dates">View Dates</a>
               </button>
             </div>
           </div>

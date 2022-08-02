@@ -89,7 +89,7 @@ const BookYourTrek = ({ slice }) => {
     <>
 
       <TrekReviews slice={slice} key={`slice-${1}`} />;
-      <div id="goToBookTicket">
+      <div id="view-dates">
         <Toast ref={toast} />
         <div className="container">
           <div className="row">
