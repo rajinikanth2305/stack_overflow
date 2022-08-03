@@ -1,6 +1,7 @@
 import React from "react";
 import {
   TrekBannerWithCaption,
+  LatestUpdates,
   TrekOverView,
   TrekVideosComponent,
   WhatSoDifferent,
@@ -30,6 +31,8 @@ const TrekSliceZone = ({ sliceZone, trekPageData1 }) =>
     switch (slice.slice_type) {
       case "trek_banner":
         return <TrekBannerWithCaption slice={slice} key={`slice-${index}`} />;
+      case "trek_latest_updates":
+        return <LatestUpdates slice={slice} key={`slice-${index}`} />;
       case "trek_overview":
         return <TrekOverView slice={slice} data={sliceZone} key={`slice-${index}`} />;
       case "trek_videos":

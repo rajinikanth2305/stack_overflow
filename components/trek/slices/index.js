@@ -1,4 +1,5 @@
 export { default as TrekBannerWithCaption } from "./TrekBannerWithCaption";
+export { default as LatestUpdates } from "./LatestUpdates";
 export { default as TrekOverView } from "./TrekOverView";
 export { default as TrekVideosComponent } from "./TrekVideosComponent";
 export { default as WhatSoDifferent } from "./WhatSoDifferent";
