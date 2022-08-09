@@ -38,12 +38,15 @@ const Post = ({
     // console.log(post.data?.meta_title);
     //  console.log(post.data?.meta_keywords);
 
+    const featureImageUrl = post.data.body.find(item => item.slice_type === "feature_image")?.primary?.feature_image?.url;
+
     return (
       <DefaultLayout>
         <Head>
           <title>{title}</title>
           <meta name="meta_keywords" content={meta_keywords} />
           <meta name="meta_description" content={meta_desc} />
+          <meta property="og:image" content={featureImageUrl} />
         </Head>
         <HikeHeader />
         <div className="main">

@@ -24,6 +24,7 @@ const Trek = ({ trekData, trekPageData1 }) => {
     const pageTitle = RichText.asText(trekData.data?.trek_title);
     const meta_title = RichText.asText(trekData.data?.meta_title);
     const meta_desc = RichText.asText(trekData.data?.meta_description);
+    const bannerImageUrl = trekData.data.body.find(item => item.slice_type === "trek_banner")?.primary?.trek_banner_image?.url;
 
     return (
       <>
@@ -36,6 +37,7 @@ const Trek = ({ trekData, trekPageData1 }) => {
             content="width=device-width, initial-scale=1.0"
           />
           <meta name={meta_title} content={meta_desc} />
+          <meta property="og:image" content={bannerImageUrl} />
           <title>{pageTitle}</title>
         </Head>
         <HikeHeader />

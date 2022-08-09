@@ -26,6 +26,8 @@ const DocumentTrek = ({ post, authorData,updatesData,upComingData,relatedArticle
     const meta_title = RichText.asText(post.data?.meta_title);
     const meta_desc = RichText.asText(post.data?.meta_description);
 
+    const featureImageUrl = post.data.body.find(item => item.slice_type === "feature_image")?.primary?.feature_image?.url;
+
     return (
       <DefaultLayout>
         <Head>
@@ -34,6 +36,7 @@ const DocumentTrek = ({ post, authorData,updatesData,upComingData,relatedArticle
           name={meta_title}
           content = {meta_desc}
          />
+          <meta property="og:image" content={featureImageUrl} />
         </Head>
         <HikeHeader/>
         <div className="main">
