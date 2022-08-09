@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { RichText } from "prismic-reactjs";
 import moment from "moment";
 import { Toast } from "primereact/toast";
-import { Text, Quote, ImageWithCaption, IframeTag, EmbedHtml } from "./index";
+import { Text, Quote, ImageWithCaption, IframeTag, EmbedHtml, LatestUpdates } from "./index";
 import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
 
@@ -962,6 +962,12 @@ const PostRender = ({
     }
   }
 
+  const latestUpdatesView = () => {
+    const slice = data?.body?.find(item => item.slice_type === "trek_latest_updates");
+    if (!slice) return null;
+    return <LatestUpdates slice={slice} key="slice-trek-latest-updates" />
+  }
+
   return (
     <>
       <Toast ref={toast} />
@@ -998,6 +1004,8 @@ const PostRender = ({
             />
           }
         </div>
+
+        {latestUpdatesView()}
 
         <div className="container">
           <div className="row my-3">
