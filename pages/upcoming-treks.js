@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Script from "next/script";
 import Prismic from "@prismicio/client";
 import { RichText } from "prismic-reactjs";
 import Document, { NextScript } from "next/document";
@@ -13,6 +14,7 @@ import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import ScrollToTop from "react-scroll-to-top";
+import { MOUSEFLOW_WEBSITE_ID } from "utils/constants";
 
 /**
  * UpComing component
@@ -63,6 +65,17 @@ const UpcomingTreks = ({
         <IHFooter />
       </HomeLayout>
       <ScrollToTop smooth color="#000000" />
+      <Script>
+        {`
+          window._mfq = window._mfq || [];
+          (function() {
+            var mf = document.createElement("script");
+            mf.type = "text/javascript"; mf.defer = true;
+            mf.src = "//cdn.mouseflow.com/projects/${MOUSEFLOW_WEBSITE_ID}.js";
+            document.getElementsByTagName("head")[0].appendChild(mf);
+          })();
+        `}
+      </Script>
       </>
     );
   }
