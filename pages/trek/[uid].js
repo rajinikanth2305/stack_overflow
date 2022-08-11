@@ -18,7 +18,7 @@ import IHTrekWithSwathi from "components/Trek_With_Swathi";
 import WhyTrekWithIH from "../../components/WhyTrekWithIH";
 import CrossTrekCommon from "../../components/CrossTrekCommon";
 import ScrollToTop from "react-scroll-to-top";
-import { MOUSEFLOW_WEBSITE_ID } from "utils/constants";
+import { MOUSEFLOW_WEBSITE_ID, HOTJAR_ID } from "utils/constants";
 /**
  * Trek page component
  */
@@ -29,23 +29,37 @@ const Trek = ({ trekData, trekPageData1 }) => {
     const meta_desc = RichText.asText(trekData.data?.meta_description);
     const bannerImageUrl = trekData.data.body.find(item => item.slice_type === "trek_banner")?.primary?.trek_banner_image?.url;
 
-    const getMouseflowScript = () => {
+    const getTrackingScripts = () => {
       const { query: { uid } } = useRouter();
       switch (uid) {
         case "rupin-pass":
         case "kashmir-great-lakes":
           return (
-            <Script>
-              {`
-                window._mfq = window._mfq || [];
-                (function() {
-                  var mf = document.createElement("script");
-                  mf.type = "text/javascript"; mf.defer = true;
-                  mf.src = "//cdn.mouseflow.com/projects/${MOUSEFLOW_WEBSITE_ID}.js";
-                  document.getElementsByTagName("head")[0].appendChild(mf);
-                })();
-              `}
-            </Script>
+            <>
+              <Script>
+                {`
+                  window._mfq = window._mfq || [];
+                  (function() {
+                    var mf = document.createElement("script");
+                    mf.type = "text/javascript"; mf.defer = true;
+                    mf.src = "//cdn.mouseflow.com/projects/${MOUSEFLOW_WEBSITE_ID}.js";
+                    document.getElementsByTagName("head")[0].appendChild(mf);
+                  })();
+                `}
+              </Script>
+              <Script>
+                {`
+                  (function(h,o,t,j,a,r){
+                      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                      h._hjSettings={hjid:${HOTJAR_ID},hjsv:6};
+                      a=o.getElementsByTagName('head')[0];
+                      r=o.createElement('script');r.async=1;
+                      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                      a.appendChild(r);
+                  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+                `}
+              </Script>
+            </>
           )
         default:
           return null;
@@ -77,7 +91,7 @@ const Trek = ({ trekData, trekPageData1 }) => {
         <IHFooter />
       </HomeLayout>
       <ScrollToTop smooth color="#000000" />
-      {getMouseflowScript()}
+      {getTrackingScripts()}
       </>
     );
   }
