@@ -15,6 +15,8 @@ import { HikeHeader } from "components/ihhome";
 import IHFooter from "components/Footer";
 import IHTrekWithSwathi from "components/Trek_With_Swathi";
 
+import { isNil, isEmpty } from 'ramda';
+
 /**
  * Post page component
  */
@@ -27,26 +29,57 @@ const Post = ({
   related_authors
 }) => {
   if (post && post.data) {
-    const hasTitle = post?.data?.meta_title?.length !== 0;
-    const title = hasTitle
-      ? post.data?.meta_title
-      : RichText.asText(post?.data?.title);
-    const meta_title = post.data?.meta_title;
-    const meta_desc = post.data?.meta_description;
-    const meta_keywords = post.data?.meta_keywords;
-    // console.log(JSON.stringify(post));
-    // console.log(post.data?.meta_title);
-    //  console.log(post.data?.meta_keywords);
 
-    const featureImageUrl = post.data.body.find(item => item.slice_type === "feature_image")?.primary?.feature_image?.url;
+    const getMetaTitle = () => {
+      const { data } = post;
+      const metaTitle = RichText.asText(data.meta_title);
+      if (isNil(metaTitle) || isEmpty(metaTitle)) {
+        return RichText.asText(data.title); 
+      }
+      return metaTitle;
+    }
+
+    const getMetaDescription = () => {
+      const { data } = post;
+      const metaDescription = RichText.asText(data.meta_description);
+      if (isNil(metaDescription) || isEmpty(metaDescription)) {
+        return "";
+      }
+      return metaDescription;
+    }
+
+    const getMetaKeywords = () => {
+      const { data } = post;
+      const { meta_keywords: metaKeywords } = data;
+      if (isNil(metaKeywords) || isEmpty(metaKeywords)) {
+        return "";
+      }
+      return metaKeywords;
+    }
+
+    const getMetaImage = () => {
+      const { data: { body } } = post;
+      const featureImageSlice = body.find(item => item.slice_type === "feature_image");
+      if (isNil(featureImageSlice)) return "";
+      return featureImageSlice.primary.feature_image.url;
+    }
+
+    const metaData = {
+      title: getMetaTitle(),
+      description: getMetaDescription(),
+      keywords: getMetaKeywords(),
+      image: getMetaImage(),
+    }
 
     return (
       <DefaultLayout>
         <Head>
-          <title>{title}</title>
-          <meta name="meta_keywords" content={meta_keywords} />
-          <meta name="meta_description" content={meta_desc} />
-          <meta property="og:image" content={featureImageUrl} />
+          <title>{metaData.title}</title>
+          <meta name="description" content={metaData.description} />
+          <meta name="keywords" content={metaData.keywords} />
+          <meta property="og:title" content={metaData.title} key="og-title" />
+          <meta property="og:description" content={metaData.description} key="og-description" />
+          <meta property="og:image" content={metaData.image} key="og-image" />
         </Head>
         <HikeHeader />
         <div className="main">

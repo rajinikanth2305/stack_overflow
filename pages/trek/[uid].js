@@ -19,15 +19,44 @@ import WhyTrekWithIH from "../../components/WhyTrekWithIH";
 import CrossTrekCommon from "../../components/CrossTrekCommon";
 import ScrollToTop from "react-scroll-to-top";
 import { MOUSEFLOW_WEBSITE_ID, HOTJAR_ID } from "utils/constants";
+
+import { isNil, isEmpty } from 'ramda';
 /**
  * Trek page component
  */
 const Trek = ({ trekData, trekPageData1 }) => {
   if (trekData && trekData.data) {
-    const pageTitle = RichText.asText(trekData.data?.trek_title);
-    const meta_title = RichText.asText(trekData.data?.meta_title);
-    const meta_desc = RichText.asText(trekData.data?.meta_description);
-    const bannerImageUrl = trekData.data.body.find(item => item.slice_type === "trek_banner")?.primary?.trek_banner_image?.url;
+
+    const getMetaTitle = () => {
+      const { data } = trekData;
+      const metaTitle = RichText.asText(data.meta_title);
+      if (isNil(metaTitle) || isEmpty(metaTitle)) {
+        return RichText.asText(data.trek_title); 
+      }
+      return metaTitle;
+    }
+
+    const getMetaDescription = () => {
+      const { data } = trekData;
+      const metaDescription = RichText.asText(data.meta_description);
+      if (isNil(metaDescription) || isEmpty(metaDescription)) {
+        return "";
+      }
+      return metaDescription;
+    }
+
+    const getMetaImage = () => {
+      const { data: { body } } = trekData;
+      const trekBannerSlice = body.find(item => item.slice_type === "trek_banner");
+      if (isNil(trekBannerSlice)) return "";
+      return trekBannerSlice.primary.trek_banner_image.url;
+    }
+
+    const metaData = {
+      title: getMetaTitle(),
+      description: getMetaDescription(),
+      image: getMetaImage(),
+    }
 
     const getTrackingScripts = () => {
       const { query: { uid } } = useRouter();
@@ -70,15 +99,11 @@ const Trek = ({ trekData, trekPageData1 }) => {
       <>
       <HomeLayout>
         <Head>
-          <meta charset="utf-8" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          <meta name={meta_title} content={meta_desc} />
-          <meta property="og:image" content={bannerImageUrl} />
-          <title>{pageTitle}</title>
+          <title>{metaData.title}</title>
+          <meta name="description" content={metaData.description} />
+          <meta property="og:title" content={metaData.title} key="og-title" />
+          <meta property="og:description" content={metaData.description} key="og-description" />
+          <meta property="og:image" content={metaData.image} key="og-image" />
         </Head>
         <HikeHeader />
         <TrekSliceZone
