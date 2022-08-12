@@ -27,7 +27,12 @@ const SearchList = ({ slice }) => {
           Prismic.Predicates.fulltext("my.trek.search_keywords", searchName),
         ])
         .then(function (response) {
-          response?.results.forEach(result => searchResultContext.push(result));
+          response?.results
+          .filter(result => {
+            const { data } = result;
+            return data.family_trek === false && data.private_trek === false;
+          })
+          .forEach(result => searchResultContext.push(result));
         });
 
       await client
