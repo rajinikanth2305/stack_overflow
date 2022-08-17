@@ -50,8 +50,8 @@ const SearchList = ({ slice }) => {
         .then(function (response) {
           response?.results
           .sort((result1, result2) => {
-            const result1Date = Date.parse(result1.last_publication_date);
-            const result2Date = Date.parse(result2.last_publication_date);
+            const result1Date = Date.parse(result1.data.date);
+            const result2Date = Date.parse(result2.data.date);
             return result2Date - result1Date;
           })
           .forEach(result => searchResultContext.push(result));
