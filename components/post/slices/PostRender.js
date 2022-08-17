@@ -61,7 +61,7 @@ const PostRender = ({
     // https://apstage.co.in/blog/12-most-beautiful-alpine-lakes-to-trek-to-in-india
     let url = location.href.replace(location.origin, "");
     let pageUrl = url.split("/");
-    const postName = pageUrl[2]; //batchid
+    const postName = pageUrl[1]; //batchid
     getPostCommentsByPostName(postName);
   }, []);
 
