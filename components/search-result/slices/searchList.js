@@ -37,7 +37,7 @@ const SearchList = ({ slice }) => {
 
       await client
         .query([
-          Prismic.Predicates.fulltext("my.post.title", searchName)
+          Prismic.Predicates.fulltext("my.document_trek_type.title", searchName)
         ])
         .then(function (response) {
           response?.results.forEach(result => searchResultContext.push(result));
@@ -45,10 +45,16 @@ const SearchList = ({ slice }) => {
 
       await client
         .query([
-          Prismic.Predicates.fulltext("my.document_trek_type.title", searchName)
+          Prismic.Predicates.fulltext("my.post.title", searchName)
         ])
         .then(function (response) {
-          response?.results.forEach(result => searchResultContext.push(result));
+          response?.results
+          .sort((result1, result2) => {
+            const result1Date = Date.parse(result1.last_publication_date);
+            const result2Date = Date.parse(result2.last_publication_date);
+            return result2Date - result1Date;
+          })
+          .forEach(result => searchResultContext.push(result));
         });
 
       setSearchResults(searchResultContext);
