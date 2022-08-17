@@ -8,6 +8,7 @@ const UCDYITreks = ({ slice }) => {
   const ucDiyTrekImage = slice?.primary?.uc_diy_trek_image?.url;
   const ucDiyTrekTitle = slice?.primary?.uc_diy_trek_title;
   const ucDiyTrekDesc = slice?.primary?.uc_diy_trek_desc;
+  const CTAUrl = slice.primary.uc_diy_trek_cta.url;
 
   return (
     <>
@@ -35,7 +36,7 @@ const UCDYITreks = ({ slice }) => {
                   {RichText.render(ucDiyTrekDesc)}
                 </div>
                 <div className="mt-5 pt-3 m-text-center">
-                  <Link href="../../../do-it-yourself-treks">
+                  <Link href={CTAUrl}>
                     <button className="btn btn-bihtn-yellow hvr-grow">Read More</button>
                   </Link>
                 </div>
