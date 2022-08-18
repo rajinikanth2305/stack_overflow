@@ -24,7 +24,8 @@ const DiyStateList = ({ slice }) => {
         Prismic.Predicates.fulltext(
           "my.document_trek_type.categories",
           stateName
-        )
+        ),
+        { pageSize: 100 }
       );
       setStateList(stateDiyList);
     };
