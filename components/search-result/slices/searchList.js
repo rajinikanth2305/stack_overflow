@@ -12,56 +12,58 @@ const SearchList = ({ slice }) => {
   const heading1 = slice?.primary?.heading1;
 
   const { query } = useRouter();
-  const searchName = query && query?.name;
+  const searchQuery = query && query.name;
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    if (!searchName) {
+    if (!searchQuery) {
       return;
     }
+
     const fetchData = async () => {
-      const searchResultContext = [];
+      const matchingResults = [];
       const client = Client();
+
       await client
-        .query([
-          Prismic.Predicates.fulltext("my.trek.search_keywords", searchName),
-        ])
-        .then(function (response) {
-          response?.results
-          .filter(result => {
-            const { data } = result;
-            return data.family_trek === false && data.private_trek === false;
-          })
-          .forEach(result => searchResultContext.push(result));
+        .query(
+          [
+            Prismic.Predicates.fulltext("my.trek.search_keywords", searchQuery),
+            Prismic.Predicates.not("my.trek.family_trek", true),
+            Prismic.Predicates.not("my.trek.private_trek", true),
+          ]
+        )
+        .then(response => {
+          matchingResults.push(...response.results);
         });
 
       await client
-        .query([
-          Prismic.Predicates.fulltext("my.document_trek_type.title", searchName)
-        ])
-        .then(function (response) {
-          response?.results.forEach(result => searchResultContext.push(result));
+        .query(
+          [
+            Prismic.Predicates.fulltext("my.document_trek_type.title", searchQuery)
+          ]
+        )
+        .then(response => {
+          matchingResults.push(...response.results);
         });
 
       await client
-        .query([
-          Prismic.Predicates.fulltext("my.post.title", searchName)
-        ])
-        .then(function (response) {
-          response?.results
-          .sort((result1, result2) => {
-            const result1Date = Date.parse(result1.data.date);
-            const result2Date = Date.parse(result2.data.date);
-            return result2Date - result1Date;
-          })
-          .forEach(result => searchResultContext.push(result));
+        .query(
+          [
+            Prismic.Predicates.fulltext("my.post.title", searchQuery)
+          ], 
+          {
+            orderings: "[my.post.date desc]",
+            pageSize: 100
+          }
+        )
+        .then(response => {
+          matchingResults.push(...response.results);
         });
 
-      setSearchResults(searchResultContext);
-      console.log(searchResultContext);
+      setSearchResults(matchingResults);
     };
     fetchData();
-  }, [searchName]);
+  }, [searchQuery]);
 
   const resultListing =
     searchResults &&
@@ -195,7 +197,7 @@ const SearchList = ({ slice }) => {
     <>
       <div className="container my-4">
         <h2 className="title-h2">
-          <b>Search Result: {searchName && searchName}</b>
+          <b>Search Result: {searchQuery ? searchQuery : ""}</b>
         </h2>
         <div className="row">
           {resultListing}

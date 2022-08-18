@@ -59,65 +59,51 @@ const HikeHeader = (auth = false) => {
     });
   }
 
-  const fetchData = async (stext) => {
-    if (stext && stext !== "") {
-      const searchResultContext = [];
-      const client = Client();
-      await client
-        .query([
-          Prismic.Predicates.fulltext("my.trek.search_keywords", stext),
-        ])
-        .then(function (response) {
-          const res=[];
-          response?.results?.forEach(result => {
-            console.log(result);
-            if(result?.data?.family_trek===true 
-              ||  result?.data?.private_trek===true) {
-
-            }
-            else {
-             // res.push(result);
-              searchResultContext.push(result);
-            }
-          });
-
-         
-          // response?.results?.filter(f=>fforEach(result => );
-
-          //data?.data?.trek_title
-        });
-
-      await client
-        .query([
-          Prismic.Predicates.fulltext("my.post.title", stext)
-        ])
-        .then(function (response) {
-          response?.results.forEach(result => searchResultContext.push(result));
-        });
-
-      await client
-        .query([
-          Prismic.Predicates.fulltext("my.document_trek_type.title", stext)
-        ])
-        .then(function (response) {
-          response?.results.forEach(result => searchResultContext.push(result));
-        });
-
-      setSearchResults(searchResultContext);
-
-      // await client
-      //     .query(
-      //         [
-      //           Prismic.Predicates.fulltext("my.post.title", searchText)
-      //         ]
-      //         // {
-      //         //   orderings: "[type desc]"
-      //         // }
-      //     )
-      //     .then(function(response) {
-      //       setSearchResults(response?.results);
-      //     });
+  const fetchData = async (searchQuery) => {
+    if (!searchQuery) {
+      return;
     }
+
+    const matchingResults = [];
+    const client = Client();
+
+    await client
+      .query(
+        [
+          Prismic.Predicates.fulltext("my.trek.search_keywords", searchQuery),
+          Prismic.Predicates.not("my.trek.family_trek", true),
+          Prismic.Predicates.not("my.trek.private_trek", true),
+        ]
+      )
+      .then(response => {
+        matchingResults.push(...response.results);
+      });
+
+    await client
+      .query(
+        [
+          Prismic.Predicates.fulltext("my.document_trek_type.title", searchQuery)
+        ]
+      )
+      .then(response => {
+        matchingResults.push(...response.results);
+      });
+
+    await client
+      .query(
+        [
+          Prismic.Predicates.fulltext("my.post.title", searchQuery)
+        ], 
+        {
+          orderings: "[my.post.date desc]",
+          pageSize: 100
+        }
+      )
+      .then(response => {
+        matchingResults.push(...response.results);
+      });
+
+    setSearchResults(matchingResults);
   };
 
   // React Render
