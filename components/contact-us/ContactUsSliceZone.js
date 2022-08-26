@@ -1,5 +1,5 @@
 import React from "react";
-import { BannerWithText, ContactFaq, GetInTouchIh, FollowUsIh } from "./slices";
+import { BannerWithText, ContactFaq, GetInTouchIh, FollowUsIh, EmbedHtml } from "./slices";
 
 /**
  *  slice zone component
@@ -16,6 +16,8 @@ const ContactUsSliceZone = ({ sliceZone }) =>
         return <GetInTouchIh slice={slice} key={`slice-${index}`} />;
       case "follow_us":
         return <FollowUsIh slice={slice} key={`slice-${index}`} />;
+      case "embed_html":
+        return <EmbedHtml slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }
