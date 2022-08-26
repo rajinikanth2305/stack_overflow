@@ -39,31 +39,29 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
 
     const client = Client();
 
-    const actualTrekPageName = getTrekName();
-
-    console.log(actualTrekPageName);
+    const actualTrekPageName = getTrekName()
 
     client.query([Prismic.Predicates.at("my.trek.uid", actualTrekPageName)])
       .then(async function (response) {
-        console.log(response?.results);
+        
         if (response?.results && response?.results?.length > 0 && response.results[0].data?.trek_id) {
 
           let trekId = response.results[0].data?.trek_id[0].text;
           setTrekId(trekId);
-          console.log(trekId);
+          
           if (viewDt === undefined) {
             getBatchesByTrekId(trekId, 0, 0).then(bResult => {
-              console.log(bResult);
+              
               if (bResult?.length > 0) {
-                console.log(bResult[0].startDate);
+                
 
                 const date = new Date(bResult[0].startDate);
                 const additionOfMonths = 1;
                 date.setMonth(date.getMonth())
-                console.log(date);
+                
                 //var date = moment(bResult[0].startDate).format('DD-MM-YYYY');
                 viewDt = date;
-                console.log(viewDt);
+                
                 setViewDate(viewDt);
                 setRender(true);
               }
@@ -86,7 +84,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
 
     /// Get the trekName from QueryString
     let url = location.href.replace(location.origin, "");
-    //console.log(url);
+    
     let pageUrl = url.split("&");
     let pageUrl3 = pageUrl[1]; //trekName
     setBatchId(pageUrl[2]);
@@ -94,24 +92,30 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
   }
 
   const getTrekName = () => {
-    let actualTrekPageName = "";
-    if (mode === "inline_page") {
-      //console.log(mode);
-      const pageUrl = window.location.href;
-      const pageNamesArray = pageUrl.split("/");
-      const pageName = pageNamesArray[pageNamesArray.length - 1];
-      actualTrekPageName = pageName;
-      const hashIndex = pageName.indexOf("#");
+    // let actualTrekPageName = "";
+    
+    // if (mode === "inline_page") { **** WHAT DOES THIS DO ??????? ***** 
+      
+    //   const pageUrl = window.location.href;
+    //   const pageNamesArray = pageUrl.split("/");
+    //   const pageName = pageNamesArray[pageNamesArray.length - 1];
+    //   actualTrekPageName = pageName;
+    //   const hashIndex = pageName.indexOf("#");
+    //   const queryIndex = pageName.indexOf("?")
 
-      if (hashIndex > 0) {
-        actualTrekPageName = pageName
-          .substring(0, hashIndex);
-      }
-    } else {
-      console.log(mode);
-      actualTrekPageName = getTrekNameFromUrlQueryPath();
-    }
-    return actualTrekPageName;
+    //   if (hashIndex > 0) {
+    //     actualTrekPageName = pageName
+    //       .substring(0, hashIndex);
+    //   }
+    //   if (queryIndex >= 0) {
+    //     actualTrekPageName = pageName.substring(0, queryIndex)
+    //   }
+    // } else {
+    
+    //   actualTrekPageName = getTrekNameFromUrlQueryPath();
+    // }
+
+    return router.query.uid;
   }
 
   const fetchTrekMonthBatches = async date => {
@@ -137,7 +141,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
 
           if (data.length > 0) {
             var withoutDuplicates = removeDuplicatesBy(x => x.startDate, data);
-            //console.log(withoutDuplicates);
+            
             setBatchData(withoutDuplicates);
             prepareDateDisableList(date, withoutDuplicates);
             setNoDates(false);
@@ -166,7 +170,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
 
     var dict = {};
 
-    //console.log(data);
+    
     if (data !== undefined && data.length > 0) {
       data.forEach(x => {
         let startDt = x.startDate.substr(8, 2);
@@ -176,12 +180,10 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     }
 
     setBatchDates(dict);
-    console.log(JSON.stringify(dict));
-    // console.log(JSON.stringify(batchDateNumInMonth));
 
     for (var i = 1; i < 32; i++) {
       var val = batchDateNumInMonth.find(x => x === i);
-      //console.log(val);
+      
       if (val === undefined) {
         invalidDatesList.push(
           new Date(
@@ -196,7 +198,6 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
         );
       }
     }
-    // console.log(JSON.stringify(invalidDatesList));
     // let invalidDates = [today];
     setInvalidDates(invalidDatesList);
   };
@@ -230,7 +231,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
 
 
   const renderSwitch = (status, fillingFast, date, batchDates, key,familyTrekFlag) => {
-    // console.log("called-here2");
+    
     switch (status) {
       case 'WAITING_LIST':
         return (
@@ -267,27 +268,27 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     }
   }
   const dateTemplate = date => {
-    // console.log(date.day);
+    
 
-    console.log("called" + date.month + date.day);
+    
     if (date.day === 1) {
       const dt = date.day + "-" + date.month + "-" + date.year;
-      //console.log(date);
-      //console.log(selectedMonthYear);
+      
+      
       if (selectedMonthYear === "") {
         setSelectedMonthYear(dt);
         fetchTrekMonthBatches(date);
-        // console.log("fetched-When-Empty");
+        
       } else if (selectedMonthYear !== dt) {
         fetchTrekMonthBatches(date);
         setSelectedMonthYear(dt);
       }
     }
     const key = String(date.day).padStart(2, "0");
-    //console.log(key);
+    
 
     if (batchDates !== undefined && batchDates[key] !== undefined) {
-      // console.log(batchDates[key]);
+      
       const sDate = batchDates[key].startDate;
       const eEdate = batchDates[key].endDate;
       const status = batchDates[key].status;
@@ -369,21 +370,21 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
   };
 
   const onMonthChange = e => {
-    console.log("ON MONTH CHANGE");
-    console.log(e);
+    
+    
   };
 
   const onYearChange = (event, e) => {
-     console.log(e);
+     
     getBatchesByTrekId(trekId, 0, e).then(bResult => {
-      // console.log(bResult);
+      
       if (bResult?.length > 0) {
-        // console.log(bResult[0].startDate);
+        
 
         const date = new Date(bResult[0].startDate);
         const additionOfMonths = 1;
         date.setMonth(date.getMonth())
-        // console.log(date);
+        
         //var date = moment(bResult[0].startDate).format('DD-MM-YYYY');
         viewDt = date;
         setViewDate(viewDt);
@@ -407,8 +408,8 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
       });
   };
   const onSelect = e => {
-    // console.log(e);
-    ///console.log(e.getDate());
+    
+    
     const key = String(e.getDate()).padStart(2, "0");
 
     if (batchDates[key].status === "FULL") {
