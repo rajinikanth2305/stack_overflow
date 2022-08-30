@@ -473,7 +473,51 @@ export const upcomingTrekPageStyle = css.global`
     position: relative;
     top: 3px;
   }
-
+  .badge-line-green-lg {
+    background: rgba(91, 133, 70, 1);
+    height: 45px;
+    width: 5px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+	bottom:3px;
+  }
+  .badge-line-red-lg {
+    background: rgba(230, 109, 29, 1);
+    height: 45px;
+    width: 5px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+	bottom:3px;
+  }
+  .badge-line-pink-lg {
+    background: #CF6674;
+    height: 45px;
+    width: 5px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+	bottom:3px;
+  }
+  .badge-line-yellow-lg {
+    background: rgba(255, 193, 0, 1);
+    height: 45px;
+    width: 5px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+	bottom:3px;
+  }
+  .badge-line-blue-lg {
+    background: rgba(0, 66, 141, 1);
+    height: 45px;
+    width: 5px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+	bottom:3px;
+  }
   .badge-red {
     border-radius: 50%;
     background: rgba(230, 109, 29, 1);
@@ -605,6 +649,12 @@ export const upcomingTrekPageStyle = css.global`
     height: 10px;
     width: 10px;
   }
+  .badge-pink-diy {
+    border-radius: 50%;
+    background: #CF6674;
+    height: 10px;
+    width: 10px;
+  }
 
   .badge-red-diy {
     border-radius: 50%;
@@ -657,6 +707,7 @@ export const upcomingTrekPageStyle = css.global`
       font-size: 16px;
       line-height: 18px;
     }
+
     .p-abs-btn {
       position: absolute;
       bottom: 0;
