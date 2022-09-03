@@ -52,7 +52,7 @@ const ContactFaq = ({ slice }) => {
             >
               {data?.q_title[0]?.text}
             </Accordion.Toggle> */}
-            <ContextAwareToggle eventKey={k + 1}>{data.q_title[0].text}</ContextAwareToggle>
+            <ContextAwareToggle eventKey={k + 1}>{data.q_title[0]?.text}</ContextAwareToggle>
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>
