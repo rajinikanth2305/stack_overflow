@@ -10,16 +10,20 @@ import { FileUpload } from "primereact/fileupload";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+import {Popup} from "../../../popup"
+import CancelButton from "../../../cancelButton"
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import {
   uploadUserFitness,
   getUserFitnessDocuments,
   getParticipantDocumentList,
-  getDocumentContent
+  getDocumentContent,
+  deleteFitnessDocument
 } from "../../../../services/queries";
 import { Toast } from "primereact/toast";
 import { Image } from "react-bootstrap";
+
 
 const FitnessApproval = forwardRef((props, ref) => {
   const [participantId, setParticipantId] = useState();
@@ -35,6 +39,8 @@ const FitnessApproval = forwardRef((props, ref) => {
   const [imageIndexs, setImageIndexes] = React.useState([]);
   const [previewDocuments, setPreviewDocuments] = React.useState([]);
   const [noOfDocuments, setNoOfDocuments] = useState(0);
+  const [showPopup, setShowPopup] = useState(false)
+  const [documentIdForDeletion, setDocumentIdForDeletion] = useState(0)
 
   const faqData = props.data?.data?.body.find(
     x => x.slice_type === "faq_about_trek"
@@ -43,6 +49,7 @@ const FitnessApproval = forwardRef((props, ref) => {
   const faqHeading = faqData && faqData?.primary?.heading1;
   const faqArray = faqData && faqData?.items;
   const toast = useRef(null);
+  const fileUploadRef = useRef(null)
 
   const faqArrayDetails = faqArray?.map(function (data, k) {
     return (
@@ -87,14 +94,14 @@ const FitnessApproval = forwardRef((props, ref) => {
     className: "p-button-danger"
   };
 
-  const myUploader = async event => {
+  const myUploader = async (event) => {
 
     const totalFiles= event?.files?.length + noOfDocuments;
 
     if(totalFiles>5) {
      toast.current.show({
        severity: "error",
-       summary: `'Only 5 File is allowed to upload'`,
+       summary: `'Only 5 Files are allowed to be uploaded'`,
        detail: ""
      });
      return;
@@ -105,34 +112,41 @@ const FitnessApproval = forwardRef((props, ref) => {
     if(event?.files?.length > 5) {
       toast.current.show({
         severity: "error",
-        summary: `'Only 5 File is allowed to upload'`,
+        summary: `'Only 5 Files are allowed to be uploaded'`,
         detail: ""
       });
       return;
     }
 
-   
-    event.files.map(file => {
+
+
+    // const newDocumentsIds = []
+    for (var i =0; i<event.files.length; i++) {
       var formData = new FormData();
-      formData.append("file", file);
-      uploadUserFitness(participantId, documentType, formData);
-    });
+      formData.append("file", event.files[i]);
+      await uploadUserFitness(participantId, documentType, formData);
+    }
+
+    getUploadedDocumentContents(participantId)
+
 
     toast.current.show({
       severity: "success",
-      summary: `'File uploaded successfull'`,
+      summary: `'File uploaded successfully'`,
       detail: ""
     });
+
+    fileUploadRef.current.clear()
     props.onMyTrekSaveDetail(participantData.bookingId, participantData.email);
   
   };
 
   const onSelect = async event => {
-    console.log(event);
+    
     if( event.files.length > 2 ) {
       toast.current.show({
         severity: "success",
-        summary: `'File uploaded successfull'`,
+        summary: `'File uploaded successfully'`,
         detail: ""
       });
     }
@@ -186,32 +200,34 @@ const FitnessApproval = forwardRef((props, ref) => {
   const getUploadedDocumentContents =  (participantId) => {
 
     getParticipantDocumentList(participantId).then(result=> {
-      console.log(participantId);
-      console.log(result);
-        const contents=[];
-        if(result.length > 0) {
-          setNoOfDocuments(result?.length);
-           const contents=  getParticipantDocumentContents(result);
-        }
+
+      setNoOfDocuments(result?.length);
+      getParticipantDocumentContents(result);
    });
 
   };
 
  const  getParticipantDocumentContents  = async(result)=> {
     const contents=[];
-    for(let i=0;i<result?.length;i++) {
-      const res=result[i];
-      const content=  await getDocumentContent(res?.participantId,res?.documentId);
-   //   console.log(content);
-      contents.push(content);
-    };
+    const imageIds = []
+
+    if (result.length) {
+      for(let i=0;i<result?.length;i++) {
+        const res=result[i];
+        const content=  await getDocumentContent(res?.participantId,res?.documentId);
+    //   console.log(content);
+        contents.push(content);
+        imageIds.push(res.documentId)
+      }
+    }
+    setImageIndexes(imageIds);
     setPreviewDocuments(contents);
-    const arr = Array.from(
-      new Array(contents?.length),
-      (x, i) => i
-    );
-    setImageIndexes(arr);
-    //return contents;
+    // const arr = Array.from(
+    //   new Array(contents?.length),
+    //   (x, i) => i
+    // );
+    
+    return contents;
   };
 
 
@@ -237,6 +253,27 @@ const FitnessApproval = forwardRef((props, ref) => {
       }
     );
   };
+
+  const showPopupModal = documentId => {
+    setDocumentIdForDeletion(documentId)
+    setShowPopup(true)
+  }
+
+  const deleteFitnessImage = documentId => {
+    deleteFitnessDocument(participantId,documentId).then(()  => getUploadedDocumentContents(participantId))
+
+
+    toast.current.show({
+      severity: "info",
+      summary: `'File deleted successfully'`,
+      detail: ""
+    });
+
+    setShowPopup(false)
+    
+  }
+
+
 
   return (
     <>
@@ -338,6 +375,7 @@ const FitnessApproval = forwardRef((props, ref) => {
                 </div>
                 <FileUpload
                   name="demo[]"
+                  ref = {fileUploadRef}
                   customUpload={true}
                   chooseOptions={chooseOptions}
                   uploadOptions={uploadOptions}
@@ -354,29 +392,38 @@ const FitnessApproval = forwardRef((props, ref) => {
                       <div>
                   <p className="p-text-4">Your uploaded file(s)</p>
                 </div>
-                    {imageIndexs?.map(index => {
+                    {imageIndexs.length === previewDocuments.length && imageIndexs?.map((imageId, index) => {
                       const pdata=previewDocuments?.[index];
                       const url = window.URL.createObjectURL(pdata);
-                       console.log(pdata);
-                      if(pdata===undefined) {
-                         console.log("No image content");
-                      }
-                      else {
-                        console.log(pdata);
-                      }
-                      
+                       
+                     
                       return (
-                      <div className="col-lg-12 col-md-12 col-12">            
+                      <div className="d-flex align-items-center  col-lg-12 col-md-12 col-12" key = {imageId}>            
                                         <Image
                                           src={url}
                                           alt="Image"
                                           className="id-card-img"
                                           preview
                                         />
+                                        <CancelButton onClick = {() => showPopupModal(imageId)}/>
+                                        {/* <div className = 'ms-5'>
+                                          <button type="button" className="p-button p-component p-button-icon-only" onClick={() => showPopupModal(imageId)}>
+                                            <span className="p-button-icon p-c pi pi-times"></span>
+                                            <span className="p-button-label p-c">&nbsp;</span>
+                                          </button>
+                                        </div> */}
                         </div>
                       )
                       }) }
-                      
+
+                  
+                {showPopup && <Popup
+                                  mainText = {"Are you sure you want to delete this file?"}
+                                  header =  {"Delete File"} 
+                                  documentId = {documentIdForDeletion}
+                                  onConfirm = {deleteFitnessImage}
+                                  onCancel = {() => setShowPopup(false)}
+                                />}
                 <div className="p-text-small-brown mt-2">
                   <p className="mb-1">
                     <strong>Here is what you have to do:</strong>

@@ -521,6 +521,13 @@ export const saveUserLocations =  async (bookingId,payload)  => {
     return axios.get(url,{ headers:  header, responseType: 'blob'  }).then((res) => res.data);
   };
 
+  export const deleteFitnessDocument = async (participantId, documentId) => {
+    const header = await getTokenHeader();
+    const api = `${REACT_APP_TMS_BACKEND_URL}`;
+    let url = `${api}/participants/${participantId}/fitness-documents/${documentId}`
+    return axios.delete(url,  { headers:  header  }).then((res) => res.data);
+  }
+
 
 async function fetchDocs(page = 1, routes = []) {
   const response = await Client().query('', { pageSize: 25, lang: '*', page });

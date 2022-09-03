@@ -33,6 +33,7 @@ const UserUpcomingTreks = ({ doc }) => {
         </Head>
         <HikeHeader />
         <UserUpcomingTreksSliceZone sliceZone={doc.data.body} />
+        <div id ='modal-root'></div>
       </HomeLayout>
       <ScrollToTop smooth color="#000000" />
       </>
