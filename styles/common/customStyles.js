@@ -2781,10 +2781,6 @@ export const customStyles = css.global`
       height: 170px;
     }
 
-    .id-card-img {
-      width: 100% !important;
-    }
-
     .hikesnews-bg {
       height: 170px;
     }
