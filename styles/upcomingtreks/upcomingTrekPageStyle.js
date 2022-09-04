@@ -686,6 +686,13 @@ export const upcomingTrekPageStyle = css.global`
     display: none !important;
   }
 
+  .choose_trek_image {
+    position: relative;
+    width: 100%;
+    height: 222px;
+    border-bottom: 2px solid rgb(255, 193, 0);
+  }
+
   @media only screen and (max-width: 660px) {
     .fam_trek {
       font-size: 12px;
@@ -1002,6 +1009,13 @@ export const upcomingTrekPageStyle = css.global`
     .title-diplay-3 {
       font-size: 20px;
       line-height: 24px;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .choose_trek_image {
+      height: 160px;
+      margin-bottom: 10px;
     }
   }
 

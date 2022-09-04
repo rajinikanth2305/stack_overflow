@@ -18,6 +18,7 @@ import { batch } from "react-redux";
 import Prismic from "@prismicio/client";
 import { Client } from "utils/prismicHelpers";
 
+
 const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
   const [selectedBatchDate, setSelectedBatchDate] = useState();
   const [selectedMonthYear, setSelectedMonthYear] = useState();
@@ -43,25 +44,32 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
 
     client.query([Prismic.Predicates.at("my.trek.uid", actualTrekPageName)])
       .then(async function (response) {
-        
+
         if (response?.results && response?.results?.length > 0 && response.results[0].data?.trek_id) {
 
           let trekId = response.results[0].data?.trek_id[0].text;
           setTrekId(trekId);
-          
+
           if (viewDt === undefined) {
-            getBatchesByTrekId(trekId, 0, 0).then(bResult => {
-              
+
+            const currentDate = new Date()
+
+            const month = currentDate.getMonth() + 2 //getting next month data
+            const year = currentDate.getFullYear()
+
+
+            getBatchesByTrekId(trekId, month, year).then(bResult => {
+              // console.log(bResult);
               if (bResult?.length > 0) {
-                
+
 
                 const date = new Date(bResult[0].startDate);
                 const additionOfMonths = 1;
                 date.setMonth(date.getMonth())
-                
+
                 //var date = moment(bResult[0].startDate).format('DD-MM-YYYY');
                 viewDt = date;
-                
+
                 setViewDate(viewDt);
                 setRender(true);
               }
@@ -84,7 +92,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
 
     /// Get the trekName from QueryString
     let url = location.href.replace(location.origin, "");
-    
+
     let pageUrl = url.split("&");
     let pageUrl3 = pageUrl[1]; //trekName
     setBatchId(pageUrl[2]);
@@ -93,9 +101,9 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
 
   const getTrekName = () => {
     // let actualTrekPageName = "";
-    
+
     // if (mode === "inline_page") { **** WHAT DOES THIS DO ??????? ***** 
-      
+
     //   const pageUrl = window.location.href;
     //   const pageNamesArray = pageUrl.split("/");
     //   const pageName = pageNamesArray[pageNamesArray.length - 1];
@@ -111,7 +119,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     //     actualTrekPageName = pageName.substring(0, queryIndex)
     //   }
     // } else {
-    
+
     //   actualTrekPageName = getTrekNameFromUrlQueryPath();
     // }
 
@@ -141,13 +149,13 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
 
           if (data.length > 0) {
             var withoutDuplicates = removeDuplicatesBy(x => x.startDate, data);
-            
+
             setBatchData(withoutDuplicates);
             prepareDateDisableList(date, withoutDuplicates);
             setNoDates(false);
           }
           else {
-           // setNoDates(true);
+            // setNoDates(true);
           }
         }
       });
@@ -170,7 +178,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
 
     var dict = {};
 
-    
+
     if (data !== undefined && data.length > 0) {
       data.forEach(x => {
         let startDt = x.startDate.substr(8, 2);
@@ -183,7 +191,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
 
     for (var i = 1; i < 32; i++) {
       var val = batchDateNumInMonth.find(x => x === i);
-      
+
       if (val === undefined) {
         invalidDatesList.push(
           new Date(
@@ -230,8 +238,8 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
   };
 
 
-  const renderSwitch = (status, fillingFast, date, batchDates, key,familyTrekFlag) => {
-    
+  const renderSwitch = (status, fillingFast, date, batchDates, key, familyTrekFlag) => {
+
     switch (status) {
       case 'WAITING_LIST':
         return (
@@ -268,40 +276,38 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
     }
   }
   const dateTemplate = date => {
-    
 
-    
     if (date.day === 1) {
       const dt = date.day + "-" + date.month + "-" + date.year;
-      
-      
+
+
       if (selectedMonthYear === "") {
         setSelectedMonthYear(dt);
         fetchTrekMonthBatches(date);
-        
+
       } else if (selectedMonthYear !== dt) {
         fetchTrekMonthBatches(date);
         setSelectedMonthYear(dt);
       }
     }
     const key = String(date.day).padStart(2, "0");
-    
+
 
     if (batchDates !== undefined && batchDates[key] !== undefined) {
-      
+
       const sDate = batchDates[key].startDate;
       const eEdate = batchDates[key].endDate;
       const status = batchDates[key].status;
       const fillingFast =
         batchDates[key].availableSlots > 0 &&
         batchDates[key].availableSlots <= 5;
-        const familyTrek=batchDates[key].familyTrek;
+      const familyTrek = batchDates[key].familyTrek;
       return (
         <div className="w-100">
           <div className="w-100">
             {
 
-              renderSwitch(status, fillingFast, date, batchDates, key,familyTrek)
+              renderSwitch(status, fillingFast, date, batchDates, key, familyTrek)
             }
           </div>
         </div>
@@ -370,21 +376,21 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
   };
 
   const onMonthChange = e => {
-    
-    
+
+
   };
 
   const onYearChange = (event, e) => {
-     
+
     getBatchesByTrekId(trekId, 0, e).then(bResult => {
-      
+
       if (bResult?.length > 0) {
-        
+
 
         const date = new Date(bResult[0].startDate);
         const additionOfMonths = 1;
         date.setMonth(date.getMonth())
-        
+
         //var date = moment(bResult[0].startDate).format('DD-MM-YYYY');
         viewDt = date;
         setViewDate(viewDt);
@@ -393,7 +399,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
         // event.onChange(event.originalEvent, event.value);
       }
       else {
-        const dt="01-01-" + e;
+        const dt = "01-01-" + e;
         const date = new Date(dt);
         const additionOfMonths = 1;
         date.setMonth(date.getMonth());
@@ -408,8 +414,8 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
       });
   };
   const onSelect = e => {
-    
-    
+
+
     const key = String(e.getDate()).padStart(2, "0");
 
     if (batchDates[key].status === "FULL") {
@@ -453,14 +459,15 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
   return (
     <>
       <div>
+
         <Toast ref={toast} />
         <div>
           <div>
             <div>
-            {noDates === true 
-              && <h3 className="p-text-1 my-5">We will open up dates shortly. 
-              <a href="/upcoming-treks">Click here</a> to see other treks that might have dates.
-              </h3>}
+              {noDates === true
+                && <h3 className="p-text-1 my-5">We will open up dates shortly.
+                  <a href="/upcoming-treks">Click here</a> to see other treks that might have dates.
+                </h3>}
               {render && (
                 <div>
                   <Calendar
@@ -479,7 +486,7 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
                   />
                 </div>
               )}
-             
+
             </div>
           </div>
         </div>

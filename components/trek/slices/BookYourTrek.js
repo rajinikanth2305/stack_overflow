@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 
 
 
-import {TrekReviews} from "../slices";
+import { TrekReviews } from "../slices";
 //const userService = dynamic(() => import('../../../utils/UserService'),{ ssr: false });
 
 const BookYourTrek = ({ slice }) => {
@@ -88,7 +88,7 @@ const BookYourTrek = ({ slice }) => {
   return (
     <>
 
-      <TrekReviews slice={slice} key={`slice-${1}`} />;
+      <TrekReviews slice={slice} key={`slice-${1}`} />
       <div id="view-dates">
         <Toast ref={toast} />
         <div className="container">

@@ -86,7 +86,7 @@ const TrekExpertSpeak = ({ slice }) => {
               <div>
                 {data?.what_i_dont_like_content_title?.map((tit, index) => {
                   return (
-                    <div>
+                    <div key = {index}>
                       {tit?.text !== "" && <h5 key={index} className="p-text-2 mb-3">
                         <b>
                           {i + 1}. {tit?.text}

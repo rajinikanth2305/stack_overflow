@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import { RichText } from "prismic-reactjs";
 import { upcomingTrekPageStyle } from "styles";
 import { findDOMNode } from "react-dom";
@@ -6,8 +6,8 @@ import { Client } from "utils/prismicHelpers";
 import Prismic from "@prismicio/client";
 import Image from "next/image";
 import ReactPaginate from "react-paginate";
-import Link from "next/link";
-import { responseSymbol } from "next/dist/server/web/spec-compliant/fetch-event";
+import { TrekCardSliceZone, TrekCardSliceZoneMobile } from "components/trekCard";
+// import { responseSymbol } from "next/dist/server/web/spec-compliant/fetch-event";
 
 const UpComingTreks = ({ slice }) => {
   const upcomingTreksTitle = slice?.primary?.upcoming_treks_title;
@@ -128,22 +128,22 @@ const UpComingTreks = ({ slice }) => {
           // response is the response object, response.results holds the documents
           // console.log(JSON.stringify(response));
           setFilterResult(true);
-          
-          const res=[];
+
+          const res = [];
           response?.results?.forEach(result => {
             //console.log(result);
-            if(result?.data?.family_trek===true 
-              ||  result?.data?.private_trek===true) {
+            if (result?.data?.family_trek === true
+              || result?.data?.private_trek === true) {
 
             }
             else {
-             // res.push(result);
-             res.push(result);
+              // res.push(result);
+              res.push(result);
             }
           });
 
           //setResults(response.results);
-            setResults(res);
+          setResults(res);
 
           setPageCount(response.total_pages);
         });
@@ -175,6 +175,52 @@ const UpComingTreks = ({ slice }) => {
       </>
     );
   };
+
+  const showResults = useMemo(() => {
+
+    let trekToDoImage = [], trekToDoImageMobileView = []
+    if (results.length) {
+      trekToDoImage = results.map(function (data, i) {
+        const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
+        let url;
+        const slugUrl = data?.uid;
+        if (slugUrl) {
+          // url = `/trek/${slugUrl}`;
+          url = `/${slugUrl}`;
+        }
+        const getFamilyTrek = data?.tags?.find(x => x === "FamilyTrek");
+        return (
+          <div className="col-lg-4 col-md-12" key={i}>
+            <TrekCardSliceZone key={i} tData={tData} getFamilyTrek={getFamilyTrek} url={url} trekId={data.slugs[0]} />
+          </div>
+        );
+      });
+
+
+      trekToDoImageMobileView = results?.map(function (data, j) {
+        const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
+        let url;
+        const slugUrl = data?.uid;
+        if (slugUrl) {
+          //url = `/trek/${slugUrl}`;
+          url = `/${slugUrl}`;
+        }
+        const getFamilyTrek = data?.tags?.find(x => x === "FamilyTrek");
+        return (
+          <TrekCardSliceZoneMobile key={j} tData={tData} getFamilyTrek={getFamilyTrek} url={url} trekId={data.slugs[0]} />
+        );
+      });
+    }
+    return {
+      displayItems: trekToDoImage,
+      mobileDisplayItems: trekToDoImageMobileView
+    }
+
+  }, [results])
+
+  const { displayItems, mobileDisplayItems } = showResults
+
+
 
   return (
     <>
@@ -337,152 +383,41 @@ const UpComingTreks = ({ slice }) => {
             </div>
             {filterResult === true ? (
               <>
-                {results.map(function (result, i) {
-                  // const slice = result.data.body.find(
-                  //   x => x.slice_type === "trek_banner"
-                  // );
-                  const tData = result?.data?.body.find(
-                    x => x.slice_type === "trek_banner"
-                  );
-                  let url;
-                  const slugUrl = result?.uid;
-                  if (slugUrl) {
-                   // url = `/trek/${slugUrl}`;
-                     url = `/${slugUrl}`;
-                  }
-                  const getFamiltTrek = result?.tags?.find(
-                    x => x === "FamilyTrek"
-                  );
-                  // console.log(slice);
-                  // const bannerImage = slice.primary.trek_banner_image.url;
-                  // const trekCaptions = slice.primary.trek_caption;
-                  return (
-                    <div className="col-lg-4 col-md-12" key={i}>
-                      {/* <div className="mb-4">
-                        <div alt="imgs" className="uc_fliter_treks_images">
-                          <Image
-                            src={bannerImage}
-                            layout="fill"
-                            objectFit="cover"
-                            objectPosition="50% 50%"
-                          />
-                          <div className="image_overlay_text_area_layout4">
-                            <div className="p-absolute">
-                              <p className="image_overlay_text_title mb-1">
-                                {trekCaptions}
-                              </p>
-                              <p className="image_overlay_text_desc">
-                                {trekCaptions}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div> */}
-                      <div className="card_sec mb-4 mx-2 mt-0 hvr-grow cursor-pointer">
-                        <Link href={url ? url : "#"}>
-                          <a>
-                            <div className="card trek_card">
-                              <div className="uc_open_for_small_group_images">
-                                {tData?.primary?.trek_banner_image?.url && (
-                                  <Image
-                                    src={tData?.primary?.trek_banner_image?.url}
-                                    layout="fill"
-                                    objectFit="cover"
-                                    objectPosition="50% 50%"
-                                    alt="imgs"
-                                    unoptimized
-                                  />
-                                )}
-                              </div>
-                              <div className="px-3 py-2">
-                                <div className="d-flex align-items-center card-info-text">
-                                  <div>
-                                    <p>{tData?.primary?.duration[0]?.text}</p>
-                                  </div>
-                                  {/* <div>
-                    <p className="list-dot-style px-1">
-                      <span>.</span>
-                    </p>
+                <div className="m-d-none">
+                  <div className="d-flex flex-wrap">
+                    {displayItems}
                   </div>
-                  <div>
-                    <p>{tData.primary.altitude[0].text}</p>
-                  </div> */}
-                                  <div>
-                                    <p className="list-dot-style px-1">
-                                      <span>.</span>
-                                    </p>
-                                  </div>
-                                  <div>
-                                    <p>{tData?.primary?.difficulty[0]?.text}</p>
-                                  </div>
-                                </div>
+                </div>
 
-                                <div>
-                                  <p className="title-diplay-3 text-uppercase">
-                                    <b>
-                                      {tData?.primary?.trek_caption?.length > 25
-                                        ? `${tData?.primary?.trek_caption.substring(0, 25)}...`
-                                        : tData?.primary?.trek_caption}
-                                    </b>
-                                  </p>
-                                  <div className="p-display-2 trek_card_desc_min_height">
-                                    {/* {RichText.asText(tData?.primary?.sub_heading)} */}
-                                    {RichText.asText(tData?.primary?.sub_heading)
-                                      ?.length > 75
-                                      ? `${RichText.asText(
-                                        tData?.primary?.sub_heading
-                                      ).substring(0, 75)}...`
-                                      : RichText.asText(
-                                        tData?.primary?.sub_heading
-                                      )}
-                                  </div>
-                                  <div className="d-flex align-items-center flex-wrap pt-2 pb-2 p-btn-btm">
-                                    <div className="flex-grow-1">
-                                      {getFamiltTrek !== undefined ? (
-                                        <p className="m-0 fam_trek">
-                                          <span>*</span> Family trek
-                                        </p>
-                                      ) : (
-                                        ""
-                                      )}
-                                    </div>
-                                    <div>
-                                      {/* <Link href={url ? url : "#"}> */}
-                                      <button className="btn btn-ih-green">
-                                        View Details
-                                      </button>
-                                      {/* </Link> */}
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </a>
-                        </Link>
-                      </div>
-                    </div>
-                  );
-                })}
-                <div className="d-flex justify-content-end my-3">
-                  <ReactPaginate
-                    ref={pagination}
-                    pageCount={pageCount}
-                    pageRangeDisplayed={4}
-                    marginPagesDisplayed={1}
-                    onPageChange={handlePageChange}
-                    containerClassName="pagination"
-                    activeClassName="active"
-                    pageLinkClassName="page-link"
-                    breakLinkClassName="page-link"
-                    nextLinkClassName="page-link"
-                    previousLinkClassName="page-link"
-                    pageClassName="page-item"
-                    breakClassName="page-item"
-                    nextClassName="page-item"
-                    previousClassName="page-item"
-                    previousLabel={<>&laquo;</>}
-                    nextLabel={<>&raquo;</>}
-                  />
+
+                {/******  Below lines are commented for reason: pls dont delete ***************/}
+                {/* <div className="m-view-d-block">
+                  {mobileDisplayItems}
+                </div> */}
+
+
+                <div className="m-d-none">
+                  <div className="d-flex justify-content-end my-3">
+                    <ReactPaginate
+                      ref={pagination}
+                      pageCount={pageCount}
+                      pageRangeDisplayed={4}
+                      marginPagesDisplayed={1}
+                      onPageChange={handlePageChange}
+                      containerClassName="pagination"
+                      activeClassName="active"
+                      pageLinkClassName="page-link"
+                      breakLinkClassName="page-link"
+                      nextLinkClassName="page-link"
+                      previousLinkClassName="page-link"
+                      pageClassName="page-item"
+                      breakClassName="page-item"
+                      nextClassName="page-item"
+                      previousClassName="page-item"
+                      previousLabel={<>&laquo;</>}
+                      nextLabel={<>&raquo;</>}
+                    />
+                  </div>
                 </div>
               </>
             ) : (

@@ -32,6 +32,10 @@ export const ChooseTreks = css.global`
     // min-height: 440px;
   }
 
+  .trek_card a {
+    text-decoration: none
+  }
+
   .trek_card_desc_min_height {
     min-height: 42px;
   }
