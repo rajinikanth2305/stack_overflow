@@ -19,7 +19,7 @@ import Prismic from "@prismicio/client";
 import { Client } from "utils/prismicHelpers";
 
 
-const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
+const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName, calendarMonth }) => {
   const [selectedBatchDate, setSelectedBatchDate] = useState();
   const [selectedMonthYear, setSelectedMonthYear] = useState();
   const [invalidDates, setInvalidDates] = useState();
@@ -50,12 +50,19 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName }) => {
           let trekId = response.results[0].data?.trek_id[0].text;
           setTrekId(trekId);
 
+          
           if (viewDt === undefined) {
 
-            const currentDate = new Date()
-
-            const month = currentDate.getMonth() + 2 //getting next month data
-            const year = currentDate.getFullYear()
+            let month, year  
+            if (calendarMonth) {
+              const selectedDate = new Date(Number(calendarMonth))
+              month = selectedDate.getMonth() + 1;
+              year = selectedDate.getFullYear()
+            } else {
+              const currentDate = new Date()
+              month = currentDate.getMonth() + 2 //getting next month data
+              year = currentDate.getFullYear()
+            }
 
 
             getBatchesByTrekId(trekId, month, year).then(bResult => {

@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 import { TrekReviews } from "../slices";
 //const userService = dynamic(() => import('../../../utils/UserService'),{ ssr: false });
 
-const BookYourTrek = ({ slice }) => {
+const BookYourTrek = ({ slice, calendarMonth }) => {
   const heading1 = slice?.primary?.heading1;
   const cancelInfoHeading = slice?.primary?.cancel_info_heading;
   const cancelInfodetailsList = slice?.primary?.cancel_info_details;
@@ -133,6 +133,7 @@ const BookYourTrek = ({ slice }) => {
                       <BookingCalender
                         onBookingSelect={bookingSelect}
                         mode={"inline_page"}
+                        calendarMonth = {calendarMonth}
                       />
                     )}
                   </div>

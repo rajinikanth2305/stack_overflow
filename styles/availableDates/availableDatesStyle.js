@@ -53,7 +53,17 @@ export const AvailableDatesStyle = css.global`
     .dateText {
         margin: 0;
         font-size: clamp(11px, 1.5vw, 12px);
+        text-decoration: none; 
     }
+
+    .hoverUnderline:hover .dateText {
+        text-decoration: underline;
+    }
+
+    .hoverUnderline:hover .statusText {
+        text-decoration: underline;
+    }
+
     .statusText {
         margin: 0;
         text-align: right;

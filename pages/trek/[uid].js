@@ -25,6 +25,12 @@ import { isNil, isEmpty } from 'ramda';
  * Trek page component
  */
 const Trek = ({ trekData, trekPageData1 }) => {
+
+  const router = useRouter()
+
+  const {calendar : calendarMonth} = router.query
+
+
   if (trekData && trekData.data) {
 
     const getMetaTitle = () => {
@@ -95,6 +101,7 @@ const Trek = ({ trekData, trekPageData1 }) => {
         <TrekSliceZone
           sliceZone={trekData.data.body}
           trekPageData1={trekPageData1}
+          calendarMonth = {calendarMonth || null}
         />
         {/* <WhyTrekWithIH /> */}
         <IHTrekWithSwathi />

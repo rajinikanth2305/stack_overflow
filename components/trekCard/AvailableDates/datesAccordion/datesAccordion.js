@@ -1,4 +1,5 @@
 import classNames from "classnames"
+import Link from "next/link";
 
 
 function dateOrdinal(d) {
@@ -13,7 +14,7 @@ const batchDates = {
 }
 
 
-const DatesAccordion = ({ openAccordion, id, openAccordionNumber, data, month }) => {
+const DatesAccordion = ({ openAccordion, id, openAccordionNumber, data, month, url }) => {
 
   const monthDate = new Date(Number(month))
   const monthName = monthDate.toLocaleString('default', {
@@ -57,19 +58,23 @@ const DatesAccordion = ({ openAccordion, id, openAccordionNumber, data, month })
               const displayText = `${dateOrdinal(startDate.getDate())} ${startDate.toLocaleString('default', { month: 'short' })} to ${dateOrdinal(endDate.getDate())} ${endDate.toLocaleString('default', { month: 'short' })} `
 
 
-              return (<div className=' px-2 py-1 d-flex justify-content-between' key={index}>
-                <p className='dateText me-3'>{displayText} </p>
-                <p className={classNames('statusText',
-                  {
-                    statusFull: batch.status === batchDates.full,
-                    statusWL: batch.status === batchDates.waitingList,
-                    statusAvailable: batch.status === batchDates.active,
-                  })}>
-                  {batch.status === 'FULL' ? 'FULL' :
-                    batch.status === 'WAITING_LIST' ? 'WL' : 'AVAIL'
-                  }
-                </p>
-              </div>)
+              return ( <Link href= {`${url}?calendar=${month}#view-dates`}>
+                        <div className=' px-2 py-1 d-flex justify-content-between hoverUnderline' key={index}>
+                          <p className='dateText me-3'>                    
+                            {displayText}
+                          </p>    
+                          <p className={classNames('statusText',
+                          {
+                            statusFull: batch.status === batchDates.full,
+                            statusWL: batch.status === batchDates.waitingList,
+                            statusAvailable: batch.status === batchDates.active,
+                          })}>
+                          {batch.status === 'FULL' ? 'FULL' :
+                            batch.status === 'WAITING_LIST' ? 'WL' : 'AVAIL'
+                          }
+                        </p>
+                        </div>
+                      </Link>)
 
 
             })

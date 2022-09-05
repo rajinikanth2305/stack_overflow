@@ -17,15 +17,12 @@ export default function AvailableDatesContainer({ batchDates, url, mobile = fals
 
     Object.entries(batchDates).forEach((val, index, arr) => {
         if (index >= arr.length / 2) {
-            rightDateContainer.push(<DatesAccordion data={val[1]} month={val[0]} openAccordion={openAccordion} id={index + 1} openAccordionNumber={openAccordionNumber} />)
+            rightDateContainer.push(<DatesAccordion data={val[1]} month={val[0]} openAccordion={openAccordion} id={index + 1} openAccordionNumber={openAccordionNumber} url = {url} />)
         } else {
-            leftDateContainer.push(<DatesAccordion data={val[1]} month={val[0]} openAccordion={openAccordion} id={index + 1} openAccordionNumber={openAccordionNumber} />)
+            leftDateContainer.push(<DatesAccordion data={val[1]} month={val[0]} openAccordion={openAccordion} id={index + 1} openAccordionNumber={openAccordionNumber} url = {url} />)
         }
 
     })
-
-
-
 
     return (
         leftDateContainer.length ?
