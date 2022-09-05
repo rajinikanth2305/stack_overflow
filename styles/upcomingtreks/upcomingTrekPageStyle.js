@@ -91,7 +91,7 @@ export const upcomingTrekPageStyle = css.global`
     font-family: Franklin Gothic Medium;
     font-style: normal;
     font-weight: normal;
-    font-size: 30px;
+    font-size: 26px;
     color: rgba(0, 0, 0, 1);
     text-transform: none;
   }

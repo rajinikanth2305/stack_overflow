@@ -265,7 +265,7 @@ const AllIndiaHikes = ({ slice }) => {
             <div className="container my-3 m-d-block">
               {render && (
                 <div className="row">
-                  <div className="col-lg-4 col-md-12">
+                  <div className="col-md-12">
                     <div className="d-flex flex-wrap align-items-center">
                       <span className="badge-line-green-lg mx-2"></span>
                       <h3 className="title-dispaly-4 my-3">
@@ -273,7 +273,6 @@ const AllIndiaHikes = ({ slice }) => {
                       </h3>
                     </div>
                     {treks(easyMordatesTreks)}
-                    <div className="d-flex flex-wrap align-items-center">
                       <div className="d-flex flex-wrap align-items-center">
                         <span className="badge-line-yellow-lg mx-2"></span>
                         <h3 className="title-dispaly-4 my-3">Moderate Treks</h3>
@@ -298,7 +297,6 @@ const AllIndiaHikes = ({ slice }) => {
                         <h3 className="title-dispaly-4 my-3">Family Treks</h3>
                       </div>
                       {displayFamilyTreks}
-                    </div>
                   </div>
                 </div>
               )}
