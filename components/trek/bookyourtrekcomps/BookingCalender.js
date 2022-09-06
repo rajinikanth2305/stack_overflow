@@ -53,28 +53,22 @@ const BookingCalender = ({ onBookingSelect, mode, viewDt, paramTrekName, calenda
           
           if (viewDt === undefined) {
 
-            let month, year  
+            let getbatchesApi = null;
             if (calendarMonth) {
               const selectedDate = new Date(Number(calendarMonth))
-              month = selectedDate.getMonth() + 1;
-              year = selectedDate.getFullYear()
+              const month = selectedDate.getMonth() + 1;
+              const year = selectedDate.getFullYear()
+              getbatchesApi = getBatchesByTrekId(trekId, month, year);
             } else {
-              const currentDate = new Date()
-              month = currentDate.getMonth() + 2 //getting next month data
-              year = currentDate.getFullYear()
+              getbatchesApi = getBatchesByTrekId(trekId);
             }
 
+            getbatchesApi.then(batches => {
+              if (batches?.length > 0) {
 
-            getBatchesByTrekId(trekId, month, year).then(bResult => {
-              // console.log(bResult);
-              if (bResult?.length > 0) {
-
-
-                const date = new Date(bResult[0].startDate);
-                const additionOfMonths = 1;
+                const date = new Date(batches[0].startDate);
                 date.setMonth(date.getMonth())
 
-                //var date = moment(bResult[0].startDate).format('DD-MM-YYYY');
                 viewDt = date;
 
                 setViewDate(viewDt);
