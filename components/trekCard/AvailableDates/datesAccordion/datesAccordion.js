@@ -1,5 +1,4 @@
 import classNames from "classnames"
-import Link from "next/link";
 
 
 function dateOrdinal(d) {
@@ -58,8 +57,8 @@ const DatesAccordion = ({ openAccordion, id, openAccordionNumber, data, month, u
               const displayText = `${dateOrdinal(startDate.getDate())} ${startDate.toLocaleString('default', { month: 'short' })} to ${dateOrdinal(endDate.getDate())} ${endDate.toLocaleString('default', { month: 'short' })} `
 
 
-              return ( <Link href= {`${url}?calendar=${month}#view-dates`}>
-                        <div className=' px-2 py-1 d-flex justify-content-between hoverUnderline' key={index}>
+              return ( 
+                        <div className=' px-2 py-1 d-flex justify-content-between' key={index}>
                           <p className='dateText me-3'>                    
                             {displayText}
                           </p>    
@@ -70,11 +69,11 @@ const DatesAccordion = ({ openAccordion, id, openAccordionNumber, data, month, u
                             statusAvailable: batch.status === batchDates.active,
                           })}>
                           {batch.status === 'FULL' ? 'FULL' :
-                            batch.status === 'WAITING_LIST' ? 'WL' : 'AVAIL'
+                            batch.status === 'WAITING_LIST' ? 'WL' : 'AVBL'
                           }
                         </p>
                         </div>
-                      </Link>)
+                      )
 
 
             })

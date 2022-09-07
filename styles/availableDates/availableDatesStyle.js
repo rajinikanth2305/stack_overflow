@@ -56,14 +56,6 @@ export const AvailableDatesStyle = css.global`
         text-decoration: none; 
     }
 
-    .hoverUnderline:hover .dateText {
-        text-decoration: underline;
-    }
-
-    .hoverUnderline:hover .statusText {
-        text-decoration: underline;
-    }
-
     .statusText {
         margin: 0;
         text-align: right;
