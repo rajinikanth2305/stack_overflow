@@ -1,12 +1,12 @@
-import React from 'react'
-import Caption from './Caption'
+import React from "react";
+import Caption from "./Caption";
 
 /**
  * Full width image component
  */
 const FullWidthImage = ({ slice }) => {
-  const imageUrl = slice.primary.image.url
-  const caption = slice.primary.caption
+  const imageUrl = slice.primary.image.url;
+  const caption = slice.primary.caption;
 
   return (
     <div
@@ -17,7 +17,7 @@ const FullWidthImage = ({ slice }) => {
         <Caption caption={caption} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FullWidthImage
+export default FullWidthImage;

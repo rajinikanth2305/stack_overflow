@@ -3,7 +3,7 @@ import {
   FaqBanner,
   MoreHelpAndSupport,
   GetInTouchWithIh,
-  TrekkingTips
+  TrekkingTips,
 } from "./slices";
 
 /**
@@ -19,8 +19,14 @@ const FaqSliceZone = ({ sliceZone, articleData }) =>
         return <MoreHelpAndSupport slice={slice} key={`slice-${index}`} />;
       case "get_in_touch_with_ih":
         return <GetInTouchWithIh slice={slice} key={`slice-${index}`} />;
-        case "trekking_tips":
-        return <TrekkingTips slice={slice} key={`slice-${index}`} articleData={articleData} />;
+      case "trekking_tips":
+        return (
+          <TrekkingTips
+            slice={slice}
+            key={`slice-${index}`}
+            articleData={articleData}
+          />
+        );
       default:
         return null;
     }

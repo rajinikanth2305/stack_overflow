@@ -12,9 +12,7 @@ const GtTestimonoial = ({ slice }) => {
         <div className="container">
           <div className="d-flex flex-wrap align-items-end border-bottom-custom mb-4 pb-08">
             <div className="col-md-12">
-              <h2 className="title-h2 border-0 mb-0">
-                Testimonial
-              </h2>
+              <h2 className="title-h2 border-0 mb-0">Testimonial</h2>
             </div>
           </div>
         </div>

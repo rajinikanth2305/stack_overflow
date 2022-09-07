@@ -1,3 +1,3 @@
-import AvailableDates from "./AvailableDatesContainer"
+import AvailableDates from "./AvailableDatesContainer";
 
-export default AvailableDates
+export default AvailableDates;

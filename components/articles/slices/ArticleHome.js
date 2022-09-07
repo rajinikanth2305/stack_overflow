@@ -22,16 +22,16 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText
+  NavbarText,
 } from "reactstrap";
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
 
 const ArticleHome = ({
   slice,
   articleTabsList,
   section1DataList,
-  primaryArticleData
+  primaryArticleData,
 }) => {
   // console.log(articleTabsList);
   // articleTabsList?.results?.sort(function (a, b) {
@@ -42,33 +42,39 @@ const ArticleHome = ({
   const router = useRouter();
   const heading1 = slice?.primary?.heading1;
 
-  const tabsList = articleTabsList?.results?.slice(0, 6)?.map(function (data, i) {
-    const slice = data?.data?.body;
-    const slice1Data =
-      slice && slice?.filter(x => x.slice_type === "articles_tab");
-    return (
-      <Nav.Item key={i}>
-        <Nav.Link
-          href={data?.uid}
-          eventKey={slice1Data[0]?.primary?.tab_name[0]?.text}
-          className={router?.query?.uid == data?.uid ? "active" : ""}
-        >
-          {slice1Data[0]?.primary?.tab_name[0]?.text}
-        </Nav.Link>
-      </Nav.Item>
-    );
-  });
+  const tabsList = articleTabsList?.results
+    ?.slice(0, 6)
+    ?.map(function (data, i) {
+      const slice = data?.data?.body;
+      const slice1Data =
+        slice && slice?.filter((x) => x.slice_type === "articles_tab");
+      return (
+        <Nav.Item key={i}>
+          <Nav.Link
+            href={data?.uid}
+            eventKey={slice1Data[0]?.primary?.tab_name[0]?.text}
+            className={router?.query?.uid == data?.uid ? "active" : ""}
+          >
+            {slice1Data[0]?.primary?.tab_name[0]?.text}
+          </Nav.Link>
+        </Nav.Item>
+      );
+    });
 
-  const tabsList2 = articleTabsList?.results?.slice(6, 20)?.map(function (data, i) {
-    const slice = data?.data?.body;
-    const slice1Data =
-      slice && slice?.filter(x => x.slice_type === "articles_tab");
-    return (
-      <a key={i} href={data?.uid}>
-        <DropdownItem>{slice1Data[0]?.primary?.tab_name[0]?.text}</DropdownItem>
-      </a>
-    );
-  });
+  const tabsList2 = articleTabsList?.results
+    ?.slice(6, 20)
+    ?.map(function (data, i) {
+      const slice = data?.data?.body;
+      const slice1Data =
+        slice && slice?.filter((x) => x.slice_type === "articles_tab");
+      return (
+        <a key={i} href={data?.uid}>
+          <DropdownItem>
+            {slice1Data[0]?.primary?.tab_name[0]?.text}
+          </DropdownItem>
+        </a>
+      );
+    });
 
   return (
     <>
@@ -91,17 +97,17 @@ const ArticleHome = ({
             </Nav> */}
             <div className="d-flex align-items-center">
               <div className="flex-grow-1" style={{ overflowX: "auto" }}>
-                <Nav variant="tabs" defaultActiveKey="/latest-updates" className="article_tabs ofw">
+                <Nav
+                  variant="tabs"
+                  defaultActiveKey="/latest-updates"
+                  className="article_tabs ofw"
+                >
                   {tabsList}
                 </Nav>
               </div>
               <div>
                 <Nav variant="tabs" className="article_tabs">
-                  <UncontrolledDropdown
-                    inNavbar
-                    nav
-                    className="more-nav"
-                  >
+                  <UncontrolledDropdown inNavbar nav className="more-nav">
                     <DropdownToggle nav>
                       <span>More +</span>
                     </DropdownToggle>

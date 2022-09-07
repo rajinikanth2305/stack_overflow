@@ -7,7 +7,7 @@ const UCWhyTreks = ({ slice }) => {
   const ucWhyTrekTitle = slice?.primary?.uc_why_trek_title;
   const ucWhyTrekImagesArray = slice?.items;
 
-  const ucWhyTrekImage = ucWhyTrekImagesArray?.map(function(data, i) {
+  const ucWhyTrekImage = ucWhyTrekImagesArray?.map(function (data, i) {
     return (
       <>
         <div className="col-6 col-lg-3 col-md-6">

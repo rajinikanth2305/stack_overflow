@@ -25,38 +25,32 @@ const SearchList = ({ slice }) => {
       const client = Client();
 
       await client
-        .query(
-          [
-            Prismic.Predicates.fulltext("my.trek.search_keywords", searchQuery),
-            Prismic.Predicates.not("my.trek.family_trek", true),
-            Prismic.Predicates.not("my.trek.private_trek", true),
-          ]
-        )
-        .then(response => {
+        .query([
+          Prismic.Predicates.fulltext("my.trek.search_keywords", searchQuery),
+          Prismic.Predicates.not("my.trek.family_trek", true),
+          Prismic.Predicates.not("my.trek.private_trek", true),
+        ])
+        .then((response) => {
           matchingResults.push(...response.results);
         });
 
       await client
-        .query(
-          [
-            Prismic.Predicates.fulltext("my.document_trek_type.title", searchQuery)
-          ]
-        )
-        .then(response => {
+        .query([
+          Prismic.Predicates.fulltext(
+            "my.document_trek_type.title",
+            searchQuery
+          ),
+        ])
+        .then((response) => {
           matchingResults.push(...response.results);
         });
 
       await client
-        .query(
-          [
-            Prismic.Predicates.fulltext("my.post.title", searchQuery)
-          ], 
-          {
-            orderings: "[my.post.date desc]",
-            pageSize: 100
-          }
-        )
-        .then(response => {
+        .query([Prismic.Predicates.fulltext("my.post.title", searchQuery)], {
+          orderings: "[my.post.date desc]",
+          pageSize: 100,
+        })
+        .then((response) => {
           matchingResults.push(...response.results);
         });
 
@@ -70,7 +64,7 @@ const SearchList = ({ slice }) => {
     searchResults?.map(function (data, i) {
       let url;
       const getArticleImage = data?.data?.body?.find(
-        x => x.slice_type === "feature_image"
+        (x) => x.slice_type === "feature_image"
       );
 
       url = linkResolver(data);
@@ -128,7 +122,9 @@ const SearchList = ({ slice }) => {
             <Link href={url ? url : "#"}>
               <div className="card tw_trek_card mx-0 my-4 m-mt-0 cursor-pointer">
                 <div className="col-md-12">
-                  <span className="type-highlight" style={{ zIndex: "99" }}>{data?.type === "document_trek_type" ? "DIY" : data?.type}</span>
+                  <span className="type-highlight" style={{ zIndex: "99" }}>
+                    {data?.type === "document_trek_type" ? "DIY" : data?.type}
+                  </span>
                   {/* {getArticleImage?.primary?.feature_image?.url ? (
                   <img
                     src={getArticleImage?.primary?.feature_image?.url}
@@ -139,7 +135,8 @@ const SearchList = ({ slice }) => {
                   <img src="../ip.png" className="latest_art_img_bg_img" />
                 )} */}
                   <div className="latest_art_img_bg_img">
-                    {data?.data?.body && data?.data?.body[0]?.primary?.trek_banner_image?.url ? (
+                    {data?.data?.body &&
+                    data?.data?.body[0]?.primary?.trek_banner_image?.url ? (
                       <Image
                         src={
                           data?.data?.body[0]?.primary?.trek_banner_image?.url
@@ -155,9 +152,7 @@ const SearchList = ({ slice }) => {
                     )}
                     {getArticleImage?.primary?.feature_image?.url ? (
                       <Image
-                        src={
-                          getArticleImage?.primary?.feature_image?.url
-                        }
+                        src={getArticleImage?.primary?.feature_image?.url}
                         layout="fill"
                         objectFit="cover"
                         objectPosition="50% 50%"
@@ -172,8 +167,12 @@ const SearchList = ({ slice }) => {
                 <div className="col-md-12">
                   <div className="p-3">
                     <p className="p-text-3 t-min-height m-0">
-                      <b>{data?.data?.trek_title ? data?.data?.trek_title[0]?.text : ""}
-                        {data?.data?.title ? data?.data?.title[0]?.text : ""}</b>
+                      <b>
+                        {data?.data?.trek_title
+                          ? data?.data?.trek_title[0]?.text
+                          : ""}
+                        {data?.data?.title ? data?.data?.title[0]?.text : ""}
+                      </b>
                     </p>
                     {/* <div>
                     <p className="p-text-small m-0 text-capitalize">
@@ -192,16 +191,13 @@ const SearchList = ({ slice }) => {
       );
     });
 
-
   return (
     <>
       <div className="container my-4">
         <h2 className="title-h2">
           <b>Search Result: {searchQuery ? searchQuery : ""}</b>
         </h2>
-        <div className="row">
-          {resultListing}
-        </div>
+        <div className="row">{resultListing}</div>
         <style jsx global>
           {customStyles}
         </style>

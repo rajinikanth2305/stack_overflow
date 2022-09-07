@@ -32,16 +32,16 @@ const Section2 = ({ slice }) => {
           slidesToShow: 4,
           slidesToScroll: 2,
           infinite: false,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -49,13 +49,13 @@ const Section2 = ({ slice }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          centerMode: true
-        }
-      }
-    ]
+          centerMode: true,
+        },
+      },
+    ],
   };
 
-  const ihTrekkerVideosImage = ihTrekkerVideosImageArray?.map(function(
+  const ihTrekkerVideosImage = ihTrekkerVideosImageArray?.map(function (
     data,
     i
   ) {

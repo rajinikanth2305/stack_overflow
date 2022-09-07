@@ -14,13 +14,13 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
   const expirimentMainImage =
     expLearningPrimaryArticleData &&
     expLearningPrimaryArticleData[0]?.data?.body?.find(
-      x => x.slice_type === "feature_image"
+      (x) => x.slice_type === "feature_image"
     );
 
   const cardTitle =
     expLearningPrimaryArticleData &&
     expLearningPrimaryArticleData[0]?.data?.body?.find(
-      x => x.slice_type === "text"
+      (x) => x.slice_type === "text"
     );
 
   // let primary_url;
@@ -44,10 +44,10 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
       url = `/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.find(
-      x => x.slice_type === "feature_image"
+      (x) => x.slice_type === "feature_image"
     );
     const getArticleHeadingText = data?.data?.body?.find(
-      x => x.slice_type === "text"
+      (x) => x.slice_type === "text"
     );
     return (
       <div key={i}>
@@ -75,9 +75,11 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
                       {RichText.asText(data?.data?.body[0]?.primary?.heading2)
                         ?.length > 50
                         ? `${RichText.asText(
-                          data?.data?.body[0]?.primary?.heading2
-                        ).substring(0, 50)}...`
-                        : RichText.asText(data?.data?.body[0]?.primary?.heading2)}
+                            data?.data?.body[0]?.primary?.heading2
+                          ).substring(0, 50)}...`
+                        : RichText.asText(
+                            data?.data?.body[0]?.primary?.heading2
+                          )}
                     </p>
                   </div>
                 </div>
@@ -143,13 +145,13 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
                             ?.primary?.heading2
                         )?.length > 100
                           ? `${RichText.asText(
-                            expLearningPrimaryArticleData[0]?.data?.body[0]
-                              ?.primary?.heading2
-                          ).substring(0, 100)}...`
+                              expLearningPrimaryArticleData[0]?.data?.body[0]
+                                ?.primary?.heading2
+                            ).substring(0, 100)}...`
                           : RichText.asText(
-                            expLearningPrimaryArticleData[0]?.data?.body[0]
-                              ?.primary?.heading2
-                          )}
+                              expLearningPrimaryArticleData[0]?.data?.body[0]
+                                ?.primary?.heading2
+                            )}
                       </p>
                     </div>
                   </div>

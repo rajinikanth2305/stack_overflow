@@ -45,11 +45,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const client = Client();
 
-  const doc =
-    (await client.getSingle(
-      "hike_team",
-      ref ? { ref } : null
-    )) || {};
+  const doc = (await client.getSingle("hike_team", ref ? { ref } : null)) || {};
 
   /*const doc = await client.query(
     Prismic.Predicates.at("document.type", "hike_home_ctype"), {
@@ -57,12 +53,11 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     },
   )*/
 
-
   return {
     props: {
       doc,
-      preview
-    }
+      preview,
+    },
   };
 }
 

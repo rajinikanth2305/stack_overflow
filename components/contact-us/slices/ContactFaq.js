@@ -4,8 +4,8 @@ import { customStyles } from "styles";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Link from "next/link";
-import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
-import AccordionContext from 'react-bootstrap/AccordionContext';
+import { useAccordionToggle } from "react-bootstrap/AccordionToggle";
+import AccordionContext from "react-bootstrap/AccordionContext";
 
 const ContactFaq = ({ slice }) => {
   const faqHeading = slice?.primary?.heading1;
@@ -20,7 +20,7 @@ const ContactFaq = ({ slice }) => {
 
     const decoratedOnClick = useAccordionToggle(
       eventKey,
-      () => callback && callback(eventKey),
+      () => callback && callback(eventKey)
     );
 
     const isCurrentEventKey = currentEventKey === eventKey;
@@ -28,7 +28,7 @@ const ContactFaq = ({ slice }) => {
     return (
       <button
         type="button"
-        className={isCurrentEventKey ? 'show' : ''}
+        className={isCurrentEventKey ? "show" : ""}
         onClick={decoratedOnClick}
       >
         {children}
@@ -36,7 +36,7 @@ const ContactFaq = ({ slice }) => {
     );
   }
 
-  const faqArrayDetails = faqArray?.map(function(data, k) {
+  const faqArrayDetails = faqArray?.map(function (data, k) {
     return (
       <div className="col-md-6" key={k}>
         <Card>
@@ -52,14 +52,14 @@ const ContactFaq = ({ slice }) => {
             >
               {data?.q_title[0]?.text}
             </Accordion.Toggle> */}
-            <ContextAwareToggle eventKey={k + 1}>{data.q_title[0]?.text}</ContextAwareToggle>
+            <ContextAwareToggle eventKey={k + 1}>
+              {data.q_title[0]?.text}
+            </ContextAwareToggle>
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>
               {/* <p>{data?.q_answer[0]?.text}</p> */}
-              <div className="p-text-4">
-                {RichText.render(data?.q_answer)}
-              </div>
+              <div className="p-text-4">{RichText.render(data?.q_answer)}</div>
             </Card.Body>
           </Accordion.Collapse>
         </Card>

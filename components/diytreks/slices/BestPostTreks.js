@@ -26,26 +26,26 @@ const BestPostTreks = ({ slice, trekData }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
-        }
-      }
-    ]
+          arrows: false,
+        },
+      },
+    ],
   };
 
   const bestPostTreks = trekData?.map(function (data, i) {
@@ -56,10 +56,10 @@ const BestPostTreks = ({ slice, trekData }) => {
       url = `/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.filter(
-      x => x.slice_type === "feature_image"
+      (x) => x.slice_type === "feature_image"
     );
     const getArticleHeadingText = data?.data?.body?.find(
-      x => x.slice_type === "text"
+      (x) => x.slice_type === "text"
     );
     return (
       <div key={i}>

@@ -6,7 +6,7 @@ import { ThankYouMessage } from "./slices";
  */
 
 const ThankYouSlizeZone = ({ sliceZone }) => {
-  return <ThankYouMessage  />;
+  return <ThankYouMessage />;
 };
- 
+
 export default ThankYouSlizeZone;

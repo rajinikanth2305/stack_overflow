@@ -11,7 +11,7 @@ const TeamBanner = ({ slice }) => {
   const bannerImageDesktop = {
     backgroundImage: `url('${imageUrl}')`,
     width: "100%",
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
   };
 
   return (
@@ -23,7 +23,9 @@ const TeamBanner = ({ slice }) => {
               <div className="d-flex align-items-center justify-content-center w-100 h-100">
                 <div className="banner-text-sec">
                   <p className="banner-text-1">{RichText.asText(heading1)}</p>
-                  <p className="banner-text-2 mb-0">{RichText.asText(heading2)}</p>
+                  <p className="banner-text-2 mb-0">
+                    {RichText.asText(heading2)}
+                  </p>
                 </div>
               </div>
             </div>

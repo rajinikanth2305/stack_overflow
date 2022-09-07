@@ -3,7 +3,7 @@ import React, {
   useState,
   useRef,
   forwardRef,
-  useImperativeHandle
+  useImperativeHandle,
 } from "react";
 import { RichText } from "prismic-reactjs";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
@@ -19,7 +19,7 @@ import { Toast } from "primereact/toast";
 
 import {
   addOrUpdateState,
-  selectStateData
+  selectStateData,
 } from "../../reduxstate/counterSlice";
 import { render } from "react-dom";
 import Accordion from "react-bootstrap/Accordion";
@@ -29,7 +29,7 @@ import {
   findUserByEmail,
   saveDraftBooking,
   getUserByAutoSearch,
-  getTrekOpenBatches
+  getTrekOpenBatches,
 } from "../../../services/queries";
 
 const localizer = momentLocalizer(moment);
@@ -78,7 +78,8 @@ const SelectBatch = forwardRef((props, ref) => {
     console.log(result);
 
     const slice =
-      result && result?.data?.body?.find(x => x?.slice_type === "quick_itinerary");
+      result &&
+      result?.data?.body?.find((x) => x?.slice_type === "quick_itinerary");
     setquickItinerary(slice);
     const arr = Array.from(new Array(slice?.items?.length), (x, i) => i);
     setTripDaysIndexes(arr);
@@ -122,7 +123,7 @@ const SelectBatch = forwardRef((props, ref) => {
     window.scrollTo(0, 0);
   };
 
-  const bookingSelect = async selectedBatch => {
+  const bookingSelect = async (selectedBatch) => {
     const sdata = JSON.parse(JSON.stringify(stateData.data));
 
     if (sdata.batchId !== selectedBatch.id) {
@@ -131,15 +132,15 @@ const SelectBatch = forwardRef((props, ref) => {
       sdata.batchId = selectedBatch.id;
 
       saveDraftBooking("BATCH_SELECTION", sdata)
-        .then(res => {
+        .then((res) => {
           postBatchChange(res, sdata, selectedBatch);
         })
-        .catch(res => {
+        .catch((res) => {
           if (res.response?.data?.message) {
             toast.current.show({
               severity: "error",
               summary: `'Select Group -  ${res.response.data?.message}'`,
-              detail: ""
+              detail: "",
             });
           }
         });
@@ -153,7 +154,7 @@ const SelectBatch = forwardRef((props, ref) => {
       startDate: selectedBatch.startDate,
       endDate: selectedBatch.endDate,
       trekName: selectedBatch.trek,
-      batchState: selectedBatch.batchState
+      batchState: selectedBatch.batchState,
     };
     setBookingDate(bookingDates);
     await dispatch(addOrUpdateState(sdata));
@@ -182,7 +183,7 @@ const SelectBatch = forwardRef((props, ref) => {
         startDate: data.startDate,
         endDate: data.endDate,
         trekName: data.trekName,
-        batchState: data.batchState
+        batchState: data.batchState,
       };
 
       console.log(data);
@@ -192,7 +193,7 @@ const SelectBatch = forwardRef((props, ref) => {
       findquickItinerary(bookingDates.trekName);
 
       const currentDate = new Date().toISOString(); //new Date(new Date().getTime() + Math.abs((new Date().getTimezoneOffset() * 60000)));
-      getTrekOpenBatches(data.trekId, currentDate).then(res => {
+      getTrekOpenBatches(data.trekId, currentDate).then((res) => {
         const groupedBatches = transFormDataWithGrouping(
           res,
           bookingDates.startDate
@@ -213,7 +214,7 @@ const SelectBatch = forwardRef((props, ref) => {
           setRenderControl(true);
         }*/
       });
-    }
+    },
   }));
 
   const transFormDataWithGrouping = (trekBatches, selectedBatchStartDate) => {
@@ -222,21 +223,21 @@ const SelectBatch = forwardRef((props, ref) => {
       "YYYYMM"
     );
 
-    trekBatches.forEach(batch => {
+    trekBatches.forEach((batch) => {
       const yearAndMonth = moment(batch.startDate).format("YYYYMM");
       // console.log(yearAndMonth);
       const monthName = moment(batch.startDate).format("MMM-YYYY");
 
       if (yearMonthGroupColl.length > 0) {
         const groupData = yearMonthGroupColl.find(
-          y => y.groupKey === yearAndMonth
+          (y) => y.groupKey === yearAndMonth
         );
         if (groupData === undefined) {
           const gformattedData = {
             groupKey: yearAndMonth,
             data: [batch],
             exPand: bookingDateStartMonth == yearAndMonth,
-            headingText: monthName
+            headingText: monthName,
           };
           yearMonthGroupColl.push(gformattedData);
         } else {
@@ -247,24 +248,24 @@ const SelectBatch = forwardRef((props, ref) => {
           groupKey: yearAndMonth,
           data: [batch],
           exPand: bookingDateStartMonth == yearAndMonth,
-          headingText: monthName
+          headingText: monthName,
         };
         yearMonthGroupColl.push(gformattedData);
       }
     });
 
-    const activeKey = yearMonthGroupColl.find(x => x.exPand === true);
+    const activeKey = yearMonthGroupColl.find((x) => x.exPand === true);
     // console.log(activeKey.groupKey);
     setDefaultActiveKey(activeKey.groupKey);
 
     return yearMonthGroupColl;
   };
 
-  const onBatchSelect = batchSelected => {
+  const onBatchSelect = (batchSelected) => {
     bookingSelect(batchSelected);
   };
 
-  const prepareDates = batchInfo => {
+  const prepareDates = (batchInfo) => {
     const days = [];
     const noOfDays = daysBetween(batchInfo.startDate, batchInfo.endDate);
     let dt = moment(batchInfo.startDate, "YYYY-MM-DD").toDate();
@@ -341,7 +342,7 @@ const SelectBatch = forwardRef((props, ref) => {
                                   defaultActiveKey={`${defaultActiveKey}`}
                                   className="reg-selectbatch-tabs"
                                 >
-                                  {indexes.map(index => {
+                                  {indexes.map((index) => {
                                     const trekMonth = trekOpenBatches[index];
 
                                     return (
@@ -352,7 +353,7 @@ const SelectBatch = forwardRef((props, ref) => {
                                             eventKey={`${trekMonth.groupKey}`}
                                             className={
                                               activeIndex &&
-                                                activeIndex === index + 1
+                                              activeIndex === index + 1
                                                 ? "show"
                                                 : ""
                                             }
@@ -383,71 +384,71 @@ const SelectBatch = forwardRef((props, ref) => {
                                           eventKey={`${trekMonth.groupKey}`}
                                         >
                                           <Card.Body>
-                                            {trekMonth.data.map(item => {
+                                            {trekMonth.data.map((item) => {
                                               return (
                                                 <div>
                                                   {item.batchState !==
                                                     "CLOSED" && (
-                                                      <div className="row">
-                                                        <div className="col-lg-7 col-md-12 col-7">
-                                                          <p className="p-text-3-1-fg mb-2 pb-1">
-                                                            <span>
-                                                              {moment(
-                                                                item?.startDate
-                                                              ).format("Do")}{" "}
-                                                              to{" "}
-                                                              {moment(
-                                                                item?.endDate
-                                                              ).format("Do")}{" "}
-                                                              {moment(
-                                                                item?.endDate
-                                                              ).format("MMMM")}
-                                                            </span>
-                                                          </p>
-                                                        </div>
-
-                                                        <div className="col-lg-3 col-md-12 col-3">
-                                                          <p className="p-text-3-1-fg mb-2 pb-1">
-                                                            {item.batchState ===
-                                                              "ACTIVE" && (
-                                                                <span className="text-green-clr">
-                                                                  Available
-                                                                </span>
-                                                              )}
-                                                            {item.batchState ===
-                                                              "FULL" && (
-                                                                <span className="text-maroon-clr">
-                                                                  Full
-                                                                </span>
-                                                              )}
-                                                            {item.batchState ===
-                                                              "WAITING_LIST" && (
-                                                                <span className="text-warning-clr">
-                                                                  Waitlist
-                                                                </span>
-                                                              )}
-                                                          </p>
-                                                        </div>
-                                                        <div className="col-lg-2 col-md-12 col-2">
-                                                          {item.batchState !==
-                                                            "FULL" && (
-                                                              <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
-                                                                <a
-                                                                  href="#proceed"
-                                                                  onClick={e =>
-                                                                    onBatchSelect(
-                                                                      item
-                                                                    )
-                                                                  }
-                                                                  tooltip="Click here to select the batch"
-                                                                >
-                                                                  Select
-                                                                </a>
-                                                              </p>
-                                                            )}
-                                                        </div>
+                                                    <div className="row">
+                                                      <div className="col-lg-7 col-md-12 col-7">
+                                                        <p className="p-text-3-1-fg mb-2 pb-1">
+                                                          <span>
+                                                            {moment(
+                                                              item?.startDate
+                                                            ).format("Do")}{" "}
+                                                            to{" "}
+                                                            {moment(
+                                                              item?.endDate
+                                                            ).format("Do")}{" "}
+                                                            {moment(
+                                                              item?.endDate
+                                                            ).format("MMMM")}
+                                                          </span>
+                                                        </p>
                                                       </div>
-                                                    )}
+
+                                                      <div className="col-lg-3 col-md-12 col-3">
+                                                        <p className="p-text-3-1-fg mb-2 pb-1">
+                                                          {item.batchState ===
+                                                            "ACTIVE" && (
+                                                            <span className="text-green-clr">
+                                                              Available
+                                                            </span>
+                                                          )}
+                                                          {item.batchState ===
+                                                            "FULL" && (
+                                                            <span className="text-maroon-clr">
+                                                              Full
+                                                            </span>
+                                                          )}
+                                                          {item.batchState ===
+                                                            "WAITING_LIST" && (
+                                                            <span className="text-warning-clr">
+                                                              Waitlist
+                                                            </span>
+                                                          )}
+                                                        </p>
+                                                      </div>
+                                                      <div className="col-lg-2 col-md-12 col-2">
+                                                        {item.batchState !==
+                                                          "FULL" && (
+                                                          <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
+                                                            <a
+                                                              href="#proceed"
+                                                              onClick={(e) =>
+                                                                onBatchSelect(
+                                                                  item
+                                                                )
+                                                              }
+                                                              tooltip="Click here to select the batch"
+                                                            >
+                                                              Select
+                                                            </a>
+                                                          </p>
+                                                        )}
+                                                      </div>
+                                                    </div>
+                                                  )}
                                                 </div>
                                               );
                                             })}

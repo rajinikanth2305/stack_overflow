@@ -664,7 +664,7 @@ export const regStyle = css.global`
   }
 
   .form-check-input[type="checkbox"] {
-    border: 2px solid rgb(57,114,41);
+    border: 2px solid rgb(57, 114, 41);
     border-radius: 0;
   }
 
@@ -676,7 +676,7 @@ export const regStyle = css.global`
   }
 
   .form-check-input:checked {
-    background-color: rgb(57,114,41);
+    background-color: rgb(57, 114, 41);
   }
 
   .p-calendar {
@@ -809,7 +809,7 @@ export const regStyle = css.global`
     -moz-box-flex: 1 !important;
     flex: 1 1 auto !important;
   }
- 
+
   .nav.nav-tabs.reg-tabs > .nav-item .nav-link {
     padding: 0.1rem;
     line-height: 10px;
@@ -1026,13 +1026,15 @@ export const regStyle = css.global`
   }
 
   .p-dialog-footer > button {
-    background: rgba(255,193,0,1);
+    background: rgba(255, 193, 0, 1);
     border: 0;
     color: #000000;
   }
 
-  .p-dialog-footer > button:active, .p-dialog-footer > button:hover, .p-dialog-footer > button:focus {
-    background: rgba(255,193,0,1);
+  .p-dialog-footer > button:active,
+  .p-dialog-footer > button:hover,
+  .p-dialog-footer > button:focus {
+    background: rgba(255, 193, 0, 1);
     border: 0;
     color: #000000;
   }
@@ -1078,22 +1080,22 @@ export const regStyle = css.global`
     .table.table-secondar-main.ctb > tbody > tr > td {
       white-space: normal;
     }
-  
+
     .table-secondar-main.ctb > thead > tr,
     .table-secondar-main.ctb > tbody > tr {
       display: grid;
     }
-  
+
     .table-secondar-main.ctb > tbody > tr {
       border-bottom: 1px solid #d3d3d3;
     }
-  
+
     .table-secondar-main.ctb > tbody > tr > td {
       border: 0;
       padding: 5px 0;
       line-height: 15px;
     }
-  
+
     .table.table-secondar-main.ctb > tbody > tr > td {
       white-space: normal;
     }

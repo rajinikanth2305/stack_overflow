@@ -23,9 +23,10 @@ const TrekkersVideoCommon = () => {
     const client = Client();
     const doc = await client
       .query([Prismic.Predicates.at("document.type", "hike_home_ctype")])
-      .then(function(response) {
+      .then(function (response) {
         const tt = response.results[0].data.body;
-        const slice = tt && tt.find(x => x.slice_type === "ih_trekker_videos");
+        const slice =
+          tt && tt.find((x) => x.slice_type === "ih_trekker_videos");
         setResults(slice);
       });
   }
@@ -50,16 +51,16 @@ const TrekkersVideoCommon = () => {
           slidesToShow: 4,
           slidesToScroll: 2,
           infinite: false,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -68,13 +69,13 @@ const TrekkersVideoCommon = () => {
           slidesToScroll: 1,
           arrows: false,
           centerMode: true,
-          adaptiveHeight: true
-        }
-      }
-    ]
+          adaptiveHeight: true,
+        },
+      },
+    ],
   };
 
-  const ihTrekkerVideosImage = ihTrekkerVideosImageArray?.map(function(
+  const ihTrekkerVideosImage = ihTrekkerVideosImageArray?.map(function (
     data,
     i
   ) {

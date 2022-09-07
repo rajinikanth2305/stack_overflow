@@ -10,7 +10,7 @@ const ThoughtBehind = ({ slice }) => {
   const details = slice?.primary?.details;
   const yTvideoUrl = slice?.primary?.yt_link.url;
   const btnUrl = slice?.primary?.btn_link;
-  
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

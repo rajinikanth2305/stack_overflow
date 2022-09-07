@@ -28,26 +28,26 @@ const CoreValues = ({ slice }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
-        }
-      }
-    ]
+          arrows: false,
+        },
+      },
+    ],
   };
 
   const gallery = img.map((data, i) => {
@@ -100,7 +100,7 @@ const CoreValues = ({ slice }) => {
           <div className="row">
             <div className="col-lg-6 col-12">
               <div className="carrer_image_1">
-                {img[0]?.images?.url &&
+                {img[0]?.images?.url && (
                   <Image
                     src={img[0]?.images?.url}
                     layout="fill"
@@ -108,14 +108,14 @@ const CoreValues = ({ slice }) => {
                     objectPosition="bottom"
                     unoptimized
                   />
-                }
+                )}
               </div>
             </div>
             <div className="col-lg-6 col-12">
               <div className="row">
                 <div className="col-lg-8 col-md-8 col-12">
                   <div className="carrer_image_2 mb-2-cus">
-                    {img[1]?.images?.url &&
+                    {img[1]?.images?.url && (
                       <Image
                         src={img[1]?.images?.url}
                         layout="fill"
@@ -123,12 +123,12 @@ const CoreValues = ({ slice }) => {
                         objectPosition="bottom"
                         unoptimized
                       />
-                    }
+                    )}
                   </div>
                   <div className="row">
                     <div className="col-lg-6 col-12">
                       <div className="carrer_image_3">
-                        {img[2]?.images?.url &&
+                        {img[2]?.images?.url && (
                           <Image
                             src={img[2]?.images?.url}
                             layout="fill"
@@ -136,12 +136,12 @@ const CoreValues = ({ slice }) => {
                             objectPosition="bottom"
                             unoptimized
                           />
-                        }
+                        )}
                       </div>
                     </div>
                     <div className="col-lg-6 col-12">
                       <div className="carrer_image_3">
-                        {img[3]?.images?.url &&
+                        {img[3]?.images?.url && (
                           <Image
                             src={img[3]?.images?.url}
                             layout="fill"
@@ -149,14 +149,14 @@ const CoreValues = ({ slice }) => {
                             objectPosition="bottom"
                             unoptimized
                           />
-                        }
+                        )}
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="col-lg-4 col-md-4 col-12">
                   <div className="carrer_image_3 mb-2-cus">
-                    {img[4]?.images?.url &&
+                    {img[4]?.images?.url && (
                       <Image
                         src={img[4]?.images?.url}
                         layout="fill"
@@ -164,10 +164,10 @@ const CoreValues = ({ slice }) => {
                         objectPosition="bottom"
                         unoptimized
                       />
-                    }
+                    )}
                   </div>
                   <div className="carrer_image_3 mb-2-cus">
-                    {img[5]?.images?.url &&
+                    {img[5]?.images?.url && (
                       <Image
                         src={img[5]?.images?.url}
                         layout="fill"
@@ -175,10 +175,10 @@ const CoreValues = ({ slice }) => {
                         objectPosition="bottom"
                         unoptimized
                       />
-                    }
+                    )}
                   </div>
                   <div className="carrer_image_3">
-                    {img[6]?.images?.url &&
+                    {img[6]?.images?.url && (
                       <Image
                         src={img[6]?.images?.url}
                         layout="fill"
@@ -186,7 +186,7 @@ const CoreValues = ({ slice }) => {
                         objectPosition="bottom"
                         unoptimized
                       />
-                    }
+                    )}
                   </div>
                 </div>
               </div>

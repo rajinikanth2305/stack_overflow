@@ -24,29 +24,29 @@ const FeaturedTreks = ({ slice }) => {
           slidesToShow: 4,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          arrows: false
-        }
-      }
-    ]
+          arrows: false,
+        },
+      },
+    ],
   };
 
-  const featured_treks_images = featured_treks_image_array.map(function(
+  const featured_treks_images = featured_treks_image_array.map(function (
     data,
     i
   ) {

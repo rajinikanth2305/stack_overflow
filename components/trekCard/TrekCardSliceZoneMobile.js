@@ -1,48 +1,48 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import AvailableDates from "./AvailableDates"
+import AvailableDates from "./AvailableDates";
 import Image from "next/image";
 import { RichText } from "prismic-reactjs";
 import { getBatchesByTrekId } from "services/queries";
 
 const TrekCardSliceZoneMobile = ({ tData, getFamilyTrek, url, trekId }) => {
-
-  const [batchDates, setBatchDates] = useState({})
+  const [batchDates, setBatchDates] = useState({});
 
   useEffect(() => {
-
     const fetchDates = async () => {
-      const results = await getBatchesByTrekId(trekId, 0, 0)
+      const results = await getBatchesByTrekId(trekId, 0, 0);
 
-      const batchDates = {}
-      results.forEach(batch => {
-
-        const batchStartDate = new Date(batch.startDate)
-        const batchEndDate = new Date(batch.endDate)
-        const batchDateUTC = Date.UTC(batchStartDate.getFullYear(), batchStartDate.getMonth())
+      const batchDates = {};
+      results.forEach((batch) => {
+        const batchStartDate = new Date(batch.startDate);
+        const batchEndDate = new Date(batch.endDate);
+        const batchDateUTC = Date.UTC(
+          batchStartDate.getFullYear(),
+          batchStartDate.getMonth()
+        );
 
         if (batchDates[batchDateUTC]) {
           batchDates[batchDateUTC].push({
             startDate: batchStartDate,
             endDate: batchEndDate,
-            status: batch.status
-          })
-        } else {
-          batchDates[batchDateUTC] = [{
-            startDate: batchStartDate,
-            endDate: batchEndDate,
             status: batch.status,
-          }]
+          });
+        } else {
+          batchDates[batchDateUTC] = [
+            {
+              startDate: batchStartDate,
+              endDate: batchEndDate,
+              status: batch.status,
+            },
+          ];
         }
-      })
+      });
 
-      setBatchDates(batchDates)
-    }
+      setBatchDates(batchDates);
+    };
 
-    fetchDates()
-
-  }, [])
-
+    fetchDates();
+  }, []);
 
   return (
     <div className="col-12">
@@ -83,7 +83,7 @@ const TrekCardSliceZoneMobile = ({ tData, getFamilyTrek, url, trekId }) => {
                     </p>
                     {getFamilyTrek === undefined ? (
                       <p className="m-card-info-text">
-                        <span className="list-dot-style-mob"></span>{" "} Family trek
+                        <span className="list-dot-style-mob"></span> Family trek
                       </p>
                     ) : (
                       ""
@@ -105,8 +105,8 @@ const TrekCardSliceZoneMobile = ({ tData, getFamilyTrek, url, trekId }) => {
           <AvailableDates batchDates={batchDates} url={url} mobile />
         </div>
       </div>
-    </div>)
-}
+    </div>
+  );
+};
 
-
-export default TrekCardSliceZoneMobile
+export default TrekCardSliceZoneMobile;

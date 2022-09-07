@@ -1,1 +1,1 @@
-export { default as ThankYouSlizeZone } from './ThankYouSlizeZone';
+export { default as ThankYouSlizeZone } from "./ThankYouSlizeZone";

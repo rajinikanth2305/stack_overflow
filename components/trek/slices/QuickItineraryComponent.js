@@ -50,7 +50,7 @@ const QuickItineraryComponent = ({ slice }) => {
   //   );
   // });
 
-  const dayNumberText = dayNumberTextArray?.map(function(data, i) {
+  const dayNumberText = dayNumberTextArray?.map(function (data, i) {
     return (
       <div className="d-flex align-items-start flex-wrap mt-1" key={i}>
         <div className="col-lg-1 col-md-12">
@@ -113,7 +113,9 @@ const QuickItineraryComponent = ({ slice }) => {
                     </div>
                     <div className="d-flex justify-content-end mt-3">
                       <button className="btn btn-ptr hvr-grow">
-                        <a href="#how_does_each_day_looks">Read detailed itinerary</a>
+                        <a href="#how_does_each_day_looks">
+                          Read detailed itinerary
+                        </a>
                       </button>
                     </div>
                   </div>
@@ -148,7 +150,9 @@ const QuickItineraryComponent = ({ slice }) => {
                     </span>
                   </p>
                   {/* {proTipsListData} */}
-                  <div className="p-text-4 m-0">{RichText.render(proTipsList)}</div>
+                  <div className="p-text-4 m-0">
+                    {RichText.render(proTipsList)}
+                  </div>
                 </div>
               </div>
             </div>
@@ -173,7 +177,9 @@ const QuickItineraryComponent = ({ slice }) => {
                       </span>
                     </p>
                     {/* {proTipsListData} */}
-                    <div className="p-text-4">{RichText.render(proTipsList)}</div>
+                    <div className="p-text-4">
+                      {RichText.render(proTipsList)}
+                    </div>
                   </div>
                 </div>
                 <div className="d-flex justify-content-center bg-transparent-text-effect">

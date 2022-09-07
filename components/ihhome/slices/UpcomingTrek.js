@@ -19,14 +19,14 @@ const UpcomingTrek = ({ slice }) => {
   const imageLayout8 = {
     backgroundImage: `url('${imageUrl}')`,
     width: "100%",
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
   };
 
   const imageLayout4 = {
     backgroundImage: `url('/Intersection_8.png')`,
     width: "100%",
     height: "201px",
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
   };
 
   const settings = {
@@ -45,15 +45,15 @@ const UpcomingTrek = ({ slice }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2
-        }
+          slidesToScroll: 2,
+        },
       },
       {
         breakpoint: 480,
@@ -61,15 +61,15 @@ const UpcomingTrek = ({ slice }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           centerMode: true,
-          centerPadding: "60px"
-        }
-      }
-    ]
+          centerPadding: "60px",
+        },
+      },
+    ],
   };
 
   return (
     <>
-      <div className="mb-5" style={{display: 'none'}}>
+      <div className="mb-5" style={{ display: "none" }}>
         <div className="container container-custom">
           <div className="row">
             <div className="col-lg-6 col-md-12">

@@ -35,41 +35,41 @@ const TrekReviews = ({ slice }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: false,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
-        }
-      }
-    ]
+          arrows: false,
+        },
+      },
+    ],
   };
 
-  const trekkersStoriesImage = trekUserReviews?.map(function(data, i) {
+  const trekkersStoriesImage = trekUserReviews?.map(function (data, i) {
     console.log(data);
     let title = "";
     let desc = "";
     // console.log(data);
 
-    const check = moment(data?.batchStartDate, 'YYYY/MM/DD');
-    var month = check.format('MMM');
-    var year  = check.format('YYYY');
+    const check = moment(data?.batchStartDate, "YYYY/MM/DD");
+    var month = check.format("MMM");
+    var year = check.format("YYYY");
 
     if (data?.reviewAnswers?.length > 0) {
       const answers = data?.reviewAnswers.filter(
-        y => y.questionType === "Question::Descriptive"
+        (y) => y.questionType === "Question::Descriptive"
       );
       if (answers?.length > 0) {
         const answer = answers[0];
@@ -78,11 +78,11 @@ const TrekReviews = ({ slice }) => {
       }
     }
 
-    const onMoreClick = data => {
+    const onMoreClick = (data) => {
       setReveiewInfo(data);
       console.log(data);
       const answers = data?.reviewAnswers?.filter(
-        y => y.questionType === "Question::Descriptive"
+        (y) => y.questionType === "Question::Descriptive"
       );
       setAnswers(answers);
       const arr = Array.from(new Array(answers?.length), (x, i) => i);
@@ -101,7 +101,9 @@ const TrekReviews = ({ slice }) => {
                     <h6>
                       <b>{data?.trekUserName}</b>
                     </h6>
-                    <p className="m-0 p-display-2">Group of {month} {year} to {data?.batchName}</p>
+                    <p className="m-0 p-display-2">
+                      Group of {month} {year} to {data?.batchName}
+                    </p>
                     {/* <p className="m-0 p-display-2"></p> */}
                   </div>
                   {/* <h3 className="title-diplay-3 ts-lable">{data?.batchName}</h3> */}
@@ -111,7 +113,7 @@ const TrekReviews = ({ slice }) => {
                         __html:
                           desc?.length > 125
                             ? `${desc?.substring(0, 180)}...`
-                            : desc
+                            : desc,
                       }}
                     />
                   </p>
@@ -155,11 +157,14 @@ const TrekReviews = ({ slice }) => {
     getTrekReviewsByTrekName(actualTrekPageName);
   }, []);
 
-  const getTrekReviewsByTrekName = trekName => {
-    getTrekReviews(trekName).then(res => {
+  const getTrekReviewsByTrekName = (trekName) => {
+    getTrekReviews(trekName).then((res) => {
       // setTrekUserReviews(res);
 
-      const reviewResults = res?.filter( (ele, ind) => ind === res?.findIndex( elem => elem.userId === ele.userId ));
+      const reviewResults = res?.filter(
+        (ele, ind) =>
+          ind === res?.findIndex((elem) => elem.userId === ele.userId)
+      );
 
       setTrekUserReviews(reviewResults);
     });
@@ -222,7 +227,7 @@ const TrekReviews = ({ slice }) => {
                       {reveiewInfo && reveiewInfo.title}
                     </h3> */}
 
-                    {indexes.map(index => {
+                    {indexes.map((index) => {
                       const ansdata = answers?.[index];
                       console.log(ansdata);
                       return (

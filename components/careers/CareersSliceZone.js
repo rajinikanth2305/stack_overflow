@@ -6,7 +6,7 @@ import {
   OpenPositions,
   CoreValues,
   HowToApply,
-  LearnMore
+  LearnMore,
 } from "./slices";
 
 const CareersSliceZone = ({ sliceZone, articleData }) =>
@@ -25,7 +25,13 @@ const CareersSliceZone = ({ sliceZone, articleData }) =>
       case "how_to_apply":
         return <HowToApply slice={slice} key={`slice-${index}`} />;
       case "learn_more_sec":
-        return <LearnMore slice={slice} key={`slice-${index}`} articleData={articleData} />;
+        return (
+          <LearnMore
+            slice={slice}
+            key={`slice-${index}`}
+            articleData={articleData}
+          />
+        );
       default:
         return null;
     }

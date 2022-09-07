@@ -480,7 +480,7 @@ export const upcomingTrekPageStyle = css.global`
     display: inline-block;
     position: relative;
     top: 3px;
-	bottom:3px;
+    bottom: 3px;
   }
   .badge-line-red-lg {
     background: rgba(230, 109, 29, 1);
@@ -489,16 +489,16 @@ export const upcomingTrekPageStyle = css.global`
     display: inline-block;
     position: relative;
     top: 3px;
-	bottom:3px;
+    bottom: 3px;
   }
   .badge-line-pink-lg {
-    background: #CF6674;
+    background: #cf6674;
     height: 45px;
     width: 5px;
     display: inline-block;
     position: relative;
     top: 3px;
-	bottom:3px;
+    bottom: 3px;
   }
   .badge-line-yellow-lg {
     background: rgba(255, 193, 0, 1);
@@ -507,7 +507,7 @@ export const upcomingTrekPageStyle = css.global`
     display: inline-block;
     position: relative;
     top: 3px;
-	bottom:3px;
+    bottom: 3px;
   }
   .badge-line-blue-lg {
     background: rgba(0, 66, 141, 1);
@@ -516,7 +516,7 @@ export const upcomingTrekPageStyle = css.global`
     display: inline-block;
     position: relative;
     top: 3px;
-	bottom:3px;
+    bottom: 3px;
   }
   .badge-red {
     border-radius: 50%;
@@ -628,7 +628,9 @@ export const upcomingTrekPageStyle = css.global`
     -webkit-transition-property: transform;
     transition-property: transform;
   }
-  .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+  .hvr-grow:hover,
+  .hvr-grow:focus,
+  .hvr-grow:active {
     -webkit-transform: scale(1.05);
     transform: scale(1.05);
   }
@@ -651,7 +653,7 @@ export const upcomingTrekPageStyle = css.global`
   }
   .badge-pink-diy {
     border-radius: 50%;
-    background: #CF6674;
+    background: #cf6674;
     height: 10px;
     width: 10px;
   }
@@ -678,7 +680,7 @@ export const upcomingTrekPageStyle = css.global`
   }
 
   .text-blue {
-    color: rgba(0,66,141,1);
+    color: rgba(0, 66, 141, 1);
     font-size: 12px;
   }
 
@@ -1020,7 +1022,7 @@ export const upcomingTrekPageStyle = css.global`
   }
 
   @media (min-width: 1182px) and (max-width: 1400px) {
-    .trek_card  {
+    .trek_card {
       min-height: 450px;
     }
 
@@ -1032,7 +1034,7 @@ export const upcomingTrekPageStyle = css.global`
   }
 
   @media (min-width: 1000px) and (max-width: 1182px) {
-    .trek_card  {
+    .trek_card {
       min-height: 485px;
     }
 

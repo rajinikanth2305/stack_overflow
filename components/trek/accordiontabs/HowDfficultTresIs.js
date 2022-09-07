@@ -20,7 +20,7 @@ const HowDifficultTrekIs = ({ data }) => {
 
   async function findTrekStories() {
     const slice =
-      data && data.find(x => x.slice_type === "how_difficult_is_trek");
+      data && data.find((x) => x.slice_type === "how_difficult_is_trek");
     setHowDiff(slice);
   }
 
@@ -34,7 +34,7 @@ const HowDifficultTrekIs = ({ data }) => {
   const howSafeContentList = howDiff && howDiff?.primary?.how_safe_content;
   const tabsDataArray = howDiff && howDiff?.items;
 
-  const trekDifficultyContent = trekDifficultyContentList?.map(function(
+  const trekDifficultyContent = trekDifficultyContentList?.map(function (
     data,
     i
   ) {
@@ -45,7 +45,7 @@ const HowDifficultTrekIs = ({ data }) => {
     );
   });
 
-  const howSafeContent = howSafeContentList?.map(function(data, i) {
+  const howSafeContent = howSafeContentList?.map(function (data, i) {
     return (
       <p key={i} className="p-text-4">
         {data?.text}
@@ -53,18 +53,18 @@ const HowDifficultTrekIs = ({ data }) => {
     );
   });
 
-  const tabsData = tabsDataArray?.map(function(data, i) {
-    const title = data.title?.map(function(data, i) {
+  const tabsData = tabsDataArray?.map(function (data, i) {
+    const title = data.title?.map(function (data, i) {
       return <p key={i}>{data?.text}</p>;
     });
-    const description = data?.description?.map(function(data, i) {
+    const description = data?.description?.map(function (data, i) {
       return (
         <p key={i} className="p-text-4">
           {data?.text ? data?.text : "-"}
         </p>
       );
     });
-    const content1_title = data?.content1_title?.map(function(data, i) {
+    const content1_title = data?.content1_title?.map(function (data, i) {
       return (
         <p key={i} className="p-text-4">
           <b>
@@ -73,14 +73,14 @@ const HowDifficultTrekIs = ({ data }) => {
         </p>
       );
     });
-    const content1_data = data?.content1_data?.map(function(data, i) {
+    const content1_data = data?.content1_data?.map(function (data, i) {
       return (
         <p key={i} className="p-text-4">
           {data?.text ? data?.text : "-"}
         </p>
       );
     });
-    const content2_title = data?.content2_title?.map(function(data, i) {
+    const content2_title = data?.content2_title?.map(function (data, i) {
       return (
         <p key={i} className="p-text-4">
           <b>
@@ -89,7 +89,7 @@ const HowDifficultTrekIs = ({ data }) => {
         </p>
       );
     });
-    const content2_data = data?.content2_data?.map(function(data, i) {
+    const content2_data = data?.content2_data?.map(function (data, i) {
       return (
         <p key={i} className="p-text-4">
           {data?.text ? data?.text : "-"}
@@ -106,13 +106,13 @@ const HowDifficultTrekIs = ({ data }) => {
           <>
             {data?.heading1_image?.url && (
               <div className="hd-tab2-iamge mb-4">
-              <Image
-                src={data?.heading1_image?.url}
-                layout="fill"
-                objectFit="cover"
-                objectPosition="50% 50%"
-                unoptimized
-              />
+                <Image
+                  src={data?.heading1_image?.url}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="50% 50%"
+                  unoptimized
+                />
               </div>
             )}
           </>
@@ -124,13 +124,13 @@ const HowDifficultTrekIs = ({ data }) => {
           <>
             {data?.heading1_image?.url && (
               <div className="hd-tab4-iamge mb-4">
-              <Image
-                src={data?.heading1_image?.url}
-                layout="fill"
-                objectFit="contain"
-                objectPosition="bottom"
-                unoptimized
-              />
+                <Image
+                  src={data?.heading1_image?.url}
+                  layout="fill"
+                  objectFit="contain"
+                  objectPosition="bottom"
+                  unoptimized
+                />
               </div>
             )}
           </>
@@ -152,10 +152,18 @@ const HowDifficultTrekIs = ({ data }) => {
             </div>
             <div className="d-flex">
               <div className="flex-fill">
-                <div className="p-text-4">{RichText.render(data?.content1_title)}</div>
-                  <div className="p-text-4">{RichText.render(data?.content1_data)}</div>
-                <div className="p-text-4">{RichText.render(data?.content2_title)}</div>
-                <div className="p-text-4">{RichText.render(data?.content2_data)}</div>
+                <div className="p-text-4">
+                  {RichText.render(data?.content1_title)}
+                </div>
+                <div className="p-text-4">
+                  {RichText.render(data?.content1_data)}
+                </div>
+                <div className="p-text-4">
+                  {RichText.render(data?.content2_title)}
+                </div>
+                <div className="p-text-4">
+                  {RichText.render(data?.content2_data)}
+                </div>
               </div>
               {data?.heading1_image?.url && (
                 <div className="w-100 d-m-none">
@@ -199,10 +207,18 @@ const HowDifficultTrekIs = ({ data }) => {
             <div>{content2_title}</div>
             {content2_data} */}
 
-            <div className="p-text-4">{RichText.render(data?.content1_title)}</div>
-            <div className="p-text-4">{RichText.render(data?.content1_data)}</div>
-            <div className="p-text-4">{RichText.render(data?.content2_title)}</div>
-            <div className="p-text-4">{RichText.render(data?.content2_data)}</div>
+            <div className="p-text-4">
+              {RichText.render(data?.content1_title)}
+            </div>
+            <div className="p-text-4">
+              {RichText.render(data?.content1_data)}
+            </div>
+            <div className="p-text-4">
+              {RichText.render(data?.content2_title)}
+            </div>
+            <div className="p-text-4">
+              {RichText.render(data?.content2_data)}
+            </div>
           </>
         )}
         {/* {data?.title[0]?.text === "Safety - Terrain Wise" ? (

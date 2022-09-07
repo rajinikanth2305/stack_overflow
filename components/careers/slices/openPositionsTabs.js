@@ -5,8 +5,8 @@ import Prismic from "@prismicio/client";
 import Image from "next/image";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
-import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
-import AccordionContext from 'react-bootstrap/AccordionContext';
+import { useAccordionToggle } from "react-bootstrap/AccordionToggle";
+import AccordionContext from "react-bootstrap/AccordionContext";
 
 const openPositionsTabs = () => {
   const [postionTabDetails, setPostionTabDetails] = useState();
@@ -25,7 +25,7 @@ const openPositionsTabs = () => {
 
     const decoratedOnClick = useAccordionToggle(
       eventKey,
-      () => callback && callback(eventKey),
+      () => callback && callback(eventKey)
     );
 
     const isCurrentEventKey = currentEventKey === eventKey;
@@ -33,7 +33,7 @@ const openPositionsTabs = () => {
     return (
       <button
         type="button"
-        className={isCurrentEventKey ? 'show' : ''}
+        className={isCurrentEventKey ? "show" : ""}
         onClick={decoratedOnClick}
       >
         {children}
@@ -55,7 +55,7 @@ const openPositionsTabs = () => {
       .then(function (response) {
         const tt = response?.results[0]?.data?.body;
         const slice =
-          tt && tt.filter(x => x.slice_type === "open_positions_tab");
+          tt && tt.filter((x) => x.slice_type === "open_positions_tab");
         setPostionTabDetails(slice);
       });
 
@@ -63,7 +63,8 @@ const openPositionsTabs = () => {
       .query([Prismic.Predicates.at("document.type", "carriers_type")])
       .then(function (response) {
         const tt = response?.results[0]?.data?.body;
-        const slice = tt && tt.filter(x => x.slice_type === "position_level_2");
+        const slice =
+          tt && tt.filter((x) => x.slice_type === "position_level_2");
         setPostion2TabDetails(slice);
       });
   }
@@ -75,7 +76,7 @@ const openPositionsTabs = () => {
 
       const positionLeve1 = positionLevel1List?.map(function (p1, j) {
         const getPosition2Data = postion2TabDetails?.filter(
-          x => x?.primary?.position_level_2_id === p1?.position_level_2_id
+          (x) => x?.primary?.position_level_2_id === p1?.position_level_2_id
         );
 
         const getPosition2DataList =
@@ -100,7 +101,9 @@ const openPositionsTabs = () => {
                     >
                       {p2?.position_level2_tab_name[0]?.text}{" "}
                     </Accordion.Toggle> */}
-                    <ContextAwareToggle eventKey={k + 1}>{p2?.position_level2_tab_name[0]?.text}{" "}</ContextAwareToggle>
+                    <ContextAwareToggle eventKey={k + 1}>
+                      {p2?.position_level2_tab_name[0]?.text}{" "}
+                    </ContextAwareToggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey={k + 1}>
                     <Card.Body>
@@ -173,7 +176,9 @@ const openPositionsTabs = () => {
                   setActive(!isActive);
                 }}
               > */}
-              <p className="p-text-3-fg m-0"><b>{data?.primary?.position_tab_name[0]?.text}</b></p>
+              <p className="p-text-3-fg m-0">
+                <b>{data?.primary?.position_tab_name[0]?.text}</b>
+              </p>
               {/* </Accordion.Toggle> */}
             </Card.Header>
             {/* <Accordion.Collapse eventKey={i + 1}> */}

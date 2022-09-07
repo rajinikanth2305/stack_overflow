@@ -7,20 +7,20 @@ import {
   StyleSheet,
   PDFViewer,
   PDFDownloadLink,
-  Image
+  Image,
 } from "@react-pdf/renderer";
 import moment from "moment";
 
-const VoucherTemplate = voucher => {
+const VoucherTemplate = (voucher) => {
   const styles = StyleSheet.create({
     page: {
       // flexDirection: 'row',
-      backgroundColor: "#ffffff"
+      backgroundColor: "#ffffff",
     },
     section: {
       margin: 10,
       padding: 10,
-      width: "100%"
+      width: "100%",
     },
     section1: {
       marginLeft: 10,
@@ -29,7 +29,7 @@ const VoucherTemplate = voucher => {
       // padding: 10,
       paddingLeft: 10,
       paddingRight: 10,
-      width: "100%"
+      width: "100%",
     },
     sectionMain: {
       marginTop: 10,
@@ -46,35 +46,35 @@ const VoucherTemplate = voucher => {
       marginTop: "20px",
       borderBottom: "2px soild #f8c301",
       width: "33%",
-      paddingBottom: "5px"
+      paddingBottom: "5px",
     },
     header2: {
       fontSize: "10px",
-      marginBottom: "5px"
+      marginBottom: "5px",
     },
     headernotes1: {
       fontSize: "10px",
       marginBottom: "10px",
-      marginTop: "20px"
+      marginTop: "20px",
     },
     headernotes2: {
       fontSize: "8px",
-      marginBottom: "5px"
+      marginBottom: "5px",
     },
     voucherRow: {
       flexDirection: "row",
       marginLeft: "10px",
       marginRight: "10px",
-      padding: 10
+      padding: 10,
     },
     voucherCol1: {
-      width: "40%"
+      width: "40%",
     },
     voucherColAll: {
-      width: "20%"
+      width: "20%",
     },
     voucherColAllnew: {
-      width: "13.5%"
+      width: "13.5%",
     },
     headerCol1: {
       width: "80%",
@@ -85,19 +85,19 @@ const VoucherTemplate = voucher => {
     voucherTableLabel: {
       fontSize: "7px",
       backgroundColor: "#f8c301",
-      padding: "4px"
+      padding: "4px",
     },
     voucherParticularTableLabel: {
       fontSize: "8px",
       paddingLeft: "0px",
       paddingRight: "4px",
       paddingtop: "1px",
-      paddingBottom: "3px"
+      paddingBottom: "3px",
     },
     voucherTableValue: {
       fontSize: "8px",
       padding: "4px",
-      borderBottom: "1px solid #d3d3d3"
+      borderBottom: "1px solid #d3d3d3",
       // borderLeft: '1px solid #d3d3d3',
     },
     voucherParticularTableValue: {
@@ -114,7 +114,7 @@ const VoucherTemplate = voucher => {
       padding: "4px",
       borderLeft: "1px solid #d3d3d3",
       borderRight: "1px solid #d3d3d3",
-      borderBottom: "1px solid #d3d3d3"
+      borderBottom: "1px solid #d3d3d3",
     },
     headertext1: {
       borderBottom: "1px solid #f8c301",
@@ -126,7 +126,7 @@ const VoucherTemplate = voucher => {
     headertext2: {
       fontSize: "8px",
       textAlign: "right",
-    }
+    },
   });
   return (
     <>
@@ -200,7 +200,9 @@ const VoucherTemplate = voucher => {
               </View>
               <View>
                 <Text style={styles.voucherTableValue}>
-                  {moment(voucher && voucher.voucher.validTill).format("DD MMM YYYY")}
+                  {moment(voucher && voucher.voucher.validTill).format(
+                    "DD MMM YYYY"
+                  )}
                 </Text>
               </View>
             </View>
@@ -241,7 +243,11 @@ const VoucherTemplate = voucher => {
               <View>
                 <Text style={styles.voucherTableValue}>
                   {/* {voucher && voucher.voucher.voucherStatus} */}
-                  {moment(voucher && voucher.voucher?.validTill) < new Date() ? "Expired" : voucher && voucher.voucher.voucherStatus === "ALLOCATED" ? "Available" : "Used"}
+                  {moment(voucher && voucher.voucher?.validTill) < new Date()
+                    ? "Expired"
+                    : voucher && voucher.voucher.voucherStatus === "ALLOCATED"
+                    ? "Available"
+                    : "Used"}
                 </Text>
               </View>
             </View>
@@ -257,7 +263,8 @@ const VoucherTemplate = voucher => {
               at the time of booking
             </Text>
             <Text style={styles.headernotes2}>
-              - Indiahikes Trek Vouchers are usually non-refundable, not transferable to others or extendable
+              - Indiahikes Trek Vouchers are usually non-refundable, not
+              transferable to others or extendable
             </Text>
             <Text style={styles.headernotes2}>
               - No refunds for vouchers. If voucher is used for booking, it will

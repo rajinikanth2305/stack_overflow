@@ -6,8 +6,8 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
-import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
-import AccordionContext from 'react-bootstrap/AccordionContext';
+import { useAccordionToggle } from "react-bootstrap/AccordionToggle";
+import AccordionContext from "react-bootstrap/AccordionContext";
 
 const MoreHelpAndSupport = ({ slice }) => {
   const heading1 = slice?.primary?.heading1;
@@ -26,7 +26,7 @@ const MoreHelpAndSupport = ({ slice }) => {
 
     const decoratedOnClick = useAccordionToggle(
       eventKey,
-      () => callback && callback(eventKey),
+      () => callback && callback(eventKey)
     );
 
     const isCurrentEventKey = currentEventKey === eventKey;
@@ -34,7 +34,7 @@ const MoreHelpAndSupport = ({ slice }) => {
     return (
       <button
         type="button"
-        className={isCurrentEventKey ? 'show' : ''}
+        className={isCurrentEventKey ? "show" : ""}
         onClick={decoratedOnClick}
       >
         {children}

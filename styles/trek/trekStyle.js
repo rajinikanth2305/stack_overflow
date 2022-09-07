@@ -1578,19 +1578,21 @@ export const trekStyle = css.global`
   }
 
   .p-dialog-footer > button {
-    background: rgba(255,193,0,1);
+    background: rgba(255, 193, 0, 1);
     border: 0;
     color: #000000;
   }
 
-  .p-dialog-footer > button:active, .p-dialog-footer > button:hover, .p-dialog-footer > button:focus {
-    background: rgba(255,193,0,1);
+  .p-dialog-footer > button:active,
+  .p-dialog-footer > button:hover,
+  .p-dialog-footer > button:focus {
+    background: rgba(255, 193, 0, 1);
     border: 0;
     color: #000000;
   }
 
   .p-button:not(a):not(.p-disabled):hover {
-    background: rgba(255,193,0,1);
+    background: rgba(255, 193, 0, 1);
     border: 0;
     color: #000000;
   }
@@ -1618,7 +1620,7 @@ export const trekStyle = css.global`
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
-    color: rgba(0,0,0,1);
+    color: rgba(0, 0, 0, 1);
     padding-right: 15px;
   }
 
@@ -2159,7 +2161,7 @@ export const trekStyle = css.global`
     }
   }
   @media (min-width: 1182px) and (max-width: 1400px) {
-    .trek_card  {
+    .trek_card {
       min-height: 450px;
     }
 
@@ -2171,7 +2173,7 @@ export const trekStyle = css.global`
   }
 
   @media (min-width: 1000px) and (max-width: 1182px) {
-    .trek_card  {
+    .trek_card {
       min-height: 485px;
     }
 

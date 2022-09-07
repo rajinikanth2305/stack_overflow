@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { AllIndiaHikes } from "../slice";
-import {TrekCardSliceZone} from "components/trekCard/"
+import { TrekCardSliceZone } from "components/trekCard/";
 
 const UCTreksToDo = ({ slice, treksToDoData }) => {
   const ucTreksToDoTitle = slice?.primary?.uc_treks_to_do_title;
@@ -28,16 +28,16 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: false,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -46,31 +46,37 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
           slidesToScroll: 1,
           arrows: false,
           // centerMode: true
-        }
-      }
-    ]
+        },
+      },
+    ],
   };
 
-  const goToTrekPage = data => {
+  const goToTrekPage = (data) => {
     const slugUrl = data?.target_url?.slug;
 
     if (slugUrl) {
-     // router.push(`/trek/${data?.target_url?.uid}`);
+      // router.push(`/trek/${data?.target_url?.uid}`);
       router.push(`/${data?.target_url?.uid}`);
     }
   };
 
   const ucTreksToDoImages = treksToDoData.map(function (data, i) {
-    const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
+    const tData = data?.data?.body.find((x) => x.slice_type === "trek_banner");
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
       //url = `/trek/${slugUrl}`;
       url = `/${slugUrl}`;
     }
-    const getFamilyTrek = data?.tags?.find(x => x === "FamilyTrek");
+    const getFamilyTrek = data?.tags?.find((x) => x === "FamilyTrek");
     return (
-      <TrekCardSliceZone key = {i} tData = {tData} getFamilyTrek = {getFamilyTrek} url = {url} trekId = {data.slugs[0]}/>
+      <TrekCardSliceZone
+        key={i}
+        tData={tData}
+        getFamilyTrek={getFamilyTrek}
+        url={url}
+        trekId={data.slugs[0]}
+      />
     );
   });
 
@@ -101,7 +107,7 @@ const UCTreksToDo = ({ slice, treksToDoData }) => {
         </style>
       </div>
 
-       { /*
+      {/*
       <div>
         <AllIndiaHikes
           slice={slice}

@@ -11,7 +11,7 @@ import {
   Testimonoials,
   FamilyTrekVideos,
   FtTrekStories,
-  GetInTouchForm
+  GetInTouchForm,
 } from "./slices";
 
 /**
@@ -22,7 +22,7 @@ const FamilyTrekSliceZone = ({
   sliceZone,
   multiTrekData,
   weekendTrekData,
-  latestUpdateAarticleData
+  latestUpdateAarticleData,
 }) =>
   sliceZone.map((slice, index) => {
     switch (slice.slice_type) {

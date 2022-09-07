@@ -3,9 +3,11 @@ import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 
 const TrekFAQS = () => {
-    return (
-        <><p>Hi</p></>
-    );
+  return (
+    <>
+      <p>Hi</p>
+    </>
+  );
 };
 
 export default TrekFAQS;

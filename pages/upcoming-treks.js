@@ -31,42 +31,42 @@ const UpcomingTreks = ({
   difficultTreks,
   familyTreks,
   diyTreks,
-  allTreksData
+  allTreksData,
 }) => {
   if (doc && doc.data) {
     return (
       <>
-      <HomeLayout>
-        <Head>
-          <meta charset="utf-8" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
+        <HomeLayout>
+          <Head>
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+            <title>Upcoming Treks</title>
+          </Head>
+          <HikeHeader />
+          <UpComingTreksSliceZone
+            sliceZone={doc.data.body}
+            bestTrekToDoData={bestTrekToDoData}
+            ucOpenData={ucOpenData}
+            ihautumnData={ihautumnData}
+            ihwinderData={ihwinderData}
+            treksToDoData={treksToDoData}
+            easyMordatesTreks={easyMordatesTreks}
+            moderateTreks={moderateTreks}
+            difficultTreks={difficultTreks}
+            familyTreks={familyTreks}
+            diyTreks={diyTreks}
+            allTreksData={allTreksData}
           />
-          <title>Upcoming Treks</title>
-        </Head>
-        <HikeHeader />
-        <UpComingTreksSliceZone
-          sliceZone={doc.data.body}
-          bestTrekToDoData={bestTrekToDoData}
-          ucOpenData={ucOpenData}
-          ihautumnData={ihautumnData}
-          ihwinderData={ihwinderData}
-          treksToDoData={treksToDoData}
-          easyMordatesTreks={easyMordatesTreks}
-          moderateTreks={moderateTreks}
-          difficultTreks={difficultTreks}
-          familyTreks={familyTreks}
-          diyTreks={diyTreks}
-          allTreksData={allTreksData}
-        />
-        {/* <IHTrekWithSwathi /> */}
-        <IHFooter />
-      </HomeLayout>
-      <ScrollToTop smooth color="#000000" />
-      <Script>
-        {`
+          {/* <IHTrekWithSwathi /> */}
+          <IHFooter />
+        </HomeLayout>
+        <ScrollToTop smooth color="#000000" />
+        <Script>
+          {`
           window._mfq = window._mfq || [];
           (function() {
             var mf = document.createElement("script");
@@ -75,7 +75,7 @@ const UpcomingTreks = ({
             document.getElementsByTagName("head")[0].appendChild(mf);
           })();
         `}
-      </Script>
+        </Script>
       </>
     );
   }
@@ -118,13 +118,13 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     Prismic.Predicates.at("document.tags", ["DIY"])
   ]);*/
 
-  const easyMordatesTreks =null;
-  const moderateTreks=null;
-  const difficultTreks=null;
-  const familyTreks =null;
-  const diyTreks=null;
+  const easyMordatesTreks = null;
+  const moderateTreks = null;
+  const difficultTreks = null;
+  const familyTreks = null;
+  const diyTreks = null;
 
-  const allTreksData = null ; /*await client.query([
+  const allTreksData = null; /*await client.query([
     Prismic.Predicates.at("document.type", "trek")], {
       pageSize: 250
     }
@@ -136,7 +136,9 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   // const winterData = [];
   const treksToDoData = [];
 
-  const slice = doc.data?.body?.find(x => x.slice_type === "best_treks_to_do");
+  const slice = doc.data?.body?.find(
+    (x) => x.slice_type === "best_treks_to_do"
+  );
 
   if (slice?.items?.length > 0) {
     for (var i = 0; i < slice?.items?.length; i++) {
@@ -151,7 +153,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   }
 
   const ucOpen_slice = doc.data?.body?.find(
-    x => x.slice_type === "uc_open_for_small_group"
+    (x) => x.slice_type === "uc_open_for_small_group"
   );
 
   if (ucOpen_slice?.items?.length > 0) {
@@ -182,17 +184,16 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   //   }
   // }
 
-  let ihautumnData =[];
+  let ihautumnData = [];
 
-  const autumn_slice = doc && doc?.data?.body?.filter(x => x.slice_type === "uc_autumn_treks");
+  const autumn_slice =
+    doc && doc?.data?.body?.filter((x) => x.slice_type === "uc_autumn_treks");
 
   if (autumn_slice?.length > 0) {
-
     for (var i = 0; i < autumn_slice?.length; i++) {
+      let linkedTrekData = [];
 
-      let  linkedTrekData=[];
-
-      const data = autumn_slice[i]; 
+      const data = autumn_slice[i];
 
       for (var k = 0; k < data?.items?.length; k++) {
         const slugUrl = data && data?.items[k].trek_link?.id;
@@ -202,16 +203,16 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
             hikesnews_article_details !== undefined &&
             hikesnews_article_details !== null
           )
-          linkedTrekData.push(hikesnews_article_details);
+            linkedTrekData.push(hikesnews_article_details);
         }
       }
 
-      if(linkedTrekData.length > 0) {
+      if (linkedTrekData.length > 0) {
         ihautumnData.push({
-            key: autumn_slice[i].primary?.uc_autumn_treks_title[0].text,
-            value:linkedTrekData
-          });
-       }
+          key: autumn_slice[i].primary?.uc_autumn_treks_title[0].text,
+          value: linkedTrekData,
+        });
+      }
     }
   }
 
@@ -231,17 +232,16 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   //   }
   // }
 
-  let ihwinderData =[];
+  let ihwinderData = [];
 
-  const winter_slice = doc && doc?.data?.body?.filter(x => x.slice_type === "uc_winter_treks");
+  const winter_slice =
+    doc && doc?.data?.body?.filter((x) => x.slice_type === "uc_winter_treks");
 
   if (winter_slice?.length > 0) {
-
     for (var i = 0; i < winter_slice?.length; i++) {
+      let linkedTrekData = [];
 
-      let  linkedTrekData=[];
-
-      const data = winter_slice[i]; 
+      const data = winter_slice[i];
 
       for (var k = 0; k < data?.items?.length; k++) {
         const slugUrl = data && data?.items[k].trek_link?.id;
@@ -251,21 +251,21 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
             hikesnews_article_details !== undefined &&
             hikesnews_article_details !== null
           )
-          linkedTrekData.push(hikesnews_article_details);
+            linkedTrekData.push(hikesnews_article_details);
         }
       }
 
-      if(linkedTrekData.length > 0) {
+      if (linkedTrekData.length > 0) {
         ihwinderData.push({
-            key: winter_slice[i].primary?.uc_winter_treks_title[0].text,
-            value:linkedTrekData
-          });
-       }
+          key: winter_slice[i].primary?.uc_winter_treks_title[0].text,
+          value: linkedTrekData,
+        });
+      }
     }
   }
 
   const treksToDo_slice = doc.data?.body?.find(
-    x => x.slice_type === "uc_treks_to_do"
+    (x) => x.slice_type === "uc_treks_to_do"
   );
 
   if (treksToDo_slice?.items?.length > 0) {
@@ -300,8 +300,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       difficultTreks,
       familyTreks,
       diyTreks,
-      allTreksData
-    }
+      allTreksData,
+    },
   };
 }
 

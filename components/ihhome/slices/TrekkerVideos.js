@@ -35,16 +35,16 @@ const TrekkerVideos = ({ slice }) => {
           slidesToShow: 4,
           slidesToScroll: 2,
           infinite: false,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -52,42 +52,47 @@ const TrekkerVideos = ({ slice }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          centerMode: true
-        }
-      }
-    ]
+          centerMode: true,
+        },
+      },
+    ],
   };
 
-  const ihTrekkerVideosImage = ihTrekkerVideosImageArray?.map(function(data, i) {
-    const result = data?.ih_trekker_video_link?.url?.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-  const videoIdWithParams = result && result[2];
+  const ihTrekkerVideosImage = ihTrekkerVideosImageArray?.map(function (
+    data,
+    i
+  ) {
+    const result = data?.ih_trekker_video_link?.url?.split(
+      /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
+    );
+    const videoIdWithParams = result && result[2];
 
-  const cleanVideoId =
-  videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
+    const cleanVideoId =
+      videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
 
-  const videoUrl =
-    "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
-  const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
+    const videoUrl =
+      "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
+    const imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
     return (
       <div key={`choosetrek` + i}>
-      <div className="mx-2 m-mx-0">
-        <div className="card_sec">
-          <div className="card video_trek_card">
-            <div className="ih_trekker_videos_image">
-              <Image
-                src={imageURL}
-                layout="fill"
-                objectFit="cover"
-                objectPosition="50% 60%"
-                alt="imgs"
-                onClick={() => {
-                  setTrekVideoUrl(videoUrl);
-                  setShow(true);
-                }}
-                unoptimized
-              />
-            </div>
-            {/* <div className="px-3 py-2">
+        <div className="mx-2 m-mx-0">
+          <div className="card_sec">
+            <div className="card video_trek_card">
+              <div className="ih_trekker_videos_image">
+                <Image
+                  src={imageURL}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="50% 60%"
+                  alt="imgs"
+                  onClick={() => {
+                    setTrekVideoUrl(videoUrl);
+                    setShow(true);
+                  }}
+                  unoptimized
+                />
+              </div>
+              {/* <div className="px-3 py-2">
               <div>
                 <p className="p-text-5-tv mb-1">
                   {data.ih_trekker_videos_title[0].text}
@@ -106,10 +111,10 @@ const TrekkerVideos = ({ slice }) => {
                 </div>
               </div>
             </div> */}
+            </div>
           </div>
         </div>
       </div>
-    </div>
     );
   });
 
@@ -122,7 +127,9 @@ const TrekkerVideos = ({ slice }) => {
         </div>
         <div className="container container-custom">
           <div className="m-mt-15">
-            <Slider className="trekvideos-carosule" {...settings}>{ihTrekkerVideosImage}</Slider>
+            <Slider className="trekvideos-carosule" {...settings}>
+              {ihTrekkerVideosImage}
+            </Slider>
           </div>
         </div>
         <style jsx global>

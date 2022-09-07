@@ -2,14 +2,14 @@ import React, {
   useState,
   forwardRef,
   useImperativeHandle,
-  useRef
+  useRef,
 } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import {
   getTrekLocations,
-  saveUserLocations
+  saveUserLocations,
 } from "../../../../services/queries";
 import { Dropdown } from "primereact/dropdown";
 import { useForm, Controller } from "react-hook-form";
@@ -23,7 +23,7 @@ const MyTrekMobileView = forwardRef((props, ref) => {
   const [bookingState, setBookingState] = useState(false);
 
   const [trekPageData, setTrekPageData] = useState(undefined);
-  
+
   const [essentialData, setEssentialData] = useState(undefined);
   const [videoData, setVideoData] = useState(undefined);
 
@@ -41,7 +41,7 @@ const MyTrekMobileView = forwardRef((props, ref) => {
     control,
     errors,
     formState,
-    getValues
+    getValues,
   } = useForm();
   const [saveState, setSaveState] = useState(false);
 
@@ -53,33 +53,47 @@ const MyTrekMobileView = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     async changeState(trekData) {
       //// Get Trek locations
-     
- //// Get Trek locations
- if(trekData===null) {
-  setIndexes([]);
-  setCounter(0);
-    //setRender(false);
-    return;
- }
 
- setRender(false);
- const data=trekData?.data;
- /// Get the prismic trek contents
-const trekName = data.backOfficeTrekLabel.replaceAll(" ", "-").toLowerCase();
-// console.log(trekName);
-const result=trekData.prismicContents?.results?.find(x=>x.uid.toLowerCase()===trekName.toLowerCase());
-// console.log(result);
-setTrekPageData(result);
+      //// Get Trek locations
+      if (trekData === null) {
+        setIndexes([]);
+        setCounter(0);
+        //setRender(false);
+        return;
+      }
+
+      setRender(false);
+      const data = trekData?.data;
+      /// Get the prismic trek contents
+      const trekName = data.backOfficeTrekLabel
+        .replaceAll(" ", "-")
+        .toLowerCase();
+      // console.log(trekName);
+      const result = trekData.prismicContents?.results?.find(
+        (x) => x.uid.toLowerCase() === trekName.toLowerCase()
+      );
+      // console.log(result);
+      setTrekPageData(result);
 
       fillPrismicContents(result);
       const trekId = data.trekId;
-      const bookState= data.bookingState==="COMPLETED";
+      const bookState = data.bookingState === "COMPLETED";
       // console.log( data );
       setBookingState(bookState);
 
-      if(bookState) {
-      getTrekLocations(trekId).then(res => {
-        setLocations(res);
+      if (bookState) {
+        getTrekLocations(trekId).then((res) => {
+          setLocations(res);
+          setParticipantData(data);
+          const arr = Array.from(
+            new Array(data?.userTrekBookingParticipants?.length),
+            (x, i) => i
+          );
+          setIndexes(arr);
+          setCounter(arr.length);
+          setRender(true);
+        });
+      } else {
         setParticipantData(data);
         const arr = Array.from(
           new Array(data?.userTrekBookingParticipants?.length),
@@ -88,67 +102,58 @@ setTrekPageData(result);
         setIndexes(arr);
         setCounter(arr.length);
         setRender(true);
-      });
-    }
-    else {
-      setParticipantData(data);
-      const arr = Array.from(
-        new Array(data?.userTrekBookingParticipants?.length),
-        (x, i) => i
-      );
-      setIndexes(arr);
-      setCounter(arr.length);
-      setRender(true);
-    }
-    }
+      }
+    },
   }));
 
-  const fillPrismicContents=(result)=> {
-    const essentialDownloads = result?.data?.body.find(x => x.slice_type === "essentials_downloads"); 
+  const fillPrismicContents = (result) => {
+    const essentialDownloads = result?.data?.body.find(
+      (x) => x.slice_type === "essentials_downloads"
+    );
     //  console.log(essentialDownloads);
 
-    if(essentialDownloads!==undefined) {
-    const essentialsArray = essentialDownloads && essentialDownloads?.items;
-    setEssentialData(essentialsArray);
+    if (essentialDownloads !== undefined) {
+      const essentialsArray = essentialDownloads && essentialDownloads?.items;
+      setEssentialData(essentialsArray);
 
-    const arr = Array.from(new Array(essentialsArray?.length),(x, i) => i);
-    setEssentialIndexes(arr);
-    setEssentialCounter(arr.length);
-    }
-    else {
+      const arr = Array.from(new Array(essentialsArray?.length), (x, i) => i);
+      setEssentialIndexes(arr);
+      setEssentialCounter(arr.length);
+    } else {
       setEssentialIndexes([]);
       setEssentialCounter(0);
     }
 
-    const trekVideoData = result?.data?.body?.find( x => x.slice_type === "trek_videos");
-    if(trekVideoData!==undefined) {
-    const trekVideosArray = trekVideoData && trekVideoData?.items;
-    setVideoData(trekVideosArray);
+    const trekVideoData = result?.data?.body?.find(
+      (x) => x.slice_type === "trek_videos"
+    );
+    if (trekVideoData !== undefined) {
+      const trekVideosArray = trekVideoData && trekVideoData?.items;
+      setVideoData(trekVideosArray);
 
-    const arr1 = Array.from(new Array(trekVideosArray.length),(x, i) => i);
-    setVideoIndexes(arr1);
-    setVideoCounter(arr1.length);
-    }
-    else {
+      const arr1 = Array.from(new Array(trekVideosArray.length), (x, i) => i);
+      setVideoIndexes(arr1);
+      setVideoCounter(arr1.length);
+    } else {
       setVideoIndexes([]);
       setVideoCounter(0);
     }
-  }
-
+  };
 
   const getVideoHeading = () => {
-    let trekVideoData = trekPageData.data.body.find(x => x.slice_type === "trek_videos");
+    let trekVideoData = trekPageData.data.body.find(
+      (x) => x.slice_type === "trek_videos"
+    );
     const trekVideoHeading = trekVideoData && trekVideoData?.primary?.heading1;
     return trekVideoHeading;
-  }
+  };
 
   const getEssentialHeading = () => {
     const essentialsHeading = trekPageData && trekPageData?.primary?.heading1;
     return essentialsHeading;
-  }
+  };
 
-
-  const onSubmit = formData => {
+  const onSubmit = (formData) => {
     // console.log(formData);
 
     const userLocations = [];
@@ -161,7 +166,7 @@ setTrekPageData(result);
         const udata = {
           participantId: user.participantId,
           pickupLocationId: locid1,
-          dropLocationId: locid2
+          dropLocationId: locid2,
         };
         userLocations.push(udata);
       }
@@ -170,13 +175,15 @@ setTrekPageData(result);
     if (userLocations.length > 0) {
       ///call save and show message
       // console.log(userLocations);
-      saveUserLocations(participantData.bookingId, userLocations).then(res => {
-        setSaveState(true);
-        props.onMyTrekSaveDetail(
-          participantData.bookingId,
-          participantData.email
-        );
-      });
+      saveUserLocations(participantData.bookingId, userLocations).then(
+        (res) => {
+          setSaveState(true);
+          props.onMyTrekSaveDetail(
+            participantData.bookingId,
+            participantData.email
+          );
+        }
+      );
     }
   };
 
@@ -185,11 +192,13 @@ setTrekPageData(result);
       {render && (
         <div>
           <div>
-            <h5 className="p-text-3-fg b-left-blue-3px mb-3">Participant Details</h5>
+            <h5 className="p-text-3-fg b-left-blue-3px mb-3">
+              Participant Details
+            </h5>
           </div>
           <div>
             <form onSubmit={handleSubmit(onSubmit)} onReset={() => reset}>
-              {indexes?.map(index => {
+              {indexes?.map((index) => {
                 const pdata =
                   participantData?.userTrekBookingParticipants[index];
                 const fieldName = `locs[${index}]`;
@@ -205,10 +214,10 @@ setTrekPageData(result);
                       pdata?.userDetailsForDisplay?.lastName;
 
                 const pickupLocations = locations.filter(
-                  x => x.type === "PICKUP"
+                  (x) => x.type === "PICKUP"
                 );
                 const dropLocations = locations.filter(
-                  x => x.type === "DROP_OFF"
+                  (x) => x.type === "DROP_OFF"
                 );
 
                 const currentPickupLocation =
@@ -253,25 +262,29 @@ setTrekPageData(result);
                           <div>
                             {state == false && (
                               <FormGroup className="ud-dropwon-1">
-                                 {bookingState && (
-                                <Controller
-                                  name={`${fieldName}.pickupLocation`}
-                                  control={control}
-                                  defaultValue={currentPickupLocation}
-                                  render={({ onChange, value }) => (
-                                    <Dropdown
-                                      optionLabel="name"
-                                      optionValue="locationId"
-                                      options={pickupLocations}
-                                      value={(value==null || value==undefined) ? currentPickupLocation : value}
-                                      onChange={e => {
-                                        onChange(e.value);
-                                      }}
-                                      placeholder="Select a Pickup locations"
-                                    />
-                                  )}
-                                />
-                                 )}
+                                {bookingState && (
+                                  <Controller
+                                    name={`${fieldName}.pickupLocation`}
+                                    control={control}
+                                    defaultValue={currentPickupLocation}
+                                    render={({ onChange, value }) => (
+                                      <Dropdown
+                                        optionLabel="name"
+                                        optionValue="locationId"
+                                        options={pickupLocations}
+                                        value={
+                                          value == null || value == undefined
+                                            ? currentPickupLocation
+                                            : value
+                                        }
+                                        onChange={(e) => {
+                                          onChange(e.value);
+                                        }}
+                                        placeholder="Select a Pickup locations"
+                                      />
+                                    )}
+                                  />
+                                )}
                               </FormGroup>
                             )}
                           </div>
@@ -286,25 +299,29 @@ setTrekPageData(result);
                           <div>
                             {state == false && (
                               <FormGroup className="ud-dropwon-1">
-                                 {bookingState && (
-                                <Controller
-                                  name={`${fieldName}.dropLocation`}
-                                  control={control}
-                                  defaultValue={currentDropLocation}
-                                  render={({ onChange, value }) => (
-                                    <Dropdown
-                                      optionLabel="name"
-                                      optionValue="locationId"
-                                      value={(value==null || value==undefined) ? currentDropLocation : value}
-                                      options={dropLocations}
-                                      onChange={e => {
-                                        onChange(e.value);
-                                      }}
-                                      placeholder="Select a Drop Off location"
-                                    />
-                                  )}
-                                />
-                                 )}
+                                {bookingState && (
+                                  <Controller
+                                    name={`${fieldName}.dropLocation`}
+                                    control={control}
+                                    defaultValue={currentDropLocation}
+                                    render={({ onChange, value }) => (
+                                      <Dropdown
+                                        optionLabel="name"
+                                        optionValue="locationId"
+                                        value={
+                                          value == null || value == undefined
+                                            ? currentDropLocation
+                                            : value
+                                        }
+                                        options={dropLocations}
+                                        onChange={(e) => {
+                                          onChange(e.value);
+                                        }}
+                                        placeholder="Select a Drop Off location"
+                                      />
+                                    )}
+                                  />
+                                )}
                               </FormGroup>
                             )}
                           </div>
@@ -327,11 +344,14 @@ setTrekPageData(result);
                   )}
                 </div>
                 <div>
-                {bookingState && (
-                  <button type="submit" className="btn table-btn-blue-sm hvr-grow">
-                    <span className="px-2">Save details</span>
-                  </button>
-                )}
+                  {bookingState && (
+                    <button
+                      type="submit"
+                      className="btn table-btn-blue-sm hvr-grow"
+                    >
+                      <span className="px-2">Save details</span>
+                    </button>
+                  )}
                 </div>
               </div>
             </form>

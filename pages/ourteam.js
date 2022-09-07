@@ -18,19 +18,22 @@ const ourTeam = ({ doc }) => {
   if (doc && doc.data) {
     return (
       <>
-      <HomeLayout>
-        <Head>
-         <meta charset="utf-8"/>
-         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-         <title>Team - India hikes</title>
-        </Head>
-        <HikeHeader/>
-        <OurTeamSliceZone sliceZone={doc.data.body} />
-        <IHTrekWithSwathi />
-        <IHFooter />
-      </HomeLayout>
-      <ScrollToTop smooth color="#000000" />
+        <HomeLayout>
+          <Head>
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+            <title>Team - India hikes</title>
+          </Head>
+          <HikeHeader />
+          <OurTeamSliceZone sliceZone={doc.data.body} />
+          <IHTrekWithSwathi />
+          <IHFooter />
+        </HomeLayout>
+        <ScrollToTop smooth color="#000000" />
       </>
     );
   }
@@ -40,19 +43,18 @@ const ourTeam = ({ doc }) => {
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
+  const { ref } = previewData;
 
-  const { ref } = previewData
+  const client = Client();
 
-  const client = Client()
-
-  const doc = await client.getSingle("hike_team", ref ? { ref } : null) || {}
+  const doc = (await client.getSingle("hike_team", ref ? { ref } : null)) || {};
 
   return {
     props: {
       doc,
-      preview
-    }
-  }
+      preview,
+    },
+  };
 }
 
 export default ourTeam;

@@ -25,16 +25,16 @@ const WeekendTrek = ({ slice, weekendTrekData }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: false,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -42,14 +42,14 @@ const WeekendTrek = ({ slice, weekendTrekData }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          centerMode: true
-        }
-      }
-    ]
+          centerMode: true,
+        },
+      },
+    ],
   };
 
-  const trekToDoImage = weekendTrekData?.map(function(data, i) {
-    const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
+  const trekToDoImage = weekendTrekData?.map(function (data, i) {
+    const tData = data?.data?.body.find((x) => x.slice_type === "trek_banner");
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
@@ -128,7 +128,7 @@ const WeekendTrek = ({ slice, weekendTrekData }) => {
     );
   });
 
-  const trekToDoImageMobileView = trekToDoImageArray?.map(function(data, j) {
+  const trekToDoImageMobileView = trekToDoImageArray?.map(function (data, j) {
     return (
       <>
         <div className="col-6" key={j}>

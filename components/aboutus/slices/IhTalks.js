@@ -14,7 +14,7 @@ const IhTalks = ({ slice }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const ytDetails = ytDetailsArray?.map(function(data, i) {
+  const ytDetails = ytDetailsArray?.map(function (data, i) {
     const result = data?.yt_link?.url.split(
       /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
     );

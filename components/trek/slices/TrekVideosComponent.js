@@ -72,16 +72,16 @@ const TrekVideosComponent = ({ slice }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: false,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -89,13 +89,13 @@ const TrekVideosComponent = ({ slice }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          centerMode: true
-        }
-      }
-    ]
+          centerMode: true,
+        },
+      },
+    ],
   };
 
-  const videosList = videoArray.map(function(data, i) {
+  const videosList = videoArray.map(function (data, i) {
     const result = data?.video_url?.url?.split(
       /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
     );
@@ -152,7 +152,7 @@ const TrekVideosComponent = ({ slice }) => {
     <>
       <div>
         <div className="container">
-          <div className={primaryVideoLink ? "row mt-5 mb-3 mmt-0" : "my-3" }>
+          <div className={primaryVideoLink ? "row mt-5 mb-3 mmt-0" : "my-3"}>
             {primaryVideoLink && (
               <div className="col-12 col-lg-7 col-md-12">
                 <h2 className="title-h2 th-2m pb-08">

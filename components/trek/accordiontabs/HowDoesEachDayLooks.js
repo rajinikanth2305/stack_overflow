@@ -44,16 +44,16 @@ const HowDoesEachDayLooks = ({ data }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -61,10 +61,10 @@ const HowDoesEachDayLooks = ({ data }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: true,
-          dots: false
-        }
-      }
-    ]
+          dots: false,
+        },
+      },
+    ],
   };
 
   useEffect(() => {
@@ -76,18 +76,22 @@ const HowDoesEachDayLooks = ({ data }) => {
 
   async function findTrekStories() {
     const slice =
-      data && data.filter(x => x.slice_type === "day_wise_itinerary");
+      data && data.filter((x) => x.slice_type === "day_wise_itinerary");
     setDayWise(slice);
   }
 
   const dayNum =
     dayWise &&
-    dayWise?.map(function(dd, i) {
+    dayWise?.map(function (dd, i) {
       const daysItieneryArray = dd?.items;
-      const daysItienery = daysItieneryArray?.map(function(daysIt, i) {
+      const daysItienery = daysItieneryArray?.map(function (daysIt, i) {
         const place_description_editor = daysIt?.place_description_editor?.map(
-          function(ed, j) {
-            return <p className="p-text-4" key={j}>{ed?.text}</p>;
+          function (ed, j) {
+            return (
+              <p className="p-text-4" key={j}>
+                {ed?.text}
+              </p>
+            );
           }
         );
         return (
@@ -98,28 +102,44 @@ const HowDoesEachDayLooks = ({ data }) => {
                   {daysIt?.image1?.url && (
                     <div>
                       <div className="accordio-sec-images">
-                        <Image src={daysIt?.image1?.url} layout="fill" unoptimized />
+                        <Image
+                          src={daysIt?.image1?.url}
+                          layout="fill"
+                          unoptimized
+                        />
                       </div>
                     </div>
                   )}
                   {daysIt?.image2?.url && (
                     <div>
                       <div className="accordio-sec-images">
-                        <Image src={daysIt?.image2?.url} layout="fill" unoptimized />
+                        <Image
+                          src={daysIt?.image2?.url}
+                          layout="fill"
+                          unoptimized
+                        />
                       </div>
                     </div>
                   )}
                   {daysIt?.image3?.url && (
                     <div>
                       <div className="accordio-sec-images">
-                        <Image src={daysIt?.image3?.url} layout="fill" unoptimized />
+                        <Image
+                          src={daysIt?.image3?.url}
+                          layout="fill"
+                          unoptimized
+                        />
                       </div>
                     </div>
                   )}
                   {daysIt?.image4?.url && (
                     <div>
                       <div className="accordio-sec-images">
-                        <Image src={daysIt?.image4?.url} layout="fill" unoptimized />
+                        <Image
+                          src={daysIt?.image4?.url}
+                          layout="fill"
+                          unoptimized
+                        />
                       </div>
                     </div>
                   )}
@@ -136,8 +156,12 @@ const HowDoesEachDayLooks = ({ data }) => {
                 //   <span className="px-2">{RichText.render(daysIt?.duration)}</span>
                 // </p>
                 <div className="d-flex align-items-center seasons-img-sec mb-2">
-                  <div><img src="/Duration.png" alt="img" /></div>
-                  <div className="p-text-3-1 px-2">{RichText.render(daysIt?.duration)}</div>
+                  <div>
+                    <img src="/Duration.png" alt="img" />
+                  </div>
+                  <div className="p-text-3-1 px-2">
+                    {RichText.render(daysIt?.duration)}
+                  </div>
                 </div>
               )}
               {daysIt?.altitude[0]?.text && (
@@ -146,8 +170,12 @@ const HowDoesEachDayLooks = ({ data }) => {
                 //   <span className="px-2">{daysIt?.altitude[0]?.text}</span>
                 // </p>
                 <div className="d-flex align-items-center seasons-img-sec mb-2">
-                  <div><img src="/shoes.png" alt="img" /></div>
-                  <div className="p-text-3-1 px-2">{RichText.render(daysIt?.altitude)}</div>
+                  <div>
+                    <img src="/shoes.png" alt="img" />
+                  </div>
+                  <div className="p-text-3-1 px-2">
+                    {RichText.render(daysIt?.altitude)}
+                  </div>
                 </div>
               )}
               {daysIt?.difficulty[0]?.text && (
@@ -156,8 +184,12 @@ const HowDoesEachDayLooks = ({ data }) => {
                 //   <span className="px-2">{daysIt?.difficulty[0]?.text}</span>
                 // </p>
                 <div className="d-flex align-items-center seasons-img-sec mb-2">
-                  <div><img src="/Offloading.png" alt="img" /></div>
-                  <div className="p-text-3-1 px-2">{RichText.render(daysIt?.difficulty)}</div>
+                  <div>
+                    <img src="/Offloading.png" alt="img" />
+                  </div>
+                  <div className="p-text-3-1 px-2">
+                    {RichText.render(daysIt?.difficulty)}
+                  </div>
                 </div>
               )}
               {daysIt?.water_sources[0]?.text && (
@@ -166,8 +198,12 @@ const HowDoesEachDayLooks = ({ data }) => {
                 //   <span className="px-2">{daysIt?.water_sources[0]?.text}</span>
                 // </p>
                 <div className="d-flex align-items-center seasons-img-sec mb-2">
-                  <div><img src="/Offloading.png" alt="img" /></div>
-                  <div className="p-text-3-1 px-2">{RichText.render(daysIt?.water_sources)}</div>
+                  <div>
+                    <img src="/Offloading.png" alt="img" />
+                  </div>
+                  <div className="p-text-3-1 px-2">
+                    {RichText.render(daysIt?.water_sources)}
+                  </div>
                 </div>
               )}
               <div className="my-4 d-m-block">
@@ -177,9 +213,7 @@ const HowDoesEachDayLooks = ({ data }) => {
                     {place_description_editor}
                   </div>
                 ) : (
-                  <div>
-                    {place_description_editor}
-                  </div>
+                  <div>{place_description_editor}</div>
                 )}
                 {daysItieneryArray &&
                 daysItieneryArray[0].place_description_editor[0]?.text ? (
@@ -280,7 +314,9 @@ const HowDoesEachDayLooks = ({ data }) => {
                 </div>
               </div>
               <div
-                className={daysIt?.image4?.url ? "mt-4 mb-1 d-m-none" : "d-m-none"}
+                className={
+                  daysIt?.image4?.url ? "mt-4 mb-1 d-m-none" : "d-m-none"
+                }
               >
                 {/* <p className="p-text-4">{place_description_editor}</p> */}
                 <div className="p-text-4">

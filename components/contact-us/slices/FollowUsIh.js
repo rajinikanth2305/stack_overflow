@@ -8,7 +8,7 @@ const FollowUsIh = ({ slice }) => {
   const heading2 = slice?.primary?.heading2;
   const followUsIh = slice?.items;
 
-  const followUsIhDetails = followUsIh?.map(function(data, k) {
+  const followUsIhDetails = followUsIh?.map(function (data, k) {
     console.log(data);
     const url = data?.target_url?.url;
     return (

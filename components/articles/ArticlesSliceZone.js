@@ -6,7 +6,7 @@ import {
   Section4,
   Section5,
   Section6,
-  Section7
+  Section7,
 } from "./slices";
 
 /**
@@ -48,7 +48,11 @@ const ArticlesSliceZone = ({
           <Section3
             slice={slice}
             key={`slice-${index}`}
-            mostReadarticleData={ihMoreReadArticles?.find(x=>x?.key===slice?.primary?.heading1[0].text)?.value}
+            mostReadarticleData={
+              ihMoreReadArticles?.find(
+                (x) => x?.key === slice?.primary?.heading1[0].text
+              )?.value
+            }
           />
         );
       case "latest_articles":
@@ -56,8 +60,16 @@ const ArticlesSliceZone = ({
           <Section4
             slice={slice}
             key={`slice-${index}`}
-            laPrimaryArticlePrimaryArticleData={ihLaPrimaryArticlePrimaryArticleData?.find(x=>x?.key===slice?.primary?.heading1[0].text)?.value}
-            latestArticleData={ihLatestArticles?.find(x=>x?.key===slice?.primary?.heading1[0].text)?.value}
+            laPrimaryArticlePrimaryArticleData={
+              ihLaPrimaryArticlePrimaryArticleData?.find(
+                (x) => x?.key === slice?.primary?.heading1[0].text
+              )?.value
+            }
+            latestArticleData={
+              ihLatestArticles?.find(
+                (x) => x?.key === slice?.primary?.heading1[0].text
+              )?.value
+            }
           />
         );
       case "hike_news_articles":
@@ -65,7 +77,10 @@ const ArticlesSliceZone = ({
           <Section5
             slice={slice}
             key={`slice-${index}`}
-            hikesNewsData={ihnews?.find(x=>x?.key===slice?.primary?.heading1[0].text)?.value}
+            hikesNewsData={
+              ihnews?.find((x) => x?.key === slice?.primary?.heading1[0].text)
+                ?.value
+            }
           />
         );
       case "high_altitude_research":
@@ -73,7 +88,11 @@ const ArticlesSliceZone = ({
           <Section6
             slice={slice}
             key={`slice-${index}`}
-            highAlititudeData={ihAlitudeResaerch?.find(x=>x?.key===slice?.primary?.heading1[0].text)?.value}
+            highAlititudeData={
+              ihAlitudeResaerch?.find(
+                (x) => x?.key === slice?.primary?.heading1[0].text
+              )?.value
+            }
           />
         );
       case "trekking_tips":
@@ -82,7 +101,11 @@ const ArticlesSliceZone = ({
             slice={slice}
             key={`slice-${index}`}
             trekkingprimaryArticleData={trekkingprimaryArticleData}
-            latestArticleData={ihLatestArticles?.find(x=>x?.key===slice?.primary?.heading1[0].text)?.value}
+            latestArticleData={
+              ihLatestArticles?.find(
+                (x) => x?.key === slice?.primary?.heading1[0].text
+              )?.value
+            }
             trekkingArticleData={trekkingArticleData}
           />
         );

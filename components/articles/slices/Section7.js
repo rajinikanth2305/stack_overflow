@@ -3,15 +3,20 @@ import { RichText } from "prismic-reactjs";
 import Link from "next/link";
 import { linkResolver } from "prismic-configuration";
 
-const Section7 = ({ slice, trekkingprimaryArticleData, trekkingArticleData }) => {
+const Section7 = ({
+  slice,
+  trekkingprimaryArticleData,
+  trekkingArticleData,
+}) => {
   const heading1 = slice?.primary?.heading1;
 
-  const authorName = trekkingprimaryArticleData[0]?.data?.author_link?.uid.replace(/-/g, " ");
+  const authorName =
+    trekkingprimaryArticleData[0]?.data?.author_link?.uid.replace(/-/g, " ");
 
   const latestLrekImage =
     trekkingprimaryArticleData &&
     trekkingprimaryArticleData[0]?.data?.body?.find(
-      x => x.slice_type === "feature_image"
+      (x) => x.slice_type === "feature_image"
     );
 
   let primary_url;
@@ -21,7 +26,7 @@ const Section7 = ({ slice, trekkingprimaryArticleData, trekkingArticleData }) =>
     primary_url = linkResolver(slice?.primary?.primary_article_link);
   }
 
-  const articleLearnMore = trekkingArticleData?.map(function(data, i) {
+  const articleLearnMore = trekkingArticleData?.map(function (data, i) {
     const authorName = data?.data?.author_link?.uid.replace(/-/g, " ");
     let url;
     const slugUrl = data?.uid;
@@ -29,10 +34,10 @@ const Section7 = ({ slice, trekkingprimaryArticleData, trekkingArticleData }) =>
       url = `/blog/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.find(
-      x => x.slice_type === "feature_image"
+      (x) => x.slice_type === "feature_image"
     );
     const getArticleHeadingText = data?.data?.body?.find(
-      x => x.slice_type === "text"
+      (x) => x.slice_type === "text"
     );
     return (
       <div key={i} className="col-md-6 col-12">
@@ -88,7 +93,8 @@ const Section7 = ({ slice, trekkingprimaryArticleData, trekkingArticleData }) =>
                   <Link href={primary_url ? primary_url : "#"}>
                     <div className="row">
                       <div className="col-md-12">
-                        {latestLrekImage && latestLrekImage?.primary?.feature_image?.url ? (
+                        {latestLrekImage &&
+                        latestLrekImage?.primary?.feature_image?.url ? (
                           <div className="latestLrekImage_bg">
                             <img
                               src={
@@ -127,7 +133,6 @@ const Section7 = ({ slice, trekkingprimaryArticleData, trekkingArticleData }) =>
                                 {trekkingprimaryArticleData &&
                                   trekkingprimaryArticleData[0]?.data
                                     ?.date}{" "}
-                                {" "}
                               </span>
                             </p>
                           </div>

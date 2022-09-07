@@ -10,39 +10,41 @@ const DIYResources = ({ slice, diyResourceData }) => {
   const diyResArray = slice?.items;
   console.log(diyResourceData);
 
-  const diyResList = diyResourceData?.map(function(data, i) {
+  const diyResList = diyResourceData?.map(function (data, i) {
     const authorName = data?.data?.author_link?.uid.replace(/-/g, " ");
     let url;
     const slugUrl = data?.uid;
     if (slugUrl && data?.type === "post") {
-     // url = `/blog/${slugUrl}`;
+      // url = `/blog/${slugUrl}`;
       url = `/${slugUrl}`;
     } else {
       //url = `/documented-trek/${slugUrl}`;
-       url = `/${slugUrl}`;
+      url = `/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.filter(
-      x => x.slice_type === "feature_image"
+      (x) => x.slice_type === "feature_image"
     );
     const getArticleHeadingText = data?.data?.body?.find(
-      x => x.slice_type === "text"
+      (x) => x.slice_type === "text"
     );
     return (
       <div key={i} className="col-lg-4 col-md-6">
         <Link href={url ? url : "#"}>
           <div className="d-flex align-items-center row mb-4 cursor-pointer">
             <div className="diyres_img_bg col-3 col-lg-3 col-md-12">
-              {getArticleImage && getArticleImage[0]?.primary?.feature_image?.url && (
-                <Image
-                  src={
-                    getArticleImage && getArticleImage[0]?.primary?.feature_image?.url
-                  }
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="top"
-                  unoptimized
-                />
-              )}
+              {getArticleImage &&
+                getArticleImage[0]?.primary?.feature_image?.url && (
+                  <Image
+                    src={
+                      getArticleImage &&
+                      getArticleImage[0]?.primary?.feature_image?.url
+                    }
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="top"
+                    unoptimized
+                  />
+                )}
             </div>
             <div className="col-9 col-lg-9 col-md-12">
               <p className="p-text-3">

@@ -34,8 +34,8 @@ const Gallery = ({ slice }) => {
           infinite: true,
           dots: true,
           centerMode: true,
-          centerPadding: "40px"
-        }
+          centerPadding: "40px",
+        },
       },
       {
         breakpoint: 600,
@@ -43,8 +43,8 @@ const Gallery = ({ slice }) => {
           slidesToShow: 1,
           slidesToScroll: 2,
           centerMode: true,
-          centerPadding: "40px"
-        }
+          centerPadding: "40px",
+        },
       },
       {
         breakpoint: 480,
@@ -53,17 +53,17 @@ const Gallery = ({ slice }) => {
           slidesToScroll: 1,
           centerMode: true,
           centerPadding: "40px",
-          arrows: false
-        }
-      }
-    ]
+          arrows: false,
+        },
+      },
+    ],
   };
 
-  const homeGalleryImages = homeGalleryImage.map(function(data, i) {
+  const homeGalleryImages = homeGalleryImage.map(function (data, i) {
     const h_g_images = {
       backgroundImage: `url('${data?.home_gallery_image?.url}')`,
       width: "100%",
-      backgroundRepeat: "no-repeat"
+      backgroundRepeat: "no-repeat",
     };
 
     return (

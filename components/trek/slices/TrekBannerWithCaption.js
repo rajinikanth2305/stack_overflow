@@ -19,7 +19,7 @@ const TrekBannerWithCaption = ({ slice }) => {
   const bannerImageDesktop = {
     backgroundImage: `url('${imageUrl}')`,
     width: "100%",
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
   };
 
   return (
@@ -174,7 +174,9 @@ const TrekBannerWithCaption = ({ slice }) => {
                 <div className="col-6">
                   <div className="d-flex">
                     <div className="col-6">
-                      <p className="short-info-text m-tex m-0">Highest Altitude</p>
+                      <p className="short-info-text m-tex m-0">
+                        Highest Altitude
+                      </p>
                     </div>
                     <div className="mx-3">
                       <p className="short-info-text m-tex m-0">

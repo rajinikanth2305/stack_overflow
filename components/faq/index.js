@@ -1,1 +1,1 @@
-export { default as AboutUsSliceZone } from './AboutUsSliceZone';
+export { default as AboutUsSliceZone } from "./AboutUsSliceZone";

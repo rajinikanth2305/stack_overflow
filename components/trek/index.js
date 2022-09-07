@@ -1,1 +1,1 @@
-export { default as TrekSliceZone } from './TrekSliceZone'
+export { default as TrekSliceZone } from "./TrekSliceZone";

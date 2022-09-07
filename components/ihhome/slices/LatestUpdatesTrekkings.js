@@ -10,7 +10,7 @@ import getYoutubeTitle from "get-youtube-title";
 const LatestUpdatesTrekkings = ({
   slice,
   latestUpdateAarticleData,
-  latestUpdateAarticlePrimaryArticleData
+  latestUpdateAarticlePrimaryArticleData,
 }) => {
   const Sectiontitle = slice?.primary?.section_header;
   const dayTalkTitle = slice?.primary?.day_talk_title;
@@ -19,8 +19,11 @@ const LatestUpdatesTrekkings = ({
   const primaryVideoUrl = slice?.primary?.primary_video_url?.url;
   const [vTitle, setVtitle] = useState();
 
-  const authorName = latestUpdateAarticlePrimaryArticleData[0]?.data
-    ?.author_link?.uid.replace(/-/g, " ");
+  const authorName =
+    latestUpdateAarticlePrimaryArticleData[0]?.data?.author_link?.uid.replace(
+      /-/g,
+      " "
+    );
 
   const result = primaryVideoUrl?.split(
     /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
@@ -41,7 +44,7 @@ const LatestUpdatesTrekkings = ({
   const latestLrekImage =
     latestUpdateAarticlePrimaryArticleData &&
     latestUpdateAarticlePrimaryArticleData[0]?.data?.body?.find(
-      x => x.slice_type === "feature_image"
+      (x) => x.slice_type === "feature_image"
     );
 
   const [show, setShow] = useState(false);
@@ -65,10 +68,10 @@ const LatestUpdatesTrekkings = ({
       url = `/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.find(
-      x => x.slice_type === "feature_image"
+      (x) => x.slice_type === "feature_image"
     );
     const getArticleHeadingText = data?.data?.body?.find(
-      x => x.slice_type === "text"
+      (x) => x.slice_type === "text"
     );
     return (
       <div className="col-lg-6 col-md-12" key={index}>
@@ -135,7 +138,8 @@ const LatestUpdatesTrekkings = ({
                         </p>
                         <p className="day_trek_talk_title">
                           {RichText.asText(
-                            latestUpdateAarticlePrimaryArticleData[0]?.data?.title
+                            latestUpdateAarticlePrimaryArticleData[0]?.data
+                              ?.title
                           )}
                         </p>
                         <p className="day_trek_talk_desc">
@@ -150,9 +154,7 @@ const LatestUpdatesTrekkings = ({
                           <i>
                             By&nbsp;
                             {/* {RichText.asText(nameEditor)} */}
-                            {
-                              authorName
-                            }
+                            {authorName}
                           </i>
                         </p>
                         <p className="name_editor">

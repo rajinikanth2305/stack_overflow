@@ -7,10 +7,10 @@ import {
   StyleSheet,
   PDFViewer,
   PDFDownloadLink,
-  Image
+  Image,
 } from "@react-pdf/renderer";
 import moment from "moment";
-const ReceiptTemplate = receiptData => {
+const ReceiptTemplate = (receiptData) => {
   const [selectedReceipts, setselectedReceipts] = useState();
 
   // console.log(receiptData);
@@ -19,12 +19,12 @@ const ReceiptTemplate = receiptData => {
   const styles = StyleSheet.create({
     page: {
       // flexDirection: 'row',
-      backgroundColor: "#ffffff"
+      backgroundColor: "#ffffff",
     },
     section: {
       margin: 10,
       padding: 10,
-      width: "100%"
+      width: "100%",
     },
     section1: {
       marginLeft: 10,
@@ -33,16 +33,16 @@ const ReceiptTemplate = receiptData => {
       // padding: 10,
       paddingLeft: 10,
       paddingRight: 10,
-      width: "100%"
+      width: "100%",
     },
     sectionMain: {
-      marginTop: 10
+      marginTop: 10,
     },
     sectionMain1: {
       marginTop: 0,
       marginBottom: 0,
       marginLeft: 20,
-      marginRight: 10
+      marginRight: 10,
     },
     header1: {
       fontSize: "14px",
@@ -50,58 +50,58 @@ const ReceiptTemplate = receiptData => {
       marginTop: "20px",
       borderBottom: "2px soild #f8c301",
       width: "20%",
-      paddingBottom: "5px"
+      paddingBottom: "5px",
     },
     header2: {
       fontSize: "10px",
-      marginBottom: "5px"
+      marginBottom: "5px",
     },
     headernotes1: {
       fontSize: "10px",
       marginBottom: "10px",
-      marginTop: "20px"
+      marginTop: "20px",
     },
     headernotes2: {
       fontSize: "8px",
-      marginBottom: "5px"
+      marginBottom: "5px",
     },
     voucherRow: {
       flexDirection: "row",
       marginLeft: "10px",
       marginRight: "10px",
-      padding: 10
+      padding: 10,
     },
     voucherCol1: {
-      width: "40%"
+      width: "40%",
     },
     voucherColAll: {
-      width: "20%"
+      width: "20%",
     },
     voucherColAllnew: {
-      width: "13.5%"
+      width: "13.5%",
     },
     headerCol1: {
-      width: "80%"
+      width: "80%",
     },
     headerCol2: {
-      width: "20%"
+      width: "20%",
     },
     voucherTableLabel: {
       fontSize: "7px",
       backgroundColor: "#f8c301",
-      padding: "4px"
+      padding: "4px",
     },
     voucherParticularTableLabel: {
       fontSize: "8px",
       paddingLeft: "0px",
       paddingRight: "4px",
       paddingtop: "1px",
-      paddingBottom: "3px"
+      paddingBottom: "3px",
     },
     voucherTableValue: {
       fontSize: "8px",
       padding: "4px",
-      borderBottom: "1px solid #d3d3d3"
+      borderBottom: "1px solid #d3d3d3",
       // borderLeft: '1px solid #d3d3d3',
     },
     voucherParticularTableValue: {
@@ -110,7 +110,7 @@ const ReceiptTemplate = receiptData => {
       paddingRight: "4px",
       paddingtop: "1px",
       paddingBottom: "3px",
-      borderLeft: "1px solid #f8c301"
+      borderLeft: "1px solid #f8c301",
       // borderLeft: '1px solid #d3d3d3',
     },
     voucherTableValueLast: {
@@ -118,19 +118,19 @@ const ReceiptTemplate = receiptData => {
       padding: "4px",
       borderLeft: "1px solid #d3d3d3",
       borderRight: "1px solid #d3d3d3",
-      borderBottom: "1px solid #d3d3d3"
+      borderBottom: "1px solid #d3d3d3",
     },
     headertext1: {
       borderBottom: "1px solid #f8c301",
       fontSize: "8px",
       textAlign: "right",
       paddingBottom: "3px",
-      marginBottom: "3px"
+      marginBottom: "3px",
     },
     headertext2: {
       fontSize: "8px",
-      textAlign: "right"
-    }
+      textAlign: "right",
+    },
   });
 
   return (
@@ -226,7 +226,9 @@ const ReceiptTemplate = receiptData => {
               </View>
               <View>
                 <Text style={styles.voucherTableValue}>
-                  {moment(receiptData.receiptData && receiptData.receiptData.startDate).format("DD MMM YYYY")}
+                  {moment(
+                    receiptData.receiptData && receiptData.receiptData.startDate
+                  ).format("DD MMM YYYY")}
                 </Text>
               </View>
             </View>

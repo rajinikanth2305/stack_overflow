@@ -96,7 +96,7 @@ const GreenTrailBanner = ({ slice }) => {
                   {RichText.render(recycling)}
                 </div>
               </div>
-              <div className="col-6" style={{ paddingLeft: '15%' }}>
+              <div className="col-6" style={{ paddingLeft: "15%" }}>
                 <div className="p-text-2-fg color-matroon m-0">
                   {RichText.render(kilosOfWaste)}
                 </div>

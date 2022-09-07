@@ -1,1 +1,1 @@
-export { default as ReceiptssSliceZone } from './ReceiptssSliceZone';
+export { default as ReceiptssSliceZone } from "./ReceiptssSliceZone";

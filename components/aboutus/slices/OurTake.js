@@ -12,7 +12,7 @@ const OurTake = ({ slice }) => {
   const heading2 = slice?.primary?.heading2;
   const tabsDataArray = slice.items;
 
-  const tabsData = tabsDataArray?.map(function(data, i) {
+  const tabsData = tabsDataArray?.map(function (data, i) {
     const linkType = data?.target_link?.link_type;
     let url = linkType == "Web" ? data?.target_link?.url : "";
     const slugUrl =
@@ -44,10 +44,10 @@ const OurTake = ({ slice }) => {
               <div className="p-text-3">{RichText.render(data?.content1)}</div>
               {data?.target_link?.uid && (
                 <div className="mt-5 mb-4 mmb-0">
-                <Link href={url ? url : "#"}>
-                  <button className="btn btn-bihtn-yellow text-capitalize hvr-grow">
-                    Read more
-                  </button>
+                  <Link href={url ? url : "#"}>
+                    <button className="btn btn-bihtn-yellow text-capitalize hvr-grow">
+                      Read more
+                    </button>
                   </Link>
                 </div>
               )}

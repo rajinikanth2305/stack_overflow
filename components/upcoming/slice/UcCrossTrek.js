@@ -14,7 +14,7 @@ const UcCrossTrek = ({ slice }) => {
     backgroundImage: `url('${crossTrekImage}')`,
     width: "100%",
     backgroundRepeat: "no-repeat",
-    backgroungPosition: "center center;"
+    backgroungPosition: "center center;",
   };
 
   return (

@@ -32,13 +32,13 @@ const HomeBannerWithCaption = ({ slice }) => {
   const bannerImageDesktop = {
     backgroundImage: `url('${imageUrl}')`,
     width: "100%",
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
   };
 
   const bannerImageMobile = {
     backgroundImage: `url('${imageUrlMobile}')`,
     width: "100%",
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
   };
 
   return (

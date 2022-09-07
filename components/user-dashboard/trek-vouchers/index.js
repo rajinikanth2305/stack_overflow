@@ -1,1 +1,1 @@
-export { default as UserTrekVouchersSliceZone } from './UserTrekVouchersSliceZone';
+export { default as UserTrekVouchersSliceZone } from "./UserTrekVouchersSliceZone";

@@ -158,7 +158,7 @@ export const globals = css.global`
   }
   /* DialogDemo.css */
 
-/*.dialog-demo .p-button {
+  /*.dialog-demo .p-button {
     margin: 0 .5rem 0 0;
     min-width: 10rem;
 }
@@ -171,5 +171,4 @@ export const globals = css.global`
 .dialog-demo .p-dialog .p-button {
     min-width: 6rem;
 }*/
-    
 `;

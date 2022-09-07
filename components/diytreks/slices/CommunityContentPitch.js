@@ -3,9 +3,7 @@ import { RichText } from "prismic-reactjs";
 import { diyStyles } from "styles";
 import Image from "next/image";
 import Slider from "react-slick";
-import {
-  DIYTreksGuide
-} from "../slices";
+import { DIYTreksGuide } from "../slices";
 
 const CommunityContentPitch = ({ slice }) => {
   const heading1 = slice?.primary?.heading1;
@@ -64,7 +62,7 @@ const CommunityContentPitch = ({ slice }) => {
           </div>
         </div>
         <div>
-        <DIYTreksGuide slice={slice} key={`slice-${1}`}  />
+          <DIYTreksGuide slice={slice} key={`slice-${1}`} />
         </div>
         <style jsx global>
           {diyStyles}

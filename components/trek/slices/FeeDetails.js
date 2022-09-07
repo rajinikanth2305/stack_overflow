@@ -47,7 +47,7 @@ const FeeDetails = ({ data }) => {
     //     setFeeDetails(slice);
     //     console.log(slice);
     //   });
-    const slice = data && data.find(x => x.slice_type === "trek_fee_details");
+    const slice = data && data.find((x) => x.slice_type === "trek_fee_details");
     setFeeDetails(slice);
     // console.log(slice);
   }
@@ -118,7 +118,9 @@ const FeeDetails = ({ data }) => {
                 <a onClick={handleShow}>See Inclusions and Exclusions</a>
               </p>
               <p className="trek-info-detail text-decoration-underline cursor-pointer">
-                <a href="/blog/cancellation-policy" target="_blank">See cancellation policy</a>
+                <a href="/blog/cancellation-policy" target="_blank">
+                  See cancellation policy
+                </a>
               </p>
               <div className="my-3">
                 <Link href="#view-dates">

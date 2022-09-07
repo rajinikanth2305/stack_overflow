@@ -90,7 +90,7 @@ export const experimentStyles = css.global`
   .expirimentMainImage {
     position: relative;
     height: 480px;
-    border-bottom: 2px solid rgb(255,193,0);
+    border-bottom: 2px solid rgb(255, 193, 0);
     width: 100%;
   }
   .p-text-3 {
@@ -114,7 +114,7 @@ export const experimentStyles = css.global`
   .expImage {
     position: relative;
     height: 240px;
-    border-bottom: 2px solid rgb(255,193,0);
+    border-bottom: 2px solid rgb(255, 193, 0);
     width: 100%;
   }
   .cross-trek-details {

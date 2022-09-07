@@ -18,22 +18,25 @@ const AboutUs = ({ doc, articleData }) => {
   if (doc && doc.data) {
     return (
       <>
-      <HomeLayout>
-        <Head>
-          <meta charset="utf-8" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
+        <HomeLayout>
+          <Head>
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+            <title>Aboutus - India hikes</title>
+          </Head>
+          <HikeHeader />
+          <AboutUsSliceZone
+            sliceZone={doc.data.body}
+            articleData={articleData}
           />
-          <title>Aboutus - India hikes</title>
-        </Head>
-        <HikeHeader />
-        <AboutUsSliceZone sliceZone={doc.data.body} articleData={articleData} />
-        <IHTrekWithSwathi />
-        <IHFooter />
-      </HomeLayout>
-      <ScrollToTop smooth color="#000000" />
+          <IHTrekWithSwathi />
+          <IHFooter />
+        </HomeLayout>
+        <ScrollToTop smooth color="#000000" />
       </>
     );
   }
@@ -51,7 +54,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     (await client.getSingle("aboutih_type", ref ? { ref } : null)) || {};
 
   const articleData = [];
-  const slice = doc?.data?.body?.find(x => x?.slice_type === "ih_media");
+  const slice = doc?.data?.body?.find((x) => x?.slice_type === "ih_media");
 
   if (slice?.items?.length > 0) {
     for (var i = 0; i < slice?.items.length; i++) {
@@ -70,8 +73,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     props: {
       doc,
       preview,
-      articleData
-    }
+      articleData,
+    },
   };
 }
 

@@ -23,7 +23,7 @@ const KnowYourTrek = ({ slice, data }) => {
   const accordionTabImg = accordionTabImgArray?.map((data, i) => {
     const inner_content_slice_id = data?.inner_content_slice_id[0]?.text;
     const sliceType = slice_zone.find(
-      x => x.slice_type === data?.inner_content_slice_id[0]?.text
+      (x) => x.slice_type === data?.inner_content_slice_id[0]?.text
     );
     return (
       <Accordion key={i}>
@@ -124,7 +124,10 @@ const KnowYourTrek = ({ slice, data }) => {
                     <h2 className="title-h2 th-2m pb-08">
                       {RichText.asText(heading1)}
                     </h2>
-                    <div className="p-text-4 mpt4 pt-3" id="how_does_each_day_looks">
+                    <div
+                      className="p-text-4 mpt4 pt-3"
+                      id="how_does_each_day_looks"
+                    >
                       {RichText.render(heading2)}
                     </div>
                     <div className="my-5 mmt-2">{accordionTabImg}</div>

@@ -5,8 +5,7 @@ import { ChooseTreks } from "styles";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { TrekCardSliceZone } from "components/trekCard/"
-
+import { TrekCardSliceZone } from "components/trekCard/";
 
 const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
   const heading1 = slice?.primary?.heading1;
@@ -24,16 +23,16 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -44,23 +43,30 @@ const ChooseTheseTreks = ({ slice, trekPageData1 }) => {
           // centerMode: true,
           // centerPadding: '20px',
           adaptiveHeight: false,
-        }
-      }
-    ]
+        },
+      },
+    ],
   };
 
   const chooseTrekImage = trekPageData1?.map(function (data, i) {
-    const tData = data?.data?.body?.find(x => x.slice_type === "trek_banner");
+    const tData = data?.data?.body?.find((x) => x.slice_type === "trek_banner");
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
       // url = `/trek/${slugUrl}`;
       url = `/${slugUrl}`;
     }
-    const getFamilyTrek = data?.tags?.find(x => x === "FamilyTrek");
+    const getFamilyTrek = data?.tags?.find((x) => x === "FamilyTrek");
 
-
-    return <TrekCardSliceZone key={i} tData={tData} getFamilyTrek={getFamilyTrek} url={url} trekId={data.slugs[0]} />
+    return (
+      <TrekCardSliceZone
+        key={i}
+        tData={tData}
+        getFamilyTrek={getFamilyTrek}
+        url={url}
+        trekId={data.slugs[0]}
+      />
+    );
   });
 
   return (

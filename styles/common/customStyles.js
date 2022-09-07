@@ -945,7 +945,7 @@ export const customStyles = css.global`
     text-transform: none;
     padding: 0 20px;
   }
-  
+
   .table-btn-blue:hover {
     color: #ffffff;
   }
@@ -1251,7 +1251,7 @@ export const customStyles = css.global`
     color: rgba(57, 114, 41, 1);
     font-family: Franklin Gothic;
   }
-  
+
   .text-red {
     color: red;
     font-family: Franklin Gothic;
@@ -2428,7 +2428,8 @@ export const customStyles = css.global`
     width: 20px;
   }
 
-  .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+  .nav-tabs .nav-link:hover,
+  .nav-tabs .nav-link:focus {
     border-color: transparent;
   }
 
@@ -2491,14 +2492,16 @@ export const customStyles = css.global`
     display: none;
   }
 
-  .p-button, .p-button-success {
-    background: rgba(255,193,0,1) !important;
+  .p-button,
+  .p-button-success {
+    background: rgba(255, 193, 0, 1) !important;
     border: none !important;
     color: #000000 !important;
   }
 
-  .p-button:hover, .p-button-success:hover {
-    background: rgba(255,193,0,1) !important;
+  .p-button:hover,
+  .p-button-success:hover {
+    background: rgba(255, 193, 0, 1) !important;
     border: none !important;
     color: #000000 !important;
   }
@@ -2610,7 +2613,7 @@ export const customStyles = css.global`
     .table.table-dashboard-profile-style-1.ctb > tbody > tr > td {
       white-space: normal;
     }
-    
+
     .table-dashboard-profile-style-3.ctb > thead > tr,
     .table-dashboard-profile-style-3.ctb > tbody > tr {
       display: grid;
@@ -3090,7 +3093,7 @@ export const customStyles = css.global`
       font-style: normal;
       font-weight: normal;
       font-size: 16px;
-      color: rgba(0,0,0,1);
+      color: rgba(0, 0, 0, 1);
       text-transform: none;
     }
 
@@ -3367,7 +3370,8 @@ export const customStyles = css.global`
       bottom: 0;
       width: 100%;
     }
-    .table-btn-blue, .table-btn-yellow  {
+    .table-btn-blue,
+    .table-btn-yellow {
       line-height: 18px;
     }
   }
@@ -3398,7 +3402,8 @@ export const customStyles = css.global`
       bottom: 0;
       width: 100%;
     }
-    .table-btn-blue, .table-btn-yellow  {
+    .table-btn-blue,
+    .table-btn-yellow {
       line-height: 18px;
     }
   }

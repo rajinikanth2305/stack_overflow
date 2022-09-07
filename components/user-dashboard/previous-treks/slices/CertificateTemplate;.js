@@ -7,11 +7,11 @@ import {
   StyleSheet,
   PDFViewer,
   PDFDownloadLink,
-  Image
+  Image,
 } from "@react-pdf/renderer";
 import moment from "moment";
 
-const CertificateTemplate = certificateData => {
+const CertificateTemplate = (certificateData) => {
   const [selectedReceipts, setselectedReceipts] = useState();
 
   // console.log(certificateData);
@@ -20,12 +20,12 @@ const CertificateTemplate = certificateData => {
   const styles = StyleSheet.create({
     page: {
       // flexDirection: 'row',
-      backgroundColor: "#ffffff"
+      backgroundColor: "#ffffff",
     },
     section: {
       // margin: 10,
       // padding: 10,
-      width: "100%"
+      width: "100%",
     },
     section1: {
       backgroundColor: "#ffffff",
@@ -34,7 +34,7 @@ const CertificateTemplate = certificateData => {
       width: "67%",
       position: "absolute",
       top: "68%",
-      left: "23%"
+      left: "23%",
     },
     header1: {
       color: "#2c2e35",
@@ -48,7 +48,7 @@ const CertificateTemplate = certificateData => {
       left: "5%",
       paddingBottom: "2px",
       width: "100%",
-      textDecoration: "underline"
+      textDecoration: "underline",
     },
     sectionText: {
       color: "#2c2e35",
@@ -56,7 +56,7 @@ const CertificateTemplate = certificateData => {
       fontWeight: "extrabold",
       paddingTop: "5px",
       paddingBottom: "5px",
-      textAlign: "center"
+      textAlign: "center",
     },
     header2: {
       color: "#2c2e35",
@@ -67,7 +67,7 @@ const CertificateTemplate = certificateData => {
       left: "31%",
       width: "52%",
       textAlign: "center",
-      lineHeight: "1.5px"
+      lineHeight: "1.5px",
     },
     header22: {
       color: "#2c2e35",
@@ -78,7 +78,7 @@ const CertificateTemplate = certificateData => {
       left: "31%",
       width: "52%",
       textAlign: "center",
-      lineHeight: "1.5px"
+      lineHeight: "1.5px",
     },
     header23: {
       color: "#2c2e35",
@@ -89,41 +89,47 @@ const CertificateTemplate = certificateData => {
       left: "32.5%",
       width: "45%",
       textAlign: "center",
-      lineHeight: "1.5px"
+      lineHeight: "1.5px",
     },
     voucherRow: {
       flexDirection: "row",
       marginLeft: "10px",
       marginRight: "10px",
-      padding: 10
+      padding: 10,
     },
     voucherCol1: {
-      width: "40%"
+      width: "40%",
     },
     voucherColAll: {
-      width: "20%"
+      width: "20%",
     },
     voucherTableLabel: {
       fontSize: "10px",
       backgroundColor: "#f8c301",
-      padding: "10px"
+      padding: "10px",
     },
     voucherTableValue: {
       fontSize: "10px",
       padding: "10px",
       borderBottom: "1px solid #d3d3d3",
-      borderLeft: "1px solid #d3d3d3"
+      borderLeft: "1px solid #d3d3d3",
     },
     voucherTableValueLast: {
       fontSize: "10px",
       padding: "10px",
       borderLeft: "1px solid #d3d3d3",
       borderRight: "1px solid #d3d3d3",
-      borderBottom: "1px solid #d3d3d3"
-    }
+      borderBottom: "1px solid #d3d3d3",
+    },
   });
 
-  const pName = certificateData && certificateData?.certificateData?.userTrekBookingParticipants?.find(x => x.userDetailsForDisplay.email === certificateData?.certificateData?.email);
+  const pName =
+    certificateData &&
+    certificateData?.certificateData?.userTrekBookingParticipants?.find(
+      (x) =>
+        x.userDetailsForDisplay.email ===
+        certificateData?.certificateData?.email
+    );
 
   // console.log(certificateData?.certificateData?.email);
 
@@ -134,13 +140,9 @@ const CertificateTemplate = certificateData => {
           <View style={styles.section}>
             <Image src="/certificate.png" />
             <Text style={styles.header1}>
-              {
-                pName && pName?.userDetailsForDisplay?.firstName
-              }
+              {pName && pName?.userDetailsForDisplay?.firstName}
               &nbsp;
-              {
-                pName && pName?.userDetailsForDisplay?.lastName
-              }
+              {pName && pName?.userDetailsForDisplay?.lastName}
             </Text>
             <Text style={styles.header2}>
               For successfully completing the{" "}
@@ -176,9 +178,24 @@ const CertificateTemplate = certificateData => {
             <Text style={styles.sectionText}>
               {certificateData.certificateData &&
                 certificateData.certificateData.trekName}{" "}
-              | Trek Grade: {certificateData && certificateData.certificateData.trekDifficulty === "EASY" ? "Easy" : certificateData.certificateData.trekDifficulty === "MODERATE" ? "Moderate" : certificateData.certificateData.trekDifficulty === "MODERATE_DIFFICULT" ? "Moderate-Difficult" : certificateData.certificateData.trekDifficulty === "DIFFICULT" ? "Difficult" : ""} |
-              Duration: {certificateData.certificateData.trekDuration} Days |
-              Max Altitude: {certificateData.certificateData.trekAltitude.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} ft
+              | Trek Grade:{" "}
+              {certificateData &&
+              certificateData.certificateData.trekDifficulty === "EASY"
+                ? "Easy"
+                : certificateData.certificateData.trekDifficulty === "MODERATE"
+                ? "Moderate"
+                : certificateData.certificateData.trekDifficulty ===
+                  "MODERATE_DIFFICULT"
+                ? "Moderate-Difficult"
+                : certificateData.certificateData.trekDifficulty === "DIFFICULT"
+                ? "Difficult"
+                : ""}{" "}
+              | Duration: {certificateData.certificateData.trekDuration} Days |
+              Max Altitude:{" "}
+              {certificateData.certificateData.trekAltitude
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+              ft
             </Text>
           </View>
         </Page>

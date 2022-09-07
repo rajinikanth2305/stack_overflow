@@ -24,7 +24,7 @@ const TrekExpertSpeak = ({ slice }) => {
   const bannerImageExpertSpeak = {
     backgroundImage: `url('${bannerImage}')`,
     width: "100%",
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
   };
 
   const whatILikeImageView = whatILikeImageArray?.map((data, i) => {
@@ -50,28 +50,30 @@ const TrekExpertSpeak = ({ slice }) => {
             </div>
           </div>
           <div className="col-lg-1 col-md-12"></div>
-          {data?.what_i_like_image?.url !== undefined && <div className="col-lg-4 col-md-12 mb-4">
-            <div className="what_i_like_image cursor-pointer">
-              {data?.what_i_like_image?.url !== undefined && (
-                <Image
-                  src={data?.what_i_like_image?.url}
-                  layout="fill"
-                  objectFit="contain"
-                  objectPosition="left"
-                  onClick={() => {
-                    setImgUrl(data?.what_i_like_image?.url);
-                    setShow(true);
-                  }}
-                  unoptimized
-                />
-              )}
-            </div>
-            <div>
-              <div className="trek_summary_desc font-italic py-3 mpb-0">
-                {RichText.render(data?.what_i_like_image_desc)}
+          {data?.what_i_like_image?.url !== undefined && (
+            <div className="col-lg-4 col-md-12 mb-4">
+              <div className="what_i_like_image cursor-pointer">
+                {data?.what_i_like_image?.url !== undefined && (
+                  <Image
+                    src={data?.what_i_like_image?.url}
+                    layout="fill"
+                    objectFit="contain"
+                    objectPosition="left"
+                    onClick={() => {
+                      setImgUrl(data?.what_i_like_image?.url);
+                      setShow(true);
+                    }}
+                    unoptimized
+                  />
+                )}
+              </div>
+              <div>
+                <div className="trek_summary_desc font-italic py-3 mpb-0">
+                  {RichText.render(data?.what_i_like_image_desc)}
+                </div>
               </div>
             </div>
-          </div>}
+          )}
         </div>
       </div>
     );
@@ -86,12 +88,14 @@ const TrekExpertSpeak = ({ slice }) => {
               <div>
                 {data?.what_i_dont_like_content_title?.map((tit, index) => {
                   return (
-                    <div key = {index}>
-                      {tit?.text !== "" && <h5 key={index} className="p-text-2 mb-3">
-                        <b>
-                          {i + 1}. {tit?.text}
-                        </b>
-                      </h5>}
+                    <div key={index}>
+                      {tit?.text !== "" && (
+                        <h5 key={index} className="p-text-2 mb-3">
+                          <b>
+                            {i + 1}. {tit?.text}
+                          </b>
+                        </h5>
+                      )}
                     </div>
                   );
                 })}
@@ -127,7 +131,7 @@ const TrekExpertSpeak = ({ slice }) => {
             </div>
           )}
         </div>
-      </div >
+      </div>
     );
   });
 
@@ -245,7 +249,7 @@ const TrekExpertSpeak = ({ slice }) => {
                     style={{
                       minHeight: "300px",
                       height: trekExpertSecHeight,
-                      overflow: "hidden"
+                      overflow: "hidden",
                     }}
                   >
                     <div>{whatILikeImageView}</div>

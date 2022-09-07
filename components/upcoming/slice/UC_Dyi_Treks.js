@@ -37,7 +37,9 @@ const UCDYITreks = ({ slice }) => {
                 </div>
                 <div className="mt-5 pt-3 m-text-center">
                   <Link href={CTAUrl}>
-                    <button className="btn btn-bihtn-yellow hvr-grow">Read More</button>
+                    <button className="btn btn-bihtn-yellow hvr-grow">
+                      Read More
+                    </button>
                   </Link>
                 </div>
               </div>

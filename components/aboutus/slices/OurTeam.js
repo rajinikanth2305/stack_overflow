@@ -29,9 +29,9 @@ const OurTeam = () => {
     const client = Client();
     const doc = await client
       .query([Prismic.Predicates.at("document.type", "hike_team")])
-      .then(function(response) {
+      .then(function (response) {
         const tt = response.results[0].data.body;
-        const slice = tt && tt.filter(x => x.slice_type === "our_team");
+        const slice = tt && tt.filter((x) => x.slice_type === "our_team");
         setOurTeamMmbers(slice);
         console.log(slice);
       });
@@ -39,9 +39,9 @@ const OurTeam = () => {
 
   const membersList =
     ourTeamMmbers &&
-    ourTeamMmbers.map(function(dd, i) {
+    ourTeamMmbers.map(function (dd, i) {
       const membersArray = dd.items;
-      const member = membersArray.map(function(mem, i) {
+      const member = membersArray.map(function (mem, i) {
         return (
           <>
             <div className="col-4 col-lg-2 col-md-6">

@@ -5,22 +5,20 @@ import Link from "next/link";
 import Prismic from "@prismicio/client";
 import { Client } from "utils/prismicHelpers";
 
-
 const DIYTreksGuide = ({ slice }) => {
-  const heading1 = "Complete list of Documented Treks";//slice?.primary?.heading1;
-  const heading2 = "Scroll through our database of 200+ documented treks from all over the country!"; //slice?.primary?.heading2;
+  const heading1 = "Complete list of Documented Treks"; //slice?.primary?.heading1;
+  const heading2 =
+    "Scroll through our database of 200+ documented treks from all over the country!"; //slice?.primary?.heading2;
   //const treksArray = slice?.items;
 
   const [documentTreksData, setDocumentTreksData] = useState([]);
   const [render, setRender] = useState(false);
   const [haha, setHaha] = useState([]);
 
-
   useEffect(() => {
     // getDocumentTrekData();
     getPages();
   }, []);
-
 
   // const getDocumentTrekData = async () => {
   //   const client = Client();
@@ -57,33 +55,37 @@ const DIYTreksGuide = ({ slice }) => {
             categories
           }
         }`;
-    const data = []
-    let pageNum = 1
+    const data = [];
+    let pageNum = 1;
     const fetch = async () => {
-      const resp = await client.query([
-        Prismic.Predicates.at("document.type", "document_trek_type")],
+      const resp = await client.query(
+        [Prismic.Predicates.at("document.type", "document_trek_type")],
         {
-          'graphQuery': mySuperGraphQuery,
+          graphQuery: mySuperGraphQuery,
           pageSize: 100,
-          page: pageNum
+          page: pageNum,
         }
-      )
+      );
       data.push(...resp.results);
       if (resp.next_page) {
-        pageNum++
-        await fetch()
+        pageNum++;
+        await fetch();
       }
-    }
-    await fetch()
+    };
+    await fetch();
     data?.sort(function (a, b) {
-      if (a?.uid < b?.uid) { return -1; }
-      if (a?.uid > b?.uid) { return 1; }
+      if (a?.uid < b?.uid) {
+        return -1;
+      }
+      if (a?.uid > b?.uid) {
+        return 1;
+      }
       return 0;
     });
     setDocumentTreksData(data);
     setRender(true);
     // return data
-  }
+  };
 
   console.log(documentTreksData);
 
@@ -105,10 +107,10 @@ const DIYTreksGuide = ({ slice }) => {
                     data?.data?.categories?.match(/Easy/g)
                       ? "badge-green-diy"
                       : data?.data?.categories?.match(/Moderate/g)
-                        ? "badge-yellow-diy"
-                        : data?.data?.categories?.match(/Difficult/g)
-                          ? "badge-red-diy"
-                          : "badge-blue-diy"
+                      ? "badge-yellow-diy"
+                      : data?.data?.categories?.match(/Difficult/g)
+                      ? "badge-red-diy"
+                      : "badge-blue-diy"
                   }
                 ></p>
               </div>
@@ -136,9 +138,7 @@ const DIYTreksGuide = ({ slice }) => {
                 </h2>
               </div>
               <div className="col-lg-6 col-md-12">
-                <p className="p-text-2 text-white m-0">
-                  {heading2}
-                </p>
+                <p className="p-text-2 text-white m-0">{heading2}</p>
               </div>
             </div>
           </div>
@@ -219,7 +219,8 @@ const DIYTreksGuide = ({ slice }) => {
                 </div>
                 <div className="mx-2">
                   <p className="mt-3-1 mb-0">
-                    <span className="badge-blue-lg mx-2"></span>Moderate-Difficult{" "}
+                    <span className="badge-blue-lg mx-2"></span>
+                    Moderate-Difficult{" "}
                   </p>
                 </div>
                 <div className="mx-2">
@@ -243,7 +244,6 @@ const DIYTreksGuide = ({ slice }) => {
         </div>
         {render && (
           <div className="container my-3">
-
             <div className="row">{treks}</div>
           </div>
         )}

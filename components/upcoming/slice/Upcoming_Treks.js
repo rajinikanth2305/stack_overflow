@@ -6,7 +6,10 @@ import { Client } from "utils/prismicHelpers";
 import Prismic from "@prismicio/client";
 import Image from "next/image";
 import ReactPaginate from "react-paginate";
-import { TrekCardSliceZone, TrekCardSliceZoneMobile } from "components/trekCard";
+import {
+  TrekCardSliceZone,
+  TrekCardSliceZoneMobile,
+} from "components/trekCard";
 // import { responseSymbol } from "next/dist/server/web/spec-compliant/fetch-event";
 
 const UpComingTreks = ({ slice }) => {
@@ -26,7 +29,7 @@ const UpComingTreks = ({ slice }) => {
     all: false,
     familyTrek: false,
     season: "",
-    difficulty: ""
+    difficulty: "",
   });
 
   const find = () => {
@@ -68,12 +71,12 @@ const UpComingTreks = ({ slice }) => {
         all: true,
         familyTrek: false,
         season: "",
-        difficulty: ""
+        difficulty: "",
       });
       const doc = await client
         .query([Prismic.Predicates.at("document.type", "trek")], {
           pageSize: vpageSize,
-          page: pageNo
+          page: pageNo,
         })
         .then(function (response) {
           // response is the response object, response.results holds the documents
@@ -88,13 +91,13 @@ const UpComingTreks = ({ slice }) => {
         all: false,
         familyTrek: true,
         season: "",
-        difficulty: ""
+        difficulty: "",
       });
       const doc = await client
         .query(
           [
             Prismic.Predicates.at("document.type", "trek"),
-            Prismic.Predicates.at("document.tags", [`FamilyTrek`])
+            Prismic.Predicates.at("document.tags", [`FamilyTrek`]),
           ],
           { pageSize: vpageSize, page: pageNo }
         )
@@ -111,7 +114,7 @@ const UpComingTreks = ({ slice }) => {
         all: false,
         familyTrek: false,
         season: { seasonValue },
-        difficulty: { difficultyValue }
+        difficulty: { difficultyValue },
       });
       const doc = await client
         .query(
@@ -119,8 +122,8 @@ const UpComingTreks = ({ slice }) => {
             Prismic.Predicates.at("document.type", "trek"),
             Prismic.Predicates.at("document.tags", [
               `${seasonValue}`,
-              `${difficultyValue}`
-            ])
+              `${difficultyValue}`,
+            ]),
           ],
           { pageSize: vpageSize, page: pageNo }
         )
@@ -130,13 +133,13 @@ const UpComingTreks = ({ slice }) => {
           setFilterResult(true);
 
           const res = [];
-          response?.results?.forEach(result => {
+          response?.results?.forEach((result) => {
             //console.log(result);
-            if (result?.data?.family_trek === true
-              || result?.data?.private_trek === true) {
-
-            }
-            else {
+            if (
+              result?.data?.family_trek === true ||
+              result?.data?.private_trek === true
+            ) {
+            } else {
               // res.push(result);
               res.push(result);
             }
@@ -177,50 +180,62 @@ const UpComingTreks = ({ slice }) => {
   };
 
   const showResults = useMemo(() => {
-
-    let trekToDoImage = [], trekToDoImageMobileView = []
+    let trekToDoImage = [],
+      trekToDoImageMobileView = [];
     if (results.length) {
       trekToDoImage = results.map(function (data, i) {
-        const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
+        const tData = data?.data?.body.find(
+          (x) => x.slice_type === "trek_banner"
+        );
         let url;
         const slugUrl = data?.uid;
         if (slugUrl) {
           // url = `/trek/${slugUrl}`;
           url = `/${slugUrl}`;
         }
-        const getFamilyTrek = data?.tags?.find(x => x === "FamilyTrek");
+        const getFamilyTrek = data?.tags?.find((x) => x === "FamilyTrek");
         return (
           <div className="col-lg-4 col-md-12" key={i}>
-            <TrekCardSliceZone key={i} tData={tData} getFamilyTrek={getFamilyTrek} url={url} trekId={data.slugs[0]} />
+            <TrekCardSliceZone
+              key={i}
+              tData={tData}
+              getFamilyTrek={getFamilyTrek}
+              url={url}
+              trekId={data.slugs[0]}
+            />
           </div>
         );
       });
 
-
       trekToDoImageMobileView = results?.map(function (data, j) {
-        const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
+        const tData = data?.data?.body.find(
+          (x) => x.slice_type === "trek_banner"
+        );
         let url;
         const slugUrl = data?.uid;
         if (slugUrl) {
           //url = `/trek/${slugUrl}`;
           url = `/${slugUrl}`;
         }
-        const getFamilyTrek = data?.tags?.find(x => x === "FamilyTrek");
+        const getFamilyTrek = data?.tags?.find((x) => x === "FamilyTrek");
         return (
-          <TrekCardSliceZoneMobile key={j} tData={tData} getFamilyTrek={getFamilyTrek} url={url} trekId={data.slugs[0]} />
+          <TrekCardSliceZoneMobile
+            key={j}
+            tData={tData}
+            getFamilyTrek={getFamilyTrek}
+            url={url}
+            trekId={data.slugs[0]}
+          />
         );
       });
     }
     return {
       displayItems: trekToDoImage,
-      mobileDisplayItems: trekToDoImageMobileView
-    }
+      mobileDisplayItems: trekToDoImageMobileView,
+    };
+  }, [results]);
 
-  }, [results])
-
-  const { displayItems, mobileDisplayItems } = showResults
-
-
+  const { displayItems, mobileDisplayItems } = showResults;
 
   return (
     <>
@@ -335,7 +350,6 @@ const UpComingTreks = ({ slice }) => {
                         id="exampleFormControlSelect1"
                         ref={season}
                       >
-
                         <option>Winter (Dec, Jan, Feb)</option>
                         <option>Spring (Mar, Apr)</option>
                         <option>Summer (May, Jun)</option>
@@ -366,13 +380,14 @@ const UpComingTreks = ({ slice }) => {
                           {/* <p className="m-0 link_text" onClick={findAll}>
                             See All Treks
                           </p> */}
-                          <p className="m-0 link_text">
-                            See All Treks
-                          </p>
+                          <p className="m-0 link_text">See All Treks</p>
                         </a>
                       </div>
                       <div>
-                        <button className="btn btn-ih-green hvr-grow" onClick={find}>
+                        <button
+                          className="btn btn-ih-green hvr-grow"
+                          onClick={find}
+                        >
                           Find treks
                         </button>
                       </div>
@@ -384,17 +399,13 @@ const UpComingTreks = ({ slice }) => {
             {filterResult === true ? (
               <>
                 <div className="m-d-none">
-                  <div className="d-flex flex-wrap">
-                    {displayItems}
-                  </div>
+                  <div className="d-flex flex-wrap">{displayItems}</div>
                 </div>
-
 
                 {/******  Below lines are commented for reason: pls dont delete ***************/}
                 {/* <div className="m-view-d-block">
                   {mobileDisplayItems}
                 </div> */}
-
 
                 <div className="m-d-none">
                   <div className="d-flex justify-content-end my-3">
@@ -450,21 +461,23 @@ const UpComingTreks = ({ slice }) => {
                 <div className="row">
                   {results.map(function (result, i) {
                     const slice = result?.data?.body?.find(
-                      x => x.slice_type === "trek_banner"
+                      (x) => x.slice_type === "trek_banner"
                     );
                     const bannerImage = slice?.primary?.trek_banner_image?.url;
                     const trekCaptions = slice?.primary?.trek_caption;
                     return (
                       <div className="col-lg-4 col-md-6" key={i}>
                         <div className="uc_fliter_treks_images">
-                          {bannerImage && <Image
-                            src={bannerImage}
-                            layout="fill"
-                            objectFit="cover"
-                            objectPosition="50% 50%"
-                            alt="imgs"
-                            unoptimized
-                          />}
+                          {bannerImage && (
+                            <Image
+                              src={bannerImage}
+                              layout="fill"
+                              objectFit="cover"
+                              objectPosition="50% 50%"
+                              alt="imgs"
+                              unoptimized
+                            />
+                          )}
                           <div className="image_overlay_text_area_layout4">
                             <div className="p-absolute">
                               <p className="image_overlay_text_title mb-1">

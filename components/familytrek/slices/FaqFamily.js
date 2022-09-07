@@ -6,8 +6,8 @@ import Card from "react-bootstrap/Card";
 import Link from "next/link";
 import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
-import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
-import AccordionContext from 'react-bootstrap/AccordionContext';
+import { useAccordionToggle } from "react-bootstrap/AccordionToggle";
+import AccordionContext from "react-bootstrap/AccordionContext";
 
 const FaqFamily = ({ slice }) => {
   const faqHeading = slice?.primary?.heading1;
@@ -26,7 +26,7 @@ const FaqFamily = ({ slice }) => {
 
     const decoratedOnClick = useAccordionToggle(
       eventKey,
-      () => callback && callback(eventKey),
+      () => callback && callback(eventKey)
     );
 
     const isCurrentEventKey = currentEventKey === eventKey;
@@ -34,7 +34,7 @@ const FaqFamily = ({ slice }) => {
     return (
       <button
         type="button"
-        className={isCurrentEventKey ? 'show' : ''}
+        className={isCurrentEventKey ? "show" : ""}
         onClick={decoratedOnClick}
       >
         {children}
@@ -58,7 +58,9 @@ const FaqFamily = ({ slice }) => {
       <div className="col-md-6" key={k}>
         <Card>
           <Card.Header>
-            <ContextAwareToggle eventKey={k + 1}>{data.q_title[0].text}</ContextAwareToggle>
+            <ContextAwareToggle eventKey={k + 1}>
+              {data.q_title[0].text}
+            </ContextAwareToggle>
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>

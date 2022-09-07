@@ -19,7 +19,7 @@ import {
   TrekkerVideos,
   CrossTrek,
   FaqHome,
-  PhotoContest
+  PhotoContest,
 } from "./slices";
 /**
  * Post slice zone component
@@ -30,7 +30,7 @@ const SliceZone = ({
   articleData,
   expLearningPrimaryArticleData,
   latestUpdateAarticleData,
-  latestUpdateAarticlePrimaryArticleData
+  latestUpdateAarticlePrimaryArticleData,
 }) =>
   sliceZone.map((slice, index) => {
     switch (slice.slice_type) {

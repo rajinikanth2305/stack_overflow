@@ -16,14 +16,14 @@ const HowToReach = ({ data }) => {
   }, []);
 
   async function findHowToReach() {
-    const slice = data && data.find(x => x.slice_type === "howto_reach");
+    const slice = data && data.find((x) => x.slice_type === "howto_reach");
     setHowToReach(slice);
   }
 
   const mapUrl = howToReach && howToReach?.primary?.map_link.url;
   const howToArray = howToReach && howToReach?.items;
 
-  const howTo = howToArray?.map(function(data, i) {
+  const howTo = howToArray?.map(function (data, i) {
     return (
       <div key={i}>
         {data?.note_image?.url && (

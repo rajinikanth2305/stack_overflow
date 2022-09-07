@@ -6,14 +6,20 @@ import {
   DIYResources,
   BestPostTreks,
   CommunityContentPitch,
-  DIYTreksGuide
+  DIYTreksGuide,
 } from "./slices";
 
 /**
  *  slice zone component
  */
 
-const DIYSliceZone = ({ sliceZone, bestPostTreksData, dtcData, diyResourceData, alldiyTreks }) =>
+const DIYSliceZone = ({
+  sliceZone,
+  bestPostTreksData,
+  dtcData,
+  diyResourceData,
+  alldiyTreks,
+}) =>
   sliceZone.map((slice, index) => {
     switch (slice.slice_type) {
       case "banner":
@@ -21,15 +27,37 @@ const DIYSliceZone = ({ sliceZone, bestPostTreksData, dtcData, diyResourceData, 
       // case "explore_treks":
       //   return <ExploreTreks slice={slice} key={`slice-${index}`} />;
       case "diy_trek_categories":
-        return <TrekCatagories slice={slice} key={`slice-${index}`} dtcData={dtcData} />;
+        return (
+          <TrekCatagories
+            slice={slice}
+            key={`slice-${index}`}
+            dtcData={dtcData}
+          />
+        );
       case "diy_resources":
-        return <DIYResources slice={slice} key={`slice-${index}`} diyResourceData={diyResourceData} />;
+        return (
+          <DIYResources
+            slice={slice}
+            key={`slice-${index}`}
+            diyResourceData={diyResourceData}
+          />
+        );
       case "best_post_treks":
-        return <BestPostTreks slice={slice} key={`slice-${index}`} trekData={bestPostTreksData?.find(x=>x?.key===slice?.primary?.heading1[0].text)?.value} />;
+        return (
+          <BestPostTreks
+            slice={slice}
+            key={`slice-${index}`}
+            trekData={
+              bestPostTreksData?.find(
+                (x) => x?.key === slice?.primary?.heading1[0].text
+              )?.value
+            }
+          />
+        );
       case "community_content_pitch":
         return <CommunityContentPitch slice={slice} key={`slice-${index}`} />;
-     // case "diy_treks_guide":
-       // return <DIYTreksGuide slice={slice} key={`slice-${index}`} alldiyTreks={alldiyTreks} />;
+      // case "diy_treks_guide":
+      // return <DIYTreksGuide slice={slice} key={`slice-${index}`} alldiyTreks={alldiyTreks} />;
       default:
         return null;
     }

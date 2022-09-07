@@ -27,16 +27,16 @@ const DoItYourself = ({ slice }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -44,17 +44,17 @@ const DoItYourself = ({ slice }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          centerMode: true
-        }
-      }
-    ]
+          centerMode: true,
+        },
+      },
+    ],
   };
 
-  const doitImage = doit_doitImage_array.map(function(data, i) {
+  const doitImage = doit_doitImage_array.map(function (data, i) {
     const doitimgs = {
       backgroundImage: `url('${data?.doit_image?.url}')`,
       width: "100%",
-      backgroundRepeat: "no-repeat"
+      backgroundRepeat: "no-repeat",
     };
     const url = `../state?name=${data?.doit_image_caption[0]?.text}`;
     return (

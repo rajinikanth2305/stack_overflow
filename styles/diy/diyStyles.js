@@ -63,7 +63,7 @@ export const diyStyles = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
-    color: rgba(0,0,0,1);
+    color: rgba(0, 0, 0, 1);
     text-transform: uppercase;
   }
 

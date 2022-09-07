@@ -23,9 +23,9 @@ const TrekkersStoriesCommon = () => {
     const client = Client();
     const doc = await client
       .query([Prismic.Predicates.at("document.type", "hike_home_ctype")])
-      .then(function(response) {
+      .then(function (response) {
         const tt = response.results[0].data.body;
-        const slice = tt && tt.find(x => x.slice_type === "trekker_stories");
+        const slice = tt && tt.find((x) => x.slice_type === "trekker_stories");
         setResults(slice);
       });
   }
@@ -47,29 +47,29 @@ const TrekkersStoriesCommon = () => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
-        }
-      }
-    ]
+          arrows: false,
+        },
+      },
+    ],
   };
 
-  const trekkersStoriesImage = trekkersStoriesImageArray?.map(function(
+  const trekkersStoriesImage = trekkersStoriesImageArray?.map(function (
     data,
     i
   ) {

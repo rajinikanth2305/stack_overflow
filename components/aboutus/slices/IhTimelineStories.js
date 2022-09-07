@@ -30,29 +30,29 @@ const IhTimelineStories = ({ slice }) => {
           slidesToShow: 1,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
-        }
-      }
-    ]
+          arrows: false,
+        },
+      },
+    ],
   };
 
-  const trekkingWorldImage = trekkingWorldImageArray?.map(function(data, i) {
+  const trekkingWorldImage = trekkingWorldImageArray?.map(function (data, i) {
     let url;
     const slugUrl = data?.target_link?.slug;
     if (slugUrl) {

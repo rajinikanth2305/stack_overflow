@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Script from "next/script";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { RichText } from "prismic-reactjs";
 import Prismic from "@prismicio/client";
 import { queryRepeatableDocuments } from "services/queries";
@@ -20,27 +20,24 @@ import CrossTrekCommon from "../../components/CrossTrekCommon";
 import ScrollToTop from "react-scroll-to-top";
 import { MOUSEFLOW_WEBSITE_ID } from "utils/constants";
 
-import { isNil, isEmpty } from 'ramda';
+import { isNil, isEmpty } from "ramda";
 /**
  * Trek page component
  */
 const Trek = ({ trekData, trekPageData1 }) => {
+  const router = useRouter();
 
-  const router = useRouter()
-
-  const {calendar : calendarMonth} = router.query
-
+  const { calendar: calendarMonth } = router.query;
 
   if (trekData && trekData.data) {
-
     const getMetaTitle = () => {
       const { data } = trekData;
       const metaTitle = RichText.asText(data.meta_title);
       if (isNil(metaTitle) || isEmpty(metaTitle)) {
-        return RichText.asText(data.trek_title); 
+        return RichText.asText(data.trek_title);
       }
       return metaTitle;
-    }
+    };
 
     const getMetaDescription = () => {
       const { data } = trekData;
@@ -49,23 +46,29 @@ const Trek = ({ trekData, trekPageData1 }) => {
         return "";
       }
       return metaDescription;
-    }
+    };
 
     const getMetaImage = () => {
-      const { data: { body } } = trekData;
-      const trekBannerSlice = body.find(item => item.slice_type === "trek_banner");
+      const {
+        data: { body },
+      } = trekData;
+      const trekBannerSlice = body.find(
+        (item) => item.slice_type === "trek_banner"
+      );
       if (isNil(trekBannerSlice)) return "";
       return trekBannerSlice.primary.trek_banner_image.url;
-    }
+    };
 
     const metaData = {
       title: getMetaTitle(),
       description: getMetaDescription(),
       image: getMetaImage(),
-    }
+    };
 
     const getMouseflowScript = () => {
-      const { query: { uid } } = useRouter();
+      const {
+        query: { uid },
+      } = useRouter();
       switch (uid) {
         case "rupin-pass":
         case "kashmir-great-lakes":
@@ -81,35 +84,39 @@ const Trek = ({ trekData, trekPageData1 }) => {
                 })();
               `}
             </Script>
-          )
+          );
         default:
           return null;
       }
-    }
+    };
 
     return (
       <>
-      <HomeLayout>
-        <Head>
-          <title>{metaData.title}</title>
-          <meta name="description" content={metaData.description} />
-          <meta property="og:title" content={metaData.title} key="og-title" />
-          <meta property="og:description" content={metaData.description} key="og-description" />
-          <meta property="og:image" content={metaData.image} key="og-image" />
-        </Head>
-        <HikeHeader />
-        <TrekSliceZone
-          sliceZone={trekData.data.body}
-          trekPageData1={trekPageData1}
-          calendarMonth = {calendarMonth || null}
-        />
-        {/* <WhyTrekWithIH /> */}
-        <IHTrekWithSwathi />
-        <CrossTrekCommon />
-        <IHFooter />
-      </HomeLayout>
-      <ScrollToTop smooth color="#000000" />
-      {getMouseflowScript()}
+        <HomeLayout>
+          <Head>
+            <title>{metaData.title}</title>
+            <meta name="description" content={metaData.description} />
+            <meta property="og:title" content={metaData.title} key="og-title" />
+            <meta
+              property="og:description"
+              content={metaData.description}
+              key="og-description"
+            />
+            <meta property="og:image" content={metaData.image} key="og-image" />
+          </Head>
+          <HikeHeader />
+          <TrekSliceZone
+            sliceZone={trekData.data.body}
+            trekPageData1={trekPageData1}
+            calendarMonth={calendarMonth || null}
+          />
+          {/* <WhyTrekWithIH /> */}
+          <IHTrekWithSwathi />
+          <CrossTrekCommon />
+          <IHFooter />
+        </HomeLayout>
+        <ScrollToTop smooth color="#000000" />
+        {getMouseflowScript()}
       </>
     );
   }
@@ -120,7 +127,7 @@ const Trek = ({ trekData, trekPageData1 }) => {
 export async function getStaticProps({
   params,
   preview = null,
-  previewData = {}
+  previewData = {},
 }) {
   const { ref } = previewData;
   const trekData =
@@ -130,7 +137,7 @@ export async function getStaticProps({
   let trekPageData1 = [];
 
   const slice = trekData.data?.body?.find(
-    x => x.slice_type === "others_treks_like"
+    (x) => x.slice_type === "others_treks_like"
   );
   // console.log( "items");
   // console.log( JSON.stringify(slice.items));
@@ -140,11 +147,11 @@ export async function getStaticProps({
   if (slice?.items.length > 0) {
     for (var i = 0; i < slice?.items.length; i++) {
       const data = slice?.items[i];
-      const slugUrl =  data?.other_trek?.id;
+      const slugUrl = data?.other_trek?.id;
       if (slugUrl !== undefined) {
         const trek_details = await Client().getByID(slugUrl);
-        if(trek_details!==undefined && trek_details!==null ) 
-           trekPageData1.push(trek_details);
+        if (trek_details !== undefined && trek_details !== null)
+          trekPageData1.push(trek_details);
       }
     }
   }
@@ -152,24 +159,24 @@ export async function getStaticProps({
     props: {
       preview,
       trekData,
-      trekPageData1
+      trekPageData1,
     },
-   // revalidate: 60
+    // revalidate: 60
   };
 }
 
 export async function getStaticPaths() {
   //const documents = await queryRepeatableDocuments((doc) => doc.type === 'trek')
   const documents = await queryRepeatableDocumentsWithDocTypeFilter("trek");
- 
- /* const response = await Client().query(
+
+  /* const response = await Client().query(
     Prismic.Predicates.at("document.type", "trek")
   );*/
 
- // const documents = response.results;
+  // const documents = response.results;
   return {
-    paths: documents.map(doc => `/trek/${doc.uid}`),
-    fallback: true
+    paths: documents.map((doc) => `/trek/${doc.uid}`),
+    fallback: true,
   };
 }
 

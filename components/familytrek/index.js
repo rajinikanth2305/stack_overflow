@@ -1,1 +1,1 @@
-export { default as FamilyTrekSliceZone } from './FamilyTrekSliceZone';
+export { default as FamilyTrekSliceZone } from "./FamilyTrekSliceZone";

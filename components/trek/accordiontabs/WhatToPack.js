@@ -22,7 +22,8 @@ const WhatToPack = ({ data }) => {
   }, []);
 
   async function findHowToReach() {
-    const slice = data && data.find(x => x.slice_type === "trek_what_to_pack");
+    const slice =
+      data && data.find((x) => x.slice_type === "trek_what_to_pack");
     setWhattoPack(slice);
   }
 
@@ -57,12 +58,12 @@ const WhatToPack = ({ data }) => {
     "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
   const youtube_imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
 
-  getYoutubeTitle(cleanVideoId && cleanVideoId ? cleanVideoId : "", function(
-    err,
-    title
-  ) {
-    setVtitle(title);
-  });
+  getYoutubeTitle(
+    cleanVideoId && cleanVideoId ? cleanVideoId : "",
+    function (err, title) {
+      setVtitle(title);
+    }
+  );
 
   return (
     <>

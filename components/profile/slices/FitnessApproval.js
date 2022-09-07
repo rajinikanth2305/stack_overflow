@@ -11,14 +11,14 @@ const FitnessApproval = () => {
   const uploadOptions = {
     label: "Uplaod",
     icon: "pi pi-upload",
-    className: "p-button-success"
+    className: "p-button-success",
   };
   const cancelOptions = {
     label: "Cancel",
     icon: "pi pi-times",
-    className: "p-button-danger"
+    className: "p-button-danger",
   };
-  const myUploader = event => {
+  const myUploader = (event) => {
     //event.files == files to upload
   };
   return (

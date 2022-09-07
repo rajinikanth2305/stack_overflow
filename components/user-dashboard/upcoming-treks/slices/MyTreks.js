@@ -2,14 +2,14 @@ import React, {
   useState,
   forwardRef,
   useImperativeHandle,
-  useRef
+  useRef,
 } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import {
   getTrekLocations,
-  saveUserLocations
+  saveUserLocations,
 } from "../../../../services/queries";
 import { Dropdown } from "primereact/dropdown";
 import { useForm, Controller } from "react-hook-form";
@@ -48,7 +48,7 @@ const MyTreks = forwardRef((props, ref) => {
     control,
     errors,
     formState,
-    getValues
+    getValues,
   } = useForm();
 
   const [saveState, setSaveState] = useState(false);
@@ -70,16 +70,16 @@ const MyTreks = forwardRef((props, ref) => {
           slidesToShow: 4,
           slidesToScroll: 2,
           infinite: false,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -88,13 +88,13 @@ const MyTreks = forwardRef((props, ref) => {
           slidesToScroll: 1,
           arrows: false,
           centerMode: true,
-          adaptiveHeight: true
-        }
-      }
-    ]
+          adaptiveHeight: true,
+        },
+      },
+    ],
   };
 
-  const essentialsArraydetails = essentialIndexes?.map(function(i) {
+  const essentialsArraydetails = essentialIndexes?.map(function (i) {
     const data = essentialData && essentialData[i];
     return (
       <div className="col-lg-3 col-md-6 col-12" key={i}>
@@ -112,7 +112,7 @@ const MyTreks = forwardRef((props, ref) => {
     );
   });
 
-  const trekVideosArrayDetails = videoIndexes?.map(function(i) {
+  const trekVideosArrayDetails = videoIndexes?.map(function (i) {
     const data = videoData && videoData[i];
     const result = data?.video_url?.url?.split(
       /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
@@ -186,7 +186,7 @@ const MyTreks = forwardRef((props, ref) => {
         .toLowerCase();
       // console.log(trekName);
       const result = trekData?.prismicContents?.results?.find(
-        x => x.uid.toLowerCase() === trekName?.toLowerCase()
+        (x) => x.uid.toLowerCase() === trekName?.toLowerCase()
       );
       // console.log(result);
       setTrekPageData(result);
@@ -199,7 +199,7 @@ const MyTreks = forwardRef((props, ref) => {
       setBookingState(bookState);
 
       if (bookState) {
-        getTrekLocations(trekId).then(res => {
+        getTrekLocations(trekId).then((res) => {
           console.log("location - get" + res);
           setLocations(res);
           setParticipantData(data);
@@ -222,12 +222,12 @@ const MyTreks = forwardRef((props, ref) => {
         setRender(true);
         //setLocations(null);
       }
-    }
+    },
   }));
 
-  const fillPrismicContents = result => {
+  const fillPrismicContents = (result) => {
     const essentialDownloads = result?.data?.body.find(
-      x => x.slice_type === "essentials_downloads"
+      (x) => x.slice_type === "essentials_downloads"
     );
     //  console.log(essentialDownloads);
 
@@ -244,7 +244,7 @@ const MyTreks = forwardRef((props, ref) => {
     }
 
     const trekVideoData = result?.data?.body?.find(
-      x => x.slice_type === "trek_videos"
+      (x) => x.slice_type === "trek_videos"
     );
     if (trekVideoData !== undefined) {
       const trekVideosArray = trekVideoData && trekVideoData?.items;
@@ -261,7 +261,7 @@ const MyTreks = forwardRef((props, ref) => {
 
   const getVideoHeading = () => {
     let trekVideoData = trekPageData.data.body.find(
-      x => x.slice_type === "trek_videos"
+      (x) => x.slice_type === "trek_videos"
     );
     const trekVideoHeading = trekVideoData && trekVideoData?.primary?.heading1;
     return trekVideoHeading;
@@ -272,7 +272,7 @@ const MyTreks = forwardRef((props, ref) => {
     return essentialsHeading;
   };
 
-  const onSubmit = formData => {
+  const onSubmit = (formData) => {
     const userLocations = [];
 
     participantData?.userTrekBookingParticipants?.map((user, index) => {
@@ -290,7 +290,7 @@ const MyTreks = forwardRef((props, ref) => {
         const udata = {
           participantId: user.participantId,
           pickupLocationId: locid1,
-          dropLocationId: locid2
+          dropLocationId: locid2,
         };
         userLocations.push(udata);
       }
@@ -299,13 +299,15 @@ const MyTreks = forwardRef((props, ref) => {
     if (userLocations.length > 0) {
       ///call save and show message
       // console.log(userLocations);
-      saveUserLocations(participantData.bookingId, userLocations).then(res => {
-        setSaveState(true);
-        props.onMyTrekSaveDetail(
-          participantData.bookingId,
-          participantData.email
-        );
-      });
+      saveUserLocations(participantData.bookingId, userLocations).then(
+        (res) => {
+          setSaveState(true);
+          props.onMyTrekSaveDetail(
+            participantData.bookingId,
+            participantData.email
+          );
+        }
+      );
     }
   };
 
@@ -331,7 +333,7 @@ const MyTreks = forwardRef((props, ref) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {indexes?.map(index => {
+                  {indexes?.map((index) => {
                     const pdata =
                       participantData?.userTrekBookingParticipants[index];
                     const fieldName = `locs[${index}]`;
@@ -341,17 +343,19 @@ const MyTreks = forwardRef((props, ref) => {
                       pdata?.userDetailsForDisplay?.email ===
                       participantData.email
                         ? " * " +
-                          pdata?.userDetailsForDisplay?.firstName + " " +
+                          pdata?.userDetailsForDisplay?.firstName +
+                          " " +
                           pdata?.userDetailsForDisplay?.lastName +
                           " (You) "
-                        : pdata?.userDetailsForDisplay?.firstName + " " +
+                        : pdata?.userDetailsForDisplay?.firstName +
+                          " " +
                           pdata?.userDetailsForDisplay?.lastName;
 
                     const pickupLocations = locations.filter(
-                      x => x.type === "PICKUP"
+                      (x) => x.type === "PICKUP"
                     );
                     const dropLocations = locations.filter(
-                      x => x.type === "DROP_OFF"
+                      (x) => x.type === "DROP_OFF"
                     );
 
                     const currentPickupLocation =
@@ -365,9 +369,9 @@ const MyTreks = forwardRef((props, ref) => {
 
                     const state =
                       pdata?.bookingParticipantState === "CANCELLED";
-                  //  console.log(currentPickupLocation + name);
-                  //  console.log(currentDropLocation + name);
-                  //  console.log(state);
+                    //  console.log(currentPickupLocation + name);
+                    //  console.log(currentDropLocation + name);
+                    //  console.log(state);
 
                     return (
                       <tr>
@@ -425,14 +429,14 @@ const MyTreks = forwardRef((props, ref) => {
                                           optionLabel="name"
                                           optionValue="locationId"
                                           options={locations.filter(
-                                            x => x.type === "PICKUP"
+                                            (x) => x.type === "PICKUP"
                                           )}
                                           value={
                                             value == null || value == undefined
                                               ? currentPickupLocation
                                               : value
                                           }
-                                          onChange={e => {
+                                          onChange={(e) => {
                                             onChange(e.value);
                                           }}
                                           placeholder="Select a Pickup location"
@@ -470,9 +474,9 @@ const MyTreks = forwardRef((props, ref) => {
                                               : value
                                           }
                                           options={locations.filter(
-                                            x => x.type === "DROP_OFF"
+                                            (x) => x.type === "DROP_OFF"
                                           )}
-                                          onChange={e => {
+                                          onChange={(e) => {
                                             onChange(e.value);
                                           }}
                                           placeholder="Select a Drop Off location"

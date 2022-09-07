@@ -1,1 +1,1 @@
-export { default as CertificatesSliceZone } from './CertificatesSliceZone';
+export { default as CertificatesSliceZone } from "./CertificatesSliceZone";

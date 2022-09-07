@@ -3,7 +3,7 @@ import { RichText } from "prismic-reactjs";
 import Image from "next/image";
 import { trekStyle } from "styles";
 
-const useMountEffect = fun => useEffect(fun, []);
+const useMountEffect = (fun) => useEffect(fun, []);
 
 const Sidebar = () => {
   const myRef = useRef(null);

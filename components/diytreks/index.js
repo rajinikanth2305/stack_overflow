@@ -1,1 +1,1 @@
-export { default as DIYSliceZone } from './DIYSliceZone';
+export { default as DIYSliceZone } from "./DIYSliceZone";

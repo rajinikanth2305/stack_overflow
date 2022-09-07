@@ -16,7 +16,7 @@ import { ThankYouSlizeZone } from "../../components/user-dashboard/thank-you";
  * UpComing component
  */
 const ThankYou = ({ doc }) => {
-  if (doc ) {
+  if (doc) {
     return (
       <HomeLayout>
         <Head>
@@ -43,8 +43,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const client = Client();
 
-  const doc = {test:"value"};
-   /* (await client.getSingle(
+  const doc = { test: "value" };
+  /* (await client.getSingle(
       "hike_team",
       ref ? { ref } : null
     )) || {};*/
@@ -55,13 +55,11 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     },
   )*/
 
-
-
   return {
     props: {
       doc,
-      preview
-    }
+      preview,
+    },
   };
 }
 

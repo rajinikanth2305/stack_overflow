@@ -3,11 +3,21 @@ import React, { useState, useEffect, useRef } from "react";
 import { RichText } from "prismic-reactjs";
 import moment from "moment";
 import { Toast } from "primereact/toast";
-import { Text, Quote, ImageWithCaption, IframeTag, EmbedHtml, LatestUpdates } from "./index";
+import {
+  Text,
+  Quote,
+  ImageWithCaption,
+  IframeTag,
+  EmbedHtml,
+  LatestUpdates,
+} from "./index";
 import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
 
-import { saveDocumentComments, getDocumentComments } from "../../../services/queries";
+import {
+  saveDocumentComments,
+  getDocumentComments,
+} from "../../../services/queries";
 /**
  * Post slice component
  */
@@ -21,7 +31,7 @@ const PostRender = ({
   updatesData,
   upComingData,
   relatedArticles,
-  related_authors
+  related_authors,
 }) => {
   const [show, setShow] = useState(false);
   const [trekVideoUrl, setTrekVideoUrl] = useState();
@@ -37,13 +47,13 @@ const PostRender = ({
   const caption = "";
   //console.log(upComingData);
 
-  const featureSlice = data.body.find(x => x.slice_type == "feature_image");
+  const featureSlice = data.body.find((x) => x.slice_type == "feature_image");
   if (featureSlice != null) {
     featureImageUrl = featureSlice.primary.feature_image.url;
   }
 
   const getArticleImage = data?.body?.filter(
-    x => x.slice_type === "image_with_caption"
+    (x) => x.slice_type === "image_with_caption"
   );
 
   React.useEffect(() => {
@@ -78,7 +88,7 @@ const PostRender = ({
         votes: 0,
         parentId: 0,
         replies: [],
-        childrens: []
+        childrens: [],
       },
       {
         id: 2,
@@ -100,7 +110,7 @@ const PostRender = ({
         votes: 0,
         parentId: 0,
         replies: [],
-        childrens: []
+        childrens: [],
       },
       {
         id: 3,
@@ -122,7 +132,7 @@ const PostRender = ({
         votes: 0,
         parentId: 1,
         replies: [],
-        childrens: []
+        childrens: [],
       },
       {
         id: 4,
@@ -144,28 +154,30 @@ const PostRender = ({
         votes: 0,
         parentId: 3,
         replies: [],
-        childrens: []
-      }
+        childrens: [],
+      },
     ];
     return data;
   };
 
-  const getPostCommentsByPostName = postName => {
-    getDocumentComments(postName).then(res => {
-      // console.log(res);
-      var comments = getPreparedData(res);
-      setPostComments(comments);
-      const arr = Array.from(new Array(comments?.length), (x, i) => i);
-      setIndexes(arr);
-      setCounter(arr?.length);
-      //setRender(true);
-    }).catch(error => console.log(error));
+  const getPostCommentsByPostName = (postName) => {
+    getDocumentComments(postName)
+      .then((res) => {
+        // console.log(res);
+        var comments = getPreparedData(res);
+        setPostComments(comments);
+        const arr = Array.from(new Array(comments?.length), (x, i) => i);
+        setIndexes(arr);
+        setCounter(arr?.length);
+        //setRender(true);
+      })
+      .catch((error) => console.log(error));
   };
 
-  const buildInternalBindStructure = res => {
+  const buildInternalBindStructure = (res) => {
     let comments = [];
 
-    res?.map(y => {
+    res?.map((y) => {
       comments.push({
         id: y.id,
         oldCommentId: y.oldCommentId == null ? 0 : y.oldCommentId,
@@ -186,31 +198,31 @@ const PostRender = ({
         votes: y.renderLatestUpdatesvotes,
         parentId: y.parentId,
         replies: [],
-        childrens: []
+        childrens: [],
       });
     });
     return comments;
   };
 
-  const getPreparedData = res => {
+  const getPreparedData = (res) => {
     const dt = buildInternalBindStructure(res); //tempData();
     //console.log(dt);
     let comments = [];
 
-    dt?.filter(y => y.parentId == 0).map(y => {
+    dt?.filter((y) => y.parentId == 0).map((y) => {
       comments.push(y);
     });
     // console.log(comments);
 
-    dt?.filter(y => y.parentId > 0).map(x => {
-      const comment = comments?.find(z => z.id === x.parentId);
+    dt?.filter((y) => y.parentId > 0).map((x) => {
+      const comment = comments?.find((z) => z.id === x.parentId);
       if (comment !== null && comment !== undefined) {
         comment?.replies?.push(x);
         comment?.childrens?.push(x.id);
       } else {
         let findNesteParent;
-        comments?.map(cmt => {
-          cmt.childrens?.map(item => {
+        comments?.map((cmt) => {
+          cmt.childrens?.map((item) => {
             if (item === x.parentId) {
               findNesteParent = cmt;
               return cmt;
@@ -230,9 +242,9 @@ const PostRender = ({
     return comments;
   };
   const findChildrensAndAdd = (commentItem, childItem) => {
-    var reply = commentItem?.replies?.find(v => v.id === childItem.parentId);
+    var reply = commentItem?.replies?.find((v) => v.id === childItem.parentId);
     if (reply == null || reply === undefined) {
-      commentItem?.replies?.map(rep => {
+      commentItem?.replies?.map((rep) => {
         findChildrensAndAdd(rep, childItem);
       });
     } else {
@@ -282,7 +294,7 @@ const PostRender = ({
     );
   };
 
-  const renderUserSays = slice => {
+  const renderUserSays = (slice) => {
     return (
       <div className="border-top border-bottom quote-box py-3">
         <div className="row d-flex align-items-center">
@@ -309,7 +321,7 @@ const PostRender = ({
     );
   };
 
-  const renderLeftImageRightText = slice => {
+  const renderLeftImageRightText = (slice) => {
     if (slice.primary.position === "Right") {
       return renderRightImageLeftText(slice);
     } else {
@@ -337,7 +349,7 @@ const PostRender = ({
     }
   };
 
-  const renderRightImageLeftText = slice => {
+  const renderRightImageLeftText = (slice) => {
     return (
       <div className="row">
         <div className="col-lg-5 col-md-12 pr-5p">
@@ -391,13 +403,13 @@ const PostRender = ({
             </p>
             {upComingData?.map(function (data, i) {
               const tData = data?.data?.body?.find(
-                x => x.slice_type === "trek_banner"
+                (x) => x.slice_type === "trek_banner"
               );
               let url;
               const slugUrl = data?.uid;
               if (slugUrl) {
                 //url = `/trek/${slugUrl}`;
-                 url = `/${slugUrl}`;
+                url = `/${slugUrl}`;
               }
               return (
                 <div className="border-bottom mb-3">
@@ -430,9 +442,9 @@ const PostRender = ({
                       <b>
                         {tData?.primary?.trek_caption?.length > 25
                           ? `${tData?.primary?.trek_caption?.substring(
-                            0,
-                            25
-                          )}...`
+                              0,
+                              25
+                            )}...`
                           : tData?.primary?.trek_caption}
                       </b>
                     </p>
@@ -451,7 +463,7 @@ const PostRender = ({
     );
   };
 
-  const greyBgWithGrey = slice => {
+  const greyBgWithGrey = (slice) => {
     return (
       <div>
         <div className="grey-bg border-top-c">
@@ -461,7 +473,7 @@ const PostRender = ({
     );
   };
 
-  const greyBgWithTextAuthorSays = slice => {
+  const greyBgWithTextAuthorSays = (slice) => {
     return (
       <div>
         <div className="grey-bg border-top-c">
@@ -495,7 +507,7 @@ const PostRender = ({
     );
   };
 
-  const getVideoId = url => {
+  const getVideoId = (url) => {
     const result = url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
     const videoIdWithParams = result && result[2];
 
@@ -508,11 +520,10 @@ const PostRender = ({
     }
   };
 
-  const renderEmbedVideo = slice => {
+  const renderEmbedVideo = (slice) => {
     console.log(slice);
     const videoId = slice?.primary?.youtube_id?.replace('"', "");
-    const videoUrl =
-      "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+    const videoUrl = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
     const imageURL = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
     console.log(videoUrl);
 
@@ -533,7 +544,7 @@ const PostRender = ({
                       src="/v-icon.png"
                       alt="playicon'"
                       className="paly-icon icon-size-50"
-                    // onClick={handleShow}
+                      // onClick={handleShow}
                     />
                   </div>
                 </div>
@@ -561,7 +572,9 @@ const PostRender = ({
   };
 
   const renderLatestVideos = () => {
-    const slice = data?.body?.find(x => x.slice_type === "youtube_video_lists");
+    const slice = data?.body?.find(
+      (x) => x.slice_type === "youtube_video_lists"
+    );
 
     return (
       <div className="ml-100 my-5 py-5">
@@ -590,7 +603,7 @@ const PostRender = ({
                       src="/v-icon.png"
                       alt="playicon'"
                       className="paly-icon icon-size-50"
-                    // onClick={handleShow}
+                      // onClick={handleShow}
                     />
                   </div>
                 </div>
@@ -623,13 +636,11 @@ const PostRender = ({
   const renderRelatedArticles = () => {
     return (
       <div className="ml-100">
-        <p className="p-text-3-fgc border-bottom-custom-1 pb-2">
-          DIY Articles
-        </p>
+        <p className="p-text-3-fgc border-bottom-custom-1 pb-2">DIY Articles</p>
         {relatedArticles?.map(function (article, i) {
           let featureImageUrl = "";
           const featureSlice = article?.data?.body?.find(
-            x => x.slice_type == "feature_image"
+            (x) => x.slice_type == "feature_image"
           );
           if (featureSlice != null) {
             featureImageUrl = featureSlice?.primary?.feature_image?.url;
@@ -656,11 +667,11 @@ const PostRender = ({
     );
   };
 
-  const onReply = formData => {
+  const onReply = (formData) => {
     setActiveReply(formData);
   };
 
-  const onReplyComments = formData => {
+  const onReplyComments = (formData) => {
     //console.log(formData);
 
     let url = location.href.replace(location.origin, "");
@@ -687,7 +698,7 @@ const PostRender = ({
         severity: "error",
         summary: `'Reply text should'nt be Empty!'`,
         detail: "Post Comments",
-        life: 6000
+        life: 6000,
       });
       return;
     }
@@ -697,7 +708,7 @@ const PostRender = ({
         severity: "error",
         summary: `'Reply UserName should'nt be Empty!'`,
         detail: "Post Comments",
-        life: 6000
+        life: 6000,
       });
       return;
     }
@@ -706,7 +717,7 @@ const PostRender = ({
       toast.current.show({
         severity: "error",
         summary: `'Reply Email should'nt be Empty!'`,
-        detail: "Post Comments"
+        detail: "Post Comments",
       });
       return;
     }
@@ -733,22 +744,22 @@ const PostRender = ({
       userId: 0,
       commentAlterId: 0,
       votes: 0,
-      parentId: formData
+      parentId: formData,
     };
 
-    saveDocumentComments(postName, postData).then(res => {
+    saveDocumentComments(postName, postData).then((res) => {
       toast?.current?.show({
         severity: "success",
         summary: `' Successfully saved'`,
         detail: "Post-Comments",
-        life: 6000
+        life: 6000,
       });
       alert("Thank you very much for your comments");
       setActiveReply(0);
     });
   };
 
-  const onPostComments = formData => {
+  const onPostComments = (formData) => {
     let url = location.href.replace(location.origin, "");
     let pageUrl = url.split("/");
     const postName = pageUrl[2]; //postname
@@ -767,7 +778,7 @@ const PostRender = ({
         severity: "error",
         summary: `'Reply text should'nt be Empty!'`,
         detail: "Post Comments",
-        life: 6000
+        life: 6000,
       });
       return;
     }
@@ -776,7 +787,7 @@ const PostRender = ({
       toast.current.show({
         severity: "error",
         summary: `'Reply UserName should'nt be Empty!'`,
-        detail: "Post Comments"
+        detail: "Post Comments",
       });
       return;
     }
@@ -785,7 +796,7 @@ const PostRender = ({
       toast.current.show({
         severity: "error",
         summary: `'Reply Email should'nt be Empty!'`,
-        detail: "Post Comments"
+        detail: "Post Comments",
       });
       return;
     }
@@ -811,15 +822,15 @@ const PostRender = ({
       userId: 0,
       commentAlterId: 0,
       votes: 0,
-      parentId: 0
+      parentId: 0,
     };
 
-    saveDocumentComments(postName, postData).then(res => {
+    saveDocumentComments(postName, postData).then((res) => {
       toast?.current?.show({
         severity: "success",
         summary: `' Successfully saved'`,
         detail: "Post-Comments",
-        life: 6000
+        life: 6000,
       });
       alert("Thank you very much for your comments");
       document.getElementById("userName").value = "";
@@ -828,7 +839,7 @@ const PostRender = ({
     });
   };
 
-  const recursiveReplyrender = commentData => {
+  const recursiveReplyrender = (commentData) => {
     let field1 = "";
     let field2 = "";
     let field3 = "";
@@ -859,7 +870,7 @@ const PostRender = ({
             <p>
               <div
                 dangerouslySetInnerHTML={{
-                  __html: commentData?.commentContent
+                  __html: commentData?.commentContent,
                 }}
               />
             </p>
@@ -868,7 +879,7 @@ const PostRender = ({
         <div className="d-flex justify-content-end w-100">
           <button
             className="btn btn-btn-gray-new mt-3 mb-2"
-            onClick={e => {
+            onClick={(e) => {
               onReply(commentData.id);
             }}
           >
@@ -934,7 +945,7 @@ const PostRender = ({
             <div className="d-flex justify-content-end w-100">
               <button
                 className="btn btn-btn-yellow-new mt-3 mb-2"
-                onClick={e => {
+                onClick={(e) => {
                   onReplyComments(commentData.id);
                 }}
               >
@@ -944,7 +955,7 @@ const PostRender = ({
           </div>
         )}
 
-        {commentData?.replies?.map(commentReply => {
+        {commentData?.replies?.map((commentReply) => {
           return <div>{recursiveReplyrender(commentReply)}</div>;
         })}
       </div>
@@ -952,7 +963,8 @@ const PostRender = ({
   };
 
   function ValidateEmail(input) {
-    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    var validRegex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (input.value.match(validRegex)) {
       return true;
     } else {
@@ -963,10 +975,12 @@ const PostRender = ({
   }
 
   const latestUpdatesView = () => {
-    const slice = data?.body?.find(item => item.slice_type === "trek_latest_updates");
+    const slice = data?.body?.find(
+      (item) => item.slice_type === "trek_latest_updates"
+    );
     if (!slice) return null;
-    return <LatestUpdates slice={slice} key="slice-trek-latest-updates" />
-  }
+    return <LatestUpdates slice={slice} key="slice-trek-latest-updates" />;
+  };
 
   return (
     <>
@@ -984,7 +998,9 @@ const PostRender = ({
             <div className="h-100">
               <div className="d-flex align-items-center w-100 h-100">
                 <div className="banner-text-sec w-100">
-                  <p className="banner-text-1 m-m-b-5"><b>{RichText.asText(data?.title)}</b></p>
+                  <p className="banner-text-1 m-m-b-5">
+                    <b>{RichText.asText(data?.title)}</b>
+                  </p>
                   <div className="d-flex align-items-center justify-content-center">
                     <p className="banner-text-2 mb-0 text-white w-40 text-center">
                       {data?.sub_title}
@@ -994,7 +1010,7 @@ const PostRender = ({
               </div>
             </div>
           </div>
-          {featureImageUrl &&
+          {featureImageUrl && (
             <Image
               src={featureImageUrl}
               layout="fill"
@@ -1002,7 +1018,7 @@ const PostRender = ({
               objectPosition="bottom"
               unoptimized
             />
-          }
+          )}
         </div>
 
         {latestUpdatesView()}
@@ -1201,7 +1217,7 @@ const PostRender = ({
                     <div className="d-flex justify-content-end w-100">
                       <button
                         className="btn btn-btn-yellow-new mt-3 mb-2"
-                        onClick={e => {
+                        onClick={(e) => {
                           onPostComments();
                         }}
                       >
@@ -1210,7 +1226,7 @@ const PostRender = ({
                     </div>
                   </div>
 
-                  {indexes.map(index => {
+                  {indexes.map((index) => {
                     const fieldName = `voucher[${index}]`;
                     const sdata = postComments[index];
                     let field1 = "";
@@ -1255,14 +1271,14 @@ const PostRender = ({
                           <div className="p-text-4 my-3">
                             <div
                               dangerouslySetInnerHTML={{
-                                __html: sdata?.commentContent
+                                __html: sdata?.commentContent,
                               }}
                             />
                           </div>
                           <div className="d-flex justify-content-end w-100">
                             <button
                               className="btn btn-btn-gray-new mt-3 mb-2"
-                              onClick={e => {
+                              onClick={(e) => {
                                 onReply(sdata.id);
                               }}
                             >
@@ -1329,7 +1345,7 @@ const PostRender = ({
                               <div className="d-flex justify-content-end w-100">
                                 <button
                                   className="btn btn-btn-yellow-new mt-3 mb-2"
-                                  onClick={e => {
+                                  onClick={(e) => {
                                     onReplyComments(sdata.id);
                                   }}
                                 >
@@ -1339,11 +1355,13 @@ const PostRender = ({
                             </div>
                           )}
 
-                          {/*nested replies */
+                          {
+                            /*nested replies */
 
-                            sdata?.replies?.map(rep => {
+                            sdata?.replies?.map((rep) => {
                               return recursiveReplyrender(rep);
-                            })}
+                            })
+                          }
                         </div>
                       </div>
                     );
@@ -1386,28 +1404,34 @@ const PostRender = ({
         </div>
       </div> */}
         </div>
-        {data?.gpx_script[0]?.text !== undefined && <div className="trek_with_swathi_bg p-4">
-          <div className="container">
-            <div className="row d-flex align-items-center">
-              <div className="col-lg-6 col-md-12">
-                <p className="sign_up_text mb-0">GPX File Opt in</p>
-                <p class="sign_up_text_desc">We go to great lengths to ensure you have a safe trek. So here’s a GPX file of the trail to help you navigate without getting lost.</p>
-              </div>
-              <div className="col-lg-6 col-md-12">
-                <iframe
-                  src={RichText.asText(data?.gpx_script)}
-                  width="100%"
-                  height="350"
-                  frameborder="0"
-                  marginheight="0"
-                  marginwidth="0"
-                >
-                  Loading…
-                </iframe>
+        {data?.gpx_script[0]?.text !== undefined && (
+          <div className="trek_with_swathi_bg p-4">
+            <div className="container">
+              <div className="row d-flex align-items-center">
+                <div className="col-lg-6 col-md-12">
+                  <p className="sign_up_text mb-0">GPX File Opt in</p>
+                  <p class="sign_up_text_desc">
+                    We go to great lengths to ensure you have a safe trek. So
+                    here’s a GPX file of the trail to help you navigate without
+                    getting lost.
+                  </p>
+                </div>
+                <div className="col-lg-6 col-md-12">
+                  <iframe
+                    src={RichText.asText(data?.gpx_script)}
+                    width="100%"
+                    height="350"
+                    frameborder="0"
+                    marginheight="0"
+                    marginwidth="0"
+                  >
+                    Loading…
+                  </iframe>
+                </div>
               </div>
             </div>
           </div>
-        </div>}
+        )}
         <style jsx global>
           {customStyles}
         </style>

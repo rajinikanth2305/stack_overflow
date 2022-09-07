@@ -7,7 +7,7 @@ const UCFeaturedTreks = ({ slice }) => {
   const featuredTreksTitle = slice?.primary?.uc_featured_treks_title;
   const ucFeaturedTreksImagesArray = slice?.items;
 
-  const ucFeaturedTreksImages = ucFeaturedTreksImagesArray?.map(function(
+  const ucFeaturedTreksImages = ucFeaturedTreksImagesArray?.map(function (
     data,
     i
   ) {

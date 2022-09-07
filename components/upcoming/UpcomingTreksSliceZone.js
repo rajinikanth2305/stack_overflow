@@ -11,7 +11,7 @@ import {
   BestTrekToDo,
   UCDYITreks,
   UcCrossTrek,
-  AllIndiaHikes
+  AllIndiaHikes,
 } from "./slice";
 
 /**
@@ -61,7 +61,11 @@ const UpComingTreksSliceZone = ({
           <UCAutnumTreks
             slice={slice}
             key={`slice-${index}`}
-            autumnData={ihautumnData?.find(x=>x?.key===slice?.primary?.uc_autumn_treks_title[0].text)?.value}
+            autumnData={
+              ihautumnData?.find(
+                (x) => x?.key === slice?.primary?.uc_autumn_treks_title[0].text
+              )?.value
+            }
           />
         );
       case "uc_family_treks":
@@ -72,7 +76,11 @@ const UpComingTreksSliceZone = ({
           <UCWinterTreks
             slice={slice}
             key={`slice-${index}`}
-            winterData={ihwinderData?.find(x=>x?.key===slice?.primary?.uc_winter_treks_title[0].text)?.value}
+            winterData={
+              ihwinderData?.find(
+                (x) => x?.key === slice?.primary?.uc_winter_treks_title[0].text
+              )?.value
+            }
           />
         );
 
@@ -86,16 +94,11 @@ const UpComingTreksSliceZone = ({
         );
       case "uc_diy_treks":
         return <UCDYITreks slice={slice} key={`slice-${index}`} />;
-        
+
       case "uc_cross_trek":
         return <UcCrossTrek slice={slice} key={`slice-${index}`} />;
       case "uc_allindia_hikes_treks":
-        return (
-          <AllIndiaHikes
-            slice={slice}
-            key={`slice-${index}`}
-          />
-        );
+        return <AllIndiaHikes slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }

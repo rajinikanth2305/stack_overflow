@@ -1,1 +1,1 @@
-export { default as WeeklyMailerSliceZone } from './WeeklyMailerSliceZone';
+export { default as WeeklyMailerSliceZone } from "./WeeklyMailerSliceZone";

@@ -160,7 +160,7 @@ export const founderStyles = css.global`
     .border-top-image {
       border-top: 2px solid rgb(255, 193, 0);
     }
-    
+
     .p-text-2 {
       font-size: 16px;
       line-height: 24px;

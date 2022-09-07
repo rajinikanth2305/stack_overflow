@@ -1,1 +1,1 @@
-export { default as VouchersSliceZone } from './VouchersSliceZone';
+export { default as VouchersSliceZone } from "./VouchersSliceZone";

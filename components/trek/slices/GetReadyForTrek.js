@@ -19,7 +19,7 @@ const GetReadyForTrek = ({ slice }) => {
             <p className="mb-1 p-text-3">Plan your travel with this</p>
           </div>
           <div className="mx-2">
-              <img src="/arrow-down.png" />
+            <img src="/arrow-down.png" />
           </div>
         </div>
       </>

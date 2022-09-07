@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Modal from "react-bootstrap/Modal";
@@ -12,10 +12,9 @@ import Offloading from "./Offloading";
 import TrekFAQS from "./TrekFAQS";
 import FitnessApproval from "./FitnessApproval";
 
-import auth  from '../../../services/Authenticate';
+import auth from "../../../services/Authenticate";
 
 //import { data } from "jquery";
-
 
 const WelcomeProfile = () => {
   const [show, setShow] = useState(false);
@@ -31,9 +30,7 @@ const WelcomeProfile = () => {
               <div className="row">
                 <div className="col-lg-10 col-md-12 bg-gray border-right b-right-2px">
                   <div className="mb-2 py-4">
-                    <p className="p-text-1 font-weight-bold m-0">
-                      Hi   
-                    </p>
+                    <p className="p-text-1 font-weight-bold m-0">Hi</p>
                     <p className="p-text-1 font-weight-bold">
                       Welcome To Your Indiahikes Trek Dashboard!!!
                     </p>
@@ -310,7 +307,9 @@ const WelcomeProfile = () => {
                     </div>
                     <div className="right-menu-dashboard sticky-top">
                       <ul>
-                        <li><span className="active-li">upcoming treks</span></li>
+                        <li>
+                          <span className="active-li">upcoming treks</span>
+                        </li>
                         <li>previous treks</li>
                         <li>my profile</li>
                         <li>trek vouchers</li>

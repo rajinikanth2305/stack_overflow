@@ -3,14 +3,22 @@ import { RichText } from "prismic-reactjs";
 import Link from "next/link";
 import { linkResolver } from "prismic-configuration";
 
-const Section4 = ({ slice, laPrimaryArticlePrimaryArticleData, latestArticleData }) => {
+const Section4 = ({
+  slice,
+  laPrimaryArticlePrimaryArticleData,
+  latestArticleData,
+}) => {
   const heading1 = slice?.primary?.heading1;
-  const authorName = laPrimaryArticlePrimaryArticleData[0]?.data?.author_link?.uid.replace(/-/g, " ");
+  const authorName =
+    laPrimaryArticlePrimaryArticleData[0]?.data?.author_link?.uid.replace(
+      /-/g,
+      " "
+    );
 
   const latestLrekImage =
     laPrimaryArticlePrimaryArticleData &&
     laPrimaryArticlePrimaryArticleData[0]?.data?.body?.find(
-      x => x.slice_type === "feature_image"
+      (x) => x.slice_type === "feature_image"
     );
 
   let primary_url;
@@ -19,7 +27,7 @@ const Section4 = ({ slice, laPrimaryArticlePrimaryArticleData, latestArticleData
     primary_url = linkResolver(slice?.primary?.primary_article_link);
   }
 
-  const articleLearnMore = latestArticleData?.map(function(data, i) {
+  const articleLearnMore = latestArticleData?.map(function (data, i) {
     const authorName = data?.data?.author_link?.uid.replace(/-/g, " ");
     let url;
     const slugUrl = data?.uid;
@@ -27,10 +35,10 @@ const Section4 = ({ slice, laPrimaryArticlePrimaryArticleData, latestArticleData
       url = `/blog/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.find(
-      x => x.slice_type === "feature_image"
+      (x) => x.slice_type === "feature_image"
     );
     const getArticleHeadingText = data?.data?.body?.find(
-      x => x.slice_type === "text"
+      (x) => x.slice_type === "text"
     );
     return (
       <div key={i} className="col-md-6 col-12">
@@ -81,60 +89,63 @@ const Section4 = ({ slice, laPrimaryArticlePrimaryArticleData, latestArticleData
         <div className="container">
           <div className="row mt-4 pt-2">
             <div className="col-lg-6 col-md-12 col-12">
-              {laPrimaryArticlePrimaryArticleData && laPrimaryArticlePrimaryArticleData && (
-                <div className="card tw_trek_card mx-0 my-4 m-mt-0 cursor-pointer">
-                  <Link href={primary_url ? primary_url : "#"}>
-                    <div className="row">
-                      <div className="col-md-12">
-                        {latestLrekImage &&
-                        latestLrekImage?.primary?.feature_image?.url ? (
-                          <div className="latestLrekImage_bg">
+              {laPrimaryArticlePrimaryArticleData &&
+                laPrimaryArticlePrimaryArticleData && (
+                  <div className="card tw_trek_card mx-0 my-4 m-mt-0 cursor-pointer">
+                    <Link href={primary_url ? primary_url : "#"}>
+                      <div className="row">
+                        <div className="col-md-12">
+                          {latestLrekImage &&
+                          latestLrekImage?.primary?.feature_image?.url ? (
+                            <div className="latestLrekImage_bg">
+                              <img
+                                src={
+                                  latestLrekImage &&
+                                  latestLrekImage?.primary?.feature_image?.url
+                                }
+                                alt="articleImage"
+                                className="latestLrekImage_bg"
+                              />
+                            </div>
+                          ) : (
                             <img
-                              src={
-                                latestLrekImage &&
-                                latestLrekImage?.primary?.feature_image?.url
-                              }
+                              src="../ip.png"
                               alt="articleImage"
                               className="latestLrekImage_bg"
                             />
-                          </div>
-                        ) : (
-                          <img
-                            src="../ip.png"
-                            alt="articleImage"
-                            className="latestLrekImage_bg"
-                          />
-                        )}
-                      </div>
-                      <div className="col-md-12">
-                        <div className="d-flex align-items-center latest_trek_details px-4 py-2">
-                          <div>
-                            <p className="day_trek_talk_title my-3">
-                              {RichText.asText(
-                                laPrimaryArticlePrimaryArticleData &&
-                                  laPrimaryArticlePrimaryArticleData[0]?.data?.title
-                              )}
-                            </p>
-                            <p className="name_editor m-0 text-capitalize">
-                              <i>
-                                By&nbsp;
-                                {laPrimaryArticlePrimaryArticleData && authorName}
-                              </i>
-                            </p>
-                            <p className="name_editor">
-                              <span>
-                                {laPrimaryArticlePrimaryArticleData &&
-                                  laPrimaryArticlePrimaryArticleData[0]?.data?.date}{" "}
-                                {" "}
-                              </span>
-                            </p>
+                          )}
+                        </div>
+                        <div className="col-md-12">
+                          <div className="d-flex align-items-center latest_trek_details px-4 py-2">
+                            <div>
+                              <p className="day_trek_talk_title my-3">
+                                {RichText.asText(
+                                  laPrimaryArticlePrimaryArticleData &&
+                                    laPrimaryArticlePrimaryArticleData[0]?.data
+                                      ?.title
+                                )}
+                              </p>
+                              <p className="name_editor m-0 text-capitalize">
+                                <i>
+                                  By&nbsp;
+                                  {laPrimaryArticlePrimaryArticleData &&
+                                    authorName}
+                                </i>
+                              </p>
+                              <p className="name_editor">
+                                <span>
+                                  {laPrimaryArticlePrimaryArticleData &&
+                                    laPrimaryArticlePrimaryArticleData[0]?.data
+                                      ?.date}{" "}
+                                </span>
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                </div>
-              )}
+                    </Link>
+                  </div>
+                )}
             </div>
 
             <div className="col-lg-6 col-md-12">

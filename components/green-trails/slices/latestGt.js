@@ -24,16 +24,16 @@ const LatestGt = ({ slice, latestUpdateAarticleData }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -41,10 +41,10 @@ const LatestGt = ({ slice, latestUpdateAarticleData }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          centerMode: true
-        }
-      }
-    ]
+          centerMode: true,
+        },
+      },
+    ],
   };
 
   const latestTrekWorld = latestUpdateAarticleData?.map(function (data, index) {
@@ -55,10 +55,10 @@ const LatestGt = ({ slice, latestUpdateAarticleData }) => {
       url = `/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.find(
-      x => x.slice_type === "feature_image"
+      (x) => x.slice_type === "feature_image"
     );
     const getArticleHeadingText = data?.data?.body?.find(
-      x => x.slice_type === "text"
+      (x) => x.slice_type === "text"
     );
     return (
       <div key={index}>
@@ -98,9 +98,9 @@ const LatestGt = ({ slice, latestUpdateAarticleData }) => {
                         )} */}
                       {data?.data?.body[0]?.primary?.text[0]?.text?.length > 25
                         ? `${data?.data?.body[0]?.primary?.text[0]?.text.substring(
-                          0,
-                          100
-                        )}...`
+                            0,
+                            100
+                          )}...`
                         : data?.data?.body[0]?.primary?.text[0]?.text}
                     </p>
                   </div>

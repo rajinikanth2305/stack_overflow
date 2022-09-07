@@ -1,8 +1,14 @@
-import React, { forwardRef, useImperativeHandle, useMemo, useRef, useState } from "react";
+import React, {
+  forwardRef,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Controller, useForm } from "react-hook-form";
 //import { yupResolver } from "@hookform/resolvers/yup";
 
-import { yupResolver } from '@hookform/resolvers/yup/dist/yup.umd';
+import { yupResolver } from "@hookform/resolvers/yup/dist/yup.umd";
 import * as Yup from "yup";
 //import { ConfirmPopup } from 'primereact/confirmpopup'; // To use <ConfirmPopup> tag
 import { Toast } from "primereact/toast";
@@ -10,11 +16,13 @@ import { Button, FormGroup } from "reactstrap";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 import {
-  createNewUser, findUserByAnyEmail, findUserByEmail,
+  createNewUser,
+  findUserByAnyEmail,
+  findUserByEmail,
   getUserByAutoSearch,
   getUsersVoucherByBookingId,
   getUserVoucher,
-  saveDraftBooking
+  saveDraftBooking,
 } from "../../../services/queries";
 import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
@@ -22,10 +30,12 @@ import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
-import { addOrUpdateState, selectStateData } from "../../reduxstate/counterSlice";
+import {
+  addOrUpdateState,
+  selectStateData,
+} from "../../reduxstate/counterSlice";
 import { data } from "jquery";
-import { Dialog } from 'primereact/dialog';
-
+import { Dialog } from "primereact/dialog";
 
 const AddTrekMates = forwardRef((props, ref) => {
   const router = useRouter();
@@ -42,53 +52,49 @@ const AddTrekMates = forwardRef((props, ref) => {
   const [autoFilteredSlopeUserValue, setAutoFilteredSlopeUserValue] = useState(
     []
   );
-  const [
-    selectedSlopeUserAutoValue,
-    setSelectedSlopeUserAutoValue
-  ] = useState();
+  const [selectedSlopeUserAutoValue, setSelectedSlopeUserAutoValue] =
+    useState();
 
   const [findUserData, setFindUserData] = useState(undefined);
   const findEmailRef = useRef();
   const [displayBasic, setDisplayBasic] = useState(false);
   const [displayDifficultTrek, setDisplayDifficultTrek] = useState(false);
-  const [position, setPosition] = useState('center');
+  const [position, setPosition] = useState("center");
   const [displayPosition, setDisplayPosition] = useState(false);
 
   const onDialogShow = (status) => {
     if (status === "DIFFICULT_TREK") {
       setDisplayBasic(false);
       setDisplayDifficultTrek(true);
-    }
-    else {
+    } else {
       setDisplayBasic(true);
     }
-  }
+  };
 
   const onHide = () => {
     setDisplayBasic(false);
     ///redirect to dashboard
     router.push(`/user-dashboard/user-upcoming-treks`);
-  }
+  };
   const renderFooter = (name) => {
     return (
-      <Button label="Ok" onClick={() => onHide()} autoFocus>OK</Button>
+      <Button label="Ok" onClick={() => onHide()} autoFocus>
+        OK
+      </Button>
     );
-  }
-
+  };
 
   const validationSchema = useMemo(
     () =>
       Yup.object({
         firstName: Yup.string().required("First Name is required"),
         lastName: Yup.string().required("LastName  is required"),
-        email: Yup.string()
-          .email()
-          .required("Email  is required"),
+        email: Yup.string().email().required("Email  is required"),
         phone: Yup.string().required("Phone  is required"),
         gender: Yup.string().required("Gender  is required"),
         height: Yup.number().required("Height  is required"),
         weight: Yup.number().required("Weight  is required"),
-        dob: Yup.string().required("Date Of Birth  is required")
+        dob: Yup.string().required("Date Of Birth  is required"),
       }),
     []
   );
@@ -101,38 +107,40 @@ const AddTrekMates = forwardRef((props, ref) => {
     setValue,
     control,
     errors,
-    formState
+    formState,
   } = useForm({
     resolver: yupResolver(validationSchema),
     criteriaMode: "firstError",
-    shouldFocusError: true
+    shouldFocusError: true,
   });
 
-  const autoSearchUsers = event => {
+  const autoSearchUsers = (event) => {
     if (!event.query.trim().length) {
       setAutoFilteredSlopeUserValue([...autoSlopeUserData]);
     } else {
       console.log(event.query);
-      getUserByAutoSearch("CUSTOMER", event.query.toLowerCase()).then(data => {
-        setAutoFilteredSlopeUserValue(
-          data.filter(user => {
-            return user?.firstName
-              ?.toLowerCase()
-              .startsWith(event.query.toLowerCase());
-          })
-        );
-      });
+      getUserByAutoSearch("CUSTOMER", event.query.toLowerCase()).then(
+        (data) => {
+          setAutoFilteredSlopeUserValue(
+            data.filter((user) => {
+              return user?.firstName
+                ?.toLowerCase()
+                .startsWith(event.query.toLowerCase());
+            })
+          );
+        }
+      );
     }
   };
 
-  const onSubmit = async data => {
-    const existUser = users?.find(x => x.email === data.email);
+  const onSubmit = async (data) => {
+    const existUser = users?.find((x) => x.email === data.email);
 
     if (existUser !== undefined) {
       toast.current.show({
         severity: "error",
         summary: `'Create Trekmate ${data.email} is already added'`,
-        detail: ""
+        detail: "",
       });
       return;
     }
@@ -160,7 +168,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       dob: data.dob,
       vouchers: [],
       optedVoucherId: 0,
-      trekFeeForTheUser: 0
+      trekFeeForTheUser: 0,
     });
 
     let responseData;
@@ -170,7 +178,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       toast.current.show({
         severity: "error",
         summary: `${err.response?.data?.message}`,
-        detail: ""
+        detail: "",
       });
       return;
     }
@@ -193,7 +201,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       dob: data.dob,
       vouchers: [],
       optedVoucherId: 0,
-      trekFeeForTheUser: 0
+      trekFeeForTheUser: 0,
     });
 
     await dispatch(addOrUpdateState(sdata));
@@ -202,8 +210,8 @@ const AddTrekMates = forwardRef((props, ref) => {
       {
         email: data.email,
         firstName: data.firstName,
-        lastName: ""
-      }
+        lastName: "",
+      },
     ]);
 
     add();
@@ -217,7 +225,7 @@ const AddTrekMates = forwardRef((props, ref) => {
         weight: "",
         height: "",
         gender: "",
-        dob: ""
+        dob: "",
       },
       {
         keepErrors: true,
@@ -225,12 +233,12 @@ const AddTrekMates = forwardRef((props, ref) => {
         keepIsSubmitted: false,
         keepTouched: false,
         keepIsValid: false,
-        keepSubmitCount: false
+        keepSubmitCount: false,
       }
     );
   };
 
-  const saveDraft = async sdata => {
+  const saveDraft = async (sdata) => {
     return await saveDraftBooking("ADD_TREK_MATES", sdata);
   };
 
@@ -241,7 +249,7 @@ const AddTrekMates = forwardRef((props, ref) => {
           <div>
             Please fill in the following required information:
             <ul>
-              {Object.keys(errors).map(field => (
+              {Object.keys(errors).map((field) => (
                 <li>{field}</li>
               ))}
             </ul>
@@ -254,7 +262,6 @@ const AddTrekMates = forwardRef((props, ref) => {
   const usersData = [];
 
   React.useEffect(() => {
-
     //const arr = Array.from(new Array(usersData.length), (x, i) => i);
     // setIndexes(arr);
     // setCounter(arr.length);
@@ -269,7 +276,7 @@ const AddTrekMates = forwardRef((props, ref) => {
         batchId: data.batchId,
         startDate: data.startDate,
         endDate: data.endDate,
-        trekName: data.trekName
+        trekName: data.trekName,
       };
       setBookingDate(bookingDates);
 
@@ -278,12 +285,12 @@ const AddTrekMates = forwardRef((props, ref) => {
         const tempUsers = [];
 
         sdata.trekUsers
-          .filter(x => x.email !== sdata.primaryUserEmail)
-          .map(x => {
+          .filter((x) => x.email !== sdata.primaryUserEmail)
+          .map((x) => {
             tempUsers.push({
               email: x.email,
               firstName: x.firstName,
-              lastName: x.lastName
+              lastName: x.lastName,
             });
           });
 
@@ -293,33 +300,34 @@ const AddTrekMates = forwardRef((props, ref) => {
         setIndexes(arr);
         setCounter(arr.length);
       }
-    }
+    },
   }));
 
   const nextTabNav = async () => {
-
     let responseData;
     try {
       responseData = await saveDraft(stateData.data);
       console.log(responseData);
-      if (responseData.data.state === "WAITING_LIST" || responseData.data.state === "DIFFICULT_TREK") {
+      if (
+        responseData.data.state === "WAITING_LIST" ||
+        responseData.data.state === "DIFFICULT_TREK"
+      ) {
         /// DISABLE THE PAYMENT TAB
         // props.onNextTabEvent("makepayment",WAITING_LIST);
         onDialogShow(responseData.data.state);
-      }
-      else {
-
+      } else {
         const sdata = JSON.parse(JSON.stringify(stateData.data));
 
-        sdata.trekUsers.map(p => {
+        sdata.trekUsers.map((p) => {
           console.log(p);
-          const participant = responseData?.data?.participants.find(y => y.userId === p.id);
+          const participant = responseData?.data?.participants.find(
+            (y) => y.userId === p.id
+          );
           console.log(participant);
           p.participantsId = participant.id;
           p.insuranceAmount = participant.insuranceAmount;
           p.trekFeeForTheUser = participant.trekFeeForTheUser;
         });
-
 
         let vouchers = await getUsersVoucherByBookingId(sdata.bookingId);
         if (vouchers.length > 0) {
@@ -333,22 +341,19 @@ const AddTrekMates = forwardRef((props, ref) => {
         props.trekUsersChange();
         props.onNextTabEvent("makepayment");
       }
-
     } catch (err) {
       toast.current.show({
         severity: "error",
         summary: `${err.response?.data?.message}`,
-        detail: ""
+        detail: "",
       });
       return;
     }
-
 
     window.scrollTo(0, 0);
   };
 
   const waitingListConfirmation = async () => {
-
     let responseData;
     try {
       responseData = await saveDraft(stateData.data);
@@ -356,7 +361,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       toast.current.show({
         severity: "error",
         summary: `${err.response?.data?.message}`,
-        detail: ""
+        detail: "",
       });
       return;
     }
@@ -368,7 +373,7 @@ const AddTrekMates = forwardRef((props, ref) => {
     addFindUsers(findUserData);
   };
 
-  const addFindUsers = async udata => {
+  const addFindUsers = async (udata) => {
     console.log(users);
 
     let vouchers = []; //await getVoucher(udata.email); Vouchers os only for main owner user
@@ -390,7 +395,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       vouchers: vouchers,
       optedVoucherId: 0,
       trekFeeForTheUser: 0,
-      insuranceAmount: stdata?.trekUsers[0].insuranceAmount
+      insuranceAmount: stdata?.trekUsers[0].insuranceAmount,
     });
 
     // console.log(stdata);
@@ -414,8 +419,8 @@ const AddTrekMates = forwardRef((props, ref) => {
       {
         email: udata.email,
         firstName: udata.firstName,
-        lastName: udata.lastName
-      }
+        lastName: udata.lastName,
+      },
     ]);
 
     // const participantData = responseData?.trekMates.find(
@@ -439,7 +444,7 @@ const AddTrekMates = forwardRef((props, ref) => {
       gender: "",
       vouchers: vouchers,
       optedVoucherId: 0,
-      trekFeeForTheUser: 0
+      trekFeeForTheUser: 0,
     });
 
     /* vouchers = await getUsersVoucherByBookingId(stdata.bookingId);
@@ -457,9 +462,9 @@ const AddTrekMates = forwardRef((props, ref) => {
     document.getElementById("findemail").value = "";
   };
 
-  const transFormVoucherPayload = vouchers => {
+  const transFormVoucherPayload = (vouchers) => {
     const voucherlist = [];
-    vouchers.map(v => {
+    vouchers.map((v) => {
       voucherlist.push({
         id: v.id,
         userId: v.userId,
@@ -476,19 +481,19 @@ const AddTrekMates = forwardRef((props, ref) => {
         userEmail: v.userEmail,
         amountAvailable: v.amountAvailable,
         usedVocuherAmount: 0,
-        appliedDetails: []
+        appliedDetails: [],
       });
     });
     return voucherlist;
   };
 
-  const getVoucher = async userEmail => {
+  const getVoucher = async (userEmail) => {
     let dt = [];
     const data1 = await getUserVoucher(userEmail)
-      .then(data => {
+      .then((data) => {
         return data;
       })
-      .catch(res => {
+      .catch((res) => {
         if (res.response.data?.message) {
           return dt;
         }
@@ -496,7 +501,7 @@ const AddTrekMates = forwardRef((props, ref) => {
     return data1;
   };
 
-  const findUser = e => {
+  const findUser = (e) => {
     // console.log(fieldRef.current.value);
 
     const userEmail = findEmailRef.current.value; //window.document.getElementById("findemail").value;
@@ -506,20 +511,20 @@ const AddTrekMates = forwardRef((props, ref) => {
       toast.current.show({
         severity: "error",
         summary: `'Find Trekker email should not be empty'`,
-        detail: ""
+        detail: "",
       });
       return;
     }
 
     const existUser = users?.find(
-      x => x.email.toLowerCase() === userEmail.toLowerCase()
+      (x) => x.email.toLowerCase() === userEmail.toLowerCase()
     );
 
     if (existUser !== undefined) {
       toast.current.show({
         severity: "error",
         summary: `'Find Trekker ${userEmail} is already added'`,
-        detail: ""
+        detail: "",
       });
       return;
     }
@@ -531,24 +536,24 @@ const AddTrekMates = forwardRef((props, ref) => {
       toast.current.show({
         severity: "error",
         summary: `'Primary Trekker ${userEmail} is a main participant. Add other than main participants emailid'`,
-        detail: ""
+        detail: "",
       });
       return;
     }
 
     if (userEmail !== undefined) {
-      getUserByAutoSearch("CUSTOMER", userEmail.toLowerCase()).then(data => {
+      getUserByAutoSearch("CUSTOMER", userEmail.toLowerCase()).then((data) => {
         if (data.length > 0) {
           //console.log(data[0]);
           const existUser = data?.find(
-            x => x.email.toLowerCase() === userEmail.toLowerCase()
+            (x) => x.email.toLowerCase() === userEmail.toLowerCase()
           );
           if (existUser !== undefined) setFindUserData(existUser);
           else {
             toast.current.show({
               severity: "error",
               summary: `'Find Trekker ${userEmail.toLowerCase()} is not registered in  India hikes, Create new account'`,
-              detail: ""
+              detail: "",
             });
           }
           /*confirmPopup({
@@ -564,7 +569,7 @@ const AddTrekMates = forwardRef((props, ref) => {
           toast.current.show({
             severity: "error",
             summary: `Looks like trekker with ${userEmail.toLowerCase()} has not registered with us. Please create a new account for them.`,
-            detail: ""
+            detail: "",
           });
         }
       });
@@ -573,18 +578,20 @@ const AddTrekMates = forwardRef((props, ref) => {
 
   const add = () => {
     setIndexes([...indexes, counter]);
-    setCounter(prevCounter => prevCounter + 1);
+    setCounter((prevCounter) => prevCounter + 1);
     props.trekUsersChange();
   };
 
-  const remove = async index => {
+  const remove = async (index) => {
     var user = users[index];
-    setIndexes(prevIndexes => [...prevIndexes.filter(item => item !== index)]);
+    setIndexes((prevIndexes) => [
+      ...prevIndexes.filter((item) => item !== index),
+    ]);
     // setCounter((prevCounter) => prevCounter - 1);
 
     const sdata = JSON.parse(JSON.stringify(stateData.data));
     //console.log(JSON.stringify(data));
-    var tindex = sdata.trekUsers.findIndex(x => x.email === user.email);
+    var tindex = sdata.trekUsers.findIndex((x) => x.email === user.email);
     //console.log(tindex);
     sdata.trekUsers.splice(tindex, 1);
     // console.log(JSON.stringify(data));
@@ -597,27 +604,29 @@ const AddTrekMates = forwardRef((props, ref) => {
     { name: "4 feet", code: "4" },
     { name: "5 feet ", code: "5" },
     { name: "6 feet ", code: "6" },
-    { name: "7 feet", code: "7" }
+    { name: "7 feet", code: "7" },
   ];
 
   const genderOptions = [
     { name: "Male", code: "Male" },
     { name: "Female", code: "Female" },
-    { name: "Other", code: "Other" }
+    { name: "Other", code: "Other" },
   ];
 
   const evaluateState = (stateData) => {
-
-    return (stateData?.data?.batchState !== 'WAITING_LIST'
-      || (stateData?.data?.bookingState !== 'INITIATED'
-        && stateData?.data?.bookingState !== 'WAITING_LIST'));
-
+    return (
+      stateData?.data?.batchState !== "WAITING_LIST" ||
+      (stateData?.data?.bookingState !== "INITIATED" &&
+        stateData?.data?.bookingState !== "WAITING_LIST")
+    );
   };
 
   const evaluateStateWaiting = (stateData) => {
-    return (stateData?.data?.batchState === 'WAITING_LIST'
-      && (stateData?.data?.bookingState === 'INITIATED'
-        || stateData?.data?.bookingState === 'WAITING_LIST'));
+    return (
+      stateData?.data?.batchState === "WAITING_LIST" &&
+      (stateData?.data?.bookingState === "INITIATED" ||
+        stateData?.data?.bookingState === "WAITING_LIST")
+    );
   };
 
   return (
@@ -648,7 +657,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                 </p>
 
                 <div className="d-flex align-items-center flex-wrap justify-content-center mb-2 mt-4 pt-1">
-                  {indexes.map(index => {
+                  {indexes.map((index) => {
                     const data = users[index];
                     console.log(data);
                     return (
@@ -690,7 +699,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                       <button
                         type="button"
                         className="btn btn-yellow-outline hvr-grow"
-                        onClick={e => {
+                        onClick={(e) => {
                           findUser(e);
                         }}
                       >
@@ -709,7 +718,9 @@ const AddTrekMates = forwardRef((props, ref) => {
                         >
                           <span>{findUserData?.firstName}</span>
                           <span className="px-2">{findUserData?.lastName}</span>
-                          <span className="text-decoration-underline pull-right">Add</span>
+                          <span className="text-decoration-underline pull-right">
+                            Add
+                          </span>
                         </p>
                       )}
                     </div>
@@ -798,7 +809,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                                 placeholder="Phone"
                                 useGrouping={false}
                                 value={value}
-                                onValueChange={e => onChange(e.value)}
+                                onValueChange={(e) => onChange(e.value)}
                               />
                             )}
                           />
@@ -819,7 +830,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                                 optionValue="code"
                                 value={value}
                                 options={genderOptions}
-                                onChange={e => {
+                                onChange={(e) => {
                                   onChange(e.value);
                                 }}
                                 placeholder="Select a Gender"
@@ -845,7 +856,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                                 yearRange="1960:2015"
                                 placeholder="Dob"
                                 value={value}
-                                onChange={e => onChange(e.value)}
+                                onChange={(e) => onChange(e.value)}
                               ></Calendar>
                             )}
                           />
@@ -866,7 +877,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                                 mode="decimal"
                                 minFractionDigits={2}
                                 value={value}
-                                onValueChange={e => onChange(e.value)}
+                                onValueChange={(e) => onChange(e.value)}
                               />
                             )}
                           />
@@ -887,7 +898,7 @@ const AddTrekMates = forwardRef((props, ref) => {
                                 mode="decimal"
                                 useGrouping={false}
                                 minFractionDigits={2}
-                                onValueChange={e => onChange(e.value)}
+                                onValueChange={(e) => onChange(e.value)}
                               />
                             )}
                           />
@@ -905,7 +916,6 @@ const AddTrekMates = forwardRef((props, ref) => {
                         >
                           Create account
                         </button>
-
                       </div>
                     </form>
                   </div>
@@ -915,48 +925,72 @@ const AddTrekMates = forwardRef((props, ref) => {
           </div>
           <div className="col-lg-2 col-md-12"></div>
         </div>
-        {evaluateState(stateData) === true && (<div className="d-flex justify-content-center">
-          <div>
-            <div className="mt-5 mb-3">
-              <button id="p1"
-                type="button"
-                className="btn btn-ih-green hvr-grow py-2"
-                onClick={nextTabNav}
-              >
-                Proceed to next step of registration
-              </button>
+        {evaluateState(stateData) === true && (
+          <div className="d-flex justify-content-center">
+            <div>
+              <div className="mt-5 mb-3">
+                <button
+                  id="p1"
+                  type="button"
+                  className="btn btn-ih-green hvr-grow py-2"
+                  onClick={nextTabNav}
+                >
+                  Proceed to next step of registration
+                </button>
+              </div>
             </div>
           </div>
-        </div>)}
-        {evaluateStateWaiting(stateData) === true && (<div className="d-flex justify-content-center">
-          <div>
-            <div className="mt-5 mb-3">
-              <button
-                id="p2"
-                type="button"
-                className="btn btn-ih-green hvr-grow py-2"
-                onClick={waitingListConfirmation}
-              >
-                Proceed to waiting list registration
-              </button>
+        )}
+        {evaluateStateWaiting(stateData) === true && (
+          <div className="d-flex justify-content-center">
+            <div>
+              <div className="mt-5 mb-3">
+                <button
+                  id="p2"
+                  type="button"
+                  className="btn btn-ih-green hvr-grow py-2"
+                  onClick={waitingListConfirmation}
+                >
+                  Proceed to waiting list registration
+                </button>
+              </div>
             </div>
           </div>
-        </div>)}
+        )}
       </div>
       <div className="dialog-demo">
-        <Dialog header="Waiting List Confirmed" visible={displayBasic}
-          position={position} breakpoints={{ '960px': '75vw', '640px': '100vw' }} style={{ width: '40vw' }} modal
-          footer={renderFooter('displayPosition')} onHide={() => onHide()}
-          draggable={false} resizable={false}>
+        <Dialog
+          header="Waiting List Confirmed"
+          visible={displayBasic}
+          position={position}
+          breakpoints={{ "960px": "75vw", "640px": "100vw" }}
+          style={{ width: "40vw" }}
+          modal
+          footer={renderFooter("displayPosition")}
+          onHide={() => onHide()}
+          draggable={false}
+          resizable={false}
+        >
           <p className="p-m-0">Your waiting list booking is confirmed.</p>
         </Dialog>
       </div>
       <div className="dialog-demo">
-        <Dialog header="You are registering for a difficult trek" visible={displayDifficultTrek}
-          position={position} breakpoints={{ '960px': '75vw', '640px': '100vw' }} style={{ width: '40vw' }}
-          footer={renderFooter('displayPosition')} onHide={() => onHide()}
-          draggable={false} resizable={false}>
-          <p className="p-m-0">You are trying to register for a difficult trek. Before you proceed, we need some crucial information from you. Please check your email for a questionnaire from us and write back.</p>
+        <Dialog
+          header="You are registering for a difficult trek"
+          visible={displayDifficultTrek}
+          position={position}
+          breakpoints={{ "960px": "75vw", "640px": "100vw" }}
+          style={{ width: "40vw" }}
+          footer={renderFooter("displayPosition")}
+          onHide={() => onHide()}
+          draggable={false}
+          resizable={false}
+        >
+          <p className="p-m-0">
+            You are trying to register for a difficult trek. Before you proceed,
+            we need some crucial information from you. Please check your email
+            for a questionnaire from us and write back.
+          </p>
         </Dialog>
       </div>
     </>

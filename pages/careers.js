@@ -23,24 +23,27 @@ const Careers = ({ doc, articleData }) => {
   if (doc && doc.data) {
     return (
       <>
-      <HomeLayout>
-        <Head>
-          <meta charset="utf-8" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
+        <HomeLayout>
+          <Head>
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+            <title>Careers</title>
+          </Head>
+          <HikeHeader auth={true} />
+          <CareersSliceZone
+            sliceZone={doc.data.body}
+            articleData={articleData}
           />
-          <title>Careers</title>
-        </Head>
-        <HikeHeader auth={true} />
-        <CareersSliceZone sliceZone={doc.data.body} articleData={articleData} />
-        <IHTrekWithSwathi />
-        <IHFooter />
-      </HomeLayout>
-      <ScrollToTop smooth color="#000000" />
-      <Script>
-        {`
+          <IHTrekWithSwathi />
+          <IHFooter />
+        </HomeLayout>
+        <ScrollToTop smooth color="#000000" />
+        <Script>
+          {`
           window._mfq = window._mfq || [];
           (function() {
             var mf = document.createElement("script");
@@ -49,7 +52,7 @@ const Careers = ({ doc, articleData }) => {
             document.getElementsByTagName("head")[0].appendChild(mf);
           })();
         `}
-      </Script>
+        </Script>
       </>
     );
   }
@@ -67,9 +70,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     (await client.getSingle("carriers_type", ref ? { ref } : null)) || {};
 
   const articleData = [];
-  const slice = doc.data?.body?.find(
-    x => x.slice_type === "learn_more_sec"
-  );
+  const slice = doc.data?.body?.find((x) => x.slice_type === "learn_more_sec");
 
   if (slice?.items?.length > 0) {
     for (var i = 0; i < slice?.items?.length; i++) {
@@ -89,7 +90,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       doc,
       preview,
       articleData,
-    }
+    },
   };
 }
 

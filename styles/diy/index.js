@@ -1,1 +1,1 @@
-export { diyStyles }  from "./diyStyles";
+export { diyStyles } from "./diyStyles";

@@ -9,18 +9,15 @@ module.exports = {
     return config;
   },
   prismic: {
-    preview: true
+    preview: true,
   },
   images: {
-    domains: ['images.prismic.io'],
+    domains: ["images.prismic.io"],
   },
 
-
-
   //images: {
-    //domains: ['images.prismic.io','img.youtube.com']
+  //domains: ['images.prismic.io','img.youtube.com']
   //},*/
-
 
   async headers() {
     return [
@@ -28,9 +25,12 @@ module.exports = {
         // matching all API routes
         source: "/:path*",
         headers: [
-          {key: "Access-Control-Allow-Credentials", value: "true" },
-          {key: "Access-Control-Allow-Origin",value: "*"},
-          {key: "Access-Control-Allow-Methods",value: "GET,OPTIONS,PATCH,DELETE,POST,PUT"},
+          { key: "Access-Control-Allow-Credentials", value: "true" },
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          {
+            key: "Access-Control-Allow-Methods",
+            value: "GET,OPTIONS,PATCH,DELETE,POST,PUT",
+          },
           {
             key: "Access-Control-Allow-Headers",
             value:
@@ -48,15 +48,11 @@ module.exports = {
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=0, s-maxage=31536000, stale-while-revalidate",
+            value:
+              "public, max-age=0, s-maxage=31536000, stale-while-revalidate",
           },
         ],
       },
     ];
   },
-
- 
-  
 };
-
-

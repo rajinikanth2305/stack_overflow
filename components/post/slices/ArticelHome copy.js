@@ -13,12 +13,10 @@ import { route } from "next/dist/next-server/server/router";
 import { Client } from "utils/prismicHelpers";
 import Prismic from "@prismicio/client";
 
-
 /**
  * Post slice component
  */
 const ArticelHome = ({ slice }) => (
-
   <div>
     <div className="article_banner_img">
       <img src="/Exclusion_1.png" />
@@ -179,7 +177,9 @@ const ArticelHome = ({ slice }) => (
                   <div className="auth_image">
                     <img src="/p-icon.png" />
                   </div>
-                  <p className="m-0 p-text-3-fg text-center mt-1">Arjun Majumdar</p>
+                  <p className="m-0 p-text-3-fg text-center mt-1">
+                    Arjun Majumdar
+                  </p>
                   <p className="m-0 p-text-small-black text-center">
                     Founder, CEO, Indiahikes
                   </p>

@@ -3,7 +3,7 @@ import React, {
   useState,
   forwardRef,
   useImperativeHandle,
-  useRef
+  useRef,
 } from "react";
 import moment from "moment";
 import { useRouter } from "next/router";
@@ -24,13 +24,12 @@ const RentGear = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     changeState(data) {
       initData(data);
-    }
+    },
   }));
 
-  const initData = data => {
+  const initData = (data) => {
     // console.log(data);
     if (deriveBookingState(data) == true) {
-      
       /*if (wooOrders.length == 0) {
         getWooCustomerId(data.email).then(customerData => {
           if (customerData.length > 0) {
@@ -52,11 +51,11 @@ const RentGear = forwardRef((props, ref) => {
         preparePresentation(filteredOrder);
       }
     }*/
-    //// load the rental gear orders....
-  }
+      //// load the rental gear orders....
+    }
   };
 
-  const preparePresentation = order => {
+  const preparePresentation = (order) => {
     if (order !== undefined) {
       setOrder(order);
       const arr = Array.from(new Array(order?.line_items), (x, i) => i);
@@ -77,15 +76,15 @@ const RentGear = forwardRef((props, ref) => {
     const startDate = bookingTrekData.startDate;
     const endDate = bookingTrekData.endDate;
 
-    orders.map(order => {
+    orders.map((order) => {
       const trek = order.meta_data.find(
-        me => me.key.toLowerCase() === "ih_order_trek_name"
+        (me) => me.key.toLowerCase() === "ih_order_trek_name"
       );
       const dt1 = order.meta_data.find(
-        me => me.key.toLowerCase() === "ih_order_trek_start_date"
+        (me) => me.key.toLowerCase() === "ih_order_trek_start_date"
       ); //6th Feb, 2022
       const dt2 = order.meta_data.find(
-        me => me.key.toLowerCase() === "ih_order_trek_end_date"
+        (me) => me.key.toLowerCase() === "ih_order_trek_end_date"
       ); // 11th Feb, 2022
 
       //   console.log(dt1);
@@ -112,7 +111,7 @@ const RentGear = forwardRef((props, ref) => {
     return filterOrder;
   };
 
-  const deriveBookingState = activeBooking => {
+  const deriveBookingState = (activeBooking) => {
     if (activeBooking.bookingState === "COMPLETED") {
       setShowRentContents(true);
       return true;
@@ -122,7 +121,7 @@ const RentGear = forwardRef((props, ref) => {
     }
   };
 
-  const navigateRentalStore = orderId => {
+  const navigateRentalStore = (orderId) => {
     router.push(`/https://store.indiahikes.com/my-orders?orderId=${orderId}`);
   };
 
@@ -167,7 +166,7 @@ const RentGear = forwardRef((props, ref) => {
               <div className="row">
                 <div className="col-lg-6 col-md-12 col-12">
                   <div className="grey-bg">
-                    {indexes?.map(index => {
+                    {indexes?.map((index) => {
                       const item = order?.line_items[index];
                       return (
                         <div className="d-flex justify-content-between align-items-center mb-3">

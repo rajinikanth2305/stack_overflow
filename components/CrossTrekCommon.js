@@ -18,9 +18,9 @@ const CrossTrekCommon = () => {
     const client = Client();
     const doc = await client
       .query([Prismic.Predicates.at("document.type", "hike_home_ctype")])
-      .then(function(response) {
+      .then(function (response) {
         const tt = response.results[0].data.body;
-        const slice = tt && tt.find(x => x.slice_type === "cross_trek");
+        const slice = tt && tt.find((x) => x.slice_type === "cross_trek");
         setResults(slice);
       });
   }
@@ -34,7 +34,7 @@ const CrossTrekCommon = () => {
     backgroundImage: `url('${crossTrekImage}')`,
     width: "100%",
     backgroundRepeat: "no-repeat",
-    backgroungPosition: "center center;"
+    backgroungPosition: "center center;",
   };
 
   return (

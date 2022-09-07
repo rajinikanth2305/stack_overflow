@@ -39,12 +39,12 @@ const UserTV = () => {
   function fetchAndBindUserVouchers(email) {
     // console.log(email);
 
-    getUserVoucher(email).then(vouchersData => {
+    getUserVoucher(email).then((vouchersData) => {
       /// Idenitify and get the booking owner profile informations
       // console.log(vouchersData);
       if (vouchersData.length > 0) {
         /// get userid by email
-        findUserByEmail(email).then(res => {
+        findUserByEmail(email).then((res) => {
           setBookingOwner(res);
           // console.log(res);
           setVouchers(vouchersData);
@@ -61,7 +61,7 @@ const UserTV = () => {
     userServiceObject.doLogout();
   };
 
-  const vouchetListTr = vouchers.map(function(data, i) {
+  const vouchetListTr = vouchers.map(function (data, i) {
     return (
       <tr key={data?.id}>
         <td>
@@ -83,7 +83,9 @@ const UserTV = () => {
             </div>
             <div className="p-text-2-fg-f16-mb w-100">
               <div className="d-flex align-items-center">
-                <div className="flex-grow-1">Rs. {data?.amount} &nbsp;&nbsp;</div>
+                <div className="flex-grow-1">
+                  Rs. {data?.amount} &nbsp;&nbsp;
+                </div>
                 <div className="tv-download-link">
                   <p className="m-0 text-decoration-underline p-text-small-fg-blue">
                     <PDFDownloadLink
@@ -140,11 +142,19 @@ const UserTV = () => {
             </div>
             <div className="p-text-2-fg-f16-mb">
               <p
-                  className={
-                    moment(data?.validTill) < new Date() ? "text-red m-0" : data?.voucherStatus === "ALLOCATED" ? "text-green m-0" : "m-0"
-                  }
+                className={
+                  moment(data?.validTill) < new Date()
+                    ? "text-red m-0"
+                    : data?.voucherStatus === "ALLOCATED"
+                    ? "text-green m-0"
+                    : "m-0"
+                }
               >
-                {moment(data?.validTill) < new Date() ? "Expired" : data?.voucherStatus === "ALLOCATED" ? "Available" : "Used"}
+                {moment(data?.validTill) < new Date()
+                  ? "Expired"
+                  : data?.voucherStatus === "ALLOCATED"
+                  ? "Available"
+                  : "Used"}
               </p>
             </div>
           </div>
@@ -186,23 +196,27 @@ const UserTV = () => {
                   <h5 className="p-text-2-fg b-left-3px mb-4">Trek vouchers</h5>
 
                   <div className="col-lg-11 col-md-12">
-                    {vouchers && vouchers?.length > 0 ? <div className="card px-3 mb-5">
-                      <div className="table-responsive">
-                        <table className="table table-dashboard-profile-style-1 ctb">
-                          <thead className="m-d-none">
-                            <tr className="header-bg">
-                              <th>Voucher code</th>
-                              <th>Voucher amount</th>
-                              <th>Amount used</th>
-                              <th>Balance amount</th>
-                              <th>Valid till</th>
-                              <th>Voucher status</th>
-                            </tr>
-                          </thead>
-                          <tbody>{vouchetListTr}</tbody>
-                        </table>
+                    {vouchers && vouchers?.length > 0 ? (
+                      <div className="card px-3 mb-5">
+                        <div className="table-responsive">
+                          <table className="table table-dashboard-profile-style-1 ctb">
+                            <thead className="m-d-none">
+                              <tr className="header-bg">
+                                <th>Voucher code</th>
+                                <th>Voucher amount</th>
+                                <th>Amount used</th>
+                                <th>Balance amount</th>
+                                <th>Valid till</th>
+                                <th>Voucher status</th>
+                              </tr>
+                            </thead>
+                            <tbody>{vouchetListTr}</tbody>
+                          </table>
+                        </div>
                       </div>
-                    </div> : <p>No records found..</p> }
+                    ) : (
+                      <p>No records found..</p>
+                    )}
                   </div>
                 </div>
                 <div className="col-lg-2 col-md-12 bg-white p-0">

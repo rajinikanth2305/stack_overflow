@@ -25,16 +25,16 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: false,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -43,13 +43,13 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
           slidesToScroll: 1,
           arrows: false,
           // centerMode: true
-        }
-      }
-    ]
+        },
+      },
+    ],
   };
 
-  const trekToDoImage = multiTrekData?.map(function(data, i) {
-    const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
+  const trekToDoImage = multiTrekData?.map(function (data, i) {
+    const tData = data?.data?.body.find((x) => x.slice_type === "trek_banner");
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
@@ -128,7 +128,7 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
     );
   });
 
-  const trekToDoImageMobileView = trekToDoImageArray?.map(function(data, j) {
+  const trekToDoImageMobileView = trekToDoImageArray?.map(function (data, j) {
     return (
       <>
         <div className="col-6" key={j}>

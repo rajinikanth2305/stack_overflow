@@ -7,7 +7,7 @@ const GetInTouchIh = ({ slice }) => {
   const heading2 = slice?.primary?.heading2;
   const getInTouchIh = slice?.items;
 
-  const getInTouchIhDetails = getInTouchIh?.map(function(data, k) {
+  const getInTouchIhDetails = getInTouchIh?.map(function (data, k) {
     return (
       <div className="col-md-6" key={k}>
         <div className="d-flex align-items-start my-4">

@@ -10,7 +10,7 @@ import auth from "../../../../services/Authenticate";
 import {
   getdashBoardUserBooking,
   getTrekReview,
-  saveUserReviews
+  saveUserReviews,
 } from "../../../../services/queries";
 import moment from "moment";
 import { useRouter } from "next/router";
@@ -63,7 +63,7 @@ const UserPT = () => {
     control,
     errors,
     formState,
-    getValues
+    getValues,
   } = useForm();
 
   const [reviewIndexes, setReviewIndexes] = React.useState([]);
@@ -84,7 +84,7 @@ const UserPT = () => {
     //fetchAndBindUserBookings(res);
   }, []);
 
-  const onMultiChekBoxChange = e => {
+  const onMultiChekBoxChange = (e) => {
     let _selectedCategories = [...multiCheckItems];
     console.log(e);
     if (e.checked) {
@@ -102,17 +102,18 @@ const UserPT = () => {
     setMultiCheckItems(_selectedCategories);
   };
 
-  const fetchTrekReview = bookingData => {
+  const fetchTrekReview = (bookingData) => {
     //console.log(data);
-    getTrekReview(bookingData.bookingId).then(resData => {
-      console.log(resData);
-      setReviewData(resData);
-      setCurrentBookingData(bookingData);
-      const arr = Array.from(new Array(resData.length), (x, i) => i);
-      setReviewIndexes(arr);
-      setReviewCounter(1);
-    })
-      .catch(res => {
+    getTrekReview(bookingData.bookingId)
+      .then((resData) => {
+        console.log(resData);
+        setReviewData(resData);
+        setCurrentBookingData(bookingData);
+        const arr = Array.from(new Array(resData.length), (x, i) => i);
+        setReviewIndexes(arr);
+        setReviewCounter(1);
+      })
+      .catch((res) => {
         setReviewData(undefined);
         if (res?.response?.data?.message) {
           console.log(res?.response?.data?.message);
@@ -120,13 +121,13 @@ const UserPT = () => {
             severity: "info",
             summary: `'No Review questions defined for this trek.'`,
             detail: "",
-            life: 6000
+            life: 6000,
           });
         }
       });
   };
 
-  const toggle = tab => {
+  const toggle = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
 
@@ -135,26 +136,25 @@ const UserPT = () => {
   };
 
   function fetchAndBindUserBookings(email) {
-    getdashBoardUserBooking(email, true).then(bookingsData => {
+    getdashBoardUserBooking(email, true).then((bookingsData) => {
       /// Idenitify and get the booking owner profile informations
       // console.log(bookingsData);
       if (bookingsData.length > 0) {
-        const bookingOwner = bookingsData.map(element => {
+        const bookingOwner = bookingsData.map((element) => {
           const mainuser = element.trekMates.find(
-            subElement => subElement.userDetailsForDisplay.email === email
+            (subElement) => subElement.userDetailsForDisplay.email === email
           );
           if (mainuser !== undefined) return mainuser;
         });
         setBookingOwner(bookingOwner[0]);
         getAndSetTrekContents(bookingsData, email);
-      }
-      else {
+      } else {
         setBookings([]);
       }
     });
   }
 
-  const setStates = bookTrekContents => {
+  const setStates = (bookTrekContents) => {
     //console.log(bookTrekContents);
     setBookings(bookTrekContents);
     const arr = Array.from(new Array(bookTrekContents.length), (x, i) => i);
@@ -173,7 +173,7 @@ const UserPT = () => {
 
       let result;
       const findContents = prismicTrekContents.find(
-        x => x.trekName === trekName
+        (x) => x.trekName === trekName
       );
       //console.log(findContents);
       if (findContents === undefined) {
@@ -181,7 +181,7 @@ const UserPT = () => {
         //console.log(result);
         prismicTrekContents.push({
           trekName: trekName,
-          result: result
+          result: result,
         });
       } else {
         result = findContents.result;
@@ -193,7 +193,7 @@ const UserPT = () => {
 
       if (result !== undefined) {
         const slice = result.data.body.find(
-          x => x.slice_type === "trek_banner"
+          (x) => x.slice_type === "trek_banner"
         );
         //console.log(slice);
         bannerImage = slice.primary.trek_banner_image.url;
@@ -219,14 +219,14 @@ const UserPT = () => {
         trekDifficulty: book.trekDifficulty,
         trekDuration: book.trekDuration,
         trekAltitude: book.trekAltitude,
-        trekLocation: book.trekLocation
+        trekLocation: book.trekLocation,
       });
     }
     setStates(bookTrekContents);
     setStates(bookTrekContents);
   };
 
-  const onSubmit = formData => {
+  const onSubmit = (formData) => {
     // console.log(JSON.stringify(formData));
     //console.log(reviewData);
     // console.log(currentBookingData);
@@ -235,7 +235,7 @@ const UserPT = () => {
     let ratingStar = 0;
     let ratingQuestionId;
 
-    Object.keys(formData).map(key => {
+    Object.keys(formData).map((key) => {
       if (key.startsWith("rating")) {
         ratingStar = formData[key];
         ratingQuestionId = key.replace("rating-", "");
@@ -261,7 +261,7 @@ const UserPT = () => {
     // console.log(map);
 
     const user = currentBookingData?.userTrekBookingParticipants?.find(
-      x =>
+      (x) =>
         x.userDetailsForDisplay.email.toLowerCase() === userEmail.toLowerCase()
     );
     // console.log(user);
@@ -272,12 +272,12 @@ const UserPT = () => {
       reviewId: reviewData.id,
       batchId: currentBookingData.batchId,
       userId: userId,
-      reviewAnswers: buildAnswers(map, ratingQuestionId, ratingStar)
+      reviewAnswers: buildAnswers(map, ratingQuestionId, ratingStar),
     };
     // console.log(saveObject);
 
     saveUserReviews(saveObject)
-      .then(res => {
+      .then((res) => {
         console.log("review saved successfully");
         // alert("Review submitted succesfully.");
         window.scrollTo(0, 0);
@@ -285,17 +285,17 @@ const UserPT = () => {
           severity: "success",
           summary: `'Thank you for writing about your experience. We truly appreciate it.'`,
           detail: "",
-          life: 6000
+          life: 6000,
         });
         setActiveTab(null);
       })
-      .catch(res => {
-        console.log(res)
+      .catch((res) => {
+        console.log(res);
         toast.current.show({
           severity: "error",
           summary: `'Error occurred in your review submission - Error ${res?.response?.data?.message}'`,
           detail: "",
-          life: 6000
+          life: 6000,
         });
       });
   };
@@ -306,7 +306,7 @@ const UserPT = () => {
       const qa = {
         questionId: key,
         answers: value,
-        rating: 0
+        rating: 0,
       };
       answers.push(qa);
     }
@@ -314,7 +314,7 @@ const UserPT = () => {
       answers.push({
         questionId: ratingQuestionId,
         answers: [],
-        rating: ratingValue
+        rating: ratingValue,
       });
     }
     return answers;
@@ -322,7 +322,7 @@ const UserPT = () => {
 
   const addItineraries = () => {
     setReviewIndexes([...indexes, counter]);
-    setReviewCounter(prevCounter => prevCounter + 1);
+    setReviewCounter((prevCounter) => prevCounter + 1);
   };
 
   const onLogout = () => {
@@ -474,11 +474,10 @@ const UserPT = () => {
                       </p>
                       <p className="p-text-3 mb-4">Let us start right away. </p>
 
-                      {reviewIndexes.slice(0, 1).map(i => {
+                      {reviewIndexes.slice(0, 1).map((i) => {
                         {
                           return reviewData?.reviewQuestions.map(
                             (item, index) => {
-
                               // console.log(reviewData?.reviewQuestions.length);
                               // console.log(index);
                               //  if(reviewData?.reviewQuestions.length-1===index) {
@@ -502,7 +501,7 @@ const UserPT = () => {
                                   <p className="p-text-3 font-weight-bold m-0">
                                     <span
                                       dangerouslySetInnerHTML={{
-                                        __html: item.question
+                                        __html: item.question,
                                       }}
                                     />
                                   </p>
@@ -521,11 +520,11 @@ const UserPT = () => {
                                                   control={control}
                                                   render={({
                                                     onChange,
-                                                    value
+                                                    value,
                                                   }) => (
                                                     <input
                                                       type="checkbox"
-                                                      onClick={e => {
+                                                      onClick={(e) => {
                                                         onChange(
                                                           e.target.value ===
                                                             "on"
@@ -572,11 +571,11 @@ const UserPT = () => {
                                                   control={control}
                                                   render={({
                                                     onChange,
-                                                    value
+                                                    value,
                                                   }) => (
                                                     <RadioButton
                                                       name={`${item.questionId}`}
-                                                      onChange={e => {
+                                                      onChange={(e) => {
                                                         onChange(`${ch}`);
                                                         addItineraries();
                                                       }}
@@ -623,7 +622,7 @@ const UserPT = () => {
                                         render={({ onChange, value }) => (
                                           <ReactStars
                                             count={5}
-                                            onChange={newRating => {
+                                            onChange={(newRating) => {
                                               console.log(newRating);
                                               onChange(newRating);
                                             }}

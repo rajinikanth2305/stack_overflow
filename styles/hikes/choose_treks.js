@@ -33,7 +33,7 @@ export const ChooseTreks = css.global`
   }
 
   .trek_card a {
-    text-decoration: none
+    text-decoration: none;
   }
 
   .trek_card_desc_min_height {
@@ -407,7 +407,7 @@ export const ChooseTreks = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    color: rgba(112,112,112,1);
+    color: rgba(112, 112, 112, 1);
     padding-top: 7px;
   }
 
@@ -585,7 +585,7 @@ export const ChooseTreks = css.global`
   }
 
   @media (min-width: 1182px) and (max-width: 1400px) {
-    .trek_card  {
+    .trek_card {
       min-height: 450px;
     }
 
@@ -597,7 +597,7 @@ export const ChooseTreks = css.global`
   }
 
   @media (min-width: 1000px) and (max-width: 1182px) {
-    .trek_card  {
+    .trek_card {
       min-height: 485px;
     }
 

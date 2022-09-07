@@ -8,12 +8,13 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
  * Founder Slice Components
  */
 const IHTrekWithSwathi = () => {
-  const trekWithSwathiLogoImg = "/7eb9101e-699c-4309-b5fc-f9c8af1d8fa5_TWS_clearBG@2x.png";
+  const trekWithSwathiLogoImg =
+    "/7eb9101e-699c-4309-b5fc-f9c8af1d8fa5_TWS_clearBG@2x.png";
 
   const logoImg = {
     backgroundImage: `url('${trekWithSwathiLogoImg}')`,
     width: "100%",
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
   };
 
   return (
@@ -36,10 +37,18 @@ const IHTrekWithSwathi = () => {
               </div>
               <div className="col-lg-6 col-md-12">
                 <div className="pt-4 pb-2">
-                <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-                <script src="https://dh315.infusionsoft.app/app/webTracking/getTrackingCode?b=1.70.0.176669-hf-201912181335" type="text/javascript"></script>
+                  <script
+                    data-cfasync="false"
+                    src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+                  ></script>
+                  <script
+                    src="https://dh315.infusionsoft.app/app/webTracking/getTrackingCode?b=1.70.0.176669-hf-201912181335"
+                    type="text/javascript"
+                  ></script>
 
-                <script   dangerouslySetInnerHTML={{ __html: `
+                  <script
+                    dangerouslySetInnerHTML={{
+                      __html: `
     function submitWebForm() {
     var form = document.forms[0];
     var resolution = document.createElement('input');
@@ -105,29 +114,82 @@ const IHTrekWithSwathi = () => {
     javaEnabled.setAttribute('value', java);
     form.appendChild(javaEnabled);
     }
-   `}} />
-    
-  <div className="text" id="webformErrors" name="errorContent"></div>
-    <form acceptCharset="UTF-8" action="https://dh315.infusionsoft.com/app/form/process/84a7deb63b24bef4c47dc0c2fd697605" 
-    className="infusion-form" id="inf_form_84a7deb63b24bef4c47dc0c2fd697605" method="POST" name="Web Form submitted" onsubmit="submitWebForm()">
-                
-                <input name="inf_form_xid" type="hidden" value="84a7deb63b24bef4c47dc0c2fd697605" />
-    <input name="inf_form_name" type="hidden" value="Web Form submitted" />
-    <input name="infusionsoft_version" type="hidden" value="1.70.0.176669" />
-    <div className="form-group-wrap">
-    <input className="infusion-field-input form-control" id="inf_field_FirstName" name="inf_field_FirstName" placeholder="First Name *" type="text" />
-    </div>
-    <div className="form-group-wrap">
-    <input className="infusion-field-input form-control" id="inf_field_LastName" name="inf_field_LastName" placeholder="Last Name *" type="text" />
-    </div>
-    <div className="form-group">
-    <input className="infusion-field-input form-control" id="inf_field_Email" name="inf_field_Email" placeholder="Email *" type="text" />
-    </div>
-    <div className="form-group-wrap text-center">
-    <Button type="submit"  value="Stay updated" className="btn btn-lg btn-ih-primary hvr-grow">Subscribe</Button>
-    </div>
-    </form>
-    <script async defer  type="text/javascript" src="https://dh315.infusionsoft.app/app/webTracking/getTrackingCode"></script>
+   `,
+                    }}
+                  />
+
+                  <div
+                    className="text"
+                    id="webformErrors"
+                    name="errorContent"
+                  ></div>
+                  <form
+                    acceptCharset="UTF-8"
+                    action="https://dh315.infusionsoft.com/app/form/process/84a7deb63b24bef4c47dc0c2fd697605"
+                    className="infusion-form"
+                    id="inf_form_84a7deb63b24bef4c47dc0c2fd697605"
+                    method="POST"
+                    name="Web Form submitted"
+                    onsubmit="submitWebForm()"
+                  >
+                    <input
+                      name="inf_form_xid"
+                      type="hidden"
+                      value="84a7deb63b24bef4c47dc0c2fd697605"
+                    />
+                    <input
+                      name="inf_form_name"
+                      type="hidden"
+                      value="Web Form submitted"
+                    />
+                    <input
+                      name="infusionsoft_version"
+                      type="hidden"
+                      value="1.70.0.176669"
+                    />
+                    <div className="form-group-wrap">
+                      <input
+                        className="infusion-field-input form-control"
+                        id="inf_field_FirstName"
+                        name="inf_field_FirstName"
+                        placeholder="First Name *"
+                        type="text"
+                      />
+                    </div>
+                    <div className="form-group-wrap">
+                      <input
+                        className="infusion-field-input form-control"
+                        id="inf_field_LastName"
+                        name="inf_field_LastName"
+                        placeholder="Last Name *"
+                        type="text"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        className="infusion-field-input form-control"
+                        id="inf_field_Email"
+                        name="inf_field_Email"
+                        placeholder="Email *"
+                        type="text"
+                      />
+                    </div>
+                    <div className="form-group-wrap text-center">
+                      <Button
+                        type="submit"
+                        value="Stay updated"
+                        className="btn btn-lg btn-ih-primary hvr-grow"
+                      >
+                        Subscribe
+                      </Button>
+                    </div>
+                  </form>
+                  <script
+                    async
+                    defer
+                    type="text/javascript"
+                    src="https://dh315.infusionsoft.app/app/webTracking/getTrackingCode"
+                  ></script>
                 </div>
               </div>
             </div>

@@ -39,7 +39,7 @@ export const homeFooterStyles = css.global`
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
-    color: rgba(255,193,0,1);
+    color: rgba(255, 193, 0, 1);
     // margin-bottom: 30px;
   }
 

@@ -1,1 +1,1 @@
-export { default as RegistrationSliceZone } from './RegistrationSliceZone';
+export { default as RegistrationSliceZone } from "./RegistrationSliceZone";

@@ -8,7 +8,7 @@ import {
   OurTake,
   IhTimelineStories,
   IhTalks,
-  IhMedia
+  IhMedia,
 } from "./slices";
 
 /**
@@ -34,8 +34,14 @@ const AboutUsSliceZone = ({ sliceZone, articleData }) =>
         return <IhTimelineStories slice={slice} key={`slice-${index}`} />;
       case "ih_talks":
         return <IhTalks slice={slice} key={`slice-${index}`} />;
-        case "ih_media":
-        return <IhMedia slice={slice} key={`slice-${index}`} articleData={articleData} />;
+      case "ih_media":
+        return (
+          <IhMedia
+            slice={slice}
+            key={`slice-${index}`}
+            articleData={articleData}
+          />
+        );
       default:
         return null;
     }

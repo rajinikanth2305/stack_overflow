@@ -1,3 +1,3 @@
-import CancelButton from "./CancelButtonSlice"
+import CancelButton from "./CancelButtonSlice";
 
-export default CancelButton
+export default CancelButton;

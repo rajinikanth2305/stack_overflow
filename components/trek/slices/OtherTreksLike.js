@@ -22,16 +22,16 @@ const OtherTreksLike = ({ slice, trekPageData1 }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: false,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -39,22 +39,28 @@ const OtherTreksLike = ({ slice, trekPageData1 }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-        }
-      }
-    ]
+        },
+      },
+    ],
   };
 
   const imageView = trekPageData1?.map(function (data, i) {
-    const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
+    const tData = data?.data?.body.find((x) => x.slice_type === "trek_banner");
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
       //url = `/trek/${slugUrl}`;
       url = `/${slugUrl}`;
     }
-    const getFamilyTrek = data?.tags?.find(x => x === "FamilyTrek");
+    const getFamilyTrek = data?.tags?.find((x) => x === "FamilyTrek");
     return (
-      <TrekCardSliceZone key={i} tData={tData} getFamilyTrek={getFamilyTrek} url={url} trekId={data.slugs[0]} />
+      <TrekCardSliceZone
+        key={i}
+        tData={tData}
+        getFamilyTrek={getFamilyTrek}
+        url={url}
+        trekId={data.slugs[0]}
+      />
     );
   });
 

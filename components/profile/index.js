@@ -1,1 +1,1 @@
-export { default as ProfileSliceZone } from './ProfileSliceZone';
+export { default as ProfileSliceZone } from "./ProfileSliceZone";

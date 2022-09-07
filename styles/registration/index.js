@@ -1,1 +1,1 @@
-export { regStyle }  from "./regStyle";
+export { regStyle } from "./regStyle";

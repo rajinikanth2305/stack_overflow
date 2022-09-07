@@ -1,1 +1,1 @@
-export { default as Popup } from './PopupSliceZone';
+export { default as Popup } from "./PopupSliceZone";

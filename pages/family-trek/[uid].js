@@ -24,38 +24,38 @@ const FamilyTrek = ({
   doc,
   multiTrekData,
   weekendTrekData,
-  latestUpdateAarticleData
+  latestUpdateAarticleData,
 }) => {
   if (doc && doc.data) {
     const pageTitle = doc?.uid.replace(/-/g, " ");
     const str = pageTitle.charAt(0).toUpperCase() + pageTitle.slice(1);
     return (
       <>
-      <HomeLayout>
-        <Head>
-          <meta charset="utf-8" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta
-            name="viewport"
-            content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no;user-scalable=0;"
+        <HomeLayout>
+          <Head>
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta
+              name="viewport"
+              content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no;user-scalable=0;"
+            />
+            <title>{doc && str}</title>
+          </Head>
+          <HikeHeader />
+          <FamilyTrekSliceZone
+            sliceZone={doc.data.body}
+            multiTrekData={multiTrekData}
+            weekendTrekData={weekendTrekData}
+            latestUpdateAarticleData={latestUpdateAarticleData}
           />
-          <title>{doc && str}</title>
-        </Head>
-        <HikeHeader />
-        <FamilyTrekSliceZone
-          sliceZone={doc.data.body}
-          multiTrekData={multiTrekData}
-          weekendTrekData={weekendTrekData}
-          latestUpdateAarticleData={latestUpdateAarticleData}
-        />
-        <IHTrekWithSwathi />
-        <IHFooter />
-      </HomeLayout>
-      <ScrollToTop smooth color="#000000" />
+          <IHTrekWithSwathi />
+          <IHFooter />
+        </HomeLayout>
+        <ScrollToTop smooth color="#000000" />
       </>
     );
   }
-   console.log("called here");
+  console.log("called here");
   // Message when repository has not been setup yet
   return <SetupRepo />;
 };
@@ -63,7 +63,7 @@ const FamilyTrek = ({
 export async function getStaticProps({
   params,
   preview = null,
-  previewData = {}
+  previewData = {},
 }) {
   const { ref } = previewData;
 
@@ -83,7 +83,7 @@ export async function getStaticProps({
   const latestUpdateAarticleData = [];
 
   const multitrek_slice = doc?.data?.body?.find(
-    x => x.slice_type === "multi_day_trek_list"
+    (x) => x.slice_type === "multi_day_trek_list"
   );
 
   if (multitrek_slice?.items?.length > 0) {
@@ -99,7 +99,7 @@ export async function getStaticProps({
   }
 
   const weekendtrek_slice = doc.data?.body?.find(
-    x => x.slice_type === "weekend_treks"
+    (x) => x.slice_type === "weekend_treks"
   );
 
   if (weekendtrek_slice?.items?.length > 0) {
@@ -115,7 +115,7 @@ export async function getStaticProps({
   }
 
   const latestUpdate_slice = doc.data?.body?.find(
-    x => x.slice_type === "fam_trek_stories"
+    (x) => x.slice_type === "fam_trek_stories"
   );
   if (latestUpdate_slice?.items?.length > 0) {
     for (var i = 0; i < latestUpdate_slice?.items?.length; i++) {
@@ -135,15 +135,17 @@ export async function getStaticProps({
       preview,
       multiTrekData,
       weekendTrekData,
-      latestUpdateAarticleData
+      latestUpdateAarticleData,
     },
-   // revalidate: 60,
+    // revalidate: 60,
   };
 }
 
 export async function getStaticPaths() {
   //const documents = await queryRepeatableDocuments((doc) => doc.type === 'trek')
-  const documents = await queryRepeatableDocumentsWithDocTypeFilter("family_trek");
+  const documents = await queryRepeatableDocumentsWithDocTypeFilter(
+    "family_trek"
+  );
   console.log(documents?.length);
 
   /*const response = await Client().query(
@@ -151,8 +153,8 @@ export async function getStaticPaths() {
   );*/
   //const documents = documents; //response.results;
   return {
-    paths: documents.map(doc => `/family-trek/${doc.uid}`),
-    fallback: true
+    paths: documents.map((doc) => `/family-trek/${doc.uid}`),
+    fallback: true,
   };
 }
 

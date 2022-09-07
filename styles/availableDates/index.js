@@ -1,3 +1,1 @@
-
-
-export { AvailableDatesStyle }  from "./availableDatesStyle";
+export { AvailableDatesStyle } from "./availableDatesStyle";

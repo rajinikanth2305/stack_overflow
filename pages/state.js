@@ -58,7 +58,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     props: {
       doc,
       preview,
-    }
+    },
   };
 }
 

@@ -17,28 +17,24 @@ import IHTrekWithSwathi from "../components/Trek_With_Swathi";
  * UpComing component
  */
 const BookingStatus = ({ doc }) => {
- 
-    return (
-      <HomeLayout>
-        <Head>
-          <meta charset="utf-8" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          <title>Booking Status</title>
-        </Head>
-        <HikeHeader auth={true} />
-        {/* <UpComingTreksSliceZone sliceZone={doc.data.body} /> */}
-        <div className="mt-5 py-5 text-center">
-          <h3>Booking Status</h3>
-          <h4>Booking Status confirmed</h4>
-        </div>
-        <IHTrekWithSwathi />
-        <IHFooter />
-      </HomeLayout>
-    );
+  return (
+    <HomeLayout>
+      <Head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Booking Status</title>
+      </Head>
+      <HikeHeader auth={true} />
+      {/* <UpComingTreksSliceZone sliceZone={doc.data.body} /> */}
+      <div className="mt-5 py-5 text-center">
+        <h3>Booking Status</h3>
+        <h4>Booking Status confirmed</h4>
+      </div>
+      <IHTrekWithSwathi />
+      <IHFooter />
+    </HomeLayout>
+  );
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
@@ -58,13 +54,11 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     },
   )*/
 
-
-
   return {
     props: {
       doc,
-      preview
-    }
+      preview,
+    },
   };
 }
 

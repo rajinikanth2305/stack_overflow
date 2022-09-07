@@ -3,7 +3,7 @@ import React, {
   useState,
   forwardRef,
   useImperativeHandle,
-  useRef
+  useRef,
 } from "react";
 import { RichText } from "prismic-reactjs";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import {
   findUserByBatchId,
   saveDraftBooking,
-  doSavePayments
+  doSavePayments,
 } from "../../../services/queries";
 import { Dropdown } from "primereact/dropdown";
 import { useForm, Controller } from "react-hook-form";
@@ -21,11 +21,11 @@ import { Toast } from "primereact/toast";
 
 import {
   addOrUpdateState,
-  selectStateData
+  selectStateData,
 } from "../../reduxstate/counterSlice";
 
 import moment from "moment";
-import { ProgressSpinner } from 'primereact/progressspinner';
+import { ProgressSpinner } from "primereact/progressspinner";
 
 const MakePayment = forwardRef((props, ref) => {
   const [bookingInformation, setBookingInformation] = useState(undefined);
@@ -48,8 +48,8 @@ const MakePayment = forwardRef((props, ref) => {
       totaltax: 0,
       total: 0,
       voucherDeduction: 0,
-      youpay: 0
-    }
+      youpay: 0,
+    },
   });
 
   const e1 = useRef();
@@ -62,7 +62,7 @@ const MakePayment = forwardRef((props, ref) => {
     control,
     errors,
     formState,
-    getValues
+    getValues,
   } = useForm();
 
   useEffect(() => {
@@ -97,36 +97,35 @@ const MakePayment = forwardRef((props, ref) => {
       ) {
         /// get the trekdetails with fee and gst etc.. and set... one time...
         findUserByBatchId(sdata.batchId)
-          .then(batchData => {
+          .then((batchData) => {
             setBatchData(batchData);
             setChangeStateData(sdata, batchData.trekFee);
           })
-          .catch(res => {
+          .catch((res) => {
             if (res.response.data.message)
               toast.current.show({
                 severity: "error",
                 summary: `${res.response.data.message}`,
-                detail: ""
+                detail: "",
               });
             else
               toast.current.show({
                 severity: "error",
                 summary:
                   "Batch details get failed;Re-try in few mins. ...If not succeeded contact support team",
-                detail: ""
+                detail: "",
               });
           });
       } else {
         setChangeStateData(sdata, sdata.trekFee);
       }
-    }
+    },
   }));
 
   const setChangeStateData = async (sdata, trekFee) => {
-
     sdata.trekFee = trekFee;
 
-   /* sdata.trekUsers.map(x => {
+    /* sdata.trekUsers.map(x => {
       if (x.trekFeeForTheUser === 0) {
         x.trekFeeForTheUser = trekFee;
       }
@@ -144,7 +143,7 @@ const MakePayment = forwardRef((props, ref) => {
       trekUsers: sdata.trekUsers,
       batchId: sdata.batchId,
       email: sdata.primaryUserEmail,
-      trekDifficulty: sdata.trekDifficulty
+      trekDifficulty: sdata.trekDifficulty,
     };
 
     //  console.log(bookingsInfo);
@@ -176,10 +175,7 @@ const MakePayment = forwardRef((props, ref) => {
 
     //const inAmount = usersData[0].insuranceAmount;
 
-    let inAmount = usersData.reduce(
-      (a, v) => (a = a + v.insuranceAmount),
-      0
-    );
+    let inAmount = usersData.reduce((a, v) => (a = a + v.insuranceAmount), 0);
 
     const insuranceAmount = inAmount; //inAmount * usersData.length;
     console.log(insuranceAmount);
@@ -188,7 +184,7 @@ const MakePayment = forwardRef((props, ref) => {
 
     const gst = taxPercentage;
     const gstValue = parseFloat(Number((gst / 100) * totalTrekFee).toFixed(2));
-    const total = (totalTrekFee + gstValue + insuranceAmount);
+    const total = totalTrekFee + gstValue + insuranceAmount;
 
     const totalVoucherAmount = usersData.reduce(
       (a, v) => (a = a + v.voucherAmount),
@@ -205,8 +201,8 @@ const MakePayment = forwardRef((props, ref) => {
         totaltax: gstValue,
         total: total,
         voucherDeduction: parseFloat(Number(totalVoucherAmount).toFixed(2)),
-        youpay: youpay
-      }
+        youpay: youpay,
+      },
     });
 
     console.log(computeFields);
@@ -240,10 +236,12 @@ const MakePayment = forwardRef((props, ref) => {
 
   const onVoucherApply = async (id, index) => {
     const sdata = JSON.parse(JSON.stringify(stateData.data));
-    const user = sdata.trekUsers.find(u => u.id === id);
+    const user = sdata.trekUsers.find((u) => u.id === id);
 
     if (user.optedVoucherId > 0) {
-      const selectedVoucher = sdata.voucherDetails.find(vid => vid.id == user.optedVoucherId);
+      const selectedVoucher = sdata.voucherDetails.find(
+        (vid) => vid.id == user.optedVoucherId
+      );
 
       console.log(selectedVoucher);
 
@@ -251,14 +249,14 @@ const MakePayment = forwardRef((props, ref) => {
       const taxPercentage = sdata.trekUsers[0]?.taxPercentage;
       const insuranceAmount = sdata.trekUsers[0]?.insuranceAmount;
       const gst = taxPercentage;
-      const gstValue = parseFloat(Number((gst / 100) * totalTrekFee).toFixed(2));
-      const total = (totalTrekFee + gstValue + insuranceAmount);
-
-
+      const gstValue = parseFloat(
+        Number((gst / 100) * totalTrekFee).toFixed(2)
+      );
+      const total = totalTrekFee + gstValue + insuranceAmount;
 
       console.log(total);
 
-      const youPay = total;//user.trekFeeForTheUser  ; //computeTotal(sdata.trekUsers);
+      const youPay = total; //user.trekFeeForTheUser  ; //computeTotal(sdata.trekUsers);
 
       if (youPay > 0) {
         const currentAvailableAmount = selectedVoucher.amountAvailable;
@@ -268,11 +266,14 @@ const MakePayment = forwardRef((props, ref) => {
           const amountToDeductInVocuher =
             youPay > currentAvailableAmount ? currentAvailableAmount : youPay;
           //console.log(amountToDeductInVocuher);
-          sdata.trekUsers.find(u => u.id === id).voucherId = user.optedVoucherId;
-          sdata.trekUsers.find(u => u.id === id).voucherAmount = amountToDeductInVocuher;
+          sdata.trekUsers.find((u) => u.id === id).voucherId =
+            user.optedVoucherId;
+          sdata.trekUsers.find((u) => u.id === id).voucherAmount =
+            amountToDeductInVocuher;
           // const availableAmt= sdata.voucherDetails.find(vid => vid.id == user.optedVoucherId).amountAvailable;
           // sdata.voucherDetails.find(vid => vid.id == user.optedVoucherId).amountAvailable= availableAmt - amountToDeductInVocuher;
-          sdata.trekUsers.find(u => u.id === id).youPay = (youPay - amountToDeductInVocuher);
+          sdata.trekUsers.find((u) => u.id === id).youPay =
+            youPay - amountToDeductInVocuher;
         }
       }
       //console.log(JSON.stringify(sdata));
@@ -286,7 +287,7 @@ const MakePayment = forwardRef((props, ref) => {
     // console.log(JSON.stringify(value));
     const sdata = JSON.parse(JSON.stringify(stateData.data));
     //// check if already it is selected:
-    const optedId = sdata.trekUsers.find(u => u.optedVoucherId === value);
+    const optedId = sdata.trekUsers.find((u) => u.optedVoucherId === value);
     console.log(optedId);
 
     /*const selectedVoucher = sdata.voucherDetails.find(vid => vid.id == value);
@@ -304,20 +305,20 @@ const MakePayment = forwardRef((props, ref) => {
       toast.current.show({
         severity: "error",
         summary: `'The selected Voucher is already applied'`,
-        detail: ""
+        detail: "",
       });
 
       /// Resetting the old selected voucher values;
-      sdata.trekUsers.find(u => u.id === id).optedVoucherId = "";
-      sdata.trekUsers.find(u => u.id === id).voucherAmount = 0;
-      sdata.trekUsers.find(u => u.id === id).voucherId = "";
+      sdata.trekUsers.find((u) => u.id === id).optedVoucherId = "";
+      sdata.trekUsers.find((u) => u.id === id).voucherAmount = 0;
+      sdata.trekUsers.find((u) => u.id === id).voucherId = "";
       await dispatch(addOrUpdateState(sdata));
       computeTotal(sdata.trekUsers);
       return;
     }
-    sdata.trekUsers.find(u => u.id === id).optedVoucherId = value;
-    sdata.trekUsers.find(u => u.id === id).voucherAmount = 0;
-    sdata.trekUsers.find(u => u.id === id).voucherId = "";
+    sdata.trekUsers.find((u) => u.id === id).optedVoucherId = value;
+    sdata.trekUsers.find((u) => u.id === id).voucherAmount = 0;
+    sdata.trekUsers.find((u) => u.id === id).voucherId = "";
     // console.log(JSON.stringify(sdata));
     await dispatch(addOrUpdateState(sdata));
   };
@@ -328,22 +329,23 @@ const MakePayment = forwardRef((props, ref) => {
 
     if (computeFields.computations.youpay > 0) {
       /// call the paymentgateway
-     // console.log("computeFields.computations.youpay > 0");
+      // console.log("computeFields.computations.youpay > 0");
       processPayments(voucherList, stateData);
-
     } else {
       doSavePayments(stateData.data.bookingId, voucherList)
-        .then(res => {
+        .then((res) => {
           /// redirect to booking confirmation page
-          router.push(`/user-dashboard/thank-you?booking_id=${stateData.data.bookingId}&status=SUCCESS&type=OFFLOADING`);
+          router.push(
+            `/user-dashboard/thank-you?booking_id=${stateData.data.bookingId}&status=SUCCESS&type=OFFLOADING`
+          );
         })
-        .catch(res => {
+        .catch((res) => {
           if (res.response?.data?.message) {
             toast.current.show({
               severity: "error",
               // summary: `'Make payment is not succeeded' ${res.response?.data?.message}`,
               summary: `'Payment Failed!'`,
-              detail: ""
+              detail: "",
             });
           }
           setShowPaymentButton(true);
@@ -354,17 +356,18 @@ const MakePayment = forwardRef((props, ref) => {
   const processPayments = (voucherList, stateData) => {
     setShowProgressSpinner(true);
     doSavePayments(stateData.data.bookingId, voucherList)
-      .then(res => {
+      .then((res) => {
         console.log(res.data);
-        console.log("After payment post respone" + res.data.features.enableNewWindowFlow);
+        console.log(
+          "After payment post respone" + res.data.features.enableNewWindowFlow
+        );
         window.jQuery.pnCheckout(res.data);
         setShowProgressSpinner(false);
         if (res.data.features.enableNewWindowFlow) {
           pnCheckoutShared.openNewWindow();
         }
-       
       })
-      .catch(res => {
+      .catch((res) => {
         console.log(res);
         if (res.response?.data?.message) {
           console.log(res.response.data?.message);
@@ -374,40 +377,43 @@ const MakePayment = forwardRef((props, ref) => {
       });
   };
 
-  const buildVouchers = data => {
+  const buildVouchers = (data) => {
     const vouchers = [];
     console.log(data?.trekUsers);
-    data?.trekUsers?.map(u => {
+    data?.trekUsers?.map((u) => {
       ///if (u.voucherAmount > 0) {
       vouchers.push({
         participantId: u.participantsId,
-        voucherId: (u.voucherId === "" ? null : u.voucherId),
-        voucherAmount: u.voucherAmount
+        voucherId: u.voucherId === "" ? null : u.voucherId,
+        voucherAmount: u.voucherAmount,
       });
       //}
     });
     return vouchers;
   };
 
-  const transFormDifficultyLevel=(value)=> {
-   // let value= "EASY_MODERATE";
-   // console.log(value);
-    let tvalues="";
-   // console.log(typeof(value));
+  const transFormDifficultyLevel = (value) => {
+    // let value= "EASY_MODERATE";
+    // console.log(value);
+    let tvalues = "";
+    // console.log(typeof(value));
 
-    if(value?.indexOf("_")>0) {
-    const v1= value?.split("_");
-    
-    for(let i=0;i<v1?.length;i++) {
-      let str=v1[i];
-      tvalues=tvalues +  str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() + "-";
+    if (value?.indexOf("_") > 0) {
+      const v1 = value?.split("_");
+
+      for (let i = 0; i < v1?.length; i++) {
+        let str = v1[i];
+        tvalues =
+          tvalues +
+          str.charAt(0).toUpperCase() +
+          str.slice(1).toLowerCase() +
+          "-";
+      }
+      return tvalues?.substring(0, tvalues?.length - 1);
+    } else {
+      return value?.charAt(0).toUpperCase() + value?.slice(1).toLowerCase();
     }
-   return tvalues?.substring(0,tvalues?.length-1);
-  }
-  else {
-   return value?.charAt(0).toUpperCase() + value?.slice(1).toLowerCase() ;
-  }
-}
+  };
 
   return (
     <>
@@ -416,7 +422,7 @@ const MakePayment = forwardRef((props, ref) => {
         <div ref={e1} id="scriptPlaceholder">
           {/* paynimoc script injecting Script is inserted here */}
         </div>
-       
+
         <Form>
           <div className="row">
             <div className="col-lg-7 col-md-12">
@@ -437,7 +443,11 @@ const MakePayment = forwardRef((props, ref) => {
                         {moment(bookingInformation?.startDate).format("Do")} -{" "}
                         {moment(bookingInformation?.endDate).format("Do MMMM")}
                       </td>
-                      <td className="td-text-fgb">{transFormDifficultyLevel(bookingInformation?.trekDifficulty)}</td>
+                      <td className="td-text-fgb">
+                        {transFormDifficultyLevel(
+                          bookingInformation?.trekDifficulty
+                        )}
+                      </td>
                       <td>{bookingInformation?.trekkersCount} trekkers</td>
                     </tr>
                   </tbody>
@@ -471,7 +481,9 @@ const MakePayment = forwardRef((props, ref) => {
                     <tr>
                       <td className="reg-mp-mob-table-td">Difficulty</td>
                       <td className="reg-mp-mob-table-td-1">
-                        {transFormDifficultyLevel(bookingInformation?.trekDifficulty)}
+                        {transFormDifficultyLevel(
+                          bookingInformation?.trekDifficulty
+                        )}
                       </td>
                     </tr>
                     <tr>
@@ -500,29 +512,30 @@ const MakePayment = forwardRef((props, ref) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {indexes.map(index => {
+                    {indexes.map((index) => {
                       const fieldName = `voucher[${index}]`;
 
                       const sdata = JSON.parse(JSON.stringify(stateData.data));
                       const data = sdata?.trekUsers[index];
                       // console.log(JSON.stringify(JSON.stringify(stateData.data)));
 
-                      const name = data?.email === bookingInformation.email
-                        ? data?.firstName + " (You) "
-                        : data?.firstName;
+                      const name =
+                        data?.email === bookingInformation.email
+                          ? data?.firstName + " (You) "
+                          : data?.firstName;
                       //const isPrimaryUser=(data.email===bookingDate.email);
                       const vouchers = [];
 
                       if (sdata?.voucherDetails?.length > 0) {
-                        sdata?.voucherDetails?.filter(x => x.userName === data?.email)
-                          .map(v => {
+                        sdata?.voucherDetails
+                          ?.filter((x) => x.userName === data?.email)
+                          .map((v) => {
                             vouchers.push({
                               title: v.title + "-" + v.amountAvailable,
-                              id: v.id
+                              id: v.id,
                             });
                           });
                       }
-
 
                       /* if (sdata.isOwnerActing === true) {
                          if (sdata?.voucherDetails?.length > 0) {
@@ -562,7 +575,9 @@ const MakePayment = forwardRef((props, ref) => {
                                   Trekker: &nbsp;
                                 </span>
                               </div>
-                              <div className="p-text-2-fg-f16-mb">{index + 1}. {name}</div>
+                              <div className="p-text-2-fg-f16-mb">
+                                {index + 1}. {name}
+                              </div>
                             </div>
                           </td>
                           <td>
@@ -579,7 +594,7 @@ const MakePayment = forwardRef((props, ref) => {
                                           optionValue="id"
                                           value={value}
                                           options={vouchers}
-                                          onChange={e => {
+                                          onChange={(e) => {
                                             onChange(e.value);
                                             onVoucherSelect(data.id, e.value);
                                           }}
@@ -595,7 +610,7 @@ const MakePayment = forwardRef((props, ref) => {
                                   <button
                                     type="button"
                                     className="btn btn-bihtn-yellow-sm hvr-grow"
-                                    onClick={e =>
+                                    onClick={(e) =>
                                       onVoucherApply(data.id, index)
                                     }
                                   >
@@ -612,7 +627,9 @@ const MakePayment = forwardRef((props, ref) => {
                                   Trek fee: &nbsp;
                                 </span>
                               </div>
-                              <div className="p-text-2-fg-f16-mb">Rs. {data?.trekFeeForTheUser}</div>
+                              <div className="p-text-2-fg-f16-mb">
+                                Rs. {data?.trekFeeForTheUser}
+                              </div>
                             </div>
                           </td>
                           <td>
@@ -622,17 +639,19 @@ const MakePayment = forwardRef((props, ref) => {
                                   You pay: &nbsp;
                                 </span>
                               </div>
-                              <div className="p-text-2-fg-f16-mb">Rs.{" "}
-                                {
-                                  (data?.trekFeeForTheUser - Number(data?.voucherAmount)) <= 0 && (
-                                    0
-                                  )
-                                }
-                                {
-                                  (data?.trekFeeForTheUser - Number(data?.voucherAmount)) > 0 && (
-                                    Number(data?.trekFeeForTheUser - Number(data?.voucherAmount)).toFixed(2)
-                                  )
-                                }</div>
+                              <div className="p-text-2-fg-f16-mb">
+                                Rs.{" "}
+                                {data?.trekFeeForTheUser -
+                                  Number(data?.voucherAmount) <=
+                                  0 && 0}
+                                {data?.trekFeeForTheUser -
+                                  Number(data?.voucherAmount) >
+                                  0 &&
+                                  Number(
+                                    data?.trekFeeForTheUser -
+                                      Number(data?.voucherAmount)
+                                  ).toFixed(2)}
+                              </div>
                             </div>
                           </td>
                         </tr>
@@ -640,13 +659,12 @@ const MakePayment = forwardRef((props, ref) => {
                     })}
                   </tbody>
                 </table>
-                
               </div>
               {showProgressSpinner && (
-        <div>
-        <ProgressSpinner />
-        </div>
-        )}
+                <div>
+                  <ProgressSpinner />
+                </div>
+              )}
               {/* <div className="m-d-block mb-4">
                 {indexes.map(index => {
                   const fieldName = `voucher[${index}]`;
@@ -771,11 +789,13 @@ const MakePayment = forwardRef((props, ref) => {
                     </div>
                     <div>
                       <p className="p-text-3-1-2 mb-3">
-                        Rs. {Number(computeFields.computations.totalTrekFee).toFixed(2)}
+                        Rs.{" "}
+                        {Number(
+                          computeFields.computations.totalTrekFee
+                        ).toFixed(2)}
                       </p>
                     </div>
                   </div>
-
 
                   <div className="d-flex justify-content-between">
                     <div>
@@ -783,7 +803,8 @@ const MakePayment = forwardRef((props, ref) => {
                     </div>
                     <div>
                       <p className="p-text-3-1-2 mb-3">
-                        Rs. {Number(computeFields.computations.totaltax).toFixed(2)}
+                        Rs.{" "}
+                        {Number(computeFields.computations.totaltax).toFixed(2)}
                       </p>
                     </div>
                   </div>
@@ -792,13 +813,15 @@ const MakePayment = forwardRef((props, ref) => {
                     <div className="d-flex justify-content-between mt-4 pt-2">
                       <div>
                         <p className="p-text-3-1-2 mb-3">
-                          Insurance {bookingInformation?.trekkersCount}{" "}
-                          trekkers
+                          Insurance {bookingInformation?.trekkersCount} trekkers
                         </p>
                       </div>
                       <div>
                         <p className="p-text-3-1-2 mb-3">
-                          Rs. {Number(computeFields.computations.insuranceAmount).toFixed(2)}
+                          Rs.{" "}
+                          {Number(
+                            computeFields.computations.insuranceAmount
+                          ).toFixed(2)}
                         </p>
                       </div>
                     </div>
@@ -813,7 +836,8 @@ const MakePayment = forwardRef((props, ref) => {
                       </div>
                       <div>
                         <p className="p-text-3-1-2 mb-2">
-                          Rs. {Number(computeFields.computations.total).toFixed(2)}
+                          Rs.{" "}
+                          {Number(computeFields.computations.total).toFixed(2)}
                         </p>
                       </div>
                     </div>
@@ -826,7 +850,10 @@ const MakePayment = forwardRef((props, ref) => {
                     </div>
                     <div>
                       <p className="p-text-3-1-2 mb-3">
-                        Rs. {Number(computeFields.computations.voucherDeduction).toFixed(2)}
+                        Rs.{" "}
+                        {Number(
+                          computeFields.computations.voucherDeduction
+                        ).toFixed(2)}
                       </p>
                     </div>
                   </div>
@@ -838,7 +865,8 @@ const MakePayment = forwardRef((props, ref) => {
                     </div>
                     <div>
                       <p className="p-text-2-franklin-g mb-3">
-                        Rs. {Number(computeFields.computations.youpay).toFixed(2)}
+                        Rs.{" "}
+                        {Number(computeFields.computations.youpay).toFixed(2)}
                       </p>
                     </div>
                   </div>
@@ -852,12 +880,10 @@ const MakePayment = forwardRef((props, ref) => {
                     id="btnSubmit"
                     onClick={doPayment}
                     disabled={!showPaymentButton}
-                    
                   >
                     Make Payment
                   </button>
                 </div>
-                
               </div>
             </div>
           </div>

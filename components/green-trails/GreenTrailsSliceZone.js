@@ -8,14 +8,14 @@ import {
   LuTrekkingWorld,
   GtTestimonoial,
   GtStories,
-  GtVideos
+  GtVideos,
 } from "./slices";
 
 const GreenTrailsSliceZone = ({
   sliceZone,
   latestUpdateAarticleData,
   latestUpdateAarticleData1,
-  articleData
+  articleData,
 }) =>
   sliceZone.map((slice, index) => {
     switch (slice.slice_type) {

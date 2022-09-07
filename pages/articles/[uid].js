@@ -32,35 +32,37 @@ const Articles1 = ({
   if (doc && doc.data) {
     return (
       <>
-      <HomeLayout>
-        <Head>
-          <meta charset="utf-8" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
+        <HomeLayout>
+          <Head>
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+            <title>Articles</title>
+          </Head>
+          <HikeHeader />
+          <ArticlesSliceZone
+            sliceZone={doc.data.body}
+            articleTabsList={articleTabsList}
+            section1DataList={section1DataList}
+            primaryArticleData={primaryArticleData}
+            ihMoreReadArticles={ihMoreReadArticles}
+            latestPrimaryArticleData={latestPrimaryArticleData}
+            ihLatestArticles={ihLatestArticles}
+            ihnews={ihnews}
+            trekkingprimaryArticleData={trekkingprimaryArticleData}
+            trekkingArticleData={trekkingArticleData}
+            ihAlitudeResaerch={ihAlitudeResaerch}
+            ihLaPrimaryArticlePrimaryArticleData={
+              ihLaPrimaryArticlePrimaryArticleData
+            }
           />
-          <title>Articles</title>
-        </Head>
-        <HikeHeader />
-        <ArticlesSliceZone
-          sliceZone={doc.data.body}
-          articleTabsList={articleTabsList}
-          section1DataList={section1DataList}
-          primaryArticleData={primaryArticleData}
-          ihMoreReadArticles={ihMoreReadArticles}
-          latestPrimaryArticleData={latestPrimaryArticleData}
-          ihLatestArticles={ihLatestArticles}
-          ihnews={ihnews}
-          trekkingprimaryArticleData={trekkingprimaryArticleData}
-          trekkingArticleData={trekkingArticleData}
-          ihAlitudeResaerch={ihAlitudeResaerch}
-          ihLaPrimaryArticlePrimaryArticleData={ihLaPrimaryArticlePrimaryArticleData}
-        />
-        <IHTrekWithSwathi />
-        <IHFooter />
-      </HomeLayout>
-      <ScrollToTop smooth color="#000000" />
+          <IHTrekWithSwathi />
+          <IHFooter />
+        </HomeLayout>
+        <ScrollToTop smooth color="#000000" />
       </>
     );
   }
@@ -72,7 +74,7 @@ const Articles1 = ({
 export async function getStaticProps({
   params,
   preview = null,
-  previewData = {}
+  previewData = {},
 }) {
   const { ref } = previewData;
 
@@ -102,11 +104,11 @@ export async function getStaticProps({
   // const laPrimaryArticlePrimaryArticleData = [];
 
   const articleTabsList = await client.query([
-    Prismic.Predicates.at("document.type", "articles_landing_type")
+    Prismic.Predicates.at("document.type", "articles_landing_type"),
   ]);
 
   const section1_slice =
-    doc && doc?.data?.body?.find(x => x.slice_type === "articles_tab");
+    doc && doc?.data?.body?.find((x) => x.slice_type === "articles_tab");
 
   if (section1_slice?.items?.length > 0) {
     for (var i = 0; i < section1_slice?.items?.length; i++) {
@@ -148,17 +150,17 @@ export async function getStaticProps({
   //   }
   // }
 
-  let ihMoreReadArticles =[];
+  let ihMoreReadArticles = [];
 
-  const moreReadArticleSlice = doc && doc?.data?.body?.filter(x => x.slice_type === "most_read_articles");
+  const moreReadArticleSlice =
+    doc &&
+    doc?.data?.body?.filter((x) => x.slice_type === "most_read_articles");
 
   if (moreReadArticleSlice?.length > 0) {
-
     for (var i = 0; i < moreReadArticleSlice?.length; i++) {
+      let linkedLatestArticles = [];
 
-      let  linkedLatestArticles=[];
-
-      const data = moreReadArticleSlice[i]; 
+      const data = moreReadArticleSlice[i];
 
       for (var k = 0; k < data?.items?.length; k++) {
         const slugUrl = data && data?.items[k].article_link?.id;
@@ -168,16 +170,16 @@ export async function getStaticProps({
             hikesnews_article_details !== undefined &&
             hikesnews_article_details !== null
           )
-          linkedLatestArticles.push(hikesnews_article_details);
+            linkedLatestArticles.push(hikesnews_article_details);
         }
       }
 
-      if(linkedLatestArticles.length > 0) {
+      if (linkedLatestArticles.length > 0) {
         ihMoreReadArticles.push({
-            key: moreReadArticleSlice[i].primary?.heading1[0].text,
-            value:linkedLatestArticles
-          });
-       }
+          key: moreReadArticleSlice[i].primary?.heading1[0].text,
+          value: linkedLatestArticles,
+        });
+      }
     }
   }
 
@@ -206,17 +208,16 @@ export async function getStaticProps({
   //   }
   // }
 
-  let ihLatestArticles =[];
+  let ihLatestArticles = [];
 
-  const latestArticleSlice = doc && doc?.data?.body?.filter(x => x.slice_type === "latest_articles");
+  const latestArticleSlice =
+    doc && doc?.data?.body?.filter((x) => x.slice_type === "latest_articles");
 
   if (latestArticleSlice?.length > 0) {
-
     for (var i = 0; i < latestArticleSlice?.length; i++) {
+      let linkedLatestArticles = [];
 
-      let  linkedLatestArticles=[];
-
-      const data = latestArticleSlice[i]; 
+      const data = latestArticleSlice[i];
 
       for (var k = 0; k < data?.items?.length; k++) {
         const slugUrl = data && data?.items[k].article_link?.id;
@@ -226,69 +227,66 @@ export async function getStaticProps({
             hikesnews_article_details !== undefined &&
             hikesnews_article_details !== null
           )
-          linkedLatestArticles.push(hikesnews_article_details);
+            linkedLatestArticles.push(hikesnews_article_details);
         }
       }
 
-      if(linkedLatestArticles.length > 0) {
+      if (linkedLatestArticles.length > 0) {
         ihLatestArticles.push({
-            key: latestArticleSlice[i].primary?.heading1[0].text,
-            value:linkedLatestArticles
-          });
-       }
+          key: latestArticleSlice[i].primary?.heading1[0].text,
+          value: linkedLatestArticles,
+        });
+      }
     }
   }
 
   let ihLaPrimaryArticlePrimaryArticleData = [];
 
   if (latestArticleSlice?.length > 0) {
-
     for (var i = 0; i < latestArticleSlice?.length; i++) {
+      let linkedLatestPrimaryArticles = [];
 
-      let  linkedLatestPrimaryArticles=[];
-
-      const data = latestArticleSlice[i]; 
+      const data = latestArticleSlice[i];
 
       // for (var k = 0; k < data?.length; k++) {
-        const slugUrl = data && data?.primary?.primary_article_link?.id;
-        if (slugUrl !== undefined) {
-          const hikesnews_article_details = await Client().getByID(slugUrl);
-          if (
-            hikesnews_article_details !== undefined &&
-            hikesnews_article_details !== null
-          )
+      const slugUrl = data && data?.primary?.primary_article_link?.id;
+      if (slugUrl !== undefined) {
+        const hikesnews_article_details = await Client().getByID(slugUrl);
+        if (
+          hikesnews_article_details !== undefined &&
+          hikesnews_article_details !== null
+        )
           linkedLatestPrimaryArticles.push(hikesnews_article_details);
-        }
+      }
       // }
 
-      if(linkedLatestPrimaryArticles.length > 0) {
+      if (linkedLatestPrimaryArticles.length > 0) {
         ihLaPrimaryArticlePrimaryArticleData.push({
-            key: latestArticleSlice[i].primary?.heading1[0].text,
-            value:linkedLatestPrimaryArticles
-          });
-       }
+          key: latestArticleSlice[i].primary?.heading1[0].text,
+          value: linkedLatestPrimaryArticles,
+        });
+      }
     }
   }
 
-//   const laPrimaryArticlePrimaryArticle =
-//   latestArticleSlice && latestArticleSlice?.primary?.primary_article_link?.id;
-//   if (laPrimaryArticlePrimaryArticle !== undefined) {
-//   const article_details = await Client().getByID(laPrimaryArticlePrimaryArticle);
-//   laPrimaryArticlePrimaryArticleData.push(article_details);
-// }
+  //   const laPrimaryArticlePrimaryArticle =
+  //   latestArticleSlice && latestArticleSlice?.primary?.primary_article_link?.id;
+  //   if (laPrimaryArticlePrimaryArticle !== undefined) {
+  //   const article_details = await Client().getByID(laPrimaryArticlePrimaryArticle);
+  //   laPrimaryArticlePrimaryArticleData.push(article_details);
+  // }
 
+  let ihnews = [];
 
-  let ihnews =[];
-
-  const hikesNewsSlice = doc && doc?.data?.body?.filter(x => x.slice_type === "hike_news_articles");
+  const hikesNewsSlice =
+    doc &&
+    doc?.data?.body?.filter((x) => x.slice_type === "hike_news_articles");
 
   if (hikesNewsSlice?.length > 0) {
-
     for (var i = 0; i < hikesNewsSlice?.length; i++) {
+      let linkedArticles = [];
 
-      let  linkedArticles=[];
-
-      const data = hikesNewsSlice[i]; 
+      const data = hikesNewsSlice[i];
 
       for (var k = 0; k < data?.items?.length; k++) {
         const slugUrl = data && data?.items[k].article_link?.id;
@@ -298,21 +296,21 @@ export async function getStaticProps({
             hikesnews_article_details !== undefined &&
             hikesnews_article_details !== null
           )
-          linkedArticles.push(hikesnews_article_details);
+            linkedArticles.push(hikesnews_article_details);
         }
       }
 
-      if(linkedArticles.length > 0) {
-          ihnews.push({
-            key: hikesNewsSlice[i].primary?.heading1[0].text,
-            value:linkedArticles
-          });
-       }
+      if (linkedArticles.length > 0) {
+        ihnews.push({
+          key: hikesNewsSlice[i].primary?.heading1[0].text,
+          value: linkedArticles,
+        });
+      }
     }
   }
 
   const trekkingPrimarySlice =
-    doc && doc?.data?.body?.find(x => x.slice_type === "trekking_tips");
+    doc && doc?.data?.body?.find((x) => x.slice_type === "trekking_tips");
 
   const trekkingPrimary =
     trekkingPrimarySlice &&
@@ -323,7 +321,7 @@ export async function getStaticProps({
   }
 
   const trekkingArticleSlice =
-    doc && doc?.data?.body?.find(x => x.slice_type === "trekking_tips");
+    doc && doc?.data?.body?.find((x) => x.slice_type === "trekking_tips");
 
   if (trekkingArticleSlice?.items?.length > 0) {
     for (var i = 0; i < trekkingArticleSlice?.items?.length; i++) {
@@ -361,15 +359,15 @@ export async function getStaticProps({
 
   let ihAlitudeResaerch = [];
 
-  const highAltiSlice = doc && doc?.data?.body?.filter(x => x.slice_type === "high_altitude_research");
+  const highAltiSlice =
+    doc &&
+    doc?.data?.body?.filter((x) => x.slice_type === "high_altitude_research");
 
   if (highAltiSlice?.length > 0) {
-
     for (var i = 0; i < highAltiSlice?.length; i++) {
+      let linkedAlitudeArticles = [];
 
-      let  linkedAlitudeArticles=[];
-
-      const data = highAltiSlice[i]; 
+      const data = highAltiSlice[i];
 
       for (var k = 0; k < data?.items?.length; k++) {
         const slugUrl = data && data?.items[k].article_link?.id;
@@ -379,16 +377,16 @@ export async function getStaticProps({
             hikesnews_article_details !== undefined &&
             hikesnews_article_details !== null
           )
-          linkedAlitudeArticles.push(hikesnews_article_details);
+            linkedAlitudeArticles.push(hikesnews_article_details);
         }
       }
 
-      if(linkedAlitudeArticles.length > 0) {
+      if (linkedAlitudeArticles.length > 0) {
         ihAlitudeResaerch.push({
-            key: highAltiSlice[i]?.primary?.heading1[0].text,
-            value:linkedAlitudeArticles
-          });
-       }
+          key: highAltiSlice[i]?.primary?.heading1[0].text,
+          value: linkedAlitudeArticles,
+        });
+      }
     }
   }
 
@@ -414,16 +412,18 @@ export async function getStaticProps({
 
 export async function getStaticPaths() {
   //const documents = await queryRepeatableDocuments((doc) => doc.type === 'trek')
-  const documents = await queryRepeatableDocumentsWithDocTypeFilter("articles_landing_type");
-  
+  const documents = await queryRepeatableDocumentsWithDocTypeFilter(
+    "articles_landing_type"
+  );
+
   /*const response = await Client().query(
     Prismic.Predicates.at("document.type", "articles_landing_type")
   );*/
 
   //const documents = response.results;
   return {
-    paths: documents.map(doc => `/articles/${doc.uid}`),
-    fallback: true
+    paths: documents.map((doc) => `/articles/${doc.uid}`),
+    fallback: true,
   };
 }
 

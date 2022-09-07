@@ -15,7 +15,7 @@ import { HikeHeader } from "components/ihhome";
 import IHFooter from "components/Footer";
 import IHTrekWithSwathi from "components/Trek_With_Swathi";
 
-import { isNil, isEmpty } from 'ramda';
+import { isNil, isEmpty } from "ramda";
 
 /**
  * Post page component
@@ -26,18 +26,17 @@ const Post = ({
   updatesData,
   upComingData,
   relatedArticles,
-  related_authors
+  related_authors,
 }) => {
   if (post && post.data) {
-
     const getMetaTitle = () => {
       const { data } = post;
       const metaTitle = RichText.asText(data.meta_title);
       if (isNil(metaTitle) || isEmpty(metaTitle)) {
-        return RichText.asText(data.title); 
+        return RichText.asText(data.title);
       }
       return metaTitle;
-    }
+    };
 
     const getMetaDescription = () => {
       const { data } = post;
@@ -46,7 +45,7 @@ const Post = ({
         return "";
       }
       return metaDescription;
-    }
+    };
 
     const getMetaKeywords = () => {
       const { data } = post;
@@ -55,21 +54,25 @@ const Post = ({
         return "";
       }
       return metaKeywords;
-    }
+    };
 
     const getMetaImage = () => {
-      const { data: { body } } = post;
-      const featureImageSlice = body.find(item => item.slice_type === "feature_image");
+      const {
+        data: { body },
+      } = post;
+      const featureImageSlice = body.find(
+        (item) => item.slice_type === "feature_image"
+      );
       if (isNil(featureImageSlice)) return "";
       return featureImageSlice.primary.feature_image.url;
-    }
+    };
 
     const metaData = {
       title: getMetaTitle(),
       description: getMetaDescription(),
       keywords: getMetaKeywords(),
       image: getMetaImage(),
-    }
+    };
 
     return (
       <DefaultLayout>
@@ -78,7 +81,11 @@ const Post = ({
           <meta name="description" content={metaData.description} />
           <meta name="keywords" content={metaData.keywords} />
           <meta property="og:title" content={metaData.title} key="og-title" />
-          <meta property="og:description" content={metaData.description} key="og-description" />
+          <meta
+            property="og:description"
+            content={metaData.description}
+            key="og-description"
+          />
           <meta property="og:image" content={metaData.image} key="og-image" />
         </Head>
         <HikeHeader />
@@ -111,10 +118,11 @@ const Post = ({
 export async function getStaticProps({
   params,
   preview = null,
-  previewData = {}
+  previewData = {},
 }) {
   const { ref } = previewData;
-  const post = (await Client().getByUID("post", params.uid, ref ? { ref } : null)) || {};
+  const post =
+    (await Client().getByUID("post", params.uid, ref ? { ref } : null)) || {};
 
   console.log(post?.data?.title);
 
@@ -122,7 +130,9 @@ export async function getStaticProps({
   const author_lnk_id = post?.data?.author_link?.id;
   /// Fetch related articles
   const relatedArticles = [];
-  const slice = post.data?.body?.find(x => x.slice_type === "related_articles");
+  const slice = post.data?.body?.find(
+    (x) => x.slice_type === "related_articles"
+  );
   //console.log(slice);
 
   if (slice !== null && slice !== undefined) {
@@ -180,7 +190,7 @@ export async function getStaticProps({
   // console.log(homePageData);
   let upComingData = [];
   const upComingTreks = homePageData.data?.body?.find(
-    x => x.slice_type === "choose_these_treks"
+    (x) => x.slice_type === "choose_these_treks"
   );
   if (upComingTreks !== null && upComingTreks !== undefined) {
     if (upComingTreks?.items.length > 0) {
@@ -202,7 +212,7 @@ export async function getStaticProps({
   }
 
   const updatesData = homePageData.data?.body?.find(
-    x => x.slice_type === "latest_trekking_world"
+    (x) => x.slice_type === "latest_trekking_world"
   );
 
   let related_authors = [];
@@ -234,10 +244,9 @@ export async function getStaticProps({
       updatesData,
       upComingData,
       relatedArticles,
-      related_authors
+      related_authors,
     },
-   // revalidate: 60,
-  
+    // revalidate: 60,
   };
 }
 
@@ -246,34 +255,32 @@ export async function getStaticPaths() {
   const documents = await queryRepeatableDocumentsWithDocTypeFilter("post");
   //const doc    =    await Client().getByUID("post", "how-to-choose-trek-pants-the-ultimate-trekking-pants-guide-2021");
 
-  
   //const documents=[];
- //documents.push(doc);
+  //documents.push(doc);
 
   console.log("Total-Posts" + documents.length);
 
-  const fastBuild= process.env.NEXT_FAST_BUILD;
- // console.log(fastBuild);
-  if(fastBuild==="TRUE") {
-  let limitDocs=[];
-  const limit=5;
+  const fastBuild = process.env.NEXT_FAST_BUILD;
+  // console.log(fastBuild);
+  if (fastBuild === "TRUE") {
+    let limitDocs = [];
+    const limit = 5;
 
- for( let i=0;i<limit; i++) {
-  limitDocs.push(documents[i]);
- }
- 
- return {
-  paths: limitDocs.map(doc => `/blog/${doc?.uid}`),
-  fallback: true,
-}
-}
-else {
-  console.log(fastBuild + "POST");
-  return {
-    paths: documents.map(doc => `/blog/${doc?.uid}`),
-    fallback: true,
+    for (let i = 0; i < limit; i++) {
+      limitDocs.push(documents[i]);
+    }
+
+    return {
+      paths: limitDocs.map((doc) => `/blog/${doc?.uid}`),
+      fallback: true,
+    };
+  } else {
+    console.log(fastBuild + "POST");
+    return {
+      paths: documents.map((doc) => `/blog/${doc?.uid}`),
+      fallback: true,
+    };
   }
-}
 }
 
 export default Post;

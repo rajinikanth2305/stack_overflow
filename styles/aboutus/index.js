@@ -1,1 +1,1 @@
-export { aboutUsStyles }  from "./aboutUsStyles";
+export { aboutUsStyles } from "./aboutUsStyles";

@@ -30,16 +30,16 @@ const CareersVideos = ({ slice }) => {
           slidesToShow: 4,
           slidesToScroll: 2,
           infinite: false,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -47,13 +47,16 @@ const CareersVideos = ({ slice }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          centerMode: true
-        }
-      }
-    ]
+          centerMode: true,
+        },
+      },
+    ],
   };
 
-  const ihTrekkerVideosImage = ihTrekkerVideosImageArray?.map(function(data, i) {
+  const ihTrekkerVideosImage = ihTrekkerVideosImageArray?.map(function (
+    data,
+    i
+  ) {
     const result = data?.video_link?.url.split(
       /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
     );

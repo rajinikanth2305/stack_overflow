@@ -1,6 +1,6 @@
-import React from 'react'
-import PostItem from './PostItem'
-import { postListStyles } from 'styles'
+import React from "react";
+import PostItem from "./PostItem";
+import { postListStyles } from "styles";
 
 /**
  * Post list component
@@ -11,9 +11,11 @@ const PostList = ({ posts }) => {
       {posts.map((post) => (
         <PostItem post={post} key={post.id} />
       ))}
-      <style jsx global>{postListStyles}</style>
+      <style jsx global>
+        {postListStyles}
+      </style>
     </div>
-  )
-}
+  );
+};
 
-export default PostList
+export default PostList;

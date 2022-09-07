@@ -1,7 +1,7 @@
-import React from 'react'
-import { RichText } from 'prismic-reactjs'
-import { blogLinkResolver } from 'prismic-configuration'
-import { blogCustomLink } from 'utils/prismicHelpers'
+import React from "react";
+import { RichText } from "prismic-reactjs";
+import { blogLinkResolver } from "prismic-configuration";
+import { blogCustomLink } from "utils/prismicHelpers";
 
 /**
  * Text slice component
@@ -15,6 +15,6 @@ const Text = ({ slice }) => (
       serializeHyperlink={blogCustomLink}
     />
   </div>
-)
+);
 
-export default Text
+export default Text;

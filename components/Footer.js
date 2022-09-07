@@ -44,7 +44,10 @@ const IHFooter = () => {
                       target="_blank"
                     >
                       <h4>
-                        <i className="fa fa-youtube-play" aria-hidden="true"></i>
+                        <i
+                          className="fa fa-youtube-play"
+                          aria-hidden="true"
+                        ></i>
                       </h4>
                     </a>
                   </div>
@@ -83,11 +86,19 @@ const IHFooter = () => {
                   </div> */}
                   <div>
                     <ul className="footer_nav_links">
-                      <li><a href="../../../aboutus">About Us</a></li>
-                      <li><a href="../../../careers">Careers</a></li>
-                      <li><a href="../../../contact-us">Contact Us</a></li>
+                      <li>
+                        <a href="../../../aboutus">About Us</a>
+                      </li>
+                      <li>
+                        <a href="../../../careers">Careers</a>
+                      </li>
+                      <li>
+                        <a href="../../../contact-us">Contact Us</a>
+                      </li>
                       {/* <li><a href="../../../safety">Safety at Indiahikes</a></li> */}
-                      <li><a href="../../../green-trails">Green Trails</a></li>
+                      <li>
+                        <a href="../../../green-trails">Green Trails</a>
+                      </li>
                     </ul>
                   </div>
                 </div>

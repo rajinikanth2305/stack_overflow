@@ -8,7 +8,7 @@ import {
   getUserIdProof,
   saveMyProfile,
   uploadUserFitness,
-  uploadUserIdProof
+  uploadUserIdProof,
 } from "../../../../services/queries";
 import { useForm, Controller } from "react-hook-form";
 import { FileUpload } from "primereact/fileupload";
@@ -38,7 +38,7 @@ const UserMP = () => {
     control,
     errors,
     formState,
-    getValues
+    getValues,
   } = useForm();
 
   React.useEffect(() => {
@@ -46,7 +46,7 @@ const UserMP = () => {
     auth.keycloak().then(([userTokenObject, loggedInUserEmail]) => {
       setUserServiceObject(userTokenObject);
       setUserEmail(loggedInUserEmail);
-      getLoggedInUserDetails().then(data => {
+      getLoggedInUserDetails().then((data) => {
         const userData = data.data;
         setUser(userData);
         setValue("firstName", userData.firstName);
@@ -70,11 +70,11 @@ const UserMP = () => {
       });
 
       getUserIdProof(true)
-        .then(data => setFrontImage(data))
-        .catch(error => console.log(error));
+        .then((data) => setFrontImage(data))
+        .catch((error) => console.log(error));
       getUserIdProof(false)
-        .then(data => setBackImage(data))
-        .catch(error => console.log(error));
+        .then((data) => setBackImage(data))
+        .catch((error) => console.log(error));
     });
   }, []);
 
@@ -82,7 +82,7 @@ const UserMP = () => {
     userServiceObject.doLogout();
   };
 
-  const onSubmit = userData => {
+  const onSubmit = (userData) => {
     const userUpdated = user;
     userUpdated.firstName = userData.firstName;
     userUpdated.lastName = userData.lastName;
@@ -112,27 +112,27 @@ const UserMP = () => {
   const uploadOptions = {
     label: "Submit",
     icon: "pi pi-upload",
-    className: "p-button-success"
+    className: "p-button-success",
   };
 
   const cancelOptions = {
     label: "Remove",
     icon: "pi pi-times",
-    className: "p-button-danger"
+    className: "p-button-danger",
   };
 
-  const myUploader = async event => {
+  const myUploader = async (event) => {
     const fileId = event.options.props.id;
-    event.files.map(file => {
+    event.files.map((file) => {
       const formData = new FormData();
       formData.append("file", file);
       uploadUserIdProof(formData, fileId === "frontImage").then(() => {
         toast.current.show({
           severity: "success",
           summary: `'Id proof uploaded successfully'`,
-          detail: ""
+          detail: "",
         });
-        getUserIdProof(fileId === "frontImage").then(data =>
+        getUserIdProof(fileId === "frontImage").then((data) =>
           fileId === "frontImage" ? setFrontImage(data) : setBackImage(data)
         );
       });

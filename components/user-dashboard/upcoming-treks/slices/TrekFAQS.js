@@ -3,7 +3,7 @@ import React, {
   forwardRef,
   useImperativeHandle,
   useRef,
-  useContext
+  useContext,
 } from "react";
 
 import { RichText } from "prismic-reactjs";
@@ -12,8 +12,8 @@ import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
-import AccordionContext from 'react-bootstrap/AccordionContext';
+import { useAccordionToggle } from "react-bootstrap/AccordionToggle";
+import AccordionContext from "react-bootstrap/AccordionContext";
 
 const TrekFAQS = forwardRef((props, ref) => {
   const [faqData, setFaqData] = useState(undefined);
@@ -40,16 +40,16 @@ const TrekFAQS = forwardRef((props, ref) => {
         .replaceAll(" ", "-")
         .toLowerCase();
       const result = trekData.prismicContents?.results?.find(
-        x => x.uid.toLowerCase() === trekName?.toLowerCase()
+        (x) => x.uid.toLowerCase() === trekName?.toLowerCase()
       );
       setTrekPageData(result);
       fillPrismicContents(result);
-    }
+    },
   }));
 
-  const fillPrismicContents = result => {
+  const fillPrismicContents = (result) => {
     const faqData = result?.data?.body.find(
-      x => x.slice_type === "faq_about_trek"
+      (x) => x.slice_type === "faq_about_trek"
     );
 
     if (faqData !== undefined) {
@@ -74,7 +74,7 @@ const TrekFAQS = forwardRef((props, ref) => {
 
     const decoratedOnClick = useAccordionToggle(
       eventKey,
-      () => callback && callback(eventKey),
+      () => callback && callback(eventKey)
     );
 
     const isCurrentEventKey = currentEventKey === eventKey;
@@ -82,7 +82,7 @@ const TrekFAQS = forwardRef((props, ref) => {
     return (
       <button
         type="button"
-        className={isCurrentEventKey ? 'show' : ''}
+        className={isCurrentEventKey ? "show" : ""}
         onClick={decoratedOnClick}
       >
         {children}
@@ -90,7 +90,7 @@ const TrekFAQS = forwardRef((props, ref) => {
     );
   }
 
-  const faqArrayDetails = Indexes?.map(function(k) {
+  const faqArrayDetails = Indexes?.map(function (k) {
     const data = faqData && faqData[k];
     return (
       <div className="col-md-6" key={k}>
@@ -107,7 +107,9 @@ const TrekFAQS = forwardRef((props, ref) => {
             >
               {data?.question_heading[0]?.text}
             </Accordion.Toggle> */}
-            <ContextAwareToggle eventKey={k + 1}>{data?.question_heading[0]?.text}</ContextAwareToggle>
+            <ContextAwareToggle eventKey={k + 1}>
+              {data?.question_heading[0]?.text}
+            </ContextAwareToggle>
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>
@@ -122,7 +124,7 @@ const TrekFAQS = forwardRef((props, ref) => {
     );
   });
 
-  const onTrekPageNavigate = bookingStatus => {
+  const onTrekPageNavigate = (bookingStatus) => {
     router.push(`/trek/${trekPageData.uid}`);
   };
 
@@ -139,7 +141,7 @@ const TrekFAQS = forwardRef((props, ref) => {
           <button
             type="button"
             className="btn table-btn-yellow-sm hvr-grow"
-            onClick={e => onTrekPageNavigate()}
+            onClick={(e) => onTrekPageNavigate()}
           >
             Go to the trek page
           </button>

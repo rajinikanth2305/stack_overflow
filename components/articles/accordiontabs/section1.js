@@ -16,7 +16,10 @@ const Section1 = ({ data, section1DataList, primaryArticleData }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const authorName = primaryArticleData[0]?.data?.author_link?.uid.replace(/-/g, " ");
+  const authorName = primaryArticleData[0]?.data?.author_link?.uid.replace(
+    /-/g,
+    " "
+  );
 
   const result = primaryVideoUrl?.split(
     /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
@@ -33,7 +36,7 @@ const Section1 = ({ data, section1DataList, primaryArticleData }) => {
   const latestLrekImage =
     primaryArticleData &&
     primaryArticleData[0]?.data?.body?.find(
-      x => x.slice_type === "feature_image"
+      (x) => x.slice_type === "feature_image"
     );
 
   const durationTrekRead = data?.primary?.duration_trek_read;
@@ -44,24 +47,24 @@ const Section1 = ({ data, section1DataList, primaryArticleData }) => {
     primary_url = linkResolver(data?.primary?.primary_link_url);
   }
 
-  getYoutubeTitle(cleanVideoId && cleanVideoId ? cleanVideoId : "", function(
-    err,
-    title
-  ) {
-    setVtitle(title);
-  });
+  getYoutubeTitle(
+    cleanVideoId && cleanVideoId ? cleanVideoId : "",
+    function (err, title) {
+      setVtitle(title);
+    }
+  );
 
-  const section1Data = section1DataList?.map(function(data, index) {
+  const section1Data = section1DataList?.map(function (data, index) {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
       url = `/blog/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.find(
-      x => x.slice_type === "feature_image"
+      (x) => x.slice_type === "feature_image"
     );
     const getArticleHeadingText = data?.data?.body?.find(
-      x => x.slice_type === "text"
+      (x) => x.slice_type === "text"
     );
     return (
       <div className="col-lg-6 col-md-12" key={index}>
@@ -210,7 +213,7 @@ const Section1 = ({ data, section1DataList, primaryArticleData }) => {
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
-            className="mob-video-iframe" 
+            className="mob-video-iframe"
           ></iframe>
         </Modal.Body>
       </Modal>

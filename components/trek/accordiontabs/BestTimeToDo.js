@@ -44,16 +44,16 @@ const BestTimeToDo = ({ data }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -61,10 +61,10 @@ const BestTimeToDo = ({ data }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: true,
-          dots: false
-        }
-      }
-    ]
+          dots: false,
+        },
+      },
+    ],
   };
 
   useEffect(() => {
@@ -76,7 +76,7 @@ const BestTimeToDo = ({ data }) => {
 
   async function findTrekStories() {
     const slice =
-      data && data.find(x => x.slice_type === "best_time_to_do_trek");
+      data && data.find((x) => x.slice_type === "best_time_to_do_trek");
     setBestTimeToDo(slice);
   }
 
@@ -137,7 +137,7 @@ const BestTimeToDo = ({ data }) => {
   const highlightMonths =
     bestTimeToDo && bestTimeToDo?.primary?.highlight_months;
 
-  const htext = highlightMonths?.map(function(data, i) {
+  const htext = highlightMonths?.map(function (data, i) {
     return (
       <>
         <p className="p-text-4" key={i}>
@@ -148,31 +148,31 @@ const BestTimeToDo = ({ data }) => {
   });
 
   const highlightTextFilter1 =
-    htext && htext?.find(x => x.props?.children?.props?.children === "1");
+    htext && htext?.find((x) => x.props?.children?.props?.children === "1");
   const highlightTextFilter2 =
-    htext && htext?.find(x => x.props?.children?.props?.children === "2");
+    htext && htext?.find((x) => x.props?.children?.props?.children === "2");
   const highlightTextFilter3 =
-    htext && htext?.find(x => x.props?.children?.props?.children === "3");
+    htext && htext?.find((x) => x.props?.children?.props?.children === "3");
   const highlightTextFilter4 =
-    htext && htext?.find(x => x.props?.children?.props?.children === "4");
+    htext && htext?.find((x) => x.props?.children?.props?.children === "4");
   const highlightTextFilter5 =
-    htext && htext?.find(x => x.props?.children?.props?.children === "5");
+    htext && htext?.find((x) => x.props?.children?.props?.children === "5");
 
   const highlightTextFilter6 =
-    htext && htext?.find(x => x.props?.children?.props?.children === "6");
+    htext && htext?.find((x) => x.props?.children?.props?.children === "6");
   const highlightTextFilter7 =
-    htext && htext?.find(x => x.props?.children?.props?.children === "7");
+    htext && htext?.find((x) => x.props?.children?.props?.children === "7");
   const highlightTextFilter8 =
-    htext && htext?.find(x => x.props?.children?.props?.children === "8");
+    htext && htext?.find((x) => x.props?.children?.props?.children === "8");
   const highlightTextFilter9 =
-    htext && htext?.find(x => x.props?.children?.props?.children === "9");
+    htext && htext?.find((x) => x.props?.children?.props?.children === "9");
   const highlightTextFilter10 =
-    htext && htext?.find(x => x.props?.children?.props?.children === "10");
+    htext && htext?.find((x) => x.props?.children?.props?.children === "10");
 
   const highlightTextFilter11 =
-    htext && htext?.find(x => x.props?.children?.props?.children === "11");
+    htext && htext?.find((x) => x.props?.children?.props?.children === "11");
   const highlightTextFilter12 =
-    htext && htext?.find(x => x.props?.children?.props?.children === "12");
+    htext && htext?.find((x) => x.props?.children?.props?.children === "12");
 
   return (
     <>

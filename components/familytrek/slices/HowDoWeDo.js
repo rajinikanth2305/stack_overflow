@@ -20,7 +20,7 @@ const HowDoWeDo = ({ slice }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const tabsData = tabsDataArray?.map(function(data, i) {
+  const tabsData = tabsDataArray?.map(function (data, i) {
     const linkType = data?.target_link?.link_type;
     let url = linkType == "Web" ? data?.target_link?.url : "";
     const slugUrl =
@@ -54,7 +54,9 @@ const HowDoWeDo = ({ slice }) => {
           </p>
           <div className="row">
             <div className="col-lg-6 col-md-12">
-              <div className="p-text-3">{RichText.render(data?.content, linkResolver)}</div>
+              <div className="p-text-3">
+                {RichText.render(data?.content, linkResolver)}
+              </div>
               {data?.target_link?.url && (
                 <div className="mt-5 mb-4 mmb-0">
                   <Link href={url ? url : "#"}>

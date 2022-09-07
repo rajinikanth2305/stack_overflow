@@ -31,16 +31,16 @@ const Testimonoials = ({ slice }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -48,13 +48,13 @@ const Testimonoials = ({ slice }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          centerMode: true
-        }
-      }
-    ]
+          centerMode: true,
+        },
+      },
+    ],
   };
 
-  const testimonials = testimonialsArray?.map(function(data, i) {
+  const testimonials = testimonialsArray?.map(function (data, i) {
     return (
       <div key={`testimonial` + i}>
         <div className="mx-4 m-mx-0">

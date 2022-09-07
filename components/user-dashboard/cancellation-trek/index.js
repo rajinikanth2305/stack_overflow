@@ -1,1 +1,1 @@
-export { default as CancellationTrekSliceZone } from './CancellationTrekSliceZone';
+export { default as CancellationTrekSliceZone } from "./CancellationTrekSliceZone";

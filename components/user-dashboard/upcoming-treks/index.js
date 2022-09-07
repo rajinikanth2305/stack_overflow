@@ -1,1 +1,1 @@
-export { default as UserUpcomingTreksSliceZone } from './UserUpcomingTreksSliceZone';
+export { default as UserUpcomingTreksSliceZone } from "./UserUpcomingTreksSliceZone";

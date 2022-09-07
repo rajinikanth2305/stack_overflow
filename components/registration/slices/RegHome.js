@@ -14,11 +14,11 @@ import MakePayment from "./MakePayment";
 // import dynamic from 'next/dynamic';
 import { useRouter } from "next/router";
 //import { withRouter } from 'next/router'
-import {Dialog} from 'primereact/dialog';
+import { Dialog } from "primereact/dialog";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addOrUpdateState,
-  selectStateData
+  selectStateData,
 } from "../../reduxstate/counterSlice";
 
 import auth from "../../../services/Authenticate";
@@ -29,7 +29,7 @@ import {
   getUserVoucher,
   findUserByEmail,
   getUsersVoucherByBookingId,
-  getBatchInfo
+  getBatchInfo,
 } from "../../../services/queries";
 import {
   TabContent,
@@ -42,7 +42,7 @@ import {
   CardTitle,
   CardText,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 import classnames from "classnames";
 // import Nav from "react-bootstrap/Nav";
@@ -69,12 +69,12 @@ const RegHome = ({ slice }) => {
   const [exclusions, setExclusions] = useState();
   const [whyIndiaHikes, setWhyIndiaHikes] = useState();
   const [tac, setTac] = useState();
-  const defaultMessage="A technical issue might have occured at website,contact support team for any assist. re-try in few mins.";
+  const defaultMessage =
+    "A technical issue might have occured at website,contact support team for any assist. re-try in few mins.";
   const [dialogMessage, setDialogMessage] = useState(defaultMessage);
   const [displayBasic, setDisplayBasic] = useState(false);
-  const [position, setPosition] = useState('center');
+  const [position, setPosition] = useState("center");
   const [displayPosition, setDisplayPosition] = useState(false);
-
 
   const router = useRouter();
 
@@ -93,10 +93,10 @@ const RegHome = ({ slice }) => {
 
   const [activeTab, setActiveTab] = useState("1");
 
-  const [batchResult,setBatchResult]=useState(null);
-  const [promoterFlag,setPromoterFlag]=useState(false);
+  const [batchResult, setBatchResult] = useState(null);
+  const [promoterFlag, setPromoterFlag] = useState(false);
 
-  const toggle = tab => {
+  const toggle = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
 
@@ -113,19 +113,17 @@ const RegHome = ({ slice }) => {
     };
   }, []);
 
-  const  init=  (userEmail)=>{
+  const init = (userEmail) => {
+    const batchId = getBatchIdFromQueryPath();
 
-    const batchId=getBatchIdFromQueryPath();
-
-    getBatchInfo(batchId).then(bResults=>{
+    getBatchInfo(batchId).then((bResults) => {
       setBatchResult(bResults);
-      DoBindIfBookingExists(userEmail,bResults);
+      DoBindIfBookingExists(userEmail, bResults);
       findEligibilityCriteria(bResults);
     });
-  }
+  };
 
-  const DoBindIfBookingExists =  (userEmail,bResults) => {
-    
+  const DoBindIfBookingExists = (userEmail, bResults) => {
     let url = location.href.replace(location.origin, "");
     let pageUrl = url.split("&");
     let batchKeyVal = pageUrl[0]; //batchid
@@ -142,7 +140,7 @@ const RegHome = ({ slice }) => {
     }
 
     console.log(stepName);
-    onTermAccept(true, userEmail, batchId, stepName, "Redirect",bResults);
+    onTermAccept(true, userEmail, batchId, stepName, "Redirect", bResults);
 
     //console.log(stepName);
     //console.log(batchId);
@@ -151,7 +149,7 @@ const RegHome = ({ slice }) => {
   function getTrekNameFromUrlQueryPath() {
     /// Get the trekName from QueryString
     let url = location.href.replace(location.origin, "");
-   
+
     //console.log(url);
     let pageUrl = url.split("&");
     let pageUrl3 = pageUrl[1]; //trekName
@@ -163,16 +161,14 @@ const RegHome = ({ slice }) => {
     //const client = Client();
 
     /// sample url to parse andget the batchid /registration?batchId=6049#state=f2bgfhgfh
-   
-   
-   /* let url = location.href.replace(location.origin, "");
+
+    /* let url = location.href.replace(location.origin, "");
     // console.log(url);
     let urlWithParams=url.split("#")[0];
     let batchKeyVal=urlWithParams.split("?")[1].split("&")[0];
     let batchId=batchKeyVal.split("=")[1];
     // console.log(batchId);*/
-   
-  
+
     // const prismicPageName=getTrekNameFromUrlQueryPath().replace("%20","_").toLocaleLowerCase();
     // console.log(prismicPageName);
     // const response = await Client().getByUID("trek", prismicPageName) || {};
@@ -180,51 +176,54 @@ const RegHome = ({ slice }) => {
     // const tt = response.data.body;///response.results.data.body;
     // const slice = tt && tt.find(x => x.slice_type === "book_your_trek");
     // setEligibilityCriteria(slice);
-    
-   // getBatchInfo(batchId).then(res=>{
-     // const trekName = res.trekName.replaceAll(" ", "-").toLowerCase();
-      getTrekContentsFromPrismic(batchResult.trekId);
-   // });
 
+    // getBatchInfo(batchId).then(res=>{
+    // const trekName = res.trekName.replaceAll(" ", "-").toLowerCase();
+    getTrekContentsFromPrismic(batchResult.trekId);
+    // });
   }
 
-  const getBatchIdFromQueryPath=()=> {
+  const getBatchIdFromQueryPath = () => {
     let url = location.href.replace(location.origin, "");
     // console.log(url);
-    let urlWithParams=url.split("#")[0];
-    let batchKeyVal=urlWithParams.split("?")[1].split("&")[0];
-    let batchId=batchKeyVal.split("=")[1];
+    let urlWithParams = url.split("#")[0];
+    let batchKeyVal = urlWithParams.split("?")[1].split("&")[0];
+    let batchId = batchKeyVal.split("=")[1];
     return batchId;
-  }
+  };
 
-  const getTrekContentsFromPrismic = async (trekId) =>{
-     console.log(trekId);
+  const getTrekContentsFromPrismic = async (trekId) => {
+    console.log(trekId);
     // const response =    await Client().getByUID("trek", trekName);
 
     const client = Client();
     await client
-        .query([
-          Prismic.Predicates.fulltext("my.trek.trek_id", trekId.toString())
-        ])
-        .then(function(response) {
-          if(response && response?.results && response.results?.length > 0) {
-            const tt = response?.results[0]?.data.body;
-            const slice = tt && tt.find(x => x?.slice_type === "book_your_trek");
-            setEligibilityCriteria(slice);
-            const inclusionsSlice = tt && tt.find(x => x?.slice_type === "trek_inclusions");
-            setInclusions(inclusionsSlice);
-            const exclusionsSlice = tt && tt.find(x => x?.slice_type === "trek_exclusions");
-            setExclusions(exclusionsSlice);
-            const whyhikesSlice = tt && tt.find(x => x?.slice_type === "why_india_hikes");
-            setWhyIndiaHikes(whyhikesSlice);
-            const tac = tt && tt.find(x => x?.slice_type === "terams_and_condition");
-            setTac(tac);
-          }
-        });
-
+      .query([
+        Prismic.Predicates.fulltext("my.trek.trek_id", trekId.toString()),
+      ])
+      .then(function (response) {
+        if (response && response?.results && response.results?.length > 0) {
+          const tt = response?.results[0]?.data.body;
+          const slice =
+            tt && tt.find((x) => x?.slice_type === "book_your_trek");
+          setEligibilityCriteria(slice);
+          const inclusionsSlice =
+            tt && tt.find((x) => x?.slice_type === "trek_inclusions");
+          setInclusions(inclusionsSlice);
+          const exclusionsSlice =
+            tt && tt.find((x) => x?.slice_type === "trek_exclusions");
+          setExclusions(exclusionsSlice);
+          const whyhikesSlice =
+            tt && tt.find((x) => x?.slice_type === "why_india_hikes");
+          setWhyIndiaHikes(whyhikesSlice);
+          const tac =
+            tt && tt.find((x) => x?.slice_type === "terams_and_condition");
+          setTac(tac);
+        }
+      });
 
     // console.log(tac);
-  }
+  };
 
   const showToken = () => {
     if (userServiceObject !== undefined) {
@@ -247,7 +246,7 @@ const RegHome = ({ slice }) => {
     pbatchId = "",
     stepName = undefined,
     callMode = "Button_Click",
-    pbatchResult=null
+    pbatchResult = null
   ) => {
     window.scrollTo(0, 0);
     const batchId = router.query.batchId ? router.query.batchId : pbatchId;
@@ -272,50 +271,48 @@ const RegHome = ({ slice }) => {
       const sdata = JSON.parse(JSON.stringify(stateData.data));
       stateEmpty = isEmpty(sdata);
     }
-   // console.log(stepName);
+    // console.log(stepName);
     // console.log(stateEmpty);
 
     console.log(pbatchResult);
     /// check if promoter id and private batch. then disbale select tab...
-    let promoflag=false;
-    if(batchResult!==null) {
-      promoflag=batchResult?.privateBatch;
-    }
-    else if (pbatchResult!==null) {
-      promoflag=pbatchResult?.privateBatch;
+    let promoflag = false;
+    if (batchResult !== null) {
+      promoflag = batchResult?.privateBatch;
+    } else if (pbatchResult !== null) {
+      promoflag = pbatchResult?.privateBatch;
     }
 
- //  console.log(pbatchResult?.privateBatch);
-  // console.log(promoflag);
-   setPromoterFlag(promoflag);
+    //  console.log(pbatchResult?.privateBatch);
+    // console.log(promoflag);
+    setPromoterFlag(promoflag);
 
     if (stateEmpty) {
       getBatchInfoByUserAndBatchId(userId, batchId)
-        .then(data => {
+        .then((data) => {
           console.log(stepName);
           // console.log("Booking found for the batchid and useremailid");
           /// if state is cancelled or completed then block the flow
           //console.log(data);
-          if(data.data.state==="COMPLETED") {
-            onDialogShow("Your Booking is already completed for the selected group");
+          if (data.data.state === "COMPLETED") {
+            onDialogShow(
+              "Your Booking is already completed for the selected group"
+            );
             ///Wait for 1 seconds
 
             const timer = setTimeout(() => {
               router.push(`/user-dashboard/user-upcoming-treks`);
             }, 2000);
-        
+
             return () => clearTimeout(timer);
-           
           }
 
-         
-
-         // console.log(stepName);
+          // console.log(stepName);
 
           setTermAccepted(true);
 
           //if(!promoflag)
-            //  setKey("selectbatch");
+          //  setKey("selectbatch");
 
           setStateStoreData(data.data, userId);
 
@@ -335,9 +332,8 @@ const RegHome = ({ slice }) => {
               setKey("addtrekmates");
             }
           }
-
         })
-        .catch(res => {
+        .catch((res) => {
           //// Booking is not found for the batchid and userid
           // console.log("Booking Not found for the batchid and user emailid");
           //  if(res?.status===500) {
@@ -352,53 +348,47 @@ const RegHome = ({ slice }) => {
           // }
         });
     } else {
-
-      if(!promoterFlag)
-        setKey("selectbatch");
-      else
-        setKey("addtrekmates");
+      if (!promoterFlag) setKey("selectbatch");
+      else setKey("addtrekmates");
     }
   };
 
-  const createNewBooking = ()  => {
+  const createNewBooking = () => {
     const batchId = router.query.batchId;
     const userId = userServiceObject.getUsername();
-   
+
     ///Batch not exits will create and then query
     // console.log("Booking not found for the batchid and user emailid");
     /// get userid by email
-    findUserByEmail(userServiceObject.getUsername()).then(res => {
+    findUserByEmail(userServiceObject.getUsername()).then((res) => {
       const id = res.id;
       onAccept(userServiceObject.getUsername(), batchId, id)
-        .then(response => {
-              getBatchInfoByUserAndBatchId(userId, batchId)
-                .then(bres => {
-                  ///TODO Waiting_List then show the message
-                  setStateStoreData(bres.data, res.email);
+        .then((response) => {
+          getBatchInfoByUserAndBatchId(userId, batchId)
+            .then((bres) => {
+              ///TODO Waiting_List then show the message
+              setStateStoreData(bres.data, res.email);
 
-                  if(!promoterFlag)
-                    setKey("selectbatch");
-                  else
-                    setKey("addtrekmates");
-
-                })
-                .catch(err => {
-                  // console.log(err.response?.data?.message);
-                  onDialogShow(res?.response?.data?.message)
-                });
-        })
-            .catch(res => {
-              // console.log(res);
-              if (res.response?.data?.message) {
-                // console.log(res.response.data?.message);
-                onDialogShow(res?.response?.data?.message)
-              }
-        })
-        .catch(res => {
-            if (res.response?.data?.message) {
-              // console.log(res.response.data?.message);
+              if (!promoterFlag) setKey("selectbatch");
+              else setKey("addtrekmates");
+            })
+            .catch((err) => {
+              // console.log(err.response?.data?.message);
               onDialogShow(res?.response?.data?.message);
-            }
+            });
+        })
+        .catch((res) => {
+          // console.log(res);
+          if (res.response?.data?.message) {
+            // console.log(res.response.data?.message);
+            onDialogShow(res?.response?.data?.message);
+          }
+        })
+        .catch((res) => {
+          if (res.response?.data?.message) {
+            // console.log(res.response.data?.message);
+            onDialogShow(res?.response?.data?.message);
+          }
         });
     });
   };
@@ -417,7 +407,7 @@ const RegHome = ({ slice }) => {
     //console.log(vouchers);
 
     const ownnerInfo = data?.participants?.find(
-      user => user.userId === data.ownerUserId
+      (user) => user.userId === data.ownerUserId
     );
     const isOwnerActing =
       ownnerInfo?.userDetailsForDisplay?.email?.toLowerCase() ===
@@ -435,15 +425,15 @@ const RegHome = ({ slice }) => {
       voucherDetails: vouchers,
       trekUsers: [],
       isOwnerActing: isOwnerActing,
-      bookingState:data.state,
+      bookingState: data.state,
       batchState: data.batchState,
-      trekDifficulty:data?.trekDifficulty
+      trekDifficulty: data?.trekDifficulty,
     };
 
-   //   console.log(bookingInformaiton);
+    //   console.log(bookingInformaiton);
 
     const filteredUsers = data?.participants?.filter(
-      x => x.bookingParticipantState !== "CANCELLED"
+      (x) => x.bookingParticipantState !== "CANCELLED"
     );
 
     for (const userData of filteredUsers) {
@@ -460,8 +450,7 @@ const RegHome = ({ slice }) => {
     //}
   };
 
-  const buildParticipants = async userData => {
-
+  const buildParticipants = async (userData) => {
     const participants = {
       firstName: userData.userDetailsForDisplay?.firstName,
       lastName: userData.userDetailsForDisplay?.lastName,
@@ -480,19 +469,19 @@ const RegHome = ({ slice }) => {
       optedVoucherId: 0,
       trekFeeForTheUser: userData.trekFeeForTheUser,
       taxPercentage: userData.taxPercentage,
-      insuranceAmount: userData?.insuranceAmount ==null ? 0 : userData?.insuranceAmount
+      insuranceAmount:
+        userData?.insuranceAmount == null ? 0 : userData?.insuranceAmount,
     };
     return participants;
-
   };
 
-  const getVoucher = async userEmail => {
+  const getVoucher = async (userEmail) => {
     let dt = [];
     const data1 = await getUserVoucher(userEmail)
-      .then(data => {
+      .then((data) => {
         return data;
       })
-      .catch(res => {
+      .catch((res) => {
         if (res.response.data?.message) {
           return dt;
         }
@@ -512,12 +501,11 @@ const RegHome = ({ slice }) => {
     // trekMateChilMobdRef.current.changeState();
     paymentChildRef?.current.changeState();
     // paymentChildMobRef.current.changeState();
-
   };
 
-  const transFormVoucherPayload = vouchers => {
+  const transFormVoucherPayload = (vouchers) => {
     const voucherlist = [];
-    vouchers.map(v => {
+    vouchers.map((v) => {
       voucherlist.push({
         id: v.id,
         userId: v.userId,
@@ -534,20 +522,17 @@ const RegHome = ({ slice }) => {
         userEmail: v.userEmail,
         amountAvailable: v.amountAvailable,
         usedVocuherAmount: 0,
-        appliedDetails: []
+        appliedDetails: [],
       });
     });
     return voucherlist;
   };
-  const setTabActive = (value,bookingstate='NONE') => {
-    
-    if(value==='makepayment') {
-      if(bookingState!=='WAITING_LIST'){
-        if(bookingstate==='NONE')
-           setKey(value);
+  const setTabActive = (value, bookingstate = "NONE") => {
+    if (value === "makepayment") {
+      if (bookingState !== "WAITING_LIST") {
+        if (bookingstate === "NONE") setKey(value);
       }
-    }
-    else {
+    } else {
       setKey(value);
     }
   };
@@ -568,41 +553,41 @@ const RegHome = ({ slice }) => {
     bookDetails: bookDetails,
     onNextTabEvent: setTabActive,
     batchDateChange: setBatchDateChange,
-    trekUsersChange: setTrekUsersChange
+    trekUsersChange: setTrekUsersChange,
   };
 
-  const computeMakePaymentTabStatus = ()=> {
-    if(bookingState==='WAITING_LIST') {
+  const computeMakePaymentTabStatus = () => {
+    if (bookingState === "WAITING_LIST") {
       return true;
+    } else {
+      return !termAccepted;
     }
-     else {
-      return !termAccepted ;
-     }  
-  }
+  };
 
   const onDialogShow = (message) => {
     setDialogMessage(message);
     setDisplayBasic(true);
-}
+  };
 
-const onHide = () => {
-  setDisplayBasic(false);
-  setDialogMessage(defaultMessage);
-}
-const renderFooter = (name) => {
-  return (
-          <Button label="Ok"   onClick={() => onHide()} autoFocus>OK</Button>
-  );
-};
+  const onHide = () => {
+    setDisplayBasic(false);
+    setDialogMessage(defaultMessage);
+  };
+  const renderFooter = (name) => {
+    return (
+      <Button label="Ok" onClick={() => onHide()} autoFocus>
+        OK
+      </Button>
+    );
+  };
 
-const getSelectTabVisibleFlag =() => {
-    if(!termAccepted) {
-         return true;
+  const getSelectTabVisibleFlag = () => {
+    if (!termAccepted) {
+      return true;
+    } else {
+      return !promoterFlag;
     }
-    else {
-         return !promoterFlag
-    }
-};
+  };
 
   return (
     <>
@@ -618,7 +603,7 @@ const getSelectTabVisibleFlag =() => {
                 <p className="tabs-behind-border-bg"></p>
                 <Tabs
                   activeKey={key}
-                  onSelect={k => setKey(k)}
+                  onSelect={(k) => setKey(k)}
                   unmountOnExit={false}
                 >
                   <Tab eventKey="accepet" title="Accept T&C">
@@ -638,9 +623,7 @@ const getSelectTabVisibleFlag =() => {
                     title="Select Group"
                     disabled={getSelectTabVisibleFlag}
                   >
-                    
                     <SelectBatch {...selectBatchProps} ref={childRef} />
-
                   </Tab>
                   <Tab
                     eventKey="addtrekmates"
@@ -684,23 +667,29 @@ const getSelectTabVisibleFlag =() => {
               </div> */}
 
               {/* Mobile first desugn */}
-              
             </div>
           </div>
         </div>
         <div className="dialog-demo">
-      <Dialog header="Your dates are clashing" visible={displayBasic} 
-      position={position} modal breakpoints={{ '960px': '75vw', '640px': '100vw' }} style={{ width: '40vw' }} 
-      footer={renderFooter('displayPosition')} onHide={() => onHide()}
-                    draggable={false} resizable={false}>
-                    <p className="p-m-0">{dialogMessage}</p>
-                </Dialog>
-                </div>
+          <Dialog
+            header="Your dates are clashing"
+            visible={displayBasic}
+            position={position}
+            modal
+            breakpoints={{ "960px": "75vw", "640px": "100vw" }}
+            style={{ width: "40vw" }}
+            footer={renderFooter("displayPosition")}
+            onHide={() => onHide()}
+            draggable={false}
+            resizable={false}
+          >
+            <p className="p-m-0">{dialogMessage}</p>
+          </Dialog>
+        </div>
         <style jsx global>
           {regStyle}
         </style>
       </div>
-      
     </>
   );
 };

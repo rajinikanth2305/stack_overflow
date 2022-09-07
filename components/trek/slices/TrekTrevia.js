@@ -27,7 +27,7 @@ const TrekTrevia = ({ slice }) => {
     const slugUrl = data?.read_more_btn_lnk_url?.uid;
     if (slugUrl) {
       //url = `/trek/${slugUrl}`;
-       url = `/${slugUrl}`;
+      url = `/${slugUrl}`;
     }
     const result = data?.yt_link?.url?.split(
       /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
@@ -72,7 +72,7 @@ const TrekTrevia = ({ slice }) => {
               ) : (
                 <>
                   <div className="h-100">
-                    {data?.yt_link?.url &&
+                    {data?.yt_link?.url && (
                       <>
                         <div className="d-flex align-items-center justify-content-center w-100 h-100">
                           <div className="text-center">
@@ -99,7 +99,7 @@ const TrekTrevia = ({ slice }) => {
                           unoptimized
                         />
                       </>
-                    }
+                    )}
                   </div>
                 </>
               )}
@@ -140,7 +140,7 @@ const TrekTrevia = ({ slice }) => {
                 ) : (
                   <>
                     <div className="h-100">
-                      {data?.yt_link?.url &&
+                      {data?.yt_link?.url && (
                         <>
                           <div className="d-flex align-items-center justify-content-center w-100 h-100">
                             <div className="text-center">
@@ -167,7 +167,7 @@ const TrekTrevia = ({ slice }) => {
                             unoptimized
                           />
                         </>
-                      }
+                      )}
                     </div>
                   </>
                 )}

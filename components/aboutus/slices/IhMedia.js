@@ -7,17 +7,17 @@ const IhMedia = ({ slice, articleData }) => {
   const heading1 = slice?.primary?.heading1;
   const heading2 = slice?.primary?.heading2;
 
-  const articleLearnMore = articleData?.map(function(data, i) {
+  const articleLearnMore = articleData?.map(function (data, i) {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
       url = `/blog/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.find(
-      x => x.slice_type === "feature_image"
+      (x) => x.slice_type === "feature_image"
     );
     const getArticleHeadingText = data?.data?.body?.find(
-      x => x.slice_type === "text"
+      (x) => x.slice_type === "text"
     );
     return (
       <div key={i} className="col-lg-4 col-md-6">

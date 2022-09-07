@@ -29,29 +29,29 @@ const CampSite = ({ slice }) => {
           slidesToShow: 3,
           slidesToScroll: 2,
           infinite: false,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
-        }
-      }
-    ]
+          arrows: false,
+        },
+      },
+    ],
   };
 
-  const campsitesImages = campsitesImagesArray?.map(function(data, i) {
+  const campsitesImages = campsitesImagesArray?.map(function (data, i) {
     return (
       <div key={i}>
         <div className="mx-4 mmx-0">

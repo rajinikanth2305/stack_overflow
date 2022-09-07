@@ -32,7 +32,9 @@ const WorkAtih = ({ slice }) => {
         <div className="row">
           <div className="col-lg-6 col-md-6 col-12">
             <h2 className="title-h2">{RichText.asText(heading1)}</h2>
-            <div className="p-text-1 mb-5 mmb-0">{RichText.render(heading2)}</div>
+            <div className="p-text-1 mb-5 mmb-0">
+              {RichText.render(heading2)}
+            </div>
             <div className="p-text-4">{RichText.render(content1)}</div>
           </div>
           <div className="col-lg-1 col-md-1 col-12" />

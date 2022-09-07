@@ -3,7 +3,7 @@ import { RichText } from "prismic-reactjs";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addOrUpdateState,
-  selectStateData
+  selectStateData,
 } from "../../reduxstate/counterSlice";
 import { useRouter } from "next/router";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
@@ -11,8 +11,8 @@ import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import { Client } from "utils/prismicHelpers";
 import Prismic from "@prismicio/client";
-import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
-import AccordionContext from 'react-bootstrap/AccordionContext';
+import { useAccordionToggle } from "react-bootstrap/AccordionToggle";
+import AccordionContext from "react-bootstrap/AccordionContext";
 
 const AcceptTC = ({
   data,
@@ -21,7 +21,7 @@ const AcceptTC = ({
   inclusionsData,
   exclusionsData,
   whyIndiaHikesData,
-  tac
+  tac,
 }) => {
   const eligibilityCriteria = data;
   const stateData = useSelector(selectStateData);
@@ -37,7 +37,7 @@ const AcceptTC = ({
 
     const decoratedOnClick = useAccordionToggle(
       eventKey,
-      () => callback && callback(eventKey),
+      () => callback && callback(eventKey)
     );
 
     const isCurrentEventKey = currentEventKey === eventKey;
@@ -45,7 +45,7 @@ const AcceptTC = ({
     return (
       <button
         type="button"
-        className={isCurrentEventKey ? 'show' : ''}
+        className={isCurrentEventKey ? "show" : ""}
         onClick={decoratedOnClick}
       >
         {children}
@@ -96,7 +96,7 @@ const AcceptTC = ({
   const tacHeading = tac && tac?.primary?.title;
   const tacArray = tac && tac?.items;
 
-  const whyIndiaHikesDetailsData = whyIndiaHikesArray?.map(function(data, i) {
+  const whyIndiaHikesDetailsData = whyIndiaHikesArray?.map(function (data, i) {
     return (
       <div className="d-flex align-items-start" key={i}>
         <div>
@@ -110,7 +110,7 @@ const AcceptTC = ({
     );
   });
 
-  const inclusionData = inclusionArray?.map(function(data, i) {
+  const inclusionData = inclusionArray?.map(function (data, i) {
     return (
       <div className="pb-1" key={i}>
         <p className="p-text-3-1-fg mb-1">
@@ -122,7 +122,7 @@ const AcceptTC = ({
     );
   });
 
-  const exclusionssData = exclusionsArray?.map(function(data, i) {
+  const exclusionssData = exclusionsArray?.map(function (data, i) {
     return (
       <div className="pb-1" key={i}>
         <p className="p-text-3-1-fg mb-1">
@@ -134,7 +134,7 @@ const AcceptTC = ({
     );
   });
 
-  const ecList = ecArray?.map(function(data, i) {
+  const ecList = ecArray?.map(function (data, i) {
     return (
       <>
         <p key={i} className="p-text-4 m-0">
@@ -149,7 +149,7 @@ const AcceptTC = ({
     );
   });
 
-  const ecExplainedList = ecArray?.map(function(data, i) {
+  const ecExplainedList = ecArray?.map(function (data, i) {
     // const ec_desc = data.ec_desc.map(function(ecd, j) {
     //   return (
     //     <>
@@ -179,7 +179,7 @@ const AcceptTC = ({
     window.scrollTo(0, 0);
   };
 
-  const tacArrayData = tacArray?.map(function(data, k) {
+  const tacArrayData = tacArray?.map(function (data, k) {
     return (
       <div className="col-md-12" key={k}>
         <Card>
@@ -195,7 +195,9 @@ const AcceptTC = ({
             >
               {data.heading1[0].text}
             </Accordion.Toggle> */}
-            <ContextAwareToggle eventKey={k + 1}>{data.heading1[0].text}</ContextAwareToggle>
+            <ContextAwareToggle eventKey={k + 1}>
+              {data.heading1[0].text}
+            </ContextAwareToggle>
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>
@@ -280,7 +282,7 @@ const AcceptTC = ({
                     <Label check>
                       <Input
                         type="checkbox"
-                        onClick={e => setAgree(e.target.checked)}
+                        onClick={(e) => setAgree(e.target.checked)}
                         checked={agree}
                       />{" "}
                       I have read the eligibility criteria and understand the

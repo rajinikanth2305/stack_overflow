@@ -10,7 +10,7 @@ const TeamIntro = ({ slice }) => {
   const teamContentList = slice.primary.team_content;
   const founderImageArray = slice.items;
 
-  const teamContent = teamContentList?.map(function(data, i) {
+  const teamContent = teamContentList?.map(function (data, i) {
     return (
       <>
         <p className="p-text-4" key={i}>
@@ -20,7 +20,7 @@ const TeamIntro = ({ slice }) => {
     );
   });
 
-  const founderImage = founderImageArray.map(function(data, i) {
+  const founderImage = founderImageArray.map(function (data, i) {
     return (
       <>
         <div className="mx-4" key={i}>
@@ -33,8 +33,12 @@ const TeamIntro = ({ slice }) => {
               unoptimized
             />
           </div>
-          <p className="p-text-2-franklin text-center mb-0 pt-2">{data.founder_name[0].text}</p>
-          <p className="p-text-3 text-center">{data.founder_position[0].text}</p>
+          <p className="p-text-2-franklin text-center mb-0 pt-2">
+            {data.founder_name[0].text}
+          </p>
+          <p className="p-text-3 text-center">
+            {data.founder_position[0].text}
+          </p>
         </div>
       </>
     );

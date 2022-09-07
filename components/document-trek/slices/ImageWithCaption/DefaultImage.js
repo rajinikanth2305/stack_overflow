@@ -1,13 +1,13 @@
-import React from 'react'
-import Caption from './Caption'
+import React from "react";
+import Caption from "./Caption";
 
 /**
  * Default image component
  */
 const DefaultImage = ({ slice }) => {
-  const imageUrl = slice?.primary?.image.url
-  const imageAlt = slice?.primary?.image.alt
-  const caption = slice?.primary.caption
+  const imageUrl = slice?.primary?.image.url;
+  const imageAlt = slice?.primary?.image.alt;
+  const caption = slice?.primary.caption;
 
   return (
     <div className="post-part single">
@@ -16,7 +16,7 @@ const DefaultImage = ({ slice }) => {
         <Caption caption={caption} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DefaultImage
+export default DefaultImage;

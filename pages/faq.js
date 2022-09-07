@@ -1,11 +1,11 @@
 import React from "react";
 import Head from "next/head";
-import Prismic from '@prismicio/client'
+import Prismic from "@prismicio/client";
 import { RichText } from "prismic-reactjs";
-import Document, { NextScript } from 'next/document';
+import Document, { NextScript } from "next/document";
 
 // Project components & functions
-import {  UpComingTreksSliceZone } from "components/upcoming";
+import { UpComingTreksSliceZone } from "components/upcoming";
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
@@ -22,19 +22,22 @@ const FAQ = ({ doc, articleData }) => {
   if (doc && doc.data) {
     return (
       <>
-      <HomeLayout>
-        <Head>
-         <meta charset="utf-8"/>
-         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-         <title>FAQ</title>
-        </Head>
-        <HikeHeader/>
-        <FaqSliceZone sliceZone={doc.data.body} articleData={articleData} />
-        <IHTrekWithSwathi />
-        <IHFooter />
-      </HomeLayout>
-      <ScrollToTop smooth color="#000000" />
+        <HomeLayout>
+          <Head>
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+            <title>FAQ</title>
+          </Head>
+          <HikeHeader />
+          <FaqSliceZone sliceZone={doc.data.body} articleData={articleData} />
+          <IHTrekWithSwathi />
+          <IHFooter />
+        </HomeLayout>
+        <ScrollToTop smooth color="#000000" />
       </>
     );
   }
@@ -44,17 +47,14 @@ const FAQ = ({ doc, articleData }) => {
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
+  const { ref } = previewData;
 
-  const { ref } = previewData
+  const client = Client();
 
-  const client = Client()
-
-  const doc = await client.getSingle("trek_faq", ref ? { ref } : null) || {}
+  const doc = (await client.getSingle("trek_faq", ref ? { ref } : null)) || {};
 
   const articleData = [];
-  const slice = doc.data?.body?.find(
-    x => x.slice_type === "trekking_tips"
-  );
+  const slice = doc.data?.body?.find((x) => x.slice_type === "trekking_tips");
 
   if (slice?.items?.length > 0) {
     for (var i = 0; i < slice?.items?.length; i++) {
@@ -73,9 +73,9 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     props: {
       doc,
       preview,
-      articleData
-    }
-  }
+      articleData,
+    },
+  };
 }
 
 export default FAQ;

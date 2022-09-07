@@ -7,7 +7,7 @@ import { linkResolver } from "prismic-configuration";
 
 const Section6 = ({ slice, highAlititudeData }) => {
   const heading1 = slice?.primary?.heading1;
-  const highAlititudeList = highAlititudeData?.map(function(data, index) {
+  const highAlititudeList = highAlititudeData?.map(function (data, index) {
     const authorName = data?.data?.author_link?.uid.replace(/-/g, " ");
     let url;
     const slugUrl = data?.uid;
@@ -15,10 +15,10 @@ const Section6 = ({ slice, highAlititudeData }) => {
       url = `/blog/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.find(
-      x => x.slice_type === "feature_image"
+      (x) => x.slice_type === "feature_image"
     );
     const getArticleHeadingText = data?.data?.body?.find(
-      x => x.slice_type === "text"
+      (x) => x.slice_type === "text"
     );
     return (
       <div className="col-lg-3 col-md-6 col-12" key={index}>
@@ -44,8 +44,8 @@ const Section6 = ({ slice, highAlititudeData }) => {
                 <b>{RichText.asText(data?.data?.title)}</b>
               </p>
               <p className="p-text-small m-0 text-capitalize">
-                  <em>By {authorName}</em>
-                </p>
+                <em>By {authorName}</em>
+              </p>
               <p className="p-text-small m-0 pt-0">
                 <em>{data?.data?.date}</em>
               </p>

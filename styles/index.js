@@ -19,7 +19,7 @@ export {
   doItStyles,
   featuredTrekStyles,
   latestUpdatesTrekkingsStyles,
-  ChooseTreks
+  ChooseTreks,
 } from "./hikes";
 
 export { upcomingTrekPageStyle } from "./upcomingtreks";

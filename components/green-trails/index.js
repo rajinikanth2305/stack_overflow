@@ -1,1 +1,1 @@
-export { default as GreenTrailsSliceZone } from './GreenTrailsSliceZone';
+export { default as GreenTrailsSliceZone } from "./GreenTrailsSliceZone";

@@ -8,8 +8,6 @@ import { Toast } from "primereact/toast";
 //import UserService from '../../../utils/UserService';
 import { useRouter } from "next/router";
 
-
-
 import { TrekReviews } from "../slices";
 //const userService = dynamic(() => import('../../../utils/UserService'),{ ssr: false });
 
@@ -20,8 +18,6 @@ const BookYourTrek = ({ slice, calendarMonth }) => {
   const [bookingDate, setBookingDate] = useState(undefined);
   const [showSelectedLabel, setShowSelectedLabel] = useState(false);
   const [feeDetails, setFeeDetails] = useState();
-
-
 
   const toast = useRef(null);
   const router = useRouter();
@@ -47,7 +43,7 @@ const BookYourTrek = ({ slice, calendarMonth }) => {
   // let myRef = feeDetails && feeDetails?.primary?.ref_id_tosroll[0].text;
   // myRef = useRef(null);
 
-  const bookingSelect = value => {
+  const bookingSelect = (value) => {
     setBookingDate(value);
     setShowSelectedLabel(true);
     /// focus button
@@ -60,10 +56,9 @@ const BookYourTrek = ({ slice, calendarMonth }) => {
       // const elementRect = element.getBoundingClientRect().top - 43;
       // const elementPosition = (elementRect - bodyRect);
       // const offsetPosition = elementPosition - offset;
-      const objDiv = document.getElementById('procregister');
+      const objDiv = document.getElementById("procregister");
       objDiv.scrollTop = objDiv.scrollHeight;
       document.getElementById("procregister").focus();
-
 
       // window.scrollTo({
       //   top: offsetPosition - 450,
@@ -78,7 +73,7 @@ const BookYourTrek = ({ slice, calendarMonth }) => {
         severity: "error",
         summary: "Please select a date to continue",
         detail: "",
-        life: 6000
+        life: 6000,
       });
       return;
     }
@@ -87,7 +82,6 @@ const BookYourTrek = ({ slice, calendarMonth }) => {
 
   return (
     <>
-
       <TrekReviews slice={slice} key={`slice-${1}`} />
       <div id="view-dates">
         <Toast ref={toast} />
@@ -133,7 +127,7 @@ const BookYourTrek = ({ slice, calendarMonth }) => {
                       <BookingCalender
                         onBookingSelect={bookingSelect}
                         mode={"inline_page"}
-                        calendarMonth = {calendarMonth}
+                        calendarMonth={calendarMonth}
                       />
                     )}
                   </div>
@@ -154,7 +148,8 @@ const BookYourTrek = ({ slice, calendarMonth }) => {
                           </div>
                         )}
 
-                        <button id="procregister"
+                        <button
+                          id="procregister"
                           className="btn btn-ptr hvr-grow"
                           onClick={register}
                         >

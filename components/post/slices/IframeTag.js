@@ -1,6 +1,6 @@
-import React from 'react'
-import { RichText } from 'prismic-reactjs'
-import { quoteStyles } from 'styles'
+import React from "react";
+import { RichText } from "prismic-reactjs";
+import { quoteStyles } from "styles";
 
 /**
  * IFrameTag slice component
@@ -8,8 +8,14 @@ import { quoteStyles } from 'styles'
  */
 const IframeTag = ({ slice }) => (
   <div className="post-part single">
-      <div dangerouslySetInnerHTML={{ __html: slice.primary.fully_qualified_iframe_tag }} />
-    <style jsx global>{quoteStyles}</style>
+    <div
+      dangerouslySetInnerHTML={{
+        __html: slice.primary.fully_qualified_iframe_tag,
+      }}
+    />
+    <style jsx global>
+      {quoteStyles}
+    </style>
   </div>
-)
-export default IframeTag
+);
+export default IframeTag;

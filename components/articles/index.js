@@ -1,1 +1,1 @@
-export { default as ArticlesSliceZone } from './ArticlesSliceZone';
+export { default as ArticlesSliceZone } from "./ArticlesSliceZone";

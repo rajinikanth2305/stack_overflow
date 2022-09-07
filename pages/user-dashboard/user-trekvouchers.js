@@ -20,20 +20,20 @@ const UserTrekVouchers = ({ doc }) => {
   if (doc && doc.data) {
     return (
       <>
-      <HomeLayout>
-        <Head>
-          <meta charset="utf-8" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          <title>Profile</title>
-        </Head>
-        <HikeHeader />
-        <UserTrekVouchersSliceZone sliceZone={doc.data.body} />
-      </HomeLayout>
-      <ScrollToTop smooth color="#000000" />
+        <HomeLayout>
+          <Head>
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+            <title>Profile</title>
+          </Head>
+          <HikeHeader />
+          <UserTrekVouchersSliceZone sliceZone={doc.data.body} />
+        </HomeLayout>
+        <ScrollToTop smooth color="#000000" />
       </>
     );
   }
@@ -47,11 +47,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const client = Client();
 
-  const doc =
-    (await client.getSingle(
-      "hike_team",
-      ref ? { ref } : null
-    )) || {};
+  const doc = (await client.getSingle("hike_team", ref ? { ref } : null)) || {};
 
   /*const doc = await client.query(
     Prismic.Predicates.at("document.type", "hike_home_ctype"), {
@@ -59,13 +55,11 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     },
   )*/
 
-
-
   return {
     props: {
       doc,
-      preview
-    }
+      preview,
+    },
   };
 }
 

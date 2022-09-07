@@ -26,36 +26,36 @@ const TrekCatagories = ({ slice, dtcData }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
-        }
-      }
-    ]
+          arrows: false,
+        },
+      },
+    ],
   };
 
   const trekImages =
     trekImagesArray &&
-    trekImagesArray?.map(function(data, i) {
+    trekImagesArray?.map(function (data, i) {
       const url = `../state?name=${data?.trek_state[0]?.text}`;
       return (
         <div key={i}>
           <div className="mx-4 m-mx-0">
-            <a href={url} style={{textDecoration: "none"}}>
+            <a href={url} style={{ textDecoration: "none" }}>
               <div className="trek_image_bg cursor-pointer hvr-grow">
                 <div className="bg_overlay_trek_image_bg h-100">
                   <div className="h-100">

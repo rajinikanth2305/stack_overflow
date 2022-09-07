@@ -27,7 +27,10 @@ const GtStories = ({ slice, latestUpdateAarticleData1 }) => {
     "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
   const youtube_imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
 
-  const latestTrekWorld = latestUpdateAarticleData1?.map(function (data, index) {
+  const latestTrekWorld = latestUpdateAarticleData1?.map(function (
+    data,
+    index
+  ) {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
@@ -35,10 +38,10 @@ const GtStories = ({ slice, latestUpdateAarticleData1 }) => {
       url = `/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.find(
-      x => x.slice_type === "feature_image"
+      (x) => x.slice_type === "feature_image"
     );
     const getArticleHeadingText = data?.data?.body?.find(
-      x => x.slice_type === "text"
+      (x) => x.slice_type === "text"
     );
     return (
       <div className="col-lg-6 col-md-12" key={index}>

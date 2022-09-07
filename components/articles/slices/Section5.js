@@ -23,16 +23,16 @@ const Section5 = ({ slice, hikesNewsData }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -40,23 +40,23 @@ const Section5 = ({ slice, hikesNewsData }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
-          centerMode: true
-        }
-      }
-    ]
+          centerMode: true,
+        },
+      },
+    ],
   };
 
-  const hikesNewsList = hikesNewsData?.map(function(data, index) {
+  const hikesNewsList = hikesNewsData?.map(function (data, index) {
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
       url = `/blog/${slugUrl}`;
     }
     const getArticleImage = data?.data?.body?.find(
-      x => x.slice_type === "feature_image"
+      (x) => x.slice_type === "feature_image"
     );
     const getArticleHeadingText = data?.data?.body?.find(
-      x => x.slice_type === "text"
+      (x) => x.slice_type === "text"
     );
     return (
       <div key={index}>
@@ -86,10 +86,10 @@ const Section5 = ({ slice, hikesNewsData }) => {
                   />
                 </div>
                 <div className="p-3">
-                <p className="latestTrekWorld_caption border-l">
-                  {RichText.asText(data?.data?.title)}
-                </p>
-                <p className="p-text-3 m-0">
+                  <p className="latestTrekWorld_caption border-l">
+                    {RichText.asText(data?.data?.title)}
+                  </p>
+                  <p className="p-text-3 m-0">
                     {RichText.asText(getArticleHeadingText?.primary?.text)
                       ?.length > 25
                       ? `${RichText.asText(
@@ -97,7 +97,7 @@ const Section5 = ({ slice, hikesNewsData }) => {
                         ).substring(0, 150)}...`
                       : RichText.asText(getArticleHeadingText?.primary?.text)}
                   </p>
-              </div>
+                </div>
               </div>
             </div>
           </Link>

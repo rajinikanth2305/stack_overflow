@@ -16,7 +16,7 @@ const HowDoWeDoIt = ({ slice }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const tabsData = tabsDataArray?.map(function(data, i) {
+  const tabsData = tabsDataArray?.map(function (data, i) {
     return (
       <Tab
         eventKey={`tab` + data?.tab_name[0]?.text}

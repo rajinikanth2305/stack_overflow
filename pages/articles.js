@@ -18,7 +18,7 @@ const Articles = ({
   doc,
   articleTabsList,
   section1DataList,
-  primaryArticleData
+  primaryArticleData,
 }) => {
   if (doc && doc.data) {
     return (
@@ -61,13 +61,13 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const primaryArticleData = [];
 
   const articleTabsList = await client.query([
-    Prismic.Predicates.at("document.type", "articles_landing_type")
+    Prismic.Predicates.at("document.type", "articles_landing_type"),
   ]);
 
   const section1_slice =
     articleTabsList &&
     articleTabsList?.results[0]?.data?.body?.find(
-      x => x.slice_type === "articles_tab"
+      (x) => x.slice_type === "articles_tab"
     );
 
   if (section1_slice?.items?.length > 0) {
@@ -86,7 +86,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   }
 
   const paArticleLink =
-  section1_slice && section1_slice?.primary?.primary_link_url?.id;
+    section1_slice && section1_slice?.primary?.primary_link_url?.id;
   if (paArticleLink !== undefined) {
     const article_details = await Client().getByID(paArticleLink);
     primaryArticleData.push(article_details);
@@ -98,8 +98,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       preview,
       articleTabsList,
       section1DataList,
-      primaryArticleData
-    }
+      primaryArticleData,
+    },
   };
 }
 

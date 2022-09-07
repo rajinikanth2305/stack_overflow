@@ -11,11 +11,11 @@ import {
   TrekWhatSays,
   SustainableTrekking,
   BookYourTrek,
-  OtherTreksLike
+  OtherTreksLike,
   // QuickItineraryComponent
 } from "./slices";
 import { trekStyle } from "styles";
-const useMountEffect = fun => useEffect(fun, []);
+const useMountEffect = (fun) => useEffect(fun, []);
 
 /**
  *  slice zone component
@@ -24,10 +24,8 @@ const useMountEffect = fun => useEffect(fun, []);
 const TrekSliceZoneOnld = ({ sliceZone }) => {
   const [wPosition, setWPosition] = useState(0);
 
-  const [
-    wtrekOverviewPositionPosition,
-    setWtrekOverviewPositionPosition
-  ] = useState(0);
+  const [wtrekOverviewPositionPosition, setWtrekOverviewPositionPosition] =
+    useState(0);
   const trek_overviews = useRef(0);
   const executeScrolltrek_overview = () =>
     trek_overviews.current.scrollIntoView();
@@ -50,7 +48,7 @@ const TrekSliceZoneOnld = ({ sliceZone }) => {
     trekGalleryId.current.scrollIntoView();
   useMountEffect(executeScrolltrekGalleryId);
 
-  const listenScrollEvent = e => {
+  const listenScrollEvent = (e) => {
     setWPosition(window.scrollY);
     setWtrekOverviewPositionPosition(
       trek_overviews.current && trek_overviews.current.offsetTop
@@ -142,11 +140,13 @@ const TrekSliceZoneOnld = ({ sliceZone }) => {
   });
   return (
     <>
-      <div className="row" style={{margin: '0'}}>
-        <div className="col-md-12" style={{padding: '0'}}>{trekBanner}</div>
+      <div className="row" style={{ margin: "0" }}>
+        <div className="col-md-12" style={{ padding: "0" }}>
+          {trekBanner}
+        </div>
       </div>
       <div className="container">
-        <div className="row" style={{margin: '0'}}>
+        <div className="row" style={{ margin: "0" }}>
           <div className="col-lg-10 col-md-12 border-line-right">
             {sliceZone.map((slice, index) => {
               switch (slice.slice_type) {
@@ -225,13 +225,13 @@ const TrekSliceZoneOnld = ({ sliceZone }) => {
           </div>
         </div>
       </div>
-      <div className="row" style={{margin: '0'}}>
+      <div className="row" style={{ margin: "0" }}>
         <div className="col-lg-12 col-md-12">{expertSpeak}</div>
       </div>
-      <div className="row" style={{margin: '0'}}>
+      <div className="row" style={{ margin: "0" }}>
         <div className="col-lg-12 col-md-12">{trekGallery}</div>
       </div>
-      <div className="row" style={{margin: '0'}}>
+      <div className="row" style={{ margin: "0" }}>
         <div className="col-lg-12 col-md-12">{otherSec}</div>
       </div>
     </>

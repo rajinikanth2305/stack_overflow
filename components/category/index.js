@@ -1,1 +1,1 @@
-export { default as CategorySliceZone } from './CategorySliceZone';
+export { default as CategorySliceZone } from "./CategorySliceZone";

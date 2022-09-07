@@ -17,10 +17,14 @@ const Announcement = ({ slice }) => {
             <div className="container">
               <div className="row d-flex align-items-center">
                 <div className="col-lg-6 col-md-12">
-                  <p className="p-text-1-an text-white m-0">{RichText.asText(heading1)}</p>
+                  <p className="p-text-1-an text-white m-0">
+                    {RichText.asText(heading1)}
+                  </p>
                 </div>
                 <div className="col-lg-6 col-md-12">
-                  <div className="p-text-2-an m-p-italic text-white m-0">{RichText.render(heading2, linkResolver)}</div>
+                  <div className="p-text-2-an m-p-italic text-white m-0">
+                    {RichText.render(heading2, linkResolver)}
+                  </div>
                 </div>
               </div>
             </div>

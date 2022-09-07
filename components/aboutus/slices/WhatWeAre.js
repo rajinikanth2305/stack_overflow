@@ -52,7 +52,9 @@ const WhatWeAre = ({ slice }) => {
                   </div>
                 </div>
                 <div>
-                  <p className="p-text-1"><b>{data?.pillar_title[0]?.text}</b></p>
+                  <p className="p-text-1">
+                    <b>{data?.pillar_title[0]?.text}</b>
+                  </p>
                 </div>
               </div>
               <div>
@@ -62,15 +64,17 @@ const WhatWeAre = ({ slice }) => {
               </div>
               <div className="text-center pt-2 pb-3 p-btn-btm-why">
                 {/* <Link href={url}> */}
-               {data?.button_name?.length > 0 && <button
-                  className="btn btn-ih-green"
-                  onClick={() => {
-                    setTrekVideoUrl(videoUrl);
-                    setShow(true);
-                  }}
-                >
-                  {RichText.asText(data?.button_name)}
-                </button> }
+                {data?.button_name?.length > 0 && (
+                  <button
+                    className="btn btn-ih-green"
+                    onClick={() => {
+                      setTrekVideoUrl(videoUrl);
+                      setShow(true);
+                    }}
+                  >
+                    {RichText.asText(data?.button_name)}
+                  </button>
+                )}
                 {/* </Link> */}
               </div>
             </div>
@@ -93,16 +97,16 @@ const WhatWeAre = ({ slice }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
@@ -111,9 +115,9 @@ const WhatWeAre = ({ slice }) => {
           slidesToScroll: 1,
           arrows: false,
           adaptiveHeight: true,
-        }
-      }
-    ]
+        },
+      },
+    ],
   };
 
   return (

@@ -42,26 +42,26 @@ const LatestTrekkingWorld = ({ slice }) => {
           slidesToShow: 1,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
-        }
-      }
-    ]
+          arrows: false,
+        },
+      },
+    ],
   };
 
   const trekkingWorldImage = trekkingWorldImageArray?.map(function (data, i) {
@@ -94,7 +94,10 @@ const LatestTrekkingWorld = ({ slice }) => {
       <div key={`latesttrekking` + i} className="py-3 mx-2 mm-0 mmp-1">
         <div className="row d-flex">
           <div className="col-lg-6 col-md-12 order-1">
-            <div className="m-card-pd" id={data?.trekking_world_heading[0]?.text}>
+            <div
+              className="m-card-pd"
+              id={data?.trekking_world_heading[0]?.text}
+            >
               <h3 className="title-diplay-3-ltw mpt-3-ltw">
                 {data?.trekking_world_heading[0]?.text}
               </h3>
@@ -104,21 +107,25 @@ const LatestTrekkingWorld = ({ slice }) => {
               <div className="text-center mt-4">
                 {url ? (
                   <a href={url ? url : "#"}>
-                    {data?.button_name[0]?.text && <button className="btn btn-lg btn-ih-primary text-capitalized hvr-grow">
-                      {data?.button_name[0]?.text}
-                    </button>}
+                    {data?.button_name[0]?.text && (
+                      <button className="btn btn-lg btn-ih-primary text-capitalized hvr-grow">
+                        {data?.button_name[0]?.text}
+                      </button>
+                    )}
                   </a>
                 ) : (
                   <>
-                    {data?.button_name[0]?.text && <button
-                      className="btn btn-lg btn-ih-primary text-capitalized hvr-grow"
-                      onClick={() => {
-                        setImgUrl(videoUrl);
-                        setShow(true);
-                      }}
-                    >
-                      {data?.button_name[0]?.text}
-                    </button>}
+                    {data?.button_name[0]?.text && (
+                      <button
+                        className="btn btn-lg btn-ih-primary text-capitalized hvr-grow"
+                        onClick={() => {
+                          setImgUrl(videoUrl);
+                          setShow(true);
+                        }}
+                      >
+                        {data?.button_name[0]?.text}
+                      </button>
+                    )}
                   </>
                 )}
               </div>

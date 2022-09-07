@@ -1,5 +1,11 @@
 import React from "react";
-import { BannerWithText, ContactFaq, GetInTouchIh, FollowUsIh, EmbedHtml } from "./slices";
+import {
+  BannerWithText,
+  ContactFaq,
+  GetInTouchIh,
+  FollowUsIh,
+  EmbedHtml,
+} from "./slices";
 
 /**
  *  slice zone component

@@ -1,3 +1,3 @@
-import DatesAccordion from "./datesAccordion"
+import DatesAccordion from "./datesAccordion";
 
-export default DatesAccordion
+export default DatesAccordion;

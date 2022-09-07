@@ -9,8 +9,8 @@ import classnames from "classnames";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
-import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
-import AccordionContext from 'react-bootstrap/AccordionContext';
+import { useAccordionToggle } from "react-bootstrap/AccordionToggle";
+import AccordionContext from "react-bootstrap/AccordionContext";
 
 const FaqSection = () => {
   const [faqDetails, setFaqDetails] = useState();
@@ -19,7 +19,7 @@ const FaqSection = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [isActive, setActive] = useState(false);
 
-  const toggle = tab => {
+  const toggle = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
 
@@ -34,7 +34,7 @@ const FaqSection = () => {
 
     const decoratedOnClick = useAccordionToggle(
       eventKey,
-      () => callback && callback(eventKey),
+      () => callback && callback(eventKey)
     );
 
     const isCurrentEventKey = currentEventKey === eventKey;
@@ -42,7 +42,7 @@ const FaqSection = () => {
     return (
       <button
         type="button"
-        className={isCurrentEventKey ? 'show' : ''}
+        className={isCurrentEventKey ? "show" : ""}
         onClick={decoratedOnClick}
       >
         {children}
@@ -61,9 +61,9 @@ const FaqSection = () => {
     const client = Client();
     const doc = await client
       .query([Prismic.Predicates.at("document.type", "trek_faq")])
-      .then(function(response) {
+      .then(function (response) {
         const tt = response.results[0].data.body;
-        const slice = tt && tt.filter(x => x.slice_type === "faq_section");
+        const slice = tt && tt.filter((x) => x.slice_type === "faq_section");
         setFaqDetails(slice);
       });
   }
@@ -71,7 +71,7 @@ const FaqSection = () => {
   const heading1 = faqDetails && faqDetails[0]?.primary?.heading1;
   const faqArrayList =
     faqDetails &&
-    faqDetails.map(function(data, i) {
+    faqDetails.map(function (data, i) {
       return (
         <NavItem className="faq_nav hvr-grow" key={i}>
           <NavLink
@@ -104,7 +104,7 @@ const FaqSection = () => {
 
   const faqArrayListMobile =
     faqDetails &&
-    faqDetails?.map(function(data, i) {
+    faqDetails?.map(function (data, i) {
       return (
         // <>
         //   <NavItem className="faq_nav" key={i}>
@@ -165,9 +165,9 @@ const FaqSection = () => {
 
   const faqAccordionArrayList =
     faqDetails &&
-    faqDetails.map(function(data, i) {
+    faqDetails.map(function (data, i) {
       const faqArray = data?.items;
-      const faqAccordionList = faqArray?.map(function(faq, j) {
+      const faqAccordionList = faqArray?.map(function (faq, j) {
         const result = faq?.yt_link?.url?.split(
           /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
         );
@@ -194,7 +194,9 @@ const FaqSection = () => {
                 >
                   {faq?.accordion_heading[0]?.text}
                 </Accordion.Toggle> */}
-                <ContextAwareToggle eventKey={j + 1}>{faq?.accordion_heading[0]?.text}</ContextAwareToggle>
+                <ContextAwareToggle eventKey={j + 1}>
+                  {faq?.accordion_heading[0]?.text}
+                </ContextAwareToggle>
               </Card.Header>
               <Accordion.Collapse eventKey={j + 1}>
                 <Card.Body>

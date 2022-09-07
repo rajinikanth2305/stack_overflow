@@ -1,1 +1,1 @@
-export { default as CareersSliceZone } from './CareersSliceZone';
+export { default as CareersSliceZone } from "./CareersSliceZone";

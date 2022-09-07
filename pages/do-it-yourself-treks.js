@@ -18,36 +18,42 @@ import ScrollToTop from "react-scroll-to-top";
 /**
  * UpComing component
  */
-const DIY = ({ doc, bestPostTreksData, dtcData, diyResourceData, alldiyTreks }) => {
+const DIY = ({
+  doc,
+  bestPostTreksData,
+  dtcData,
+  diyResourceData,
+  alldiyTreks,
+}) => {
   if (doc && doc.data) {
     return (
       <>
-      <HomeLayout>
-        <Head>
-          <meta charset="utf-8" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
+        <HomeLayout>
+          <Head>
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+            <title>Trek Library</title>
+          </Head>
+          <HikeHeader />
+          <DIYSliceZone
+            sliceZone={doc.data.body}
+            bestPostTreksData={bestPostTreksData}
+            dtcData={dtcData}
+            diyResourceData={diyResourceData}
+            alldiyTreks={alldiyTreks}
           />
-          <title>Trek Library</title>
-        </Head>
-        <HikeHeader />
-        <DIYSliceZone
-          sliceZone={doc.data.body}
-          bestPostTreksData={bestPostTreksData}
-          dtcData={dtcData}
-          diyResourceData={diyResourceData}
-          alldiyTreks={alldiyTreks}
-        />
-        {/* <div className="mt-5 py-5 text-center">
+          {/* <div className="mt-5 py-5 text-center">
           <h3>DIY</h3>
           <h4>Under development.!!</h4>
         </div> */}
-        <IHTrekWithSwathi />
-        <IHFooter />
-      </HomeLayout>
-      <ScrollToTop smooth color="#000000" />
+          <IHTrekWithSwathi />
+          <IHFooter />
+        </HomeLayout>
+        <ScrollToTop smooth color="#000000" />
       </>
     );
   }
@@ -80,14 +86,15 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   // }
 
   let bestPostTreksData = [];
-  
-  const bestPostTreksSlice = doc && doc.data?.body?.filter(x => x.slice_type === "best_post_treks");
+
+  const bestPostTreksSlice =
+    doc && doc.data?.body?.filter((x) => x.slice_type === "best_post_treks");
 
   if (bestPostTreksSlice?.length > 0) {
     for (var i = 0; i < bestPostTreksSlice?.length; i++) {
-      let  linkedbestPostTreksData = [];
+      let linkedbestPostTreksData = [];
 
-      const data = bestPostTreksSlice[i]; 
+      const data = bestPostTreksSlice[i];
 
       for (var k = 0; k < data?.items?.length; k++) {
         const slugUrl = data && data?.items[k].diy_article_link?.id;
@@ -97,21 +104,21 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
             bestPost_article_details !== undefined &&
             bestPost_article_details !== null
           )
-          linkedbestPostTreksData.push(bestPost_article_details);
+            linkedbestPostTreksData.push(bestPost_article_details);
         }
       }
 
-      if(linkedbestPostTreksData?.length > 0) {
+      if (linkedbestPostTreksData?.length > 0) {
         bestPostTreksData.push({
-            key: bestPostTreksSlice[i].primary?.heading1[0].text,
-            value:linkedbestPostTreksData
-          });
-       }
+          key: bestPostTreksSlice[i].primary?.heading1[0].text,
+          value: linkedbestPostTreksData,
+        });
+      }
     }
   }
 
   const dtcslice = doc.data?.body?.find(
-    x => x.slice_type === "diy_trek_categories"
+    (x) => x.slice_type === "diy_trek_categories"
   );
 
   if (dtcslice?.items?.length > 0) {
@@ -127,7 +134,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   }
 
   const dtResourceslice = doc.data?.body?.find(
-    x => x.slice_type === "diy_resources"
+    (x) => x.slice_type === "diy_resources"
   );
 
   if (dtResourceslice?.items?.length > 0) {
@@ -155,8 +162,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       dtcData,
       diyResourceData,
       alldiyTreks,
-      bestPostTreksData
-    }
+      bestPostTreksData,
+    },
   };
 }
 

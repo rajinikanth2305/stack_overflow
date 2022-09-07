@@ -1,1 +1,1 @@
-export { default as SearchSliceZone } from './SearchSliceZone';
+export { default as SearchSliceZone } from "./SearchSliceZone";

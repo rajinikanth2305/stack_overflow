@@ -2,14 +2,14 @@ import React, {
   useState,
   forwardRef,
   useImperativeHandle,
-  useRef
+  useRef,
 } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import {
   getUserVoucher,
-  doSaveOffloadingPayments
+  doSaveOffloadingPayments,
 } from "../../../../services/queries";
 import { Dropdown } from "primereact/dropdown";
 import { useForm, Controller } from "react-hook-form";
@@ -19,7 +19,7 @@ import { Checkbox } from "primereact/checkbox";
 import moment from "moment";
 import { useRouter } from "next/router";
 import { confirmDialog } from "primereact/confirmdialog"; // To use <ConfirmDialog> tag
-import { ProgressSpinner } from 'primereact/progressspinner';
+import { ProgressSpinner } from "primereact/progressspinner";
 
 const BoPayment = forwardRef((props, ref) => {
   const [show, setShow] = useState(false);
@@ -45,7 +45,7 @@ const BoPayment = forwardRef((props, ref) => {
     control,
     errors,
     formState,
-    getValues
+    getValues,
   } = useForm();
 
   const [computeFields, setComputeFields] = useState({
@@ -54,11 +54,9 @@ const BoPayment = forwardRef((props, ref) => {
       totaltax: 0,
       total: 0,
       voucherDeduction: 0,
-      youpay: 0
-    }
+      youpay: 0,
+    },
   });
-
-
 
   React.useEffect(() => {
     const script = document.createElement("script");
@@ -79,7 +77,7 @@ const BoPayment = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     changeState(data) {
       initData(data);
-    }
+    },
   }));
 
   const initData = (offLoadData) => {
@@ -102,41 +100,46 @@ const BoPayment = forwardRef((props, ref) => {
 
     console.log(sdata);
 
-    const user = sdata.find(u => u.id === id);
+    const user = sdata.find((u) => u.id === id);
     console.log(user?.optedVoucherId);
 
     if (user?.optedVoucherId > 0) {
       const selectedVoucher = offSelectedData?.userVouchers?.find(
-        vid => vid.id === user.optedVoucherId
+        (vid) => vid.id === user.optedVoucherId
       );
 
+      const totalTrekFee =
+        offSelectedData?.header?.backPackOffloadingCostPerDay *
+        offSelectedData?.header?.backPackOffloadingDays;
 
-      const totalTrekFee = offSelectedData?.header?.backPackOffloadingCostPerDay * offSelectedData?.header?.backPackOffloadingDays;
-
-      const taxPercentage = offSelectedData?.header?.backPackOffloadingTaxPercentage;
+      const taxPercentage =
+        offSelectedData?.header?.backPackOffloadingTaxPercentage;
       //const insuranceAmount = user.insuranceAmount;
       const gst = taxPercentage;
-      const gstValue = parseFloat(Number((gst / 100) * totalTrekFee).toFixed(2));
-      const total = (totalTrekFee + gstValue);
+      const gstValue = parseFloat(
+        Number((gst / 100) * totalTrekFee).toFixed(2)
+      );
+      const total = totalTrekFee + gstValue;
 
       console.log(total);
 
-      const youPay = total;//user.trekFeeForTheUser  ; //computeTotal(sdata.trekUsers);
+      const youPay = total; //user.trekFeeForTheUser  ; //computeTotal(sdata.trekUsers);
 
       // const youPay = user.youPay; //computeTotal(sdata);//computeWithExcludedVoucherId(user.optedVoucherId,sdata);
       //console.log(youPay);
       if (youPay > 0) {
         const currentAvailableAmount = selectedVoucher.amountAvailable;
-        const rowPay = sdata.find(u => u.id === id).youPay;
+        const rowPay = sdata.find((u) => u.id === id).youPay;
 
         if (currentAvailableAmount > 0) {
           const amountToDeductInVocuher =
             youPay > currentAvailableAmount ? currentAvailableAmount : youPay;
 
           // const actRowPay=rowPay-amountToDeductInVocuher;
-          sdata.find(u => u.id === id).voucherId = user.optedVoucherId;
-          sdata.find(u => u.id === id).voucherAmount = amountToDeductInVocuher;
-          sdata.find(u => u.id === id).youPay = Number(
+          sdata.find((u) => u.id === id).voucherId = user.optedVoucherId;
+          sdata.find((u) => u.id === id).voucherAmount =
+            amountToDeductInVocuher;
+          sdata.find((u) => u.id === id).youPay = Number(
             youPay - amountToDeductInVocuher
           );
           //console.log(amountToDeductInVocuher);
@@ -160,33 +163,37 @@ const BoPayment = forwardRef((props, ref) => {
     // console.log(JSON.stringify(value));
     const sdata = offSelectedData.participants;
     //// check if already it is selected:
-    const optedId = sdata.find(u => u.optedVoucherId === value);
+    const optedId = sdata.find((u) => u.optedVoucherId === value);
     console.log(optedId);
 
     if (optedId !== undefined) {
       toast.current.show({
         severity: "error",
         summary: `'The selected Voucher is already applied'`,
-        detail: ""
+        detail: "",
       });
 
       /// Resetting the old selected voucher values;
-      sdata.find(u => u.id === id).optedVoucherId = "";
-      sdata.find(u => u.id === id).voucherAmount = 0;
-      sdata.find(u => u.id === id).voucherId = "";
+      sdata.find((u) => u.id === id).optedVoucherId = "";
+      sdata.find((u) => u.id === id).voucherAmount = 0;
+      sdata.find((u) => u.id === id).voucherId = "";
       // await dispatch(addOrUpdateState(sdata));
       //computeTotal(sdata.trekUsers);
       return;
     }
 
-    sdata.find(u => u.id === id).optedVoucherId = value;
-    sdata.find(u => u.id === id).voucherAmount = 0;
-    sdata.find(u => u.id === id).voucherId = "";
+    sdata.find((u) => u.id === id).optedVoucherId = value;
+    sdata.find((u) => u.id === id).voucherAmount = 0;
+    sdata.find((u) => u.id === id).voucherId = "";
   };
 
   const computeWithExcludedVoucherId = (vid, usersData) => {
     const totalTrekFee = usersData.reduce(
-      (a, v) => (a = a + offSelectedData?.header?.backPackOffloadingCostPerDay * offSelectedData?.header?.backPackOffloadingDays),
+      (a, v) =>
+        (a =
+          a +
+          offSelectedData?.header?.backPackOffloadingCostPerDay *
+            offSelectedData?.header?.backPackOffloadingDays),
       0
     );
 
@@ -195,7 +202,7 @@ const BoPayment = forwardRef((props, ref) => {
     const total = totalTrekFee + gstValue;
 
     const totalVoucherAmount = usersData
-      .filter(x => x.optedVoucherId !== vid)
+      .filter((x) => x.optedVoucherId !== vid)
       .reduce((a, v) => (a = a + v.voucherAmount), 0);
 
     const youpay = Math.round(totalTrekFee - totalVoucherAmount);
@@ -208,7 +215,11 @@ const BoPayment = forwardRef((props, ref) => {
 
   const computeTotal = (usersData, offLoadData) => {
     const totalTrekFee = usersData.reduce(
-      (a, v) => (a = a + offLoadData?.header?.backPackOffloadingCostPerDay * offLoadData?.header?.backPackOffloadingDays),
+      (a, v) =>
+        (a =
+          a +
+          offLoadData?.header?.backPackOffloadingCostPerDay *
+            offLoadData?.header?.backPackOffloadingDays),
       0
     );
 
@@ -216,7 +227,7 @@ const BoPayment = forwardRef((props, ref) => {
 
     const taxPercentage = offLoadData?.header?.backPackOffloadingTaxPercentage;
     const gst = taxPercentage;
-    const gstValue = ((gst / 100) * totalTrekFee);
+    const gstValue = (gst / 100) * totalTrekFee;
     const total = roundToTwo(totalTrekFee + gstValue);
 
     console.log(gst);
@@ -237,16 +248,15 @@ const BoPayment = forwardRef((props, ref) => {
         totaltax: gstValue,
         total: total,
         voucherDeduction: totalVoucherAmount,
-        youpay: youpay
-      }
+        youpay: youpay,
+      },
     });
     console.log(youpay);
     return youpay;
   };
 
   const doPayment = () => {
- setShowPaymentButton(false);
-
+    setShowPaymentButton(false);
 
     // let isExecuted = confirm("Are you sure to execute this action?");
     confirmDialog({
@@ -262,14 +272,13 @@ const BoPayment = forwardRef((props, ref) => {
       accept: () => {
         paymentInitiate();
       },
-      reject: e => {
+      reject: (e) => {
         router.reload(`/user-dashboard/user-upcoming-treks/`);
-      }
+      },
     });
   };
 
   const paymentInitiate = async () => {
-
     const voucherList = buildVouchers(offSelectedData.participants);
     //console.log(JSON.stringify(voucherList));
 
@@ -281,19 +290,19 @@ const BoPayment = forwardRef((props, ref) => {
       console.log("other called");
       console.log(computeFields.computations.youpay);
       doSaveOffloadingPayments(offSelectedData.header.bookingId, voucherList)
-        .then(res => {
+        .then((res) => {
           /// redirect to booking confirmation page
           console.log("redirect called");
           router.push(
             `/user-dashboard/thank-you?booking_id=${offSelectedData.header.bookingId}&status=SUCCESS&type=BACKPACK`
           );
         })
-        .catch(res => {
+        .catch((res) => {
           if (res.response?.data?.message) {
             toast.current.show({
               severity: "error",
               summary: `'Make payment is not succeeded' ${res.response?.data?.message}`,
-              detail: ""
+              detail: "",
             });
           }
           setShowPaymentButton(true);
@@ -301,10 +310,10 @@ const BoPayment = forwardRef((props, ref) => {
     }
   };
 
-  const processPayments = voucherList => {
+  const processPayments = (voucherList) => {
     setShowProgressSpinner(true);
     doSaveOffloadingPayments(offSelectedData.header.bookingId, voucherList)
-      .then(res => {
+      .then((res) => {
         console.log(res.data);
         // console.log(res.data.features.enableNewWindowFlow);
         // console.log( window.jQuery===undefined);
@@ -316,7 +325,7 @@ const BoPayment = forwardRef((props, ref) => {
           pnCheckoutShared.openNewWindow();
         }
       })
-      .catch(res => {
+      .catch((res) => {
         if (res.response?.data?.message) {
           console.log(res.response.data?.message);
         }
@@ -324,14 +333,14 @@ const BoPayment = forwardRef((props, ref) => {
       });
   };
 
-  const buildVouchers = data => {
+  const buildVouchers = (data) => {
     const vouchers = [];
-    data?.map(u => {
+    data?.map((u) => {
       // if (u.voucherAmount > 0) {
       vouchers.push({
         participantId: u.id,
         voucherId: u.voucherId === "" ? null : u.voucherId,
-        voucherAmount: u.voucherAmount
+        voucherAmount: u.voucherAmount,
       });
       // }
     });
@@ -355,7 +364,7 @@ const BoPayment = forwardRef((props, ref) => {
                   <div>
                     <button
                       className="btn table-btn-blue-sm mb-3"
-                      onClick={e => goBack()}
+                      onClick={(e) => goBack()}
                     >
                       <span className="px-2">Go Back</span>
                     </button>
@@ -370,7 +379,9 @@ const BoPayment = forwardRef((props, ref) => {
                       - Maximum weight allowed for the offloaded backpack is 9
                       kg.
                     </p>
-                    <p className="col-md-8 p-text-4 mb-1">- Suitcases or duffel bags are not allowed.</p>
+                    <p className="col-md-8 p-text-4 mb-1">
+                      - Suitcases or duffel bags are not allowed.
+                    </p>
                     <p className="col-md-8 p-text-4 mb-4">
                       - Carry a small daypack to keep a few essentials like
                       water and snacks.
@@ -378,7 +389,10 @@ const BoPayment = forwardRef((props, ref) => {
                   </div>
                   <div className="d-flex justify-content-between flex-wrap p-text-3-fg-book mb-2">
                     <div>
-                      <p className="m-0 p-text-3"><small>No. of offloading days:</small>  {offSelectedData?.header?.backPackOffloadingDays} days</p>
+                      <p className="m-0 p-text-3">
+                        <small>No. of offloading days:</small>{" "}
+                        {offSelectedData?.header?.backPackOffloadingDays} days
+                      </p>
                       {/* <p className="p-text-small-fg font-italic">
                         {offSelectedData?.header?.trekName}
                       </p> */}
@@ -407,7 +421,7 @@ const BoPayment = forwardRef((props, ref) => {
                         </tr>
                       </thead>
                       <tbody>
-                        {indexes.map(index => {
+                        {indexes.map((index) => {
                           const fieldName = `voucher[${index}]`;
                           const sdata = offSelectedData.participants[index];
 
@@ -415,14 +429,14 @@ const BoPayment = forwardRef((props, ref) => {
                           if (offSelectedData?.userVouchers.length > 0) {
                             offSelectedData?.userVouchers
                               ?.filter(
-                                x =>
+                                (x) =>
                                   x.userName?.toLowerCase() ===
                                   sdata?.email?.toLowerCase()
                               )
-                              .map(v => {
+                              .map((v) => {
                                 lvouchers.push({
                                   title: v.title + "-" + v.amountAvailable,
-                                  id: v.id
+                                  id: v.id,
                                 });
                               });
                           }
@@ -439,7 +453,9 @@ const BoPayment = forwardRef((props, ref) => {
                                         Participants: &nbsp;
                                       </span>
                                     </div>
-                                    <div className="p-text-2-fg-f16-mb">{index + 1}. {sdata?.name}</div>
+                                    <div className="p-text-2-fg-f16-mb">
+                                      {index + 1}. {sdata?.name}
+                                    </div>
                                   </div>
                                 </td>
                                 <td>
@@ -456,7 +472,7 @@ const BoPayment = forwardRef((props, ref) => {
                                               optionValue="id"
                                               value={value}
                                               options={lvouchers}
-                                              onChange={e => {
+                                              onChange={(e) => {
                                                 onChange(e.value);
                                                 onVoucherSelect(
                                                   sdata.id,
@@ -472,7 +488,7 @@ const BoPayment = forwardRef((props, ref) => {
                                     <div className="mx-2">
                                       <button
                                         className="btn table-btn-yellow-sm"
-                                        onClick={e =>
+                                        onClick={(e) =>
                                           onVoucherApply(sdata.id, index)
                                         }
                                       >
@@ -489,7 +505,9 @@ const BoPayment = forwardRef((props, ref) => {
                                         Offloading fee: &nbsp;
                                       </span>
                                     </div>
-                                    <div className="p-text-2-fg-f16-mb">{sdata?.offloadingFee}</div>
+                                    <div className="p-text-2-fg-f16-mb">
+                                      {sdata?.offloadingFee}
+                                    </div>
                                   </div>
                                 </td>
 
@@ -501,20 +519,19 @@ const BoPayment = forwardRef((props, ref) => {
                                       </span>
                                     </div>
                                     <div className="p-text-2-fg-f16-mb">
-                                      {
-                                        ((sdata?.offloadingFee) - Number(sdata?.voucherAmount)) <= 0 && (
-                                          0
-                                        )
-                                      }
-                                      {
-                                        ((sdata?.offloadingFee) - Number(sdata?.voucherAmount)) > 0 && (
-                                          Number((sdata?.offloadingFee) - Number(sdata?.voucherAmount)).toFixed(2)
-                                        )
-                                      }
+                                      {sdata?.offloadingFee -
+                                        Number(sdata?.voucherAmount) <=
+                                        0 && 0}
+                                      {sdata?.offloadingFee -
+                                        Number(sdata?.voucherAmount) >
+                                        0 &&
+                                        Number(
+                                          sdata?.offloadingFee -
+                                            Number(sdata?.voucherAmount)
+                                        ).toFixed(2)}
                                     </div>
                                   </div>
                                 </td>
-
                               </tr>
                             </>
                           );
@@ -523,20 +540,25 @@ const BoPayment = forwardRef((props, ref) => {
                     </table>
                   </div>
                   {showProgressSpinner && (
-                      <div>
+                    <div>
                       <ProgressSpinner />
-                      </div>
-                      )}
+                    </div>
+                  )}
                   <div>
                     {/* <h5 className="p-text-3-fg b-left-blue-3px mb-3">
                       * Backpack Offloading terms and conditions
                     </h5> */}
                     <p className="col-md-8 p-text-4">
-                      <a href="https://indiahikes.com/cancellation-policy/" target="_blank">View Cancellation Policy For Offloading </a>
+                      <a
+                        href="https://indiahikes.com/cancellation-policy/"
+                        target="_blank"
+                      >
+                        View Cancellation Policy For Offloading{" "}
+                      </a>
                     </p>
                   </div>
                 </div>
-               
+
                 <div className="col-lg-4 col-md-12">
                   <div className="card box-shadow">
                     <div className="p-3">
@@ -576,7 +598,10 @@ const BoPayment = forwardRef((props, ref) => {
                         </div>
                         <div>
                           <p className="p-text-3-1-2 mb-3">
-                            Rs.{Number(computeFields.computations.totalTrekFee).toFixed(2)}
+                            Rs.
+                            {Number(
+                              computeFields.computations.totalTrekFee
+                            ).toFixed(2)}
                           </p>
                         </div>
                       </div>
@@ -586,7 +611,10 @@ const BoPayment = forwardRef((props, ref) => {
                         </div>
                         <div>
                           <p className="p-text-3-1-2 mb-3">
-                            Rs.{Number(computeFields.computations.totaltax).toFixed(2)}
+                            Rs.
+                            {Number(
+                              computeFields.computations.totaltax
+                            ).toFixed(2)}
                           </p>
                         </div>
                       </div>
@@ -598,7 +626,10 @@ const BoPayment = forwardRef((props, ref) => {
                         </div>
                         <div>
                           <p className="p-text-3-1-2 mb-2">
-                            Rs. {Number(computeFields.computations.total).toFixed(2)}
+                            Rs.{" "}
+                            {Number(computeFields.computations.total).toFixed(
+                              2
+                            )}
                           </p>
                         </div>
                       </div>
@@ -610,7 +641,10 @@ const BoPayment = forwardRef((props, ref) => {
                         </div>
                         <div>
                           <p className="p-text-3-1-2 mb-3">
-                            - Rs. {Number(computeFields.computations.voucherDeduction).toFixed(2)}
+                            - Rs.{" "}
+                            {Number(
+                              computeFields.computations.voucherDeduction
+                            ).toFixed(2)}
                           </p>
                         </div>
                       </div>
@@ -622,7 +656,10 @@ const BoPayment = forwardRef((props, ref) => {
                         </div>
                         <div>
                           <p className="p-text-3-fg mb-3">
-                            Rs. {Number(computeFields.computations.youpay).toFixed(2)}
+                            Rs.{" "}
+                            {Number(computeFields.computations.youpay).toFixed(
+                              2
+                            )}
                           </p>
                         </div>
                       </div>

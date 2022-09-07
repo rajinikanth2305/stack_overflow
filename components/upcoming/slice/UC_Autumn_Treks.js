@@ -7,7 +7,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import {TrekCardSliceZone, TrekCardSliceZoneMobile} from "components/trekCard/"
+import {
+  TrekCardSliceZone,
+  TrekCardSliceZoneMobile,
+} from "components/trekCard/";
 
 const UCAutnumTreks = ({ slice, autumnData }) => {
   const ucAutumnTreksTitle = slice?.primary?.uc_autumn_treks_title;
@@ -27,67 +30,76 @@ const UCAutnumTreks = ({ slice, autumnData }) => {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: false,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          arrows: false
-        }
+          arrows: false,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false
-        }
-      }
-    ]
+          arrows: false,
+        },
+      },
+    ],
   };
 
-  const goToTrekPage = data => {
+  const goToTrekPage = (data) => {
     const slugUrl = data?.target_url?.slug;
 
     if (slugUrl) {
       //router.push(`/trek/${data?.target_url?.uid}`);
-        router.push(`/${data?.target_url?.uid}`);
+      router.push(`/${data?.target_url?.uid}`);
     }
   };
 
   const ucAutumnTreksImages = autumnData?.map(function (data, i) {
-    const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
+    const tData = data?.data?.body.find((x) => x.slice_type === "trek_banner");
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
       // url = `/trek/${slugUrl}`;
-       url = `/${slugUrl}`;
+      url = `/${slugUrl}`;
     }
-    const getFamilyTrek = data?.tags?.find(x => x === "FamilyTrek");
+    const getFamilyTrek = data?.tags?.find((x) => x === "FamilyTrek");
     return (
-      <TrekCardSliceZone key = {i} tData = {tData} getFamilyTrek = {getFamilyTrek} url = {url} trekId = {data.slugs[0]}/>
+      <TrekCardSliceZone
+        key={i}
+        tData={tData}
+        getFamilyTrek={getFamilyTrek}
+        url={url}
+        trekId={data.slugs[0]}
+      />
     );
   });
-
 
   const ucAutumnTreksImagesMobileView = autumnData?.map(function (data, j) {
-    const tData = data?.data?.body.find(x => x.slice_type === "trek_banner");
+    const tData = data?.data?.body.find((x) => x.slice_type === "trek_banner");
     let url;
     const slugUrl = data?.uid;
     if (slugUrl) {
       // url = `/trek/${slugUrl}`;
-       url = `/${slugUrl}`;
+      url = `/${slugUrl}`;
     }
-    const getFamilyTrek = data?.tags?.find(x => x === "FamilyTrek");
+    const getFamilyTrek = data?.tags?.find((x) => x === "FamilyTrek");
     return (
-      <TrekCardSliceZoneMobile key = {j} tData = {tData} getFamilyTrek = {getFamilyTrek} url = {url} trekId = {data.slugs[0]}/>
+      <TrekCardSliceZoneMobile
+        key={j}
+        tData={tData}
+        getFamilyTrek={getFamilyTrek}
+        url={url}
+        trekId={data.slugs[0]}
+      />
     );
   });
-
-
 
   return (
     <>

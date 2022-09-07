@@ -1,1 +1,1 @@
-export { default as BoPaymentSliceZone } from './BoPaymentSliceZone';
+export { default as BoPaymentSliceZone } from "./BoPaymentSliceZone";

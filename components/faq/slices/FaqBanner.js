@@ -18,7 +18,9 @@ const FaqBanner = ({ slice }) => {
             <div className="h-100">
               <div className="d-flex align-items-center justify-content-center w-100 h-100">
                 <div className="banner-text-sec">
-                  <p className="banner-text-1 mb-1"><b>{RichText.asText(heading1)}</b></p>
+                  <p className="banner-text-1 mb-1">
+                    <b>{RichText.asText(heading1)}</b>
+                  </p>
                   {/* <form>
                     <div className="mt-4 mb-2">
                       <FormGroup className="diyform">

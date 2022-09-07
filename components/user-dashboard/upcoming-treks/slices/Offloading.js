@@ -2,7 +2,7 @@ import React, {
   useState,
   forwardRef,
   useImperativeHandle,
-  useRef
+  useRef,
 } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
@@ -11,7 +11,7 @@ import {
   getUserVoucher,
   getUsersVoucherByBookingId,
   getBackPackOffloadingUserStatus,
-  getCancellationAllowedStatus
+  getCancellationAllowedStatus,
 } from "../../../../services/queries";
 import { Dropdown } from "primereact/dropdown";
 import { useForm, Controller } from "react-hook-form";
@@ -38,7 +38,7 @@ const Offloading = forwardRef((props, ref) => {
     control,
     errors,
     formState,
-    getValues
+    getValues,
   } = useForm();
   const [saveState, setSaveState] = useState(false);
   const toast = useRef(null);
@@ -52,12 +52,11 @@ const Offloading = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     changeState(data) {
       initData(data);
-    }
+    },
   }));
 
-  const deriveBookingState = activeBooking => {
+  const deriveBookingState = (activeBooking) => {
     if (activeBooking.bookingState === "COMPLETED") {
-
       return true;
     } else {
       setShowOffLoadingContents(false);
@@ -65,7 +64,7 @@ const Offloading = forwardRef((props, ref) => {
     }
   };
 
-  const initData = async data => {
+  const initData = async (data) => {
     //  console.log(data);
     setRender(false);
     if (deriveBookingState(data) == true) {
@@ -82,16 +81,18 @@ const Offloading = forwardRef((props, ref) => {
       setHeaderData(data);
       setShowOffLoadingContents(true);
 
-      const fee = data?.backPackOffloadingDays * data?.backPackOffloadingCostPerDay;
+      const fee =
+        data?.backPackOffloadingDays * data?.backPackOffloadingCostPerDay;
       const tax = fee * (data?.backPackOffloadingTaxPercentage / 100); //backPackOffloadingTax
       const offLoadingFee = roundToTwo(fee + tax);
 
       const offLoadingList = [];
       console.log(data);
-      getBackPackOffloadingUserStatus(data.bookingId).then(resData => {
-       
-        data?.userTrekBookingParticipants.map(pdata => {
-          const offloadUser = resData?.find(x => x.participantId === pdata.participantId);
+      getBackPackOffloadingUserStatus(data.bookingId).then((resData) => {
+        data?.userTrekBookingParticipants.map((pdata) => {
+          const offloadUser = resData?.find(
+            (x) => x.participantId === pdata.participantId
+          );
 
           if (pdata?.bookingParticipantState !== "CANCELLED") {
             offLoadingList.push({
@@ -99,11 +100,11 @@ const Offloading = forwardRef((props, ref) => {
               name:
                 pdata?.userDetailsForDisplay.email === data.email
                   ? " * " +
-                  pdata?.userDetailsForDisplay.firstName +
-                  pdata?.userDetailsForDisplay.lastName +
-                  " (You) "
+                    pdata?.userDetailsForDisplay.firstName +
+                    pdata?.userDetailsForDisplay.lastName +
+                    " (You) "
                   : pdata?.userDetailsForDisplay.firstName +
-                  pdata?.userDetailsForDisplay.lastName,
+                    pdata?.userDetailsForDisplay.lastName,
               //voucher: vouchers,
               offloadingFee: offLoadingFee,
               youPay: offLoadingFee,
@@ -113,8 +114,11 @@ const Offloading = forwardRef((props, ref) => {
               voucherId: "",
               selected: false,
               email: pdata?.userDetailsForDisplay.email,
-              offloadingParticipantStatus: offloadUser == undefined || false ? "N/A" : offloadUser.offloadingParticipantStatus,
-              bookingParticipantState: pdata?.bookingParticipantState
+              offloadingParticipantStatus:
+                offloadUser == undefined || false
+                  ? "N/A"
+                  : offloadUser.offloadingParticipantStatus,
+              bookingParticipantState: pdata?.bookingParticipantState,
             });
           }
         });
@@ -134,9 +138,9 @@ const Offloading = forwardRef((props, ref) => {
     }
   };
 
-  const transFormVoucherPayload = vouchers => {
+  const transFormVoucherPayload = (vouchers) => {
     const voucherlist = [];
-    vouchers.map(v => {
+    vouchers.map((v) => {
       voucherlist.push({
         id: v.id,
         userId: v.userId,
@@ -153,18 +157,18 @@ const Offloading = forwardRef((props, ref) => {
         userEmail: v.userEmail,
         amountAvailable: v.amountAvailable,
         usedVocuherAmount: 0,
-        appliedDetails: []
+        appliedDetails: [],
       });
     });
     return voucherlist;
   };
-  const localgetVoucher = async userEmail => {
+  const localgetVoucher = async (userEmail) => {
     let dt = [];
     const data1 = await getUserVoucher(userEmail)
-      .then(data => {
+      .then((data) => {
         return data;
       })
-      .catch(res => {
+      .catch((res) => {
         if (res.response.data?.message) {
           return dt;
         }
@@ -178,10 +182,10 @@ const Offloading = forwardRef((props, ref) => {
 
   const onVoucherApply = (id, index) => {
     const sdata = offLoadings;
-    const user = sdata.find(u => u.id === id);
+    const user = sdata.find((u) => u.id === id);
     if (user.optedVoucherId > 0) {
       const selectedVoucher = vouchers.find(
-        vid => vid.id == user.optedVoucherId
+        (vid) => vid.id == user.optedVoucherId
       );
       const youPay = user.youPay; //computeTotal(sdata.trekUsers);
       //console.log(youPay);
@@ -192,9 +196,10 @@ const Offloading = forwardRef((props, ref) => {
           const amountToDeductInVocuher =
             youPay > currentAvailableAmount ? currentAvailableAmount : youPay;
 
-          sdata.find(u => u.id === id).voucherId = user.optedVoucherId;
-          sdata.find(u => u.id === id).voucherAmount = amountToDeductInVocuher;
-          sdata.find(u => u.id === id).youPay = Number(
+          sdata.find((u) => u.id === id).voucherId = user.optedVoucherId;
+          sdata.find((u) => u.id === id).voucherAmount =
+            amountToDeductInVocuher;
+          sdata.find((u) => u.id === id).youPay = Number(
             youPay - amountToDeductInVocuher
           );
 
@@ -218,37 +223,37 @@ const Offloading = forwardRef((props, ref) => {
     // console.log(JSON.stringify(value));
     const sdata = offLoadings;
     //// check if already it is selected:
-    const optedId = sdata.find(u => u.optedVoucherId === value);
+    const optedId = sdata.find((u) => u.optedVoucherId === value);
     // console.log(optedId);
 
     if (optedId !== undefined) {
       toast.current.show({
         severity: "error",
         summary: `'The selected Voucher is already applied'`,
-        detail: ""
+        detail: "",
       });
       /// Resetting the old selected voucher values;
-      sdata.find(u => u.id === id).optedVoucherId = "";
-      sdata.find(u => u.id === id).voucherAmount = 0;
-      sdata.find(u => u.id === id).voucherId = "";
+      sdata.find((u) => u.id === id).optedVoucherId = "";
+      sdata.find((u) => u.id === id).voucherAmount = 0;
+      sdata.find((u) => u.id === id).voucherId = "";
       // await dispatch(addOrUpdateState(sdata));
       //computeTotal(sdata.trekUsers);
       return;
     }
-    sdata.find(u => u.id === id).optedVoucherId = value;
-    sdata.find(u => u.id === id).voucherAmount = 0;
-    sdata.find(u => u.id === id).voucherId = "";
+    sdata.find((u) => u.id === id).optedVoucherId = value;
+    sdata.find((u) => u.id === id).voucherAmount = 0;
+    sdata.find((u) => u.id === id).voucherId = "";
   };
 
   const onChecked = (id, value) => {
-    offLoadings.find(u => u.id === id).selected = value;
-    const selectedCount = offLoadings.filter(u => u.selected === true).length;
+    offLoadings.find((u) => u.id === id).selected = value;
+    const selectedCount = offLoadings.filter((u) => u.selected === true).length;
     setShowSaveButton(selectedCount > 0);
   };
 
   const navigateTo = () => {
-    const selectedList = offLoadings.filter(u => u.selected === true);
-    selectedList.map(p => {
+    const selectedList = offLoadings.filter((u) => u.selected === true);
+    selectedList.map((p) => {
       // p.optedVoucherId='',
       // p.voucherId='',
       // p.voucherAmount=0
@@ -256,7 +261,7 @@ const Offloading = forwardRef((props, ref) => {
     const dt = {
       header: headerData,
       participants: selectedList,
-      userVouchers: vouchers
+      userVouchers: vouchers,
     };
     props.onOffLoadingPayment(dt);
   };
@@ -264,21 +269,21 @@ const Offloading = forwardRef((props, ref) => {
   const onCancelButtonClick = () => {
     //console.log("onCancelButtonClick");
 
-    getCancellationAllowedStatus(headerData?.bookingId)
-    .then(res=> {
-      const result=res;
+    getCancellationAllowedStatus(headerData?.bookingId).then((res) => {
+      const result = res;
       console.log(res);
-      if(result?.backPackOffloadingCancellationAllowed===true) {
-       router.push( `/user-dashboard/cancellation-bp?bookingId=${headerData?.bookingId}`);
-      }
-      else {
+      if (result?.backPackOffloadingCancellationAllowed === true) {
+        router.push(
+          `/user-dashboard/cancellation-bp?bookingId=${headerData?.bookingId}`
+        );
+      } else {
         toast.current.show({
           severity: "warn",
           summary: `'Since you have used a voucher in this payment, we will personally help you with your cancellation. Please email your Experience Coordinator with your cancellation details.'`,
           detail: "",
-          life:8000,
-          closable:true,
-          position:"top-left"
+          life: 8000,
+          closable: true,
+          position: "top-left",
         });
       }
     });
@@ -286,25 +291,29 @@ const Offloading = forwardRef((props, ref) => {
 
   const checkAnyPaidStatus = () => {
     let paids = [];
-    offLoadings?.map(x => {
-      if (x?.offloadingParticipantStatus === "COMPLETED" || x?.offloadingParticipantStatus === "PAID") {
+    offLoadings?.map((x) => {
+      if (
+        x?.offloadingParticipantStatus === "COMPLETED" ||
+        x?.offloadingParticipantStatus === "PAID"
+      ) {
         paids.push(x);
       }
-    }
-    );
+    });
     return paids.length > 0;
-  }
+  };
 
   const checkAnyNAStatus = () => {
     let paids = [];
-    offLoadings?.map(x => {
-      if (x?.offloadingParticipantStatus === "N/A" || x?.offloadingParticipantStatus === "INITIATED") {
+    offLoadings?.map((x) => {
+      if (
+        x?.offloadingParticipantStatus === "N/A" ||
+        x?.offloadingParticipantStatus === "INITIATED"
+      ) {
         paids.push(x);
       }
-    }
-    );
+    });
     return paids.length > 0;
-  }
+  };
 
   return (
     <>
@@ -323,8 +332,8 @@ const Offloading = forwardRef((props, ref) => {
           <div className="d-flex justify-content-between flex-wrap p-text-3-fg-book mb-2">
             <div>
               <p className="m-0 p-text-3">
-                <small>No. of offloading days:</small> {headerData?.backPackOffloadingDays}{" "}
-                days
+                <small>No. of offloading days:</small>{" "}
+                {headerData?.backPackOffloadingDays} days
               </p>
               {/* <p className="p-text-small-fg font-italic">
                 {headerData?.trekName}
@@ -332,13 +341,16 @@ const Offloading = forwardRef((props, ref) => {
             </div>
             <div>
               <p className="m-0 p-text-3">
-                <small>BO. cost per day:</small> Rs. {headerData?.backPackOffloadingCostPerDay}
+                <small>BO. cost per day:</small> Rs.{" "}
+                {headerData?.backPackOffloadingCostPerDay}
               </p>
             </div>
             <div>
-              <p className="m-0 p-text-3"><small>Applicable tax:</small> {headerData?.backPackOffloadingTaxPercentage}%</p>
+              <p className="m-0 p-text-3">
+                <small>Applicable tax:</small>{" "}
+                {headerData?.backPackOffloadingTaxPercentage}%
+              </p>
             </div>
-
           </div>
           <div className="table-responsive">
             <table className="table table-dashboard-profile-style-1 ctb">
@@ -353,7 +365,7 @@ const Offloading = forwardRef((props, ref) => {
                 </tr>
               </thead>
               <tbody>
-                {indexes.map(index => {
+                {indexes.map((index) => {
                   const fieldName = `voucher[${index}]`;
                   const sdata = offLoadings[index];
                   // console.log(sdata);
@@ -362,14 +374,14 @@ const Offloading = forwardRef((props, ref) => {
                   if (vouchers?.length > 0) {
                     vouchers
                       ?.filter(
-                        x =>
+                        (x) =>
                           x.userName?.toLowerCase() ===
                           sdata?.email?.toLowerCase()
                       )
-                      .map(v => {
+                      .map((v) => {
                         lvouchers.push({
                           title: v.title + "-" + v.amountAvailable,
-                          id: v.id
+                          id: v.id,
                         });
                       });
                   }
@@ -405,7 +417,7 @@ const Offloading = forwardRef((props, ref) => {
                                       <Checkbox
                                         inputId="category1"
                                         name="category"
-                                        onChange={e => {
+                                        onChange={(e) => {
                                           onChange(e.checked);
                                           onChecked(sdata?.id, e.checked);
                                         }}
@@ -426,7 +438,9 @@ const Offloading = forwardRef((props, ref) => {
                                 Participants: &nbsp;
                               </span>
                             </div>
-                            <div className="p-text-2-fg-f16-mb">{index + 1}. {sdata?.name}</div>
+                            <div className="p-text-2-fg-f16-mb">
+                              {index + 1}. {sdata?.name}
+                            </div>
                           </div>
                         </td>
                         {/*
@@ -471,7 +485,9 @@ const Offloading = forwardRef((props, ref) => {
                                 Offloading fee: &nbsp;
                               </span>
                             </div>
-                            <div className="p-text-2-fg-f16-mb">{sdata?.offloadingFee}</div>
+                            <div className="p-text-2-fg-f16-mb">
+                              {sdata?.offloadingFee}
+                            </div>
                           </div>
                         </td>
                         <td>
@@ -481,24 +497,27 @@ const Offloading = forwardRef((props, ref) => {
                                 You pay: &nbsp;
                               </span>
                             </div>
-                            <div className="p-text-2-fg-f16-mb">{sdata?.youPay}</div>
+                            <div className="p-text-2-fg-f16-mb">
+                              {sdata?.youPay}
+                            </div>
                           </div>
                         </td>
                         <td>
                           {/* <span>{sdata?.offloadingParticipantStatus}</span> */}
-                          { /*sdata?.offloadingParticipantStatus === "Paid" && (
+                          {/*sdata?.offloadingParticipantStatus === "Paid" && (
                             <span className="mx-2 p-text-small-fg-red text-decoration-underline">
                               Cancel
                             </span>
-                          )*/
-                          }
+                          )*/}
                           <div className="d-flex align-items-center">
                             <div className="m-col-3">
                               <span className="m-d-block m-col-text p-text-small-fg">
                                 Offloading status: &nbsp;
                               </span>
                             </div>
-                            <div className="p-text-2-fg-f16-mb">{sdata?.offloadingParticipantStatus}</div>
+                            <div className="p-text-2-fg-f16-mb">
+                              {sdata?.offloadingParticipantStatus}
+                            </div>
                           </div>
                         </td>
                       </tr>
@@ -509,13 +528,15 @@ const Offloading = forwardRef((props, ref) => {
             </table>
             <div className="d-flex align-items-center">
               <div className="flex-grow-1">
-                <p className="m-0 p-text-small-brown ws-nowrap">* Primary participant</p>
+                <p className="m-0 p-text-small-brown ws-nowrap">
+                  * Primary participant
+                </p>
               </div>
               <div>
                 {checkAnyPaidStatus() && (
                   <button
                     className="btn table-btn-maroon-sm ws-nowrap"
-                    onClick={e => onCancelButtonClick()}
+                    onClick={(e) => onCancelButtonClick()}
                   >
                     Cancel Offloading
                   </button>
@@ -524,17 +545,16 @@ const Offloading = forwardRef((props, ref) => {
               </div>
 
               {checkAnyNAStatus() && (
-              <div>
-                <button
-                  className="btn table-btn-blue-sm hvr-grow ws-nowrap"
-                  disabled={!showSaveButton}
-                  onClick={e => navigateTo()}
-                >
-                  <span className="px-2">Pay offloading fee</span>
-                </button>
-              </div>
+                <div>
+                  <button
+                    className="btn table-btn-blue-sm hvr-grow ws-nowrap"
+                    disabled={!showSaveButton}
+                    onClick={(e) => navigateTo()}
+                  >
+                    <span className="px-2">Pay offloading fee</span>
+                  </button>
+                </div>
               )}
-
             </div>
           </div>
         </div>

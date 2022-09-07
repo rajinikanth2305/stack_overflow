@@ -1,1 +1,1 @@
-export { default as AuthorSliceZone } from './AuthorSliceZone';
+export { default as AuthorSliceZone } from "./AuthorSliceZone";

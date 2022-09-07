@@ -15,9 +15,9 @@ const InclusionsAndExclusions = ({ data }) => {
   }, []);
 
   async function findHowToReach() {
-    const slice = data && data.find(x => x.slice_type === "trek_inclusions");
+    const slice = data && data.find((x) => x.slice_type === "trek_inclusions");
     setInclusions(slice);
-    const slice1 = data && data.find(x => x.slice_type === "trek_exclusions");
+    const slice1 = data && data.find((x) => x.slice_type === "trek_exclusions");
     setExclusions(slice1);
   }
 
@@ -27,7 +27,7 @@ const InclusionsAndExclusions = ({ data }) => {
   const exclusionsHeading = exclusions && exclusions?.primary?.heading1;
   const exclusionsArray = exclusions && exclusions?.items;
 
-  const inclusionData = inclusionArray?.map(function(data, i) {
+  const inclusionData = inclusionArray?.map(function (data, i) {
     return (
       <div className="col-lg-6 col-md-12" key={i}>
         <p className="p-text-2-franklin mb-2">
@@ -39,7 +39,7 @@ const InclusionsAndExclusions = ({ data }) => {
     );
   });
 
-  const exclusionsData = exclusionsArray?.map(function(data, i) {
+  const exclusionsData = exclusionsArray?.map(function (data, i) {
     return (
       <div className="col-lg-6 col-md-12" key={i}>
         <p className="p-text-2-franklin mb-2">

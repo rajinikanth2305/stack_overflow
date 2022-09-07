@@ -1,1 +1,1 @@
-export { default as UserPreviousTresksSliceZone } from './UserPreviousTresksSliceZone';
+export { default as UserPreviousTresksSliceZone } from "./UserPreviousTresksSliceZone";

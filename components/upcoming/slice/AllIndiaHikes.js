@@ -273,30 +273,28 @@ const AllIndiaHikes = ({ slice }) => {
                       </h3>
                     </div>
                     {treks(easyMordatesTreks)}
-                      <div className="d-flex flex-wrap align-items-center">
-                        <span className="badge-line-yellow-lg mx-2"></span>
-                        <h3 className="title-dispaly-4 my-3">Moderate Treks</h3>
-                      </div>
-                      {treks(moderatesTreks)}
-                      <div className="d-flex flex-wrap align-items-center">
-                        <span className="badge-line-blue-lg mx-2"></span>
-                        <h3 className="title-dispaly-4 my-3">
-                          Moderate Difficult Treks
-                        </h3>
-                      </div>
-                      {treks(moderateDifficultTreks)}
-                      <div className="d-flex flex-wrap align-items-center">
-                        <span className="badge-line-red-lg mx-2"></span>
-                        <h3 className="title-dispaly-4 my-3">
-                          Difficult Treks
-                        </h3>
-                      </div>
-                      {treks(difficultTreks)}
-                      <div className="d-flex flex-wrap align-items-center">
-                        <span className="badge-line-pink-lg mx-2"></span>
-                        <h3 className="title-dispaly-4 my-3">Family Treks</h3>
-                      </div>
-                      {displayFamilyTreks}
+                    <div className="d-flex flex-wrap align-items-center">
+                      <span className="badge-line-yellow-lg mx-2"></span>
+                      <h3 className="title-dispaly-4 my-3">Moderate Treks</h3>
+                    </div>
+                    {treks(moderatesTreks)}
+                    <div className="d-flex flex-wrap align-items-center">
+                      <span className="badge-line-blue-lg mx-2"></span>
+                      <h3 className="title-dispaly-4 my-3">
+                        Moderate Difficult Treks
+                      </h3>
+                    </div>
+                    {treks(moderateDifficultTreks)}
+                    <div className="d-flex flex-wrap align-items-center">
+                      <span className="badge-line-red-lg mx-2"></span>
+                      <h3 className="title-dispaly-4 my-3">Difficult Treks</h3>
+                    </div>
+                    {treks(difficultTreks)}
+                    <div className="d-flex flex-wrap align-items-center">
+                      <span className="badge-line-pink-lg mx-2"></span>
+                      <h3 className="title-dispaly-4 my-3">Family Treks</h3>
+                    </div>
+                    {displayFamilyTreks}
                   </div>
                 </div>
               )}

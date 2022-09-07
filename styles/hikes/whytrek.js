@@ -68,7 +68,7 @@ export const whyTrekWithStyles = css.global`
   }
 
   .card-shadow {
-    box-shadow: 0px 3px 6px rgba(0,0,0,0.161);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
   }
 
   .pillar_images {
