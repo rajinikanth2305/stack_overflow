@@ -107,7 +107,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       const slugUrl = data && data?.article_link?.id;
       if (slugUrl !== undefined) {
         const article_details = await Client().getByID(slugUrl);
-        articleData.push(article_details);
+        // The if check for article_details below has been added because this value was returning undefined for the slug 'YazUqhEAAB8AxVtZ'. This is a temporary fix and will have to be investigated later.
+        if (article_details) articleData.push(article_details);
       }
     }
   }

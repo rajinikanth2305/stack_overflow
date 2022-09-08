@@ -175,10 +175,14 @@ export async function getStaticProps({
       }
 
       if (linkedLatestArticles.length > 0) {
-        ihMoreReadArticles.push({
-          key: moreReadArticleSlice[i].primary?.heading1[0].text,
-          value: linkedLatestArticles,
-        });
+        // The below if check for presence of heading and heading[0] is due to an error previously where these values were undefined, and hence caused build errors. I have added the check as a temporary fix but this issue needs to be investigated in detail later.
+        const heading = moreReadArticleSlice[i]?.primary?.heading1;
+        if (heading && heading[0]) {
+          ihMoreReadArticles.push({
+            key: heading[0].text,
+            value: linkedLatestArticles,
+          });
+        }
       }
     }
   }
@@ -232,10 +236,14 @@ export async function getStaticProps({
       }
 
       if (linkedLatestArticles.length > 0) {
-        ihLatestArticles.push({
-          key: latestArticleSlice[i].primary?.heading1[0].text,
-          value: linkedLatestArticles,
-        });
+        // The below if check for presence of heading and heading[0] is due to an error previously where these values were undefined, and hence caused build errors. I have added the check as a temporary fix but this issue needs to be investigated in detail later.
+        const heading = latestArticleSlice[i]?.primary?.heading1;
+        if (heading && heading[0]) {
+          ihLatestArticles.push({
+            key: heading[0].text,
+            value: linkedLatestArticles,
+          });
+        }
       }
     }
   }
@@ -261,10 +269,14 @@ export async function getStaticProps({
       // }
 
       if (linkedLatestPrimaryArticles.length > 0) {
-        ihLaPrimaryArticlePrimaryArticleData.push({
-          key: latestArticleSlice[i].primary?.heading1[0].text,
-          value: linkedLatestPrimaryArticles,
-        });
+        // The below if check for presence of heading and heading[0] is due to an error previously where these values were undefined, and hence caused build errors. I have added the check as a temporary fix but this issue needs to be investigated in detail later.
+        const heading = latestArticleSlice[i]?.primary?.heading1;
+        if (heading && heading[0]) {
+          ihLaPrimaryArticlePrimaryArticleData.push({
+            key: heading[0].text,
+            value: linkedLatestPrimaryArticles,
+          });
+        }
       }
     }
   }
@@ -301,10 +313,16 @@ export async function getStaticProps({
       }
 
       if (linkedArticles.length > 0) {
-        ihnews.push({
-          key: hikesNewsSlice[i].primary?.heading1[0].text,
-          value: linkedArticles,
-        });
+        // console.log({tatti: i});
+        // console.log({shit: hikesNewsSlice[i].primary.heading1})
+        // The below if check for presence of heading and heading[0] is due to an error previously where these values were undefined, and hence caused build errors. I have added the check as a temporary fix but this issue needs to be investigated in detail later.
+        const heading = hikesNewsSlice[i]?.primary?.heading1;
+        if (heading && heading[0]) {
+          ihnews.push({
+            key: heading[0].text,
+            value: linkedArticles,
+          });
+        }
       }
     }
   }
@@ -382,10 +400,14 @@ export async function getStaticProps({
       }
 
       if (linkedAlitudeArticles.length > 0) {
-        ihAlitudeResaerch.push({
-          key: highAltiSlice[i]?.primary?.heading1[0].text,
-          value: linkedAlitudeArticles,
-        });
+        // The below if check for presence of heading and heading[0] is due to an error previously where these values were undefined, and hence caused build errors. I have added the check as a temporary fix but this issue needs to be investigated in detail later.
+        const heading = highAltiSlice[i]?.primary?.heading1;
+        if (heading && heading[0]) {
+          ihAlitudeResaerch.push({
+            key: heading[0].text,
+            value: linkedAlitudeArticles,
+          });
+        }
       }
     }
   }
