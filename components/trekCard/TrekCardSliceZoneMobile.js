@@ -26,6 +26,8 @@ const TrekCardSliceZoneMobile = ({ tData, getFamilyTrek, url, trekId }) => {
             startDate: batchStartDate,
             endDate: batchEndDate,
             status: batch.status,
+            familyTrek: batch.familyTrek,
+            availableSlots: batch.availableSlots
           });
         } else {
           batchDates[batchDateUTC] = [
@@ -33,6 +35,8 @@ const TrekCardSliceZoneMobile = ({ tData, getFamilyTrek, url, trekId }) => {
               startDate: batchStartDate,
               endDate: batchEndDate,
               status: batch.status,
+              familyTrek: batch.familyTrek,
+              availableSlots: batch.availableSlots
             },
           ];
         }
@@ -102,7 +106,7 @@ const TrekCardSliceZoneMobile = ({ tData, getFamilyTrek, url, trekId }) => {
             </a>
           </Link>
 
-          <AvailableDates batchDates={batchDates} url={url} mobile />
+          <AvailableDates batchDates={batchDates} mobile />
         </div>
       </div>
     </div>

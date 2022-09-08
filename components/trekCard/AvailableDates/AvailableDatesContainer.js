@@ -6,7 +6,6 @@ import DatesAccordion from "./datesAccordion";
 
 export default function AvailableDatesContainer({
   batchDates,
-  url,
   mobile = false,
 }) {
   const [openAccordionNumber, setOpenAccordionNumber] = useState(0);
@@ -28,7 +27,6 @@ export default function AvailableDatesContainer({
           openAccordion={openAccordion}
           id={index + 1}
           openAccordionNumber={openAccordionNumber}
-          url={url}
         />
       );
     } else {
@@ -39,7 +37,6 @@ export default function AvailableDatesContainer({
           openAccordion={openAccordion}
           id={index + 1}
           openAccordionNumber={openAccordionNumber}
-          url={url}
         />
       );
     }
@@ -55,15 +52,6 @@ export default function AvailableDatesContainer({
         <div className={classNames({ halfWidth: mobile })}>
           {rightDateContainer}
         </div>
-      </div>
-      <div>
-        <Link href={url ? `${url}#view-dates` : "#"}>
-          <a>
-            <p className="grayText underlinedText">
-              + <span>More Dates</span>
-            </p>
-          </a>
-        </Link>
       </div>
       <style jsx global>
         {AvailableDatesStyle}

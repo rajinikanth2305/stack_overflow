@@ -49,10 +49,17 @@ export const AvailableDatesStyle = css.global`
   .halfWidth {
     width: 48%;
   }
+
   .dateText {
     margin: 0;
-    font-size: clamp(11px, 1.5vw, 12px);
+    font-size: clamp(11px, 1.3vw, 14px);
     text-decoration: none;
+  }
+
+  .family-trek-text {
+    color: #aa4509;
+    font-size: clamp(10px, 1vw, 12px);
+    margin: 0;
   }
 
   .statusText {
@@ -63,6 +70,9 @@ export const AvailableDatesStyle = css.global`
   }
   .statusAvailable {
     color: green;
+  }
+  .statusFillingFast {
+    color: #f26522;
   }
   .statusWL {
     color: #f7ab00;

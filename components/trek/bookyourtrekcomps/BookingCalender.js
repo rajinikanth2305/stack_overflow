@@ -58,17 +58,17 @@ const BookingCalender = ({
           setTrekId(trekId);
 
           if (viewDt === undefined) {
-            let getbatchesApi = null;
+            let getBatchesApi = null;
             if (calendarMonth) {
               const selectedDate = new Date(Number(calendarMonth));
               const month = selectedDate.getMonth() + 1;
               const year = selectedDate.getFullYear();
-              getbatchesApi = getBatchesByTrekId(trekId, month, year);
+              getBatchesApi = getBatchesByTrekId(trekId, month, year);
             } else {
-              getbatchesApi = getBatchesByTrekId(trekId);
+              getBatchesApi = getBatchesByTrekId(trekId);
             }
 
-            getbatchesApi.then((batches) => {
+            getBatchesApi.then((batches) => {
               if (batches?.length > 0) {
                 const date = new Date(batches[0].startDate);
                 date.setMonth(date.getMonth());
@@ -392,7 +392,7 @@ const BookingCalender = ({
     //e.onChange(event.originalEvent, event.value);
   };
 
-  const onMonthChange = (e) => {};
+  const onMonthChange = (e) => { };
 
   const onYearChange = (event, e) => {
     getBatchesByTrekId(trekId, 0, e)
@@ -454,7 +454,7 @@ const BookingCalender = ({
             router.push(`/registration?batchId=${batchDates[key].batchId}`);
           }
         },
-        reject: (e) => {},
+        reject: (e) => { },
       });
     } else {
       if (batchDates !== undefined && batchDates[key] !== undefined) {

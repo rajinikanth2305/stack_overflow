@@ -1,15 +1,13 @@
-import classNames from "classnames";
-
 function dateOrdinal(d) {
   return (
     d +
     (31 == d || 21 == d || 1 == d
       ? "st"
       : 22 == d || 2 == d
-      ? "nd"
-      : 23 == d || 3 == d
-      ? "rd"
-      : "th")
+        ? "nd"
+        : 23 == d || 3 == d
+          ? "rd"
+          : "th")
   );
 }
 
@@ -25,7 +23,6 @@ const DatesAccordion = ({
   openAccordionNumber,
   data,
   month,
-  url,
 }) => {
   const monthDate = new Date(Number(month));
   const monthName = monthDate.toLocaleString("default", {
@@ -55,16 +52,11 @@ const DatesAccordion = ({
       {openAccordionNumber === id && (
         <div>
           <div className="accordion-content">
-            {/* <div className='px-2 py-1 d-flex justify-content-between'>
-                    <p className='dateText'>20th May to 28th May </p>
-                    <p className='statusText statusAvailable'>Avail</p>
-                </div> */}
 
             {data.map((batch, index) => {
               const startDate = new Date(batch.startDate);
               const endDate = new Date(batch.endDate);
 
-              // const displayText = `${dateOrdinal(startDate.getDate())} ${startDate.toLocaleString('default', {month: 'short'})} to ${dateOrdinal(endDate.getDate())} ${endDate.toLocaleString('default', {month: 'short'})} `
               const displayText = `${dateOrdinal(
                 startDate.getDate()
               )} ${startDate.toLocaleString("default", {
@@ -74,24 +66,40 @@ const DatesAccordion = ({
                 { month: "short" }
               )} `;
 
+              const { familyTrek, availableSlots, status } = batch
+
+              let statusText = ""
+              let statusClass = `statusText `
+
+              if (status === batchDates.full) {
+                statusText = "FULL"
+                statusClass = statusClass + `statusFull`
+              } else if (status === batchDates.waitingList) {
+                statusText = "WL"
+                statusClass = statusClass + `statusWL`
+              } else if (status === batchDates.active && availableSlots > 0 && availableSlots <= 5) {
+                statusText = `LAST ${availableSlots}`
+                statusClass = statusClass + `statusFillingFast`
+              } else if (status === batchDates.active && availableSlots > 5) {
+                statusText = "AVBL"
+                statusClass = statusClass + `statusAvailable`
+              }
+
+
               return (
                 <div
                   className=" px-2 py-1 d-flex justify-content-between"
                   key={index}
                 >
-                  <p className="dateText me-3">{displayText}</p>
+                  <div>
+                    <p className="dateText">{displayText}</p>
+                    {familyTrek && <p className="family-trek-text">{'(Family Trek)'} </p>}
+
+                  </div>
                   <p
-                    className={classNames("statusText", {
-                      statusFull: batch.status === batchDates.full,
-                      statusWL: batch.status === batchDates.waitingList,
-                      statusAvailable: batch.status === batchDates.active,
-                    })}
+                    className={statusClass}
                   >
-                    {batch.status === "FULL"
-                      ? "FULL"
-                      : batch.status === "WAITING_LIST"
-                      ? "WL"
-                      : "AVBL"}
+                    {statusText}
                   </p>
                 </div>
               );
