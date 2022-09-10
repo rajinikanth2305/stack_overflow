@@ -32,6 +32,16 @@ const middleware = async (req) => {
       return NextResponse.next();
     }
 
+    //Temporary fix for channa durga trek since the original link is not working
+    console.log(url.pathname)
+    if (url.pathname.startsWith("/channarayana-durga-trek")) {
+      url.pathname = `channarayana-durga-weekend-trek`
+      console.log(url.pathname)
+      return NextResponse.redirect(url)
+    }
+
+    // Temprary fix ends  
+
     if (
       url.pathname.startsWith("/blog/") || //  new format Redirections to old format
       url.pathname.startsWith("/trek/") ||

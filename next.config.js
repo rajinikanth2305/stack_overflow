@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  target: "serverless",
+  // target: "serverless",
   poweredByHeader: false,
   optimizeFonts: false,
   webpack(config) {
