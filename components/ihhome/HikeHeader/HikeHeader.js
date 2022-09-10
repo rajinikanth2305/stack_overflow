@@ -35,6 +35,21 @@ import { linkResolver } from "prismic-configuration";
 /**
  * Homepage header component
  */
+
+const menuIItems =
+  [
+    { title: 'Upcoming', link: "", subMenu: [{ title: 'text1', link: "", subMenu: [] }, { title: 'text2', link: '', subMenu: [] }] },
+    { title: 'Upcoming', link: "", subMenu: [{ title: 'text1', link: "", subMenu: [] }, { title: 'text2', link: '', subMenu: [] }] },
+    { title: 'Upcoming', link: "", subMenu: [{ title: 'text1', link: "", subMenu: [] }, { title: 'text2', link: '', subMenu: [] }] },
+    { title: 'Upcoming', link: "", subMenu: [{ title: 'text1', link: "", subMenu: [] }, { title: 'text2', link: '', subMenu: [] }] },
+    { title: 'Upcoming', link: "", subMenu: [{ title: 'text1', link: "", subMenu: [] }, { title: 'text2', link: '', subMenu: [] }] },
+    { title: 'Upcoming', link: "", subMenu: [{ title: 'text1', link: "", subMenu: [] }, { title: 'text2', link: '', subMenu: [] }] }
+  ]
+
+
+
+
+
 const HikeHeader = (auth = false) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -72,6 +87,7 @@ const HikeHeader = (auth = false) => {
         Prismic.Predicates.not("my.trek.private_trek", true),
       ])
       .then((response) => {
+        console.log("first response", response)
         matchingResults.push(...response.results);
       });
 
@@ -80,6 +96,7 @@ const HikeHeader = (auth = false) => {
         Prismic.Predicates.fulltext("my.document_trek_type.title", searchQuery),
       ])
       .then((response) => {
+        console.log("second response", response)
         matchingResults.push(...response.results);
       });
 
@@ -89,6 +106,7 @@ const HikeHeader = (auth = false) => {
         pageSize: 100,
       })
       .then((response) => {
+        console.log("third response", response)
         matchingResults.push(...response.results);
       });
 

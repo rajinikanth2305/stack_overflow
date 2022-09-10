@@ -727,6 +727,14 @@ export const trekStyle = css.global`
     height: 100%;
   }
 
+  .choose_trek_image {
+    position: relative;
+    width: 100%;
+    height: 222px;
+    border-bottom: 2px solid rgb(255, 193, 0);
+  }
+
+
   .card_sec {
     margin: 20px 0;
   }
