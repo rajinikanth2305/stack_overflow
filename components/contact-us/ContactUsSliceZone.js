@@ -4,8 +4,9 @@ import {
   ContactFaq,
   GetInTouchIh,
   FollowUsIh,
-  EmbedHtml,
 } from "./slices";
+import EmbedHtml from "./../common/slices/EmbedHtml";
+
 
 /**
  *  slice zone component
@@ -23,7 +24,11 @@ const ContactUsSliceZone = ({ sliceZone }) =>
       case "follow_us":
         return <FollowUsIh slice={slice} key={`slice-${index}`} />;
       case "embed_html":
-        return <EmbedHtml slice={slice} key={`slice-${index}`} />;
+        return (
+          <div className="container my-5">
+            <EmbedHtml slice={slice} key={`slice-${index}`} />
+          </div>
+        ) 
       default:
         return null;
     }

@@ -21,6 +21,8 @@ import {
   FaqHome,
   PhotoContest,
 } from "./slices";
+import EmbedHtml from "./../common/slices/EmbedHtml";
+
 /**
  * Post slice zone component
  */
@@ -90,6 +92,12 @@ const SliceZone = ({
         return <PhotoContest slice={slice} key={`slice-${index}`} />;
       // case "featured_treks":
       //   return <FeaturedTreks slice={slice} key={`slice-${index}`} />;
+      case "embed_html":
+        return (
+          <div className="container my-5">
+            <EmbedHtml slice={slice} key={`slice-${index}`} />
+          </div>
+        ) 
       case "home_footer":
         return <HomeFooter slice={slice} key={`slice-${index}`} />;
       default:

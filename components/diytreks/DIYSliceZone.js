@@ -8,6 +8,7 @@ import {
   CommunityContentPitch,
   DIYTreksGuide,
 } from "./slices";
+import EmbedHtml from "./../common/slices/EmbedHtml";
 
 /**
  *  slice zone component
@@ -58,6 +59,12 @@ const DIYSliceZone = ({
         return <CommunityContentPitch slice={slice} key={`slice-${index}`} />;
       // case "diy_treks_guide":
       // return <DIYTreksGuide slice={slice} key={`slice-${index}`} alldiyTreks={alldiyTreks} />;
+      case "embed_html":
+        return (
+          <div className="container my-5">
+            <EmbedHtml slice={slice} key={`slice-${index}`} />
+          </div>
+        ) 
       default:
         return null;
     }

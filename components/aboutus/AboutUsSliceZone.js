@@ -10,6 +10,7 @@ import {
   IhTalks,
   IhMedia,
 } from "./slices";
+import EmbedHtml from "./../common/slices/EmbedHtml";
 
 /**
  *  slice zone component
@@ -42,6 +43,12 @@ const AboutUsSliceZone = ({ sliceZone, articleData }) =>
             articleData={articleData}
           />
         );
+      case "embed_html":
+        return (
+          <div className="container my-5">
+            <EmbedHtml slice={slice} key={`slice-${index}`} />
+          </div>
+        ) 
       default:
         return null;
     }
