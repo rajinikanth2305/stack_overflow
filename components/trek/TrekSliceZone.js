@@ -21,6 +21,7 @@ import {
   TrekTrevia,
   TrekReviews,
 } from "./slices";
+import EmbedHtml from "./../common/slices/EmbedHtml";
 
 /**
  *  slice zone component
@@ -83,6 +84,12 @@ const TrekSliceZone = ({ sliceZone, trekPageData1, calendarMonth }) =>
         return <TrekQA slice={slice} key={`slice-${index}`} />;
       case "quick_itinerary":
         return <QuickItineraryComponent slice={slice} key={`slice-${index}`} />;
+      case "embed_html":
+        return (
+          <div className="container my-5">
+            <EmbedHtml slice={slice} key={`slice-${index}`} />
+          </div>
+        )
       default:
         return null;
     }

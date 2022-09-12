@@ -13,6 +13,7 @@ import {
   FtTrekStories,
   GetInTouchForm,
 } from "./slices";
+import EmbedHtml from "./../common/slices/EmbedHtml";
 
 /**
  *  slice zone component
@@ -68,6 +69,12 @@ const FamilyTrekSliceZone = ({
         return <GetInTouchForm slice={slice} key={`slice-${index}`} />;
       case "family_gallery":
         return <FamilyGallery slice={slice} key={`slice-${index}`} />;
+      case "embed_html":
+        return (
+          <div className="container my-5">
+            <EmbedHtml slice={slice} key={`slice-${index}`} />
+          </div>
+        ) 
       default:
         return null;
     }

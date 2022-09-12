@@ -5,7 +5,8 @@ import moment from "moment";
 import Link from "next/link";
 import { Toast } from "primereact/toast";
 import { useRouter } from "next/router";
-import { Text, Quote, ImageWithCaption, IframeTag, EmbedHtml } from "./index";
+import { Text, Quote, ImageWithCaption, IframeTag } from "./index";
+import EmbedHtml from "./../../common/slices/EmbedHtml";
 import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
 import {
@@ -1192,7 +1193,9 @@ const PostRender = ({
                           );
                         case "embed_html":
                           return (
-                            <EmbedHtml slice={slice} key={`slice-${index}`} />
+                            <div className="post-part single">  
+                              <EmbedHtml slice={slice} key={`slice-${index}`} />
+                            </div>
                           );
                         case "text_and_image_panel":
                           return renderLeftImageRightText(slice);

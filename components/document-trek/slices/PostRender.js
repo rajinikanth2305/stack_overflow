@@ -8,9 +8,10 @@ import {
   Quote,
   ImageWithCaption,
   IframeTag,
-  EmbedHtml,
   LatestUpdates,
 } from "./index";
+import EmbedHtml from "./../../common/slices/EmbedHtml";
+
 import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
 
@@ -1143,8 +1144,10 @@ const PostRender = ({
                           );
                         case "embed_html":
                           return (
-                            <EmbedHtml slice={slice} key={`slice-${index}`} />
-                          );
+                            <div className="post-part single">
+                              <EmbedHtml slice={slice} key={`slice-${index}`} />
+                            </div>
+                          ); 
                         case "text_and_image_panel":
                           return renderLeftImageRightText(slice);
                         case "user_says_panel":
