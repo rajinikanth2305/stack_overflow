@@ -73,7 +73,6 @@ const AllIndiaHikes = ({ slice }) => {
 
     const res = [];
     allTrekData?.results?.forEach((result) => {
-      console.log(result);
       if (
         result?.data?.family_trek === true ||
         result?.data?.private_trek === true
@@ -145,16 +144,16 @@ const AllIndiaHikes = ({ slice }) => {
                         ? "badge-green-diy"
                         : data?.data?.body[0]?.primary?.difficulty[0]?.text ===
                           "Easy-Moderate"
-                        ? "badge-green-diy"
-                        : data?.tags?.indexOf("Moderate") > -1
-                        ? "badge-yellow-diy"
-                        : data?.tags?.indexOf("Difficult") > -1
-                        ? "badge-red-diy"
-                        : data?.tags?.indexOf("Moderate - Difficult") > -1
-                        ? "badge-blue-diy"
-                        : data?.tags?.indexOf("Moderate-Difficult") > -1
-                        ? "badge-blue-diy"
-                        : "badge-blue-diy"
+                          ? "badge-green-diy"
+                          : data?.tags?.indexOf("Moderate") > -1
+                            ? "badge-yellow-diy"
+                            : data?.tags?.indexOf("Difficult") > -1
+                              ? "badge-red-diy"
+                              : data?.tags?.indexOf("Moderate - Difficult") > -1
+                                ? "badge-blue-diy"
+                                : data?.tags?.indexOf("Moderate-Difficult") > -1
+                                  ? "badge-blue-diy"
+                                  : "badge-blue-diy"
                     }
                   ></p>
                 </div>
