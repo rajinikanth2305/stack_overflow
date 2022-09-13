@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
 import { experimentStyles } from "styles";
-import { useAccordionToggle } from "react-bootstrap/AccordionToggle";
+import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import AccordionContext from "react-bootstrap/AccordionContext";
 import { customStyles } from "styles";
 import Accordion from "react-bootstrap/Accordion";
@@ -13,7 +13,7 @@ const KytFaq = ({ data }) => {
 
   useEffect(() => {
     findHowKytFaq();
-    return () => {};
+    return () => { };
   }, []);
 
   async function findHowKytFaq() {
@@ -28,7 +28,7 @@ const KytFaq = ({ data }) => {
   function ContextAwareToggle({ children, eventKey, callback }) {
     const currentEventKey = useContext(AccordionContext);
 
-    const decoratedOnClick = useAccordionToggle(
+    const decoratedOnClick = useAccordionButton(
       eventKey,
       () => callback && callback(eventKey)
     );

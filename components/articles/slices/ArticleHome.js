@@ -24,8 +24,6 @@ import {
   DropdownItem,
   NavbarText,
 } from "reactstrap";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Dropdown from "react-bootstrap/Dropdown";
 
 const ArticleHome = ({
   slice,
