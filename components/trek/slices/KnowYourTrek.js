@@ -3,7 +3,7 @@ import { RichText } from "prismic-reactjs";
 import { trekStyle } from "styles";
 import Image from "next/image";
 import "react-accessible-accordion/dist/fancy-example.css";
-import Accordion from "react-bootstrap/Accordion";
+import Accordion from 'react-bootstrap/Accordion';
 import Card from "react-bootstrap/Card";
 import HowDoesEachDayLooks from "../accordiontabs/HowDoesEachDayLooks";
 import HowDifficultTrekIs from "../accordiontabs/HowDfficultTresIs";
@@ -29,7 +29,7 @@ const KnowYourTrek = ({ slice, data }) => {
       <Accordion key={i}>
         <Card>
           <Card.Header>
-            <Accordion.Toggle variant="link" eventKey="0" className="kyt-tabs">
+            <Accordion.Button variant="link" eventKey="0" className="kyt-tabs">
               <div className="d-flex align-items-center border-bottom-custom-2x">
                 <div className="px-3 mpx-1">
                   <img
@@ -52,7 +52,7 @@ const KnowYourTrek = ({ slice, data }) => {
                   ></i>
                 </div>
               </div>
-            </Accordion.Toggle>
+            </Accordion.Button>
           </Card.Header>
           <Accordion.Collapse eventKey="0">
             <Card.Body>
