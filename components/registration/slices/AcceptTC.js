@@ -11,7 +11,7 @@ import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import { Client } from "utils/prismicHelpers";
 import Prismic from "@prismicio/client";
-import { useAccordionToggle } from "react-bootstrap/AccordionToggle";
+import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import AccordionContext from "react-bootstrap/AccordionContext";
 
 const AcceptTC = ({
@@ -35,7 +35,7 @@ const AcceptTC = ({
   function ContextAwareToggle({ children, eventKey, callback }) {
     const currentEventKey = useContext(AccordionContext);
 
-    const decoratedOnClick = useAccordionToggle(
+    const decoratedOnClick = useAccordionButton(
       eventKey,
       () => callback && callback(eventKey)
     );
@@ -214,11 +214,11 @@ const AcceptTC = ({
     <>
       <div className="my-5 m-mt-1">
         {data &&
-        onTermAccept &&
-        inclusionsData &&
-        exclusionsData &&
-        whyIndiaHikesData &&
-        tac ? (
+          onTermAccept &&
+          inclusionsData &&
+          exclusionsData &&
+          whyIndiaHikesData &&
+          tac ? (
           <div>
             <div className="row pt-3">
               <div className="col-lg-7 col-md-12 pr-custom-5">

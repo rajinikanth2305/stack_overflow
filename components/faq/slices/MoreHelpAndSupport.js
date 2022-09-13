@@ -6,7 +6,7 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
-import { useAccordionToggle } from "react-bootstrap/AccordionToggle";
+import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import AccordionContext from "react-bootstrap/AccordionContext";
 
 const MoreHelpAndSupport = ({ slice }) => {
@@ -24,7 +24,7 @@ const MoreHelpAndSupport = ({ slice }) => {
   function ContextAwareToggle({ children, eventKey, callback }) {
     const currentEventKey = useContext(AccordionContext);
 
-    const decoratedOnClick = useAccordionToggle(
+    const decoratedOnClick = useAccordionButton(
       eventKey,
       () => callback && callback(eventKey)
     );
