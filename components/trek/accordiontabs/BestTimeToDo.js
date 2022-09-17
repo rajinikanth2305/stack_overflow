@@ -2,11 +2,6 @@ import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
 import { experimentStyles } from "styles";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
-import Tabs from "react-bootstrap/Tabs";
-import Tab from "react-bootstrap/Tab";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Modal from "react-bootstrap/Modal";
@@ -185,7 +180,7 @@ const BestTimeToDo = ({ data }) => {
                   <span
                     className={
                       highlightTextFilter1 &&
-                      highlightTextFilter1.props?.children?.props?.children ===
+                        highlightTextFilter1.props?.children?.props?.children ===
                         "1"
                         ? "bt-year-tabs bt-highlight-year-tabs"
                         : "bt-year-tabs"
@@ -198,7 +193,7 @@ const BestTimeToDo = ({ data }) => {
                   <span
                     className={
                       highlightTextFilter2 &&
-                      highlightTextFilter2.props?.children?.props?.children ===
+                        highlightTextFilter2.props?.children?.props?.children ===
                         "2"
                         ? "bt-year-tabs bt-highlight-year-tabs"
                         : "bt-year-tabs"
@@ -211,7 +206,7 @@ const BestTimeToDo = ({ data }) => {
                   <span
                     className={
                       highlightTextFilter3 &&
-                      highlightTextFilter3.props?.children?.props?.children ===
+                        highlightTextFilter3.props?.children?.props?.children ===
                         "3"
                         ? "bt-year-tabs bt-highlight-year-tabs"
                         : "bt-year-tabs"
@@ -224,7 +219,7 @@ const BestTimeToDo = ({ data }) => {
                   <span
                     className={
                       highlightTextFilter4 &&
-                      highlightTextFilter4.props?.children?.props?.children ===
+                        highlightTextFilter4.props?.children?.props?.children ===
                         "4"
                         ? "bt-year-tabs bt-highlight-year-tabs"
                         : "bt-year-tabs"
@@ -237,7 +232,7 @@ const BestTimeToDo = ({ data }) => {
                   <span
                     className={
                       highlightTextFilter5 &&
-                      highlightTextFilter5.props?.children?.props?.children ===
+                        highlightTextFilter5.props?.children?.props?.children ===
                         "5"
                         ? "bt-year-tabs bt-highlight-year-tabs"
                         : "bt-year-tabs"
@@ -250,7 +245,7 @@ const BestTimeToDo = ({ data }) => {
                   <span
                     className={
                       highlightTextFilter6 &&
-                      highlightTextFilter6.props?.children?.props?.children ===
+                        highlightTextFilter6.props?.children?.props?.children ===
                         "6"
                         ? "bt-year-tabs bt-highlight-year-tabs"
                         : "bt-year-tabs"
@@ -263,7 +258,7 @@ const BestTimeToDo = ({ data }) => {
                   <span
                     className={
                       highlightTextFilter7 &&
-                      highlightTextFilter7.props?.children?.props?.children ===
+                        highlightTextFilter7.props?.children?.props?.children ===
                         "7"
                         ? "bt-year-tabs bt-highlight-year-tabs"
                         : "bt-year-tabs"
@@ -276,7 +271,7 @@ const BestTimeToDo = ({ data }) => {
                   <span
                     className={
                       highlightTextFilter8 &&
-                      highlightTextFilter8.props?.children?.props?.children ===
+                        highlightTextFilter8.props?.children?.props?.children ===
                         "8"
                         ? "bt-year-tabs bt-highlight-year-tabs"
                         : "bt-year-tabs"
@@ -289,7 +284,7 @@ const BestTimeToDo = ({ data }) => {
                   <span
                     className={
                       highlightTextFilter9 &&
-                      highlightTextFilter9.props?.children?.props?.children ===
+                        highlightTextFilter9.props?.children?.props?.children ===
                         "9"
                         ? "bt-year-tabs bt-highlight-year-tabs"
                         : "bt-year-tabs"
@@ -302,7 +297,7 @@ const BestTimeToDo = ({ data }) => {
                   <span
                     className={
                       highlightTextFilter10 &&
-                      highlightTextFilter10.props?.children?.props?.children ===
+                        highlightTextFilter10.props?.children?.props?.children ===
                         "10"
                         ? "bt-year-tabs bt-highlight-year-tabs"
                         : "bt-year-tabs"
@@ -315,7 +310,7 @@ const BestTimeToDo = ({ data }) => {
                   <span
                     className={
                       highlightTextFilter11 &&
-                      highlightTextFilter11.props?.children?.props?.children ===
+                        highlightTextFilter11.props?.children?.props?.children ===
                         "11"
                         ? "bt-year-tabs bt-highlight-year-tabs"
                         : "bt-year-tabs"
@@ -328,7 +323,7 @@ const BestTimeToDo = ({ data }) => {
                   <span
                     className={
                       highlightTextFilter12 &&
-                      highlightTextFilter12.props?.children?.props?.children ===
+                        highlightTextFilter12.props?.children?.props?.children ===
                         "12"
                         ? "bt-year-tabs bt-highlight-year-tabs"
                         : "bt-year-tabs"

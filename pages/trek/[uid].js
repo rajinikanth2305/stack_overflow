@@ -1,21 +1,18 @@
 import React from "react";
 import Head from "next/head";
 import Script from "next/script";
+import * as prismicH from '@prismicio/helpers'
 import { useRouter } from "next/router";
 import { RichText } from "prismic-reactjs";
-import Prismic from "@prismicio/client";
-import { queryRepeatableDocuments } from "services/queries";
-import { queryRepeatableDocumentsWithDocTypeFilter } from "services/queries";
+import { createClient, linkResolver } from 'prismicio'
 import { TrekSliceZone } from "components/trek";
 // Project components
 
 // Project functions & styles
-import { Client } from "utils/prismicHelpers";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
 import IHFooter from "components/Footer";
 import IHTrekWithSwathi from "components/Trek_With_Swathi";
-import WhyTrekWithIH from "../../components/WhyTrekWithIH";
 import CrossTrekCommon from "../../components/CrossTrekCommon";
 import ScrollToTop from "react-scroll-to-top";
 import { MOUSEFLOW_WEBSITE_ID } from "utils/constants";
@@ -129,10 +126,10 @@ export async function getStaticProps({
   preview = null,
   previewData = {},
 }) {
-  const { ref } = previewData;
-  const trekData =
-    (await Client().getByUID("trek", params.uid, ref ? { ref } : null)) || {};
 
+
+  const client = createClient({ previewData })
+  const trekData = await client.getByUID('trek', params.uid)
   // const trekPageData = [];
   let trekPageData1 = [];
 
@@ -149,7 +146,7 @@ export async function getStaticProps({
       const data = slice?.items[i];
       const slugUrl = data?.other_trek?.id;
       if (slugUrl !== undefined) {
-        const trek_details = await Client().getByID(slugUrl);
+        const trek_details = await client.getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
           trekPageData1.push(trek_details);
       }
@@ -166,16 +163,13 @@ export async function getStaticProps({
 }
 
 export async function getStaticPaths() {
-  //const documents = await queryRepeatableDocuments((doc) => doc.type === 'trek')
-  const documents = await queryRepeatableDocumentsWithDocTypeFilter("trek");
 
-  /* const response = await Client().query(
-    Prismic.Predicates.at("document.type", "trek")
-  );*/
+  const client = createClient();
+  // const documents = await client.getAllByType('repeatable')
+  const documents = await client.getAllByType('trek_id')
 
-  // const documents = response.results;
   return {
-    paths: documents.map((doc) => `/trek/${doc.uid}`),
+    paths: documents.map((doc) => prismicH.asLink(doc, linkResolver)),
     fallback: true,
   };
 }

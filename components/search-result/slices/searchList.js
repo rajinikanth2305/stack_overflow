@@ -3,8 +3,8 @@ import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
+import { createClient } from 'prismicio'
+import * as prismic from "@prismicio/client"
 import Link from "next/link";
 import { linkResolver } from "prismic-configuration";
 
@@ -22,21 +22,21 @@ const SearchList = ({ slice }) => {
 
     const fetchData = async () => {
       const matchingResults = [];
-      const client = Client();
+      const client = createClient();
 
-      await client
+      client
         .query([
-          Prismic.Predicates.fulltext("my.trek.search_keywords", searchQuery),
-          Prismic.Predicates.not("my.trek.family_trek", true),
-          Prismic.Predicates.not("my.trek.private_trek", true),
+          prismic.predicate.fulltext("my.trek.search_keywords", searchQuery),
+          prismic.predicate.not("my.trek.family_trek", true),
+          prismic.predicate.not("my.trek.private_trek", true),
         ])
         .then((response) => {
           matchingResults.push(...response.results);
         });
 
-      await client
+      client
         .query([
-          Prismic.Predicates.fulltext(
+          prismic.predicate.fulltext(
             "my.document_trek_type.title",
             searchQuery
           ),
@@ -45,8 +45,8 @@ const SearchList = ({ slice }) => {
           matchingResults.push(...response.results);
         });
 
-      await client
-        .query([Prismic.Predicates.fulltext("my.post.title", searchQuery)], {
+      client
+        .query([prismic.predicate.fulltext("my.post.title", searchQuery)], {
           orderings: "[my.post.date desc]",
           pageSize: 100,
         })
@@ -136,7 +136,7 @@ const SearchList = ({ slice }) => {
                 )} */}
                   <div className="latest_art_img_bg_img">
                     {data?.data?.body &&
-                    data?.data?.body[0]?.primary?.trek_banner_image?.url ? (
+                      data?.data?.body[0]?.primary?.trek_banner_image?.url ? (
                       <Image
                         src={
                           data?.data?.body[0]?.primary?.trek_banner_image?.url

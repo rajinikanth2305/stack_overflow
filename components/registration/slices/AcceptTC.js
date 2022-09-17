@@ -2,15 +2,12 @@ import React, { useEffect, useState, useContext } from "react";
 import { RichText } from "prismic-reactjs";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  addOrUpdateState,
-  selectStateData,
+  selectStateData
 } from "../../reduxstate/counterSlice";
 import { useRouter } from "next/router";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import { FormGroup, Label, Input } from "reactstrap";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import AccordionContext from "react-bootstrap/AccordionContext";
 

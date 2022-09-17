@@ -3,10 +3,8 @@ import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
+import { createClient } from 'prismicio'
 import Link from "next/link";
-import { linkResolver } from "prismic-configuration";
 
 const AuthorDetails = ({ slice }) => {
   const heading1 = slice?.primary?.heading1;
@@ -21,13 +19,8 @@ const AuthorDetails = ({ slice }) => {
       return;
     }
     const getAuthorArticles = async () => {
-      const client = Client();
-      const authorArticles = await client.query(
-        [Prismic.Predicates.at("document.type", "post")],
-        {
-          pageSize: 250,
-        }
-      );
+      const client = createClient();
+      const authorArticles = await client.getAllByType('post')
       setAuthorArticles(authorArticles);
     };
     getAuthorArticles();

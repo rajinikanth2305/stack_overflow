@@ -1,11 +1,10 @@
 import React from "react";
 import Head from "next/head";
-
+import { createClient } from '../prismicio'
 // Project components & functions
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
-import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import { AboutUsSliceZone } from "../components/aboutus";
@@ -48,11 +47,9 @@ const AboutUs = ({ doc, articleData }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const { ref } = previewData;
 
-  const client = Client();
+  const client = createClient();
 
-  const doc =
-    (await client.getSingle("aboutih_type", ref ? { ref } : null)) || {};
-
+  const doc = await client.getSingle("aboutih_type")
   const articleData = [];
   const slice = doc?.data?.body?.find((x) => x?.slice_type === "ih_media");
 
@@ -61,7 +58,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       const data = slice?.items[i];
       const slugUrl = data && data?.article_link?.id;
       if (slugUrl !== undefined) {
-        const article_details = await Client().getByID(slugUrl);
+        const article_details = await client.getByID(slugUrl);
         if (article_details !== undefined && article_details !== null) {
           articleData.push(article_details);
         }

@@ -1,15 +1,10 @@
 import React from "react";
 import Head from "next/head";
-import Prismic from "@prismicio/client";
-import { RichText } from "prismic-reactjs";
-import Document, { NextScript } from "next/document";
-
-// Project components & functions
 import { UpComingTreksSliceZone } from "components/upcoming";
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
-import { Client } from "utils/prismicHelpers";
+import { createClient } from 'prismicio'
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import { SearchSliceZone } from "../components/search-result";
@@ -47,13 +42,9 @@ const SearchResult = ({ doc }) => {
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
+  const client = createClient({ previewData })
+  const doc = await client.getSingle("hike_team")
 
-  const client = Client();
-
-  const doc = (await client.getSingle("hike_team", ref ? { ref } : null)) || {};
-
-  //console.log(JSON.stringify(doc));
   return {
     props: {
       doc,

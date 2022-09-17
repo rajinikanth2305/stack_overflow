@@ -5,8 +5,8 @@ import Image from "next/image";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import { regStyle } from "styles";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
+import { createClient } from 'prismicio'
+import * as prismic from "@prismicio/client"
 import Login from "./Login";
 import SelectBatch from "./SelectBatch";
 import AddTrekMates from "./AddTrekMates";
@@ -194,12 +194,11 @@ const RegHome = ({ slice }) => {
 
   const getTrekContentsFromPrismic = async (trekId) => {
     console.log(trekId);
-    // const response =    await Client().getByUID("trek", trekName);
 
-    const client = Client();
+    const client = createClient();
     await client
       .query([
-        Prismic.Predicates.fulltext("my.trek.trek_id", trekId.toString()),
+        prismic.predicate.fulltext("my.trek.trek_id", trekId.toString()),
       ])
       .then(function (response) {
         if (response && response?.results && response.results?.length > 0) {

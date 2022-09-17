@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { RichText } from "prismic-reactjs";
+import * as prismic from "@prismicio/client"
 import Image from "next/image";
 import { trekStyle } from "styles";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
+import { createClient } from 'prismicio'
 import Modal from "react-bootstrap/Modal";
 
 const TrekkersVideoCommon = () => {
@@ -20,9 +19,9 @@ const TrekkersVideoCommon = () => {
   }, []);
 
   async function findTrekStories() {
-    const client = Client();
+    const client = createClient();
     const doc = await client
-      .query([Prismic.Predicates.at("document.type", "hike_home_ctype")])
+      .query([prismic.predicate.at("document.type", "hike_home_ctype")])
       .then(function (response) {
         const tt = response.results[0].data.body;
         const slice =

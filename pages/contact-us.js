@@ -1,8 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import Prismic from "@prismicio/client";
-import { RichText } from "prismic-reactjs";
-import Document, { NextScript } from "next/document";
+import { createClient } from 'prismicio'
 
 // Project components & functions
 import { ContactUsSliceZone } from "components/contact-us";
@@ -46,18 +44,8 @@ const ContactUs = ({ doc }) => {
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
-
-  const client = Client();
-
-  const doc =
-    (await client.getSingle("aboutus_type", ref ? { ref } : null)) || {};
-
-  /*const doc = await client.query(
-    Prismic.Predicates.at("document.type", "hike_home_ctype"), {
-      ...(ref ? { ref } : null)
-    },
-  )*/
+  const client = createClient({ previewData })
+  const doc = await client.getSingle("aboutus_type")
 
   return {
     props: {

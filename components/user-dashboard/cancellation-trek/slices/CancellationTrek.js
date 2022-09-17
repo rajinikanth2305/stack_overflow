@@ -9,23 +9,14 @@ import Link from "next/link";
 import auth from "../../../../services/Authenticate";
 import {
   getBatchInfoByUserAndBatchId,
-  cancelUserBooking,
-  findUserByEmail,
   cancelParticipantBooking,
-  getBackPackOffloadingUserStatus,
 } from "../../../../services/queries";
 import moment from "moment";
 import { useRouter } from "next/router";
-import Prismic from "@prismicio/client";
-import { Client } from "../../../../utils/prismicHelpers";
-import { confirmPopup } from "primereact/confirmpopup"; // To use confirmPopup method
-import Image from "next/image";
-import { Toast } from "primereact/toast";
 import "primeicons/primeicons.css";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.css";
 import "primeflex/primeflex.css";
-import BoPayment from "../../bo-payment/slices/BoPayment";
 import { useForm, Controller } from "react-hook-form";
 
 const CancellationTrek = () => {
@@ -483,13 +474,13 @@ const CancellationTrek = () => {
                                   const name =
                                     sdata?.email === userEmail
                                       ? " * " +
-                                        sdata?.firstName +
-                                        " " +
-                                        sdata?.lastName +
-                                        " (You) "
+                                      sdata?.firstName +
+                                      " " +
+                                      sdata?.lastName +
+                                      " (You) "
                                       : sdata?.firstName +
-                                        " " +
-                                        sdata?.lastName;
+                                      " " +
+                                      sdata?.lastName;
 
                                   const state =
                                     sdata?.bookingParticipantState ===
@@ -525,7 +516,7 @@ const CancellationTrek = () => {
                                                         }}
                                                         checked={
                                                           sdata?.cancelled ==
-                                                          false
+                                                            false
                                                             ? false
                                                             : true
                                                         }

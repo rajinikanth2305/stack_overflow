@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
 import { experimentStyles } from "styles";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Slider from "react-slick";
@@ -208,7 +206,7 @@ const HowDoesEachDayLooks = ({ data }) => {
               )}
               <div className="my-4 d-m-block">
                 {daysItieneryArray &&
-                daysItieneryArray[0].place_description_editor[0]?.text ? (
+                  daysItieneryArray[0].place_description_editor[0]?.text ? (
                   <div style={{ height: readMoreHeight, overflow: "hidden" }}>
                     {place_description_editor}
                   </div>
@@ -216,7 +214,7 @@ const HowDoesEachDayLooks = ({ data }) => {
                   <div>{place_description_editor}</div>
                 )}
                 {daysItieneryArray &&
-                daysItieneryArray[0].place_description_editor[0]?.text ? (
+                  daysItieneryArray[0].place_description_editor[0]?.text ? (
                   <div className="d-flex justify-content-center bg-transparent-text-effect">
                     {readMoreHeight === 200 ? (
                       <button

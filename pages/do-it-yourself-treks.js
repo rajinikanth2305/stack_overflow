@@ -1,15 +1,9 @@
 import React from "react";
 import Head from "next/head";
-import Prismic from "@prismicio/client";
-import { RichText } from "prismic-reactjs";
-import Document, { NextScript } from "next/document";
-
-// Project components & functions
-import { UpComingTreksSliceZone } from "components/upcoming";
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
-import { Client } from "utils/prismicHelpers";
+import { createClient } from 'prismicio'
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import { DIYSliceZone } from "../components/diytreks";
@@ -21,11 +15,11 @@ import ScrollToTop from "react-scroll-to-top";
 const DIY = ({
   doc,
   bestPostTreksData,
-  dtcData,
   diyResourceData,
-  alldiyTreks,
 }) => {
+
   if (doc && doc.data) {
+
     return (
       <>
         <HomeLayout>
@@ -42,9 +36,7 @@ const DIY = ({
           <DIYSliceZone
             sliceZone={doc.data.body}
             bestPostTreksData={bestPostTreksData}
-            dtcData={dtcData}
             diyResourceData={diyResourceData}
-            alldiyTreks={alldiyTreks}
           />
           {/* <div className="mt-5 py-5 text-center">
           <h3>DIY</h3>
@@ -63,32 +55,15 @@ const DIY = ({
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
+  const client = createClient({ previewData })
+  const doc = await client.getSingle("diy_trek")
 
-  const client = Client();
-
-  const doc = (await client.getSingle("diy_trek", ref ? { ref } : null)) || {};
   const dtcData = [];
   const diyResourceData = [];
 
-  // const slice = doc.data?.body?.find(x => x.slice_type === "best_post_treks");
-
-  // if (slice.items?.length > 0) {
-  //   for (var i = 0; i < slice.items?.length; i++) {
-  //     const data = slice.items[i];
-  //     const slugUrl = data && data?.diy_article_link?.id;
-  //     if (slugUrl !== undefined) {
-  //       const trek_details = await Client().getByID(slugUrl);
-  //       if (trek_details !== undefined && trek_details !== null)
-  //         trekData.push(trek_details);
-  //     }
-  //   }
-  // }
-
   let bestPostTreksData = [];
 
-  const bestPostTreksSlice =
-    doc && doc.data?.body?.filter((x) => x.slice_type === "best_post_treks");
+  const bestPostTreksSlice = doc && doc.data?.body?.filter((x) => x.slice_type === "best_post_treks");
 
   if (bestPostTreksSlice?.length > 0) {
     for (var i = 0; i < bestPostTreksSlice?.length; i++) {
@@ -97,9 +72,10 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       const data = bestPostTreksSlice[i];
 
       for (var k = 0; k < data?.items?.length; k++) {
-        const slugUrl = data && data?.items[k].diy_article_link?.id;
+        const slugUrl = data && data?.items[k].diy_article_link?.uid;
+        const documentType = data && data?.items[k].diy_article_link?.type;
         if (slugUrl !== undefined) {
-          const bestPost_article_details = await Client().getByID(slugUrl);
+          const bestPost_article_details = await client.getByUID(documentType, slugUrl);
           if (
             bestPost_article_details !== undefined &&
             bestPost_article_details !== null
@@ -117,21 +93,6 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     }
   }
 
-  const dtcslice = doc.data?.body?.find(
-    (x) => x.slice_type === "diy_trek_categories"
-  );
-
-  if (dtcslice?.items?.length > 0) {
-    for (var i = 0; i < dtcslice?.items?.length; i++) {
-      const data = dtcslice?.items[i];
-      const slugUrl = data && data?.diy_trek_link?.id;
-      if (slugUrl !== undefined) {
-        const diy_trek_details = await Client().getByID(slugUrl);
-        if (diy_trek_details !== undefined && diy_trek_details !== null)
-          dtcData.push(diy_trek_details);
-      }
-    }
-  }
 
   const dtResourceslice = doc.data?.body?.find(
     (x) => x.slice_type === "diy_resources"
@@ -140,20 +101,17 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   if (dtResourceslice?.items?.length > 0) {
     for (var i = 0; i < dtResourceslice?.items?.length; i++) {
       const data = dtResourceslice?.items[i];
-      const slugUrl = data && data?.diy_article_link?.id;
+      const slugUrl = data && data?.diy_article_link?.uid;
+      const documentType = data && data?.diy_article_link?.type;
       if (slugUrl !== undefined) {
-        const diy_res_details = await Client().getByID(slugUrl);
+        const diy_res_details = await client.getByUID(documentType, slugUrl);
         if (diy_res_details !== undefined && diy_res_details !== null)
           diyResourceData.push(diy_res_details);
       }
     }
   }
 
-  const alldiyTreks = null; /*await client.query([
-    Prismic.Predicates.at("document.type", "document_trek_type")], {
-      pageSize: 250
-    }
-  );*/
+
 
   return {
     props: {
@@ -161,7 +119,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       preview,
       dtcData,
       diyResourceData,
-      alldiyTreks,
+      alldiyTreks: null,
       bestPostTreksData,
     },
   };
