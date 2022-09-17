@@ -22,16 +22,15 @@ import {
 } from "../../../../services/queries";
 import moment from "moment";
 import { useRouter } from "next/router";
-import Prismic from "@prismicio/client";
-import { Client } from "../../../../utils/prismicHelpers";
+import * as prismic from "@prismicio/client";
 import { confirmPopup } from "primereact/confirmpopup"; // To use confirmPopup method
 import Image from "next/image";
 import { Toast } from "primereact/toast";
 import BoPayment from "../../bo-payment/slices/BoPayment";
 import { useForm, Controller } from "react-hook-form";
 import { Checkbox } from "primereact/checkbox";
-import MyTrekMobileView from "./MyTrekMobileView";
 import { confirmDialog } from "primereact/confirmdialog"; // To use <ConfirmDialog> tag
+import { createClient } from "prismicio";
 
 const WelcomeProfile = () => {
   const [show, setShow] = useState(false);
@@ -168,11 +167,10 @@ const WelcomeProfile = () => {
   };
 
   const getAndSetTrekContents = async (bookingsData, userEmail, bookingId) => {
+
+    const client = createClient()
     const bookTrekContents = [];
-    const client = Client();
-
     const prismicTrekContents = [];
-
     const values = [];
 
     // const eligibleBookings=bookingsData.filter(x=>x.)
@@ -184,8 +182,9 @@ const WelcomeProfile = () => {
     }
 
     let prismicResults = [];
-    prismicResults = await Client().query(
-      Prismic.Predicates.in("my.trek.uid", values)
+
+    prismicResults = await client.query(
+      prismic.predicate.in("my.trek.uid", values)
     );
     // console.log(prismicResults);
     setPrismicResultState(prismicResults);
@@ -320,7 +319,7 @@ const WelcomeProfile = () => {
           fetchAndBindUserBookings(trekData.email);
         });
       },
-      reject: (e) => {},
+      reject: (e) => { },
     });
   };
 
@@ -371,14 +370,12 @@ const WelcomeProfile = () => {
     const participantList = [];
 
     Object.keys(formData).forEach(function (key) {
-      console.log("Key : " + key + ", Value : " + formData[key]);
       if (formData[key] === true) {
         participantList.push(key);
       }
     });
 
     if (participantList.length > 0) {
-      console.log(participantList);
       cancelParticipantBooking(
         upComingTrek.bookingId,
         true,
@@ -440,8 +437,8 @@ const WelcomeProfile = () => {
             rejectLabel: "Ok",
             breakpoints: { "960px": "75vw", "640px": "100vw" },
             style: { width: "50vw" },
-            accept: () => {},
-            reject: (e) => {},
+            accept: () => { },
+            reject: (e) => { },
             className: "c-modal-dialog",
           });
         }
@@ -546,7 +543,7 @@ const WelcomeProfile = () => {
                                         <div className="m-col-12 w-100">
                                           {upComingTrek?.bookingState ===
                                             "PAYMENT" ||
-                                          upComingTrek?.bookingState ===
+                                            upComingTrek?.bookingState ===
                                             "ADD_PARTICIPANTS" ? (
                                             <p className="m-0 p-text-10-fgb">
                                               50% of booking process completed -{" "}
@@ -569,7 +566,7 @@ const WelcomeProfile = () => {
                                       </div>
                                       {upComingTrek?.bookingState ===
                                         "PAYMENT" ||
-                                      upComingTrek?.bookingState ===
+                                        upComingTrek?.bookingState ===
                                         "ADD_PARTICIPANTS" ? (
                                         <Progress value="50" />
                                       ) : upComingTrek?.bookingState ===
@@ -608,7 +605,7 @@ const WelcomeProfile = () => {
                                           <p className="m-0 p-text-2-fg-f16">
                                             {upComingTrek?.participantsCount}{" "}
                                             {upComingTrek?.participantsCount ===
-                                            1
+                                              1
                                               ? "Trekker"
                                               : "Trekkers"}
                                           </p>
@@ -655,94 +652,94 @@ const WelcomeProfile = () => {
                                       <div className="d-flex justify-content-end">
                                         {upComingTrek?.bookingState ===
                                           "ADD_PARTICIPANTS" && (
-                                          <div>
-                                            <button
-                                              className="btn table-btn-green-lg mx-3 hvr-grow"
-                                              onClick={(e) =>
-                                                addParticipants(
-                                                  upComingTrek?.batchId
-                                                )
-                                              }
-                                            >
-                                              <span className="px-2">
-                                                Add Participants
-                                              </span>
-                                            </button>
-                                          </div>
-                                        )}
+                                            <div>
+                                              <button
+                                                className="btn table-btn-green-lg mx-3 hvr-grow"
+                                                onClick={(e) =>
+                                                  addParticipants(
+                                                    upComingTrek?.batchId
+                                                  )
+                                                }
+                                              >
+                                                <span className="px-2">
+                                                  Add Participants
+                                                </span>
+                                              </button>
+                                            </div>
+                                          )}
                                         {upComingTrek?.bookingState ===
                                           "PAYMENT" && (
-                                          <div>
-                                            <button
-                                              className="btn table-btn-green-lg mx-3 hvr-grow"
-                                              onClick={(e) =>
-                                                makePayment(
-                                                  upComingTrek?.batchId
-                                                )
-                                              }
-                                            >
-                                              <span className="px-2">
-                                                Make payment
-                                              </span>
-                                            </button>
-                                          </div>
-                                        )}
+                                            <div>
+                                              <button
+                                                className="btn table-btn-green-lg mx-3 hvr-grow"
+                                                onClick={(e) =>
+                                                  makePayment(
+                                                    upComingTrek?.batchId
+                                                  )
+                                                }
+                                              >
+                                                <span className="px-2">
+                                                  Make payment
+                                                </span>
+                                              </button>
+                                            </div>
+                                          )}
 
                                         {isStringOrNullEmpty(
                                           upComingTrek?.bookingState,
                                           upComingTrek?.trekWhatsappLink
                                         ) && (
-                                          <>
-                                            <a
-                                              href={
-                                                upComingTrek?.trekWhatsappLink
-                                              }
-                                              target="new"
-                                            >
-                                              <button className="btn table-btn-green mx-3 hvr-grow ws-nowrap">
-                                                <i
-                                                  className="fa fa-whatsapp"
-                                                  aria-hidden="true"
-                                                ></i>{" "}
-                                                <span className="px-2">
-                                                  Join whatsapp group
-                                                </span>
-                                              </button>
-                                            </a>
-                                          </>
-                                        )}
+                                            <>
+                                              <a
+                                                href={
+                                                  upComingTrek?.trekWhatsappLink
+                                                }
+                                                target="new"
+                                              >
+                                                <button className="btn table-btn-green mx-3 hvr-grow ws-nowrap">
+                                                  <i
+                                                    className="fa fa-whatsapp"
+                                                    aria-hidden="true"
+                                                  ></i>{" "}
+                                                  <span className="px-2">
+                                                    Join whatsapp group
+                                                  </span>
+                                                </button>
+                                              </a>
+                                            </>
+                                          )}
                                         {upComingTrek?.bookingState ===
                                           "WAITING_LIST" && (
-                                          <>
-                                            <div className="mx-2" />
-                                            <button className="btn table-btn-yellow hvr-grow ws-nowrap">
-                                              Waiting List #{" "}
-                                              {upComingTrek.waitListNumber}
-                                            </button>
-                                            <div className="mx-2" />
-                                          </>
-                                        )}
+                                            <>
+                                              <div className="mx-2" />
+                                              <button className="btn table-btn-yellow hvr-grow ws-nowrap">
+                                                Waiting List #{" "}
+                                                {upComingTrek.waitListNumber}
+                                              </button>
+                                              <div className="mx-2" />
+                                            </>
+                                          )}
                                         {upComingTrek?.bookingState !==
                                           "IN_ACTIVE" && (
-                                          <>
-                                            <button
-                                              className="btn table-btn-maroon hvr-grow ws-nowrap"
-                                              // onClick={e =>
-                                              //   onCancelUserBooking(
-                                              //     e,
-                                              //     upComingTrek
-                                              //   )
-                                              // }
-                                              onClick={(e) =>
-                                                onCancelButtonClick(
-                                                  upComingTrek?.bookingState
-                                                )
-                                              }
-                                            >
-                                              Cancel trek
-                                            </button>
-                                          </>
-                                        )}
+                                            <>
+                                              <button
+                                                className="btn table-btn-maroon hvr-grow ws-nowrap"
+                                                // onClick={e =>
+                                                //   onCancelUserBooking(
+                                                //     e,
+                                                //     upComingTrek
+                                                //   )
+                                                // }
+                                                onClick={(e) =>
+                                                  onCancelButtonClick(
+                                                    upComingTrek?.bookingState
+                                                  )
+                                                }
+                                              >
+                                                Cancel trek
+                                              </button>
+                                            </>
+                                          )}
                                       </div>
                                     </div>
                                   </div>
@@ -822,7 +819,7 @@ const WelcomeProfile = () => {
                           {indexes?.map((index) => {
                             const trekData = nextComingTreks[index];
                             return (
-                              <div className="row">
+                              <div className="row" key={index}>
                                 <div className="col-lg-11 col-md-12">
                                   <div className="card">
                                     <div className="row">
@@ -860,7 +857,7 @@ const WelcomeProfile = () => {
                                             <div>
                                               {trekData.bookingState ===
                                                 "PAYMENT" ||
-                                              trekData.bookingState ===
+                                                trekData.bookingState ===
                                                 "ADD_PARTICIPANTS" ? (
                                                 <p className="m-0 p-text-10-fgb">
                                                   50% of booking process
@@ -885,7 +882,7 @@ const WelcomeProfile = () => {
                                           </div>
                                           {trekData.bookingState ===
                                             "PAYMENT" ||
-                                          trekData.bookingState ===
+                                            trekData.bookingState ===
                                             "ADD_PARTICIPANTS" ? (
                                             <Progress value="50" />
                                           ) : trekData.bookingState ===
@@ -920,7 +917,7 @@ const WelcomeProfile = () => {
                                               <p className="m-0 p-text-2-fg-f16">
                                                 {trekData?.participantsCount}{" "}
                                                 {trekData?.participantsCount ===
-                                                1
+                                                  1
                                                   ? "Trekker"
                                                   : "Trekkers"}
                                               </p>
@@ -982,42 +979,42 @@ const WelcomeProfile = () => {
                                               {(trekData?.bookingState ===
                                                 "PAYMENT" ||
                                                 trekData?.bookingState ===
-                                                  "ADD_PARTICIPANTS") && (
-                                                <>
-                                                  <button
-                                                    className="btn table-btn-blue mx-3 hvr-grow"
-                                                    onClick={(e) =>
-                                                      addParticipants(
-                                                        trekData?.batchId
-                                                      )
-                                                    }
-                                                  >
-                                                    <span className="px-2">
-                                                      Add participants
-                                                    </span>
-                                                  </button>
-                                                  <button
-                                                    className="btn table-btn-green-lg hvr-grow"
-                                                    onClick={(e) =>
-                                                      makePayment(
-                                                        trekData?.batchId
-                                                      )
-                                                    }
-                                                  >
-                                                    Make payment
-                                                  </button>
-                                                </>
-                                              )}
+                                                "ADD_PARTICIPANTS") && (
+                                                  <>
+                                                    <button
+                                                      className="btn table-btn-blue mx-3 hvr-grow"
+                                                      onClick={(e) =>
+                                                        addParticipants(
+                                                          trekData?.batchId
+                                                        )
+                                                      }
+                                                    >
+                                                      <span className="px-2">
+                                                        Add participants
+                                                      </span>
+                                                    </button>
+                                                    <button
+                                                      className="btn table-btn-green-lg hvr-grow"
+                                                      onClick={(e) =>
+                                                        makePayment(
+                                                          trekData?.batchId
+                                                        )
+                                                      }
+                                                    >
+                                                      Make payment
+                                                    </button>
+                                                  </>
+                                                )}
                                             </div>
                                             <div>
                                               {trekData?.bookingState ===
                                                 "WAITING_LIST" && (
-                                                <span>
-                                                  {" "}
-                                                  Waiting List #{" "}
-                                                  {trekData.waitListNumber}{" "}
-                                                </span>
-                                              )}
+                                                  <span>
+                                                    {" "}
+                                                    Waiting List #{" "}
+                                                    {trekData.waitListNumber}{" "}
+                                                  </span>
+                                                )}
                                             </div>
                                           </div>
                                         </div>
@@ -1250,20 +1247,20 @@ const WelcomeProfile = () => {
                           const fieldName = `${sdata?.participantId}`;
                           const name =
                             sdata?.userDetailsForDisplay?.email ===
-                            upComingTrek?.email
+                              upComingTrek?.email
                               ? " * " +
-                                sdata?.userDetailsForDisplay?.firstName +
-                                sdata?.userDetailsForDisplay?.lastName +
-                                " (You) "
+                              sdata?.userDetailsForDisplay?.firstName +
+                              sdata?.userDetailsForDisplay?.lastName +
+                              " (You) "
                               : sdata?.userDetailsForDisplay?.firstName +
-                                sdata?.userDetailsForDisplay?.lastName;
+                              sdata?.userDetailsForDisplay?.lastName;
 
                           const state =
                             sdata?.bookingParticipantState === "CANCELLED";
 
                           return (
                             <>
-                              <tr key={sdata?.participantId}>
+                              <tr key={index}>
                                 <td>
                                   <div className="d-flex alifn-items-center">
                                     <div>

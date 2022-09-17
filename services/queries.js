@@ -440,9 +440,7 @@ export const getUserFitnessDocuments = async (
   documentName
 ) => {
   const type = documentName.split(".");
-  console.log(type);
   const header = await getTokenHeaderWithDocumentType("jpeg");
-  console.log(header);
   const api = `${REACT_APP_TMS_BACKEND_URL}`;
   let url = `${api}/participants/${participantId}/documents/${documentType}`;
   return axios
@@ -517,44 +515,7 @@ export const deleteFitnessDocument = async (participantId, documentId) => {
   return axios.delete(url, { headers: header }).then((res) => res.data);
 };
 
-async function fetchDocs(page = 1, routes = []) {
-  const response = await Client().query("", { pageSize: 25, lang: "*", page });
-  const allRoutes = routes.concat(response.results);
-  if (response.results_size + routes.length < response.total_results_size) {
-    return fetchDocs(page + 1, allRoutes);
-  }
-  return [...new Set(allRoutes)];
-}
 
-export const queryRepeatableDocumentsWithDocTypeFilter = async (filter) => {
-  const allRoutes = await fetchDocsWithFilter(1, filter);
-  return allRoutes; // allRoutes.filter(filter)
-};
-
-async function fetchDocsWithFilter(page = 1, document_type, routes = []) {
-  const response = await Client().query(
-    Prismic.Predicates.at("document.type", document_type),
-    { pageSize: 25, lang: "*", page }
-  );
-  const allRoutes = routes.concat(response.results);
-  if (response.results_size + routes.length < response.total_results_size) {
-    return fetchDocsWithFilter(page + 1, document_type, allRoutes);
-  }
-  return [...new Set(allRoutes)];
-}
-
-/** Fetches all Prismic documents and filters them (eg. by document type).
- *  In production, you would probably query documents by type instead of filtering them.
- **/
-export const queryRepeatableDocuments = async (filter) => {
-  const allRoutes = await fetchDocs();
-  return allRoutes.filter(filter);
-};
-
-export const homePageQuery = async () => {
-  const allRoutes = await fetchDocs();
-  return allRoutes.filter((doc) => doc.type === "post").slice(0, 5);
-};
 
 export const uploadUserIdProof = async (file, frontIdCard) => {
   const header = await getTokenHeaderWithMultiPartMimeType();

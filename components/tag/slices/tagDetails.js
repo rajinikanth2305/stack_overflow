@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
-import Image from "next/image";
 import { useRouter } from "next/router";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
+import { createClient } from "utils/prismicHelpers";
 import Link from "next/link";
-import { linkResolver } from "prismic-configuration";
 
 const TagDetails = ({ slice }) => {
   const heading1 = slice?.primary?.heading1;
@@ -20,16 +17,9 @@ const TagDetails = ({ slice }) => {
       return;
     }
     const getTagArticles = async () => {
-      const client = Client();
-      const tagArticles = await client.query(
-        [
-          // Prismic.Predicates.at("document.type", "post"), Prismic.Predicates.at("document.tags", [tagName])], {
-          Prismic.Predicates.at("document.type", "post"),
-        ],
-        {
-          pageSize: 250,
-        }
-      );
+      const client = createClient();
+      const tagArticles = await client.getAllByType("post")
+
       setTagArticles(tagArticles);
       console.log(tagArticles);
     };

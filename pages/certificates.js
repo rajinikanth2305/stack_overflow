@@ -1,17 +1,11 @@
 import React from "react";
 import Head from "next/head";
-import Prismic from "@prismicio/client";
-import { RichText } from "prismic-reactjs";
-import Document, { NextScript } from "next/document";
-
-// Project components & functions
-import { UpComingTreksSliceZone } from "components/upcoming";
+import { createClient } from 'prismicio'
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
 import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
-import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 
 /**
  * UpComing component
@@ -45,21 +39,9 @@ const Certificates = ({ doc }) => {
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
+  const client = createClient({ previewData })
+  const doc = await client.getSingle("hike_upcoming_treks_ctype")
 
-  const client = Client();
-
-  const doc =
-    (await client.getSingle(
-      "hike_upcoming_treks_ctype",
-      ref ? { ref } : null
-    )) || {};
-
-  /*const doc = await client.query(
-    Prismic.Predicates.at("document.type", "hike_home_ctype"), {
-      ...(ref ? { ref } : null)
-    },
-  )*/
 
   return {
     props: {

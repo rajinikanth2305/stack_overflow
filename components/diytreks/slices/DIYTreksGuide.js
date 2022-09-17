@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { diyStyles } from "styles";
 import Link from "next/link";
-import Prismic from "@prismicio/client";
-import { Client } from "utils/prismicHelpers";
+import { createClient } from 'prismicio'
 
 const DIYTreksGuide = ({ slice }) => {
   const heading1 = "Complete list of Documented Treks"; //slice?.primary?.heading1;
@@ -47,32 +46,9 @@ const DIYTreksGuide = ({ slice }) => {
   // }
 
   const getPages = async () => {
-    const client = Client();
-    const mySuperGraphQuery = `{
-          document_trek_type {
-            uid
-            title
-            categories
-          }
-        }`;
-    const data = [];
-    let pageNum = 1;
-    const fetch = async () => {
-      const resp = await client.query(
-        [Prismic.Predicates.at("document.type", "document_trek_type")],
-        {
-          graphQuery: mySuperGraphQuery,
-          pageSize: 100,
-          page: pageNum,
-        }
-      );
-      data.push(...resp.results);
-      if (resp.next_page) {
-        pageNum++;
-        await fetch();
-      }
-    };
-    await fetch();
+    const client = createClient();
+
+    const data = await client.getAllByType("document_trek_type")
     data?.sort(function (a, b) {
       if (a?.uid < b?.uid) {
         return -1;
@@ -87,7 +63,6 @@ const DIYTreksGuide = ({ slice }) => {
     // return data
   };
 
-  console.log(documentTreksData);
 
   const treks = documentTreksData?.map(function (data, i) {
     let url;
@@ -107,10 +82,10 @@ const DIYTreksGuide = ({ slice }) => {
                     data?.data?.categories?.match(/Easy/g)
                       ? "badge-green-diy"
                       : data?.data?.categories?.match(/Moderate/g)
-                      ? "badge-yellow-diy"
-                      : data?.data?.categories?.match(/Difficult/g)
-                      ? "badge-red-diy"
-                      : "badge-blue-diy"
+                        ? "badge-yellow-diy"
+                        : data?.data?.categories?.match(/Difficult/g)
+                          ? "badge-red-diy"
+                          : "badge-blue-diy"
                   }
                 ></p>
               </div>

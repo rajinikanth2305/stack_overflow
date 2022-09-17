@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { aboutUsStyles } from "styles";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
+import { createClient } from 'prismicio'
+import * as prismic from "@prismicio/client"
 import Image from "next/image";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
@@ -24,11 +24,10 @@ const OurTeam = () => {
   }, []);
 
   async function fintOurTeamMembers() {
-    const client = Client();
-    const doc = await client
-      .query([Prismic.Predicates.at("document.type", "hike_team")])
+    const client = createClient();
+    client.getSingle("hike_team")
       .then(function (response) {
-        const tt = response?.results[0]?.data?.body;
+        const tt = response.data?.body;
         const slice = tt && tt.filter((x) => x.slice_type === "our_team");
         setOurTeamMmbers(slice);
       });

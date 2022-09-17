@@ -17,9 +17,7 @@ import EmbedHtml from "./../common/slices/EmbedHtml";
 const DIYSliceZone = ({
   sliceZone,
   bestPostTreksData,
-  dtcData,
   diyResourceData,
-  alldiyTreks,
 }) =>
   sliceZone.map((slice, index) => {
     switch (slice.slice_type) {
@@ -32,7 +30,6 @@ const DIYSliceZone = ({
           <TrekCatagories
             slice={slice}
             key={`slice-${index}`}
-            dtcData={dtcData}
           />
         );
       case "diy_resources":
@@ -64,7 +61,7 @@ const DIYSliceZone = ({
           <div className="container my-5">
             <EmbedHtml slice={slice} key={`slice-${index}`} />
           </div>
-        ) 
+        )
       default:
         return null;
     }

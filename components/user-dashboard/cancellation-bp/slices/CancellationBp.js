@@ -1,32 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { customStyles } from "styles";
-import { Checkbox } from "primereact/checkbox";
-import { RichText } from "prismic-reactjs";
-import Modal from "react-bootstrap/Modal";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { Progress } from "reactstrap";
-import Link from "next/link";
+import { FormGroup } from "reactstrap";
 import auth from "../../../../services/Authenticate";
 import {
-  getBatchInfoByUserAndBatchId,
-  cancelUserBooking,
-  findUserByEmail,
-  cancelParticipantBooking,
   getBackPackOffloadingUserStatus,
   cancelParticipantBackPack,
 } from "../../../../services/queries";
 import moment from "moment";
 import { useRouter } from "next/router";
-import Prismic from "@prismicio/client";
-import { Client } from "../../../../utils/prismicHelpers";
-import { confirmPopup } from "primereact/confirmpopup"; // To use confirmPopup method
-import Image from "next/image";
 import { Toast } from "primereact/toast";
 import "primeicons/primeicons.css";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.css";
 import "primeflex/primeflex.css";
-import BoPayment from "../../bo-payment/slices/BoPayment";
 import { useForm, Controller } from "react-hook-form";
 
 const CancellationBp = () => {
@@ -493,7 +479,7 @@ const CancellationBp = () => {
                                                         }}
                                                         checked={
                                                           sdata?.cancelled ==
-                                                          false
+                                                            false
                                                             ? false
                                                             : true
                                                         }

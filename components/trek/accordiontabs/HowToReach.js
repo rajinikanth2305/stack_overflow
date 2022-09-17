@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
-import { experimentStyles } from "styles";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
 
 const HowToReach = ({ data }) => {
   const [howToReach, setHowToReach] = useState();

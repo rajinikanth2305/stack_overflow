@@ -108,7 +108,7 @@ const TrekReviews = ({ slice }) => {
                   </div>
                   {/* <h3 className="title-diplay-3 ts-lable">{data?.batchName}</h3> */}
                   <p className="p-display-2">
-                    <div
+                    <span
                       dangerouslySetInnerHTML={{
                         __html:
                           desc?.length > 125

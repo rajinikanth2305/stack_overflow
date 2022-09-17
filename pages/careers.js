@@ -1,16 +1,11 @@
 import React from "react";
 import Head from "next/head";
 import Script from "next/script";
-import Prismic from "@prismicio/client";
-import { RichText } from "prismic-reactjs";
-import Document, { NextScript } from "next/document";
-
-// Project components & functions
+import { createClient } from 'prismicio'
 import { CareersSliceZone } from "components/careers";
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
-import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import ScrollToTop from "react-scroll-to-top";
@@ -62,12 +57,10 @@ const Careers = ({ doc, articleData }) => {
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
+  const client = createClient({ previewData })
+  const doc = await client.getSingle("carriers_type")
 
-  const client = Client();
 
-  const doc =
-    (await client.getSingle("carriers_type", ref ? { ref } : null)) || {};
 
   const articleData = [];
   const slice = doc.data?.body?.find((x) => x.slice_type === "learn_more_sec");
@@ -77,7 +70,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       const data = slice?.items[i];
       const slugUrl = data && data?.article_link?.id;
       if (slugUrl !== undefined) {
-        const article_details = await Client().getByID(slugUrl);
+        const article_details = await client.getByID(slugUrl);
         articleData.push(article_details);
       }
     }

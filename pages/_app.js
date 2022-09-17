@@ -1,3 +1,9 @@
+// import App from 'next/app'
+import { reset, globals } from "styles";
+import Link from 'next/link'
+import { PrismicProvider } from '@prismicio/react'
+import { PrismicPreview } from '@prismicio/next'
+import { linkResolver, repositoryName } from '../prismicio'
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import React, { useEffect, useState } from "react";
@@ -30,11 +36,20 @@ function MyApp({ Component, pageProps }) {
     }, 3000);
   }, [])
 
-  return (
-    <>
-      <Component {...pageProps} />
-      {showPopup && <EntryPopup onCancel={hidePopup} onConfirm={onConfirm} />}
-    </>
+  return ( 
+    <PrismicProvider
+      linkResolver={linkResolver}
+      internalLinkComponent={({ href, ...props }) => (
+        <Link href={href}>
+          <a {...props} />
+        </Link>
+      )}
+    >
+      <PrismicPreview repositoryName={repositoryName}>
+        <Component {...pageProps} />
+        {showPopup && <EntryPopup onCancel={hidePopup} onConfirm={onConfirm} />}
+      </PrismicPreview>
+    </PrismicProvider>
   );
 }
 

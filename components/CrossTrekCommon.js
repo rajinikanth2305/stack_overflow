@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
+import * as prismic from "@prismicio/client"
 import { RichText } from "prismic-reactjs";
 import { experimentStyles } from "styles";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
+import { createClient } from 'prismicio'
 
 const CrossTrekCommon = () => {
   const [results, setResults] = useState();
@@ -12,9 +12,9 @@ const CrossTrekCommon = () => {
   }, []);
 
   async function findTrekStories() {
-    const client = Client();
-    await client
-      .query([Prismic.Predicates.at("document.type", "hike_home_ctype")])
+    const client = createClient();
+    const doc = await client
+      .query([prismic.predicate.at("document.type", "hike_home_ctype")])
       .then(function (response) {
         const tt = response.results[0].data.body;
         const slice = tt && tt.find((x) => x.slice_type === "cross_trek");
@@ -36,7 +36,7 @@ const CrossTrekCommon = () => {
     backgroundImage: `url('${crossTrekImage}')`,
     width: "100%",
     backgroundRepeat: "no-repeat",
-    backgroungPosition: "center center;",
+    backgroundPosition: "center center",
   };
 
   return (

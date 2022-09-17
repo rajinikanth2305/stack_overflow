@@ -1,16 +1,11 @@
 import React from "react";
 import Head from "next/head";
 import Script from "next/script";
-import Prismic from "@prismicio/client";
-import { RichText } from "prismic-reactjs";
-import Document, { NextScript } from "next/document";
-// Project components & functions
 import { SliceZone } from "components/ihhome";
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
-import { Client } from "utils/prismicHelpers";
-import { ihbodyStyles } from "styles";
+import { createClient } from 'prismicio'
 import ScrollToTop from "react-scroll-to-top";
 import { MOUSEFLOW_WEBSITE_ID } from "utils/constants";
 
@@ -122,12 +117,8 @@ const HikeHome = ({
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
-
-  const client = Client();
-
-  const doc =
-    (await client.getSingle("hike_home_ctype", ref ? { ref } : null)) || {};
+  const client = createClient({ previewData })
+  const doc = await client.getSingle("hike_home_ctype")
 
   const trekPageData1 = [];
   const articleData = [];
@@ -157,7 +148,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       const data = slice?.items[i];
       const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
-        const trek_details = await Client().getByID(slugUrl);
+        const trek_details = await client.getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
           trekPageData1.push(trek_details);
       }
@@ -172,7 +163,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       const data = experiment_slice?.items[i];
       const slugUrl = data && data?.link_url?.id;
       if (slugUrl !== undefined) {
-        const article_details = await Client().getByID(slugUrl);
+        const article_details = await client.getByID(slugUrl);
         articleData.push(article_details);
       }
     }
@@ -183,7 +174,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const paArticleLink =
     experiment_slice && experiment_slice?.primary?.link_url_primary?.id;
   if (paArticleLink !== undefined) {
-    const article_details = await Client().getByID(paArticleLink);
+    const article_details = await client.getByID(paArticleLink);
     expLearningPrimaryArticleData.push(article_details);
   }
 
@@ -195,7 +186,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       const data = latestUpdate_slice?.items[i];
       const slugUrl = data && data?.link_url?.id;
       if (slugUrl !== undefined) {
-        const article_details = await Client().getByID(slugUrl);
+        const article_details = await client.getByID(slugUrl);
         latestUpdateAarticleData.push(article_details);
       }
     }
@@ -206,7 +197,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const paLatestArticleLink =
     latestUpdate_slice && latestUpdate_slice?.primary?.primary_link_url?.id;
   if (paLatestArticleLink !== undefined) {
-    const article_details = await Client().getByID(paLatestArticleLink);
+    const article_details = await client.getByID(paLatestArticleLink);
     latestUpdateAarticlePrimaryArticleData.push(article_details);
   }
 

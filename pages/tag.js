@@ -1,8 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import Prismic from "@prismicio/client";
-import { RichText } from "prismic-reactjs";
-import Document, { NextScript } from "next/document";
+import { createClient } from 'prismicio'
 
 // Project components & functions
 import { SetupRepo } from "components/home";
@@ -46,13 +44,9 @@ const Tag = ({ doc }) => {
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
+  const client = createClient({ previewData })
+  const doc = await client.getSingle("hike_team")
 
-  const client = Client();
-
-  const doc = (await client.getSingle("hike_team", ref ? { ref } : null)) || {};
-
-  //console.log(JSON.stringify(doc));
   return {
     props: {
       doc,

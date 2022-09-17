@@ -3,8 +3,8 @@ import { RichText } from "prismic-reactjs";
 import { diyStyles } from "styles";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
+import { createClient } from 'prismicio'
+import * as prismic from "@prismicio/client"
 import Link from "next/link";
 
 const DiyStateList = ({ slice }) => {
@@ -19,9 +19,9 @@ const DiyStateList = ({ slice }) => {
       return;
     }
     const getStateListData = async () => {
-      const client = Client();
+      const client = createClient();
       const stateDiyList = await client.query(
-        Prismic.Predicates.fulltext(
+        prismic.predicate.fulltext(
           "my.document_trek_type.categories",
           stateName
         ),
@@ -55,10 +55,10 @@ const DiyStateList = ({ slice }) => {
                   {data?.data?.categories.match(/Easy/g)
                     ? "Easy"
                     : data?.data?.categories.match(/Moderate/g)
-                    ? "Moderate"
-                    : data?.data?.categories.match(/Difficult/g)
-                    ? "Difficult"
-                    : ""}
+                      ? "Moderate"
+                      : data?.data?.categories.match(/Difficult/g)
+                        ? "Difficult"
+                        : ""}
                 </span>
                 <div className="card trek_card">
                   <div alt="imgs" className="best_treks_images">

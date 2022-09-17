@@ -1,15 +1,13 @@
 import React from "react";
 import Head from "next/head";
-import Prismic from "@prismicio/client";
-import { RichText } from "prismic-reactjs";
-import Document, { NextScript } from "next/document";
+import { createClient } from 'prismicio'
 
 // Project components & functions
 import { GreenTrailsSliceZone } from "components/green-trails";
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
-import { Client } from "utils/prismicHelpers";
+
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import ScrollToTop from "react-scroll-to-top";
@@ -56,12 +54,8 @@ const GreenTrails = ({
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
-
-  const client = Client();
-
-  const doc =
-    (await client.getSingle("green_trails_type", ref ? { ref } : null)) || {};
+  const client = createClient({ previewData })
+  const doc = await client.getSingle("green_trails_type")
 
   const latestUpdateAarticleData = [];
   const latestUpdateAarticleData1 = [];
@@ -73,9 +67,10 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   if (latestUpdate_slice?.items?.length > 0) {
     for (var i = 0; i < latestUpdate_slice?.items?.length; i++) {
       const data = latestUpdate_slice?.items[i];
-      const slugUrl = data && data?.article_link?.id;
+      const slugUrl = data && data?.article_link?.uid;
+      const documentType = data && data?.article_link?.type;
       if (slugUrl !== undefined) {
-        const article_details = await Client().getByID(slugUrl);
+        const article_details = await client.getByUID(documentType, slugUrl);
         latestUpdateAarticleData.push(article_details);
       }
     }
@@ -89,9 +84,10 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   if (latestUpdate_slice1?.items > 0) {
     for (var i = 0; i < latestUpdate_slice1?.items?.length; i++) {
       const data = latestUpdate_slice1?.items[i];
-      const slugUrl = data && data?.link_url?.id;
+      const slugUrl = data && data?.link_url?.uid;
+      const documentType = data && data?.link_url?.type;
       if (slugUrl !== undefined) {
-        const article_details = await Client().getByID(slugUrl);
+        const article_details = await client.getByUID(documentType, slugUrl);
         latestUpdateAarticleData1.push(article_details);
       }
     }
@@ -104,9 +100,10 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   if (slice.items?.length > 0) {
     for (var i = 0; i < slice?.items?.length; i++) {
       const data = slice?.items[i];
-      const slugUrl = data && data?.article_link?.id;
+      const slugUrl = data && data?.article_link?.uid;
+      const documentType = data && data?.article_link?.type;
       if (slugUrl !== undefined) {
-        const article_details = await Client().getByID(slugUrl);
+        const article_details = await client.getByUID(documentType, slugUrl);
         // The if check for article_details below has been added because this value was returning undefined for the slug 'YazUqhEAAB8AxVtZ'. This is a temporary fix and will have to be investigated later.
         if (article_details) articleData.push(article_details);
       }

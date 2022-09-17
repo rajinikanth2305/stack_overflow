@@ -1,3 +1,4 @@
+
 const REACT_APP_TMS_BACKEND_PUBLIC_URL =
   process.env.NEXT_PUBLIC_TMS_BACKEND_PUBLIC_URL;
 // Helper function to convert Prismic Rich Text links to Next/Link components
@@ -32,6 +33,8 @@ export const getPrismicDocument = async (uid) => {
   return await fetchBackEnd(uid);
 };
 
+//The URL link for fetching all docs by ID
+//https://tmsstaging.indiahikes.com/tms-service/public-api/v1/website-content-mappings/family-trek-page
 export const fetchBackEnd = async (uid) => {
   const url = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}/website-content-mappings/${uid}`;
   let jsonData = undefined;

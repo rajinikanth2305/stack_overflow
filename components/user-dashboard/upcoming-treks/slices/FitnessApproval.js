@@ -55,7 +55,7 @@ const FitnessApproval = forwardRef((props, ref) => {
       <div className="col-md-6" key={k}>
         <Card>
           <Card.Header>
-            <Accordion.Toggle
+            <Accordion.Button
               variant="link"
               eventKey={k + 1}
               className={activeIndex && activeIndex === k + 1 ? "show" : ""}
@@ -65,7 +65,7 @@ const FitnessApproval = forwardRef((props, ref) => {
               }}
             >
               {data?.question_heading[0]?.text}
-            </Accordion.Toggle>
+            </Accordion.Button>
           </Card.Header>
           <Accordion.Collapse eventKey={k + 1}>
             <Card.Body>
@@ -301,13 +301,13 @@ const FitnessApproval = forwardRef((props, ref) => {
                           participantData.email;
                         const name =
                           pdata?.userDetailsForDisplay?.email ===
-                          participantData.email
+                            participantData.email
                             ? " * " +
-                              pdata?.userDetailsForDisplay?.firstName +
-                              pdata?.userDetailsForDisplay?.lastName +
-                              " (You) "
+                            pdata?.userDetailsForDisplay?.firstName +
+                            pdata?.userDetailsForDisplay?.lastName +
+                            " (You) "
                             : pdata?.userDetailsForDisplay?.firstName +
-                              pdata?.userDetailsForDisplay?.lastName;
+                            pdata?.userDetailsForDisplay?.lastName;
 
                         return (
                           <tr>
@@ -316,8 +316,8 @@ const FitnessApproval = forwardRef((props, ref) => {
                         <td>{pdata?.userDetailsForDisplay?.email}</td> */}
                             <td>
                               {loggedUser &&
-                              pdata.participantDocuments &&
-                              pdata.participantDocuments.length > 0 ? (
+                                pdata.participantDocuments &&
+                                pdata.participantDocuments.length > 0 ? (
                                 <div>
                                   {pdata?.participantDocuments?.map((doc) => {
                                     return (
