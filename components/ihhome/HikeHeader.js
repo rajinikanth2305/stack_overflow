@@ -767,7 +767,7 @@ const HikeHeader = (auth = false) => {
                 onKeyPress={searchOnEnte}
                 completeMethod={autoSearchTreks}
                 className="g-search smw-100"
-                delay={30}
+                delay={10}
                 placeholder="Find your trek here?"
               />
             </div>
