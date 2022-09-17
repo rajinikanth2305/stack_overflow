@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState, useMemo } from "react";
 import { RichText } from "prismic-reactjs";
 import { upcomingTrekPageStyle } from "styles";
-import { findDOMNode } from "react-dom";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
+import { createClient } from 'prismicio'
+import * as prismic from "@prismicio/client"
 import Image from "next/image";
 import ReactPaginate from "react-paginate";
 import {
@@ -60,7 +59,7 @@ const UpComingTreks = ({ slice }) => {
     const difficultyValue = difficulty.current.value;
     //alert("Find clickde" + seasonValue + difficultyValue );
 
-    const client = Client();
+    const client = createClient();
     //https://prismic.io/docs/technologies/how-to-query-the-api-reactjs    api query reference
     // const { ref } = resultData;
     // page":1,"results_per_page":20,"results_size":2,"total_results_size":2,"total_pages":1,"next_page":null,"prev_page":null,"results"
@@ -73,8 +72,8 @@ const UpComingTreks = ({ slice }) => {
         season: "",
         difficulty: "",
       });
-      const doc = await client
-        .query([Prismic.Predicates.at("document.type", "trek")], {
+      client
+        .query([prismic.predicate.at("document.type", "trek")], {
           pageSize: vpageSize,
           page: pageNo,
         })
@@ -93,11 +92,11 @@ const UpComingTreks = ({ slice }) => {
         season: "",
         difficulty: "",
       });
-      const doc = await client
+      client
         .query(
           [
-            Prismic.Predicates.at("document.type", "trek"),
-            Prismic.Predicates.at("document.tags", [`FamilyTrek`]),
+            prismic.predicate.at("document.type", "trek"),
+            prismic.predicate.at("document.tags", [`FamilyTrek`]),
           ],
           { pageSize: vpageSize, page: pageNo }
         )
@@ -116,11 +115,11 @@ const UpComingTreks = ({ slice }) => {
         season: { seasonValue },
         difficulty: { difficultyValue },
       });
-      const doc = await client
+      client
         .query(
           [
-            Prismic.Predicates.at("document.type", "trek"),
-            Prismic.Predicates.at("document.tags", [
+            prismic.predicate.at("document.type", "trek"),
+            prismic.predicate.at("document.tags", [
               `${seasonValue}`,
               `${difficultyValue}`,
             ]),

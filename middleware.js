@@ -8,9 +8,7 @@ const middleware = async (req) => {
     const url = req.nextUrl.clone();
     // Get hostname (e.g. vercel.com, test.vercel.app, etc.)
     const hostname = req.headers.get("host");
-    //console.log(hostname);
-
-    // If localhost, assign the host value manually
+    //console.log(hostname);// If localhost, assign the host value manually
     // If prod, get the custom domain/subdomain value by removing the root URL
     // (in the case of "test.vercel.app", "vercel.app" is the root URL)
     const currentHost =
@@ -23,7 +21,6 @@ const middleware = async (req) => {
         !url.pathname.startsWith("/api") && // exclude all API routes
         !req.headers.has("x-prerender-revalidate")
     ) {
-        // console.log( 32 + url.pathname + url.pathname.length);
         if (url.pathname === "/" && url.pathname.length === 1) {
             return NextResponse.next();
         }
@@ -36,7 +33,6 @@ const middleware = async (req) => {
         console.log(url.pathname)
         if (url.pathname.startsWith("/channarayana-durga-trek")) {
             url.pathname = `channarayana-durga-weekend-trek`
-            console.log(url.pathname)
             return NextResponse.redirect(url)
         }
 
@@ -55,15 +51,12 @@ const middleware = async (req) => {
             if (urlFragments?.length > 0) {
                 iresource = urlFragments[urlFragments?.length - 1];
             }
-            console.log("39" + iresource);
             url.pathname = `${iresource}`; //absoluteUrl
             return NextResponse.redirect(url); // redirect to old format
         }
 
-        // console.log("pathname----" + url.pathname);
         const urlFragments = url.pathname.split("/");
         let resource;
-        // console.log("urlFragments----" + JSON.stringify(urlFragments));
         if (urlFragments?.length > 0) {
             resource = urlFragments[urlFragments?.length - 1];
             /// cleanup questions
@@ -71,17 +64,13 @@ const middleware = async (req) => {
             resource = url.pathname;
         }
 
-        //console.log("Requested-Resource" + resource);
-        //const ext1 = resource.indexOf(".");
         const findPage = getRootPages().find((x) => x.pageid === resource);
         if (findPage === undefined) {
             const page = await getPrismicDocument(resource);
             const jsonData = JSON.parse(JSON.stringify(page));
 
             if (jsonData !== undefined) {
-                console.log("74 Requested-Resource" + JSON.stringify(jsonData));
                 const type = jsonData.type;
-                console.log(type);
                 if (type === "trek") {
                     url.pathname = `/trek/${resource}`; //absoluteUrl
                     return NextResponse.rewrite(url);
@@ -90,7 +79,6 @@ const middleware = async (req) => {
                     return NextResponse.rewrite(url);
                 } else if (type === "family_trek") {
                     url.pathname = `/family-trek/${resource}`; //absoluteUrl
-                    console.log(89 + url.pathname);
                     return NextResponse.rewrite(url);
                 } else if (type === "articles_landing_type") {
                     url.pathname = `/articles/${resource}`; //absoluteUrl

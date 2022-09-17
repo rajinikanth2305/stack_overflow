@@ -2,8 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Image from "next/image";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
+import { createClient } from 'prismicio'
 import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
 import classnames from "classnames";
 import Accordion from "react-bootstrap/Accordion";
@@ -58,11 +57,10 @@ const FaqSection = () => {
   }, []);
 
   async function fintFaqDetails() {
-    const client = Client();
-    const doc = await client
-      .query([Prismic.Predicates.at("document.type", "trek_faq")])
+    const client = createClient();
+    client.getSingle('trek_faq')
       .then(function (response) {
-        const tt = response.results[0].data.body;
+        const tt = response.data.body;
         const slice = tt && tt.filter((x) => x.slice_type === "faq_section");
         setFaqDetails(slice);
       });

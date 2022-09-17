@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { ChooseTreks } from "styles";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
+import * as prismic from "@prismicio/client"
+import { createClient } from 'prismicio'
 
 const TrekkersStoriesCommon = () => {
   const [results, setResults] = useState();
@@ -20,9 +19,9 @@ const TrekkersStoriesCommon = () => {
   }, []);
 
   async function findTrekStories() {
-    const client = Client();
+    const client = createClient();
     const doc = await client
-      .query([Prismic.Predicates.at("document.type", "hike_home_ctype")])
+      .query([prismic.predicate.at("document.type", "hike_home_ctype")])
       .then(function (response) {
         const tt = response.results[0].data.body;
         const slice = tt && tt.find((x) => x.slice_type === "trekker_stories");
@@ -85,8 +84,8 @@ const TrekkersStoriesCommon = () => {
                   objectFit="cover"
                   objectPosition="50% 50%"
                   unoptimized
-                  // width={350}
-                  // height={215}
+                // width={350}
+                // height={215}
                 />
               </div>
               <div className="p-4">

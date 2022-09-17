@@ -1,15 +1,10 @@
 import React from "react";
 import Head from "next/head";
-import Prismic from "@prismicio/client";
-import { RichText } from "prismic-reactjs";
-import Document, { NextScript } from "next/document";
 
-// Project components & functions
-import { UpComingTreksSliceZone } from "components/upcoming";
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
-import { Client } from "utils/prismicHelpers";
+import { createClient } from 'prismicio'
 import { BoPaymentSliceZone } from "../../components/user-dashboard/bo-payment";
 import ScrollToTop from "react-scroll-to-top";
 
@@ -43,17 +38,8 @@ const BoPayment = ({ doc }) => {
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
-
-  const client = Client();
-
-  const doc = (await client.getSingle("hike_team", ref ? { ref } : null)) || {};
-
-  /*const doc = await client.query(
-    Prismic.Predicates.at("document.type", "hike_home_ctype"), {
-      ...(ref ? { ref } : null)
-    },
-  )*/
+  const client = createClient({ previewData })
+  const doc = await client.getSingle("hike_team")
 
   return {
     props: {

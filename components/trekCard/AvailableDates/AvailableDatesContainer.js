@@ -26,6 +26,7 @@ export default function AvailableDatesContainer({
           month={val[0]}
           openAccordion={openAccordion}
           id={index + 1}
+          key={index + 1}
           openAccordionNumber={openAccordionNumber}
         />
       );
@@ -36,6 +37,7 @@ export default function AvailableDatesContainer({
           month={val[0]}
           openAccordion={openAccordion}
           id={index + 1}
+          key={index + 1}
           openAccordionNumber={openAccordionNumber}
         />
       );

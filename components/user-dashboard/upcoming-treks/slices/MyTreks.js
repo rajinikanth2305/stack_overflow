@@ -163,7 +163,7 @@ const MyTreks = forwardRef((props, ref) => {
     );
   });
 
-  React.useEffect(() => {}, [indexes, setIndexes]);
+  React.useEffect(() => { }, [indexes, setIndexes]);
 
   // The component instance will be extended
   // with whatever you return from the callback passed
@@ -341,15 +341,15 @@ const MyTreks = forwardRef((props, ref) => {
 
                     const name =
                       pdata?.userDetailsForDisplay?.email ===
-                      participantData.email
+                        participantData.email
                         ? " * " +
-                          pdata?.userDetailsForDisplay?.firstName +
-                          " " +
-                          pdata?.userDetailsForDisplay?.lastName +
-                          " (You) "
+                        pdata?.userDetailsForDisplay?.firstName +
+                        " " +
+                        pdata?.userDetailsForDisplay?.lastName +
+                        " (You) "
                         : pdata?.userDetailsForDisplay?.firstName +
-                          " " +
-                          pdata?.userDetailsForDisplay?.lastName;
+                        " " +
+                        pdata?.userDetailsForDisplay?.lastName;
 
                     const pickupLocations = locations.filter(
                       (x) => x.type === "PICKUP"
@@ -374,7 +374,7 @@ const MyTreks = forwardRef((props, ref) => {
                     //  console.log(state);
 
                     return (
-                      <tr>
+                      <tr key={index}>
                         <td>
                           <div className="d-flex align-items-center">
                             <div className="m-col-3">

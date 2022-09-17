@@ -1,16 +1,15 @@
 import React from "react";
 import Head from "next/head";
-import Prismic from "@prismicio/client";
-
+import * as prismic from "@prismicio/client";
+import * as prismicH from '@prismicio/helpers'
 // Project components & functions
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
-import { Client } from "utils/prismicHelpers";
+import { createClient, linkResolver } from 'prismicio'
 import IHFooter from "components/Footer";
 import IHTrekWithSwathi from "components/Trek_With_Swathi";
 import { ArticlesSliceZone } from "components/articles";
-import { queryRepeatableDocumentsWithDocTypeFilter } from "services/queries";
 import ScrollToTop from "react-scroll-to-top";
 /**
  * UpComing component
@@ -76,19 +75,15 @@ export async function getStaticProps({
   preview = null,
   previewData = {},
 }) {
-  const { ref } = previewData;
 
-  const client = Client();
+  const client = createClient();
+
+
 
   //   const doc =
   //     (await client.getSingle("article_type", ref ? { ref } : null)) || {};
 
-  const doc =
-    (await Client().getByUID(
-      "articles_landing_type",
-      params.uid,
-      ref ? { ref } : null
-    )) || {};
+  const doc = await client.getByUID("articles_landing_type", params.uid)
 
   const section1DataList = [];
   const primaryArticleData = [];
@@ -104,7 +99,7 @@ export async function getStaticProps({
   // const laPrimaryArticlePrimaryArticleData = [];
 
   const articleTabsList = await client.query([
-    Prismic.Predicates.at("document.type", "articles_landing_type"),
+    prismic.predicates.at("document.type", "articles_landing_type"),
   ]);
 
   const section1_slice =
@@ -115,7 +110,7 @@ export async function getStaticProps({
       const data = section1_slice?.items[i];
       const slugUrl = data && data?.link_url?.id;
       if (slugUrl !== undefined) {
-        const section1_article_details = await Client().getByID(slugUrl);
+        const section1_article_details = await client.getByID(slugUrl);
         if (
           section1_article_details !== undefined &&
           section1_article_details !== null
@@ -128,7 +123,7 @@ export async function getStaticProps({
   const paArticleLink =
     section1_slice && section1_slice?.primary?.primary_link_url?.id;
   if (paArticleLink !== undefined) {
-    const article_details = await Client().getByID(paArticleLink);
+    const article_details = await client.getByID(paArticleLink);
     primaryArticleData.push(article_details);
   }
 
@@ -165,7 +160,7 @@ export async function getStaticProps({
       for (var k = 0; k < data?.items?.length; k++) {
         const slugUrl = data && data?.items[k].article_link?.id;
         if (slugUrl !== undefined) {
-          const hikesnews_article_details = await Client().getByID(slugUrl);
+          const hikesnews_article_details = await client.getByID(slugUrl);
           if (
             hikesnews_article_details !== undefined &&
             hikesnews_article_details !== null
@@ -190,7 +185,7 @@ export async function getStaticProps({
   const latestPrimaryArticle =
     section1_slice && section1_slice?.primary?.primary_article_link?.id;
   if (paArticleLink !== undefined) {
-    const article_details = await Client().getByID(paArticleLink);
+    const article_details = await client.getByID(paArticleLink);
     latestPrimaryArticleData.push(article_details);
   }
 
@@ -227,7 +222,7 @@ export async function getStaticProps({
         const slugUrl = data && data?.items[k].article_link?.id;
         if (slugUrl !== undefined) {
           try {
-            const document = await Client().getByID(slugUrl);
+            const document = await client.getByID(slugUrl);
             if (document) {
               linkedLatestArticles.push(document);
             } 
@@ -261,7 +256,7 @@ export async function getStaticProps({
       // for (var k = 0; k < data?.length; k++) {
       const slugUrl = data && data?.primary?.primary_article_link?.id;
       if (slugUrl !== undefined) {
-        const hikesnews_article_details = await Client().getByID(slugUrl);
+        const hikesnews_article_details = await client.getByID(slugUrl);
         if (
           hikesnews_article_details !== undefined &&
           hikesnews_article_details !== null
@@ -305,7 +300,7 @@ export async function getStaticProps({
       for (var k = 0; k < data?.items?.length; k++) {
         const slugUrl = data && data?.items[k].article_link?.id;
         if (slugUrl !== undefined) {
-          const hikesnews_article_details = await Client().getByID(slugUrl);
+          const hikesnews_article_details = await client.getByID(slugUrl);
           if (
             hikesnews_article_details !== undefined &&
             hikesnews_article_details !== null
@@ -336,7 +331,7 @@ export async function getStaticProps({
     trekkingPrimarySlice &&
     trekkingPrimarySlice?.primary?.primary_article_link?.id;
   if (trekkingPrimary !== undefined) {
-    const article_details = await Client().getByID(trekkingPrimary);
+    const article_details = await client.getByID(trekkingPrimary);
     trekkingprimaryArticleData.push(article_details);
   }
 
@@ -348,7 +343,7 @@ export async function getStaticProps({
       const data = trekkingArticleSlice?.items[i];
       const slugUrl = data && data?.article_link?.id;
       if (slugUrl !== undefined) {
-        const latestarticle_article_details = await Client().getByID(slugUrl);
+        const latestarticle_article_details = await client.getByID(slugUrl);
         if (
           latestarticle_article_details !== undefined &&
           latestarticle_article_details !== null
@@ -392,7 +387,7 @@ export async function getStaticProps({
       for (var k = 0; k < data?.items?.length; k++) {
         const slugUrl = data && data?.items[k].article_link?.id;
         if (slugUrl !== undefined) {
-          const hikesnews_article_details = await Client().getByID(slugUrl);
+          const hikesnews_article_details = await client.getByID(slugUrl);
           if (
             hikesnews_article_details !== undefined &&
             hikesnews_article_details !== null
@@ -435,18 +430,12 @@ export async function getStaticProps({
 }
 
 export async function getStaticPaths() {
-  //const documents = await queryRepeatableDocuments((doc) => doc.type === 'trek')
-  const documents = await queryRepeatableDocumentsWithDocTypeFilter(
-    "articles_landing_type"
-  );
+  const client = createClient()
+  const documents = await client.getAllByType("articles_landing_type")
 
-  /*const response = await Client().query(
-    Prismic.Predicates.at("document.type", "articles_landing_type")
-  );*/
 
-  //const documents = response.results;
   return {
-    paths: documents.map((doc) => `/articles/${doc.uid}`),
+    paths: documents.map((doc) => prismicH.asLink(doc, linkResolver)),
     fallback: true,
   };
 }

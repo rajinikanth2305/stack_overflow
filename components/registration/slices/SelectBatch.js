@@ -6,13 +6,10 @@ import React, {
   useImperativeHandle,
 } from "react";
 import { RichText } from "prismic-reactjs";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { Calendar, momentLocalizer } from "react-big-calendar";
+import { momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
-import BookingCalender from "../../trek/bookyourtrekcomps/BookingCalender";
+import { createClient } from 'prismicio'
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { Toast } from "primereact/toast";
@@ -21,14 +18,11 @@ import {
   addOrUpdateState,
   selectStateData,
 } from "../../reduxstate/counterSlice";
-import { render } from "react-dom";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 
 import {
-  findUserByEmail,
   saveDraftBooking,
-  getUserByAutoSearch,
   getTrekOpenBatches,
 } from "../../../services/queries";
 
@@ -71,11 +65,10 @@ const SelectBatch = forwardRef((props, ref) => {
   }
 
   async function findquickItinerary(itrekName) {
-    const client = Client();
+    const client = createClient();
     const trekName = itrekName.replaceAll(" ", "-").toLowerCase();
-    const result = await Client().getByUID("trek", trekName);
+    const result = await client.getByUID("trek", trekName);
 
-    console.log(result);
 
     const slice =
       result &&
@@ -85,13 +78,7 @@ const SelectBatch = forwardRef((props, ref) => {
     setTripDaysIndexes(arr);
     setTripDatCounter(arr.length);
 
-    /* const doc = await client
-      .query([Prismic.Predicates.at("document.type", "trek")])
-      .then(function(response) {
-        const tt = response.results[0].data.body;
-        const slice = tt && tt.find(x => x.slice_type === "quick_itinerary");
-        setquickItinerary(slice);
-      });*/
+
   }
   const heading1 = quickItinerary && quickItinerary?.primary?.heading1;
   // const dayNumberTextArray = quickItinerary && quickItinerary.items;
@@ -353,7 +340,7 @@ const SelectBatch = forwardRef((props, ref) => {
                                             eventKey={`${trekMonth.groupKey}`}
                                             className={
                                               activeIndex &&
-                                              activeIndex === index + 1
+                                                activeIndex === index + 1
                                                 ? "show"
                                                 : ""
                                             }
@@ -389,66 +376,66 @@ const SelectBatch = forwardRef((props, ref) => {
                                                 <div>
                                                   {item.batchState !==
                                                     "CLOSED" && (
-                                                    <div className="row">
-                                                      <div className="col-lg-7 col-md-12 col-7">
-                                                        <p className="p-text-3-1-fg mb-2 pb-1">
-                                                          <span>
-                                                            {moment(
-                                                              item?.startDate
-                                                            ).format("Do")}{" "}
-                                                            to{" "}
-                                                            {moment(
-                                                              item?.endDate
-                                                            ).format("Do")}{" "}
-                                                            {moment(
-                                                              item?.endDate
-                                                            ).format("MMMM")}
-                                                          </span>
-                                                        </p>
-                                                      </div>
-
-                                                      <div className="col-lg-3 col-md-12 col-3">
-                                                        <p className="p-text-3-1-fg mb-2 pb-1">
-                                                          {item.batchState ===
-                                                            "ACTIVE" && (
-                                                            <span className="text-green-clr">
-                                                              Available
+                                                      <div className="row">
+                                                        <div className="col-lg-7 col-md-12 col-7">
+                                                          <p className="p-text-3-1-fg mb-2 pb-1">
+                                                            <span>
+                                                              {moment(
+                                                                item?.startDate
+                                                              ).format("Do")}{" "}
+                                                              to{" "}
+                                                              {moment(
+                                                                item?.endDate
+                                                              ).format("Do")}{" "}
+                                                              {moment(
+                                                                item?.endDate
+                                                              ).format("MMMM")}
                                                             </span>
-                                                          )}
-                                                          {item.batchState ===
-                                                            "FULL" && (
-                                                            <span className="text-maroon-clr">
-                                                              Full
-                                                            </span>
-                                                          )}
-                                                          {item.batchState ===
-                                                            "WAITING_LIST" && (
-                                                            <span className="text-warning-clr">
-                                                              Waitlist
-                                                            </span>
-                                                          )}
-                                                        </p>
-                                                      </div>
-                                                      <div className="col-lg-2 col-md-12 col-2">
-                                                        {item.batchState !==
-                                                          "FULL" && (
-                                                          <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
-                                                            <a
-                                                              href="#proceed"
-                                                              onClick={(e) =>
-                                                                onBatchSelect(
-                                                                  item
-                                                                )
-                                                              }
-                                                              tooltip="Click here to select the batch"
-                                                            >
-                                                              Select
-                                                            </a>
                                                           </p>
-                                                        )}
+                                                        </div>
+
+                                                        <div className="col-lg-3 col-md-12 col-3">
+                                                          <p className="p-text-3-1-fg mb-2 pb-1">
+                                                            {item.batchState ===
+                                                              "ACTIVE" && (
+                                                                <span className="text-green-clr">
+                                                                  Available
+                                                                </span>
+                                                              )}
+                                                            {item.batchState ===
+                                                              "FULL" && (
+                                                                <span className="text-maroon-clr">
+                                                                  Full
+                                                                </span>
+                                                              )}
+                                                            {item.batchState ===
+                                                              "WAITING_LIST" && (
+                                                                <span className="text-warning-clr">
+                                                                  Waitlist
+                                                                </span>
+                                                              )}
+                                                          </p>
+                                                        </div>
+                                                        <div className="col-lg-2 col-md-12 col-2">
+                                                          {item.batchState !==
+                                                            "FULL" && (
+                                                              <p className="p-text-xtra-small-franklin mb-2 pb-1 text-blue-clr text-decoration-underline cursor-pointer">
+                                                                <a
+                                                                  href="#proceed"
+                                                                  onClick={(e) =>
+                                                                    onBatchSelect(
+                                                                      item
+                                                                    )
+                                                                  }
+                                                                  tooltip="Click here to select the batch"
+                                                                >
+                                                                  Select
+                                                                </a>
+                                                              </p>
+                                                            )}
+                                                        </div>
                                                       </div>
-                                                    </div>
-                                                  )}
+                                                    )}
                                                 </div>
                                               );
                                             })}
