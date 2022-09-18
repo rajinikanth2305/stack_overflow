@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import { useRouter } from "next/router";
-import createClient from "prismicio";
+import { createClient } from "prismicio";
 import * as prismic from "@prismicio/client";
 import Link from "next/link";
 

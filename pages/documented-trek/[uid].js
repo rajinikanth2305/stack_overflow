@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import { RichText } from "prismic-reactjs";
-
 // Project components
 import DefaultLayout from "layouts";
 import { BackButton, SliceZone } from "components/document-trek";
@@ -113,7 +112,7 @@ export async function getStaticProps({
   previewData = {},
 }) {
 
-  const client = createClient()
+  const client = createClient({ previewData })
 
   const post = await client.getByUID("document_trek_type", params.uid)
 
@@ -245,13 +244,11 @@ export async function getStaticProps({
 }
 
 export async function getStaticPaths() {
-  // const documents = await queryRepeatableDocuments((doc) => doc.type === 'document_trek_type')
   const client = createClient()
   const documents = await client.getAllByType("document_trek_type");
 
   const fastBuild = process.env.NEXT_FAST_BUILD;
 
-  // console.log(fastBuild);
   if (fastBuild === "TRUE") {
     let limitDocs = [];
     const limit = 5;
