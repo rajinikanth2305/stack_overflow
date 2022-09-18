@@ -4,7 +4,6 @@ import * as prismicH from '@prismicio/helpers'
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
-import { Client } from "utils/prismicHelpers";
 import IHFooter from "components/Footer";
 import IHTrekWithSwathi from "components/Trek_With_Swathi";
 import { FamilyTrekSliceZone } from "components/familytrek";
@@ -59,12 +58,10 @@ export async function getStaticProps({
   preview = null,
   previewData = {},
 }) {
-  const { ref } = previewData;
+
 
   const client = createClient();
 
-  //   const doc =
-  //     (await client.getSingle("family_trek", ref ? { ref } : null)) || {};
   const doc = await client.getByUID("family_trek", params.uid)
 
   const multiTrekData = [];
@@ -116,7 +113,6 @@ export async function getStaticProps({
       }
     }
   }
-  console.log("Called here2");
 
   return {
     props: {
