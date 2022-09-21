@@ -339,7 +339,7 @@ const HowDoesEachDayLooks = ({ data }) => {
   return (
     <>
       <div>
-        <div className="">
+        <div className="how-each-day-section">
           <div>
             <div>
               <Tabs id="uncontrolled-tab-example">{dayNum}</Tabs>
