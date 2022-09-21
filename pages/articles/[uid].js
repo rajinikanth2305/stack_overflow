@@ -435,7 +435,7 @@ export async function getStaticPaths() {
 
 
   return {
-    paths: documents.map((doc) => prismicH.asLink(doc, linkResolver)),
+    paths: documents.map((doc) => linkResolver(doc)),
     fallback: true,
   };
 }

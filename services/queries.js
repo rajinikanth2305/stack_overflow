@@ -1,10 +1,8 @@
-import { Client } from "../utils/prismicHelpers";
 import axios from "axios";
 import moment from "moment";
 import auth from "./Authenticate.js";
 import { boolean } from "yup";
 //Backend base url
-import Prismic from "@prismicio/client";
 
 const REACT_APP_TMS_BACKEND_URL = process.env.NEXT_PUBLIC_TMS_BACKEND_URL;
 const REACT_APP_TMS_BACKEND_PUBLIC_URL =
@@ -17,7 +15,6 @@ const batchBaseApi = `${REACT_APP_TMS_BACKEND_URL}/batches`;
 
 // export const locationBaseApi = `http://localhost:9090/api/v1/locations`;
 export const getBatchesByTrekId = async (trekId, month = 0, year = 0) => {
-  const api = `${REACT_APP_TMS_BACKEND_URL}`;
   let url = "";
   if (month == 0 && year == 0) {
     url = `${REACT_APP_TMS_BACKEND_PUBLIC_URL}/available-batches/${trekId}`;

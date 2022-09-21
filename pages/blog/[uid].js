@@ -119,7 +119,7 @@ export async function getStaticProps({
   previewData = {},
 }) {
 
-  const client = createClient()
+  const client = createClient({ previewData })
 
   const post = await client.getByUID("post", params.uid)
 
@@ -256,27 +256,11 @@ export async function getStaticPaths() {
   const client = createClient()
   const documents = await client.getAllByType("post");
 
-  const fastBuild = process.env.NEXT_FAST_BUILD;
-  // console.log(fastBuild);
-  if (fastBuild === "TRUE") {
-    let limitDocs = [];
-    const limit = 5;
 
-    for (let i = 0; i < limit; i++) {
-      limitDocs.push(documents[i]);
-    }
-
-    return {
-      paths: limitDocs.map(doc => prismicH.asLink(doc, linkResolver)),
-      fallback: true,
-    };
-  } else {
-    console.log(fastBuild + "POST");
-    return {
-      paths: documents.map((doc) => prismicH.as(doc, linkResolver)),
-      fallback: true,
-    };
-  }
+  return {
+    paths: documents.map((doc) => linkResolver(doc)),
+    fallback: true,
+  };
 }
 
 export default Post;

@@ -28,6 +28,8 @@ export function linkResolver(doc) {
             return `/blog/${doc.uid}`
         case "user_dashboard":
             return `/user-dashboard/${doc.uid}`
+        case "document_trek_type":
+            return `/documented-trek/${doc.uid}`
         default:
             return `/${doc.uid}`;
     }
