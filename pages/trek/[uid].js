@@ -27,6 +27,7 @@ const Trek = ({ trekData, trekPageData1 }) => {
   const { calendar: calendarMonth } = router.query;
 
   if (trekData && trekData.data) {
+
     const getMetaTitle = () => {
       const { data } = trekData;
       const metaTitle = RichText.asText(data.meta_title);
@@ -164,12 +165,17 @@ export async function getStaticProps({
 
 export async function getStaticPaths() {
 
-  const client = createClient();
-  // const documents = await client.getAllByType('repeatable')
-  const documents = await client.getAllByType('trek_id')
+  let documents = []
+  try {
+    const client = createClient();
+    documents = await client.getAllByType('trek')
+
+  } catch (err) {
+
+  }
 
   return {
-    paths: documents.map((doc) => prismicH.asLink(doc, linkResolver)),
+    paths: documents.map((doc) => linkResolver(doc)),
     fallback: true,
   };
 }
