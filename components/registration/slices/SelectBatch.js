@@ -335,7 +335,7 @@ const SelectBatch = forwardRef((props, ref) => {
                                     return (
                                       <Card>
                                         <Card.Header>
-                                          <Accordion.Toggle
+                                          <Accordion.Button
                                             variant="link"
                                             eventKey={`${trekMonth.groupKey}`}
                                             className={
@@ -365,7 +365,7 @@ const SelectBatch = forwardRef((props, ref) => {
                                           </div>
                                         </div> */}
                                             {trekMonth.headingText}
-                                          </Accordion.Toggle>
+                                          </Accordion.Button>
                                         </Card.Header>
                                         <Accordion.Collapse
                                           eventKey={`${trekMonth.groupKey}`}
