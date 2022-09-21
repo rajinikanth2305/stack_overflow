@@ -2080,11 +2080,35 @@ export const trekStyle = css.global`
     //   box-shadow: none !important;
     // }
 
+
     .hd-tabs > .nav > .nav-item.nav-link {
       width: 100%;
       margin: 1px 3px;
       border-radius: 0 !important;
     }
+
+    .how-each-day-section .nav-tabs .nav-item.active {
+      background-color: rgb(255,193,0)!important;
+      border: 0!important;
+      border-radius: 0!important;
+      color: #000;
+      box-shadow: 1px 1px 3px rgb(91,133,70);
+    }
+
+    .how-each-day-section .nav-tabs .nav-item {
+      background: rgba(255,193,0,.251)!important;
+      -webkit-border-radius: 0!important;
+      -moz-border-radius: 0!important;
+      border-radius: 0!important;
+      color: #000;
+      padding: 5px 30px!important;
+      font-family: Franklin Gothic;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      text-transform: uppercase;
+      line-height: 18px;
+  }
 
     .bt-year-tabs {
       margin: 0 0.5px;

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { RichText } from "prismic-reactjs";
 import { trekStyle } from "styles";
 import Image from "next/image";
 import "react-accessible-accordion/dist/fancy-example.css";
 import Accordion from 'react-bootstrap/Accordion';
+import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import Card from "react-bootstrap/Card";
 import HowDoesEachDayLooks from "../accordiontabs/HowDoesEachDayLooks";
 import HowDifficultTrekIs from "../accordiontabs/HowDfficultTresIs";
@@ -12,6 +13,7 @@ import HowToReach from "../accordiontabs/HowToReach";
 import InclusionsAndExclusions from "../accordiontabs/InclusionsAndExclusions";
 import WhatToPack from "../accordiontabs/WhatToPack";
 import KytFaq from "../accordiontabs/KytFaq";
+import AccordionContext from "react-bootstrap/AccordionContext";
 
 const KnowYourTrek = ({ slice, data }) => {
   const heading1 = slice?.primary?.heading1;
@@ -25,12 +27,15 @@ const KnowYourTrek = ({ slice, data }) => {
     const sliceType = slice_zone.find(
       (x) => x.slice_type === data?.inner_content_slice_id[0]?.text
     );
+
+
     return (
       <Accordion key={i}>
+
         <Card>
           <Card.Header>
-            <Accordion.Button variant="link" eventKey="0" className="kyt-tabs">
-              <div className="d-flex align-items-center border-bottom-custom-2x">
+            <ContextAwareToggle eventKey={i}>
+              <div className="d-flex align-items-center justify-content-between border-bottom-custom-2x">
                 <div className="px-3 mpx-1">
                   <img
                     src={data?.accordion_tab_img?.url}
@@ -52,9 +57,9 @@ const KnowYourTrek = ({ slice, data }) => {
                   ></i>
                 </div>
               </div>
-            </Accordion.Button>
+            </ContextAwareToggle>
           </Card.Header>
-          <Accordion.Collapse eventKey="0">
+          <Accordion.Collapse eventKey={i}>
             <Card.Body>
               {sliceType?.slice_type === "how_does_each_day_looks" ? (
                 <HowDoesEachDayLooks data={slice_zone} />
@@ -74,7 +79,7 @@ const KnowYourTrek = ({ slice, data }) => {
             </Card.Body>
           </Accordion.Collapse>
         </Card>
-      </Accordion>
+      </Accordion >
     );
   });
 
@@ -83,40 +88,7 @@ const KnowYourTrek = ({ slice, data }) => {
       <div id="KYT">
         <div className="container">
           <div className="row d-flex justify-content-center mt-5 mb-4 pt-4 mmb-0">
-            {/* <div className="col-12 col-lg-3 col-md-12 d-m-none">
-              <div className="d-flex align-items-center flex-wrap pr-3">
-                <div>
-                  <p className="quick-info-bage-outline know_your mb-1">
-                    Quick Itinerary
-                  </p>
-                </div>
-                <div>
-                  <p className="quick-info-bage-outline know_your mb-1">
-                    Difficulty
-                  </p>
-                </div>
-                <div>
-                  <p className="quick-info-bage-outline know_your mb-1">
-                    Sustainabilty
-                  </p>
-                </div>
-                <div>
-                  <p className="quick-info-bage-outline know_your mb-1">
-                    Detailed Itinerary
-                  </p>
-                </div>
-                <div>
-                  <p className="quick-info-bage-outline know_your mb-1">
-                    Trek Safety
-                  </p>
-                </div>
-                <div>
-                  <p className="quick-info-bage-outline know_your mb-1">
-                    Best Time
-                  </p>
-                </div>
-              </div>
-            </div> */}
+
             <div className="col-12 col-lg-7 col-md-12">
               <div className="row">
                 <div className="col-12 col-lg-12 col-md-12">
@@ -144,5 +116,29 @@ const KnowYourTrek = ({ slice, data }) => {
     </>
   );
 };
+
+
+function ContextAwareToggle({ children, eventKey, callback }) {
+  const currentEventKey = useContext(AccordionContext);
+
+  const decoratedOnClick = useAccordionButton(
+    eventKey,
+    () => callback && callback(eventKey)
+  );
+
+  console.log(currentEventKey)
+  const isCurrentEventKey = currentEventKey === eventKey;
+
+  return (
+    <button
+      type="button"
+      className={isCurrentEventKey ? "show" : ""}
+      onClick={decoratedOnClick}
+    >
+      {children}
+    </button>
+  );
+}
+
 
 export default KnowYourTrek;
