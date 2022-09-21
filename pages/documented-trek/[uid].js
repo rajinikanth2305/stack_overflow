@@ -247,26 +247,12 @@ export async function getStaticPaths() {
   const client = createClient()
   const documents = await client.getAllByType("document_trek_type");
 
-  const fastBuild = process.env.NEXT_FAST_BUILD;
 
-  if (fastBuild === "TRUE") {
-    let limitDocs = [];
-    const limit = 5;
 
-    for (let i = 0; i < limit; i++) {
-      limitDocs.push(documents[i]);
-    }
-    return {
-      paths: limitDocs.map((doc) => prismicH.as(doc, linkResolver)),
-      fallback: true,
-    };
-  } else {
-    console.log(fastBuild + "DOCUMENTED-TREK");
-    return {
-      paths: documents.map((doc) => prismicH.as(doc, linkResolver)),
-      fallback: true,
-    };
-  }
+  return {
+    paths: documents.map((doc) => linkResolver(doc)),
+    fallback: true,
+  };
 }
 
 export default DocumentTrek;

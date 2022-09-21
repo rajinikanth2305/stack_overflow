@@ -1,6 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import PrismicScript from "../components/PrismicScript";
-import { reset, globals } from "styles";
 
 import { apiEndpoint } from "./../prismic-configuration"; // import the endpoint name from where it's defined
 const prismicRepoName = /([a-zA-Z0-9-]+)?(\.cdn)?\.prismic\.io/.exec(
