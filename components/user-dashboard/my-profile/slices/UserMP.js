@@ -100,11 +100,12 @@ const UserMP = () => {
     userUpdated.emergencyContactName = userData.emergencyContactName;
     userUpdated.emergencyContactRelationshipToYou =
       userData.emergencyContactRelationshipToYou;
-
     saveMyProfile(userUpdated).then(() => {
       setUser(userUpdated);
       alert("User profile saved successfully");
-    });
+    }).catch((error)=>{
+		alert("Email id already exists");
+	});
   };
 
   const chooseOptions = { label: "Select", icon: "pi pi-fw pi-plus" };
@@ -735,6 +736,7 @@ const UserMP = () => {
                                   <button
                                     className="btn btn-ih-green hvr-grow ws-now"
                                     type="submit"
+                                    onClick={handleSubmit(onSubmit)}
                                   >
                                     Save changes
                                   </button>
