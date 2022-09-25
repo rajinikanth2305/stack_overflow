@@ -278,7 +278,7 @@ const HowDifficultTrekIs = ({ data }) => {
                 {howSafeContent}
               </div>
             </div>
-            <div className="hd-tabs">
+            <div className="hd-tabs safety-tabs">
               <Tabs id="uncontrolled-tab-example">{tabsData}</Tabs>
             </div>
           </div>

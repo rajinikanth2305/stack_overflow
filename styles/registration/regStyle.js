@@ -282,19 +282,21 @@ export const regStyle = css.global`
     flex-wrap: initial;
   }
 
-  .stepper-tabs > .nav.nav-tabs > a.nav-item.nav-link {
+  .stepper-tabs > .nav.nav-tabs > .nav-item > .nav-link {
     -moz-box-flex: 1 !important;
     flex: 1 1 auto !important;
+    width: 97%;
   }
 
-  .stepper-tabs > nav > .nav-item.nav-link.active {
+  .stepper-tabs > .nav > .nav-item > .nav-link.active {
+    
     background: #ffc100 !important;
     border-radius: 0 !important;
     color: #000000;
     border: 2px solid #ffc100 !important;
   }
 
-  .nav-item.nav-link.active:nth-child(1)::before {
+  .stepper-tabs .nav-item > .nav-link.active:nth-child(1)::before {
     background: #ffffff;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
@@ -305,7 +307,7 @@ export const regStyle = css.global`
     margin-right: 15px;
   }
 
-  .nav-item.nav-link.active:nth-child(2)::before {
+  .stepper-tabs .nav-item > .nav-link.active:nth-child(2)::before {
     background: #ffffff;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
@@ -316,7 +318,7 @@ export const regStyle = css.global`
     margin-right: 15px;
   }
 
-  .nav-item.nav-link.active:nth-child(3)::before {
+  .stepper-tabs .nav-item > .nav-link.active:nth-child(3)::before {
     background: #ffffff;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
@@ -327,7 +329,7 @@ export const regStyle = css.global`
     margin-right: 15px;
   }
 
-  .nav-item.nav-link.active:nth-child(4)::before {
+  .stepper-tabs .nav-item > .nav-link.active:nth-child(4)::before {
     background: #ffffff;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
@@ -338,7 +340,7 @@ export const regStyle = css.global`
     margin-right: 15px;
   }
 
-  .nav-item.nav-link.active:nth-child(5)::before {
+  .stepper-tabs .nav-item > .nav-link.active:nth-child(5)::before {
     background: #ffffff;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
@@ -349,7 +351,7 @@ export const regStyle = css.global`
     margin-right: 15px;
   }
 
-  .stepper-tabs > nav > .nav-item.nav-link {
+  .stepper-tabs > .nav > .nav-item > .nav-link {
     background: #ffffff !important;
     // box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     border-radius: 0 !important;
@@ -367,11 +369,11 @@ export const regStyle = css.global`
     margin-right: 10px;
   }
 
-  .nav-item.nav-link:nth-last-child(1) {
+  .nav-item:nth-last-child(1) {
     margin-right: 0 !important;
   }
 
-  .nav-item.nav-link:nth-child(1)::before {
+  .stepper-tabs .nav-item > .nav-link:nth-child(1)::before {
     background: #ffc100;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
@@ -382,7 +384,7 @@ export const regStyle = css.global`
     margin-right: 15px;
   }
 
-  .nav-item.nav-link:nth-child(2)::before {
+  .stepper-tabs .nav-item > .nav-link:nth-child(2)::before {
     background: #ffc100;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
@@ -393,7 +395,7 @@ export const regStyle = css.global`
     margin-right: 15px;
   }
 
-  .nav-item.nav-link:nth-child(3)::before {
+  .stepper-tabs  .nav-item > .nav-link:nth-child(3)::before {
     background: #ffc100;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
@@ -404,7 +406,7 @@ export const regStyle = css.global`
     margin-right: 15px;
   }
 
-  .nav-item.nav-link:nth-child(4)::before {
+  .stepper-tabs .nav-item.nav-link:nth-child(4)::before {
     background: #ffc100;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
@@ -415,7 +417,7 @@ export const regStyle = css.global`
     margin-right: 15px;
   }
 
-  .nav-item.nav-link:nth-child(5)::before {
+  .stepper-tabs .nav-item.nav-link:nth-child(5)::before {
     background: #ffc100;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
@@ -424,6 +426,10 @@ export const regStyle = css.global`
     content: "5";
     padding: 4px 8px;
     margin-right: 15px;
+  }
+  
+  .stepper-tabs .nav-item {
+    flex: 1 1 auto!important;
   }
 
   .tabs-behind-border-bg {

@@ -888,6 +888,37 @@ export const trekStyle = css.global`
     box-shadow: 1px 1px 3px rgb(91, 133, 70);
   }
 
+  
+  .how-each-day-section .nav-item .nav-link.active {
+    background-color: rgb(255, 193, 0) !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    color: #000000;
+    box-shadow: 1px 1px 3px rgb(91, 133, 70);
+  }
+
+  .how-each-day-section  .nav.nav-tabs {
+    margin-bottom: 20px;
+    overflow: auto;
+    padding: 0 0 3px 0;
+    border-bottom: none;
+    flex-wrap: nowrap;
+  }
+
+  .how-each-day-section  .nav-item .nav-link {
+    background: rgba(255, 193, 0, 0.251) !important;
+    border-radius: 0 !important;
+    color: #000000;
+    padding: 10px 25px !important;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    text-transform: uppercase;
+    line-height: 18px;
+  }
+
+
   .nav-item.nav-link {
     background: rgba(255, 193, 0, 0.251) !important;
     border-radius: 0 !important;
@@ -908,11 +939,29 @@ export const trekStyle = css.global`
     margin-left: -5px;
   }
 
+  .safety-tabs > div.tab-content {
+    background: #ffffff;
+    padding: 30px 75px;
+    box-shadow: 1px 1px 3px rgb(157, 58, 11);
+    margin-left: -5px;
+  }
+
   .hd-tabs > .nav.card-header-tabs.nav-tabs {
     margin-bottom: 0;
   }
 
-  .hd-tabs > .nav > .nav-item.nav-link.active {
+
+  .trek-tr .nav.nav-tabs {
+    margin-bottom: 0;
+  }
+
+  .safety-tabs > .nav.nav-tabs {
+    margin-bottom: 0;
+  }
+
+  .hd-tabs > .nav > .nav-item.nav-link.active,
+  .trek-tr > .nav > .nav-item > .nav-link.active
+  {
     background-color: #ffffff !important;
     border: 0 !important;
     border-radius: 5px 5px 0 0 !important;
@@ -920,7 +969,19 @@ export const trekStyle = css.global`
     color: #000000;
   }
 
-  .hd-tabs > .nav > .nav-item.nav-link {
+   
+
+
+  .safety-tabs > .nav > .nav-item > .nav-link.active {
+    background-color: #ffffff !important;
+    border: 0 !important;
+    border-radius: 5px 5px 0 0 !important;
+    box-shadow: 1px 1px 3px rgba(91, 133, 70, 1);
+    color: #000000;
+  }
+
+  .hd-tabs > .nav > .nav-item.nav-link,
+  .trek-tr > .nav > .nav-item > .nav-link {
     background: rgba(157, 58, 11, 1) !important;
     border-radius: 5px 5px 0 0 !important;
     color: #ffffff;
@@ -935,7 +996,32 @@ export const trekStyle = css.global`
     width: 170px;
   }
 
-  .hd-tabs.trek-tr > .nav > .nav-item.nav-link {
+  .safety-tabs > .nav > .nav-item > .nav-link {
+    background: rgba(157, 58, 11, 1) !important;
+    border-radius: 5px 5px 0 0 !important;
+    color: #ffffff;
+    padding: 10px 30px 10px 10px !important;
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    text-transform: none;
+    line-height: 18px;
+    margin: 0px 3px;
+    width: 170px;
+  }
+
+
+  safety-tabs > .nav {
+    margin-right: -0.5rem;
+    margin-left: -0.5rem;
+  }
+
+  .hd-tabs.trek-tr > .nav > .nav-item.nav-link,
+  .hd-tabs.trek-tr > .nav > .nav-item > .nav-link {
+    padding: 15px 30px !important;
+    width: auto;
+  } {
     padding: 15px 30px !important;
     width: auto;
   }
@@ -1019,7 +1105,7 @@ export const trekStyle = css.global`
   }
 
   .bt-year-tabs {
-    background: rgb(191, 220, 217);
+    background: rgb(191, 220, 217); 
     padding: 5px 15px;
     line-height: 18px;
     text-align: center;
@@ -2087,7 +2173,7 @@ export const trekStyle = css.global`
       border-radius: 0 !important;
     }
 
-    .how-each-day-section .nav-tabs .nav-item.active {
+    .how-each-day-section .nav-tabs .nav-item .active{
       background-color: rgb(255,193,0)!important;
       border: 0!important;
       border-radius: 0!important;

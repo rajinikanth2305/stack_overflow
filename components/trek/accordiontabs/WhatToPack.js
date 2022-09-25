@@ -70,7 +70,7 @@ const WhatToPack = ({ data }) => {
         <Tabs
           defaultActiveKey="md"
           id="uncontrolled-tab-example"
-          className="mt-4 mb-4"
+          className="mt-4 mb-4 what-to-pack"
         >
           <Tab
             eventKey="md"

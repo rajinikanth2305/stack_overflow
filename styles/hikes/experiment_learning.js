@@ -182,6 +182,62 @@ export const experimentStyles = css.global`
   .nav.card-header-tabs.nav-tabs {
     flex-wrap: initial;
   }
+
+  .what-to-pack.nav-tabs .nav-item > .nav-link.active {
+    background-color: rgb(255,193,0)!important;
+    border: 0!important;
+    border-radius: 0!important;
+    color: #000;
+    box-shadow: 1px 1px 3px rgb(91,133,70);
+  }
+
+  .what-to-pack.nav-tabs .nav-item  {
+    background: rgba(255,193,0,.251)!important;
+    -webkit-border-radius: 0!important;
+    -moz-border-radius: 0!important;
+    border-radius: 0!important;
+    color: #000;
+    
+    font-family: Franklin Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    text-transform: uppercase;
+    line-height: 18px;
+}
+
+.what-to-pack .nav-item .nav-link.active {
+  background-color: rgb(255, 193, 0) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: #000000;
+  box-shadow: 1px 1px 3px rgb(91, 133, 70);
+}
+
+.what-to-pack.nav-tabs {
+  margin-bottom: 20px;
+  overflow: auto;
+  padding: 0 0 3px 0;
+  border-bottom: none;
+  flex-wrap: nowrap;
+}
+
+
+.what-to-pack  .nav-item .nav-link {
+  background: rgba(255, 193, 0, 0.251) !important;
+  border-radius: 0 !important;
+  color: #000000;
+  padding: 10px 25px !important;
+  font-family: Franklin Gothic;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  text-transform: uppercase;
+  line-height: 18px;
+}
+
+
+
   @media only screen and (max-width: 600px) {
     .exprriment-bg {
       background: transparent;

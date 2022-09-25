@@ -327,8 +327,8 @@ const HowDoesEachDayLooks = ({ data }) => {
       });
       return (
         <Tab
-          eventKey={`Day` + dd?.primary?.day_num}
-          title={`Day` + dd?.primary?.day_num}
+          eventKey={`Day ` + dd?.primary?.day_num}
+          title={`Day ` + dd?.primary?.day_num}
           key={i}
         >
           {daysItienery}
