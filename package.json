@@ -68,7 +68,6 @@
     "url": "https://IndiaHikes.com"
   },
   "devDependencies": {
-    "@reecem/prismic-sitemap": "^0.4.3",
     "slice-machine-ui": "^0.4.2"
   }
 }
