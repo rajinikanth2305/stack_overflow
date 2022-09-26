@@ -1,0 +1,313 @@
+.modal-container * {
+  box-sizing: border-box;
+}
+
+.modal-container {
+  max-width: 800px;
+  flex-wrap: nowrap;
+  font-family: "LORA-MEDIUM";
+}
+
+.banner,
+.introduction,
+.list-title,
+.heading,
+.image-content h6 {
+  font-family: "Franklin Gothic Medium";
+}
+
+.modal-container * {
+  box-sizing: border-box;
+}
+
+.desktop-container {
+  padding: 0;
+}
+
+.modal-content {
+  background-color: white !important;
+}
+
+.main-row {
+  margin-left: 0em !important;
+  margin-right: 2em !important;
+}
+
+.content {
+  margin: 0;
+  padding: 0;
+  padding-right: 1em;
+  flex-basis: 60%;
+  flex-grow: 1;
+  max-width: 450px;
+}
+
+.image-section {
+  flex: 40%;
+  flex-grow: 0;
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner {
+  background-color: #ffcc00;
+  padding: 0.25em 1em 0.25em 2em;
+  font-weight: 900;
+  font-size: 1.25em;
+  margin-top: 1em;
+  max-width: fit-content;
+  letter-spacing: 0;
+}
+
+.image-content h6 {
+  font-size: 1rem;
+  letter-spacing: 0.1;
+  font-weight: 900;
+}
+
+.image-content {
+  margin-top: 0.5em;
+}
+
+.image-content p {
+  font-size: 0.8rem;
+  margin-right: 0.5em;
+}
+
+.introduction,
+.list-title {
+  font-weight: 900;
+}
+
+.list-title {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.list {
+  list-style: none;
+  font-size: 1em;
+  padding-left: 0;
+}
+
+.list li {
+  display: flex;
+  position: relative;
+  margin-bottom: 0;
+}
+
+.introduction span {
+  color: #ff0000;
+  text-transform: uppercase;
+}
+
+.heading {
+  font-weight: bold;
+  font-size: 2.25em;
+  letter-spacing: -1px;
+}
+
+.inner-container {
+  margin-top: 1em;
+  margin-left: 2em;
+}
+.footer-text {
+  font-weight: 900;
+}
+
+.form-section-desktop {
+  background-color: #e5e5e5;
+  padding: 1em 1.5em;
+}
+
+.form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-item span {
+  font-size: 1em;
+  margin-right: 1.5em;
+}
+
+.form-inputs {
+  flex-basis: 55%;
+  flex-grow: 1;
+  flex-shrink: 0;
+  margin-right: 2em;
+}
+
+.form-inputs input {
+  margin-bottom: 0.5em;
+  padding: 7px 8px;
+  box-shadow: 4px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.form-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.form-content p {
+  margin-bottom: 0em;
+  font-style: italic;
+}
+
+.form-content p:nth-child(2) {
+  margin-bottom: 1.5em;
+}
+
+.cancel-button {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 0%;
+  right: 4px;
+  font-size: 2em;
+  color: #5555;
+}
+
+.register-button {
+  background-color: #5b8546 !important;
+  letter-spacing: 1px;
+  color: white;
+  padding: 0.25em 1em;
+  border: white;
+  box-shadow: 4px 1px 4px rgba(0, 0, 0, 0.5);
+  font-size: 1.2rem;
+  font-family: "Franklin Gothic Medium";
+}
+
+.justify-content {
+  justify-content: space-around;
+}
+
+.error {
+  font-size: 0.8rem;
+  margin-bottom: 0.25em;
+  color: red;
+}
+
+@media (min-width: 768px) {
+  .desktop-container {
+    max-width: unset;
+  }
+
+  .mobile-container {
+    display: none;
+  }
+
+  .form-section-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .desktop-container {
+    display: none;
+  }
+
+  .form-section-desktop {
+    display: none;
+  }
+
+  .modal-content {
+    width: 95%;
+    max-width: 550px;
+    margin: 0 auto;
+  }
+
+  .form-section-mobile {
+    background-color: #e5e5e5;
+    padding: 1em 1.5em;
+  }
+
+  .mobile-container {
+    padding-left: 0;
+    max-width: unset;
+  }
+
+  .modal-container {
+    --bs-gutter-x: 0;
+  }
+
+  .banner {
+    margin-top: 0;
+    font-size: 1em;
+    padding-left: 0.5em;
+  }
+
+  .image-content {
+    align-self: center;
+    margin-top: 0;
+    margin-left: 1em;
+  }
+
+  .heading {
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+  }
+
+  .image-content h6 {
+    margin-bottom: 0.25rem;
+    line-height: 1em;
+  }
+
+  .image-content p {
+    font-size: 0.7rem;
+  }
+
+  .cancel-button {
+    top: -10px;
+    right: 0;
+  }
+
+  .mobile-list {
+    margin: 0 1rem;
+  }
+  .introduction {
+    margin-bottom: 0;
+  }
+
+  .list li {
+    margin-bottom: 0;
+    font-size: 0.8em;
+  }
+
+  .list li span {
+    margin-right: 0.8em;
+  }
+
+  .footer-text {
+    font-size: 0.8rem;
+  }
+
+  .alert-text {
+    font-size: 0.8rem;
+    font-style: italic;
+    margin-bottom: 5px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-inputs {
+    margin-right: 0;
+  }
+
+  .form-inputs input {
+    max-width: 360px;
+  }
+
+  .register-button {
+    width: 95%;
+    margin: 0.5em auto 0;
+    /* margin: 0.5em auto 0; */
+  }
+}

@@ -65,6 +65,7 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
           {/* <!-- Google Tag Manager (noscript) -->*/}
+          <div id="popup-root"></div>
         </body>
       </Html>
     );
