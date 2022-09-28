@@ -3212,6 +3212,17 @@ export const customStyles = css.global`
     }
   }
 
+  .choose_trek_image {
+    position: relative;
+    width: 100%;
+    height: 222px;
+    border-bottom: 2px solid rgb(255, 193, 0);
+  }
+
+  .paddedSection > div > div {
+    padding-bottom: 2em
+  }
+
   @keyframes ui-progress-spinner-color {
     100%,
     0% {

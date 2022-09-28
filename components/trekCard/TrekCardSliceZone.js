@@ -5,7 +5,7 @@ import Image from "next/image";
 import { RichText } from "prismic-reactjs";
 import { getBatchesByTrekId } from "services/queries";
 
-const TrekCardSliceZone = ({ tData, getFamilyTrek, url, trekId }) => {
+const TrekCardSliceZone = ({ tData, getFamilyTrek, url, trekId, onlyFamilyTreks }) => {
   const [batchDates, setBatchDates] = useState({});
 
   useEffect(() => {
@@ -41,6 +41,14 @@ const TrekCardSliceZone = ({ tData, getFamilyTrek, url, trekId }) => {
           ];
         }
       });
+
+      if (onlyFamilyTreks) {
+        for (let month in batchDates) {
+          batchDates[month] = batchDates[month].filter(trek => trek.familyTrek)
+
+          if (batchDates[month].length === 0) delete batchDates[month]
+        }
+      }
 
       setBatchDates(batchDates);
     };

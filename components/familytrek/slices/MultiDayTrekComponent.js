@@ -1,11 +1,10 @@
 import React from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
-import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Link from "next/link";
+import { TrekCardSliceZone } from "components/trekCard/";
 
 const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
   const heading1 = slice?.primary?.heading1;
@@ -55,131 +54,17 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
     if (slugUrl) {
       url = `/trek/${slugUrl}`;
     }
-    return (
-      <div key={i}>
-        <div className="mx-4 m-mx-0 hvr-grow cursor-pointer">
-          <Link href={url ? url : "#"}>
-            <div className="card_sec ">
-              <div className="card trek_card">
-                <div alt="imgs" className="carousel_trek_image">
-                  {tData?.primary?.trek_banner_image?.url && (
-                    <Image
-                      src={tData?.primary?.trek_banner_image?.url}
-                      layout="fill"
-                      objectFit="cover"
-                      objectPosition="50% 50%"
-                      unoptimized
-                    />
-                  )}
-                </div>
-                <div className="px-3 py-2">
-                  <div className="d-flex align-items-center card-info-text">
-                    <div>
-                      <p>{tData?.primary?.duration[0]?.text}</p>
-                    </div>
-                    <div>
-                      <p className="list-dot-style px-1">
-                        <span>.</span>
-                      </p>
-                    </div>
-                    <div>
-                      <p>{tData?.primary?.difficulty[0]?.text}</p>
-                    </div>
-                  </div>
 
-                  <div>
-                    <h3 className="title-diplay-3 m-d-3 text-uppercase">
-                      <b>
-                        {tData?.primary?.trek_caption?.length > 25
-                          ? `${tData?.primary?.trek_caption.substring(
-                              0,
-                              25
-                            )}...`
-                          : tData?.primary?.trek_caption}
-                      </b>
-                    </h3>
-                    <p className="p-text-4 mt2 trek_card_desc_min_height">
-                      {/* {RichText.asText(tData?.primary?.sub_heading)} */}
-                      {RichText.asText(tData?.primary?.sub_heading)?.length > 25
-                        ? `${RichText.asText(
-                            tData?.primary?.sub_heading
-                          ).substring(0, 75)}...`
-                        : RichText.asText(tData?.primary?.sub_heading)}
-                    </p>
-                    <div className="d-flex alifn-items-center justify-content-between pt-2 pb-4 flex-wrap p-btn-btm ">
-                      <div className="mw-100">
-                        <button className="btn btn-bihtn-yellow">
-                          View details
-                        </button>
-                      </div>
-                      <div className="mw-100">
-                        <button className="btn btn-ih-green">
-                          Dates/Register
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </div>
-      </div>
-    );
-  });
-
-  const trekToDoImageMobileView = trekToDoImageArray?.map(function (data, j) {
     return (
-      <>
-        <div className="col-6" key={j}>
-          <div className="card_sec">
-            <div className="card trek_card">
-              <div alt="imgs" className="m-uc_open_for_small_group_images">
-                {data.trek_familytrek === true ? (
-                  <div className="trek_badge">
-                    <img src="./trek-badge.png" />
-                    <span>Family Trek</span>
-                  </div>
-                ) : (
-                  ""
-                )}
-                <Image
-                  src={data?.trek_to_do_image?.url}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                  unoptimized
-                />
-              </div>
-              <div className="px-3 py-2">
-                <div>
-                  <h3 className="m-title-3 text-uppercase">
-                    {data?.trek_title[0]?.text}
-                  </h3>
-                  <p className="m-display-2">
-                    {data?.trek_desc[0]?.text?.length > 125
-                      ? `${data?.trek_desc[0]?.text.substring(0, 125)}...`
-                      : data?.trek_desc[0]?.text}
-                  </p>
-                  <p className="m-card-info-text m-0">
-                    {data?.trek_days[0]?.text} Days
-                  </p>
-                  <p className="m-card-info-text">
-                    {data?.trek_guide[0]?.text}
-                  </p>
-                  <div className="t-2 pb-4">
-                    <button className="btn m-btn-ih-green">
-                      View Dates / Register
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  });
+      <TrekCardSliceZone key={i}
+        tData={tData}
+        url={url}
+        trekId={data.slugs[0]}
+        onlyFamilyTreks />
+    )
+  })
+
+
 
   return (
     <>
@@ -198,11 +83,9 @@ const MultiDayTrekComponent = ({ slice, multiTrekData }) => {
             </div>
           </div>
           <div>
-            <Slider {...settings}>{trekToDoImage}</Slider>
+            <Slider {...settings} className="paddedSection">{trekToDoImage}</Slider>
           </div>
-          {/* <div className="m-view-d-block">
-            <div className="row">{trekToDoImageMobileView}</div>
-          </div> */}
+
         </div>
         <style jsx global>
           {customStyles}
