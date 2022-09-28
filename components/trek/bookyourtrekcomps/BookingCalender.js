@@ -226,10 +226,10 @@ const BookingCalender = ({
           <p style={{ textAlign: "right" }}>
             <span>{date.day}</span>
           </p>
+          {familyTrekStatus && <p className="f-trek-style">*Family trek</p>}
           <p className="m-0 cal-highlight-red text-center">
             Last {availableSlot} slots
           </p>
-          {familyTrekStatus && <p className="f-trek-style">* Family trek</p>}
         </>
       );
     } else {
@@ -238,8 +238,8 @@ const BookingCalender = ({
           <p style={{ textAlign: "right" }}>
             <span>{date.day}</span>
           </p>
+          {familyTrekStatus && <p className="f-trek-style">*Family trek</p>}
           <p className="m-0 cal-highlight-green text-center">Available</p>
-          {familyTrekStatus && <p className="f-trek-style">* Family trek</p>}
         </>
       );
     }
@@ -260,10 +260,10 @@ const BookingCalender = ({
             <p style={{ textAlign: "right" }}>
               <span>{date.day}</span>
             </p>
-            <p className="m-0 cal-highlight-yellow text-center">Waitlist</p>
             {batchDates[key].familyTrek && (
-              <p className="f-trek-style">* Family trek</p>
+              <p className="f-trek-style">*Family trek</p>
             )}
+            <p className="m-0 cal-highlight-yellow text-center">Waitlist</p>
           </>
         );
       case "ACTIVE":
@@ -281,7 +281,7 @@ const BookingCalender = ({
             </p>
             <p className="m-0 cal-highlight-red-text text-center">FULL</p>
             {batchDates[key].familyTrek && (
-              <p className="f-trek-style">* Family trek</p>
+              <p className="f-trek-style">*Family trek</p>
             )}
           </>
         );

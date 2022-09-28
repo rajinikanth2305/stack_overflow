@@ -73,7 +73,6 @@ export const trekStyle = css.global`
   .title-h2.text-white {
     font-size: 38px;
   }
-
   .p-text-1 {
     line-height: 30px;
     text-align: left;
@@ -1661,7 +1660,9 @@ export const trekStyle = css.global`
   .f-trek-style {
     font-size: 10px;
     text-align: center;
+	  margin:0px;
     padding: 2px;
+    color: #cf6674;
   }
 
   @media only screen and (max-width: 660px) {
@@ -1910,7 +1911,8 @@ export const trekStyle = css.global`
 
     .p-datepicker table td > span {
       width: 2.8rem;
-      height: 3.5rem;
+	    margin-bottom: 5px;
+      //height: 3.5rem;
       border-radius: 0;
     }
 
