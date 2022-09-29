@@ -9,14 +9,11 @@ const CrossTrekCommon = () => {
 
   useEffect(() => {
     findTrekStories();
-    return () => {
-      // console.log("test");
-    };
   }, []);
 
   async function findTrekStories() {
     const client = Client();
-    const doc = await client
+    await client
       .query([Prismic.Predicates.at("document.type", "hike_home_ctype")])
       .then(function (response) {
         const tt = response.results[0].data.body;
@@ -25,11 +22,16 @@ const CrossTrekCommon = () => {
       });
   }
 
-  const crossTrekImage = results && results.primary.cross_trek_image.url;
-  const heading1 = results && results.primary.heading1;
-  const description = results && results.primary.description;
-  const details = results && results.primary.dretails;
+  if (!results) return null;
 
+  const { primary } = results;
+
+  const crossTrekImage = primary.cross_trek_image.url;
+  const heading1 = primary.heading1;
+  const description = primary.description;
+  const details = primary.dretails;
+  const buttonText = primary.button_text;
+  const buttonLink = primary.button_link?.url;
   const crossTrekImagebg = {
     backgroundImage: `url('${crossTrekImage}')`,
     width: "100%",
@@ -40,7 +42,6 @@ const CrossTrekCommon = () => {
   return (
     <>
       <div>
-        {/* <div className="container container-custom mb-5 mmt-0 mmb-0"> */}
         <div className="mb-5 mmt-0 mmb-0 o-hidden">
           <div className="cross-trek-image-bg" style={crossTrekImagebg}>
             <div className="cross-trek-section">
@@ -59,11 +60,11 @@ const CrossTrekCommon = () => {
                       <div>
                         <div className="mt-5 m-text-center">
                           <a
-                            href="https://store.indiahikes.com/"
+                            href={buttonLink}
                             target="_blank"
                           >
                             <button className="btn btn-lg btn-ih-primary hvr-grow">
-                              View Crosstrek Store
+                              {buttonText}
                             </button>
                           </a>
                         </div>

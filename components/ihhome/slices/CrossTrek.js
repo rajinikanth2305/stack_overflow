@@ -1,14 +1,19 @@
 import React from "react";
 import { RichText } from "prismic-reactjs";
 import { experimentStyles } from "styles";
-import Image from "next/image";
 
 const CrossTrek = ({ slice }) => {
-  const crossTrekImage = slice?.primary?.cross_trek_image?.url;
-  const heading1 = slice?.primary?.heading1;
-  const description = slice?.primary?.description;
-  const details = slice?.primary?.dretails;
+  if (!slice || !slice.primary) {
+    return null;
+  }
 
+  const { primary } = slice;
+  const crossTrekImage = primary.cross_trek_image?.url;
+  const heading1 = primary.heading1;
+  const description = primary.description;
+  const details = primary.dretails;
+  const buttonText = primary.button_text;
+  const buttonLink = primary.button_link?.url;
   const crossTrekImagebg = {
     backgroundImage: `url('${crossTrekImage}')`,
     width: "100%",
@@ -37,11 +42,11 @@ const CrossTrek = ({ slice }) => {
                       <div>
                         <div className="mt-5 m-text-center">
                           <a
-                            href="https://store.indiahikes.com/"
+                            href={buttonLink}
                             target="_blank"
                           >
                             <button className="btn btn-lg btn-ih-primary hvr-grow">
-                              View Crosstrek Store
+                              {buttonText}
                             </button>
                           </a>
                         </div>
