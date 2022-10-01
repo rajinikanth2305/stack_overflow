@@ -62,7 +62,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       const slugUrl = data && data?.article_link?.id;
       if (slugUrl !== undefined) {
         const article_details = await Client().getByID(slugUrl);
-        articleData.push(article_details);
+        if (article_details) articleData.push(article_details);
       }
     }
   } else {
