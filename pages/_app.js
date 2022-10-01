@@ -22,4 +22,5 @@ function MyApp({ Component, pageProps }) {
   </PrismicProvider>
 }
 
-export default MyApp;
+export default MyApp
+
