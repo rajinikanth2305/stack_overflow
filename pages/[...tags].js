@@ -12,7 +12,7 @@ import * as prismic from "@prismicio/client"
 
 const CustomTreksPage = ({ results }) => {
 
-    const PAGE_LIMIT = 2;
+    const PAGE_LIMIT = 10;
     const totalNumberOfPages = Math.ceil(results.length / PAGE_LIMIT)
     const [currentPageNumber, setCurrentPageNumber] = useState(1)
     const [treks, setTreks] = useState([])
