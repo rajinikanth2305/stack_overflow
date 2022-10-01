@@ -61,7 +61,11 @@ const DIYSliceZone = ({
           <div className="container my-5">
             <EmbedHtml slice={slice} key={`slice-${index}`} />
           </div>
+<<<<<<< HEAD
         )
+=======
+        ) 
+>>>>>>> a40d89991d50f4e81e4ca19cc214fbb85b23ad9d
       default:
         return null;
     }
