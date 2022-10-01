@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import Script from "next/script";
-import * as prismicH from '@prismicio/helpers'
 import { useRouter } from "next/router";
 import { RichText } from "prismic-reactjs";
 import { createClient, linkResolver } from 'prismicio'
@@ -168,16 +167,24 @@ export async function getStaticPaths() {
   let documents = []
   try {
     const client = createClient();
-    documents = await client.getAllByType('trek')
+    documents = await client.query(
+      prismic.predicate.at("document.type", "trek")
+    );
+
 
   } catch (err) {
 
   }
 
-  return {
-    paths: documents.map((doc) => linkResolver(doc)),
-    fallback: true,
-  };
+  console.log(documents.results.length)
+
+  if (documents.results.length) {
+    return {
+      paths: documents.results.map((doc) => linkResolver(doc)),
+      fallback: true,
+    };
+  }
+
 }
 
 export default Trek;

@@ -417,6 +417,50 @@ export const ChooseTreks = css.global`
     height: 200px;
   }
 
+  .trek-container > * {
+    flex-grow: 0;
+    flex-shrink: 1;   
+    width: 400px;
+  }
+
+  .trek-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 0 auto;
+    justify-content: center
+  }
+
+  .trek-container .btn:hover {
+    color: unset !important;
+    background-color: unset !important
+  }
+
+  .paginationButtons {
+    display: block;
+    padding: 5px 8px;
+    background-color: transparent;
+    border: none;
+    color: grey;
+  }
+
+  .paginationButtons.active {
+    background-color: #0070f3;
+    box-shadow: 0 2px 6px 0 rgb(0 118 255 / 39%);
+    border: none;
+    color: white;
+    border-radius: 7px
+  }
+
+
+  .pagination {
+    width: max-content;
+    margin: 0 auto;
+    gap: 0.25em;
+  }
+
+  
+
   @media only screen and (max-width: 600px) {
     .btn-ih-green {
       font-size: 14px;
@@ -581,6 +625,10 @@ export const ChooseTreks = css.global`
 
     .m-mt-15 {
       margin: 15px 0 0 0;
+    }
+
+    .trek-container {
+      width: 100%
     }
   }
 
