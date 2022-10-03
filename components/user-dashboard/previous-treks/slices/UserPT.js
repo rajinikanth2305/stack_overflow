@@ -126,7 +126,6 @@ const UserPT = () => {
   function fetchAndBindUserBookings(email) {
     getdashBoardUserBooking(email, true).then((bookingsData) => {
       /// Idenitify and get the booking owner profile informations
-      console.log(bookingsData);
       if (bookingsData.length > 0) {
         const bookingOwner = bookingsData.map((element) => {
           const mainuser = element.trekMates.find(
@@ -173,7 +172,6 @@ const UserPT = () => {
         catch (err) {
 
         }
-        console.log(result)
         prismicTrekContents.push({
           trekName: trekName,
           result: result,

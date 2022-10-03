@@ -1505,11 +1505,11 @@ export const customStyles = css.global`
     padding: 0px;
   }
 
-  .modal-header > button {
-    background: transparent none repeat scroll 0% 0%;
+  .modal-header > button {  
+    background-color: transparent;
     border: 0px none;
     color: #ffffff;
-    font-size: 28px;
+    font-size: 16px;
     padding: 0;
   }
 
