@@ -21,7 +21,7 @@ const ThankYou = () => {
         <title>Payment status</title>
       </Head>
       <HikeHeader />
-      <ThankYouSlizeZone sliceZone={doc} />
+      <ThankYouSlizeZone />
     </HomeLayout>
   );
 

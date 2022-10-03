@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { TrekCardSliceZone } from "components/trekCard/";
 import { ChooseTreks } from "styles"
 
-const TrekContainer = ({ treks }) => {
+const TreksContainer = ({ treks }) => {
     const [hasMounted, setHasMounted] = useState(false)
 
     useEffect(() => setHasMounted(true), [])
@@ -40,4 +40,4 @@ const TrekContainer = ({ treks }) => {
     )
 }
 
-export default TrekContainer
+export default TreksContainer

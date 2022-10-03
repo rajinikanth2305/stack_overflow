@@ -131,12 +131,9 @@ export async function getStaticPaths() {
 
   const documents = await client.getAllByType("family_trek")
 
-  /*const response = await Client().query(
-    Prismic.Predicates.at("document.type", "family_trek")
-  );*/
-  //const documents = documents; //response.results;
+
   return {
-    paths: documents.map((doc) => prismicH.asLink(doc, linkResolver)),
+    paths: documents.map((doc) => linkResolver(doc)),
     fallback: true,
   };
 }
