@@ -5,7 +5,7 @@ import { HikeHeader } from "components/ihhome";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import { createClient } from 'prismicio'
-import { TrekContainer } from "slices/TrekContainer"
+import { TreksContainer } from "slices/TreksContainer"
 import { PaginationSection } from "slices/PaginationSection"
 import * as prismic from "@prismicio/client"
 
@@ -42,7 +42,7 @@ const CustomTreksPage = ({ results }) => {
                     </Head>
                     <HikeHeader auth={true} />
                     <div style={{ minHeight: "30vh" }}>
-                        <TrekContainer treks={treks} />
+                        <TreksContainer treks={treks} />
                     </div>
                     {totalNumberOfPages > 1 && <PaginationSection activePage={currentPageNumber} onPageChange={loadTreks} totalNumberOfPages={totalNumberOfPages} />}
                     <IHTrekWithSwathi />

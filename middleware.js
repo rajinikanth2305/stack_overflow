@@ -43,8 +43,7 @@ const middleware = async (req) => {
             url.pathname.startsWith("/trek/") ||
             url.pathname.startsWith("/family-trek/") ||
             url.pathname.startsWith("/articles/") ||
-            url.pathname.startsWith("/documented-trek/") ||
-            url.pathname.startsWith("/all_trek/")
+            url.pathname.startsWith("/documented-trek/")
         ) {
             let iresource = url.pathname;
             const urlFragments = url.pathname.split("/");

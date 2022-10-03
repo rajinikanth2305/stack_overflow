@@ -13,7 +13,7 @@ export const getServerSideProps = async ({ res }) => {
   const BASE_URL = process.env.WEBSITE_URL;
 
   const dynamicPages = [
-    "trek_id",
+    "trek",
     "family_trek",
     "document_trek_type",
     "post",
@@ -89,8 +89,6 @@ export const getServerSideProps = async ({ res }) => {
             <url>
               <loc>${path.url}</loc>
               <lastmod>${path.lastModDate}</lastmod>
-              <changefreq>monthly</changefreq>
-              <priority>1.0</priority>
             </url>
           `;
         })

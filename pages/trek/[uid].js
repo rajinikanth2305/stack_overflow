@@ -3,7 +3,7 @@ import Head from "next/head";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import { RichText } from "prismic-reactjs";
-import { createClient, linkResolver } from 'prismicio'
+import { createClient } from 'prismicio'
 import { TrekSliceZone } from "components/trek";
 // Project components
 
@@ -136,10 +136,7 @@ export async function getStaticProps({
   const slice = trekData.data?.body?.find(
     (x) => x.slice_type === "others_treks_like"
   );
-  // console.log( "items");
-  // console.log( JSON.stringify(slice.items));
-  // trekPageData.push(slice.items);
-  const trekPageData = slice?.items;
+
 
   if (slice?.items.length > 0) {
     for (var i = 0; i < slice?.items.length; i++) {
@@ -164,7 +161,7 @@ export async function getStaticProps({
 
 export async function getStaticPaths() {
 
-  let documents = []
+  let documents = {}
   try {
     const client = createClient();
     documents = await client.query(
@@ -176,15 +173,12 @@ export async function getStaticPaths() {
 
   }
 
-  console.log(documents.results.length)
-
-  if (documents.results.length) {
-    return {
-      paths: documents.results.map((doc) => linkResolver(doc)),
-      fallback: true,
-    };
+  const results = documents.results || []
+  return {
+    paths: results.map((doc) => linkResolver(doc)),
+    fallback: true
   }
-
 }
+
 
 export default Trek;
