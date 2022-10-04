@@ -184,7 +184,7 @@ const SearchList = ({ slice }) => {
           </>
         );
       });
-  }, [searchResults.length])
+  }, [searchResults])
 
 
   return (
