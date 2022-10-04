@@ -5,7 +5,10 @@ import { PrismicPreview } from '@prismicio/next'
 import { linkResolver, repositoryName } from '../prismicio'
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from 'next/router';
+import { HIDE_POPUP_LS_KEY } from "../utils/constants";
+import { EntryPopup } from "slices/entryPopup";
 
 function MyApp({ Component, pageProps }) {
   return <PrismicProvider
