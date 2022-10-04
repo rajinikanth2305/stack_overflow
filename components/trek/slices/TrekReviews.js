@@ -108,7 +108,7 @@ const TrekReviews = ({ slice }) => {
                   </div>
                   {/* <h3 className="title-diplay-3 ts-lable">{data?.batchName}</h3> */}
                   <p className="p-display-2">
-                    <span
+                    <div
                       dangerouslySetInnerHTML={{
                         __html:
                           desc?.length > 125
@@ -229,7 +229,6 @@ const TrekReviews = ({ slice }) => {
 
                     {indexes.map((index) => {
                       const ansdata = answers?.[index];
-                      console.log(ansdata);
                       return (
                         <p className="p-display-2">{ansdata?.answerText}</p>
                       );
