@@ -12,7 +12,7 @@ const TreksContainer = ({ treks }) => {
     }
 
     return (
-        <section className='trek-container'>
+        <section className='treks-container'>
             {treks.map((data, i) => {
                 const tData = data?.data?.body?.find((x) => x.slice_type === "trek_banner");
                 let url;

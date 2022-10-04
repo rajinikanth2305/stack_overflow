@@ -417,13 +417,13 @@ export const ChooseTreks = css.global`
     height: 200px;
   }
 
-  .trek-container > * {
+  .treks-container > * {
     flex-grow: 0;
     flex-shrink: 1;   
     width: 400px;
   }
 
-  .trek-container {
+  .treks-container {
     display: flex;
     flex-wrap: wrap;
     width: 90%;
@@ -431,7 +431,7 @@ export const ChooseTreks = css.global`
     justify-content: center
   }
 
-  .trek-container .btn:hover {
+  .treks-container .btn:hover {
     color: unset !important;
     background-color: unset !important
   }
@@ -627,7 +627,7 @@ export const ChooseTreks = css.global`
       margin: 15px 0 0 0;
     }
 
-    .trek-container {
+    .treks-container {
       width: 100%
     }
   }
