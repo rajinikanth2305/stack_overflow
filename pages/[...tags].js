@@ -9,10 +9,14 @@ import { TreksContainer } from "slices/TreksContainer"
 import { PaginationSection } from "slices/PaginationSection"
 import * as prismic from "@prismicio/client"
 
+const headingText = (lowercaseArray) => {
 
-const CustomTreksPage = ({ results }) => {
+    return lowercaseArray.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
+}
 
-    const PAGE_LIMIT = 10;
+const CustomTreksPage = ({ results, tags }) => {
+
+    const PAGE_LIMIT = 9;
     const totalNumberOfPages = Math.ceil(results.length / PAGE_LIMIT)
     const [currentPageNumber, setCurrentPageNumber] = useState(1)
     const [treks, setTreks] = useState([])
@@ -21,11 +25,17 @@ const CustomTreksPage = ({ results }) => {
         loadTreks(currentPageNumber)
     }, [])
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [currentPageNumber])
+
     const loadTreks = (pageNum) => {
         const treksToDisplay = results.slice(PAGE_LIMIT * (pageNum - 1), PAGE_LIMIT * pageNum)
         setTreks(treksToDisplay)
         currentPageNumber !== pageNum && setCurrentPageNumber(pageNum)
     }
+
+
 
 
     if (results && results.length) {
@@ -37,12 +47,15 @@ const CustomTreksPage = ({ results }) => {
                         <meta charset="utf-8" />
                         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                        {/* <title>{tags.join(" ")}</title> */}
+                        <title>
+                            Indiahikes - India's Safest and Largest Trekking Organisation
+                        </title>
 
                     </Head>
                     <HikeHeader auth={true} />
+
                     <div style={{ minHeight: "30vh" }}>
-                        <TreksContainer treks={treks} />
+                        <TreksContainer treks={treks} headingText={headingText(tags)} />
                     </div>
                     {totalNumberOfPages > 1 && <PaginationSection activePage={currentPageNumber} onPageChange={loadTreks} totalNumberOfPages={totalNumberOfPages} />}
                     <IHTrekWithSwathi />
@@ -66,7 +79,7 @@ export async function getServerSideProps({
     const client = createClient();
     const docs = await client.query(
         prismic.predicate.fulltext(
-            "my.trek.search_keywords",
+            "my.trek.meta_tags",
             tags.join(" ")
         ),
     );
@@ -78,6 +91,7 @@ export async function getServerSideProps({
         return {
             props: {
                 results,
+                tags
 
             }
         }
