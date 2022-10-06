@@ -432,8 +432,16 @@ export const ChooseTreks = css.global`
   }
 
   .treks-container .btn:hover {
-    color: unset !important;
-    background-color: unset !important
+    color: white !important;
+    background-color: rgb(57,114,41) !important
+  }
+
+  .treks-container .heading-text {
+      width: 100%;
+      flex-basis: 100%;
+      flex-grow: 1;
+      text-align: center;
+      margin-top : 1em
   }
 
   .paginationButtons {

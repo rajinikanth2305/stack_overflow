@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { TrekCardSliceZone } from "components/trekCard/";
 import { ChooseTreks } from "styles"
 
-const TreksContainer = ({ treks }) => {
+const TreksContainer = ({ treks, headingText }) => {
     const [hasMounted, setHasMounted] = useState(false)
 
     useEffect(() => setHasMounted(true), [])
@@ -13,6 +13,8 @@ const TreksContainer = ({ treks }) => {
 
     return (
         <section className='treks-container'>
+            {/* The below code might be needed, let this be here till this task is approved */}
+            {/* <h3 className='heading-text'>Treks for {headingText}</h3> */}
             {treks.map((data, i) => {
                 const tData = data?.data?.body?.find((x) => x.slice_type === "trek_banner");
                 let url;

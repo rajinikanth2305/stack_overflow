@@ -30,7 +30,7 @@ const middleware = async (req) => {
         }
 
         //Temporary fix for channa durga trek since the original link is not working
-        console.log(url.pathname)
+        // console.log(url.pathname)
         if (url.pathname.startsWith("/channarayana-durga-trek")) {
             url.pathname = `channarayana-durga-weekend-trek`
             return NextResponse.redirect(url)

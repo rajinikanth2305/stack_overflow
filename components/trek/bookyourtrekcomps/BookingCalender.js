@@ -35,7 +35,7 @@ const BookingCalender = ({
   const toast = useRef(null);
   const [batchOpenedDataValueSet, setBatchOpenedDataValueSet] = useState(true);
   const [trekId, setTrekId] = useState();
-  const [render, setRender] = useState(true);
+  const [render, setRender] = useState(false);
   const [noDates, setNoDates] = useState(false);
 
   React.useEffect(() => {
