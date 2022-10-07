@@ -21,34 +21,54 @@ const SearchList = ({ slice }) => {
     }
 
     const fetchData = async () => {
-      const matchingResults = [];
       const client = createClient();
 
-      const firstSearch = await client
-        .query([
-          prismic.predicate.fulltext("my.trek.search_keywords", searchQuery),
-          prismic.predicate.not("my.trek.family_trek", true),
-          prismic.predicate.not("my.trek.private_trek", true),
-        ]).then(res => res.results)
+      const trekResults = await client
+        .query(
+          [
+            prismic.predicate.fulltext("my.trek.search_keywords", searchQuery),
+            prismic.predicate.not("my.trek.family_trek", true),
+            prismic.predicate.not("my.trek.private_trek", true),
+          ],
+          { 
+            pageSize: 100,
+          }
+        )
+        .then(response => response.results);
+
+      const documentedTrekResults = await client
+        .query(
+          [
+            prismic.predicate.fulltext(
+              "my.document_trek_type.title", searchQuery
+            ),
+          ],
+          { 
+            pageSize: 100,
+          }
+        ).then(response => response.results);
 
 
-      const secondSearch = await client
-        .query([
-          prismic.predicate.fulltext(
-            "my.document_trek_type.title",
-            searchQuery
-          ),
-        ]).then(res => res.results)
+      const articleResults = await client
+        .query(
+          [
+            prismic.predicate.fulltext("my.post.title", searchQuery)
+          ],
+          { 
+            pageSize: 100,
+          }
+        ).then(response => response.results);
 
-
-      const thirdSearch = await client
-        .query([prismic.predicate.fulltext("my.post.title", searchQuery)], {
-          pageSize: 100,
-        }).then(res => res.results)
-
-      setSearchResults([...firstSearch, ...secondSearch, ...thirdSearch])
+      setSearchResults(
+        [
+          ...trekResults,
+          ...documentedTrekResults,
+          ...articleResults,
+        ]
+      );
 
     };
+
     fetchData();
   }, [searchQuery]);
 
