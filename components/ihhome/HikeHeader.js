@@ -59,35 +59,56 @@ const HikeHeader = (auth = false) => {
       return;
     }
 
-    const matchingResults = [];
     const client = createClient();
 
-    await client
-      .query([prismic.predicate.fulltext('my.trek.search_keywords', searchQuery),
-      prismic.predicate.not("my.trek.family_trek", true),
-      prismic.predicate.not("my.trek.private_trek", true)])
-      .then((response) => {
-        matchingResults.push(...response.results);
-      });
+    const trekResults = await client
+      .query(
+        [
+          prismic.predicate.fulltext('my.trek.search_keywords', searchQuery),
+          prismic.predicate.not("my.trek.family_trek", true),
+          prismic.predicate.not("my.trek.private_trek", true),
+        ],
+        { 
+          pageSize: 3,
+        }
+      )
+      .then(response => response.results);
 
-    await client
-      .query([
-        prismic.predicate.fulltext("my.document_trek_type.title", searchQuery),
-      ])
-      .then((response) => {
-        matchingResults.push(...response.results);
-      });
+    const documentedTrekResults = await client
+      .query(
+        [
+          prismic.predicate.fulltext(
+            "my.document_trek_type.title", searchQuery
+          ),
+        ],
+        {
+          pageSize: 3,
+        }
+      )
+      .then(response => response.results);
 
-    await client
-      .query([prismic.predicate.fulltext("my.post.title", searchQuery)], {
-        // orderings: "[my.post.date desc]",
-        // pageSize: 100,
-      })
-      .then((response) => {
-        matchingResults.push(...response.results);
-      });
+    const articleResults = await client
+      .query(
+        [
+          prismic.predicate.fulltext("my.post.title", searchQuery),
+        ],
+        {
+          orderings: {
+            field: "my.post.date",
+            direction: "desc",
+          },
+          pageSize: 3,
+        }
+      )
+      .then(response => response.results);
 
-    setSearchResults(matchingResults);
+    setSearchResults(
+      [
+        ...trekResults,
+        ...documentedTrekResults,
+        ...articleResults,
+      ]
+    );
   };
 
   // React Render
