@@ -162,7 +162,11 @@ export async function getStaticProps({
           if (uid === false) {
             related_article = await Client().getByUID("post", slug);
           } else {
-            related_article = await Client().getByID(slug);
+            try {
+              related_article = await Client().getByID(slug);
+            } catch (err) {
+              console.log(err);
+            }
           }
 
           // console.log(related_article);
