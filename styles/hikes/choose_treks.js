@@ -463,7 +463,7 @@ export const ChooseTreks = css.global`
 
   .pagination {
     width: max-content;
-    margin: 0 auto;
+    margin: 1em auto;
     gap: 0.25em;
   }
 
