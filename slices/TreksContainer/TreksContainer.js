@@ -13,8 +13,7 @@ const TreksContainer = ({ treks, headingText }) => {
 
     return (
         <section className='treks-container'>
-            {/* The below code might be needed, let this be here till this task is approved */}
-            {/* <h3 className='heading-text'>Treks for {headingText}</h3> */}
+            {headingText && <h3 className='heading-text'>{headingText} treks</h3>}
             {treks.map((data, i) => {
                 const tData = data?.data?.body?.find((x) => x.slice_type === "trek_banner");
                 let url;

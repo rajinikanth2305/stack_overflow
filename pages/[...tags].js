@@ -9,9 +9,12 @@ import { TreksContainer } from "slices/TreksContainer"
 import { PaginationSection } from "slices/PaginationSection"
 import * as prismic from "@prismicio/client"
 
-const headingText = (lowercaseArray) => {
-
-    return lowercaseArray.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
+const headingText = (tagsArray) => {
+    return tagsArray.map(tag => {
+        return tag.split("-").map(word => {
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        }).join(" ");
+    }).join("/");
 }
 
 const CustomTreksPage = ({ results, tags }) => {
@@ -32,40 +35,34 @@ const CustomTreksPage = ({ results, tags }) => {
     const loadTreks = (pageNum) => {
         const treksToDisplay = results.slice(PAGE_LIMIT * (pageNum - 1), PAGE_LIMIT * pageNum)
         setTreks(treksToDisplay)
-        currentPageNumber !== pageNum && setCurrentPageNumber(pageNum)
+        if (currentPageNumber != pageNum) {
+            setCurrentPageNumber(pageNum)
+        }
     }
 
-
-
-
-    if (results && results.length) {
-
-        return (
-            <>
-                <HomeLayout>
-                    <Head>
-                        <meta charset="utf-8" />
-                        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                        <title>
-                            Indiahikes - India's Safest and Largest Trekking Organisation
-                        </title>
-
-                    </Head>
-                    <HikeHeader auth={true} />
-
-                    <div style={{ minHeight: "30vh" }}>
-                        <TreksContainer treks={treks} headingText={headingText(tags)} />
-                    </div>
-                    {totalNumberOfPages > 1 && <PaginationSection activePage={currentPageNumber} onPageChange={loadTreks} totalNumberOfPages={totalNumberOfPages} />}
-                    <IHTrekWithSwathi />
-                    <IHFooter />
-                </HomeLayout>
-            </>
-        )
+    if (!results || results.length == 0) {
+        return null;
     }
-    return null
 
+    return (
+        <HomeLayout>
+            <Head>
+                <meta charset="utf-8" />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>
+                    Indiahikes - India's Safest and Largest Trekking Organisation
+                </title>
+            </Head>
+            <HikeHeader auth={true} />
+            <div style={{ minHeight: "30vh" }}>
+                <TreksContainer treks={treks} headingText={headingText(tags)} />
+            </div>
+            {totalNumberOfPages > 1 && <PaginationSection activePage={currentPageNumber} onPageChange={loadTreks} totalNumberOfPages={totalNumberOfPages} />}
+            <IHTrekWithSwathi />
+            <IHFooter />
+        </HomeLayout>
+    )
 }
 
 export async function getServerSideProps({
@@ -84,24 +81,18 @@ export async function getServerSideProps({
         ),
     );
 
-    const { results,
-    } = docs
+    const { results } = docs
 
     if (results.length) {
         return {
             props: {
                 results,
-                tags
-
+                tags,
             }
         }
     }
-    else {
-        return {
-            notFound: true
-        }
-    }
 
+    return { notFound: true };
 }
 
 export default CustomTreksPage
