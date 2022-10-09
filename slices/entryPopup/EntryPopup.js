@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Modal, Container, Row, Col, Form } from "react-bootstrap";
 import Image from 'next/image';
 import styles from "./entryPopup.module.css"
-import swathiPic from "../../public/swathiPic.jpeg"
+import nandanaPic from "../../public/nandanaPic.jpg"
 
 
 const EntryPopup = ({ onConfirm, onCancel }) => {
@@ -74,10 +74,10 @@ const ModalContent = ({ onHide, onConfirm }) => {
                     </Col>
                     <Col className={styles['image-section']}>
 
-                        <Image src={swathiPic} alt="Picture of the chief editor" />
+                        <Image src={nandanaPic} alt="Picture of Nandana" />
                         <div className={styles['image-content']}>
-                            <h6>Conducted by Swathi Chatrapathy</h6>
-                            <p>Chief Editor at Indiahikes and Host of Popular Youtube Show, Trek with Swathi</p>
+                            <h6>Conducted by Nandana Kamasani</h6>
+                            <p>Head of Experience Coordinators Team at Indiahikes </p>
                         </div>
                     </Col>
                 </Row>
@@ -90,11 +90,11 @@ const ModalContent = ({ onHide, onConfirm }) => {
 
                     <Col xs={6} className={styles['image-content']}>
                         <h2 className={styles['heading']}>How To Start Trekking In The Himalayas </h2>
-                        <h6>Conducted by Swathi Chatrapathy</h6>
-                        <p>Chief Editor at Indiahikes and Host of Popular Youtube Show, Trek with Swathi</p>
+                        <h6>Conducted by Nandana Kamasani</h6>
+                        <p>Head of Experience Coordinators Team at Indiahikes </p>
                     </Col>
                     <Col xs={5} sm={4}>
-                        <Image src={swathiPic} alt="Picture of the chief editor" />
+                        <Image src={nandanaPic} alt="Picture of Nandana" />
                     </Col>
                 </Row>
                 <div className={styles['mobile-list']}>
@@ -217,7 +217,7 @@ function ListItems() {
                     10 minutes Q&A session</span>
             </li>
         </ul>
-        <p className={styles['footer-text']}>When: Oct 8th, Saturday at 11am</p>
+        <p className={styles['footer-text']}>When: Oct 15th, Saturday at 11am</p>
 
     </>
 }
