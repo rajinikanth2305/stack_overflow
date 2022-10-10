@@ -46,7 +46,7 @@ const TreksContainer = ({ treks, headingText, currentPageNumber, loadTreks, tota
                 )}
             </section>
             {hasMounted && totalNumberOfPages > 1 && <PaginationSection activePage={currentPageNumber} onPageChange={loadTreks} totalNumberOfPages={totalNumberOfPages} />}
-            <style>
+            <style jsx global>
                 {ChooseTreks}
             </style>
 
