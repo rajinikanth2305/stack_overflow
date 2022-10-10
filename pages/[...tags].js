@@ -18,7 +18,7 @@ const headingText = (tagsArray) => {
 
 const CustomTreksPage = ({ results, tags }) => {
 
-    const PAGE_LIMIT = 9;
+    const PAGE_LIMIT = 12;
     const totalNumberOfPages = Math.ceil(results.length / PAGE_LIMIT)
     const [currentPageNumber, setCurrentPageNumber] = useState(1)
     const [treks, setTreks] = useState([])
