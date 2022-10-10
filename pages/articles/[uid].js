@@ -221,12 +221,14 @@ export async function getStaticProps({
       for (var k = 0; k < data?.items?.length; k++) {
         const slugUrl = data && data?.items[k].article_link?.id;
         if (slugUrl !== undefined) {
-          const hikesnews_article_details = await client.getByID(slugUrl);
-          if (
-            hikesnews_article_details !== undefined &&
-            hikesnews_article_details !== null
-          )
-            linkedLatestArticles.push(hikesnews_article_details);
+          try {
+            const document = await client.getByID(slugUrl);
+            if (document) {
+              linkedLatestArticles.push(document);
+            }
+          } catch (err) {
+            console.log(err);
+          }
         }
       }
 
