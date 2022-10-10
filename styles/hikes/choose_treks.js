@@ -417,32 +417,54 @@ export const ChooseTreks = css.global`
     height: 200px;
   }
 
-  .treks-container > * {
-    flex-grow: 0;
-    flex-shrink: 1;   
-    width: 400px;
-  }
-
   .treks-container {
     display: flex;
     flex-wrap: wrap;
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
-    justify-content: center
   }
+
+  .treks-container .title-h2 {
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: none;
+    border-bottom: 4px solid rgb(255, 193, 0);
+    padding-bottom: 3px;
+    margin-bottom: 20px;
+    width: 95%;
+    flex-basis: 95%;
+    margin-top : 1em
+  }
+
+  .treks-container > * {
+    flex-grow: 0;
+    flex-shrink: 1;   
+    flex-basis: 33%
+  }
+
+
 
   .treks-container .btn:hover {
     color: white !important;
     background-color: rgb(57,114,41) !important
   }
 
-  .treks-container .heading-text {
-      width: 100%;
-      flex-basis: 100%;
-      flex-grow: 1;
-      text-align: center;
-      margin-top : 1em
+  .treks-container .placeholder-style {
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 390px;
   }
+
+  .treks-container .placeholder-style > * {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
 
   .paginationButtons {
     display: block;
@@ -638,6 +660,17 @@ export const ChooseTreks = css.global`
     .treks-container {
       width: 100%
     }
+
+    .treks-container .title-h2 {
+      font-size: 24px;
+    }
+
+    .treks-container > * {
+      flex-basis: 100%;
+      max-width: 400px;
+      margin-right: auto;
+      margin-left: auto;
+    }
   }
 
   @media (min-width: 1182px) and (max-width: 1400px) {
@@ -663,4 +696,25 @@ export const ChooseTreks = css.global`
       width: 90% !important;
     }
   }
+
+  @media (min-width: 1400px) {
+    .treks-container > * {
+      flex-basis : 25%
+    }
+  }
+
+  @media (min-width: 600px) and (max-width: 1182px) {
+    .treks-container > * {
+      flex-basis : 50%;
+      max-width: 450px
+    }
+
+    .treks-container .title-h2 {
+      width: 95%;
+      max-width: 95%;
+      flex-basis: 95%
+    }
+  }
 `;
+
+

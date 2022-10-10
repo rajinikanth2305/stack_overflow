@@ -6,12 +6,11 @@ import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import { createClient } from 'prismicio'
 import { TreksContainer } from "slices/TreksContainer"
-import { PaginationSection } from "slices/PaginationSection"
 import * as prismic from "@prismicio/client"
 
 const headingText = (tagsArray) => {
     return tagsArray.map(tag => {
-        return tag.split("-").map(word => {
+        return tag.split("_").map(word => {
             return word.charAt(0).toUpperCase() + word.slice(1);
         }).join(" ");
     }).join("/");
@@ -56,9 +55,8 @@ const CustomTreksPage = ({ results, tags }) => {
             </Head>
             <HikeHeader auth={true} />
             <div style={{ minHeight: "30vh" }}>
-                <TreksContainer treks={treks} headingText={headingText(tags)} />
+                <TreksContainer treks={treks} headingText={headingText(tags)} currentPageNumber={currentPageNumber} loadTreks={loadTreks} totalNumberOfPages={totalNumberOfPages} />
             </div>
-            {totalNumberOfPages > 1 && <PaginationSection activePage={currentPageNumber} onPageChange={loadTreks} totalNumberOfPages={totalNumberOfPages} />}
             <IHTrekWithSwathi />
             <IHFooter />
         </HomeLayout>
