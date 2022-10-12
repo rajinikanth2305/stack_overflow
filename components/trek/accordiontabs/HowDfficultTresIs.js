@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
-Image;
 import { experimentStyles } from "styles";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 
@@ -281,7 +278,7 @@ const HowDifficultTrekIs = ({ data }) => {
                 {howSafeContent}
               </div>
             </div>
-            <div className="hd-tabs">
+            <div className="hd-tabs safety-tabs">
               <Tabs id="uncontrolled-tab-example">{tabsData}</Tabs>
             </div>
           </div>

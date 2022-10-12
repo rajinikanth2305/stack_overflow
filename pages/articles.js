@@ -1,12 +1,11 @@
 import React from "react";
 import Head from "next/head";
-import Prismic from "@prismicio/client";
-
+import * as prismic from "@prismicio/client";
+import { createClient } from "prismicio"
 // Project components & functions
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
-import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import ArticlesSliceZone from "../components/articles/ArticlesSliceZone";
@@ -50,18 +49,16 @@ const Articles = ({
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
 
-  const client = Client();
+  const client = createClient({ previewData });
 
-  const doc =
-    (await client.getSingle("article_type", ref ? { ref } : null)) || {};
+  const doc = await client.getSingle("article_type")
 
   const section1DataList = [];
   const primaryArticleData = [];
 
   const articleTabsList = await client.query([
-    Prismic.Predicates.at("document.type", "articles_landing_type"),
+    prismic.predicate.at("document.type", "articles_landing_type"),
   ]);
 
   const section1_slice =
@@ -75,7 +72,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       const data = section1_slice?.items[i];
       const slugUrl = data && data?.link_url?.id;
       if (slugUrl !== undefined) {
-        const section1_article_details = await Client().getByID(slugUrl);
+        const section1_article_details = await client.getByID(slugUrl);
         if (
           section1_article_details !== undefined &&
           section1_article_details !== null
@@ -88,7 +85,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const paArticleLink =
     section1_slice && section1_slice?.primary?.primary_link_url?.id;
   if (paArticleLink !== undefined) {
-    const article_details = await Client().getByID(paArticleLink);
+    const article_details = await client.getByID(paArticleLink);
     primaryArticleData.push(article_details);
   }
 

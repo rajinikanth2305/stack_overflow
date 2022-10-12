@@ -1,9 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { RichText } from "prismic-reactjs";
-import { customStyles, regStyle } from "styles";
-import { ratingStyles } from "styles";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { customStyles } from "styles";
 import { Progress } from "reactstrap";
 import Link from "next/link";
 import auth from "../../../../services/Authenticate";
@@ -14,17 +11,11 @@ import {
 } from "../../../../services/queries";
 import moment from "moment";
 import { useRouter } from "next/router";
-import Prismic from "@prismicio/client";
-import { Client } from "../../../../utils/prismicHelpers";
-import Image from "next/image";
+import { createClient } from 'prismicio'
 import ReceiptTemplate from "./ReceiptTemplate";
 import CertificateTemplate from "./CertificateTemplate;";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import { Checkbox } from "primereact/checkbox";
 import { RadioButton } from "primereact/radiobutton";
-import { Rating } from "primereact/rating";
-import { Dropdown } from "primereact/dropdown";
-import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import ReactStars from "react-rating-stars-component";
 import { Toast } from "primereact/toast";
@@ -77,11 +68,8 @@ const UserPT = () => {
       setUserServiceObject(userTokenObject);
       fetchAndBindUserBookings(userEmail);
 
-      // return userEmail;
     });
 
-    // console.log(res);
-    //fetchAndBindUserBookings(res);
   }, []);
 
   const onMultiChekBoxChange = (e) => {
@@ -138,7 +126,6 @@ const UserPT = () => {
   function fetchAndBindUserBookings(email) {
     getdashBoardUserBooking(email, true).then((bookingsData) => {
       /// Idenitify and get the booking owner profile informations
-      // console.log(bookingsData);
       if (bookingsData.length > 0) {
         const bookingOwner = bookingsData.map((element) => {
           const mainuser = element.trekMates.find(
@@ -146,6 +133,7 @@ const UserPT = () => {
           );
           if (mainuser !== undefined) return mainuser;
         });
+
         setBookingOwner(bookingOwner[0]);
         getAndSetTrekContents(bookingsData, email);
       } else {
@@ -164,8 +152,8 @@ const UserPT = () => {
   };
 
   const getAndSetTrekContents = async (bookingsData, userEmail) => {
+    const client = createClient()
     const bookTrekContents = [];
-    const client = Client();
 
     const prismicTrekContents = [];
     for (const book of bookingsData) {
@@ -175,10 +163,15 @@ const UserPT = () => {
       const findContents = prismicTrekContents.find(
         (x) => x.trekName === trekName
       );
-      //console.log(findContents);
       if (findContents === undefined) {
-        result = await Client().getByUID("trek", trekName);
-        //console.log(result);
+
+
+        try {
+          result = await client.getByUID("trek", trekName);
+        }
+        catch (err) {
+
+        }
         prismicTrekContents.push({
           trekName: trekName,
           result: result,
@@ -187,7 +180,6 @@ const UserPT = () => {
         result = findContents.result;
       }
 
-      //console.log(slice);
       let bannerImage = "";
       let trekCaptions = book.trekName;
 
@@ -195,7 +187,6 @@ const UserPT = () => {
         const slice = result.data.body.find(
           (x) => x.slice_type === "trek_banner"
         );
-        //console.log(slice);
         bannerImage = slice.primary.trek_banner_image.url;
         trekCaptions = slice.primary.trek_caption;
       }

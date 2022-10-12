@@ -1,21 +1,14 @@
 import React from "react";
 import Head from "next/head";
-import Prismic from "@prismicio/client";
-import { RichText } from "prismic-reactjs";
-import Document, { NextScript } from "next/document";
-
-// Project components & functions
-import { UpComingTreksSliceZone } from "components/upcoming";
+import * as prismicH from '@prismicio/helpers'
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
-import { Client } from "utils/prismicHelpers";
 import IHFooter from "components/Footer";
 import IHTrekWithSwathi from "components/Trek_With_Swathi";
 import { FamilyTrekSliceZone } from "components/familytrek";
-import { queryRepeatableDocuments } from "services/queries";
-import { queryRepeatableDocumentsWithDocTypeFilter } from "services/queries";
 import ScrollToTop from "react-scroll-to-top";
+import { createClient, linkResolver } from "prismicio";
 
 /**
  * UpComing component
@@ -65,18 +58,11 @@ export async function getStaticProps({
   preview = null,
   previewData = {},
 }) {
-  const { ref } = previewData;
 
-  const client = Client();
 
-  //   const doc =
-  //     (await client.getSingle("family_trek", ref ? { ref } : null)) || {};
-  const doc =
-    (await Client().getByUID(
-      "family_trek",
-      params.uid,
-      ref ? { ref } : null
-    )) || {};
+  const client = createClient();
+
+  const doc = await client.getByUID("family_trek", params.uid)
 
   const multiTrekData = [];
   const weekendTrekData = [];
@@ -91,7 +77,7 @@ export async function getStaticProps({
       const data = multitrek_slice?.items[i];
       const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
-        const trek_details = await Client().getByID(slugUrl);
+        const trek_details = await client.getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
           multiTrekData.push(trek_details);
       }
@@ -107,7 +93,7 @@ export async function getStaticProps({
       const data = weekendtrek_slice?.items[i];
       const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
-        const trek_details = await Client().getByID(slugUrl);
+        const trek_details = await client.getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
           weekendTrekData.push(trek_details);
       }
@@ -122,12 +108,11 @@ export async function getStaticProps({
       const data = latestUpdate_slice?.items[i];
       const slugUrl = data && data?.link_url?.id;
       if (slugUrl !== undefined) {
-        const article_details = await Client().getByID(slugUrl);
+        const article_details = await client.getByID(slugUrl);
         latestUpdateAarticleData.push(article_details);
       }
     }
   }
-  console.log("Called here2");
 
   return {
     props: {
@@ -142,18 +127,13 @@ export async function getStaticProps({
 }
 
 export async function getStaticPaths() {
-  //const documents = await queryRepeatableDocuments((doc) => doc.type === 'trek')
-  const documents = await queryRepeatableDocumentsWithDocTypeFilter(
-    "family_trek"
-  );
-  console.log(documents?.length);
+  const client = createClient()
 
-  /*const response = await Client().query(
-    Prismic.Predicates.at("document.type", "family_trek")
-  );*/
-  //const documents = documents; //response.results;
+  const documents = await client.getAllByType("family_trek")
+
+
   return {
-    paths: documents.map((doc) => `/family-trek/${doc.uid}`),
+    paths: documents.map((doc) => linkResolver(doc)),
     fallback: true,
   };
 }

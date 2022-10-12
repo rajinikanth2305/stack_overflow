@@ -1,15 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { upcomingTrekPageStyle } from "styles";
-import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Dropdown } from "primereact/dropdown";
-import Accordion from "react-bootstrap/Accordion";
-import Card from "react-bootstrap/Card";
 import Link from "next/link";
-import Prismic from "@prismicio/client";
-import { Client } from "utils/prismicHelpers";
+import * as prismic from "@prismicio/client"
+import { createClient } from 'prismicio'
 
 const AllIndiaHikes = ({ slice }) => {
   const heading1 = "All Indiahikes Treks"; //slice?.primary?.heading1;
@@ -23,13 +19,15 @@ const AllIndiaHikes = ({ slice }) => {
   const [difficultTreks, setDifficultTreks] = useState([]);
   const [familyTreks, setFamilyTreks] = useState([]);
 
+
+
   useEffect(() => {
     getAllTrekData();
   }, []);
 
   const getAllTrekData = async () => {
-    const client = Client();
 
+    const client = createClient()
     const mySuperGraphQuery = `{
       trek {
         uid
@@ -47,7 +45,7 @@ const AllIndiaHikes = ({ slice }) => {
     }`;
     const multiTrekData = [];
     const doc =
-      (await Client().getByUID("family_trek", "family-trek-page")) || {};
+      (await client.getByUID("family_trek", "family-trek-page")) || {};
     const multitrek_slice = doc?.data?.body?.find(
       (x) => x.slice_type === "multi_day_trek_list"
     );
@@ -56,7 +54,7 @@ const AllIndiaHikes = ({ slice }) => {
         const data = multitrek_slice?.items[i];
         const slugUrl = data && data?.trek_link?.id;
         if (slugUrl !== undefined) {
-          const trek_details = await Client().getByID(slugUrl);
+          const trek_details = await client.getByID(slugUrl);
           if (trek_details !== undefined && trek_details !== null)
             multiTrekData.push(trek_details);
         }
@@ -64,7 +62,7 @@ const AllIndiaHikes = ({ slice }) => {
     }
 
     const allTrekData = await client.query(
-      [Prismic.Predicates.at("document.type", "trek")],
+      [prismic.predicate.at("document.type", "trek")],
       {
         graphQuery: mySuperGraphQuery,
         pageSize: 250,
@@ -73,7 +71,6 @@ const AllIndiaHikes = ({ slice }) => {
 
     const res = [];
     allTrekData?.results?.forEach((result) => {
-      console.log(result);
       if (
         result?.data?.family_trek === true ||
         result?.data?.private_trek === true
@@ -84,8 +81,6 @@ const AllIndiaHikes = ({ slice }) => {
       }
     });
 
-    // allTrekData=res;
-    console.log(res);
 
     res?.sort(function (a, b) {
       if (a?.uid < b?.uid) {
@@ -145,16 +140,16 @@ const AllIndiaHikes = ({ slice }) => {
                         ? "badge-green-diy"
                         : data?.data?.body[0]?.primary?.difficulty[0]?.text ===
                           "Easy-Moderate"
-                        ? "badge-green-diy"
-                        : data?.tags?.indexOf("Moderate") > -1
-                        ? "badge-yellow-diy"
-                        : data?.tags?.indexOf("Difficult") > -1
-                        ? "badge-red-diy"
-                        : data?.tags?.indexOf("Moderate - Difficult") > -1
-                        ? "badge-blue-diy"
-                        : data?.tags?.indexOf("Moderate-Difficult") > -1
-                        ? "badge-blue-diy"
-                        : "badge-blue-diy"
+                          ? "badge-green-diy"
+                          : data?.tags?.indexOf("Moderate") > -1
+                            ? "badge-yellow-diy"
+                            : data?.tags?.indexOf("Difficult") > -1
+                              ? "badge-red-diy"
+                              : data?.tags?.indexOf("Moderate - Difficult") > -1
+                                ? "badge-blue-diy"
+                                : data?.tags?.indexOf("Moderate-Difficult") > -1
+                                  ? "badge-blue-diy"
+                                  : "badge-blue-diy"
                     }
                   ></p>
                 </div>

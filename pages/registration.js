@@ -1,13 +1,11 @@
 import React from "react";
 import Head from "next/head";
 // Project components & functions
-import { UpComingTreksSliceZone } from "components/upcoming";
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
-import { Client } from "utils/prismicHelpers";
+import { createClient } from 'prismicio'
 import IHFooter from "../components/Footer";
-import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import { RegistrationSliceZone } from "../components/registration";
 import { Provider } from "react-redux";
 import store from "../components/reduxstate/store";
@@ -56,17 +54,9 @@ const Registration = ({ doc }) => {
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
+  const client = createClient({ previewData })
+  const doc = await client.getSingle("hike_team")
 
-  const client = Client();
-
-  const doc = (await client.getSingle("hike_team", ref ? { ref } : null)) || {};
-
-  /*const doc = await client.query(
-    Prismic.Predicates.at("document.type", "hike_home_ctype"), {
-      ...(ref ? { ref } : null)
-    },
-  )*/
 
   return {
     props: {

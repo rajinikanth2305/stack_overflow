@@ -1,6 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import PrismicScript from "../components/PrismicScript";
-import { reset, globals } from "styles";
 
 import { apiEndpoint } from "./../prismic-configuration"; // import the endpoint name from where it's defined
 const prismicRepoName = /([a-zA-Z0-9-]+)?(\.cdn)?\.prismic\.io/.exec(
@@ -18,12 +16,14 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta charset="utf-8" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta charSet="utf-8" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          {/* What was the below code working?
+          
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
-          />
+          /> */}
           <link
             href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900"
             rel="stylesheet"
@@ -71,25 +71,7 @@ class MyDocument extends Document {
     );
   }
 
-  /*render() {
-              <script async defer src={`https://static.cdn.prismic.io/prismic.js?repo=${prismicRepoName}&new=true`} />
-    return (
-      <Html>
-        <Head>
-          <meta charSet="utf-8" />
-          <link
-            href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900"
-            rel="stylesheet"
-          />
-          <link rel="icon" href="/favicon.png" type="image/png" />
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
-  }*/
+
 }
 
 export default MyDocument;

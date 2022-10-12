@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { RichText } from "prismic-reactjs";
 import { trekStyle } from "styles";
-import Image from "next/image";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
 import Modal from "react-bootstrap/Modal";
-import { hrefResolver, linkResolver } from "prismic-configuration";
+import { linkResolver } from "prismic-configuration";
 import InclusionsAndExclusions from "../accordiontabs/InclusionsAndExclusions";
 import Link from "next/link";
 

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
 import { experimentStyles } from "styles";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Modal from "react-bootstrap/Modal";
@@ -18,7 +16,7 @@ const WhatToPack = ({ data }) => {
 
   useEffect(() => {
     findHowToReach();
-    return () => {};
+    return () => { };
   }, []);
 
   async function findHowToReach() {
@@ -72,11 +70,11 @@ const WhatToPack = ({ data }) => {
         <Tabs
           defaultActiveKey="md"
           id="uncontrolled-tab-example"
-          className="mt-4 mb-4"
+          className="mt-4 mb-4 what-to-pack"
         >
           <Tab
             eventKey="md"
-            title={title_mandatory_doc && title_mandatory_doc[0]?.text}
+            title={title_mandatory_doc ? title_mandatory_doc[0]?.text : ""}
           >
             <>
               <div className="p-text-4">
@@ -92,7 +90,7 @@ const WhatToPack = ({ data }) => {
           </Tab>
           <Tab
             eventKey="tc"
-            title={title_things_to_carry && title_things_to_carry[0]?.text}
+            title={title_things_to_carry ? title_things_to_carry[0]?.text : ""}
           >
             <>
               {primaryVideoUrl && (
@@ -143,7 +141,7 @@ const WhatToPack = ({ data }) => {
           </Tab>
           <Tab
             eventKey="fa"
-            title={title_first_aid && title_first_aid[0]?.text}
+            title={title_first_aid ? title_first_aid[0]?.text : ""}
           >
             <>
               <div className="p-text-4">

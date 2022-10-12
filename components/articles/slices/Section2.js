@@ -5,7 +5,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
 import Image from "next/image";
 import { linkResolver } from "prismic-configuration";
 

@@ -1,11 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { RichText } from "prismic-reactjs";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
-import Image from "next/image";
+import { createClient } from 'prismicio'
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
-import { useAccordionToggle } from "react-bootstrap/AccordionToggle";
+import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import AccordionContext from "react-bootstrap/AccordionContext";
 
 const openPositionsTabs = () => {
@@ -23,7 +21,7 @@ const openPositionsTabs = () => {
   function ContextAwareToggle({ children, eventKey, callback }) {
     const currentEventKey = useContext(AccordionContext);
 
-    const decoratedOnClick = useAccordionToggle(
+    const decoratedOnClick = useAccordionButton(
       eventKey,
       () => callback && callback(eventKey)
     );
@@ -49,20 +47,18 @@ const openPositionsTabs = () => {
   }, []);
 
   async function tabDataSet() {
-    const client = Client();
-    const doc = await client
-      .query([Prismic.Predicates.at("document.type", "carriers_type")])
+    const client = createClient();
+    client.getSingle('carriers_type')
       .then(function (response) {
-        const tt = response?.results[0]?.data?.body;
+        const tt = response?.data?.body;
         const slice =
           tt && tt.filter((x) => x.slice_type === "open_positions_tab");
         setPostionTabDetails(slice);
       });
 
-    const doc1 = await client
-      .query([Prismic.Predicates.at("document.type", "carriers_type")])
+    client.getSingle('carriers_type')
       .then(function (response) {
-        const tt = response?.results[0]?.data?.body;
+        const tt = response?.data?.body;
         const slice =
           tt && tt.filter((x) => x.slice_type === "position_level_2");
         setPostion2TabDetails(slice);

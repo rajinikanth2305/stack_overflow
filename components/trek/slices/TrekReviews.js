@@ -229,7 +229,6 @@ const TrekReviews = ({ slice }) => {
 
                     {indexes.map((index) => {
                       const ansdata = answers?.[index];
-                      console.log(ansdata);
                       return (
                         <p className="p-display-2">{ansdata?.answerText}</p>
                       );

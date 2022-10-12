@@ -417,6 +417,80 @@ export const ChooseTreks = css.global`
     height: 200px;
   }
 
+  .treks-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .treks-container .title-h2 {
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: none;
+    border-bottom: 4px solid rgb(255, 193, 0);
+    padding-bottom: 3px;
+    margin-bottom: 20px;
+    width: 95%;
+    flex-basis: 95%;
+    margin-top : 1em
+  }
+
+  .treks-container > * {
+    flex-grow: 0;
+    flex-shrink: 1;   
+    flex-basis: 33%
+  }
+
+
+
+  .treks-container .btn:hover {
+    color: white !important;
+    background-color: rgb(57,114,41) !important
+  }
+
+  .treks-container .placeholder-style {
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 390px;
+  }
+
+  .treks-container .placeholder-style > * {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+
+  .paginationButtons {
+    display: block;
+    padding: 5px 8px;
+    background-color: transparent;
+    border: none;
+    color: grey;
+  }
+
+  .paginationButtons.active {
+    background-color: #0070f3;
+    box-shadow: 0 2px 6px 0 rgb(0 118 255 / 39%);
+    border: none;
+    color: white;
+    border-radius: 7px
+  }
+
+
+  .pagination {
+    width: max-content;
+    margin: 1em auto;
+    gap: 0.25em;
+  }
+
+  
+
   @media only screen and (max-width: 600px) {
     .btn-ih-green {
       font-size: 14px;
@@ -582,6 +656,21 @@ export const ChooseTreks = css.global`
     .m-mt-15 {
       margin: 15px 0 0 0;
     }
+
+    .treks-container {
+      width: 100%
+    }
+
+    .treks-container .title-h2 {
+      font-size: 24px;
+    }
+
+    .treks-container > * {
+      flex-basis: 100%;
+      max-width: 400px;
+      margin-right: auto;
+      margin-left: auto;
+    }
   }
 
   @media (min-width: 1182px) and (max-width: 1400px) {
@@ -607,4 +696,25 @@ export const ChooseTreks = css.global`
       width: 90% !important;
     }
   }
+
+  @media (min-width: 1400px) {
+    .treks-container > * {
+      flex-basis : 25%
+    }
+  }
+
+  @media (min-width: 600px) and (max-width: 1182px) {
+    .treks-container > * {
+      flex-basis : 50%;
+      max-width: 450px
+    }
+
+    .treks-container .title-h2 {
+      width: 95%;
+      max-width: 95%;
+      flex-basis: 95%
+    }
+  }
 `;
+
+

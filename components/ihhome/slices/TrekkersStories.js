@@ -409,8 +409,8 @@ const TrekkersStories = ({ slice }) => {
                       objectPosition="50% 50%"
                       alt="imgs"
                       unoptimized
-                      // width={350}
-                      // height={215}
+                    // width={350}
+                    // height={215}
                     />
                   </div>
                   <div className="p-4">
@@ -436,46 +436,45 @@ const TrekkersStories = ({ slice }) => {
 
   const trekkersStoriesImage = sampleData?.map(function (data, i) {
     return (
-      <>
-        <div className="mx-4 m-mx-0" key={`trekkstory` + i}>
-          <div className="card_sec">
-            <div className="card trek_card review_card">
-              <div className="p-4">
-                <div>
-                  <div className="mb-4">
-                    <h6>
-                      <b>{data.name}</b>
-                    </h6>
-                    <p className="m-0 p-display-2">Group of {data.batch}</p>
-                    {/* <p className="m-0 p-display-2">{data.batch}</p> */}
-                  </div>
-                  {/* <h3 className="title-diplay-3 ts-lable">
+      <div className="mx-4 m-mx-0" key={`trekkstory` + i}>
+        <div className="card_sec">
+          <div className="card trek_card review_card">
+            <div className="p-4">
+              <div>
+                <div className="mb-4">
+                  <h6>
+                    <b>{data.name}</b>
+                  </h6>
+                  <p className="m-0 p-display-2">Group of {data.batch}</p>
+                  {/* <p className="m-0 p-display-2">{data.batch}</p> */}
+                </div>
+                {/* <h3 className="title-diplay-3 ts-lable">
                     {data.title.length > 25
                       ? `${data.title.substring(0, 55)}...`
                       : data.title}
                   </h3> */}
-                  <p className="p-display-2">
-                    {data?.desc?.length > 125
-                      ? `${data.desc.substring(0, 195)}...`
-                      : data.desc}
-                  </p>
-                </div>
-                <div className="d-flex justify-content-end w-100">
-                  <button
-                    class="btn btn-lg btn-ih-primary text-capitalized hvr-grow mt-3 mb-2"
-                    onClick={() => {
-                      setReveiewInfo(data);
-                      setShow(true);
-                    }}
-                  >
-                    Read More
-                  </button>
-                </div>
+                <p className="p-display-2">
+                  {data?.desc?.length > 125
+                    ? `${data.desc.substring(0, 195)}...`
+                    : data.desc}
+                </p>
+              </div>
+              <div className="d-flex justify-content-end w-100">
+                <button
+                  className="btn btn-lg btn-ih-primary text-capitalized hvr-grow mt-3 mb-2"
+                  onClick={() => {
+                    setReveiewInfo(data);
+                    setShow(true);
+                  }}
+                >
+                  Read More
+                </button>
               </div>
             </div>
           </div>
         </div>
-      </>
+      </div>
+
     );
   });
 

@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
-import Image from "next/image";
 import { useRouter } from "next/router";
-import { Client } from "utils/prismicHelpers";
-import Prismic from "@prismicio/client";
+import { createClient } from "prismicio";
+import * as prismic from "@prismicio/client";
 import Link from "next/link";
-import { linkResolver } from "prismic-configuration";
 
 const AuthorDetails = ({ slice }) => {
   const heading1 = slice?.primary?.heading1;
@@ -21,23 +19,16 @@ const AuthorDetails = ({ slice }) => {
       return;
     }
     const getAuthorDetails = async () => {
-      const client = Client();
-      const author = await client.query(
-        Prismic.Predicates.fulltext("my.author_type.uid", authorName)
-      );
+      const client = createClient();
+      const author = await client.getByUID("author_type", authorName)
       setAuthorData(author);
     };
     const getAuthorArticles = async () => {
-      const client = Client();
+      const client = createClient();
       // const authorArticles = await client.query(
       //     Prismic.Predicates.at("my.Post.author_link", authorName)
       // );
-      const authorArticles = await client.query(
-        [Prismic.Predicates.at("document.type", "post")],
-        {
-          pageSize: 250,
-        }
-      );
+      const authorArticles = await client.getAllByType("post")
       setAuthorArticles(authorArticles);
     };
     getAuthorDetails();

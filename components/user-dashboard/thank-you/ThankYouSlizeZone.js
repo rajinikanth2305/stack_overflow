@@ -5,7 +5,7 @@ import { ThankYouMessage } from "./slices";
  *  slice zone component
  */
 
-const ThankYouSlizeZone = ({ sliceZone }) => {
+const ThankYouSlizeZone = () => {
   return <ThankYouMessage />;
 };
 

@@ -1,18 +1,13 @@
 import React from "react";
 import Head from "next/head";
 import Script from "next/script";
-import Prismic from "@prismicio/client";
-import { RichText } from "prismic-reactjs";
-import Document, { NextScript } from "next/document";
 
-// Project components & functions
 import { UpComingTreksSliceZone } from "components/upcoming";
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
-import { Client } from "utils/prismicHelpers";
+import { createClient } from 'prismicio'
 import IHFooter from "../components/Footer";
-import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import ScrollToTop from "react-scroll-to-top";
 import { MOUSEFLOW_WEBSITE_ID } from "utils/constants";
 
@@ -87,13 +82,9 @@ const UpcomingTreks = ({
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const { ref } = previewData;
 
-  const client = Client();
+  const client = createClient({ previewData })
 
-  const doc =
-    (await client.getSingle(
-      "hike_upcoming_treks_ctype",
-      ref ? { ref } : null
-    )) || {};
+  const doc = await client.getSingle("hike_upcoming_treks_ctype")
 
   /*const easyMordatesTreks = await client.query([
     Prismic.Predicates.at("document.type", "trek"),
@@ -145,7 +136,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       const data = slice?.items[i];
       const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
-        const trek_details = await Client().getByID(slugUrl);
+        const trek_details = await client.getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
           bestTrekToDoData.push(trek_details);
       }
@@ -161,7 +152,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       const data = ucOpen_slice?.items[i];
       const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
-        const trek_details = await Client().getByID(slugUrl);
+        const trek_details = await client.getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
           ucOpenData.push(trek_details);
       }
@@ -198,7 +189,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       for (var k = 0; k < data?.items?.length; k++) {
         const slugUrl = data && data?.items[k].trek_link?.id;
         if (slugUrl !== undefined) {
-          const hikesnews_article_details = await Client().getByID(slugUrl);
+          const hikesnews_article_details = await client.getByID(slugUrl);
           if (
             hikesnews_article_details !== undefined &&
             hikesnews_article_details !== null
@@ -246,7 +237,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       for (var k = 0; k < data?.items?.length; k++) {
         const slugUrl = data && data?.items[k].trek_link?.id;
         if (slugUrl !== undefined) {
-          const hikesnews_article_details = await Client().getByID(slugUrl);
+          const hikesnews_article_details = await client.getByID(slugUrl);
           if (
             hikesnews_article_details !== undefined &&
             hikesnews_article_details !== null
@@ -273,7 +264,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       const data = treksToDo_slice?.items[i];
       const slugUrl = data && data?.trek_link?.id;
       if (slugUrl !== undefined) {
-        const trek_details = await Client().getByID(slugUrl);
+        const trek_details = await client.getByID(slugUrl);
         if (trek_details !== undefined && trek_details !== null)
           treksToDoData.push(trek_details);
       }

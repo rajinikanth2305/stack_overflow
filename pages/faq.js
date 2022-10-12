@@ -1,15 +1,11 @@
 import React from "react";
 import Head from "next/head";
-import Prismic from "@prismicio/client";
-import { RichText } from "prismic-reactjs";
-import Document, { NextScript } from "next/document";
+import { createClient } from 'prismicio'
 
 // Project components & functions
-import { UpComingTreksSliceZone } from "components/upcoming";
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
-import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import FaqSliceZone from "../components/faq/FaqSliceZone";
@@ -47,11 +43,9 @@ const FAQ = ({ doc, articleData }) => {
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
+  const client = createClient({ previewData })
+  const doc = await client.getSingle("trek_faq")
 
-  const client = Client();
-
-  const doc = (await client.getSingle("trek_faq", ref ? { ref } : null)) || {};
 
   const articleData = [];
   const slice = doc.data?.body?.find((x) => x.slice_type === "trekking_tips");
@@ -61,8 +55,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
       const data = slice?.items[i];
       const slugUrl = data && data?.article_link?.id;
       if (slugUrl !== undefined) {
-        const article_details = await Client().getByID(slugUrl);
-        if (article_details) articleData.push(article_details);
+        const article_details = await client.getByID(slugUrl);
+        articleData.push(article_details);
       }
     }
   } else {

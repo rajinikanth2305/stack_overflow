@@ -7,7 +7,7 @@ import Link from "next/link";
 import { linkResolver } from "prismic-configuration";
 import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
-import { useAccordionToggle } from "react-bootstrap/AccordionToggle";
+import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import AccordionContext from "react-bootstrap/AccordionContext";
 
 const FaqHome = ({ slice }) => {
@@ -25,7 +25,7 @@ const FaqHome = ({ slice }) => {
   function ContextAwareToggle({ children, eventKey, callback }) {
     const currentEventKey = useContext(AccordionContext);
 
-    const decoratedOnClick = useAccordionToggle(
+    const decoratedOnClick = useAccordionButton(
       eventKey,
       () => callback && callback(eventKey)
     );

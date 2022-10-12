@@ -1,21 +1,18 @@
 import React from "react";
 import Head from "next/head";
 import { RichText } from "prismic-reactjs";
-
-import { queryRepeatableDocuments } from "services/queries";
-import { queryRepeatableDocumentsWithDocTypeFilter } from "services/queries";
 // Project components
 import DefaultLayout from "layouts";
 import { BackButton, SliceZone } from "components/document-trek";
 
 // Project functions & styles
-import { Client } from "utils/prismicHelpers";
-import { postStyles } from "styles";
+
 import { HikeHeader } from "components/ihhome";
+import * as prismicH from "@prismicio/helpers";
 import IHFooter from "components/Footer";
 import IHTrekWithSwathi from "components/Trek_With_Swathi";
 import ScrollToTop from "react-scroll-to-top";
-
+import { createClient, linkResolver } from "prismicio";
 import { isNil, isEmpty } from "ramda";
 
 /**
@@ -114,13 +111,11 @@ export async function getStaticProps({
   preview = null,
   previewData = {},
 }) {
-  const { ref } = previewData;
-  const post =
-    (await Client().getByUID(
-      "document_trek_type",
-      params.uid,
-      ref ? { ref } : null
-    )) || {};
+
+  const client = createClient({ previewData })
+
+  const post = await client.getByUID("document_trek_type", params.uid)
+
 
   //console.log(JSON.stringify(post));
 
@@ -158,9 +153,9 @@ export async function getStaticProps({
         if (slug !== null && slug !== undefined) {
           let related_article = null;
           if (uid === false) {
-            related_article = await Client().getByUID("post", slug);
+            related_article = await client.getByUID("post", slug);
           } else {
-            related_article = await Client().getByID(slug);
+            related_article = await client.getByID(slug);
           }
 
           // console.log(related_article);
@@ -178,13 +173,13 @@ export async function getStaticProps({
   let authorData = undefined;
 
   if (author_lnk_id !== undefined) {
-    authorData = await Client().getByID(author_lnk_id);
+    authorData = await client.getByID(author_lnk_id);
   }
   // console.log(authorData);
   if (authorData === undefined) {
     authorData = null;
   }
-  const homePageData = await Client().getSingle("hike_home_ctype");
+  const homePageData = await client.getSingle("hike_home_ctype");
   // console.log(homePageData);
   let upComingData = [];
   const upComingTreks = homePageData.data?.body?.find(
@@ -200,7 +195,7 @@ export async function getStaticProps({
           let trekId = data?.trek_link;
           //console.log("trek_id" + JSON.stringify(data?.trek_link));
           //console.log("trek_id" + trekId.id);
-          let trekData = await Client().getByID(trekId.id);
+          let trekData = await client.getByID(trekId.id);
           if (trekData) {
             upComingData.push(trekData);
           }
@@ -219,7 +214,7 @@ export async function getStaticProps({
     const author_lnk_id = article?.data?.author_link?.id;
     //console.log("139" + article?.data?.author_link?.id);
     if (author_lnk_id !== undefined) {
-      const rel_article_auth_data = await Client().getByID(author_lnk_id);
+      const rel_article_auth_data = await client.getByID(author_lnk_id);
 
       if (rel_article_auth_data !== undefined) {
         const author =
@@ -249,36 +244,15 @@ export async function getStaticProps({
 }
 
 export async function getStaticPaths() {
-  // const documents = await queryRepeatableDocuments((doc) => doc.type === 'document_trek_type')
-  const documents = await queryRepeatableDocumentsWithDocTypeFilter(
-    "document_trek_type"
-  );
-  //const doc    =    await Client().getByUID("post", "how-to-choose-trek-pants-the-ultimate-trekking-pants-guide-2021");
+  const client = createClient()
+  const documents = await client.getAllByType("document_trek_type");
 
-  //const documents=[];
-  //documents.push(doc);
 
-  const fastBuild = process.env.NEXT_FAST_BUILD;
 
-  // console.log(fastBuild);
-  if (fastBuild === "TRUE") {
-    let limitDocs = [];
-    const limit = 5;
-
-    for (let i = 0; i < limit; i++) {
-      limitDocs.push(documents[i]);
-    }
-    return {
-      paths: limitDocs.map((doc) => `/documented-trek/${doc?.uid}`),
-      fallback: true,
-    };
-  } else {
-    console.log(fastBuild + "DOCUMENTED-TREK");
-    return {
-      paths: documents.map((doc) => `/documented-trek/${doc?.uid}`),
-      fallback: true,
-    };
-  }
+  return {
+    paths: documents.map((doc) => linkResolver(doc)),
+    fallback: true,
+  };
 }
 
 export default DocumentTrek;

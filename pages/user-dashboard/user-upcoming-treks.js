@@ -1,11 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import Prismic from "@prismicio/client";
-import { RichText } from "prismic-reactjs";
-import Document, { NextScript } from "next/document";
-
-// Project components & functions
-import { UpComingTreksSliceZone } from "components/upcoming";
+import { createClient } from 'prismicio'
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
@@ -52,13 +47,8 @@ const UserUpcomingTreks = ({ doc }) => {
 }*/
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
-
-  const client = Client();
-
-  const doc = (await client.getSingle("hike_team", ref ? { ref } : null)) || {};
-
-  //console.log(JSON.stringify(doc));
+  const client = createClient({ previewData })
+  const doc = await client.getSingle("hike_team")
   return {
     props: {
       doc,

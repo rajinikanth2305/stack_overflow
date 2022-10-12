@@ -1,22 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
-import { RichText } from "prismic-reactjs";
+import * as prismic from "@prismicio/client"
 import { trekStyle } from "styles";
 import { Calendar } from "primereact/calendar";
 import { Dropdown } from "primereact/dropdown";
-import moment from "moment";
 import { useRouter } from "next/router";
 import { Toast } from "primereact/toast";
 import "primeicons/primeicons.css";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.css";
 import "primeflex/primeflex.css";
-import { confirmPopup } from "primereact/confirmpopup"; // To use confirmPopup method
 import { confirmDialog } from "primereact/confirmdialog"; // To use <ConfirmDialog> tag
 // Project components & functions
-import { getBatches, getBatchesByTrekId } from "services/queries";
-import { batch } from "react-redux";
-import Prismic from "@prismicio/client";
-import { Client } from "utils/prismicHelpers";
+import { getBatchesByTrekId } from "services/queries";
+
+import { createClient } from 'prismicio'
 
 const BookingCalender = ({
   onBookingSelect,
@@ -42,12 +39,12 @@ const BookingCalender = ({
   const [noDates, setNoDates] = useState(false);
 
   React.useEffect(() => {
-    const client = Client();
+    const client = createClient();
 
     const actualTrekPageName = getTrekName();
 
     client
-      .query([Prismic.Predicates.at("my.trek.uid", actualTrekPageName)])
+      .query([prismic.predicate.at("my.trek.uid", actualTrekPageName)])
       .then(async function (response) {
         if (
           response?.results &&
@@ -76,17 +73,15 @@ const BookingCalender = ({
                 viewDt = date;
 
                 setViewDate(viewDt);
-                setRender(true);
               }
             });
           } else {
             setViewDate(viewDt);
-            setRender(true);
           }
-        } else {
-          setRender(true);
         }
       });
+    setRender(true);
+
   }, []);
 
   function getTrekNameFromUrlQueryPath() {
@@ -131,10 +126,10 @@ const BookingCalender = ({
   const fetchTrekMonthBatches = async (date) => {
     setBatchDates(undefined);
     const actualTrekPageName = getTrekName();
-    const client = Client();
+    const client = createClient()
 
     await client
-      .query([Prismic.Predicates.at("my.trek.uid", actualTrekPageName)])
+      .query([prismic.predicate.at("my.trek.uid", actualTrekPageName)])
       .then(async function (response) {
         if (
           response?.results &&
