@@ -37,8 +37,9 @@ const BookingCalender = ({
   const [trekId, setTrekId] = useState();
   const [render, setRender] = useState(false);
   const [noDates, setNoDates] = useState(false);
+  const currentYear = new Date().getFullYear()
 
-  React.useEffect(() => {
+  useEffect(() => {
     const client = createClient();
 
     const actualTrekPageName = getTrekName();
@@ -68,9 +69,7 @@ const BookingCalender = ({
             getBatchesApi.then((batches) => {
               if (batches?.length > 0) {
                 const date = new Date(batches[0].startDate);
-                date.setMonth(date.getMonth());
-
-                viewDt = date;
+                let viewDt = date;
 
                 setViewDate(viewDt);
               }
@@ -83,6 +82,8 @@ const BookingCalender = ({
     setRender(true);
 
   }, []);
+
+  useEffect(() => fetchTrekMonthBatches(viewDate), [viewDate])
 
   function getTrekNameFromUrlQueryPath() {
     return paramTrekName;
@@ -139,8 +140,8 @@ const BookingCalender = ({
           const trekId = response.results[0].data?.trek_id[0].text;
           const data = await getBatchesByTrekId(
             trekId,
-            date.month + 1,
-            date.year
+            date.getMonth() + 1,
+            date.getFullYear()
           );
 
           if (data.length > 0) {
@@ -291,17 +292,7 @@ const BookingCalender = ({
     }
   };
   const dateTemplate = (date) => {
-    if (date.day === 1) {
-      const dt = date.day + "-" + date.month + "-" + date.year;
 
-      if (selectedMonthYear === "") {
-        setSelectedMonthYear(dt);
-        fetchTrekMonthBatches(date);
-      } else if (selectedMonthYear !== dt) {
-        fetchTrekMonthBatches(date);
-        setSelectedMonthYear(dt);
-      }
-    }
     const key = String(date.day).padStart(2, "0");
 
     if (batchDates !== undefined && batchDates[key] !== undefined) {
@@ -459,46 +450,52 @@ const BookingCalender = ({
     }
   };
 
+  const onViewDateChange = (e) => setViewDate(new Date(e.value))
+
+
+
   return (
-    <>
-      <div>
-        <Toast ref={toast} />
+    viewDate ?
+      <>
         <div>
+          <Toast ref={toast} />
           <div>
             <div>
-              {noDates === true && (
-                <h3 className="p-text-1 my-5">
-                  We will open up dates shortly.
-                  <a href="/upcoming-treks">Click here</a> to see other treks
-                  that might have dates.
-                </h3>
-              )}
-              {render && (
+              <div>
+                {noDates === true && (
+                  <h3 className="p-text-1 my-5">
+                    We will open up dates shortly.
+                    <a href="/upcoming-treks">Click here</a> to see other treks
+                    that might have dates.
+                  </h3>
+                )}
+
                 <div>
                   <Calendar
                     id="navigatorstemplate"
                     onSelect={(e) => onSelect(e.value)}
                     monthNavigator
                     yearNavigator
-                    yearRange="2022:2023"
+                    yearRange={`${currentYear}:${Number(currentYear) + 1}`}
                     disabledDates={invalidDates}
                     showOtherMonths={false}
                     inline
                     dateTemplate={dateTemplate}
                     monthNavigatorTemplate={monthNavigatorTemplate}
                     yearNavigatorTemplate={yearNavigatorTemplate}
+                    onViewDateChange={onViewDateChange}
                     viewDate={viewDate != undefined ? viewDate : new Date()}
                   />
                 </div>
-              )}
+
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <style jsx global>
-        {trekStyle}
-      </style>
-    </>
+        <style jsx global>
+          {trekStyle}
+        </style>
+      </> : null
   );
 };
 export default BookingCalender;
