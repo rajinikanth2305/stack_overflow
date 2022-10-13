@@ -13,7 +13,6 @@ export const getServerSideProps = async ({ res }) => {
   const BASE_URL = process.env.WEBSITE_URL;
 
   const dynamicPages = [
-    "trek",
     "family_trek",
     "document_trek_type",
     "post",
