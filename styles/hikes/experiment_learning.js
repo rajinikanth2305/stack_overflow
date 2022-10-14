@@ -134,7 +134,7 @@ export const experimentStyles = css.global`
     font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
-    font-size: 72px;
+    font-size: 62px;
     color: rgba(255, 255, 255, 1);
     text-transform: uppercase;
   }
