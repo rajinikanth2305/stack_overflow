@@ -27,6 +27,10 @@ import {
 import moment from "moment";
 import { ProgressSpinner } from "primereact/progressspinner";
 
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
+
+
 const MakePayment = forwardRef((props, ref) => {
   const [bookingInformation, setBookingInformation] = useState(undefined);
   const [trekData, setTrekData] = useState(undefined);
@@ -649,7 +653,7 @@ const MakePayment = forwardRef((props, ref) => {
                                   0 &&
                                   Number(
                                     data?.trekFeeForTheUser -
-                                      Number(data?.voucherAmount)
+                                    Number(data?.voucherAmount)
                                   ).toFixed(2)}
                               </div>
                             </div>
