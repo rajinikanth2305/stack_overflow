@@ -2,6 +2,7 @@ import React, {
   useEffect,
   useState,
   useRef,
+  useContext,
   forwardRef,
   useImperativeHandle,
 } from "react";
@@ -19,6 +20,8 @@ import {
   selectStateData,
 } from "../../reduxstate/counterSlice";
 import Accordion from "react-bootstrap/Accordion";
+import { useAccordionButton } from 'react-bootstrap/AccordionButton';
+import AccordionContext from "react-bootstrap/AccordionContext";
 import Card from "react-bootstrap/Card";
 
 import {
@@ -287,6 +290,27 @@ const SelectBatch = forwardRef((props, ref) => {
     return (treatAsUTC(endDate) - treatAsUTC(startDate)) / millisecondsPerDay;
   }
 
+  function ContextAwareToggle({ children, eventKey, callback }) {
+    const currentEventKey = useContext(AccordionContext);
+
+    const decoratedOnClick = useAccordionButton(
+      eventKey,
+      () => callback && callback(eventKey)
+    );
+
+    const isCurrentEventKey = currentEventKey === eventKey;
+
+    return (
+      <button
+        type="button"
+        className={isCurrentEventKey ? "show" : ""}
+        onClick={decoratedOnClick}
+      >
+        {children}
+      </button>
+    );
+  }
+
   return (
     <>
       <Toast ref={toast} />
@@ -335,37 +359,12 @@ const SelectBatch = forwardRef((props, ref) => {
                                     return (
                                       <Card>
                                         <Card.Header>
-                                          <Accordion.Button
-                                            variant="link"
-                                            eventKey={`${trekMonth.groupKey}`}
-                                            className={
-                                              activeIndex &&
-                                                activeIndex === index + 1
-                                                ? "show"
-                                                : ""
-                                            }
-                                            onClick={() => {
-                                              setActiveIndex(index + 1);
-                                              setActive(!isActive);
-                                            }}
-                                          >
-                                            {/* <div className="d-flex align-items-center">
-                                          <div className="flex-grow-1">
+
+                                          <ContextAwareToggle eventKey={`${trekMonth.groupKey}`}>
                                             {trekMonth.headingText}
-                                          </div>
-                                          <div>
-                                            <div>
-                                              <h2 className="m-0 expand_plus_arrow">
-                                                <i
-                                                  className="fa fa-angle-down"
-                                                  aria-hidden="true"
-                                                ></i>
-                                              </h2>
-                                            </div>
-                                          </div>
-                                        </div> */}
-                                            {trekMonth.headingText}
-                                          </Accordion.Button>
+                                          </ContextAwareToggle>
+
+
                                         </Card.Header>
                                         <Accordion.Collapse
                                           eventKey={`${trekMonth.groupKey}`}
