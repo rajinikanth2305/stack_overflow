@@ -80,7 +80,6 @@ const UpcomingTreks = ({
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
 
   const client = createClient({ previewData })
 

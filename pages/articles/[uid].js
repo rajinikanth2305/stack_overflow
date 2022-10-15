@@ -76,7 +76,7 @@ export async function getStaticProps({
   previewData = {},
 }) {
 
-  const client = createClient();
+  const client = createClient({ previewData });
 
 
 

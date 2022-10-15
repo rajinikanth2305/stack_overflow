@@ -71,7 +71,7 @@ export async function getServerSideProps({
 }) {
     const { tags } = params;
 
-    const client = createClient();
+    const client = createClient({ previewData });
     const docs = await client.query(
         prismic.predicate.fulltext(
             "my.trek.meta_tags",

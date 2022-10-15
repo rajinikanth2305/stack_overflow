@@ -60,7 +60,7 @@ export async function getStaticProps({
 }) {
 
 
-  const client = createClient();
+  const client = createClient({ previewData });
 
   const doc = await client.getByUID("family_trek", params.uid)
 
