@@ -470,6 +470,7 @@ const RegHome = ({ slice }) => {
       taxPercentage: userData.taxPercentage,
       insuranceAmount:
         userData?.insuranceAmount == null ? 0 : userData?.insuranceAmount,
+      amountPaid: userData.amountPaid
     };
     return participants;
   };
