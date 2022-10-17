@@ -39,7 +39,7 @@ const Founder = ({ slice }) => {
       <div className="mb-5">
         <div className="m-d-none">
           <div className="container">
-            <div className="row">
+            <div className="row" style= {{marginBottom: "2em"}}>
               <div className="col-lg-6 col-md-12"></div>
               <div className="col-lg-6 col-md-12">
                 <h2 className="title-h2 m-0 pb-08">{RichText.asText(title)}</h2>

@@ -20,6 +20,12 @@ export const trekStyle = css.global`
     src: url("/font/LORA/Lora-Medium.ttf") format("truetype");
   }
 
+  @font-face {
+    font-family: Lora-Medium;
+    src: url("/font/LORA/Lora-Medium.ttf");
+    src: url("/font/LORA/Lora-Medium.ttf") format("truetype");
+  }
+
   .title-h1 {
     text-align: left;
     font-family: Lora;
@@ -515,6 +521,21 @@ export const trekStyle = css.global`
     top: 38%;
   }
 
+   .slick-prev::before,
+  .slick-next::before {
+    color: #707070;
+    font-family: "FontAwesome" !important;
+    font-size: 36px;
+  }
+
+  .slick-next::before {
+    content: "\f101" !important;
+  }
+
+  .slick-prev::before {
+    content: "\f100" !important;
+  }
+
   // .slick-prev::before,
   // .slick-next::before {
   //   color: #ffc100;
@@ -716,6 +737,17 @@ export const trekStyle = css.global`
 
   .trek_card {
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+  }
+
+  .trek_card a {
+    text-decoration: none;
+  }
+
+  .choose_trek_image {
+      position:relative;
+      width:100%;
+      height:222px;
+      border-bottom:2px solid rgb(255,193,0)
   }
 
   .trek_card_desc_min_height {
@@ -2140,6 +2172,11 @@ export const trekStyle = css.global`
       padding-top: 30px;
       margin-top: 0px;
       padding-bottom: 45px;
+    }
+
+    .choose_trek_image {
+      height: 160px;
+      margin-bottom: 10px;
     }
 
     .trek_video_badge.mmb2 {
