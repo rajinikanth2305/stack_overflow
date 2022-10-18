@@ -158,7 +158,7 @@ const Experiment = ({ slice, articleData, expLearningPrimaryArticleData }) => {
                 </div>
               </Link>
             </div>
-            <div className="col-lg-4 col-md-6">{artData}</div>
+            <div className="col-lg-4">{artData}</div>
           </div>
         </div>
         <style jsx global>

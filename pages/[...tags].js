@@ -18,7 +18,7 @@ const headingText = (tagsArray) => {
 
 const CustomTreksPage = ({ results, tags }) => {
 
-    const PAGE_LIMIT = 12;
+    const PAGE_LIMIT = 30;
     const totalNumberOfPages = Math.ceil(results.length / PAGE_LIMIT)
     const [currentPageNumber, setCurrentPageNumber] = useState(1)
     const [treks, setTreks] = useState([])
@@ -71,7 +71,7 @@ export async function getServerSideProps({
 }) {
     const { tags } = params;
 
-    const client = createClient();
+    const client = createClient({ previewData });
     const docs = await client.query(
         prismic.predicate.fulltext(
             "my.trek.meta_tags",

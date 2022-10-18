@@ -5,6 +5,7 @@ import { PrismicPreview } from '@prismicio/next'
 import { linkResolver, repositoryName } from '../prismicio'
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
+// import "../styles/buttonHoverStyle.css"
 import React from "react";
 
 function MyApp({ Component, pageProps }) {

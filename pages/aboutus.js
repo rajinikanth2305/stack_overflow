@@ -45,9 +45,8 @@ const AboutUs = ({ doc, articleData }) => {
 };
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
 
-  const client = createClient();
+  const client = createClient({ previewData });
 
   const doc = await client.getSingle("aboutih_type")
   const articleData = [];

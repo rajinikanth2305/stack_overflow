@@ -27,6 +27,10 @@ import {
 import moment from "moment";
 import { ProgressSpinner } from "primereact/progressspinner";
 
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
+
+
 const MakePayment = forwardRef((props, ref) => {
   const [bookingInformation, setBookingInformation] = useState(undefined);
   const [trekData, setTrekData] = useState(undefined);
@@ -49,6 +53,7 @@ const MakePayment = forwardRef((props, ref) => {
       total: 0,
       voucherDeduction: 0,
       youpay: 0,
+      amountPaidByAll: 0
     },
   });
 
@@ -191,7 +196,11 @@ const MakePayment = forwardRef((props, ref) => {
       0
     );
 
-    const youpay = parseFloat(Number(total - totalVoucherAmount).toFixed(2));
+    const amountPaidByAll = usersData.reduce((acc, curr) => {
+      return curr.amountPaid ? acc + curr.amountPaid : acc
+    }, 0)
+
+    const youpay = parseFloat(Number(total - totalVoucherAmount - amountPaidByAll).toFixed(2));
 
     setComputeFields({
       ...computeFields,
@@ -201,6 +210,7 @@ const MakePayment = forwardRef((props, ref) => {
         totaltax: gstValue,
         total: total,
         voucherDeduction: parseFloat(Number(totalVoucherAmount).toFixed(2)),
+        amountPaidByAll,
         youpay: youpay,
       },
     });
@@ -649,7 +659,7 @@ const MakePayment = forwardRef((props, ref) => {
                                   0 &&
                                   Number(
                                     data?.trekFeeForTheUser -
-                                      Number(data?.voucherAmount)
+                                    Number(data?.voucherAmount)
                                   ).toFixed(2)}
                               </div>
                             </div>
@@ -842,6 +852,21 @@ const MakePayment = forwardRef((props, ref) => {
                       </div>
                     </div>
                   </div>
+                  {!!computeFields.computations.amountPaidByAll && <div className="d-flex">
+                    <div className="flex-grow-1 px-5">
+                      <p className="p-text-3-1-2 text-align-right mb-2">
+                        Amount paid
+                      </p>
+                    </div>
+                    <div>
+                      <p className="p-text-3-1-2 mb-2">
+                        Rs.{" "}
+                        {Number(
+                          computeFields.computations.amountPaidByAll
+                        ).toFixed(2)}
+                      </p>
+                    </div>
+                  </div>}
                   <div className="d-flex border-bottom-custom-1">
                     <div className="flex-grow-1 px-5">
                       <p className="p-text-3-1-2 text-align-right mb-3">

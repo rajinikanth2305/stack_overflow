@@ -17,17 +17,14 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText,
 } from "reactstrap";
-import { RichText } from "prismic-reactjs";
 import { ihheaderStyles } from "styles";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Prismic from "@prismicio/client";
-import { Client } from "utils/prismicHelpers";
+import * as prismic from "@prismicio/client"
+import { createClient } from 'prismicio'
 import Image from "next/image";
-import { DebounceInput } from "react-debounce-input";
-import auths from "../../../services/Authenticate";
+import auths from "../../services/Authenticate";
 import { AutoComplete } from "primereact/autocomplete";
 
 import { linkResolver } from "prismic-configuration";
@@ -77,40 +74,56 @@ const HikeHeader = (auth = false) => {
       return;
     }
 
-    const matchingResults = [];
-    const client = Client();
+    const client = createClient();
 
-    await client
-      .query([
-        Prismic.Predicates.fulltext("my.trek.search_keywords", searchQuery),
-        Prismic.Predicates.not("my.trek.family_trek", true),
-        Prismic.Predicates.not("my.trek.private_trek", true),
-      ])
-      .then((response) => {
-        console.log("first response", response)
-        matchingResults.push(...response.results);
-      });
+    const trekResults = await client
+      .query(
+        [
+          prismic.predicate.fulltext('my.trek.search_keywords', searchQuery),
+          prismic.predicate.not("my.trek.family_trek", true),
+          prismic.predicate.not("my.trek.private_trek", true),
+        ],
+        { 
+          pageSize: 3,
+        }
+      )
+      .then(response => response.results);
 
-    await client
-      .query([
-        Prismic.Predicates.fulltext("my.document_trek_type.title", searchQuery),
-      ])
-      .then((response) => {
-        console.log("second response", response)
-        matchingResults.push(...response.results);
-      });
+    const documentedTrekResults = await client
+      .query(
+        [
+          prismic.predicate.fulltext(
+            "my.document_trek_type.title", searchQuery
+          ),
+        ],
+        {
+          pageSize: 3,
+        }
+      )
+      .then(response => response.results);
 
-    await client
-      .query([Prismic.Predicates.fulltext("my.post.title", searchQuery)], {
-        orderings: "[my.post.date desc]",
-        pageSize: 100,
-      })
-      .then((response) => {
-        console.log("third response", response)
-        matchingResults.push(...response.results);
-      });
+    const articleResults = await client
+      .query(
+        [
+          prismic.predicate.fulltext("my.post.title", searchQuery),
+        ],
+        {
+          orderings: {
+            field: "my.post.date",
+            direction: "desc",
+          },
+          pageSize: 3,
+        }
+      )
+      .then(response => response.results);
 
-    setSearchResults(matchingResults);
+    setSearchResults(
+      [
+        ...trekResults,
+        ...documentedTrekResults,
+        ...articleResults,
+      ]
+    );
   };
 
   // React Render
@@ -343,9 +356,9 @@ const HikeHeader = (auth = false) => {
                       <DropdownItem>Family treks</DropdownItem>
                     </NavLink>
                     <NavLink
-                      href="../../../family-trek/diy-treks-page"
+                      href="../../../family-trek/diy-treks"
                       className={
-                        router.asPath == "/family-trek/diy-treks-page"
+                        router.asPath == "/family-trek/diy-treks"
                           ? "active-custom dd-menu"
                           : "dd-menu"
                       }
@@ -828,20 +841,6 @@ const HikeHeader = (auth = false) => {
   );
 };
 
-export async function getStaticProps({ preview = null, previewData = {} }) {
-  const { ref } = previewData;
-  alert("hi");
 
-  const client = Client();
-
-  const easyMordatesTreks = await client.query([
-    Prismic.Predicates.at("document.type", "trek"),
-    Prismic.Predicates.at("document.tags", ["Easy - Moderate"]),
-  ]);
-
-  console.log(easyMordatesTreks);
-
-  return easyMordatesTreks;
-}
 
 export default HikeHeader;

@@ -8,6 +8,10 @@ import React, {
 import { Controller, useForm } from "react-hook-form";
 //import { yupResolver } from "@hookform/resolvers/yup";
 
+
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
+
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup.umd";
 import * as Yup from "yup";
 //import { ConfirmPopup } from 'primereact/confirmpopup'; // To use <ConfirmPopup> tag

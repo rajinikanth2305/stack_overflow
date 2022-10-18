@@ -296,13 +296,31 @@ export const regStyle = css.global`
     border: 2px solid #ffc100 !important;
   }
 
+    content: "1";
+  }
+
+
+  .stepper-tabs .nav-item:nth-child(2) .nav-link::before {
+    content: "2";
+  }
+
+
+  .stepper-tabs .nav-item:nth-child(3) .nav-link::before {
+    content: "3";
+  }
+
+  .stepper-tabs .nav-item:nth-child(4) .nav-link::before {
+    content: "4";
+  }
+
+  .stepper-tabs .nav-item:nth-child(5) .nav-link::before {
+    content: "5";
+  }
   .stepper-tabs .nav-item > .nav-link.active:nth-child(1)::before {
     background: #ffffff;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    content: "1";
     padding: 4px 8px;
     margin-right: 15px;
   }
@@ -313,7 +331,6 @@ export const regStyle = css.global`
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    content: "2";
     padding: 4px 8px;
     margin-right: 15px;
   }
@@ -324,7 +341,6 @@ export const regStyle = css.global`
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    content: "3";
     padding: 4px 8px;
     margin-right: 15px;
   }
@@ -335,7 +351,6 @@ export const regStyle = css.global`
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    content: "4";
     padding: 4px 8px;
     margin-right: 15px;
   }
@@ -346,7 +361,6 @@ export const regStyle = css.global`
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    content: "5";
     padding: 4px 8px;
     margin-right: 15px;
   }
@@ -379,7 +393,6 @@ export const regStyle = css.global`
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    content: "1";
     padding: 4px 8px;
     margin-right: 15px;
   }
@@ -390,7 +403,6 @@ export const regStyle = css.global`
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    content: "2";
     padding: 4px 8px;
     margin-right: 15px;
   }
@@ -401,7 +413,6 @@ export const regStyle = css.global`
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    content: "3";
     padding: 4px 8px;
     margin-right: 15px;
   }
@@ -412,7 +423,6 @@ export const regStyle = css.global`
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    content: "4";
     padding: 4px 8px;
     margin-right: 15px;
   }
@@ -423,7 +433,6 @@ export const regStyle = css.global`
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    content: "5";
     padding: 4px 8px;
     margin-right: 15px;
   }
