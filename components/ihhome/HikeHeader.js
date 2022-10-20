@@ -155,7 +155,7 @@ const HikeHeader = (auth = false) => {
     searchResults.slice(0, 3)?.map(function (data, i) {
       let url;
       /* const slugUrl = data?.uid;
- 
+
        if (slugUrl) {
          url = `/trek/${slugUrl}`;
        }*/
@@ -167,7 +167,7 @@ const HikeHeader = (auth = false) => {
       url = linkResolver(data);
 
       return (
-        <div key={i} className="card border-0 px-3 py-1 cursor-pointer">
+        <div key={i} className="card border-0 cursor-pointer">
           <a href={url ? url : "#"}>
             <div
               className="mw-100"
@@ -762,7 +762,10 @@ const HikeHeader = (auth = false) => {
       </div>
       {showSearch === true && (
         <div className="container searchHs">
-          <div className="d-flex justify-content-end">
+          <div className="d-flex justify-content-start">
+		  <h6 className="search-text">SEARCH:</h6>
+		  </div>
+          <div className="d-flex">
             <div>
               {/*<input*/}
               {/*  type="text"*/}
@@ -778,7 +781,6 @@ const HikeHeader = (auth = false) => {
                 onChange={onChange}
                 placeholder="Find your trek here?"
              />*/}
-
               <AutoComplete
                 id="ac-search"
                 minLength={2}
@@ -809,9 +811,11 @@ const HikeHeader = (auth = false) => {
               <div className="s-r-height">
                 {resultListing}
                 {resultListing && resultListing?.length >= 3 && (
-                  <div className="px-3 pb-3">
+                  <div className="px-3 pb-3  d-flex align-items-center justify-content-center">
                     <a href={searchURL}>
-                      <button className="btn w-100">View More Results</button>
+                      <button className="btn btn-lg btn-ih-primary hvr-grow">
+                        View More Results
+                      </button>
                     </a>
                   </div>
                 )}

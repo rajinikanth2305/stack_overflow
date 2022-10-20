@@ -132,25 +132,48 @@ export const ihheaderStyles = css.global`
   .m-d-block {
     display: none;
   }
-
   .g-search {
-    border-radius: 20px;
-    // border: 1px solid #cccccc;
-    margin-top: 5px;
+    border: 1px solid rgb(255, 193, 0);
     margin-bottom: 0;
     font-size: 14px;
-    // padding: 3px 15px;
     position: fixed;
-    // width: 25%;
-    right: 5px;
     z-index: 99;
-    // top: 62px;
   }
-
+  .search-text{
+	  font-size:13px;
+	  font-weight:bold;
+	  margin-top:3px;
+  }
   .g-search > input {
-    width: 400px;
+    width: 375px;
     padding: 3px 15px;
-    border-radius: 50px;
+    border: 1px solid rgb(255, 193, 0);
+  }
+  .g-search > input:focus {
+    width: 375px;
+    padding: 3px 15px;
+    border: 1px solid rgb(255, 193, 0) !important;
+    border-radius: 0px;
+    outline: none;
+    border-color: rgb(255, 193, 0);
+  }
+  .p-autocomplete p-inputwrapper-focus {
+    border-radius: 0px !important;
+  }
+  .p-autocomplete-input {
+    color: #000 !important;
+    border-radius: 0px;
+  }
+  .btn-ih-primary {
+    background: rgb(255, 193, 0);
+    border-color: rgb(255, 193, 0);
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
+    color: black;
+    font-size: 18px;
+    text-transform: none;
+    font-family: Franklin Gothic Medium;
+    padding: 5px 30px;
   }
 
   // .searchHs {
@@ -158,19 +181,32 @@ export const ihheaderStyles = css.global`
   //   z-index: 99;
   //   right: 8%;
   // }
-
-  .search-box-section {
+  .searchHs {
     background: #ffffff;
     border: 1px solid rgb(255, 193, 0);
     position: fixed;
-    // right: 7%;
-    // width: 25%;
-    right: 5px;
+    margin-top: 5px;
+    right: 20px;
     width: 400px;
-    top: 100px;
     z-index: 99;
+    max-height: 600px;
+    display: block;
+    height: 460px;
+    overflow: auto;
   }
 
+  .search-box-section {
+    background: #ffffff;
+    position: fixed;
+    margin-top: 20px;
+    top: 120px;
+    width: 375px;
+    z-index: 99;
+  }
+  .btn-ih-primary {
+    text-transform: capitalize !important;
+    font-size: 14px !important;
+  }
   .s-r-height {
     max-height: 600px;
     overflow-y: auto;
@@ -262,30 +298,49 @@ export const ihheaderStyles = css.global`
     .mw-100 {
       width: 100%;
     }
-
-    .smw-100 {
-      width: 100%;
-    }
-
     .search-box-section {
-      width: 100%;
-      right: 0;
+      width: 95%;
+	  position:relative;
+	  top:15px;
     }
 
     .g-search {
-      right: 0px;
-      text-align: center;
+      border: 1px solid rgb(255, 193, 0);
+      margin-bottom: 0;
+      font-size: 14px;
+      position: absolute;
+      z-index: 99;
+      width: 95%;
     }
 
     .g-search > input {
-      width: 360px;
+      padding: 3px 15px;
+      border: 1px solid rgb(255, 193, 0);
+      width: 100%;
+    }
+    .g-search > input:focus {
+      padding: 3px 15px;
+      border: 1px solid rgb(255, 193, 0) !important;
+      border-radius: 0px;
+      outline: none;
+      border-color: rgb(255, 193, 0);
+      width: 100%;
     }
 
     .searchHs {
+      background: #ffffff;
+      border: 1px solid rgb(255, 193, 0);
       position: relative;
-      right: 0;
+      margin-top: 0px;
+      right: 0px;
+      left: 0px;
+      width: 100%;
+      top: 0px;
+      z-index: 99;
+      max-height: 600px;
+      display: block;
+      overflow: auto;
     }
-
     .view-in-desk {
       display: none;
     }
