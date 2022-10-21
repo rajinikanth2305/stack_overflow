@@ -2,11 +2,41 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { customStyles } from "styles";
 import Image from "next/image";
+import Link from "next/link";
 
 const FamilyTrekBanner = ({ slice }) => {
-  const heading1 = slice?.primary?.heading1;
-  const heading2 = slice?.primary?.heading2;
-  const imageUrl = slice?.primary?.banner_image?.url;
+  if (!(slice && slice.primary)) {
+    return null;
+  }
+
+  const { primary } = slice;
+
+  const {
+    heading1,
+    heading2,
+    banner_image: bannerImage,
+    button_text: buttonText,
+    button_link: buttonLink
+  } = primary;
+
+  const imageUrl = bannerImage?.url;
+  const buttonLinkUrl = buttonLink?.url;
+
+  const ctaButton = (() => {
+    if (!(buttonText && buttonLinkUrl)) {
+      return null;
+    }
+
+    return (
+        <div className="mt-3 m-text-center">
+          <Link href={buttonLinkUrl}>
+            <button className="btn btn-lg btn-ih-primary hvr-grow">
+              {buttonText}
+            </button>
+          </Link>
+        </div>
+    );
+  })();
 
   return (
     <>
@@ -22,11 +52,7 @@ const FamilyTrekBanner = ({ slice }) => {
                   <div className="banner-text-2 mb-0">
                     {RichText.render(heading2)}
                   </div>
-                  {/* <div className="my-3">
-                    <button type="button" className="btn btn-ih-primary hvr-grow">
-                      View trek and dates
-                    </button>
-                  </div> */}
+                  {ctaButton}
                 </div>
               </div>
             </div>

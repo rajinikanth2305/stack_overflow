@@ -4,26 +4,77 @@ import { customStyles } from "styles";
 import Image from "next/image";
 import Modal from "react-bootstrap/Modal";
 import { linkResolver } from "prismic-configuration";
+import Link from "next/link";
 /**
  * FT Slice Components
  */
 const TrekExp = ({ slice }) => {
-  const heading1 = slice?.primary?.heading1;
-  const detailsList = slice?.primary?.details;
-  const imageUrl = slice?.primary?.image?.url;
-  const primaryVideoUrl = slice?.primary?.video_url?.url;
+  if (!(slice && slice.primary)) {
+    return null;
+  }
 
-  const result = primaryVideoUrl?.split(
-    /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
-  );
-  const videoIdWithParams = result && result[2];
+  const { primary } = slice;
 
-  const cleanVideoId =
-    videoIdWithParams && videoIdWithParams?.split(/[^0-9a-z_-]/i)[0];
+  const {
+    heading1: heading,
+    details,
+    image,
+    video_url: videoUrl,
+    button_text: buttonText,
+    button_link: buttonLink,
+  } = primary;
 
-  const videoUrl =
-    "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
-  const youtube_imageURL = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
+  const imageUrl = image?.url;
+
+  const youtubeData = (() => {
+    if (!(videoUrl && videoUrl.url)) return null;
+
+    const { url } = videoUrl;
+    const split = url.split(
+      /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/
+    );
+    const videoIdWithParams = split[2];
+    const cleanVideoId = videoIdWithParams.split(/[^0-9a-z_-]/i)[0];
+    const embedUrl = "https://www.youtube.com/embed/" + cleanVideoId + "?autoplay=1";
+    const imageUrl = `https://img.youtube.com/vi/${cleanVideoId}/hqdefault.jpg`;
+
+    return {
+      embedUrl,
+      imageUrl,
+    }
+  })();
+
+  const ctaButton = (() => {
+    if (!(buttonText && buttonLink)) {
+      return null;
+    }
+
+    let linkUrl;
+    switch (buttonLink.link_type) {
+      case "Web":
+        linkUrl = buttonLink.url;
+        break;
+      case "Document":
+        if (buttonLink.slug) {
+          linkUrl = linkResolver(buttonLink);
+        } else {
+          return null;
+        }
+        break;
+      default:
+        return null;
+    }
+
+    return (
+      <div className="d-flex align-items-center justify-content-center w-100 mt-3 m-text-center">
+        <Link href={linkUrl}>
+          <button className="btn btn-lg btn-ih-primary hvr-grow">
+            {buttonText}
+          </button>
+        </Link>
+      </div>
+    );
+  })();
 
   const [show, setShow] = useState(false);
 
@@ -50,7 +101,7 @@ const TrekExp = ({ slice }) => {
                       <img src="../ip.png" className="ft-image" />
                     )}
                   </div> */}
-                  {primaryVideoUrl ? (
+                  {youtubeData ? (
                     <div className="card card-box-shadow mt-5 pt-2">
                       <div className="img-margin  cursor-pointer">
                         <div className="d-flex align-items-center justify-content-center w-100 h-100">
@@ -64,7 +115,7 @@ const TrekExp = ({ slice }) => {
                           </div>
                         </div>
                         <Image
-                          src={youtube_imageURL && youtube_imageURL}
+                          src={youtubeData.imageUrl}
                           layout="fill"
                           objectFit="cover"
                           objectPosition="50% 50%"
@@ -91,8 +142,9 @@ const TrekExp = ({ slice }) => {
                   )}
                 </div>
                 <div className="col-lg-6 col-md-12">
-                  <div className="mt-h2 pb-08">{RichText.render(heading1)}</div>
-                  <div className="p-text-4">{RichText.render(detailsList)}</div>
+                  <div className="mt-h2 pb-08">{RichText.render(heading)}</div>
+                  <div className="p-text-4">{RichText.render(details)}</div>
+                  {ctaButton}
                 </div>
               </div>
             </div>
@@ -104,7 +156,7 @@ const TrekExp = ({ slice }) => {
             <div className="container">
               <div className="row pt-4">
                 <div className="col-lg-6 col-md-12">
-                  <div className="mt-h2 pb-08">{RichText.render(heading1)}</div>
+                  <div className="mt-h2 pb-08">{RichText.render(heading)}</div>
                 </div>
                 <div className="col-lg-6 col-md-12 pr-5p">
                   {/* <div className="ft-image mb-4">
@@ -120,7 +172,7 @@ const TrekExp = ({ slice }) => {
                       <img src="../ip.png" className="ft-image" />
                     )}
                   </div> */}
-                  {primaryVideoUrl ? (
+                  {youtubeData ? (
                     <div className="card card-box-shadow">
                       <div className="img-margin  cursor-pointer">
                         <div className="d-flex align-items-center justify-content-center w-100 h-100">
@@ -134,7 +186,7 @@ const TrekExp = ({ slice }) => {
                           </div>
                         </div>
                         <Image
-                          src={youtube_imageURL && youtube_imageURL}
+                          src={youtubeData.imageUrl}
                           layout="fill"
                           objectFit="cover"
                           objectPosition="50% 50%"
@@ -160,8 +212,9 @@ const TrekExp = ({ slice }) => {
                     </div>
                   )}
                   <div className="p-text-4 fl-style">
-                    {RichText.render(detailsList)}
+                    {RichText.render(details)}
                   </div>
+                  {ctaButton}
                 </div>
               </div>
             </div>
@@ -179,7 +232,7 @@ const TrekExp = ({ slice }) => {
           <iframe
             width="100%"
             height="500"
-            src={videoUrl && videoUrl}
+            src={youtubeData && youtubeData.embedUrl}
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
