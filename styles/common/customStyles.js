@@ -55,7 +55,7 @@ export const customStyles = css.global`
     background-size: cover;
     position: relative;
     background-position: bottom;
-    z-index: -9;
+    z-index: 99;
   }
 
   .bg_overlay {
@@ -130,7 +130,7 @@ export const customStyles = css.global`
     text-transform: none;
   }
 
-  .p-lo-36 {
+   .p-lo-36 {
     line-height: 40px;
     text-align: left;
     font-family: Lora;
@@ -1505,7 +1505,7 @@ export const customStyles = css.global`
     padding: 0px;
   }
 
-  .modal-header > button {  
+  .modal-header > button {
     background-color: transparent;
     border: 0px none;
     color: #ffffff;
@@ -3220,7 +3220,7 @@ export const customStyles = css.global`
   }
 
   .paddedSection > div > div {
-    padding-bottom: 2em
+    padding-bottom: 2em;
   }
 
   @keyframes ui-progress-spinner-color {
@@ -3489,5 +3489,11 @@ export const customStyles = css.global`
     color: rgba(255, 255, 255, 1);
     text-transform: none;
     padding: 0 10px;
+  }
+
+  .nav-tabs .nav-link {
+    height: 100%;
+    width: 100%;
+    color: black;
   }
 `;

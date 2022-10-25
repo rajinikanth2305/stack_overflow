@@ -54,7 +54,11 @@ const SearchList = ({ slice }) => {
           [
             prismic.predicate.fulltext("my.post.title", searchQuery)
           ],
-          { 
+          {
+            orderings: {
+              field: "my.post.date",
+              direction: "desc",
+            },
             pageSize: 100,
           }
         ).then(response => response.results);

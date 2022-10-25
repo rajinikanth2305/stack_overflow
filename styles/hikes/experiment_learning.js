@@ -134,7 +134,7 @@ export const experimentStyles = css.global`
     font-family: Lora-Medium;
     font-style: normal;
     font-weight: normal;
-    font-size: 62px;
+    font-size: 50px;
     color: rgba(255, 255, 255, 1);
     text-transform: uppercase;
   }
@@ -275,7 +275,7 @@ export const experimentStyles = css.global`
       padding: 45px 20px;
     }
     .c-title {
-      font-size: 50px;
+      font-size: 35px;
     }
     .c-description {
       font-size: 30px;

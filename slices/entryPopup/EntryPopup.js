@@ -217,7 +217,7 @@ function ListItems() {
                     10 minutes Q&A session</span>
             </li>
         </ul>
-        <p className={styles['footer-text']}>When: Oct 15th, Saturday at 11am</p>
+        <p className={styles['footer-text']}>When: Oct 29th, Saturday at 11am</p>
 
     </>
 }

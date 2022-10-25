@@ -1,18 +1,15 @@
-import React, { useState, useEffect, useMemo, useCallback, useRef, } from "react";
+import React, { useState, useEffect, useMemo, } from "react";
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import Link from "next/link";
 import { useRouter } from "next/router";
 import * as prismic from "@prismicio/client"
 import { createClient } from 'prismicio'
 import Image from "next/image";
-import { AutoComplete } from "primereact/autocomplete";
 import { linkResolver } from "prismic-configuration";
-import { PrismicLink, PrismicText } from '@prismicio/react'
 import Logo from "../../../public/IH_Logo_in_PNG@2x.png"
 import { twoTierHeaderStyles } from "styles";
 
@@ -40,7 +37,7 @@ const HikeHeader = ({ menu }) => {
   const [loggedIn, setLoggedIn] = useState(true)
 
   const router = useRouter()
-  const searchURL = `../search-result?name=${searchText}`;
+  const searchURL = `/search-result?name=${searchText}`;
 
 
   const fetchData = async (searchQuery) => {
@@ -100,7 +97,7 @@ const HikeHeader = ({ menu }) => {
     );
   };
 
-  const debounceFetchData = useMemo(() => debounce((s) => fetchData(s), 500), [])
+  const debounceFetchData = useMemo(() => debounce((s) => fetchData(s), 300), [])
 
   // This is a static menu currently, not pulled from Prismic
   const topMenuBar = useMemo(() =>
@@ -145,19 +142,19 @@ const HikeHeader = ({ menu }) => {
       debounceFetchData(searchText)
   }, [searchText])
 
-  const onSearchButtonClicked = () => {
-    if (!searchText) {
-      return setShowSearchBar((prev => !prev))
-    }
+  useEffect(() => {
+    if (!showSearchBar) setSearchResults([])
+  }, [showSearchBar])
 
-  }
+  const onSearchButtonClicked = () => setShowSearchBar((prev => !prev))
+
 
   const handleMenuOpen = () => {
     showSearchBar && setShowSearchBar(false)
   }
 
   const onKeyPressOnSearch = (e) => {
-    if (encodeURI.key === "Enter") {
+    if (e.key === "Enter") {
       router.push(searchURL);
       setSearchResults([]);
       setSearchText("");
@@ -280,19 +277,19 @@ const HikeHeader = ({ menu }) => {
         </Navbar>
       </header>
       {searchResults && searchResults?.length > 0 && (
-        <div className="search-box-section">
+        <div className="search-box-section container searchHs">
           <div className="d-flex justify-content-end p-1">
             <i
               className="fa fa-window-close cursor-pointer"
               aria-hidden="true"
               onClick={() => {
                 setSearchResults([]);
-                setSelectedTreks("");
+
               }}
             ></i>
           </div>
           <div className="s-r-height">
-            <ResultListing searchlist={searchResults} searchURL={searchURL} />
+            <ResultListing searchList={searchResults} searchURL={searchURL} />
           </div>
         </div>
       )}
@@ -321,10 +318,11 @@ const NavDropDownItem = ({ menuItem }) =>
     {menuItem.title}
   </NavDropdown.Item >
 
-const ResultListing = ({ searchlist, searchURL }) => {
+const ResultListing = ({ searchList, searchURL }) => {
+
 
   return <>
-    {searchlist.slice(0, 3)?.map(function (data, i) {
+    {searchList.slice(0, 3)?.map(function (data, i) {
       let url;
 
 
@@ -335,7 +333,7 @@ const ResultListing = ({ searchlist, searchURL }) => {
       url = linkResolver(data);
 
       return (
-        <div key={i} className="card border-0 px-3 py-1 cursor-pointer">
+        <div key={i} className="card border-0 cursor-pointer">
           <a href={url ? url : "#"}>
             <div
               className="mw-100"
@@ -395,11 +393,14 @@ const ResultListing = ({ searchlist, searchURL }) => {
 
       )
     })}
-    {searchlist.length > 3 && <div className="px-3 pb-3">
-      <a href={searchURL}>
-        <button className="btn w-100">View More Results</button>
-      </a>
-    </div>}
+    {searchList.length > 3 &&
+      <div className="px-3 pb-3  d-flex align-items-center justify-content-center">
+        <a href={searchURL}>
+          <button className="btn btn-lg btn-ih-primary hvr-grow">
+            View More Results
+          </button>
+        </a>
+      </div>}
   </>
 }
 
