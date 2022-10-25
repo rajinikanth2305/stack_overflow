@@ -272,9 +272,14 @@ export const twoTierHeaderStyles = css.global`
     font-size: 14px !important;
     }
 
+@media only screen and (max-width: 1350px) {
+    .main-header .top-navbar .navbar-collapse {
+        flex-basis: 70%
+    }
 
+}
 
-@media only screen and (max-width: 1290px) {
+@media only screen and (max-width: 1250px) {
     .main-header .top-navbar .navbar-collapse {
         flex-basis: 80%
     }
