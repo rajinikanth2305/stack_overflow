@@ -129,9 +129,7 @@ export const customStyles = css.global`
     color: rgba(0, 0, 0, 1);
     text-transform: none;
   }
-  .nav-tabs .nav-link.active{
-	  height:100%;
-  }
+
    .p-lo-36 {
     line-height: 40px;
     text-align: left;
@@ -3491,5 +3489,11 @@ export const customStyles = css.global`
     color: rgba(255, 255, 255, 1);
     text-transform: none;
     padding: 0 10px;
+  }
+
+  .nav-tabs .nav-link {
+    height: 100%;
+    width: 100%;
+    color: black;
   }
 `;
