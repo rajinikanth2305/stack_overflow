@@ -317,7 +317,7 @@ const NavSubMenu = ({ menuItem }) =>
 
 
 const NavDropDownItem = ({ menuItem }) =>
-  <NavDropdown.Item href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url} className={`${menuItem.level === 3 ? "thirdLevelMenu" : ""}`} >
+  <NavDropdown.Item href={menuItem.link.uid ? `/${menuItem.link.uid}` : menuItem.link.url} className={`${menuItem.level === 3 ? "thirdLevelMenu" : ""}`} >
     {menuItem.title}
   </NavDropdown.Item >
 
