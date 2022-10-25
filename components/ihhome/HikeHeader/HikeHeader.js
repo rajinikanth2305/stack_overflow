@@ -162,6 +162,9 @@ const HikeHeader = ({ menu }) => {
   }
 
 
+  console.log(bottomMenu)
+
+
   return (
 
     <>
@@ -218,7 +221,7 @@ const HikeHeader = ({ menu }) => {
               >
                 {!!bottomMenu.length && bottomMenu.map(subMenu => {
 
-                  return subMenu.children.length ? <NavSubMenu menuItem={subMenu} key={subMenu.title} /> : <Nav.Link className='' key={subMenu.title} href={`/${subMenu.link.uid}`}>{subMenu.title}</Nav.Link>
+                  return subMenu.children.length ? <NavSubMenu menuItem={subMenu} key={subMenu.title} /> : <Nav.Link className='' key={subMenu.title} href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url}>{subMenu.title}</Nav.Link>
 
                 })}
               </Nav>
@@ -265,7 +268,7 @@ const HikeHeader = ({ menu }) => {
               >
                 {!!bottomMenu.length && bottomMenu.map(subMenu => {
 
-                  return subMenu.children.length ? <NavSubMenu menuItem={subMenu} key={subMenu.title} /> : <Nav.Link className='' key={subMenu.title} href={`/${subMenu.link.uid}`}>{subMenu.title}</Nav.Link>
+                  return subMenu.children.length ? <NavSubMenu menuItem={subMenu} key={subMenu.title} /> : <Nav.Link className='' key={subMenu.title} href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url}>{subMenu.title}</Nav.Link>
 
                 })}
                 {!!topMenuBar.length && topMenuBar.map(subMenu => <Nav.Link key={subMenu.title} href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url}>{subMenu.icon ? subMenu.icon : ''}{subMenu.title}</Nav.Link>)}
@@ -314,7 +317,7 @@ const NavSubMenu = ({ menuItem }) =>
 
 
 const NavDropDownItem = ({ menuItem }) =>
-  <NavDropdown.Item href={`/${menuItem.link.uid}`} className={`${menuItem.level === 3 ? "thirdLevelMenu" : ""}`} >
+  <NavDropdown.Item href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url} className={`${menuItem.level === 3 ? "thirdLevelMenu" : ""}`} >
     {menuItem.title}
   </NavDropdown.Item >
 
