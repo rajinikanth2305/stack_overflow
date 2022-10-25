@@ -1,73 +1,47 @@
-import React, {
-  useState,
-  useEffect,
-  useMemo,
-  useCallback,
-  useRef,
-} from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
-import { ihheaderStyles } from "styles";
+import React, { useState, useEffect, useMemo, useCallback, useRef, } from "react";
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import Link from "next/link";
 import { useRouter } from "next/router";
 import * as prismic from "@prismicio/client"
 import { createClient } from 'prismicio'
 import Image from "next/image";
-import auths from "../../services/Authenticate";
 import { AutoComplete } from "primereact/autocomplete";
-
 import { linkResolver } from "prismic-configuration";
+import { PrismicLink, PrismicText } from '@prismicio/react'
+import Logo from "../../../public/IH_Logo_in_PNG@2x.png"
+import { twoTierHeaderStyles } from "styles";
 
 /**
  * Homepage header component
  */
 
-const menuIItems =
-  [
-    { title: 'Upcoming', link: "", subMenu: [{ title: 'text1', link: "", subMenu: [] }, { title: 'text2', link: '', subMenu: [] }] },
-    { title: 'Upcoming', link: "", subMenu: [{ title: 'text1', link: "", subMenu: [] }, { title: 'text2', link: '', subMenu: [] }] },
-    { title: 'Upcoming', link: "", subMenu: [{ title: 'text1', link: "", subMenu: [] }, { title: 'text2', link: '', subMenu: [] }] },
-    { title: 'Upcoming', link: "", subMenu: [{ title: 'text1', link: "", subMenu: [] }, { title: 'text2', link: '', subMenu: [] }] },
-    { title: 'Upcoming', link: "", subMenu: [{ title: 'text1', link: "", subMenu: [] }, { title: 'text2', link: '', subMenu: [] }] },
-    { title: 'Upcoming', link: "", subMenu: [{ title: 'text1', link: "", subMenu: [] }, { title: 'text2', link: '', subMenu: [] }] }
-  ]
+
+const debounce = (fn, wait) => {
+  let timer;
+
+  return (searchText) => {
+    if (timer) { console.log(timer); clearTimeout(timer); }
+    timer = setTimeout(() => fn(searchText), wait)
+  }
+}
 
 
+const HikeHeader = ({ menu }) => {
 
-
-
-const HikeHeader = (auth = false) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => setIsOpen(!isOpen);
-  const router = useRouter();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userServiceObject, setUserServiceObject] = useState(undefined);
-  const [searchText, setSearchText] = useState();
+  const [bottomMenu, setBottomMenu] = useState([])
+  const [searchText, setSearchText] = useState("")
+  const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(true)
 
-  const [showSearch, setShowSearch] = useState(false);
+  const router = useRouter()
+  const searchURL = `../search-result?name=${searchText}`;
 
-  const [selectedTreks, setSelectedTreks] = useState([]);
-  const searchURL = `../search-result?name=${selectedTreks}`;
-
-  const doLogout = () => {
-    auths.keycloak().then(([userTokenObject]) => {
-      userTokenObject.doLogout();
-      router.push(`/`);
-    });
-  };
 
   const fetchData = async (searchQuery) => {
     if (!searchQuery) {
@@ -83,7 +57,7 @@ const HikeHeader = (auth = false) => {
           prismic.predicate.not("my.trek.family_trek", true),
           prismic.predicate.not("my.trek.private_trek", true),
         ],
-        { 
+        {
           pageSize: 3,
         }
       )
@@ -126,61 +100,238 @@ const HikeHeader = (auth = false) => {
     );
   };
 
-  // React Render
-  const postAuthenticAction = () => {
-    setIsLoggedIn(true);
-  };
+  const debounceFetchData = useMemo(() => debounce((s) => fetchData(s), 500), [])
 
-  const onChange = (event) => {
-    const { value: nextValue } = event.target;
-    setSearchText(nextValue);
-    fetchData();
-  };
+  // This is a static menu currently, not pulled from Prismic
+  const topMenuBar = useMemo(() =>
+    [
+      { id: 1, title: "WORK WITH US", link: { uid: "careers" } },
+      { id: 2, title: "RENT GEAR", link: { url: "https://store.indiahikes.com/rent-gear/" } },
+      { id: 3, title: "VISIT STORE", link: { url: "https://store.indiahikes.com/" } },
+      { id: 4, title: "FAQS", link: { uid: "faq" } },
+      {
+        id: 5, title: `${loggedIn ? "My Profile" : "My Profile"}`, link: { uid: "../../../../user-dashboard/user-upcoming-treks" }, icon: <i
+          className="fa fa-user cursor-pointer"
+          aria-hidden="true"
+        ></i>
+      }
+    ], [loggedIn])
 
-  const searchOnEnte = (event) => {
-    if (event.key === "Enter") {
+
+  useEffect(() => {
+
+    const menuObj = [];
+
+    menu.forEach(menuItem => {
+
+      switch (menuItem.slice_type) {
+        case "1st_level":
+          menuObj.push({ title: menuItem.primary.link_text, link: menuItem.primary.nav_link, children: [], level: 1 });
+          break;
+        case "2nd_level":
+          const subMenuItem = { title: menuItem.primary.link_text, link: menuItem.primary.nav_link, level: 2, children: menuItem.items.map(thirdLevel => ({ title: thirdLevel.third_level_link_text, link: thirdLevel.third_level_link, level: 3 })) }
+          const lastMenuItem = menuObj.at(-1);
+          lastMenuItem.children = [...lastMenuItem.children, subMenuItem]
+          break;
+      }
+    });
+    setBottomMenu(menuObj)
+  }, [menu])
+
+
+
+  useEffect(() => {
+    searchText &&
+      debounceFetchData(searchText)
+  }, [searchText])
+
+  const onSearchButtonClicked = () => {
+    if (!searchText) {
+      return setShowSearchBar((prev => !prev))
+    }
+
+  }
+
+  const handleMenuOpen = () => {
+    showSearchBar && setShowSearchBar(false)
+  }
+
+  const onKeyPressOnSearch = (e) => {
+    if (encodeURI.key === "Enter") {
       router.push(searchURL);
       setSearchResults([]);
-      setSelectedTreks("");
+      setSearchText("");
     }
-  };
-
-  const autoSearchTreks = (event) => {
-    // console.log(event.query.toLowerCase());
-    fetchData(event.query.toLowerCase());
-  };
-
-  // useEffect(() => {
-  //   var prevScrollpos = window.pageYOffset;
-  //   window.onscroll = function () {
-  //     var currentScrollPos = window.pageYOffset;
-  //     if (prevScrollpos > currentScrollPos) {
-  //       document.getElementById("haha").style.top = "0";
-  //       showSearch === true ? document.getElementById("ac-search").style.top = "60px" : '';
-  //     } else {
-  //       document.getElementById("haha").style.top = "-60px";
-  //       showSearch === true ? document.getElementById("ac-search").style.top = "-2px" : ''
-  //     }
-  //     prevScrollpos = currentScrollPos;
-  //   }
-  // }, []);
+  }
 
 
+  return (
 
-  const resultListing =
-    searchResults &&
-    searchResults.slice(0, 3)?.map(function (data, i) {
+    <>
+      {/* The below component is for desktop view only and hidden on phones */}
+      <header className="main-header d-none d-lg-block">
+
+        <Navbar expand="lg" className='top-navbar'>
+          <Container fluid className='top-navbar-container'>
+            <Navbar.Brand href="/"> <Image
+              id="IH_Logo_in_PNG"
+              src={Logo}
+              className="logo-Icon"
+              alt=""
+            /></Navbar.Brand>
+
+            <Navbar.Collapse id="navbarScroll">
+              <Nav
+                className="me-auto my-2 my-lg-0"
+                style={{ maxHeight: '100px' }}
+                navbarScroll
+              >
+                {!!topMenuBar.length && topMenuBar.map(subMenu => <Nav.Link key={subMenu.title} href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url}>{subMenu.icon ? subMenu.icon : ''}{subMenu.title}</Nav.Link>)}
+
+              </Nav>
+              <Form className="d-flex searchBar">
+                <Form.Control
+                  type="search"
+                  placeholder="Search treks"
+                  aria-label="Search"
+                  value={searchText}
+                  onKeyPress={onKeyPressOnSearch}
+                  onChange={e => setSearchText(e.target.value)}
+                />
+                <Button variant="outline-success" onClick={onSearchButtonClicked}>
+                  <i
+                    className="fa fa-search cursor-pointer"
+                    aria-hidden="true"></i>
+                </Button>
+
+              </Form>
+
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+
+        <Navbar expand="lg" className='bottom-navbar'>
+          <Container fluid className='bottom-navbar-container'>
+
+            <Navbar.Collapse id="navbarScroll" className='bottom-navbar-content'>
+              <Nav
+                className="me-auto my-2 my-lg-0"
+                style={{ maxHeight: '100px' }}
+                navbarScroll
+              >
+                {!!bottomMenu.length && bottomMenu.map(subMenu => {
+
+                  return subMenu.children.length ? <NavSubMenu menuItem={subMenu} key={subMenu.title} /> : <Nav.Link className='' key={subMenu.title} href={`/${subMenu.link.uid}`}>{subMenu.title}</Nav.Link>
+
+                })}
+              </Nav>
+
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      </header>
+
+      {/* Below component will be visible on smaller screens */}
+      <header className="mobile-header-container d-lg-none">
+        <Navbar expand="lg" className='mobile-header'>
+          <Container fluid className='mobile-navbar-container'>
+            <Navbar.Brand href="/"> <Image
+              id="IH_Logo_in_PNG"
+              src={Logo}
+              className="logo-Icon"
+              alt=""
+            /></Navbar.Brand>
+            <div className='d-flex align-items-center'>
+              <Form className="searchBar">
+                <Button variant="" className="noHover" onClick={onSearchButtonClicked}>
+                  <i
+                    className="fa fa-search cursor-pointer"
+                    aria-hidden="true"></i>
+                </Button>
+                {showSearchBar && <Form.Control
+                  type="search"
+                  placeholder="Search treks"
+                  className="search-bar-input"
+                  aria-label="Search"
+                  value={searchText}
+                  onChange={e => setSearchText(e.target.value)}
+                />}
+
+              </Form>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={handleMenuOpen} />
+            </div>
+
+            <Navbar.Collapse id="navbarScroll" className='nav-drawer'>
+              <Nav
+                className="me-auto my-lg-0"
+                navbarScroll
+              >
+                {!!bottomMenu.length && bottomMenu.map(subMenu => {
+
+                  return subMenu.children.length ? <NavSubMenu menuItem={subMenu} key={subMenu.title} /> : <Nav.Link className='' key={subMenu.title} href={`/${subMenu.link.uid}`}>{subMenu.title}</Nav.Link>
+
+                })}
+                {!!topMenuBar.length && topMenuBar.map(subMenu => <Nav.Link key={subMenu.title} href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url}>{subMenu.icon ? subMenu.icon : ''}{subMenu.title}</Nav.Link>)}
+              </Nav>
+
+            </Navbar.Collapse>
+          </Container>
+
+        </Navbar>
+      </header>
+      {searchResults && searchResults?.length > 0 && (
+        <div className="search-box-section">
+          <div className="d-flex justify-content-end p-1">
+            <i
+              className="fa fa-window-close cursor-pointer"
+              aria-hidden="true"
+              onClick={() => {
+                setSearchResults([]);
+                setSelectedTreks("");
+              }}
+            ></i>
+          </div>
+          <div className="s-r-height">
+            <ResultListing searchlist={searchResults} searchURL={searchURL} />
+          </div>
+        </div>
+      )}
+
+      <style jsx global>
+        {twoTierHeaderStyles}
+      </style>
+
+    </>
+  );
+};
+
+
+const NavSubMenu = ({ menuItem }) =>
+  <NavDropdown title={menuItem.title} className={`${menuItem.level === 2 ? "secondLevelMenu" : ""}`} >
+    {
+      menuItem.children.map(subMenu => {
+        return subMenu.children && subMenu.children.length ? <NavSubMenu key={subMenu.title} menuItem={subMenu} /> : <NavDropDownItem menuItem={subMenu} key={subMenu.title} />
+      })
+    }
+  </NavDropdown>
+
+
+const NavDropDownItem = ({ menuItem }) =>
+  <NavDropdown.Item href={`/${menuItem.link.uid}`} className={`${menuItem.level === 3 ? "thirdLevelMenu" : ""}`} >
+    {menuItem.title}
+  </NavDropdown.Item >
+
+const ResultListing = ({ searchlist, searchURL }) => {
+
+  return <>
+    {searchlist.slice(0, 3)?.map(function (data, i) {
       let url;
-      /* const slugUrl = data?.uid;
- 
-       if (slugUrl) {
-         url = `/trek/${slugUrl}`;
-       }*/
+
 
       const getArticleImage = data?.data?.body?.find(
         (x) => x.slice_type === "feature_image"
       );
-      console.log(data)
+
       url = linkResolver(data);
 
       return (
@@ -241,606 +392,16 @@ const HikeHeader = (auth = false) => {
             </div>
           </a>
         </div>
-      );
-    });
 
-  return (
-    <>
-      <div className="border-bottom-custom-header position-sticky" id="ps">
-        <Navbar light expand="lg" className="container">
-          <NavbarBrand href="/">
-            <img
-              id="IH_Logo_in_PNG"
-              src="/IH_Logo_in_PNG@2x.png"
-              className="logo-Icon"
-              alt="imgs"
-            />
-          </NavbarBrand>
-          <div className="view-in-mob">
-            <div className="d-flex align-items-center justify-content-end">
-              <div>
-                <Link href="../../../user-dashboard/user-upcoming-treks">
-                  <i
-                    className="fa fa-user-o cursor-pointer"
-                    aria-hidden="true"
-                  ></i>
-                </Link>
-              </div>
-              <div className="mx-4">
-                <i
-                  className="fa fa-search cursor-pointer"
-                  aria-hidden="true"
-                  onClick={() => {
-                    setShowSearch(!showSearch);
-
-                    if (document.getElementById("ac-search"))
-                      document.getElementById("ac-search").value = "";
-
-                    setSearchResults([]);
-                  }}
-                ></i>
-              </div>
-            </div>
-          </div>
-          <NavbarToggler onClick={toggle} />
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="mr-auto" navbar>
-              {/* {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
-                ""
-              ) : (
-                <NavItem>
-                  <NavLink
-                    href="/"
-                    className={router.pathname == "/" ? "active-custom" : ""}
-                  >
-                    Home
-                  </NavLink>
-                </NavItem>
-              )} */}
-              {/* <NavItem>
-                {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                  router.pathname === "/user-dashboard/user-trekvouchers" ||
-                  router.pathname === "/user-dashboard/user-myprofile" ||
-                  router.pathname === "/user-dashboard/user-previous-treks" ? (
-                  ""
-                ) : (
-                  <NavLink
-                    href="../../../upcoming-treks"
-                    className={
-                      router.pathname == "/upcoming-treks"
-                        ? "active-custom"
-                        : ""
-                    }
-                  >
-                    Upcoming Treks
-                  </NavLink>
-                )}
-              </NavItem> */}
-              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
-                ""
-              ) : (
-                <UncontrolledDropdown inNavbar nav>
-                  <DropdownToggle nav>
-                    Upcoming Treks &nbsp;
-                    <i
-                      className="fa fa-caret-down cursor-pointer"
-                      aria-hidden="true"
-                      title="More"
-                    ></i>
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    <NavLink
-                      href="../../../upcoming-treks"
-                      className={
-                        router.pathname == "/upcoming-treks"
-                          ? "active-custom dd-menu"
-                          : "dd-menu"
-                      }
-                    >
-                      <DropdownItem>All upcoming treks</DropdownItem>
-                    </NavLink>
-                    <NavLink
-                      href="../../../family-trek/family-trek-page"
-                      className={
-                        router.asPath == "family-trek-page"
-                          ? "active-custom dd-menu"
-                          : "dd-menu"
-                      }
-                    >
-                      <DropdownItem>Family treks</DropdownItem>
-                    </NavLink>
-                    <NavLink
-                      href="../../../family-trek/diy-treks"
-                      className={
-                        router.asPath == "/family-trek/diy-treks"
-                          ? "active-custom dd-menu"
-                          : "dd-menu"
-                      }
-                    >
-                      <DropdownItem>DIY treks</DropdownItem>
-                    </NavLink>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-              )}
-
-              <NavItem>
-                {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                  router.pathname === "/user-dashboard/user-trekvouchers" ||
-                  router.pathname === "/user-dashboard/user-myprofile" ||
-                  router.pathname === "/user-dashboard/user-previous-treks" ? (
-                  ""
-                ) : (
-                  <NavLink
-                    href="../../../do-it-yourself-treks"
-                    className={
-                      router.pathname == "/do-it-yourself-treks"
-                        ? "active-custom"
-                        : ""
-                    }
-                  >
-                    Trek Library
-                  </NavLink>
-                )}
-              </NavItem>
-
-              <NavItem>
-                {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                  router.pathname === "/user-dashboard/user-trekvouchers" ||
-                  router.pathname === "/user-dashboard/user-myprofile" ||
-                  router.pathname === "/user-dashboard/user-previous-treks" ? (
-                  ""
-                ) : (
-                  <NavLink
-                    href="../../../articles/latest"
-                    className={
-                      router.asPath == "/articles/latest" ? "active-custom" : ""
-                    }
-                  >
-                    Articles & Resources
-                  </NavLink>
-                )}
-              </NavItem>
-
-              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
-                ""
-              ) : (
-                <>
-                  <UncontrolledDropdown inNavbar nav>
-                    <DropdownToggle nav>
-                      Experiential Learning &nbsp;
-                      <i
-                        className="fa fa-caret-down cursor-pointer"
-                        aria-hidden="true"
-                        title="More"
-                      ></i>
-                    </DropdownToggle>
-                    <DropdownMenu>
-                      <NavLink
-                        href="../../../family-trek/collaborative-leadership-program"
-                        className={
-                          router.asPath ==
-                            "/family-trek/collaborative-leadership-program"
-                            ? "active-custom dd-menu"
-                            : "dd-menu"
-                        }
-                      >
-                        <DropdownItem>For Colleges</DropdownItem>
-                      </NavLink>
-                      <NavLink
-                        href="../../../family-trek/experiential-learning-programs-for-schools"
-                        className={
-                          router.asPath ==
-                            "/family-trek/fexperiential-learning-programs-for-schools"
-                            ? "active-custom dd-menu"
-                            : "dd-menu"
-                        }
-                      >
-                        <DropdownItem>For Schools</DropdownItem>
-                      </NavLink>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
-                </>
-              )}
-
-              <NavItem>
-                {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                  router.pathname === "/user-dashboard/user-trekvouchers" ||
-                  router.pathname === "/user-dashboard/user-myprofile" ||
-                  router.pathname === "/user-dashboard/user-previous-treks" ? (
-                  ""
-                ) : (
-                  <NavLink
-                    href="../../../careers"
-                    className={
-                      router.asPath == "/careers" ? "active-custom" : ""
-                    }
-                  >
-                    Careers
-                  </NavLink>
-                )}
-              </NavItem>
-
-              {/* <NavItem> */}
-              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
-                ""
-              ) : (
-                <>
-                  <UncontrolledDropdown inNavbar nav>
-                    <DropdownToggle nav>
-                      About us &nbsp;
-                      <i
-                        className="fa fa-caret-down cursor-pointer"
-                        aria-hidden="true"
-                        title="More"
-                      ></i>
-                    </DropdownToggle>
-                    <DropdownMenu>
-                      <NavLink
-                        href="../../../aboutus"
-                        className={
-                          router.pathname == "/aboutus"
-                            ? "active-custom dd-menu"
-                            : "dd-menu"
-                        }
-                      >
-                        <DropdownItem>Our Story</DropdownItem>
-                      </NavLink>
-                      <NavLink
-                        href="../../../ourteam"
-                        className={
-                          router.pathname == "/ourteam"
-                            ? "active-custom dd-menu"
-                            : "dd-menu"
-                        }
-                      >
-                        <DropdownItem>Meet the team</DropdownItem>
-                      </NavLink>
-                      <NavLink
-                        href="../../../green-trails"
-                        className={
-                          router.pathname == "/green-trails"
-                            ? "active-custom dd-menu"
-                            : "dd-menu"
-                        }
-                      >
-                        <DropdownItem>Green Trails</DropdownItem>
-                      </NavLink>
-                      <NavLink
-                        href="../../../contact-us"
-                        className={
-                          router.pathname == "/contact-us"
-                            ? "active-custom dd-menu"
-                            : "dd-menu"
-                        }
-                      >
-                        <DropdownItem>Contact Us</DropdownItem>
-                      </NavLink>
-                      <NavLink
-                        href="../../../faq"
-                        className={
-                          router.pathname == "/faq"
-                            ? "active-custom dd-menu"
-                            : "dd-menu"
-                        }
-                      >
-                        <DropdownItem>FAQ</DropdownItem>
-                      </NavLink>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
-                </>
-              )}
-              {/* </NavItem> */}
-
-              {/* <NavItem>
-              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-              router.pathname === "/user-dashboard/user-trekvouchers" ||
-              router.pathname === "/user-dashboard/user-myprofile" ||
-              router.pathname === "/user-dashboard/user-previous-treks" ? (
-                ""
-              ) : (
-                <NavLink
-                  href="../../../careers"
-                  className={
-                    router.pathname == "/careers" ? "active-custom" : ""
-                  }
-                >
-                  careers
-                </NavLink>
-              )}
-            </NavItem> */}
-              <NavItem className="m-d-block">
-                {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                  router.pathname === "/user-dashboard/user-trekvouchers" ||
-                  router.pathname === "/user-dashboard/user-myprofile" ||
-                  router.pathname === "/user-dashboard/user-previous-treks" ? (
-                  <NavLink
-                    href="../../../user-dashboard/user-upcoming-treks"
-                    className={
-                      router.pathname == "/user-dashboard/user-upcoming-treks"
-                        ? "active-custom"
-                        : ""
-                    }
-                  >
-                    Upcoming treks
-                  </NavLink>
-                ) : (
-                  ""
-                )}
-              </NavItem>
-              <NavItem className="m-d-block">
-                {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                  router.pathname === "/user-dashboard/user-trekvouchers" ||
-                  router.pathname === "/user-dashboard/user-myprofile" ||
-                  router.pathname === "/user-dashboard/user-previous-treks" ? (
-                  <NavLink
-                    href="../../../user-dashboard/user-previous-treks"
-                    className={
-                      router.pathname == "/user-dashboard/user-previous-treks"
-                        ? "active-custom"
-                        : ""
-                    }
-                  >
-                    Previous treks
-                  </NavLink>
-                ) : (
-                  ""
-                )}
-              </NavItem>
-              <NavItem className="m-d-block">
-                {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                  router.pathname === "/user-dashboard/user-trekvouchers" ||
-                  router.pathname === "/user-dashboard/user-myprofile" ||
-                  router.pathname === "/user-dashboard/user-previous-treks" ? (
-                  <NavLink
-                    href="../../../user-dashboard/user-myprofile"
-                    className={
-                      router.pathname == "/user-dashboard/user-myprofile"
-                        ? "active-custom"
-                        : ""
-                    }
-                  >
-                    My profile
-                  </NavLink>
-                ) : (
-                  ""
-                )}
-              </NavItem>
-              <NavItem className="m-d-block">
-                {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                  router.pathname === "/user-dashboard/user-trekvouchers" ||
-                  router.pathname === "/user-dashboard/user-myprofile" ||
-                  router.pathname === "/user-dashboard/user-previous-treks" ? (
-                  <NavLink
-                    href="../../../user-dashboard/user-trekvouchers"
-                    className={
-                      router.pathname == "/user-dashboard/user-trekvouchers"
-                        ? "active-custom"
-                        : ""
-                    }
-                  >
-                    Trek vouchers
-                  </NavLink>
-                ) : (
-                  ""
-                )}
-              </NavItem>
-              <NavItem className="m-d-block">
-                {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                  router.pathname === "/user-dashboard/user-trekvouchers" ||
-                  router.pathname === "/user-dashboard/user-myprofile" ||
-                  router.pathname === "/user-dashboard/user-previous-treks" ? (
-                  <NavLink
-                    // href=""
-                    onClick={doLogout}
-                    className={router.pathname == "/" ? "active-custom" : ""}
-                  >
-                    Logout
-                  </NavLink>
-                ) : (
-                  ""
-                )}
-              </NavItem>
-              <NavItem>
-                {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                  router.pathname === "/user-dashboard/user-trekvouchers" ||
-                  router.pathname === "/user-dashboard/user-myprofile" ||
-                  router.pathname === "/user-dashboard/user-previous-treks" ? (
-                  <NavLink
-                    href="/"
-                    className={router.pathname == "/" ? "active-custom" : ""}
-                  >
-                    <button className="btn table-btn-green-lg">
-                      Visit Indiahikes Website
-                    </button>
-                  </NavLink>
-                ) : (
-                  ""
-                )}
-              </NavItem>
-              <NavItem
-                className="r-nav"
-                onClick={() => {
-                  setShowSearch(!showSearch);
-
-                  if (document.getElementById("ac-search"))
-                    document.getElementById("ac-search").value = "";
-
-                  setSearchResults([]);
-                }}
-              >
-                {/* <NavLink className="view-in-desk">
-                  <i
-                    className="fa fa-search cursor-pointer"
-                    aria-hidden="true"
-                  ></i>
-                </NavLink> */}
-                {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                  router.pathname === "/user-dashboard/user-trekvouchers" ||
-                  router.pathname === "/user-dashboard/user-myprofile" ||
-                  router.pathname === "/user-dashboard/user-previous-treks" ? (
-                  ""
-                ) : (
-                  <NavLink className="view-in-desk">
-                    <i
-                      className="fa fa-search cursor-pointer"
-                      aria-hidden="true"
-                      title="Search"
-                    ></i>
-                  </NavLink>
-                )}
-              </NavItem>
-
-              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
-                ""
-              ) : (
-                <NavItem className="view-in-desk">
-                  <NavLink>
-                    <Link href="../../../user-dashboard/user-upcoming-treks">
-                      <i
-                        className="fa fa-user-o cursor-pointer"
-                        aria-hidden="true"
-                        title="User dashboard"
-                      ></i>
-                    </Link>
-                  </NavLink>
-                </NavItem>
-              )}
-
-              {router.pathname === "/user-dashboard/user-upcoming-treks" ||
-                router.pathname === "/user-dashboard/user-trekvouchers" ||
-                router.pathname === "/user-dashboard/user-myprofile" ||
-                router.pathname === "/user-dashboard/user-previous-treks" ? (
-                ""
-              ) : (
-                <>
-                  <UncontrolledDropdown inNavbar nav className="r-nav m-d-none">
-                    <DropdownToggle nav>
-                      <i
-                        className="fa fa-bars cursor-pointer m-d-none"
-                        aria-hidden="true"
-                        title="More"
-                      ></i>{" "}
-                      <span className="m-d-block">More</span>
-                    </DropdownToggle>
-                    <DropdownMenu>
-                      {/* <NavLink href="../../../careers"
-                        className={
-                          router.pathname == "/careers"
-                            ? "active-custom dd-menu"
-                            : "dd-menu"
-                        }>
-                        <DropdownItem>Work with us</DropdownItem>
-                      </NavLink> */}
-                      <a
-                        href="https://store.indiahikes.com/rent-gear/"
-                        target="_blank"
-                      >
-                        <DropdownItem>Rent/Buy Gear</DropdownItem>
-                      </a>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
-                  {/* <NavItem className="view-in-mob">
-                    <NavLink href="../../../careers" className={
-                      router.pathname == "/careers"
-                        ? "active-custom"
-                        : ""
-                    }>
-                      Work with us
-                    </NavLink>
-                  </NavItem> */}
-                  <NavItem className="view-in-mob">
-                    <NavLink href="https://store.indiahikes.com/rent-gear/">
-                      Rent/Buy Gear
-                    </NavLink>
-                  </NavItem>
-                </>
-              )}
-            </Nav>
-          </Collapse>
-        </Navbar>
-        <style jsx global>
-          {ihheaderStyles}
-        </style>
-      </div>
-      {showSearch === true && (
-        <div className="container searchHs">
-          <div className="d-flex justify-content-end">
-            <div>
-              {/*<input*/}
-              {/*  type="text"*/}
-              {/*  placeholder="Find your trek here?"*/}
-              {/*  className="g-search mw-100"*/}
-              {/*  onChange={onChange}*/}
-              {/*/>*/}
-
-              {/*} <DebounceInput
-                minLength={3}
-                debounceTimeout={100}
-                className="g-search mw-100"
-                onChange={onChange}
-                placeholder="Find your trek here?"
-             />*/}
-
-              <AutoComplete
-                id="ac-search"
-                minLength={2}
-                autoFocus
-                value={selectedTreks}
-                onChange={(e) => setSelectedTreks(e.value)}
-                onKeyPress={searchOnEnte}
-                completeMethod={autoSearchTreks}
-                className="g-search smw-100"
-                delay={30}
-                placeholder="Find your trek here?"
-              />
-            </div>
-          </div>
-          {searchResults && searchResults?.length > 0 && (
-            <div className="search-box-section">
-              <div className="d-flex justify-content-end p-1">
-                <i
-                  class="fa fa-window-close cursor-pointer"
-                  aria-hidden="true"
-                  onClick={() => {
-                    setShowSearch(!showSearch);
-                    setSearchResults([]);
-                    setSelectedTreks("");
-                  }}
-                ></i>
-              </div>
-              <div className="s-r-height">
-                {resultListing}
-                {resultListing && resultListing?.length >= 3 && (
-                  <div className="px-3 pb-3">
-                    <a href={searchURL}>
-                      <button className="btn w-100">View More Results</button>
-                    </a>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-    </>
-  );
-};
-
+      )
+    })}
+    {searchlist.length > 3 && <div className="px-3 pb-3">
+      <a href={searchURL}>
+        <button className="btn w-100">View More Results</button>
+      </a>
+    </div>}
+  </>
+}
 
 
 export default HikeHeader;

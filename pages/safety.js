@@ -11,7 +11,7 @@ import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 /**
  * UpComing component
  */
-const Safety = ({ doc }) => {
+const Safety = ({ menu, doc }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -24,7 +24,7 @@ const Safety = ({ doc }) => {
           />
           <title>Safety</title>
         </Head>
-        <HikeHeader />
+        <HikeHeader menu={menu} />
         {/* <UpComingTreksSliceZone sliceZone={doc.data.body} /> */}
         <div className="mt-5 py-5 text-center">
           <h3>Safety at Indiahikes</h3>
@@ -43,9 +43,12 @@ const Safety = ({ doc }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("hike_upcoming_treks_ctype")
+  const menuData = await client.getSingle("custom_menu")
+
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
     },

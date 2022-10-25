@@ -19,6 +19,7 @@ import { isNil, isEmpty } from "ramda";
  * Post page component
  */
 const DocumentTrek = ({
+  menu,
   post,
   authorData,
   updatesData,
@@ -75,7 +76,7 @@ const DocumentTrek = ({
           />
           <meta property="og:image" content={metaData.image} key="og-image" />
         </Head>
-        <HikeHeader />
+        <HikeHeader menu={menu} />
         <div className="main">
           <div className="container">
             {/* <BackButton /> */}
@@ -115,7 +116,7 @@ export async function getStaticProps({
   const client = createClient({ previewData })
 
   const post = await client.getByUID("document_trek_type", params.uid)
-
+  const menuData = await client.getSingle("custom_menu")
 
   //console.log(JSON.stringify(post));
 
@@ -231,6 +232,7 @@ export async function getStaticProps({
   // console.log("return is going to call now");
   return {
     props: {
+      menu: menuData.data.body,
       preview,
       post,
       authorData,

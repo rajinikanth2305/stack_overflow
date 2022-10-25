@@ -14,6 +14,7 @@ import ArticlesSliceZone from "../components/articles/ArticlesSliceZone";
  * UpComing component
  */
 const Articles = ({
+  menu,
   doc,
   articleTabsList,
   section1DataList,
@@ -31,7 +32,7 @@ const Articles = ({
           />
           <title>Articles</title>
         </Head>
-        <HikeHeader />
+        <HikeHeader menu={menu} />
         <ArticlesSliceZone
           sliceZone={doc.data.body}
           articleTabsList={articleTabsList}
@@ -51,6 +52,7 @@ const Articles = ({
 export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const client = createClient({ previewData });
+  const menuData = await client.getSingle("custom_menu")
 
   const doc = await client.getSingle("article_type")
 
@@ -91,6 +93,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
       articleTabsList,

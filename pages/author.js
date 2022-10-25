@@ -12,7 +12,7 @@ import { AuthorSliceZone } from "../components/author";
 /**
  * UpComing component
  */
-const Author = ({ doc }) => {
+const Author = ({ menu, doc }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -25,7 +25,7 @@ const Author = ({ doc }) => {
           />
           <title>Author</title>
         </Head>
-        <HikeHeader />
+        <HikeHeader menu={menu} />
         <AuthorSliceZone sliceZone={doc.data.body} />
         {/* <div className="mt-5 py-5 text-center">
           <h3>Author View</h3>
@@ -44,11 +44,13 @@ const Author = ({ doc }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("hike_team")
+  const menuData = await client.getSingle("custom_menu")
 
 
   //console.log(JSON.stringify(doc));
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
     },

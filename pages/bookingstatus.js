@@ -10,7 +10,7 @@ import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 /**
  * UpComing component
  */
-const BookingStatus = ({ doc }) => {
+const BookingStatus = ({ menu, doc }) => {
   return (
     <HomeLayout>
       <Head>
@@ -19,7 +19,7 @@ const BookingStatus = ({ doc }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Booking Status</title>
       </Head>
-      <HikeHeader auth={true} />
+      <HikeHeader menu={menu} />
       {/* <UpComingTreksSliceZone sliceZone={doc.data.body} /> */}
       <div className="mt-5 py-5 text-center">
         <h3>Booking Status</h3>
@@ -34,9 +34,11 @@ const BookingStatus = ({ doc }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("hike_upcoming_treks_ctype")
+  const menuData = await client.getSingle("custom_menu")
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
     },

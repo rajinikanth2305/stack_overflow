@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
-import { HikeHeader } from "components/ihhome";
+import { DashboardHikeHeader } from "components/ihhome";
 import { createClient } from 'prismicio'
 import { UserMyProfileSliceZone } from "../../components/user-dashboard/my-profile";
 import ScrollToTop from "react-scroll-to-top";
@@ -24,7 +24,7 @@ const UserMyProfile = ({ doc }) => {
             />
             <title>Profile</title>
           </Head>
-          <HikeHeader />
+          <DashboardHikeHeader />
           <UserMyProfileSliceZone sliceZone={doc.data.body} />
         </HomeLayout>
         <ScrollToTop smooth color="#000000" />

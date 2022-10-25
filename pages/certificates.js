@@ -10,7 +10,7 @@ import IHFooter from "../components/Footer";
 /**
  * UpComing component
  */
-const Certificates = ({ doc }) => {
+const Certificates = ({ menu, doc }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -23,7 +23,7 @@ const Certificates = ({ doc }) => {
           />
           <title>Profile</title>
         </Head>
-        <HikeHeader />
+        <HikeHeader menu={menu} />
         {/* <UpComingTreksSliceZone sliceZone={doc.data.body} /> */}
         <div className="mt-5 py-5 text-center">
           <h3>Profile</h3>
@@ -41,10 +41,12 @@ const Certificates = ({ doc }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("hike_upcoming_treks_ctype")
+  const menuData = await client.getSingle("custom_menu")
 
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
     },

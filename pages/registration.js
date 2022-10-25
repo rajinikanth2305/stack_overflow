@@ -16,7 +16,7 @@ import ScrollToTop from "react-scroll-to-top";
  * <script type="text/javascript" src="https://www.paynimo.com/paynimocheckout/server/lib/checkout.js"></script>
  * <script type="text/javascript" src="./assets/js/checkout.js"></script>
  */
-const Registration = ({ doc }) => {
+const Registration = ({ menu, doc }) => {
   if (doc && doc.data) {
     return (
       <>
@@ -34,7 +34,7 @@ const Registration = ({ doc }) => {
               type="text/javascript"
             ></script>
           </Head>
-          <HikeHeader />
+          <HikeHeader menu={menu} />
           <Provider store={store}>
             <RegistrationSliceZone sliceZone={doc.data.body} />
           </Provider>
@@ -56,10 +56,12 @@ const Registration = ({ doc }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("hike_team")
+  const menuData = await client.getSingle("custom_menu")
 
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
     },

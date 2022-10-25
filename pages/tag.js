@@ -14,7 +14,7 @@ import { TagSliceZone } from "../components/tag";
 /**
  * UpComing component
  */
-const Tag = ({ doc }) => {
+const Tag = ({ menu, doc }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -27,7 +27,7 @@ const Tag = ({ doc }) => {
           />
           <title>Tag</title>
         </Head>
-        <HikeHeader />
+        <HikeHeader menu={menu} />
         <TagSliceZone sliceZone={doc.data.body} />
         {/* <div className="mt-5 py-5 text-center">
           <h3>Tag View</h3>
@@ -46,9 +46,12 @@ const Tag = ({ doc }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("hike_team")
+  const menuData = await client.getSingle("custom_menu")
+
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
     },

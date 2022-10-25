@@ -12,7 +12,7 @@ import { SearchSliceZone } from "../components/search-result";
 /**
  * UpComing component
  */
-const SearchResult = ({ doc }) => {
+const SearchResult = ({ menu, doc }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -25,7 +25,7 @@ const SearchResult = ({ doc }) => {
           />
           <title>Search</title>
         </Head>
-        <HikeHeader />
+        <HikeHeader menu={menu} />
         <SearchSliceZone sliceZone={doc.data.body} />
         {/* <div className="mt-5 py-5 text-center">
           <h3>Search View</h3>
@@ -44,9 +44,11 @@ const SearchResult = ({ doc }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("hike_team")
+  const menuData = await client.getSingle("custom_menu")
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
     },

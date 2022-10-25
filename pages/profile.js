@@ -10,7 +10,7 @@ import ProfileSliceZone from "../components/profile/ProfileSliceZone";
 /**
  * UpComing component
  */
-const Profile = ({ doc }) => {
+const Profile = ({ menu, doc }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -23,7 +23,7 @@ const Profile = ({ doc }) => {
           />
           <title>Profile</title>
         </Head>
-        <HikeHeader />
+        <HikeHeader menu={menu} />
         <ProfileSliceZone sliceZone={doc.data.body} />
         <IHFooter />
       </HomeLayout>
@@ -37,10 +37,12 @@ const Profile = ({ doc }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("hike_home_ctype")
+  const menuData = await client.getSingle("custom_menu")
 
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
     },

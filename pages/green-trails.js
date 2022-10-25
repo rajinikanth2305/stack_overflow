@@ -16,6 +16,7 @@ import ScrollToTop from "react-scroll-to-top";
  * UpComing component
  */
 const GreenTrails = ({
+  menu,
   doc,
   latestUpdateAarticleData,
   articleData,
@@ -34,7 +35,7 @@ const GreenTrails = ({
             />
             <title>Green Trails</title>
           </Head>
-          <HikeHeader auth={true} />
+          <HikeHeader menu={menu} />
           <GreenTrailsSliceZone
             sliceZone={doc.data.body}
             latestUpdateAarticleData={latestUpdateAarticleData}
@@ -56,6 +57,8 @@ const GreenTrails = ({
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("green_trails_type")
+  const menuData = await client.getSingle("custom_menu")
+
 
   const latestUpdateAarticleData = [];
   const latestUpdateAarticleData1 = [];
@@ -112,6 +115,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
       latestUpdateAarticleData,

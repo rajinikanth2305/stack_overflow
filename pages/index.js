@@ -6,6 +6,7 @@ import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
 import { createClient } from 'prismicio'
+import * as prismic from "@prismicio/client"
 import ScrollToTop from "react-scroll-to-top";
 import { MOUSEFLOW_WEBSITE_ID } from "utils/constants";
 
@@ -13,6 +14,7 @@ import { MOUSEFLOW_WEBSITE_ID } from "utils/constants";
  * Homepage component
  */
 const HikeHome = ({
+  menu,
   doc,
   trekPageData1,
   articleData,
@@ -84,7 +86,7 @@ const HikeHome = ({
               content="M4DXghH9F30K_X5ox_M6F-DwbI6HtOqWD8RHFFWdEjE"
             />
           </Head>
-          <HikeHeader />
+          <HikeHeader menu={menu} />
           <SliceZone
             sliceZone={doc.data.body}
             trekPageData1={trekPageData1}
@@ -118,7 +120,11 @@ const HikeHome = ({
 
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
+
+
   const doc = await client.getSingle("hike_home_ctype")
+  const menuData = await client.getSingle("custom_menu")
+  // const menu = await client.query([prismic.predicate.at("document.type", "menu")])
 
   const trekPageData1 = [];
   const articleData = [];
@@ -203,6 +209,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   return {
     props: {
+      menu : menuData.data.body,
       doc,
       preview,
       trekPageData1,

@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import HomeLayout from "layouts";
-import { HikeHeader } from "components/ihhome";
+import { DashboardHikeHeader } from "components/ihhome";
 import { ThankYouSlizeZone } from "../../components/user-dashboard/thank-you";
 
 /**
@@ -20,7 +20,7 @@ const ThankYou = () => {
         />
         <title>Payment status</title>
       </Head>
-      <HikeHeader />
+      <DashboardHikeHeader />
       <ThankYouSlizeZone />
     </HomeLayout>
   );

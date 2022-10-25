@@ -15,7 +15,7 @@ import ScrollToTop from "react-scroll-to-top";
 /**
  * UpComing component
  */
-const ContactUs = ({ doc }) => {
+const ContactUs = ({ menu, doc }) => {
   if (doc && doc.data) {
     return (
       <>
@@ -29,7 +29,7 @@ const ContactUs = ({ doc }) => {
             />
             <title>Contact Us</title>
           </Head>
-          <HikeHeader />
+          <HikeHeader menu={menu} />
           <ContactUsSliceZone sliceZone={doc.data.body} />
           <IHTrekWithSwathi />
           <IHFooter />
@@ -46,9 +46,11 @@ const ContactUs = ({ doc }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("aboutus_type")
+  const menuData = await client.getSingle("custom_menu")
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
     },
