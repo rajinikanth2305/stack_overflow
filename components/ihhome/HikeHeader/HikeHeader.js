@@ -155,6 +155,7 @@ const HikeHeader = ({ menu }) => {
 
   const onKeyPressOnSearch = (e) => {
     if (e.key === "Enter") {
+      e.preventDefault();
       router.push(searchURL);
       setSearchResults([]);
       setSearchText("");
@@ -254,6 +255,7 @@ const HikeHeader = ({ menu }) => {
                   className="search-bar-input"
                   aria-label="Search"
                   value={searchText}
+                  onKeyPress={onKeyPressOnSearch}
                   onChange={e => setSearchText(e.target.value)}
                 />}
 
