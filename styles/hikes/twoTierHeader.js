@@ -21,9 +21,8 @@ export const twoTierHeaderStyles = css.global`
     }
 
     .main-header, .mobile-header-container {
-        font-family: 'Franklin Gothic';
         position: sticky;
-        z-index: 3;
+        z-index: 999;
         top:0
     }
 
@@ -34,10 +33,11 @@ export const twoTierHeaderStyles = css.global`
         justify-content: space-around;
         color: black;
     }
-        .navbar-brand {
+    .navbar-brand {
         height: 50px;
         width: 200px;
     }
+
     .main-header .top-navbar .navbar-collapse {
         flex-grow: 0;
         margin-right: 2em;
@@ -45,6 +45,7 @@ export const twoTierHeaderStyles = css.global`
     }
 
     .top-navbar .navbar-nav {
+        font-family: 'Franklin Gothic Book';
         flex-basis: 70%;
         justify-content: space-around
     }
@@ -89,9 +90,11 @@ export const twoTierHeaderStyles = css.global`
     }
 
     .bottom-navbar  {
+        font-family: Oswald;
+        font-weight: 600;
         background-color: rgb(255,193,0);
         padding-top: 0;
-        padding-bottom: 0
+        padding-bottom: 0;
         
     }
 
@@ -139,8 +142,8 @@ export const twoTierHeaderStyles = css.global`
     }
 
     .secondLevelMenu .dropdown-toggle {
-        padding-top: 0;
-        padding-bottom: 0;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
         padding-left: 1rem !important;
         padding-right: 1rem !important
     }
@@ -174,15 +177,39 @@ export const twoTierHeaderStyles = css.global`
     }
 
 
-    .secondLevelMenu:not(:last-child), .thirdLevelMenu {
+    .thirdLevelMenu {
         margin-bottom: 5px
     }
 
-        .s_r_image {
-    position: relative;
-    height: 90px;
-    width: 100%;
+    .s_r_image {
+        position: relative;
+        height: 90px;
+        width: 100%;
     }
+
+    .noHover {
+        border-radius: 0;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+    }
+
+    .search-button {
+        border-radius: 0;
+        background-color: rgba(59,118,42,1);
+    }
+
+    .search-button:hover {
+        background: white
+    }
+
+     .search-button:hover .fa-search {
+        color: rgba(59,118,42,1);
+    }
+
+    .fa-search {
+        color: white;
+    }
+
 
     .g-search {
     border: 1px solid rgb(255, 193, 0);
@@ -310,16 +337,23 @@ export const twoTierHeaderStyles = css.global`
         box-shadow: none;
     }
 
+    .fa-search {
+        color: black;
+    }
+
     .nav-drawer {
         position: absolute;
         z-index: 1;
         left: 100%;
         top: 100%;
         transform: translateX(-100%);
+        font-family: Oswald;
         background-color: rgb(255,193,0);
-        width: max-content;
-        width: 100%;
-        max-width: 600px
+        box-shadow: 1px 1px 2px 2px rgb(0 0 0 / 50%), inset 1px 1px 1px rgb(0 0 0 / 50%);
+    }
+
+    .mobile-header .dropdown-item {
+        white-space: unset;
     }
 
 
@@ -334,7 +368,7 @@ export const twoTierHeaderStyles = css.global`
     {
         padding-left: 1em;
         padding-right: 1em;
-
+        color: black !important;
     }
 
     .mobile-navbar-container .dropdown .nav-link:hover,

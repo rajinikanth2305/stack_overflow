@@ -162,7 +162,6 @@ const HikeHeader = ({ menu }) => {
   }
 
 
-  console.log(bottomMenu)
 
 
   return (
@@ -198,7 +197,7 @@ const HikeHeader = ({ menu }) => {
                   onKeyPress={onKeyPressOnSearch}
                   onChange={e => setSearchText(e.target.value)}
                 />
-                <Button variant="outline-success" onClick={onSearchButtonClicked}>
+                <Button variant="outline-success" onClick={onSearchButtonClicked} className="search-button">
                   <i
                     className="fa fa-search cursor-pointer"
                     aria-hidden="true"></i>
@@ -306,14 +305,18 @@ const HikeHeader = ({ menu }) => {
 };
 
 
-const NavSubMenu = ({ menuItem }) =>
-  <NavDropdown title={menuItem.title} className={`${menuItem.level === 2 ? "secondLevelMenu" : ""}`} >
+const NavSubMenu = ({ menuItem }) => {
+
+  const [show, setShow] = useState(false);
+
+  return <NavDropdown title={menuItem.title} className={`${menuItem.level === 2 ? "secondLevelMenu" : ""}`} show={show} onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)} onClick={() => setShow(prev => !prev)}  >
     {
       menuItem.children.map(subMenu => {
         return subMenu.children && subMenu.children.length ? <NavSubMenu key={subMenu.title} menuItem={subMenu} /> : <NavDropDownItem menuItem={subMenu} key={subMenu.title} />
       })
     }
   </NavDropdown>
+}
 
 
 const NavDropDownItem = ({ menuItem }) =>
