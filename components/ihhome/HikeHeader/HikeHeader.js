@@ -22,7 +22,7 @@ const debounce = (fn, wait) => {
   let timer;
 
   return (searchText) => {
-    if (timer) { console.log(timer); clearTimeout(timer); }
+    if (timer) clearTimeout(timer);
     timer = setTimeout(() => fn(searchText), wait)
   }
 }
