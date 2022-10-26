@@ -199,7 +199,7 @@ export const twoTierHeaderStyles = css.global`
     }
 
     .search-button:hover {
-        background: white
+        background: white !important
     }
 
      .search-button:hover .fa-search {
