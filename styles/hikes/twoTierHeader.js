@@ -166,7 +166,7 @@ export const twoTierHeaderStyles = css.global`
 
 
     .search-bar-input {
-        font-family: 'Franklin Gothic Book'
+        font-family: 'Franklin Gothic Book !important'
     }
 
     .search-bar-input:hover, .search-bar-input:focus {
@@ -400,11 +400,6 @@ export const twoTierHeaderStyles = css.global`
         padding-left: 1em;
         padding-right: 1em;
         color: black !important;
-    }
-
-    .mobile-navbar-container .dropdown .nav-link:hover,
-    .mobile-navbar-container .nav-link:hover {
-        
     }
 
     .mobile-navbar-container .dropdown-menu {
