@@ -102,10 +102,10 @@ const HikeHeader = ({ menu }) => {
   // This is a static menu currently, not pulled from Prismic
   const topMenuBar = useMemo(() =>
     [
-      { id: 1, title: "WORK WITH US", link: { uid: "careers" } },
-      { id: 2, title: "RENT GEAR", link: { url: "https://store.indiahikes.com/rent-gear/" } },
-      { id: 3, title: "VISIT STORE", link: { url: "https://store.indiahikes.com/" } },
-      { id: 4, title: "FAQS", link: { uid: "faq" } },
+      { id: 1, title: "Work With Us", link: { uid: "careers" }, priority: true },
+      { id: 2, title: "Rent Gear", link: { url: "https://store.indiahikes.com/rent-gear/" } },
+      { id: 3, title: "Visit Store", link: { url: "https://store.indiahikes.com/" } },
+      { id: 4, title: "Faqs", link: { uid: "faq" } },
       {
         id: 5, title: `${loggedIn ? "My Profile" : "My Profile"}`, link: { uid: "../../../../user-dashboard/user-upcoming-treks" }, icon: <i
           className="fa fa-user cursor-pointer"
@@ -186,7 +186,7 @@ const HikeHeader = ({ menu }) => {
                 style={{ maxHeight: '100px' }}
                 navbarScroll
               >
-                {!!topMenuBar.length && topMenuBar.map(subMenu => <Nav.Link key={subMenu.title} href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url}>{subMenu.icon ? subMenu.icon : ''}{subMenu.title}</Nav.Link>)}
+                {!!topMenuBar.length && topMenuBar.map(subMenu => <Nav.Link key={subMenu.title} data-priority={subMenu.priority} className="topLevelMenuItem" href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url}>{subMenu.icon ? subMenu.icon : ''}{subMenu.title}</Nav.Link>)}
 
               </Nav>
               <Form className="d-flex searchBar">
@@ -197,6 +197,7 @@ const HikeHeader = ({ menu }) => {
                   value={searchText}
                   onKeyPress={onKeyPressOnSearch}
                   onChange={e => setSearchText(e.target.value)}
+                  className='search-bar-input'
                 />
                 <Button variant="outline-success" onClick={onSearchButtonClicked} className="search-button">
                   <i
@@ -221,7 +222,7 @@ const HikeHeader = ({ menu }) => {
               >
                 {!!bottomMenu.length && bottomMenu.map(subMenu => {
 
-                  return subMenu.children.length ? <NavSubMenu menuItem={subMenu} key={subMenu.title} /> : <Nav.Link className='' key={subMenu.title} href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url}>{subMenu.title}</Nav.Link>
+                  return subMenu.children.length ? <NavSubMenu menuItem={subMenu} key={subMenu.title} /> : <Nav.Link className='firstLevelMenu' key={subMenu.title} href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url}>{subMenu.title}</Nav.Link>
 
                 })}
               </Nav>
@@ -269,10 +270,10 @@ const HikeHeader = ({ menu }) => {
               >
                 {!!bottomMenu.length && bottomMenu.map(subMenu => {
 
-                  return subMenu.children.length ? <NavSubMenu menuItem={subMenu} key={subMenu.title} /> : <Nav.Link className='' key={subMenu.title} href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url}>{subMenu.title}</Nav.Link>
+                  return subMenu.children.length ? <NavSubMenu menuItem={subMenu} key={subMenu.title} /> : <Nav.Link className='firstLevelMenu' key={subMenu.title} href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url}>{subMenu.title}</Nav.Link>
 
                 })}
-                {!!topMenuBar.length && topMenuBar.map(subMenu => <Nav.Link key={subMenu.title} href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url}>{subMenu.icon ? subMenu.icon : ''}{subMenu.title}</Nav.Link>)}
+                {!!topMenuBar.length && topMenuBar.map(subMenu => <Nav.Link key={subMenu.title} data-priority={subMenu.priority} className="topLevelMenuItem" href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url}>{subMenu.icon ? subMenu.icon : ''}{subMenu.title}</Nav.Link>)}
               </Nav>
 
             </Navbar.Collapse>
@@ -311,7 +312,7 @@ const NavSubMenu = ({ menuItem }) => {
 
   const [show, setShow] = useState(false);
 
-  return <NavDropdown title={menuItem.title} className={`${menuItem.level === 2 ? "secondLevelMenu" : ""}`} show={show} onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)} onClick={() => setShow(prev => !prev)}  >
+  return <NavDropdown title={menuItem.title} className={`${menuItem.level === 2 ? "secondLevelMenu" : menuItem.level === 1 ? "firstLevelMenu" : ""}`} show={show} onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)} onClick={() => setShow(prev => !prev)}  >
     {
       menuItem.children.map(subMenu => {
         return subMenu.children && subMenu.children.length ? <NavSubMenu key={subMenu.title} menuItem={subMenu} /> : <NavDropDownItem menuItem={subMenu} key={subMenu.title} />
@@ -322,7 +323,7 @@ const NavSubMenu = ({ menuItem }) => {
 
 
 const NavDropDownItem = ({ menuItem }) =>
-  <NavDropdown.Item href={menuItem.link.uid ? `/${menuItem.link.uid}` : menuItem.link.url} className={`${menuItem.level === 3 ? "thirdLevelMenu" : ""}`} >
+  <NavDropdown.Item href={menuItem.link.uid ? `/${menuItem.link.uid}` : menuItem.link.url} className={`${menuItem.level === 3 ? "thirdLevelMenu" : "secondLevelMenu"}`} >
     {menuItem.title}
   </NavDropdown.Item >
 

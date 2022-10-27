@@ -2221,7 +2221,7 @@ export const customStyles = css.global`
   }
 
   .tab-bg {
-    background: #ffc100;
+    // background: #ffc100;
     padding: 16px;
     position: absolute;
     width: 100%;

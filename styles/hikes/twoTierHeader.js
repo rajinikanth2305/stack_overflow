@@ -45,7 +45,6 @@ export const twoTierHeaderStyles = css.global`
     }
 
     .top-navbar .navbar-nav {
-        font-family: 'Franklin Gothic Book';
         flex-basis: 70%;
         justify-content: space-around
     }
@@ -90,9 +89,7 @@ export const twoTierHeaderStyles = css.global`
     }
 
     .bottom-navbar  {
-        font-family: Oswald;
-        font-weight: 600;
-        background-color: rgb(255,193,0);
+        background-color: rgb(255,204,0);
         padding-top: 0;
         padding-bottom: 0;
         
@@ -108,8 +105,8 @@ export const twoTierHeaderStyles = css.global`
     .bottom-navbar-content .navbar-nav > .nav-link {
         display: block;
         height: 100%;
-        border-top: 2px solid rgb(255,193,0);
-        border-bottom: 1px solid rgb(255,193,0)
+        border-top: 2px solid rgb(255,204,0);
+        border-bottom: 1px solid rgb(255,204,0);
     }
 
     .bottom-navbar-content .navbar-nav > .nav-item:hover,
@@ -166,6 +163,18 @@ export const twoTierHeaderStyles = css.global`
         color: #1e2125;
         background-color: #e9ecef;
     }
+
+
+    .search-bar-input {
+        font-family: 'Franklin Gothic Book'
+    }
+
+    .search-bar-input:hover, .search-bar-input:focus {
+        box-shadow: none;
+        border-color: #000
+    }
+
+
     .search-result-title {
     line-height: 17.5px;
     text-align: left;
@@ -208,6 +217,28 @@ export const twoTierHeaderStyles = css.global`
 
     .fa-search {
         color: white;
+    }
+
+    .main-header .firstLevelMenu {
+        font-family: 'Oswald' !important;
+        font-weight: normal;
+    }
+
+    .main-header .secondLevelMenu, .main-header .thirdLevelMenu {
+        font-family: 'Franklin Gothic Book' !important;
+        font-weight: normal
+    }
+
+    .main-header .nav-link.topLevelMenuItem {
+        font-family: 'Franklin Gothic Medium';
+        font-size: 14px;
+        text-transform: uppercase
+    }
+
+    .main-header .nav-link.topLevelMenuItem[data-priority = true] {
+        font-family: 'Franklin Gothic Medium';
+        font-size: 14px;
+        text-decoration: underline;
     }
 
 
@@ -347,13 +378,13 @@ export const twoTierHeaderStyles = css.global`
         left: 100%;
         top: 100%;
         transform: translateX(-100%);
-        font-family: Oswald;
-        background-color: rgb(255,193,0);
+        background-color: rgb(255,204,0);
         box-shadow: 1px 1px 2px 2px rgb(0 0 0 / 50%), inset 1px 1px 1px rgb(0 0 0 / 50%);
     }
 
     .mobile-header .dropdown-item {
         white-space: unset;
+        margin-bottom: 5px
     }
 
 
@@ -380,6 +411,11 @@ export const twoTierHeaderStyles = css.global`
         padding-bottom: 0
     }
 
+    .mobile-header .nav-link.topLevelMenuItem[data-priority=true] {
+        text-decoration: underline;
+        text-decoration-thickness: from-font;
+    }
+
     .secondLevelMenu .dropdown-toggle::after {
         content: " ";
         border-top: 0.3em solid black;
@@ -391,27 +427,28 @@ export const twoTierHeaderStyles = css.global`
     }
 
     .dropdown-toggle {
-        width: 70%
+        width: 100%
     }
 
     .dropdown-menu {
-        font-size: 1rem
+        font-size: 1rem;
+        border: none;
+        background-color: #f1f1f1;
+    }
+
+    .navbar-nav-scroll {
+        padding: 0.25em 0.5em
     }
 
     .navbar-nav-scroll > .nav-item.show {
         background-color: white;
-        border: 1px solid black;
-
-        // border-bottom: 1px solid black
     }
 
-    .navbar-nav-scroll {
-        padding: 1em 2em;
-    }
+  
     .navbar-nav-scroll > * {
         font-size: 1.25rem;
-        border: 1px solid transparent;
-        border-bottom-color: grey
+        border-bottom: 1px solid #7d7d7d;
+        min-width: 300px;
     }
 
     .search-box-section {
