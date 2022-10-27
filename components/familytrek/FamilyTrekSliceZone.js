@@ -12,6 +12,8 @@ import {
   FamilyTrekVideos,
   FtTrekStories,
   GetInTouchForm,
+  RichText,
+  ImageWithCaption,
 } from "./slices";
 import EmbedHtml from "./../common/slices/EmbedHtml";
 
@@ -74,7 +76,11 @@ const FamilyTrekSliceZone = ({
           <div className="container my-5">
             <EmbedHtml slice={slice} key={`slice-${index}`} />
           </div>
-        ) 
+        );
+      case "rich_text":
+        return <RichText slice={slice} key={`slice-${index}`} />;
+      case "image_with_caption":
+        return <ImageWithCaption slice={slice} key={`slice-${index}`} />;
       default:
         return null;
     }

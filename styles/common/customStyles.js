@@ -31,6 +31,16 @@ export const customStyles = css.global`
     background-position: bottom;
     z-index: 9;
   }
+  .image-label {
+    display: block;
+    text-align: left;
+    font-style: italic;
+    font-size: 12px;
+    color: #949494;
+  }
+  .block-img > img {
+    width: 100%;
+  }
 
   .banner-image-desktop.c-us-bg {
     height: 360px;
@@ -130,7 +140,7 @@ export const customStyles = css.global`
     text-transform: none;
   }
 
-   .p-lo-36 {
+  .p-lo-36 {
     line-height: 40px;
     text-align: left;
     font-family: Lora;
