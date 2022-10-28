@@ -139,15 +139,12 @@ export const twoTierHeaderStyles = css.global`
     }
 
     .secondLevelMenu .dropdown-toggle {
-        padding-top: 0.25rem;
-        padding-bottom: 0.25rem;
+        padding-top: 0;
+        padding-bottom: 0;
         padding-left: 1rem !important;
         padding-right: 1rem !important
     }
 
-    .secondLevelMenu .dropdown-menu {
-        padding-bottom: 0;
-    }
 
     .secondLevelMenu, .thirdLevelMenu {
         text-transform: initial;
@@ -183,11 +180,6 @@ export const twoTierHeaderStyles = css.global`
     font-weight: normal;
     font-size: 14px;
     color: rgba(0, 0, 0, 1);
-    }
-
-
-    .thirdLevelMenu {
-        margin-bottom: 5px
     }
 
     .s_r_image {
@@ -384,7 +376,6 @@ export const twoTierHeaderStyles = css.global`
 
     .mobile-header .dropdown-item {
         white-space: unset;
-        margin-bottom: 5px
     }
 
 
@@ -429,6 +420,13 @@ export const twoTierHeaderStyles = css.global`
         font-size: 1rem;
         border: none;
         background-color: #f1f1f1;
+    }
+
+    .mobile-header-container .dropdown-menu  .dropdown-menu {
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        padding-bottom: 5px;
+        padding-top: 5px;
     }
 
     .navbar-nav-scroll {
