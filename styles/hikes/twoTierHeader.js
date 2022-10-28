@@ -472,6 +472,11 @@ export const twoTierHeaderStyles = css.global`
         top:15px;
     }
 
+
+    .searchBar input {
+        font-size: 14px;
+    }
+    
     .g-search {
         border: 1px solid rgb(255, 193, 0);
         margin-bottom: 0;
