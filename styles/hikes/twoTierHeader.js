@@ -10,14 +10,26 @@ export const twoTierHeaderStyles = css.global`
 
     @font-face {
         font-family: Franklin Gothic Book;
-        src: url("/font/FRANKLINGOTHIC/FRABK.ttf");
-        src: url("/font/FRANKLINGOTHIC/FRABK.ttf") format("truetype");
+        src: url("/font/FRANKLINGOTHIC/Franklin_Gothic_Book_Regular.ttf");
+        src: url("/font/FRANKLINGOTHIC/Franklin_Gothic_Book_Regular.ttf") format("truetype");
+    }
+
+     @font-face {
+        font-family: Franklin Gothic Demi;
+        src: url("/font/FRANKLINGOTHIC/Franklin_Gothic_Demi_Regular.ttf");
+        src: url("/font/FRANKLINGOTHIC/Franklin_Gothic_Demi_Regular.ttf") format("truetype");
     }
 
     @font-face {
         font-family: Lora;
         src: url("/font/LORA/Lora-Medium.ttf");
         src: url("/font/LORA/Lora-Medium.ttf") format("truetype");
+    }
+
+    @font-face {
+        font-family: 'Oswald Regular';
+        src: url("/font/OSWALD/Oswald-Regular.ttf");
+        src: url("/font/OSWALD/Oswald-Regular.ttf") format("truetype");
     }
 
     .main-header, .mobile-header-container {
@@ -62,7 +74,8 @@ export const twoTierHeaderStyles = css.global`
     .top-navbar .searchBar input {
         min-width: 250px;
         margin-top: 0px;
-        margin-bottom:0px
+        margin-bottom:0px;
+        font-size: 14px;
     }
 
     .top-navbar .searchBar {
@@ -81,11 +94,14 @@ export const twoTierHeaderStyles = css.global`
 
     .dropdown-menu.show .dropdown-menu.show {
         left: 100%;
-        top: 25%
+        top: 0;
+        min-width: unset;
     }
 
     .dropdown-menu.show {
         border-radius: 0;
+        min-width: 100%;
+        margin-top: 0
     }
 
     .bottom-navbar  {
@@ -106,7 +122,6 @@ export const twoTierHeaderStyles = css.global`
         display: block;
         height: 100%;
         border-top: 2px solid rgb(255,204,0);
-        border-bottom: 1px solid rgb(255,204,0);
     }
 
     .bottom-navbar-content .navbar-nav > .nav-item:hover,
@@ -163,7 +178,7 @@ export const twoTierHeaderStyles = css.global`
 
 
     .search-bar-input {
-        font-family: 'Franklin Gothic Book !important'
+        font-family: 'Franklin Gothic Book' !important
     }
 
     .search-bar-input:hover, .search-bar-input:focus {
@@ -212,7 +227,7 @@ export const twoTierHeaderStyles = css.global`
     }
 
     .main-header .firstLevelMenu {
-        font-family: 'Oswald' !important;
+        font-family: 'Oswald Regular' !important;
         font-weight: normal;
     }
 
@@ -221,17 +236,24 @@ export const twoTierHeaderStyles = css.global`
         font-weight: normal
     }
 
-    .main-header .nav-link.topLevelMenuItem {
-        font-family: 'Franklin Gothic Medium';
+    .main-header .nav-link.topLevelMenuItem
+     {
+        font-family: 'Franklin Gothic';
         font-size: 14px;
         text-transform: uppercase
     }
 
     .main-header .nav-link.topLevelMenuItem[data-priority = true] {
-        font-family: 'Franklin Gothic Medium';
+        font-family: 'Franklin Gothic Demi';
         font-size: 14px;
         text-decoration: underline;
     }
+
+    .main-header .firstLevelMenu >.nav-link,
+    .main-header .firstLevelMenu.nav-link {
+        text-transform: uppercase;
+    }
+
 
 
     .g-search {
@@ -372,6 +394,7 @@ export const twoTierHeaderStyles = css.global`
         transform: translateX(-100%);
         background-color: rgb(255,204,0);
         box-shadow: 1px 1px 2px 2px rgb(0 0 0 / 50%), inset 1px 1px 1px rgb(0 0 0 / 50%);
+        font-family: 'Oswald Regular' !important
     }
 
     .mobile-header .dropdown-item {
@@ -394,7 +417,11 @@ export const twoTierHeaderStyles = css.global`
     }
 
     .mobile-navbar-container .dropdown-menu {
-        padding-bottom: 0
+        padding-bottom: 0;
+        font-family: "Franklin Gothic Book";
+        font-size: 1rem;
+        border: none;
+        background-color: #f1f1f1;
     }
 
     .mobile-header .nav-link.topLevelMenuItem[data-priority=true] {
@@ -416,11 +443,6 @@ export const twoTierHeaderStyles = css.global`
         width: 100%
     }
 
-    .dropdown-menu {
-        font-size: 1rem;
-        border: none;
-        background-color: #f1f1f1;
-    }
 
     .mobile-header-container .dropdown-menu  .dropdown-menu {
         border-bottom: 1px solid black;
