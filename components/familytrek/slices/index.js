@@ -10,3 +10,5 @@ export { default as FamilyTrekVideos } from "./FamilyTrekVideos";
 export { default as FtTrekStories } from "./FtTrekStories";
 export { default as GetInTouchForm } from "./GetInTouchForm";
 export { default as FamilyGallery } from "./FamilyGallery";
+export { default as RichText } from "./RichText";
+export { default as ImageWithCaption } from "./ImageWithCaption";
