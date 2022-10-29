@@ -626,7 +626,8 @@ const CancellationTrek = () => {
                                   Clear Selection
                                 </p>
                               </div>
-                              {/*
+
+                              {/* 
                               <div>
                                 {hasVoucherUsed===false && (
                                 <div className="mt-2 flex-grow-1">
@@ -637,6 +638,11 @@ const CancellationTrek = () => {
                                 )}
                               </div>
                                 */}
+                            </div>
+                            <div className="d-flex justify-content-center my-4 pt-1">
+                              {computedValue?.youReceive > 0 && (
+                                <p className="info-msg" style={{ fontSize: 18, fontWeight: 'bold' }}>If you wish to cancel the trek, send an email to your Experience Coordinator.</p>
+                              )}
                             </div>
                           </div>
                         </form>
@@ -802,19 +808,18 @@ const CancellationTrek = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="d-flex justify-content-center my-4 pt-1">
+                      {/* <div className="d-flex justify-content-center my-4 pt-1">
                         {computedValue?.youReceive > 0 && (
-                          <button
-                            className="btn table-btn-maroon-lg"
-                            disabled={!showCancelButton}
-                            onClick={(e) => {
-                              onCancelSubmit();
-                            }}
-                          >
-                            <span>Cancel Booking</span>
-                          </button>
+                          // <button
+                          //   className="btn table-btn-maroon-lg"
+                          //   disabled={!showCancelButton}
+                          //   onClick={(e) => {
+                          //     onCancelSubmit();
+                          //   }}
+                          // >
+                          // </button>
                         )}
-                      </div>
+                      </div> */}
                       {computedValue?.youReceive > 0 && (
                         <p className="info-msg">
                           Please take a screenshot of this page for future
