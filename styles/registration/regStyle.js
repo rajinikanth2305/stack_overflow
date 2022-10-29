@@ -296,6 +296,7 @@ export const regStyle = css.global`
     border: 2px solid #ffc100 !important;
   }
 
+  .stepper-tabs .nav-item:nth-child(1) .nav-link::before {
     content: "1";
   }
 
@@ -318,6 +319,7 @@ export const regStyle = css.global`
   }
   .stepper-tabs .nav-item > .nav-link.active:nth-child(1)::before {
     background: #ffffff;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
     width: 20px;
     height: 20px;
     border-radius: 50%;
