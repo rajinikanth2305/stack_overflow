@@ -138,15 +138,28 @@ const HikeHeader = ({ menu }) => {
 
 
   useEffect(() => {
-    searchText &&
+    if (searchText) {
       debounceFetchData(searchText)
+    }
+    else {
+      setSearchResults([])
+    }
   }, [searchText])
 
   useEffect(() => {
-    if (!showSearchBar) setSearchResults([])
+    if (!showSearchBar) {
+      setSearchText("")
+      setSearchResults([])
+    }
   }, [showSearchBar])
 
-  const onSearchButtonClicked = () => setShowSearchBar((prev => !prev))
+  const onSearchButtonClicked = () => {
+    if (!searchText) {
+      setShowSearchBar((prev => !prev))
+    } else {
+      fetchData(searchText)
+    }
+  }
 
 
   const handleMenuOpen = () => {
