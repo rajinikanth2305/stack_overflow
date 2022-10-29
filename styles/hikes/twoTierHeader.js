@@ -32,13 +32,13 @@ export const twoTierHeaderStyles = css.global`
         src: url("/font/OSWALD/Oswald-Regular.ttf") format("truetype");
     }
 
-    .main-header, .mobile-header-container {
+    .main-header, mobile-header-section {
         position: sticky;
         z-index: 999;
         top:0
     }
 
-    .main-header .top-navbar,  .mobile-header-container  {
+    .main-header .top-navbar,  mobile-header-section  {
         background-color: #fff
     }
     .main-header .top-navbar .top-navbar-container {
@@ -250,11 +250,10 @@ export const twoTierHeaderStyles = css.global`
     }
 
     .main-header .firstLevelMenu >.nav-link,
-    .main-header .firstLevelMenu.nav-link {
+    .main-header .firstLevelMenu.nav-link,
+    .mobile-header-container {
         text-transform: uppercase;
     }
-
-
 
     .g-search {
     border: 1px solid rgb(255, 193, 0);
@@ -375,6 +374,15 @@ export const twoTierHeaderStyles = css.global`
         z-index: 3
     }
 
+    .offcanvas-backdrop.show {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.5)
+    }
+
     .noHover:hover,
     .noHover:focus,
     .noHover:checked {
@@ -386,19 +394,13 @@ export const twoTierHeaderStyles = css.global`
         color: black;
     }
 
-    .nav-drawer {
-        position: absolute;
-        z-index: 1;
-        left: 100%;
-        top: 100%;
-        transform: translateX(-100%);
-        background-color: rgb(255,204,0);
-        box-shadow: 1px 1px 2px 2px rgb(0 0 0 / 50%), inset 1px 1px 1px rgb(0 0 0 / 50%);
-        font-family: 'Oswald Regular' !important
+
+    .mobile-header-container .dropdown-item {
+        white-space: unset;
     }
 
-    .mobile-header .dropdown-item {
-        white-space: unset;
+    .mobile-header-container .offcanvas.body {
+        padding: 0.5rem 0
     }
 
 
@@ -407,24 +409,44 @@ export const twoTierHeaderStyles = css.global`
         flex-direction: column;
     }
 
+    .mobile-header-section .mobile-navbar-container {
+        flex-wrap: nowrap
+    }
 
-    .mobile-navbar-container .dropdown .nav-link,
-    .mobile-navbar-container .nav-link
+    .mobile-header-container {
+        top: 66px;
+        bottom: unset;
+        width: 80%;
+        max-width: 320px;
+        background-color: rgb(255,204,0);
+        box-shadow: 1px 1px 2px 2px rgb(0 0 0 / 50%), inset 1px 1px 1px rgb(0 0 0 / 50%);
+        font-family: 'Oswald Regular' !important
+    }
+
+    .mobile-header-container .dropdown.show > .dropdown-toggle::after {
+        border-top: 0;
+        border-right: 0.3em solid transparent;
+        border-bottom: 0.3em solid;
+        border-left: 0.3em solid transparent;
+    }
+
+
+    .mobile-header-container .dropdown .nav-link,
+    .mobile-header-container .nav-link
     {
         padding-left: 1em;
         padding-right: 1em;
         color: black !important;
     }
 
-    .mobile-navbar-container .dropdown-menu {
-        padding-bottom: 0;
+    .mobile-header-container .dropdown-menu {
         font-family: "Franklin Gothic Book";
         font-size: 1rem;
         border: none;
         background-color: #f1f1f1;
     }
 
-    .mobile-header .nav-link.topLevelMenuItem[data-priority=true] {
+    .mobile-header-container .nav-link.topLevelMenuItem[data-priority=true] {
         text-decoration: underline;
         text-decoration-thickness: from-font;
     }
@@ -452,7 +474,9 @@ export const twoTierHeaderStyles = css.global`
     }
 
     .navbar-nav-scroll {
-        padding: 0.25em 0.5em
+        padding: 0.25em 0.5em;
+        max-height: calc(100vh - 100px);
+        
     }
 
     .navbar-nav-scroll > .nav-item.show {
@@ -463,7 +487,6 @@ export const twoTierHeaderStyles = css.global`
     .navbar-nav-scroll > * {
         font-size: 1.25rem;
         border-bottom: 1px solid #7d7d7d;
-        min-width: 300px;
     }
 
     .search-box-section {
@@ -512,6 +535,12 @@ export const twoTierHeaderStyles = css.global`
         max-height: 600px;
         display: block;
         overflow: auto;
+    }
+
+    @media only screen and (max-width: 389px) {
+        .searchBar {
+            margin-right: 1em
+        }
     }
     
 }

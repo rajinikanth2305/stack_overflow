@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useRouter } from "next/router";
 import * as prismic from "@prismicio/client"
 import { createClient } from 'prismicio'
@@ -26,6 +27,9 @@ const debounce = (fn, wait) => {
     timer = setTimeout(() => fn(searchText), wait)
   }
 }
+
+//variable used below to define classnames 
+const expand = 1;
 
 
 const HikeHeader = ({ menu }) => {
@@ -246,7 +250,7 @@ const HikeHeader = ({ menu }) => {
       </header>
 
       {/* Below component will be visible on smaller screens */}
-      <header className="mobile-header-container d-lg-none">
+      <header className="mobile-header-section d-lg-none">
         <Navbar expand="lg" className='mobile-header'>
           <Container fluid className='mobile-navbar-container'>
             <Navbar.Brand href="/"> <Image
@@ -276,20 +280,27 @@ const HikeHeader = ({ menu }) => {
               <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={handleMenuOpen} />
             </div>
 
-            <Navbar.Collapse id="navbarScroll" className='nav-drawer'>
-              <Nav
-                className="me-auto my-lg-0"
-                navbarScroll
-              >
-                {!!bottomMenu.length && bottomMenu.map(subMenu => {
+            <Navbar.Offcanvas
+              id={`offcanvasNavbar-expand-${expand}`}
+              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+              placement="end"
+              className='mobile-header-container d-lg-none'
+            >
+              <Offcanvas.Body>
+                <Nav
+                  className="me-auto my-lg-0"
+                  navbarScroll
+                >
+                  {!!bottomMenu.length && bottomMenu.map(subMenu => {
 
-                  return subMenu.children.length ? <NavSubMenu menuItem={subMenu} key={subMenu.title} /> : <Nav.Link className='firstLevelMenu' key={subMenu.title} href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url}>{subMenu.title}</Nav.Link>
+                    return subMenu.children.length ? <NavSubMenu menuItem={subMenu} key={subMenu.title} /> : <Nav.Link className='firstLevelMenu' key={subMenu.title} href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url}>{subMenu.title}</Nav.Link>
 
-                })}
-                {!!topMenuBar.length && topMenuBar.map(subMenu => <Nav.Link key={subMenu.title} data-priority={subMenu.priority} className="topLevelMenuItem" href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url}>{subMenu.icon ? subMenu.icon : ''}{subMenu.title}</Nav.Link>)}
-              </Nav>
+                  })}
+                  {!!topMenuBar.length && topMenuBar.map(subMenu => <Nav.Link key={subMenu.title} data-priority={subMenu.priority} className="topLevelMenuItem" href={subMenu.link.uid ? `/${subMenu.link.uid}` : subMenu.link.url}>{subMenu.icon ? subMenu.icon : ''}{subMenu.title}</Nav.Link>)}
+                </Nav>
 
-            </Navbar.Collapse>
+              </Offcanvas.Body>
+            </Navbar.Offcanvas>
           </Container>
 
         </Navbar>
