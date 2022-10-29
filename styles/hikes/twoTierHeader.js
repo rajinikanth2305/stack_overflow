@@ -375,7 +375,7 @@ export const twoTierHeaderStyles = css.global`
     }
 
     .offcanvas-backdrop.show {
-        position: absolute;
+        position: fixed;
         right: 0;
         top: 0;
         width: 100vw;
@@ -475,7 +475,7 @@ export const twoTierHeaderStyles = css.global`
 
     .navbar-nav-scroll {
         padding: 0.25em 0.5em;
-        max-height: calc(100vh - 100px);
+        max-height: calc(90vh - 100px);
         
     }
 
