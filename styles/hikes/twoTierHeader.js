@@ -32,13 +32,13 @@ export const twoTierHeaderStyles = css.global`
         src: url("/font/OSWALD/Oswald-Regular.ttf") format("truetype");
     }
 
-    .main-header, mobile-header-section {
+    .main-header, .mobile-header-section {
         position: sticky;
         z-index: 999;
         top:0
     }
 
-    .main-header .top-navbar,  mobile-header-section  {
+    .main-header .top-navbar,  .mobile-header-section  {
         background-color: #fff
     }
     .main-header .top-navbar .top-navbar-container {
@@ -413,7 +413,7 @@ export const twoTierHeaderStyles = css.global`
         flex-wrap: nowrap
     }
 
-    .mobile-header-container {
+    .mobile-header-container.offcanvas.offcanvas-end {
         top: 66px;
         bottom: unset;
         width: 80%;
