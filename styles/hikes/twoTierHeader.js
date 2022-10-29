@@ -399,7 +399,7 @@ export const twoTierHeaderStyles = css.global`
         white-space: unset;
     }
 
-    .mobile-header-container .offcanvas.body {
+    .mobile-header-container .offcanvas-body {
         padding: 0.5rem 0
     }
 
