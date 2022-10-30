@@ -449,6 +449,7 @@ export const twoTierHeaderStyles = css.global`
     .mobile-header-container .nav-link.topLevelMenuItem[data-priority=true] {
         text-decoration: underline;
         text-decoration-thickness: from-font;
+        font-weight: 700
     }
 
     .secondLevelMenu .dropdown-toggle::after {
