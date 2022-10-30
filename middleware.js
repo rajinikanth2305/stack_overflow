@@ -85,6 +85,12 @@ const middleware = async (req) => {
                 } else if (type === "document_trek_type") {
                     url.pathname = `/documented-trek/${resource}`; //absoluteUrl
                     return NextResponse.rewrite(url);
+                } else if (type === "aboutih_type") {
+                    url.pathname = `/aboutus`; //absoluteUrl
+                    return NextResponse.rewrite(url);
+                } else if (type === "diy_trek") {
+                    url.pathname = `/do-it-yourself-treks`; //absoluteUrl
+                    return NextResponse.rewrite(url);
                 } else if (type === "not-found") {
                     return NextResponse.next();
                 }
