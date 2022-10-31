@@ -1,11 +1,10 @@
-
 const REACT_APP_TMS_BACKEND_PUBLIC_URL =
   process.env.NEXT_PUBLIC_TMS_BACKEND_PUBLIC_URL;
 // Helper function to convert Prismic Rich Text links to Next/Link components
 export const getRootPages = () => {
   let pages = [
     { pageid: "/" },
-    { pageid: "aboutus" },
+    { pageid: "about-us" },
     { pageid: "articles" },
     { pageid: "bookingstatus" },
     { pageid: "careers" },

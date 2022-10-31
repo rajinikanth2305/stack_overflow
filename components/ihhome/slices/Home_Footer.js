@@ -96,7 +96,7 @@ const HomeFooter = ({ slice }) => {
                   <div>
                     <ul className="footer_nav_links">
                       <li>
-                        <a href="../../../aboutus">About Us</a>
+                        <a href="../../../about-us">About Us</a>
                       </li>
                       <li>
                         <a href="../../../careers">Careers</a>
