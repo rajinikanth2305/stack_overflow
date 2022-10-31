@@ -1,5 +1,4 @@
-export { default as FaqBanner } from "./FaqBanner";
-export { default as FaqSection } from "./FaqSection";
-export { default as MoreHelpAndSupport } from "./MoreHelpAndSupport";
-export { default as GetInTouchWithIh } from "./GetInTouchWithIh";
-export { default as TrekkingTips } from "./TrekkingTips";
+export { default as HeaderBanner } from "./HeaderBanner";
+export { default as Intro } from "./Intro";
+export { default as Category } from "./Category";
+export { default as GetInTouch } from "./GetInTouch";
