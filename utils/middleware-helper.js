@@ -12,7 +12,7 @@ export const getRootPages = () => {
     { pageid: "contact-us" },
     { pageid: "experiential-learning" },
     { pageid: "faq" },
-    { pageid: "do-it-yourself-treks" },
+    { pageid: "documented-treks" },
     { pageid: "green-trails" },
     { pageid: "ourteam" },
     { pageid: "profile" },

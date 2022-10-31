@@ -364,9 +364,9 @@ const DashboardHikeHeader = (auth = false) => {
                   ""
                 ) : (
                   <NavLink
-                    href="../../../do-it-yourself-treks"
+                    href="../../../documented-treks"
                     className={
-                      router.pathname == "/do-it-yourself-treks"
+                      router.pathname == "/documented-treks"
                         ? "active-custom"
                         : ""
                     }
