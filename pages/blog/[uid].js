@@ -19,6 +19,7 @@ import { createClient, linkResolver } from "prismicio";
  * Post page component
  */
 const Post = ({
+  menu,
   post,
   authorData,
   updatesData,
@@ -86,7 +87,7 @@ const Post = ({
           />
           <meta property="og:image" content={metaData.image} key="og-image" />
         </Head>
-        <HikeHeader />
+        <HikeHeader menu={menu} />
         <div className="main">
           <div className="container">
             {/* <BackButton /> */}
@@ -122,6 +123,8 @@ export async function getStaticProps({
   const client = createClient({ previewData })
 
   const post = await client.getByUID("post", params.uid)
+  const menuData = await client.getSingle("custom_menu")
+
 
 
   //const author=post.data.author_first_name + "-" + post.data.author_last_name;
@@ -240,6 +243,7 @@ export async function getStaticProps({
   // console.log("return is going to call now");
   return {
     props: {
+      menu: menuData.data.body,
       preview,
       post,
       authorData,

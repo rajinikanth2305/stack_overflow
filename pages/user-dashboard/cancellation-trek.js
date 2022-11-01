@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
-import { HikeHeader } from "components/ihhome";
+import { DashboardHikeHeader } from "components/ihhome";
 import { createClient } from 'prismicio'
 import { CancellationTrekSliceZone } from "../../components/user-dashboard/cancellation-trek";
 
@@ -22,7 +22,7 @@ const CancellationTrek = ({ doc }) => {
           />
           <title>Profile</title>
         </Head>
-        <HikeHeader />
+        <DashboardHikeHeader />
         <CancellationTrekSliceZone sliceZone={doc.data.body} />
       </HomeLayout>
     );

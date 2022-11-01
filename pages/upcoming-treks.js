@@ -15,6 +15,7 @@ import { MOUSEFLOW_WEBSITE_ID } from "utils/constants";
  * UpComing component
  */
 const UpcomingTreks = ({
+  menu,
   doc,
   bestTrekToDoData,
   ucOpenData,
@@ -41,7 +42,7 @@ const UpcomingTreks = ({
             />
             <title>Upcoming Treks</title>
           </Head>
-          <HikeHeader />
+          <HikeHeader menu={menu} />
           <UpComingTreksSliceZone
             sliceZone={doc.data.body}
             bestTrekToDoData={bestTrekToDoData}
@@ -84,6 +85,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
 
   const doc = await client.getSingle("hike_upcoming_treks_ctype")
+  const menuData = await client.getSingle("custom_menu")
 
   /*const easyMordatesTreks = await client.query([
     Prismic.Predicates.at("document.type", "trek"),
@@ -278,6 +280,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
       bestTrekToDoData,

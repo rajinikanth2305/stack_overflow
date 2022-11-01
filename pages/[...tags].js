@@ -16,7 +16,7 @@ const headingText = (tagsArray) => {
     }).join("/");
 }
 
-const CustomTreksPage = ({ results, tags }) => {
+const CustomTreksPage = ({ menu, results, tags }) => {
 
     const PAGE_LIMIT = 30;
     const totalNumberOfPages = Math.ceil(results.length / PAGE_LIMIT)
@@ -53,7 +53,7 @@ const CustomTreksPage = ({ results, tags }) => {
                     Indiahikes - India's Safest and Largest Trekking Organisation
                 </title>
             </Head>
-            <HikeHeader auth={true} />
+            <HikeHeader menu={menu} />
             <div style={{ minHeight: "30vh" }}>
                 <TreksContainer treks={treks} headingText={headingText(tags)} currentPageNumber={currentPageNumber} loadTreks={loadTreks} totalNumberOfPages={totalNumberOfPages} />
             </div>
@@ -79,6 +79,8 @@ export async function getServerSideProps({
         ),
     );
 
+    const menuData = await client.getSingle("custom_menu")
+
     const { results } = docs
 
     if (results.length) {
@@ -86,6 +88,7 @@ export async function getServerSideProps({
             props: {
                 results,
                 tags,
+                menu: menuData.data.body,
             }
         }
     }

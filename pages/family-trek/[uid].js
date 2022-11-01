@@ -14,6 +14,7 @@ import { createClient, linkResolver } from "prismicio";
  * UpComing component
  */
 const FamilyTrek = ({
+  menu,
   doc,
   multiTrekData,
   weekendTrekData,
@@ -34,7 +35,7 @@ const FamilyTrek = ({
             />
             <title>{doc && str}</title>
           </Head>
-          <HikeHeader />
+          <HikeHeader menu={menu} />
           <FamilyTrekSliceZone
             sliceZone={doc.data.body}
             multiTrekData={multiTrekData}
@@ -63,6 +64,7 @@ export async function getStaticProps({
   const client = createClient({ previewData });
 
   const doc = await client.getByUID("family_trek", params.uid)
+  const menuData = await client.getSingle("custom_menu")
 
   const multiTrekData = [];
   const weekendTrekData = [];
@@ -116,6 +118,7 @@ export async function getStaticProps({
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
       multiTrekData,

@@ -14,7 +14,7 @@ import ScrollToTop from "react-scroll-to-top";
 /**
  * Aboutus component
  */
-const ThankYouWeeklyMailer = ({ doc }) => {
+const ThankYouWeeklyMailer = ({ menu, doc }) => {
   if (doc && doc.data) {
     return (
       <>
@@ -28,7 +28,7 @@ const ThankYouWeeklyMailer = ({ doc }) => {
             />
             <title>Thank you for subscribing - Indiahikes</title>
           </Head>
-          <HikeHeader />
+          <HikeHeader menu={menu} />
           <WeeklyMailerSliceZone sliceZone={doc.data.body} />
           <IHTrekWithSwathi />
           <IHFooter />
@@ -45,9 +45,11 @@ const ThankYouWeeklyMailer = ({ doc }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("weekly_mailer_type")
+  const menuData = await client.getSingle("custom_menu")
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
     },

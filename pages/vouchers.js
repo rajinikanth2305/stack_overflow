@@ -10,7 +10,7 @@ import { VoucherList } from "../components/vouchers/slices";
 /**
  * UpComing component
  */
-const Vouchers = ({ doc }) => {
+const Vouchers = ({ menu, doc }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -23,7 +23,7 @@ const Vouchers = ({ doc }) => {
           />
           <title>Vouchers</title>
         </Head>
-        <HikeHeader />
+        <HikeHeader menu={menu} />
         <VoucherList sliceZone={doc.data.body} />
         <IHFooter />
       </HomeLayout>
@@ -37,9 +37,11 @@ const Vouchers = ({ doc }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("hike_team")
+  const menuData = await client.getSingle("custom_menu")
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
     },

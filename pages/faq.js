@@ -10,7 +10,7 @@ import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import FaqSliceZone from "../components/faq/FaqSliceZone";
 import ScrollToTop from "react-scroll-to-top";
 
-const FAQ = ({ doc }) => {
+const FAQ = ({ menu, doc }) => {
   if (!doc || !doc.data) {
     return <SetupRepo />;
   }
@@ -27,7 +27,7 @@ const FAQ = ({ doc }) => {
           />
           <title>FAQ</title>
         </Head>
-        <HikeHeader />
+        <HikeHeader menu={menu} />
         <FaqSliceZone data={doc.data} />
         <IHTrekWithSwathi />
         <IHFooter />
@@ -40,9 +40,11 @@ const FAQ = ({ doc }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData });
   const doc = await client.getSingle("faq_type");
+  const menuData = await client.getSingle("custom_menu")
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
     },

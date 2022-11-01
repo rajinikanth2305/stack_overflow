@@ -15,6 +15,7 @@ import ScrollToTop from "react-scroll-to-top";
  * UpComing component
  */
 const Articles1 = ({
+  menu,
   doc,
   articleTabsList,
   section1DataList,
@@ -41,7 +42,7 @@ const Articles1 = ({
             />
             <title>Articles</title>
           </Head>
-          <HikeHeader />
+          <HikeHeader menu={menu} />
           <ArticlesSliceZone
             sliceZone={doc.data.body}
             articleTabsList={articleTabsList}
@@ -77,6 +78,7 @@ export async function getStaticProps({
 }) {
 
   const client = createClient({ previewData });
+  const menuData = await client.getSingle("custom_menu")
 
 
 
@@ -411,6 +413,7 @@ export async function getStaticProps({
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
       articleTabsList,

@@ -36,6 +36,10 @@ export const upcomingTrekPageStyle = css.global`
     padding: 40px 0;
   }
 
+  .trek_card a {
+    text-decoration: none;
+  }
+
   .card-body-padd {
     padding: 17px 25px;
   }
@@ -96,6 +100,17 @@ export const upcomingTrekPageStyle = css.global`
     text-transform: none;
   }
 
+  .title-diplay-3-18px {
+    line-height: 30px;
+    text-align: left;
+    font-family: Franklin Gothic Medium;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    color: rgba(0, 0, 0, 1);
+  }
+
+
   .desc-dispaly-1 {
     line-height: 30px;
     text-align: left;
@@ -148,6 +163,16 @@ export const upcomingTrekPageStyle = css.global`
     border-radius: 0;
     filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
     stroke: rgba(255, 193, 0, 1);
+  }
+
+  .p-text-4 {
+    line-height: 21px;
+    text-align: left;
+    font-family: Lora-Medium;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
   }
 
   .link_text {
@@ -1019,6 +1044,15 @@ export const upcomingTrekPageStyle = css.global`
       height: 160px;
       margin-bottom: 10px;
     }
+
+    
+    .title-diplay-3-18px {
+      font-weight: normal !important;
+      font-size: 20px;
+      // margin-top: 15px;
+      line-height: 20px;
+    }
+
   }
 
   @media (min-width: 1182px) and (max-width: 1400px) {

@@ -20,6 +20,7 @@ export {
   featuredTrekStyles,
   latestUpdatesTrekkingsStyles,
   ChooseTreks,
+  twoTierHeaderStyles
 } from "./hikes";
 
 export { upcomingTrekPageStyle } from "./upcomingtreks";

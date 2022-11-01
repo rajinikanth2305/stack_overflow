@@ -11,7 +11,7 @@ import { StateSliceZone } from "../components/state";
 /**
  * UpComing component
  */
-const State = ({ doc }) => {
+const State = ({ menu, doc }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -24,7 +24,7 @@ const State = ({ doc }) => {
           />
           <title>Diy trek</title>
         </Head>
-        <HikeHeader />
+        <HikeHeader menu={menu} />
         <StateSliceZone sliceZone={doc.data.body} />
         {/* <div className="mt-5 py-5 text-center">
           <h3>State View</h3>
@@ -43,8 +43,11 @@ const State = ({ doc }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("hike_team")
+  const menuData = await client.getSingle("custom_menu")
+
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
     },

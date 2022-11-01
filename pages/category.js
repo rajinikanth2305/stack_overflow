@@ -12,7 +12,7 @@ import { CategorySliceZone } from "../components/category";
 /**
  * UpComing component
  */
-const Category = ({ doc }) => {
+const Category = ({ menu, doc }) => {
   if (doc && doc.data) {
     return (
       <HomeLayout>
@@ -25,7 +25,7 @@ const Category = ({ doc }) => {
           />
           <title>Category</title>
         </Head>
-        <HikeHeader />
+        <HikeHeader menu={menu} />
         <CategorySliceZone sliceZone={doc.data.body} />
         {/* <div className="mt-5 py-5 text-center">
           <h3>Category View</h3>
@@ -44,9 +44,10 @@ const Category = ({ doc }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("hike_team")
-
+  const menuData = await client.getSingle("custom_menu")
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
     },

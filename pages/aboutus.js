@@ -13,7 +13,7 @@ import ScrollToTop from "react-scroll-to-top";
 /**
  * Aboutus component
  */
-const AboutUs = ({ doc, articleData }) => {
+const AboutUs = ({ menu, doc, articleData }) => {
   if (doc && doc.data) {
     return (
       <>
@@ -27,7 +27,7 @@ const AboutUs = ({ doc, articleData }) => {
             />
             <title>Aboutus - India hikes</title>
           </Head>
-          <HikeHeader />
+          <HikeHeader menu={menu} />
           <AboutUsSliceZone
             sliceZone={doc.data.body}
             articleData={articleData}
@@ -49,6 +49,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData });
 
   const doc = await client.getSingle("aboutih_type")
+  const menuData = await client.getSingle("custom_menu")
   const articleData = [];
   const slice = doc?.data?.body?.find((x) => x?.slice_type === "ih_media");
 
@@ -67,6 +68,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
       articleData,

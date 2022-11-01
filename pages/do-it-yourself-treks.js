@@ -13,6 +13,7 @@ import ScrollToTop from "react-scroll-to-top";
  * UpComing component
  */
 const DIY = ({
+  menu,
   doc,
   bestPostTreksData,
   diyResourceData,
@@ -32,7 +33,7 @@ const DIY = ({
             />
             <title>Trek Library</title>
           </Head>
-          <HikeHeader />
+          <HikeHeader menu={menu} />
           <DIYSliceZone
             sliceZone={doc.data.body}
             bestPostTreksData={bestPostTreksData}
@@ -57,6 +58,7 @@ const DIY = ({
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("diy_trek")
+  const menuData = await client.getSingle("custom_menu")
 
   const dtcData = [];
   const diyResourceData = [];
@@ -115,6 +117,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
       dtcData,

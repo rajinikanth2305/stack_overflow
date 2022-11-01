@@ -93,7 +93,7 @@ const ArticleHome = ({
                 <DropdownMenu>{tabsList2}</DropdownMenu>
               </UncontrolledDropdown>
             </Nav> */}
-            <div className="d-flex align-items-center">
+            {/* <div className="d-flex align-items-center">
               <div className="flex-grow-1" style={{ overflowX: "auto" }}>
                 <Nav
                   variant="tabs"
@@ -113,7 +113,7 @@ const ArticleHome = ({
                   </UncontrolledDropdown>
                 </Nav>
               </div>
-            </div>
+            </div> */}
             <div className="my-4">
               <Section1
                 data={slice}

@@ -3,7 +3,7 @@ import Head from "next/head";
 
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
-import { HikeHeader } from "components/ihhome";
+import { DashboardHikeHeader } from "components/ihhome";
 import { createClient } from 'prismicio'
 import { BoPaymentSliceZone } from "../../components/user-dashboard/bo-payment";
 import ScrollToTop from "react-scroll-to-top";
@@ -25,7 +25,7 @@ const BoPayment = ({ doc }) => {
             />
             <title>Profile</title>
           </Head>
-          <HikeHeader />
+          <DashboardHikeHeader />
           <BoPaymentSliceZone sliceZone={doc.data.body} />
         </HomeLayout>
         <ScrollToTop smooth color="#000000" />

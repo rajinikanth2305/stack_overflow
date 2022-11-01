@@ -30,9 +30,13 @@ import { AutoComplete } from "primereact/autocomplete";
 import { linkResolver } from "prismic-configuration";
 
 /**
+ * Pls note: This header was earlier used for both the headers:
+ * the regular website and the trekkers dashboard.
+ * We then did an overhaul and this component even though holds both the components 
+ * is being used only for the trekkers dashboard.
  * Homepage header component
  */
-const HikeHeader = (auth = false) => {
+const DashboardHikeHeader = (auth = false) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -68,7 +72,7 @@ const HikeHeader = (auth = false) => {
           prismic.predicate.not("my.trek.family_trek", true),
           prismic.predicate.not("my.trek.private_trek", true),
         ],
-        { 
+        {
           pageSize: 3,
         }
       )
@@ -830,4 +834,4 @@ const HikeHeader = (auth = false) => {
 
 
 
-export default HikeHeader;
+export default DashboardHikeHeader;

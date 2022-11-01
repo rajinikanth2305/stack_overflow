@@ -14,7 +14,7 @@ import { MOUSEFLOW_WEBSITE_ID } from "utils/constants";
 /**
  * UpComing component
  */
-const Careers = ({ doc, articleData }) => {
+const Careers = ({ menu, doc, articleData }) => {
   if (doc && doc.data) {
     return (
       <>
@@ -28,7 +28,7 @@ const Careers = ({ doc, articleData }) => {
             />
             <title>Careers</title>
           </Head>
-          <HikeHeader auth={true} />
+          <HikeHeader menu={menu} />
           <CareersSliceZone
             sliceZone={doc.data.body}
             articleData={articleData}
@@ -59,7 +59,7 @@ const Careers = ({ doc, articleData }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("carriers_type")
-
+  const menuData = await client.getSingle("custom_menu")
 
 
   const articleData = [];
@@ -80,6 +80,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   return {
     props: {
+      menu: menuData.data.body,
       doc,
       preview,
       articleData,

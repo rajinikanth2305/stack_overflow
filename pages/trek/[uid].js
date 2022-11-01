@@ -20,7 +20,7 @@ import { isNil, isEmpty } from "ramda";
 /**
  * Trek page component
  */
-const Trek = ({ trekData, trekPageData1 }) => {
+const Trek = ({ menu, trekData, trekPageData1 }) => {
   const router = useRouter();
 
   const { calendar: calendarMonth } = router.query;
@@ -101,7 +101,7 @@ const Trek = ({ trekData, trekPageData1 }) => {
             />
             <meta property="og:image" content={metaData.image} key="og-image" />
           </Head>
-          <HikeHeader />
+          <HikeHeader menu={menu} />
           <TrekSliceZone
             sliceZone={trekData.data.body}
             trekPageData1={trekPageData1}
@@ -130,6 +130,7 @@ export async function getStaticProps({
 
   const client = createClient({ previewData })
   const trekData = await client.getByUID('trek', params.uid)
+  const menuData = await client.getSingle("custom_menu")
   // const trekPageData = [];
   let trekPageData1 = [];
 
@@ -151,6 +152,7 @@ export async function getStaticProps({
   }
   return {
     props: {
+      menu: menuData.data.body,
       preview,
       trekData,
       trekPageData1,

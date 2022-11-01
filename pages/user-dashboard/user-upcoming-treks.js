@@ -3,7 +3,7 @@ import Head from "next/head";
 import { createClient } from 'prismicio'
 import { SetupRepo } from "components/home";
 import HomeLayout from "layouts";
-import { HikeHeader } from "components/ihhome";
+import { DashboardHikeHeader } from "components/ihhome";
 import { Client } from "utils/prismicHelpers";
 import { UserUpcomingTreksSliceZone } from "../../components/user-dashboard/upcoming-treks";
 import ScrollToTop from "react-scroll-to-top";
@@ -29,7 +29,7 @@ const UserUpcomingTreks = ({ doc }) => {
               type="text/javascript"
             ></script>
           </Head>
-          <HikeHeader />
+          <DashboardHikeHeader />
           <UserUpcomingTreksSliceZone sliceZone={doc.data.body} />
           <div id="modal-root"></div>
         </HomeLayout>

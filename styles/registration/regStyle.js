@@ -296,7 +296,6 @@ export const regStyle = css.global`
     border: 2px solid #ffc100 !important;
   }
 
-
   .stepper-tabs .nav-item:nth-child(1) .nav-link::before {
     content: "1";
   }
