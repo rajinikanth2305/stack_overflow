@@ -1,0 +1,1 @@
+export { faqStyles } from "./faqStyles";

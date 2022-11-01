@@ -23,6 +23,9 @@ export const customStyles = css.global`
   .container.container-custom {
     max-width: 1600px;
   }
+  .block-img > img{
+	  width:100%
+  }
   .banner-image-desktop {
     width: 100%;
     height: 360px;
@@ -184,6 +187,19 @@ export const customStyles = css.global`
     padding-bottom: 3px;
     margin-bottom: 20px;
   }
+  .title-h2-faq {
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 44px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: none;
+    margin-bottom: 15px;
+    border-bottom: 4px solid rgb(255, 193, 0);
+    padding-bottom: 3px;
+    margin-bottom: 20px;
+  }
 
   .title-h3 {
     text-align: left;
@@ -212,6 +228,16 @@ export const customStyles = css.global`
     font-style: normal;
     font-weight: normal;
     font-size: 24px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: none;
+  }
+  .p-text-1-faq {
+    line-height: 28px;
+    text-align: left;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
     color: rgba(0, 0, 0, 1);
     text-transform: none;
   }
@@ -3003,6 +3029,9 @@ export const customStyles = css.global`
     .title-h2 {
       font-size: 36px !important;
     }
+    .title-h2-faq {
+      font-size: 36px !important;
+    }
 
     .mmy-2 {
       margin-top: 10px !important;
@@ -3139,6 +3168,10 @@ export const customStyles = css.global`
     }
 
     .p-text-1 {
+      line-height: 24px;
+      font-size: 18px;
+    }
+    .p-text-1-faq {
       line-height: 24px;
       font-size: 18px;
     }
@@ -3499,6 +3532,43 @@ export const customStyles = css.global`
     color: rgba(255, 255, 255, 1);
     text-transform: none;
     padding: 0 10px;
+  }
+
+  .reg-acc-tabs.accordion > .card > .card-header {
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 5px 15px;
+  }
+
+  .reg-acc-tabs.accordion > .card > div > .card-body {
+    padding: 16px;
+  }
+  .support-question {
+    background: rgba(157, 58, 11, 1);
+    color: white;
+    font-size: 18px;
+    cursor: none;
+    text-transform: none;
+    font-family: Franklin Gothic Medium;
+    padding: 5px 30px;
+	width:fit-content;
+  }
+  .badge-pink-faq {
+    border-radius: 50%;
+    background: #cf6674;
+    height: 10px;
+    width: 10px;
+  }
+  .p-display-3 {
+    line-height: 20px;
+    text-align: left;
+    font-family: Franklin Gothic Medium;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+    text-transform: uppercase;
   }
 
   .nav-tabs .nav-link {

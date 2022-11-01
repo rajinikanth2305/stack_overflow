@@ -1,34 +1,47 @@
 import React from "react";
-import {
-  FaqBanner,
-  MoreHelpAndSupport,
-  GetInTouchWithIh,
-  TrekkingTips,
-} from "./slices";
+import { HeaderBanner, Intro, Category, GetInTouch } from "./slices";
 
-/**
- *  slice zone component
- */
+const FaqSliceZone = ({ data }) => {
+  const { body } = data;
 
-const FaqSliceZone = ({ sliceZone, articleData }) =>
-  sliceZone.map((slice, index) => {
-    switch (slice.slice_type) {
-      case "faq_banner":
-        return <FaqBanner slice={slice} key={`slice-${index}`} />;
-      case "more_help_and_support":
-        return <MoreHelpAndSupport slice={slice} key={`slice-${index}`} />;
-      case "get_in_touch_with_ih":
-        return <GetInTouchWithIh slice={slice} key={`slice-${index}`} />;
-      case "trekking_tips":
-        return (
-          <TrekkingTips
-            slice={slice}
-            key={`slice-${index}`}
-            articleData={articleData}
-          />
-        );
-      default:
-        return null;
-    }
-  });
+  const headerBannerSlice = body.find((x) => x.slice_type == "header_banner");
+  const getInTouchSlice = body.find((x) => x.slice_type == "get_in_touch");
+
+  const categoriesView = (() => {
+    if (!body) return null;
+
+    const slices = body.filter((x) => x.slice_type == "category");
+    if (!slices || slices.length == 0) return null;
+
+    return (
+      <div className="container">
+        <div className="col-lg-12 col-md-12">
+          {slices.map((slice, index) => (
+            <Category slice={slice} key={`category-slice-${index}`} />
+          ))}
+        </div>
+      </div>
+    );
+  })();
+
+  return (
+    <>
+      <div>
+        <div className="row">
+          <div className="col-lg-12 col-md-12">
+            <HeaderBanner slice={headerBannerSlice} />
+            <Intro data={data} />
+          </div>
+        </div>
+        {categoriesView}
+        <div className="row">
+          <div className="col-lg-12 col-md-12">
+            <GetInTouch slice={getInTouchSlice} />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
 export default FaqSliceZone;
