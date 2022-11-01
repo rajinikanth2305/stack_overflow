@@ -5,7 +5,7 @@ import { PrismicPreview } from '@prismicio/next'
 import { createClient, linkResolver, repositoryName } from '../prismicio'
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
-// import "../styles/buttonHoverStyle.css"
+import "../styles/globalStyles.css"
 import React from "react";
 
 const client = createClient()
