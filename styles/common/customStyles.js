@@ -68,7 +68,7 @@ export const customStyles = css.global`
     background-size: cover;
     position: relative;
     background-position: bottom;
-    z-index: 99;
+    z-index: 0;
   }
 
   .bg_overlay {
@@ -79,7 +79,7 @@ export const customStyles = css.global`
   .bg_overlay-ft {
     height: 700px;
     background: rgba(0, 0, 0, 0.2);
-    z-index: 99;
+    z-index: 1;
     position: relative;
   }
 
