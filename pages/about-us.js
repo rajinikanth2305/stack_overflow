@@ -9,7 +9,7 @@ import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import { AboutUsSliceZone } from "../components/aboutus";
 import ScrollToTop from "react-scroll-to-top";
 
-const AboutUs = ({ doc, articleData }) => {
+const AboutUs = ({ doc, menu, articleData }) => {
   if (!doc) {
     return <SetupRepo />;
   }
@@ -24,7 +24,7 @@ const AboutUs = ({ doc, articleData }) => {
           />
           <title>About Us</title>
         </Head>
-        <HikeHeader />
+        <HikeHeader menu={menu} />
         <AboutUsSliceZone sliceZone={doc.data.body} articleData={articleData} />
         <IHTrekWithSwathi />
         <IHFooter />
@@ -37,10 +37,11 @@ const AboutUs = ({ doc, articleData }) => {
 export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData });
 
-  const doc = await client.getSingle("aboutih_type");
+  const aboutUsDoc = await client.getSingle("aboutih_type");
+  const menuDoc = await client.getSingle("custom_menu");
 
   const articleData = (() => {
-    const { body } = doc.data;
+    const { body } = aboutUsDoc.data;
     if (!body) return [];
 
     const ihMediaSlice = body.find((x) => x.slice_type === "ih_media");
@@ -60,8 +61,9 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   return {
     props: {
-      doc,
+      doc: aboutUsDoc,
       preview,
+      menu: menuDoc.data.body,
       articleData,
     },
   };
