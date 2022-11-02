@@ -364,9 +364,9 @@ const DashboardHikeHeader = (auth = false) => {
                   ""
                 ) : (
                   <NavLink
-                    href="../../../do-it-yourself-treks"
+                    href="../../../documented-treks"
                     className={
-                      router.pathname == "/do-it-yourself-treks"
+                      router.pathname == "/documented-treks"
                         ? "active-custom"
                         : ""
                     }
@@ -475,9 +475,9 @@ const DashboardHikeHeader = (auth = false) => {
                     </DropdownToggle>
                     <DropdownMenu>
                       <NavLink
-                        href="../../../aboutus"
+                        href="../../../about-us"
                         className={
-                          router.pathname == "/aboutus"
+                          router.pathname == "/about-us"
                             ? "active-custom dd-menu"
                             : "dd-menu"
                         }

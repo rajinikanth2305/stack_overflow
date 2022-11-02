@@ -105,7 +105,7 @@ const DoItYourself = ({ slice }) => {
               </Slider>
               <div className="mt-4 m-mt-5 text-center">
                 <button className="btn btn-lg btn-ih-primary text-capitalized hvr-grow">
-                  <Link href="/do-it-yourself-treks">View More DIY Treks</Link>
+                  <Link href="/documented-treks">View More DIY Treks</Link>
                 </button>
               </div>
             </div>
