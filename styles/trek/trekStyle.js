@@ -61,7 +61,9 @@ export const trekStyle = css.global`
     padding-bottom: 3px;
     margin-bottom: 15px;
   }
-
+  .title-h2-margin {
+    margin-top: 40px;
+  }
   .title-h2.gallery-title {
     text-align: center;
     font-family: Lora;
@@ -521,7 +523,7 @@ export const trekStyle = css.global`
     top: 38%;
   }
 
-   .slick-prev::before,
+  .slick-prev::before,
   .slick-next::before {
     color: #707070;
     font-family: "FontAwesome" !important;
@@ -744,10 +746,10 @@ export const trekStyle = css.global`
   }
 
   .choose_trek_image {
-      position:relative;
-      width:100%;
-      height:222px;
-      border-bottom:2px solid rgb(255,193,0)
+    position: relative;
+    width: 100%;
+    height: 222px;
+    border-bottom: 2px solid rgb(255, 193, 0);
   }
 
   .trek_card_desc_min_height {
@@ -928,7 +930,6 @@ export const trekStyle = css.global`
     box-shadow: 1px 1px 3px rgb(91, 133, 70);
   }
 
-  
   .how-each-day-section .nav-item .nav-link.active {
     background-color: rgb(255, 193, 0) !important;
     border: 0 !important;
@@ -937,7 +938,7 @@ export const trekStyle = css.global`
     box-shadow: 1px 1px 3px rgb(91, 133, 70);
   }
 
-  .how-each-day-section  .nav.nav-tabs {
+  .how-each-day-section .nav.nav-tabs {
     margin-bottom: 20px;
     overflow: auto;
     padding: 0 0 3px 0;
@@ -945,7 +946,7 @@ export const trekStyle = css.global`
     flex-wrap: nowrap;
   }
 
-  .how-each-day-section  .nav-item .nav-link {
+  .how-each-day-section .nav-item .nav-link {
     background: rgba(255, 193, 0, 0.251) !important;
     border-radius: 0 !important;
     color: #000000;
@@ -957,7 +958,6 @@ export const trekStyle = css.global`
     text-transform: uppercase;
     line-height: 18px;
   }
-
 
   .nav-item.nav-link {
     background: rgba(255, 193, 0, 0.251) !important;
@@ -990,7 +990,6 @@ export const trekStyle = css.global`
     margin-bottom: 0;
   }
 
-
   .trek-tr .nav.nav-tabs {
     margin-bottom: 0;
   }
@@ -1000,17 +999,13 @@ export const trekStyle = css.global`
   }
 
   .hd-tabs > .nav > .nav-item.nav-link.active,
-  .trek-tr > .nav > .nav-item > .nav-link.active
-  {
+  .trek-tr > .nav > .nav-item > .nav-link.active {
     background-color: #ffffff !important;
     border: 0 !important;
     border-radius: 5px 5px 0 0 !important;
     box-shadow: 1px 1px 3px rgba(91, 133, 70, 1);
     color: #000000;
   }
-
-   
-
 
   .safety-tabs > .nav > .nav-item > .nav-link.active {
     background-color: #ffffff !important;
@@ -1051,7 +1046,6 @@ export const trekStyle = css.global`
     width: 170px;
   }
 
-
   safety-tabs > .nav {
     margin-right: -0.5rem;
     margin-left: -0.5rem;
@@ -1061,7 +1055,8 @@ export const trekStyle = css.global`
   .hd-tabs.trek-tr > .nav > .nav-item > .nav-link {
     padding: 15px 30px !important;
     width: auto;
-  } {
+  }
+   {
     padding: 15px 30px !important;
     width: auto;
   }
@@ -1145,7 +1140,7 @@ export const trekStyle = css.global`
   }
 
   .bt-year-tabs {
-    background: rgb(191, 220, 217); 
+    background: rgb(191, 220, 217);
     padding: 5px 15px;
     line-height: 18px;
     text-align: center;
@@ -1786,7 +1781,7 @@ export const trekStyle = css.global`
   .f-trek-style {
     font-size: 10px;
     text-align: center;
-	  margin:0px;
+    margin: 0px;
     padding: 2px;
     color: #cf6674;
   }
@@ -2037,7 +2032,7 @@ export const trekStyle = css.global`
 
     .p-datepicker table td > span {
       width: 2.8rem;
-	    margin-bottom: 5px;
+      margin-bottom: 5px;
       //height: 3.5rem;
       border-radius: 0;
     }
@@ -2211,35 +2206,34 @@ export const trekStyle = css.global`
     //   box-shadow: none !important;
     // }
 
-
     .hd-tabs > .nav > .nav-item.nav-link {
       width: 100%;
       margin: 1px 3px;
       border-radius: 0 !important;
     }
 
-    .how-each-day-section .nav-tabs .nav-item .active{
-      background-color: rgb(255,193,0)!important;
-      border: 0!important;
-      border-radius: 0!important;
+    .how-each-day-section .nav-tabs .nav-item .active {
+      background-color: rgb(255, 193, 0) !important;
+      border: 0 !important;
+      border-radius: 0 !important;
       color: #000;
-      box-shadow: 1px 1px 3px rgb(91,133,70);
+      box-shadow: 1px 1px 3px rgb(91, 133, 70);
     }
 
     .how-each-day-section .nav-tabs .nav-item {
-      background: rgba(255,193,0,.251)!important;
-      -webkit-border-radius: 0!important;
-      -moz-border-radius: 0!important;
-      border-radius: 0!important;
+      background: rgba(255, 193, 0, 0.251) !important;
+      -webkit-border-radius: 0 !important;
+      -moz-border-radius: 0 !important;
+      border-radius: 0 !important;
       color: #000;
-      padding: 5px 30px!important;
+      padding: 5px 30px !important;
       font-family: Franklin Gothic;
       font-style: normal;
       font-weight: normal;
       font-size: 16px;
       text-transform: uppercase;
       line-height: 18px;
-  }
+    }
 
     .bt-year-tabs {
       margin: 0 0.5px;
