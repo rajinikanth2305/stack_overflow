@@ -25,22 +25,23 @@ const HowDifficultTrekIs = ({ data }) => {
   const heading1 = howDiff && howDiff?.primary?.heading1;
   const heading2 = howDiff && howDiff?.primary?.heading2;
   const hdTextList = howDiff && howDiff?.primary?.hd_text;
-  const trekDifficultyContentList =
+  const trekDifficultyContent =
     howDiff && howDiff?.primary?.trek_difficulty_content;
   const howSafeTitle = howDiff && howDiff?.primary?.content_editor;
   const howSafeContentList = howDiff && howDiff?.primary?.how_safe_content;
   const tabsDataArray = howDiff && howDiff?.items;
 
-  const trekDifficultyContent = trekDifficultyContentList?.map(function (
-    data,
-    i
-  ) {
+  const trekDifficultyContentView = (() => {
+    if (!trekDifficultyContent || trekDifficultyContent.length == 0) {
+      return null;
+    }
+
     return (
-      <p className="p-text-small" key={i}>
-        {data?.text}
-      </p>
+      <div className="col-lg-8 col-md-12">
+        <p className="p-text-small">{RichText.render(trekDifficultyContent)}</p>
+      </div>
     );
-  });
+  })();
 
   const howSafeContent = howSafeContentList?.map(function (data, i) {
     return (
@@ -263,9 +264,7 @@ const HowDifficultTrekIs = ({ data }) => {
               </div>
             </div>
             <div className="col-lg-1 col-md-12"></div>
-            <div className="col-lg-8 col-md-12">
-              <div>{trekDifficultyContent ? trekDifficultyContent : ""}</div>
-            </div>
+            {trekDifficultyContentView}
             <div className="col-md-12">
               {/* {hdText ? hdText : ""} */}
               <div className="p-text-4">{RichText.render(hdTextList)}</div>

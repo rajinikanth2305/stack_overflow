@@ -1,69 +1,71 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { RichText } from "prismic-reactjs";
 import { experimentStyles } from "styles";
 
-const InclusionsAndExclusions = ({ data }) => {
-  const [inclusions, setInclusions] = useState();
-  const [exclusions, setExclusions] = useState();
+const InclusionsAndExclusions = ({ inclusionsSlice, exclusionsSlice }) => {
+  const inclusionsHeading = inclusionsSlice.primary.heading1;
+  const inclusionsArray = inclusionsSlice.items;
 
-  useEffect(() => {
-    findHowToReach();
-    return () => { };
-  }, []);
+  const exclusionsHeading = exclusionsSlice.primary.heading1;
+  const exclusionsArray = exclusionsSlice.items;
 
-  async function findHowToReach() {
-    const slice = data && data.find((x) => x.slice_type === "trek_inclusions");
-    setInclusions(slice);
-    const slice1 = data && data.find((x) => x.slice_type === "trek_exclusions");
-    setExclusions(slice1);
-  }
+  const inclusionsView = (() => {
+    if (!inclusionsArray || inclusionsArray.length == 0) return null;
 
-  const mapUrl = inclusions && inclusions?.primary?.map_url?.url;
-  const inclusionsHeading = inclusions && inclusions?.primary?.heading1;
-  const inclusionArray = inclusions && inclusions?.items;
-  const exclusionsHeading = exclusions && exclusions?.primary?.heading1;
-  const exclusionsArray = exclusions && exclusions?.items;
-
-  const inclusionData = inclusionArray?.map(function (data, i) {
     return (
-      <div className="col-lg-6 col-md-12" key={i}>
-        <p className="p-text-2-franklin mb-2">
-          {/* <img src="/shoes.png" alt="icon" />{" "} */}
-          <span>{data?.inclusion_title[0]?.text}</span>
-        </p>
-        <p className="p-text-4">{data?.inclusion_desc[0]?.text}</p>
+      <div className="my-4 px-4">
+        <div className="p-text-1 text-capitalize mb-4">
+          {RichText.asText(inclusionsHeading)}
+        </div>
+        <div className="row">
+          {inclusionsArray.map((item, i) => {
+            const { inclusion_title: title, inclusion_desc: description } =
+              item;
+
+            return (
+              <div className="col-lg-6 col-md-12" key={i}>
+                <p className="p-text-2-franklin mb-2">{title[0].text}</p>
+                <p className="p-text-4">{RichText.render(description)}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
-  });
+  })();
 
-  const exclusionsData = exclusionsArray?.map(function (data, i) {
+  const exclusionsView = (() => {
+    if (!exclusionsArray || exclusionsArray.length == 0) return null;
+
     return (
-      <div className="col-lg-6 col-md-12" key={i}>
-        <p className="p-text-2-franklin mb-2">
-          {/* <img src="/shoes.png" alt="icon" />{" "} */}
-          <span>{data?.trek_exclusion_title[0]?.text}</span>
-        </p>
-        <p className="p-text-4">{data?.trek_exclusion_desc[0]?.text}</p>
+      <div className="p-3 bg-gray">
+        <div className="p-text-1 text-capitalize mb-4">
+          {RichText.asText(exclusionsHeading)}
+        </div>
+        <div className="row">
+          {exclusionsArray.map((item, i) => {
+            const {
+              trek_exclusion_title: title,
+              trek_exclusion_desc: description,
+            } = item;
+
+            return (
+              <div className="col-lg-6 col-md-12" key={i}>
+                <p className="p-text-2-franklin mb-2">{title[0].text}</p>
+                <p className="p-text-4">{RichText.render(description)}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
-  });
+  })();
 
   return (
     <>
       <div>
-        <div className="my-4 px-4">
-          <div className="p-text-1 text-capitalize mb-4">
-            {RichText.render(inclusionsHeading)}
-          </div>
-
-          <div className="row">{inclusionData}</div>
-        </div>
-        <div className="p-3 bg-gray">
-          <div className="p-text-1 text-capitalize mb-4">
-            {RichText.render(exclusionsHeading)}
-          </div>
-          <div className="row">{exclusionsData}</div>
-        </div>
+        {inclusionsView}
+        {exclusionsView}
         <style jsx global>
           {experimentStyles}
         </style>

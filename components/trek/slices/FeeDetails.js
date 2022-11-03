@@ -4,76 +4,81 @@ import { trekStyle } from "styles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Modal from "react-bootstrap/Modal";
-import { linkResolver } from "prismic-configuration";
 import InclusionsAndExclusions from "../accordiontabs/InclusionsAndExclusions";
 import Link from "next/link";
 
-/**
- * Trek Banner Slice Components
- */
 const FeeDetails = ({ data }) => {
-  const [feeDetails, setFeeDetails] = useState();
-  const [incExc, setIncExc] = useState();
-  const [show, setShow] = useState(false);
+  if (!data) return null;
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [feeDetailsSlice, setFeeDetailsSlice] = useState();
+  const [inclusionsSlice, setInclusionsSlice] = useState();
+  const [exclusionsSlice, setExclusionsSlice] = useState();
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    findFeeDetails();
-    return () => {
-      //   console.log("test");
-    };
+    loadData();
   }, []);
 
-  async function findFeeDetails() {
-    /*getTrekFeeByTrekName(getTrekNameFromUrlQueryPath()).then (res=> {
-      const feeDet= {
-        price:res[0]
-      }
-      setFeeDetails(slice);
-    });*/
+  const loadData = async () => {
+    const feeDetailsSlice = data.find(
+      (x) => x.slice_type === "trek_fee_details"
+    );
+    setFeeDetailsSlice(feeDetailsSlice);
 
-    // const client = Client();
-    // const doc = await client
-    //   .query([Prismic.Predicates.at("document.type", "trek")])
-    //   .then(function(response) {
-    //     const tt = response.results[0].data.body;
-    //     const slice = tt && tt.find(x => x.slice_type === "trek_fee_details");
-    //     setFeeDetails(slice);
-    //     console.log(slice);
-    //   });
-    const slice = data && data.find((x) => x.slice_type === "trek_fee_details");
-    setFeeDetails(slice);
-    // console.log(slice);
-  }
+    const inclusionsSlice = data.find(
+      (x) => x.slice_type === "trek_inclusions"
+    );
+    setInclusionsSlice(inclusionsSlice);
 
-  const heading = feeDetails && feeDetails?.primary?.heading;
-  const price = feeDetails && feeDetails?.primary?.price;
-  const tax = feeDetails && feeDetails?.primary?.tax;
-  const descriptions = feeDetails && feeDetails?.primary?.descriptions;
-  const insurance = feeDetails && feeDetails?.primary?.insurance;
-  const optionalAdditionsArray = feeDetails && feeDetails?.items;
+    const exclusionsSlice = data.find(
+      (x) => x.slice_type === "trek_exclusions"
+    );
+    setExclusionsSlice(exclusionsSlice);
+  };
 
-  const optionalAdditions = optionalAdditionsArray?.map(function (data, i) {
+  if (!feeDetailsSlice) return null;
+
+  const { heading, price, tax, insurance } = feeDetailsSlice.primary;
+  const optionalAdditions = feeDetailsSlice.items;
+
+  const optionalAdditionsView = (() => {
+    if (!optionalAdditions || optionalAdditions.length == 0) return null;
+
     return (
-      <div className="d-flex align-items-start" key={i}>
-        <div>
-          <p className="trek_optional_details">
-            <b>{i + 1}.</b>
-          </p>
-        </div>
-        <div className="mx-2">
-          <div className="trek_optional_details mb-0 mb-0-p">
-            {RichText.render(data?.optional_additions_heading, linkResolver)}
-          </div>
-          <div className="trek_optional_details">
-            {RichText.render(data?.optional_additions_desc)}
-          </div>
-        </div>
+      <div className="p-3">
+        <p className="trek_gts mb-2">Optional additions</p>
+        {optionalAdditions.map((item, i) => {
+          return (
+            <div className="d-flex align-items-start" key={i}>
+              <div>
+                <p className="trek_optional_details">
+                  <b>{i + 1}.</b>
+                </p>
+              </div>
+              <div className="mx-2">
+                <div className="trek_optional_details mb-0 mb-0-p">
+                  {RichText.asText(item.optional_additions_heading)}
+                </div>
+                <div className="trek_optional_details">
+                  {RichText.render(item.optional_additions_desc)}
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     );
-  });
+  })();
+
+  const inclusionsExclusionsView = (() => {
+    if (!inclusionsSlice || !exclusionsSlice) return null;
+
+    return (
+      <p className="trek-info-detail text-decoration-underline cursor-pointer mb-0">
+        <a onClick={() => setShowModal(true)}>See Inclusions and Exclusions</a>
+      </p>
+    );
+  })();
 
   return (
     <>
@@ -82,11 +87,7 @@ const FeeDetails = ({ data }) => {
           <div className="card-body trek_fee_outer_bg pb-0">
             <div className="trek_fee_bg">
               <p className="trek_fee_title m-0">{RichText.asText(heading)}</p>
-
               <div className="d-flex">
-                {/* <div>
-                  <p className="trek_fee">₹ {RichText.asText(price)}</p>
-                </div> */}
                 <div className="d-flex align-items-center">
                   <div>
                     <p className="trek_fee">₹</p>
@@ -101,18 +102,10 @@ const FeeDetails = ({ data }) => {
                   </p>
                   <p className="trek-info-detail m-0">
                     + {RichText.asText(insurance)}{" "}
-                    {/* <span className="mx-1">
-                      <i className="fa fa-info-circle" aria-hidden="true"></i>
-                    </span> */}
                   </p>
                 </div>
               </div>
-              {/* <p className="trek-info-detail m-0">
-                {RichText.asText(descriptions)}
-              </p> */}
-              <p className="trek-info-detail text-decoration-underline cursor-pointer mb-0">
-                <a onClick={handleShow}>See Inclusions and Exclusions</a>
-              </p>
+              {inclusionsExclusionsView}
               <p className="trek-info-detail text-decoration-underline cursor-pointer">
                 <a href="/blog/cancellation-policy" target="_blank">
                   See cancellation policy
@@ -126,10 +119,7 @@ const FeeDetails = ({ data }) => {
                 </Link>
               </div>
             </div>
-            <div className="p-3">
-              <p className="trek_gts mb-2">optional additions</p>
-              {optionalAdditions}
-            </div>
+            {optionalAdditionsView}
           </div>
         </div>
 
@@ -170,7 +160,7 @@ const FeeDetails = ({ data }) => {
                       <i
                         className="fa fa-info-circle"
                         aria-hidden="true"
-                        onClick={handleShow}
+                        onClick={() => setShowModal(true)}
                       ></i>
                     </span>
                   </p>
@@ -189,13 +179,21 @@ const FeeDetails = ({ data }) => {
         </style>
       </div>
 
-      <Modal size="lg" show={show} onHide={handleClose} className="inex_modal">
+      <Modal
+        size="lg"
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        className="inex_modal"
+      >
         <Modal.Header closeButton>
           <Modal.Title>Inclusions And Exclusions</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div>
-            <InclusionsAndExclusions data={data} />
+            <InclusionsAndExclusions
+              inclusionsSlice={inclusionsSlice}
+              exclusionsSlice={exclusionsSlice}
+            />
           </div>
         </Modal.Body>
       </Modal>

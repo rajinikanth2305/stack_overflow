@@ -1,16 +1,14 @@
 import React, { useContext } from "react";
 import { RichText } from "prismic-reactjs";
 import { trekStyle } from "styles";
-import Image from "next/image";
 import "react-accessible-accordion/dist/fancy-example.css";
-import Accordion from 'react-bootstrap/Accordion';
-import { useAccordionButton } from 'react-bootstrap/AccordionButton';
+import Accordion from "react-bootstrap/Accordion";
+import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import Card from "react-bootstrap/Card";
 import HowDoesEachDayLooks from "../accordiontabs/HowDoesEachDayLooks";
 import HowDifficultTrekIs from "../accordiontabs/HowDfficultTresIs";
 import BestTimeToDo from "../accordiontabs/BestTimeToDo";
 import HowToReach from "../accordiontabs/HowToReach";
-import InclusionsAndExclusions from "../accordiontabs/InclusionsAndExclusions";
 import WhatToPack from "../accordiontabs/WhatToPack";
 import KytFaq from "../accordiontabs/KytFaq";
 import AccordionContext from "react-bootstrap/AccordionContext";
@@ -28,10 +26,8 @@ const KnowYourTrek = ({ slice, data }) => {
       (x) => x.slice_type === data?.inner_content_slice_id[0]?.text
     );
 
-
     return (
       <Accordion key={i}>
-
         <Card>
           <Card.Header>
             <ContextAwareToggle eventKey={i}>
@@ -67,8 +63,6 @@ const KnowYourTrek = ({ slice, data }) => {
                 <BestTimeToDo data={slice_zone} />
               ) : sliceType?.slice_type === "howto_reach" ? (
                 <HowToReach data={slice_zone} />
-              ) : sliceType?.slice_type === "trek_inclusions" ? (
-                <InclusionsAndExclusions data={slice_zone} />
               ) : sliceType?.slice_type === "how_difficult_is_trek" ? (
                 <HowDifficultTrekIs data={slice_zone} />
               ) : sliceType?.slice_type === "faq_about_trek" ? (
@@ -79,7 +73,7 @@ const KnowYourTrek = ({ slice, data }) => {
             </Card.Body>
           </Accordion.Collapse>
         </Card>
-      </Accordion >
+      </Accordion>
     );
   });
 
@@ -88,7 +82,6 @@ const KnowYourTrek = ({ slice, data }) => {
       <div id="KYT">
         <div className="container">
           <div className="row d-flex justify-content-center mt-5 mb-4 pt-4 mmb-0">
-
             <div className="col-12 col-lg-7 col-md-12">
               <div className="row">
                 <div className="col-12 col-lg-12 col-md-12">
@@ -117,7 +110,6 @@ const KnowYourTrek = ({ slice, data }) => {
   );
 };
 
-
 function ContextAwareToggle({ children, eventKey, callback }) {
   const currentEventKey = useContext(AccordionContext);
 
@@ -138,6 +130,5 @@ function ContextAwareToggle({ children, eventKey, callback }) {
     </button>
   );
 }
-
 
 export default KnowYourTrek;
