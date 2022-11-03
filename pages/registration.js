@@ -10,6 +10,8 @@ import { RegistrationSliceZone } from "../components/registration";
 import { Provider } from "react-redux";
 import store from "../components/reduxstate/store";
 import ScrollToTop from "react-scroll-to-top";
+import { formatMenuData } from "utils/formatMenu"
+
 /**
  * Registration component
  * <script src="https://www.paynimo.com/paynimocheckout/client/lib/jquery.min.js" type="text/javascript"></script>
@@ -57,11 +59,12 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("hike_team")
   const menuData = await client.getSingle("custom_menu")
+  const menu = formatMenuData(menuData.data.body)
 
 
   return {
     props: {
-      menu: menuData.data.body,
+      menu,
       doc,
       preview,
     },

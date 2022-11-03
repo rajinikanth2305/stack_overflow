@@ -6,6 +6,7 @@ import { HikeHeader } from "components/ihhome";
 import { createClient } from 'prismicio'
 import IHFooter from "../components/Footer";
 import ProfileSliceZone from "../components/profile/ProfileSliceZone";
+import { formatMenuData } from "utils/formatMenu"
 
 /**
  * UpComing component
@@ -38,11 +39,12 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("hike_home_ctype")
   const menuData = await client.getSingle("custom_menu")
+  const menu = formatMenuData(menuData.data.body)
 
 
   return {
     props: {
-      menu: menuData.data.body,
+      menu,
       doc,
       preview,
     },

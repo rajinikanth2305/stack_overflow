@@ -17,6 +17,7 @@ import ScrollToTop from "react-scroll-to-top";
 import { MOUSEFLOW_WEBSITE_ID } from "utils/constants";
 
 import { isNil, isEmpty } from "ramda";
+import { formatMenuData } from "utils/formatMenu"
 /**
  * Trek page component
  */
@@ -131,6 +132,7 @@ export async function getStaticProps({
   const client = createClient({ previewData })
   const trekData = await client.getByUID('trek', params.uid)
   const menuData = await client.getSingle("custom_menu")
+  const menu = formatMenuData(menuData.data.body)
   // const trekPageData = [];
   let trekPageData1 = [];
 
@@ -152,7 +154,7 @@ export async function getStaticProps({
   }
   return {
     props: {
-      menu: menuData.data.body,
+      menu,
       preview,
       trekData,
       trekPageData1,

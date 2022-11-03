@@ -14,7 +14,7 @@ import IHTrekWithSwathi from "components/Trek_With_Swathi";
 import ScrollToTop from "react-scroll-to-top";
 import { createClient, linkResolver } from "prismicio";
 import { isNil, isEmpty } from "ramda";
-
+import { formatMenuData } from "utils/formatMenu"
 /**
  * Post page component
  */
@@ -117,6 +117,7 @@ export async function getStaticProps({
 
   const post = await client.getByUID("document_trek_type", params.uid)
   const menuData = await client.getSingle("custom_menu")
+  const menu = formatMenuData(menuData.data.body)
 
   //console.log(JSON.stringify(post));
 
@@ -232,7 +233,7 @@ export async function getStaticProps({
   // console.log("return is going to call now");
   return {
     props: {
-      menu: menuData.data.body,
+      menu,
       preview,
       post,
       authorData,

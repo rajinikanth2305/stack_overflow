@@ -9,6 +9,7 @@ import { HikeHeader } from "components/ihhome";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import ArticlesSliceZone from "../components/articles/ArticlesSliceZone";
+import { formatMenuData } from "utils/formatMenu"
 
 /**
  * UpComing component
@@ -53,6 +54,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const client = createClient({ previewData });
   const menuData = await client.getSingle("custom_menu")
+  const menu = formatMenuData(menuData.data.body)
 
   const doc = await client.getSingle("article_type")
 
@@ -93,7 +95,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   return {
     props: {
-      menu: menuData.data.body,
+      menu,
       doc,
       preview,
       articleTabsList,

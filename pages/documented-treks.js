@@ -8,6 +8,7 @@ import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import { DIYSliceZone } from "../components/diytreks";
 import ScrollToTop from "react-scroll-to-top";
+import { formatMenuData } from "utils/formatMenu"
 
 /**
  * UpComing component
@@ -59,6 +60,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("diy_trek")
   const menuData = await client.getSingle("custom_menu")
+  const menu = formatMenuData(menuData.data.body)
 
   const dtcData = [];
   const diyResourceData = [];
@@ -117,7 +119,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   return {
     props: {
-      menu: menuData.data.body,
+      menu,
       doc,
       preview,
       dtcData,

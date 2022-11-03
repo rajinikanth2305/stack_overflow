@@ -11,6 +11,8 @@ import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import ScrollToTop from "react-scroll-to-top";
+import { formatMenuData } from "utils/formatMenu"
+
 
 /**
  * UpComing component
@@ -47,10 +49,11 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("aboutus_type")
   const menuData = await client.getSingle("custom_menu")
+  const menu = formatMenuData(menuData.data.body)
 
   return {
     props: {
-      menu: menuData.data.body,
+      menu,
       doc,
       preview,
     },

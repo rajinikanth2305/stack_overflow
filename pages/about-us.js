@@ -8,6 +8,7 @@ import IHFooter from "../components/Footer";
 import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import { AboutUsSliceZone } from "../components/aboutus";
 import ScrollToTop from "react-scroll-to-top";
+import { formatMenuData } from "utils/formatMenu"
 
 const AboutUs = ({ doc, menu, articleData }) => {
   if (!doc) {
@@ -38,7 +39,8 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData });
 
   const aboutUsDoc = await client.getSingle("aboutih_type");
-  const menuDoc = await client.getSingle("custom_menu");
+  const menuData = await client.getSingle("custom_menu");
+  const menu = formatMenuData(menuData.data.body)
 
   const articleData = (() => {
     const { body } = aboutUsDoc.data;
@@ -63,7 +65,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
     props: {
       doc: aboutUsDoc,
       preview,
-      menu: menuDoc.data.body,
+      menu,
       articleData,
     },
   };

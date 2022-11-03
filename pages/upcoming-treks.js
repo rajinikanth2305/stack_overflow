@@ -10,6 +10,7 @@ import { createClient } from 'prismicio'
 import IHFooter from "../components/Footer";
 import ScrollToTop from "react-scroll-to-top";
 import { MOUSEFLOW_WEBSITE_ID } from "utils/constants";
+import { formatMenuData } from "utils/formatMenu"
 
 /**
  * UpComing component
@@ -86,6 +87,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   const doc = await client.getSingle("hike_upcoming_treks_ctype")
   const menuData = await client.getSingle("custom_menu")
+  const menu = formatMenuData(menuData.data.body)
 
   /*const easyMordatesTreks = await client.query([
     Prismic.Predicates.at("document.type", "trek"),
@@ -280,7 +282,7 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
 
   return {
     props: {
-      menu: menuData.data.body,
+      menu,
       doc,
       preview,
       bestTrekToDoData,

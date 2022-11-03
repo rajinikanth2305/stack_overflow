@@ -7,6 +7,7 @@ import IHTrekWithSwathi from "../components/Trek_With_Swathi";
 import { createClient } from 'prismicio'
 import { TreksContainer } from "slices/TreksContainer"
 import * as prismic from "@prismicio/client"
+import { formatMenuData } from "utils/formatMenu"
 
 const headingText = (tagsArray) => {
     return tagsArray.map(tag => {
@@ -80,6 +81,7 @@ export async function getServerSideProps({
     );
 
     const menuData = await client.getSingle("custom_menu")
+    const menu = formatMenuData(menuData.data.body)
 
     const { results } = docs
 
@@ -88,7 +90,7 @@ export async function getServerSideProps({
             props: {
                 results,
                 tags,
-                menu: menuData.data.body,
+                menu,
             }
         }
     }

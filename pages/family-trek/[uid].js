@@ -9,7 +9,7 @@ import IHTrekWithSwathi from "components/Trek_With_Swathi";
 import { FamilyTrekSliceZone } from "components/familytrek";
 import ScrollToTop from "react-scroll-to-top";
 import { createClient, linkResolver } from "prismicio";
-
+import { formatMenuData } from "utils/formatMenu"
 /**
  * UpComing component
  */
@@ -65,6 +65,7 @@ export async function getStaticProps({
 
   const doc = await client.getByUID("family_trek", params.uid)
   const menuData = await client.getSingle("custom_menu")
+  const menu = formatMenuData(menuData.data.body)
 
   const multiTrekData = [];
   const weekendTrekData = [];
@@ -118,7 +119,7 @@ export async function getStaticProps({
 
   return {
     props: {
-      menu: menuData.data.body,
+      menu,
       doc,
       preview,
       multiTrekData,

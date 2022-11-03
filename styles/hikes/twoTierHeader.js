@@ -233,7 +233,16 @@ export const twoTierHeaderStyles = css.global`
 
     .main-header .secondLevelMenu, .main-header .thirdLevelMenu {
         font-family: 'Franklin Gothic Book' !important;
-        font-weight: normal
+        font-weight: normal;
+    
+    }
+
+    .main-header .secondLevelMenu,
+    .main-header .thirdLevelMenu,
+    .mobile-header-container .secondLevelMenu,
+    .mobile-header-container .thirdLevelMenu {
+        padding-top: 2px;
+        padding-bottom: 2px
     }
 
     .main-header .nav-link.topLevelMenuItem

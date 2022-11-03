@@ -6,6 +6,7 @@ import HomeLayout from "layouts";
 import { HikeHeader } from "components/ihhome";
 import { Client } from "utils/prismicHelpers";
 import IHFooter from "../components/Footer";
+import { formatMenuData } from "utils/formatMenu"
 
 /**
  * UpComing component
@@ -42,11 +43,12 @@ export async function getStaticProps({ preview = null, previewData = {} }) {
   const client = createClient({ previewData })
   const doc = await client.getSingle("hike_upcoming_treks_ctype")
   const menuData = await client.getSingle("custom_menu")
+  const menu = formatMenuData(menuData.data.body)
 
 
   return {
     props: {
-      menu: menuData.data.body,
+      menu,
       doc,
       preview,
     },

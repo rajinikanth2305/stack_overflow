@@ -7,7 +7,7 @@ import DefaultLayout from "layouts";
 import { BackButton, SliceZone } from "components/post";
 
 // Project functions & styles
-import * as prismicH from "@prismicio/helpers";
+import { formatMenuData } from "utils/formatMenu"
 import { HikeHeader } from "components/ihhome";
 import IHFooter from "components/Footer";
 import IHTrekWithSwathi from "components/Trek_With_Swathi";
@@ -124,7 +124,7 @@ export async function getStaticProps({
 
   const post = await client.getByUID("post", params.uid)
   const menuData = await client.getSingle("custom_menu")
-
+  const menu = formatMenuData(menuData.data.body)
 
 
   //const author=post.data.author_first_name + "-" + post.data.author_last_name;
@@ -243,7 +243,7 @@ export async function getStaticProps({
   // console.log("return is going to call now");
   return {
     props: {
-      menu: menuData.data.body,
+      menu,
       preview,
       post,
       authorData,
