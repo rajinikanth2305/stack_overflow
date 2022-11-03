@@ -41,7 +41,6 @@ export const bannerStyle = css.global`
   }
 
   .banner-text-2 {
-    white-space: nowrap;
     line-height: 30px;
     text-align: center;
     font-family: Raleway;
@@ -90,7 +89,8 @@ export const bannerStyle = css.global`
     }
 
     .banner-text-2 {
-      display: none;
+      text-align: center;
+      font-size: 20px;
     }
 
     .banner-text-1 {
