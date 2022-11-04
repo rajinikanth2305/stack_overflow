@@ -485,9 +485,9 @@ const DashboardHikeHeader = (auth = false) => {
                         <DropdownItem>Our Story</DropdownItem>
                       </NavLink>
                       <NavLink
-                        href="../../../ourteam"
+                        href="../../../meet-the-team"
                         className={
-                          router.pathname == "/ourteam"
+                          router.pathname == "/meet-the-team"
                             ? "active-custom dd-menu"
                             : "dd-menu"
                         }

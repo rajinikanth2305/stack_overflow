@@ -14,7 +14,7 @@ export const getRootPages = () => {
     { pageid: "faq" },
     { pageid: "documented-treks" },
     { pageid: "green-trails" },
-    { pageid: "ourteam" },
+    { pageid: "meet-the-team" },
     { pageid: "profile" },
     { pageid: "receipts" },
     { pageid: "registration" },
