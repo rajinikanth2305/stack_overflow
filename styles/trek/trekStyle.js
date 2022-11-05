@@ -1785,8 +1785,16 @@ export const trekStyle = css.global`
     padding: 2px;
     color: #cf6674;
   }
+  .trek-gallery-image {
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
 
   @media only screen and (max-width: 660px) {
+    .trek-gallery-image {
+      object-fit: contain;
+      object-position: 50% 50%;
+    }
     .q-des {
       font-size: 40px;
       left: 0px;

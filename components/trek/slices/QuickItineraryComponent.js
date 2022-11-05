@@ -86,8 +86,8 @@ const QuickItineraryComponent = ({ slice }) => {
                     <Image
                       src={itineraryMapImage}
                       layout="fill"
-                      objectFit="cover"
-                      objectPosition="bottom"
+                      objectFit="contain"
+                      objectPosition="50% 50%"
                       unoptimized
                     />
                   </div>
