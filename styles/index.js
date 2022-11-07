@@ -20,7 +20,7 @@ export {
   featuredTrekStyles,
   latestUpdatesTrekkingsStyles,
   ChooseTreks,
-  twoTierHeaderStyles
+  twoTierHeaderStyles,
 } from "./hikes";
 
 export { upcomingTrekPageStyle } from "./upcomingtreks";
@@ -32,3 +32,4 @@ export { diyStyles } from "./diy";
 export { customStyles } from "./common";
 export { ratingStyles } from "./common";
 export { faqStyles } from "./faq";
+export { treksByCategoryStyles } from "./common";

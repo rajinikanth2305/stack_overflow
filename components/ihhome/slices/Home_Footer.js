@@ -2,6 +2,7 @@ import React from "react";
 import { RichText } from "prismic-reactjs";
 import { homeFooterStyles } from "styles";
 import Image from "next/image";
+import TreksByCategory from "../../common/slices/footer/TreksByCategory";
 /**
  * Founder Slice Components
  */
@@ -17,6 +18,7 @@ const HomeFooter = ({ slice }) => {
   return (
     <>
       <div>
+        <TreksByCategory />
         <div className="home_footer_image">
           <Image
             src={homeFooterImage}

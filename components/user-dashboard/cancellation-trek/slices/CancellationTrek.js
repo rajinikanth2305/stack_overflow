@@ -475,13 +475,13 @@ const CancellationTrek = () => {
                                   const name =
                                     sdata?.email === userEmail
                                       ? " * " +
-                                      sdata?.firstName +
-                                      " " +
-                                      sdata?.lastName +
-                                      " (You) "
+                                        sdata?.firstName +
+                                        " " +
+                                        sdata?.lastName +
+                                        " (You) "
                                       : sdata?.firstName +
-                                      " " +
-                                      sdata?.lastName;
+                                        " " +
+                                        sdata?.lastName;
 
                                   const state =
                                     sdata?.bookingParticipantState ===
@@ -517,7 +517,7 @@ const CancellationTrek = () => {
                                                         }}
                                                         checked={
                                                           sdata?.cancelled ==
-                                                            false
+                                                          false
                                                             ? false
                                                             : true
                                                         }
@@ -641,7 +641,13 @@ const CancellationTrek = () => {
                             </div>
                             <div className="d-flex justify-content-center my-4 pt-1">
                               {computedValue?.youReceive > 0 && (
-                                <p className="info-msg" style={{ fontSize: 18, fontWeight: 'bold' }}>If you wish to cancel the trek, send an email to your Experience Coordinator.</p>
+                                <p
+                                  className="info-msg"
+                                  style={{ fontSize: 18, fontWeight: "bold" }}
+                                >
+                                  If you wish to cancel the trek, send an email
+                                  to your Experience Coordinator.
+                                </p>
                               )}
                             </div>
                           </div>
