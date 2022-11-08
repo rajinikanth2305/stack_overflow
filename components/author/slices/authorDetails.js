@@ -7,8 +7,6 @@ import * as prismic from "@prismicio/client";
 import Link from "next/link";
 
 const AuthorDetails = ({ slice }) => {
-  const heading1 = slice?.primary?.heading1;
-
   const { query } = useRouter();
   const authorName = query && query?.name;
   const [authorData, setAuthorData] = useState();
@@ -20,7 +18,7 @@ const AuthorDetails = ({ slice }) => {
     }
     const getAuthorDetails = async () => {
       const client = createClient();
-      const author = await client.getByUID("author_type", authorName)
+      const author = await client.getByUID("author_type", authorName);
       setAuthorData(author);
     };
     const getAuthorArticles = async () => {
@@ -28,23 +26,21 @@ const AuthorDetails = ({ slice }) => {
       // const authorArticles = await client.query(
       //     Prismic.Predicates.at("my.Post.author_link", authorName)
       // );
-      const authorArticles = await client.getAllByType("post")
+      const authorArticles = await client.getAllByType("post");
       setAuthorArticles(authorArticles);
     };
     getAuthorDetails();
     getAuthorArticles();
   }, [authorName]);
 
-  const articlesByAthorName =
+  const articlesByAuthorName =
     authorArticles &&
-    authorArticles?.results?.filter(
-      (x) => x?.data?.author_link?.uid === authorName
-    );
+    authorArticles?.filter((x) => x?.data?.author_link?.uid === authorName);
   const auth = authorName && authorName?.replace(/-/g, " ");
 
-  const articlesByAthorNameSection =
-    articlesByAthorName &&
-    articlesByAthorName?.map(function (data, i) {
+  const articlesByAuthorNameSection =
+    articlesByAuthorName &&
+    articlesByAuthorName?.map(function (data, i) {
       const authorName = data?.data?.author_link?.uid.replace(/-/g, " ");
       let url;
       const slugUrl = data?.uid;
@@ -102,25 +98,21 @@ const AuthorDetails = ({ slice }) => {
             <div className="col-md-8 col-12">
               <div className="d-flex align-items-center">
                 <div className="auth_image size-max m-d-none">
-                  <img src={authorData?.results[0]?.data?.author_photo?.url} />
+                  <img src={authorData?.data?.author_photo?.url} />
                 </div>
                 <div className="auth_bx">
                   <div className="auth_image size-max m-d-block">
-                    <img
-                      src={authorData?.results[0]?.data?.author_photo?.url}
-                    />
+                    <img src={authorData?.data?.author_photo?.url} />
                   </div>
                   <p className="m-0 p-text-1-fgt mt-1">
-                    {authorData?.results[0]?.data?.author_first_name}{" "}
-                    {authorData?.results[0]?.data?.author_last_name}
+                    {authorData?.data?.author_first_name}{" "}
+                    {authorData?.data?.author_last_name}
                   </p>
                   <p className="p-text-small-black">
-                    {authorData?.results[0]?.data?.designation}
+                    {authorData?.data?.designation}
                   </p>
                   <p className="p-text-3 m-0" style={{ fontStyle: "italic" }}>
-                    {RichText.asText(
-                      authorData?.results[0]?.data?.author_description
-                    )}
+                    {RichText.asText(authorData?.data?.author_description)}
                   </p>
                 </div>
               </div>
@@ -134,8 +126,8 @@ const AuthorDetails = ({ slice }) => {
                 <b>Articles by {authorName && auth}</b>
               </span>
             </h2>
-            {articlesByAthorName && articlesByAthorName?.length > 0 ? (
-              <div className="row">{articlesByAthorNameSection}</div>
+            {articlesByAuthorName && articlesByAuthorName?.length > 0 ? (
+              <div className="row">{articlesByAuthorNameSection}</div>
             ) : (
               <>
                 <div className="d-flex col-lg-12 col-md-12 align-items-center justify-content-center mt-5 mb-3">
