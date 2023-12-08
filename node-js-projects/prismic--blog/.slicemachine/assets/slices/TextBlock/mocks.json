@@ -1,0 +1,24 @@
+[
+  {
+    "variation": "default",
+    "name": "Default",
+    "slice_type": "text_block",
+    "items": [],
+    "primary": {
+      "title": [
+        {
+          "type": "heading1",
+          "text": "Harness sticky eyeballs",
+          "spans": []
+        }
+      ],
+      "description": [
+        {
+          "type": "paragraph",
+          "text": "Nisi et nulla amet veniam culpa aliquip dolore.",
+          "spans": []
+        }
+      ]
+    }
+  }
+]
